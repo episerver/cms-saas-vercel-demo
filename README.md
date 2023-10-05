@@ -7,7 +7,7 @@ This repository contains the packages and applications that form the Optimizely 
 
 ## Getting started
 Make sure you're good to go, by:
-- Requesting an Optimizely CMS instance using [Sign-up for the beta form](https://www.optimizely.com/get-started)
+- Requesting an Optimizely CMS instance using [Sign-up for the program](https://signup.cms.optimizely.com/)
 - Ensuring you have (at least) a hobby plan account at Vercel, or are comfortable creating one
 
 After signing up for the beta instance and provisioning of the instance, you'll get an e-mail with the keys and instructions to activate your account.
