@@ -1,0 +1,37 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+      // Set build target
+      "target": "ES2020",
+      "module": "NodeNext",
+      "moduleResolution": "NodeNext",
+      "lib": ["ES2020","ES2020.BigInt","ES2020.Date","ES2020.Intl","ES2020.Number","ES2020.Promise","ES2020.SharedMemory","ES2020.String","ES2020.Symbol.WellKnown","ES2016","ES2016.Array.Include"],
+  
+      // Set Output & Module resolution
+      "baseUrl": "./",
+      "outDir": "./dist",
+      "declaration": true,
+      "sourceMap": true,
+      "incremental": true,
+      "skipLibCheck": true, // Prevent errors from .d.ts files
+      "tsBuildInfoFile": "./.tsbuildinfo",
+  
+      // Language checking
+      "strict": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "esModuleInterop": true,
+      "allowUnreachableCode": false,
+      "allowUmdGlobalAccess": false,
+      "forceConsistentCasingInFileNames": true,
+      "isolatedModules": true,
+      "allowSyntheticDefaultImports": true, // Needed for CommonJS Module Interop
+      "importHelpers": true,
+      "removeComments": true,
+      //"resolveJsonModule": true,
+      //"resolvePackageJsonImports": true,
+      //"resolvePackageJsonExports": true,
+    },
+    
+    "exclude": ["node_modules", "tests", "dist", "cjs","bin","../../../node_modules"]
+  }

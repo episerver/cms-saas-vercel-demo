@@ -1,0 +1,16 @@
+{
+    "picker": {
+        "button": "Language",
+        "title": "Select language",
+        "locales": {
+            "en": "English",
+            "nl": "Nederlands",
+            "nl-BE": "Vlaams"
+        }
+    },
+    "login": {
+        "login": "Login",
+        "logout": "Logout",
+        "loading": "Loading ..."
+    }
+}

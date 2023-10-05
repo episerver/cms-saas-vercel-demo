@@ -1,0 +1,64 @@
+{
+  "name": "@remkoj/optimizely-dxp-cli",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "CLI Utilities for Optimizely DXP",
+  "main": "bin/index.js",
+  "private": true,
+  "bin": {
+    "frontend-cli": "bin/index.js"
+  },
+  "scripts": {
+    "watch": "yarn tsc --watch",
+    "clean": "yarn tsc --build --clean",
+    "compile": "yarn tsc --build",
+    "recompile": "yarn tsc --build --clean && yarn tsc --build",
+    "run-compiled": "yarn node dist/index.js",
+    "build": "yarn tsc && yarn dlx -p source-map-support -p rollup rollup --config rollup.config.js",
+    "rebuild": "yarn tsc --build --clean && yarn tsc --build && yarn dlx -p source-map-support -p rollup rollup --config rollup.config.js",
+    "run": "yarn node bin/index.js",
+    "rollup": "yarn dlx -p source-map-support -p rollup rollup --config rollup.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/remkoj/optimizely-dxp-frontend.git"
+  },
+  "author": "Remko Jantzen",
+  "license": "Apache-2.0",
+  "bugs": {
+    "url": "https://github.com/remkoj/optimizely-dxp-frontend/issues"
+  },
+  "homepage": "https://github.com/remkoj/optimizely-dxp-frontend#readme",
+  "devDependencies": {
+    "@babel/core": "^7.23.0",
+    "@rollup/plugin-babel": "^6.0.4",
+    "@rollup/plugin-commonjs": "^25.0.5",
+    "@rollup/plugin-json": "^6.0.1",
+    "@rollup/plugin-node-resolve": "^15.2.2",
+    "@rollup/plugin-terser": "^0.4.4",
+    "@types/crypto-js": "^4.1.2",
+    "@types/glob": "^8.1.0",
+    "@types/node": "^20.8.2",
+    "@types/rollup-plugin-node-resolve": "^4.1.0",
+    "@types/source-map-support": "^0.5.8",
+    "@types/yargs": "^17.0.26",
+    "figures": "^5.0.0",
+    "rollup": "^3.29.4",
+    "source-map-support": "^0.5.21",
+    "tslib": "^2.6.2",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "@apollo/client": "^3.8.4",
+    "ansi-styles": "^6.2.1",
+    "chalk": "^5.3.0",
+    "cli-table3": "^0.6.3",
+    "crypto-js": "^4.1.1",
+    "dotenv": "^16.3.1",
+    "dotenv-expand": "^10.0.0",
+    "glob": "^10.3.10",
+    "graphql": "^16.8.1",
+    "node-fetch": "^3.3.2",
+    "yargs": "^17.7.2"
+  }
+}

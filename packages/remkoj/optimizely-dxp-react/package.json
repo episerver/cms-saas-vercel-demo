@@ -1,0 +1,39 @@
+{
+  "name": "@remkoj/optimizely-dxp-react",
+  "version": "0.0.2",
+  "packageManager": "yarn@3.6.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "devDependencies": {
+    "@apollo/client": "^3.8.4",
+    "@types/crypto-js": "^4.1.2",
+    "@types/node": "^20.8.2",
+    "@types/react": "^18.2.25",
+    "@types/uuid": "^9.0.4",
+    "crypto-js": "^4.1.1",
+    "graphql": "^16.8.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "scheduler": "^0.23.0",
+    "typescript": "^5.2.2",
+    "uuid": "^9.0.1"
+  },
+  "peerDependencies": {
+    "@apollo/client": "*",
+    "crypto-js": "*",
+    "graphql": "*",
+    "react": "*",
+    "uuid": "*"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "build": "tsc --build",
+    "watch": "tsc --watch",
+    "rebuild": "tsc --build --clean && tsc --build --force"
+  }
+}

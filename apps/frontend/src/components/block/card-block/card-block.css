@@ -1,0 +1,21 @@
+.card-block {
+    @apply border-solid border rounded-2xl h-full overflow-hidden flex flex-col justify-stretch bg-white shadow-md hover:shadow-xl
+}
+.card-block .card-block-image {
+    @apply relative w-full pb-[45%]
+}
+.card-block .card-block-image img {
+    @apply object-cover
+}
+.card-block .card-block-body {
+    @apply p-4 flex-grow
+}
+.card-block .card-block-body .title {
+    @apply text-4xl font-bold pb-2
+}
+.card-block .card-block-footer {
+    @apply px-4 pb-4
+}
+.card-block .card-block-footer .banner-button {
+    @apply m-0
+}

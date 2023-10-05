@@ -1,0 +1,16 @@
+{
+    "picker": {
+        "button": "Taal",
+        "title": "Selecteer taal",
+        "locales": {
+            "en": "English",
+            "nl": "Nederlands",
+            "nl-BE": "Vlaams"
+        }
+    },
+    "login": {
+        "login": "Inloggen",
+        "logout": "Uitloggen",
+        "loading": "Laden ..."
+    }
+}

@@ -1,0 +1,14 @@
+{
+    "exclude": [
+        "packages/**/tests/**",
+        "packages/**/dist/**",
+        "apps/**",
+        ".vscode/**",
+        ".yarn/**"
+    ],
+    "references": [
+        {
+            "path": "./packages/remkoj/optimizely-dxp-react",
+        }
+    ]
+}

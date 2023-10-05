@@ -1,0 +1,35 @@
+{
+    "include": ["src"],
+    "compilerOptions": {
+      // Set build target
+      "target": "ES2020",
+      "module": "Node16",
+      "lib": ["ES2020","ES2020.BigInt","ES2020.Intl","ES2020.Promise","ES2020.SharedMemory","ES2020.String","ES2020.Symbol.WellKnown"],
+  
+      // Set Output & Module resolution
+      "baseUrl": "./",
+      "outDir": "./dist",
+      "declaration": false,
+      "sourceMap": false,
+      "incremental": true,
+      "skipLibCheck": true, // Prevent errors from .d.ts files
+  
+      // Language checking
+      "strict": true,
+      "noImplicitAny": true,
+      "noImplicitThis": true,
+      "esModuleInterop": true,
+      "allowUnreachableCode": false,
+      "allowUmdGlobalAccess": false,
+      "forceConsistentCasingInFileNames": true,
+      "isolatedModules": true,
+      "allowSyntheticDefaultImports": true, // Needed for CommonJS Module Interop
+      "importHelpers": true,
+      "removeComments": true,
+      //"resolveJsonModule": true,
+      //"resolvePackageJsonImports": true,
+      //"resolvePackageJsonExports": true
+    },
+    
+    "exclude": ["node_modules", "tests", "dist", "cjs","bin","../../../node_modules"]
+  }

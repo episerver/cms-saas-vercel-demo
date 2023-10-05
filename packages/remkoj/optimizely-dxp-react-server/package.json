@@ -1,0 +1,60 @@
+{
+  "name": "@remkoj/optimizely-dxp-react-server",
+  "version": "0.0.2",
+  "packageManager": "yarn@3.6.0",
+  "private": true,
+  "type": "module",
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "./dist"
+  ],
+  "devDependencies": {
+    "@apollo/client": "^3.8.4",
+    "@graphql-codegen/cli": "^5.0.0",
+    "@graphql-codegen/client-preset": "^4.1.0",
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@parcel/watcher": "^2.3.0",
+    "@remkoj/optimizely-dxp-react": "workspace:*",
+    "@types/node": "^20.8.2",
+    "@types/react": "^18.2.25",
+    "@types/uuid": "^9.0.4",
+    "graphql": "^16.8.1",
+    "prop-types": "^15.8.1",
+    "react": "^18.2.0",
+    "scheduler": "^0.23.0",
+    "typescript": "^5.2.2",
+    "uuid": "^9.0.1"
+  },
+  "peerDependencies": {
+    "@apollo/client": "*",
+    "@remkoj/optimizely-dxp-react": "workspace:*",
+    "graphql": "*",
+    "react": "*",
+    "uuid": "*"
+  },
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "compile": "graphql-codegen",
+    "build": "graphql-codegen && tsc --build",
+    "watch": "tsc --watch",
+    "watch.gql": "graphql-codegen --watch",
+    "rebuild": "tsc --build --clean && graphql-codegen && tsc --build --force"
+  },
+  "codegen": {
+    "schema": "./schema.json",
+    "documents": [
+      "src/**/queries.ts",
+      "src/queries.ts",
+      "!src/gql/**/*"
+    ],
+    "generates": {
+      "./src/gql/": {
+        "preset": "client",
+        "presetConfig": {
+          "gqlTagName": "gql"
+        }
+      }
+    }
+  }
+}

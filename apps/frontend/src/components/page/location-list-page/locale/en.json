@@ -1,0 +1,18 @@
+{
+    "facets": {
+        "services": "Services"
+    },
+    "services": {
+        "credit": "Credit Scoring",
+        "atm": "Money withdrawal",
+        "office": "Office",
+        "all": "All services"
+    },
+    "texts": {
+        "services": "Services",
+        "address": "Address",
+        "noPhone": "No direct phone number",
+        "backToList": "Back to list",
+        "availableServices": "Available services"
+    }
+}

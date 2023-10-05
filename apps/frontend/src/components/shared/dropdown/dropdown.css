@@ -1,0 +1,38 @@
+.styled-dropdown {
+    @apply relative
+}
+.styled-dropdown .dropdown-control
+{
+    @apply inline-block relative overflow-hidden border border-solid border-slate-900 rounded-md text-left text-slate-900 w-full
+}
+.styled-dropdown label {
+    @apply absolute top-0 left-0 text-sm text-slate-500 px-2 pb-0 pt-1 -mb-1 pl-4 z-10
+}
+.styled-dropdown button {
+    @apply inline-block relative p-0 md:text-lg whitespace-nowrap h-14 w-full
+}
+.styled-dropdown button .dd-text {
+    @apply inline-block pl-4 pb-2 pr-14 pt-5 align-bottom w-full text-left
+}
+.styled-dropdown button .dd-icon {
+    @apply inline-block absolute top-0 right-0 w-8 h-full text-slate-900 bg-slate-100 px-2 align-top border-l border-solid border-slate-900
+}
+.styled-dropdown button[data-headlessui-state="open"] .dd-icon {
+    @apply rotate-180
+}
+.styled-dropdown .dropdown-expand {
+    @apply absolute left-0 z-50 bg-white overflow-hidden border border-solid border-slate-900 rounded-md py-2 w-full
+}
+.styled-dropdown .dropdown-expand .dropdown-value {
+    @apply w-full px-2 py-1 flex flex-row justify-between cursor-pointer hover:bg-slate-100 hover:text-slate-900 ui-active:bg-slate-100 ui-active:text-slate-900
+}
+.styled-dropdown .dropdown-expand .dropdown-value .badge {
+    @apply rounded-full overflow-hidden bg-red-900 text-slate-100 h-6 px-2 text-center align-middle flex-none
+}
+
+.styled-dropdown .dropdown-control:hover {
+    @apply outline outline-teal-800 outline-1
+}
+.styled-dropdown .dropdown-control:hover button .dd-icon {
+    @apply bg-slate-600 text-slate-100
+}

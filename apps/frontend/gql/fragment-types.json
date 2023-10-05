@@ -1,0 +1,31 @@
+{
+  "possibleTypes": {
+    "IContent": [
+      "ArticleListPage",
+      "ArticlePage",
+      "ButtonBlock",
+      "CardBlock",
+      "CarouselBlock",
+      "ContainerBlock",
+      "Content",
+      "DAMAsset",
+      "DAMImageAsset",
+      "DAMVideoAsset",
+      "FooterConfigBlock",
+      "HeaderConfigBlock",
+      "HeroBlock",
+      "HighlightTextBlock",
+      "LandingPage",
+      "LinkListBlock",
+      "LocationListPage",
+      "LocationPage",
+      "NavMenuItem",
+      "OdpEmbedBlock",
+      "PageSeoSettings",
+      "Product",
+      "ProductTextProperty",
+      "QuoteBlock",
+      "TextBlock"
+    ]
+  }
+}

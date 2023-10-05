@@ -1,0 +1,21 @@
+{
+    "compilerOptions": {
+        "target": "ESNext",
+        "lib": ["dom", "dom.iterable", "esnext"],
+        "allowJs": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "forceConsistentCasingInFileNames": true,
+        "composite": true,
+        "rootDir": "./src",
+        "outDir": "./dist",
+        "jsx": "react",
+        "resolveJsonModule": true,
+        "esModuleInterop": true,
+        "isolatedModules": true,
+        "module": "ESNext",
+        "moduleResolution": "node",
+    },
+    "include": ["./src/**/*.ts","./src/**/*.tsx"],
+    "exclude": ["./dist/**"],
+}

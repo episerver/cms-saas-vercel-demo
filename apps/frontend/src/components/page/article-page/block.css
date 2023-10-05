@@ -1,0 +1,3 @@
+.article-meta {
+    @apply bg-slate-100 border-y-2 lg:border-y-4 border-solid border-slate-500 text-slate-600;
+}

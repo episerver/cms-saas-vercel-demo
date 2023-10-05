@@ -1,0 +1,29 @@
+{
+  "name": "@remkoj/optimizely-frontend",
+  "packageManager": "yarn@4.0.0-rc.53",
+  "private": true,
+  "license": "Apache-2.0",
+  "workspaces": [
+    "apps/*",
+    "packages/remkoj/*"
+  ],
+  "devDependencies": {
+    "@types/source-map-support": "^0.5.8",
+    "@yarnpkg/sdks": "^3.0.0-rc.53",
+    "source-map-support": "^0.5.21",
+    "typescript": "5.2.2"
+  },
+  "exports": null,
+  "scripts": {
+    "dev": "yarn workspace frontend dev",
+    "build": "yarn workspace frontend build",
+    "start": "yarn workspace frontend start",
+    "lint": "yarn workspace frontend lint",
+    "build-pkgs": "yarn workspaces foreach -Wt --exclude apps/frontend run build",
+    "rebuild-pkgs": "yarn workspaces foreach -Wt --exclude apps/frontend run rebuild",
+    "watch-pkgs": "yarn workspaces foreach -Apt --exclude apps/frontend run watch",
+    "update-sdks": "yarn sdks vscode",
+    "update-deps": "yarn upgrade-interactive && yarn dedupe && yarn sdks vscode",
+    "update-yarn": "yarn set version canary && yarn install && yarn sdks vscode"
+  }
+}

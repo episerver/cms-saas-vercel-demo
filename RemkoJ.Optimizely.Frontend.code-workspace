@@ -1,0 +1,27 @@
+{
+	"folders": [
+		{
+			"path": ".",
+			"name": "CMS Core Demo Site"
+		}
+	],
+	"settings": {
+		"search.exclude": {
+			"**/.yarn": true,
+			"**/.vscode": true,
+			"**/.pnp.*": true,
+			"**/.next.*": true,
+			"**/yarn.lock": true
+		},
+		"typescript.enablePromptUseWorkspaceTsdk": true,
+		"typescript.tsdk": "./.yarn/sdks/typescript/lib"
+	},
+	"extensions": {
+		"recommendations": [
+			"vscode.typescript-language-features",
+			"christian-kohler.npm-intellisense",
+			"arcanis.vscode-zipfs",
+			"mikestead.dotenv"
+		]
+	}
+}

@@ -1,0 +1,21 @@
+.quote-block {
+    @apply flex flex-row p-4 md:p-6 lg:p-8 space-x-4 md:space-x-6 lg:space-x-8 items-center max-w-6xl mx-auto
+}
+.quote-block .image {
+    @apply flex-none relative w-32 h-32 md:w-40 md:h-40 lg:w-48 lg:h-48 overflow-hidden rounded-tl-full rounded-bl-full rounded-tr-full
+}
+.quote-block .image img {
+    @apply object-cover
+}
+.quote-block .quote {
+    @apply flex-1 flex flex-col space-y-1 md:space-y-2 lg:space-y-4 items-start
+}
+.quote-block .quote .text {
+    @apply text-lg md:text-xl
+}
+.quote-block .quote .quotee .name {
+    @apply font-semibold
+}
+.quote-block .quote .quotee .location {
+    @apply italic
+}

@@ -1,0 +1,22 @@
+{
+  "name": "@remkoj/optimizely-graph-functions",
+  "private": true,
+  "license": "Apache-2.0",
+  "packageManager": "yarn@4.0.0-rc.50",
+  "type": "module",
+  "main": "dist/index.js",
+  "module": "dist/index.js",
+  "devDependencies": {
+    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "typescript": "^5.2.2"
+  },
+  "dependencies": {
+    "graphql": "^16.8.1",
+    "tslib": "^2.6.2"
+  },
+  "scripts": {
+    "clean": "tsc --clean",
+    "build": "tsc --build",
+    "rebuild": "tsc --build --clean && tsc --build"
+  }
+}

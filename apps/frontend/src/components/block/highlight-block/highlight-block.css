@@ -1,0 +1,12 @@
+.highlight-block {
+    @apply px-4 md:px-6 lg:px-32 py-8 lg:py-16 text-center;
+}
+.highlight-block .hlb-title {
+    @apply font-medium lg:font-semibold text-4xl md:text-5xl lg:text-5xl px-4;
+}
+.highlight-block hr {
+    @apply my-4 border-solid border-2 border-teal-700;
+}
+.highlight-block .hlb-payoff {
+    @apply  text-xl md:text-2xl lg:text-3xl px-4;
+}
