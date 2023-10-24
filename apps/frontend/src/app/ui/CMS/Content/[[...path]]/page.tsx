@@ -25,11 +25,35 @@ import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 
+const DEVELOPMENT = process.env.NODE_ENV == "development"
+
+/**
+ * 
+ * @returns     The update delay in milliseconds
+ */
+function getUpdateDelay(defaultValue: number = 2000) : number
+{
+    try {
+        const envValue = process.env.OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY ?? defaultValue.toString()
+        const parsedValue = Number.parseInt(envValue, 10)
+        if (typeof(parsedValue) == 'number') {
+            if (DEVELOPMENT)
+                console.log(`Setting update delay to ${ parsedValue }ms`)
+            return parsedValue
+        }
+    } catch (e) {
+        if (DEVELOPMENT)
+            console.log(`Error while reading update delay from environment`)
+    }
+    if (DEVELOPMENT)
+        console.log(`No valid update delay configured, defaulting to ${ defaultValue }ms`)
+    return defaultValue
+}
+
 // Site configuration
 import siteConfig from '@/site-config'
 
-const DEVELOPMENT = process.env.NODE_ENV == "development"
-const OPTIMIZELY_GRAPH_UPDATE_TIMEOUT_MS : number = 2000
+const OPTIMIZELY_GRAPH_UPDATE_TIMEOUT_MS : number = getUpdateDelay()
 const config = getContentGraphConfig()
 
 export type OptimizelyCmsEditPageProps = {
@@ -65,14 +89,37 @@ export default async function OptimizelyCmsEditPage({ params, searchParams }: Op
     const factory = setupFactory()
     const client = getAuthorizedServerClient(searchParams.preview_token)
 
+    // Helper function to read the ContentID & WorkID
+    function getContentIds() : [ number, number | null ] 
+    {
+        try {
+            // When using HMAC authentication, fall back to information in the URL
+            if (validDev) {
+                const contentString = slugs.join('/').split(',,').pop() ?? ''
+                const [ contentId, workId ] = contentString.split('_',3)
+                return [ Number.parseInt(contentId), workId ? Number.parseInt(workId) : null ]
+            }
+        
+            // Normally take the information from the token
+            const jwt = JSON.parse(Buffer.from((searchParams.preview_token || '..').split('.',3)[1], 'base64').toString())
+            const contentId = Number.parseInt(jwt?.c_id || '-1', 10)
+            const workId = Number.parseInt(jwt?.c_ver || '0') || null
+            if ((jwt.exp * 1000) < Date.now())
+                console.warn("Token has expired, it is unlikely that you are able to fetch content with it")
+            return [ contentId, workId ]
+        } catch {
+            return [ -1, null ]
+        }
+    }
+
     // Get information from the Request URI
     const slugs = params.path.map(x => decodeURIComponent(x))
     const locale = siteConfig.locales.some(x => x.slug == slugs[0]) ? slugs[0] : siteConfig.defaultLocale
-    const contentString = slugs.join('/').split(',,').pop() ?? ''
-    const [ contentId, workId ] = contentString.split('_',3)
+    const [ contentId, workId ] = getContentIds()
+    
     const contentLink : Types.ContentLinkWithLocale = {
-        id: Number.parseInt(contentId),
-        workId: Number.parseInt(workId) || null,
+        id: contentId,
+        workId: workId,
         guidValue: null,
         locale: locale
     }
@@ -90,8 +137,14 @@ export default async function OptimizelyCmsEditPage({ params, searchParams }: Op
         const contentType = Utils.normalizeContentType(contentItem?.contentType)
 
         // Return a 404 if the content item or type could not be resolved
-        if (!contentItem || !contentType)
+        if (!contentItem) {
+            console.warn(`The content item for ${ JSON.stringify(variables) } could not be loaded from Optimizely Graph`)
             return notFound()
+        }
+        if (!contentType) {
+            console.warn(`The content item for ${ JSON.stringify(variables) } did not contain content type information`)
+            return notFound()
+        }
 
         if (DEVELOPMENT)
             console.log("Resolved content:", JSON.stringify({ id: contentItem.id?.id, workId: contentItem.id?.workId, guidValue: contentItem.id?.guidValue, locale: contentItem.locale?.name, type: (contentItem.contentType ?? []).slice(0,-1).join('/')}))
