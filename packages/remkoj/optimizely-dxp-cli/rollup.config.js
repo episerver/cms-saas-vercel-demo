@@ -1,9 +1,3 @@
-/*const resolve = require('@rollup/plugin-node-resolve')
-const json = require('@rollup/plugin-json')
-const commonjs = require('@rollup/plugin-commonjs')
-const terser = require('@rollup/plugin-terser')
-const babel = require('@rollup/plugin-babel')*/
-
 import json from '@rollup/plugin-json'
 import commonjs from '@rollup/plugin-commonjs'
 
@@ -25,17 +19,12 @@ export default {
         format: 'es'
     },
     plugins: [
-        //babel({ babelHelpers: 'bundled' }),
         json({
             preferConst: true
         }),
         commonjs({
             extensions: ['.js','.cjs']
-        }),
-        /*resolve({
-            preferBuiltins: true,
-        }),*/
-        //terser()
+        })
     ],
     external: [/^node\:[a-z]+$/]
 }
