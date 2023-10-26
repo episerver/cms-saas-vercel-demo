@@ -4,9 +4,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "yarn next dev",
-    "build": "yarn next build && yarn frontend-cli register",
-    "rebuild": "graphql-codegen && next build",
+    "dev": "yarn frontend-cli site-config && yarn next dev",
+    "config": "yarn frontend-cli site-config",
+    "build": "yarn frontend-cli site-config && yarn next build && yarn frontend-cli register",
+    "rebuild": "yarn frontend-cli site-config && graphql-codegen && next build",
     "start": "yarn next start",
     "lint": "yarn next lint",
     "compile": "yarn graphql-codegen",

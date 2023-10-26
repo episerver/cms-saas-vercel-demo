@@ -4,6 +4,8 @@ import { getCurrentChannel } from '@/lib/current-channel'
 import { getServerClient } from '@/lib/client'
 import { gql } from '@gql/index'
 import type * as GraphQL from '@gql/graphql'
+import { localeToContentGraphLocale, getFallbackLocale } from '@/lib/i18n'
+import SiteConfig from '@/site-config'
 
 export type FooterProps = {
     locale?: string
@@ -23,14 +25,14 @@ export async function FooterProps ({ locale }: FooterProps)
         query: GetFooter,
         variables: {
             channelId: channel.id,
-            locale: locale as GraphQL.Locales
+            locale: localeToContentGraphLocale(locale || getFallbackLocale()) as GraphQL.Locales
         }
     })
     const footerConfig = (graphResponse.data.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
 
     // Build the image src
-    const imageSrc = footerConfig?.logo?.url || "/assets/logo.png"
-    const imageAlt = footerConfig?.logo?.data?.name || "Company logo"
+    const imageSrc = footerConfig?.logo || "/assets/logo.png"
+    const imageAlt = SiteConfig.name
 
     return <footer className='max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8'>
         <div className='footer-content grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 text-slate-900'>
@@ -96,7 +98,7 @@ const GetFooter = gql(/*GraphQL*/`query getFooter($channelId: String!, $locale: 
     ) {
         total
         items {
-            logo: FooterLogo { url:Url data: Expanded { name: Name } }
+            logo: FooterLogo
             text: FooterText
             button: BrandButton { ...FooterLinkData }
             firstLinks: FooterLinkGroup1 { ...FooterLinks }
