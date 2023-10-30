@@ -65,18 +65,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/experimental-nextjs-app-support@npm:^0.4.3":
-  version: 0.4.3
-  resolution: "@apollo/experimental-nextjs-app-support@npm:0.4.3"
+"@apollo/experimental-nextjs-app-support@npm:^0.5.0":
+  version: 0.5.0
+  resolution: "@apollo/experimental-nextjs-app-support@npm:0.5.0"
   dependencies:
     server-only: "npm:^0.0.1"
     superjson: "npm:^1.12.2"
     ts-invariant: "npm:^0.10.3"
   peerDependencies:
     "@apollo/client": ">=3.8.0-rc || ^3.8.0"
-    next: ^13.4.1
+    next: ^13.4.1 || ^14.0.0
     react: ^18
-  checksum: 655bd70fd092e16030f6c12133e51b884ffd831362a5e78d3347b672f0913dcab913073e109e645fee3ddbd3a78b2f4be5b8ee692f3b339ae40330e9bb821668
+  checksum: 5a57f58461a2f710d95aebea499be3ac335a2e04c13904bef3592bf6eb6153e179959901a2ab467a674e6394c5ff0a747eed9a55014565618ff430d4068dc236
   languageName: node
   linkType: hard
 
@@ -1939,7 +1939,7 @@ __metadata:
   resolution: "@remkoj/optimizely-dxp-nextjs@workspace:packages/remkoj/optimizely-dxp-nextjs"
   dependencies:
     "@apollo/client": "npm:^3.8.6"
-    "@apollo/experimental-nextjs-app-support": "npm:^0.4.3"
+    "@apollo/experimental-nextjs-app-support": "npm:^0.5.0"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@types/node": "npm:^20.8.9"
     "@types/react": "npm:^18.2.33"
@@ -3040,21 +3040,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn@npm:^8.4.1, acorn@npm:^8.6.0":
+"acorn@npm:^8.4.1, acorn@npm:^8.6.0, acorn@npm:^8.9.0":
   version: 8.11.2
   resolution: "acorn@npm:8.11.2"
   bin:
     acorn: bin/acorn
   checksum: ff559b891382ad4cd34cc3c493511d0a7075a51f5f9f02a03440e92be3705679367238338566c5fbd3521ecadd565d29301bc8e16cb48379206bffbff3d72500
-  languageName: node
-  linkType: hard
-
-"acorn@npm:^8.9.0":
-  version: 8.10.0
-  resolution: "acorn@npm:8.10.0"
-  bin:
-    acorn: bin/acorn
-  checksum: 522310c20fdc3c271caed3caf0f06c51d61cb42267279566edd1d58e83dbc12eebdafaab666a0f0be1b7ad04af9c6bc2a6f478690a9e6391c3c8b165ada917dd
   languageName: node
   linkType: hard
 
@@ -5539,7 +5530,7 @@ __metadata:
   resolution: "frontend@workspace:apps/frontend"
   dependencies:
     "@apollo/client": "npm:^3.8.6"
-    "@apollo/experimental-nextjs-app-support": "npm:^0.4.3"
+    "@apollo/experimental-nextjs-app-support": "npm:^0.5.0"
     "@eslint/eslintrc": "npm:^2.1.2"
     "@formatjs/intl-localematcher": "npm:^0.4.2"
     "@graphql-codegen/cli": "npm:^5.0.0"

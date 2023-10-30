@@ -272,17 +272,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@apollo/experimental-nextjs-app-support", [\
-      ["npm:0.4.3", {\
-        "packageLocation": "./.yarn/cache/@apollo-experimental-nextjs-app-support-npm-0.4.3-005182fb54-655bd70fd0.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
+      ["npm:0.5.0", {\
+        "packageLocation": "./.yarn/cache/@apollo-experimental-nextjs-app-support-npm-0.5.0-34d873cc64-5a57f58461.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
         "packageDependencies": [\
-          ["@apollo/experimental-nextjs-app-support", "npm:0.4.3"]\
+          ["@apollo/experimental-nextjs-app-support", "npm:0.5.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.3", {\
-        "packageLocation": "./.yarn/__virtual__/@apollo-experimental-nextjs-app-support-virtual-4e69e275f2/0/cache/@apollo-experimental-nextjs-app-support-npm-0.4.3-005182fb54-655bd70fd0.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.0", {\
+        "packageLocation": "./.yarn/__virtual__/@apollo-experimental-nextjs-app-support-virtual-07c5597262/0/cache/@apollo-experimental-nextjs-app-support-npm-0.5.0-34d873cc64-5a57f58461.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
         "packageDependencies": [\
-          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.3"],\
+          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.0"],\
           ["@apollo/client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.8.6"],\
           ["@types/apollo__client", null],\
           ["@types/graphql", "npm:14.5.0"],\
@@ -307,10 +307,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.4.3", {\
-        "packageLocation": "./.yarn/__virtual__/@apollo-experimental-nextjs-app-support-virtual-ed4773bae3/0/cache/@apollo-experimental-nextjs-app-support-npm-0.4.3-005182fb54-655bd70fd0.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
+      ["virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.5.0", {\
+        "packageLocation": "./.yarn/__virtual__/@apollo-experimental-nextjs-app-support-virtual-bac198d479/0/cache/@apollo-experimental-nextjs-app-support-npm-0.5.0-34d873cc64-5a57f58461.zip/node_modules/@apollo/experimental-nextjs-app-support/",\
         "packageDependencies": [\
-          ["@apollo/experimental-nextjs-app-support", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.4.3"],\
+          ["@apollo/experimental-nextjs-app-support", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.5.0"],\
           ["@apollo/client", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:3.8.6"],\
           ["@types/apollo__client", null],\
           ["@types/graphql", null],\
@@ -3889,7 +3889,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@remkoj/optimizely-dxp-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#workspace:packages/remkoj/optimizely-dxp-nextjs"],\
           ["@apollo/client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.8.6"],\
-          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.3"],\
+          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.0"],\
           ["@remkoj/optimizely-dxp-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#workspace:packages/remkoj/optimizely-dxp-react"],\
           ["@types/apollo__client", null],\
           ["@types/apollo__experimental-nextjs-app-support", null],\
@@ -3932,7 +3932,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["@remkoj/optimizely-dxp-nextjs", "workspace:packages/remkoj/optimizely-dxp-nextjs"],\
           ["@apollo/client", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:3.8.6"],\
-          ["@apollo/experimental-nextjs-app-support", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.4.3"],\
+          ["@apollo/experimental-nextjs-app-support", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#npm:0.5.0"],\
           ["@remkoj/optimizely-dxp-react", "virtual:e76bb2e5ef7fa0542c8533f95025f6d7c0c81f5ac340143a3941edb0e45b48d9dc4eed782f33c981e8a1d65a652806d431ecb5bb695474b68fe107b2a9a17d57#workspace:packages/remkoj/optimizely-dxp-react"],\
           ["@types/node", "npm:20.8.9"],\
           ["@types/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.33"],\
@@ -5383,13 +5383,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["acorn", [\
-      ["npm:8.10.0", {\
-        "packageLocation": "./.yarn/cache/acorn-npm-8.10.0-2230c9e83e-522310c20f.zip/node_modules/acorn/",\
-        "packageDependencies": [\
-          ["acorn", "npm:8.10.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:8.11.2", {\
         "packageLocation": "./.yarn/cache/acorn-npm-8.11.2-a470f49bb6-ff559b8913.zip/node_modules/acorn/",\
         "packageDependencies": [\
@@ -5411,7 +5404,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["acorn-jsx", "virtual:a50722a5a9326b6a5f12350c494c4db3aa0f4caeac45e3e9e5fe071da20014ecfe738fe2ebe2c9c98abae81a4ea86b42f56d776b3bd5ec37f9ad3670c242b242#npm:5.3.2"],\
           ["@types/acorn", null],\
-          ["acorn", "npm:8.10.0"]\
+          ["acorn", "npm:8.11.2"]\
         ],\
         "packagePeers": [\
           "@types/acorn",\
@@ -7952,7 +7945,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/espree-npm-9.6.1-a50722a5a9-255ab260f0.zip/node_modules/espree/",\
         "packageDependencies": [\
           ["espree", "npm:9.6.1"],\
-          ["acorn", "npm:8.10.0"],\
+          ["acorn", "npm:8.11.2"],\
           ["acorn-jsx", "virtual:a50722a5a9326b6a5f12350c494c4db3aa0f4caeac45e3e9e5fe071da20014ecfe738fe2ebe2c9c98abae81a4ea86b42f56d776b3bd5ec37f9ad3670c242b242#npm:5.3.2"],\
           ["eslint-visitor-keys", "npm:3.4.3"]\
         ],\
@@ -8379,7 +8372,7 @@ const RAW_RUNTIME_STATE =
         "packageDependencies": [\
           ["frontend", "workspace:apps/frontend"],\
           ["@apollo/client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.8.6"],\
-          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.3"],\
+          ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.0"],\
           ["@eslint/eslintrc", "npm:2.1.2"],\
           ["@formatjs/intl-localematcher", "npm:0.4.2"],\
           ["@graphql-codegen/cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.0.0"],\
