@@ -5,7 +5,7 @@ import { getServerClient as createClient, getAuthorizedServerClient as createAut
 import { gql } from '@gql/index'
 
 const editPaths = [ '/ui/CMS/Content/[[...path]]' ]
-const publishedPaths = [ '/[lang]', '/[lang]/[[...path]]' ]
+const publishedPaths = [ '/[lang]', '/[lang]/[[...path]]', '/sitemap', '/sitemap.xml' ]
 const paths = [ ...editPaths, ...publishedPaths ]
 const tags = [ NextFetchTags.all, NextFetchTags.hmac, NextFetchTags.token, NextFetchTags.token ]
 
@@ -30,7 +30,7 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
     const editClient = createAuthorizedClient()
 
     // If we're explicitly publishing all, do so...
-    if (publishMode == "all") 
+    if (publishMode == "all")
     {
         const clearResult = await Promise.all(applyOnAllClients(c => c.clearStore()))
         publicClient.clearStore()
@@ -72,32 +72,39 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
             case "Published":
                 // Clearing Apollo Client cache
                 await publicClient.clearStore()
-                // Retrieving the path of the published content
-                const getPathByGuid = await publicClient.query({ query: gql(/* GraphQL */`query getPathByGuid($guid: String!)
-                {
-                  pathByGuid: Content (
-                    where: { ContentLink: { GuidValue: { eq: $guid } } }
-                  ) {
-                    items {
-                      path:RelativePath
-                      url:Url
-                    }
-                  }
-                }`), variables: { guid }})
 
-                // Revalidating just the path of the content item
-                const path = (getPathByGuid.data.pathByGuid?.items || [])[0]?.path
-                if (path) {
-                    revalidatePaths.push(path)
+                if (false) { // For now just publish everything
+                    // Always update the sitemap
+                    revalidatePaths.push("/sitemap.xml", "/sitemap")
+
+                    // Retrieving the path of the published content
+                    const getPathByGuid = await publicClient.query({ query: gql(/* GraphQL */`query getPathByGuid($guid: String!)
+                    {
+                    pathByGuid: Content (
+                        where: { ContentLink: { GuidValue: { eq: $guid } } }
+                    ) {
+                        items {
+                        path:RelativePath
+                        url:Url
+                        }
+                    }
+                    }`), variables: { guid }})
+
+                    // Revalidating just the path of the content item
+                    const path = (getPathByGuid.data.pathByGuid?.items || [])[0]?.path
+                    if (path) {
+                        revalidatePaths.push(path as string)
+                    } else {
+                        //const localePaths = publishedPaths.map(x => x.replace("[lang]", lang))
+                        //revalidatePaths.push(...publishedPaths, ...localePaths)
+                        console.log("Published content without a path, hence not invalidating any pages")
+                    }
                 } else {
-                    //const localePaths = publishedPaths.map(x => x.replace("[lang]", lang))
-                    //revalidatePaths.push(...publishedPaths, ...localePaths)
-                    console.log("Published content without a path, hence not invalidating any pages")
+                    revalidatePaths.push(...publishedPaths)
                 }
 
                 // Revalidating relevant cache tags
                 revalidateTags.push(NextFetchTags.public, NextFetchTags.all)
-                revalidatePaths.push("/sitemap.xml")
                 break;
             default:
                 console.log("Unknown version detected", version, JSON.stringify(requestBody))

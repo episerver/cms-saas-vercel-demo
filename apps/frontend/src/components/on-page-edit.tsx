@@ -16,6 +16,12 @@ export type OptimizelyCmsContext = {
     subscribe: (event: string, handler: (...args: any) => void) => void
 }
 
+export type OptimizelyCmsContentSavedEvent = {
+    contentLink: string,
+    editUrl: string,
+    previewUrl: string
+}
+
 declare global {
     interface Window { 
         epi?: OptimizelyCmsContext
@@ -55,27 +61,42 @@ export const OnPageEdit : FunctionComponent<OnPageEditProps> = ({ mode, children
         if (!optiCmsReady)
             return
 
+        const previewUrl = window.location.href
+        let handlerEnabled = true
+
         // Define event handler
         let maskTimer : NodeJS.Timeout  | false = false
-        function onContentSaved()
+        function onContentSaved(eventData: OptimizelyCmsContentSavedEvent)
         {
             setShowMask(true)
             if (maskTimer != false) clearTimeout(maskTimer)
             maskTimer = setTimeout(() => {
-                console.log("Refreshing route")
-                router.refresh()
-                setShowMask(false)
+                if (previewUrl == eventData.previewUrl) {
+                    console.log("Refreshing preview")
+                    router.refresh()
+                    setShowMask(false)
+                } else {
+                    const newUrl = new URL(eventData.previewUrl)
+                    console.log("Navigating to new preview")
+                    router.push(newUrl.pathname + newUrl.search)
+                    setShowMask(false)
+                }
             }, timeout)
         }
 
         // Subscribe to event
-        console.log("Subscribing to ContentSaved Event")
+        console.log(`Subscribing to ContentSaved Event`)
         const opti = tryGetCms()
-        opti?.subscribe('contentSaved', ()  =>  onContentSaved())
+        opti?.subscribe('contentSaved', (eventData: OptimizelyCmsContentSavedEvent) => {
+            if (!handlerEnabled)
+                return
+            onContentSaved(eventData)
+        })
 
         // Unsubscribe when needed
         return () => {
-            console.warn("Unable to unsubscribe event listener, expect errors with content updates")
+            console.log(`Navigating away, disabling ContentSaved event handler`)
+            handlerEnabled = false
         }
     }, [ optiCmsReady, router, timeout ])
 
