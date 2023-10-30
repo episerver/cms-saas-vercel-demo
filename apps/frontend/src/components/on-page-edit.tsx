@@ -70,14 +70,17 @@ export const OnPageEdit : FunctionComponent<OnPageEditProps> = ({ mode, children
         {
             setShowMask(true)
             if (maskTimer != false) clearTimeout(maskTimer)
+            console.log(`Delaying refresh with ${ timeout }ms to allow Optimizely Graph to update`)
             maskTimer = setTimeout(() => {
+                const contentId = window.location.pathname.split(',,')[1]
+                const newContentId = eventData.contentLink
                 if (previewUrl == eventData.previewUrl) {
-                    console.log("Refreshing preview")
+                    console.log(`Refreshing preview: ${ contentId } => ${ newContentId }`)
                     router.refresh()
                     setShowMask(false)
                 } else {
                     const newUrl = new URL(eventData.previewUrl)
-                    console.log("Navigating to new preview")
+                    console.log(`Navigating to new preview: ${ contentId } => ${ newContentId }`)
                     router.push(newUrl.pathname + newUrl.search)
                     setShowMask(false)
                 }

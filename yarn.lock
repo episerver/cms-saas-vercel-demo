@@ -2818,6 +2818,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@vercel/stega@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@vercel/stega@npm:0.1.0"
+  checksum: 7039867b5bbcd4581fcf18ffa6b155ee2ca263921270941a6441e8179dc97d9773b3afd1c01a3076b239fa3af3f21b8df4b311befc9b31b3f3150d31367ed3f0
+  languageName: node
+  linkType: hard
+
 "@whatwg-node/events@npm:^0.0.3":
   version: 0.0.3
   resolution: "@whatwg-node/events@npm:0.0.3"
@@ -5560,6 +5567,7 @@ __metadata:
     "@types/react": "npm:18.2.33"
     "@types/react-dom": "npm:18.2.14"
     "@types/uuid": "npm:^9.0.6"
+    "@vercel/stega": "npm:^0.1.0"
     autoprefixer: "npm:10.4.16"
     chalk: "npm:^5.3.0"
     crypto-js: "npm:^4.2.0"

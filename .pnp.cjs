@@ -5155,6 +5155,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@vercel/stega", [\
+      ["npm:0.1.0", {\
+        "packageLocation": "./.yarn/cache/@vercel-stega-npm-0.1.0-60b14183a6-7039867b5b.zip/node_modules/@vercel/stega/",\
+        "packageDependencies": [\
+          ["@vercel/stega", "npm:0.1.0"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@whatwg-node/events", [\
       ["npm:0.0.3", {\
         "packageLocation": "./.yarn/cache/@whatwg-node-events-npm-0.0.3-697fe4b65f-af26f40d4d.zip/node_modules/@whatwg-node/events/",\
@@ -8398,6 +8407,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.33"],\
           ["@types/react-dom", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.14"],\
           ["@types/uuid", "npm:9.0.6"],\
+          ["@vercel/stega", "npm:0.1.0"],\
           ["autoprefixer", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:10.4.16"],\
           ["chalk", "npm:5.3.0"],\
           ["crypto-js", "npm:4.2.0"],\

@@ -72,6 +72,7 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
             case "Published":
                 // Clearing Apollo Client cache
                 await publicClient.clearStore()
+                await editClient.clearStore()
 
                 if (false) { // For now just publish everything
                     // Always update the sitemap
@@ -100,11 +101,11 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
                         console.log("Published content without a path, hence not invalidating any pages")
                     }
                 } else {
-                    revalidatePaths.push(...publishedPaths)
+                    revalidatePaths.push(...paths)
                 }
 
                 // Revalidating relevant cache tags
-                revalidateTags.push(NextFetchTags.public, NextFetchTags.all)
+                revalidateTags.push(NextFetchTags.all, NextFetchTags.public, NextFetchTags.token, NextFetchTags.hmac)
                 break;
             default:
                 console.log("Unknown version detected", version, JSON.stringify(requestBody))
@@ -115,8 +116,8 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
 
     // Revalidate site
     const clearedStores = await Promise.all(applyOnAllClients(c => c.clearStore())).catch(() => [])
-    revalidatePaths.forEach(p => revalidatePath(p, 'page'))
-    revalidateTags.forEach(revalidateTag)
+    revalidatePaths.forEach(p => { revalidatePath(p, 'page'); revalidatePath(p, 'layout'); })
+    revalidateTags.forEach(t => revalidateTag(t))
 
     // Return response
     console.log(`Revalidated ${ publishMode } (paths, tags, store count)`, revalidatePaths, revalidateTags, clearedStores.length)
