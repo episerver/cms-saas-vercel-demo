@@ -3,15 +3,24 @@ const nextConfig = {
     basePath: "",
     cleanDistDir: true,
     images: {
-        domains: []
+        //loader: 'custom',
+        //loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
+        remotePatterns: []
     }
 }
 
 // Add the configured Optimizely DXP URL to the image domains
+
 const optimizelyDxpUrl = process.env.DXP_URL
 if (optimizelyDxpUrl) {
-    const optimizelyDxpHost = new URL(optimizelyDxpUrl).host
-    nextConfig.images.domains.push(optimizelyDxpHost)
+    const optimizelyDxpHost = new URL(optimizelyDxpUrl)
+
+    nextConfig.images.remotePatterns.push({
+        protocol: optimizelyDxpHost.protocol.replace(":",""),
+        hostname: optimizelyDxpHost.hostname,
+        port: optimizelyDxpHost.port,
+        pathname: (optimizelyDxpHost.pathname || '/') + '**'
+    })
 }
 
 console.log("Frontend domain:", process.env.SITE_DOMAIN)

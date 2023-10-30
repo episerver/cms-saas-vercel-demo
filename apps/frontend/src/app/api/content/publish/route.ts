@@ -97,6 +97,7 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
 
                 // Revalidating relevant cache tags
                 revalidateTags.push(NextFetchTags.public, NextFetchTags.all)
+                revalidatePaths.push("/sitemap.xml")
                 break;
             default:
                 console.log("Unknown version detected", version, JSON.stringify(requestBody))
@@ -124,6 +125,7 @@ export const dynamic = 'force-dynamic'      // Make sure all API-Requests are ex
 export const dynamicParams = true           // Make sure all matching routes are always executed
 export const revalidate = 0                 // Don't cache
 export const fetchCache = 'force-no-store'  // Don't cache
+export const runtime = 'edge'               // Run at the edge
 export const GET = handler
 export const POST = handler
 
