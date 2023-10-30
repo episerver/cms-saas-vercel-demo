@@ -1,4 +1,4 @@
-import type { Metadata, ResolvingMetadata } from 'next/types'
+import type { Metadata } from 'next/types'
 import { Inter } from 'next/font/google'
 import Script from 'next/script'
 import getCurrentChannel from '@/lib/current-channel'

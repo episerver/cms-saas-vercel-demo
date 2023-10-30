@@ -1,7 +1,7 @@
 import { type PropsWithChildren } from "react"
 import { type Metadata, type ResolvingMetadata } from "next"
 import type * as GraphQL from '@gql/graphql'
-import { slugToLocale, getFallbackLocale } from "@/lib/i18n"
+import { slugToLocale, getFallbackLocale, localeToContentGraphLocale } from "@/lib/i18n"
 import { getServerClient } from "@/lib/client"
 import { gql } from "@gql/gql"
 import { Utils } from "@remkoj/optimizely-dxp-react"
@@ -24,12 +24,13 @@ export async function generateMetadata({ params }: CmsPageLayoutProps, resolving
     const locale = slugToLocale(params?.lang ?? '', getFallbackLocale())
     const relativePath = `/${ locale }${ params.path ? '/' + params.path.join('/') : '' }`
     const optlyGraph = getServerClient()
+    const variables = {
+        path: relativePath,
+        locale: localeToContentGraphLocale(locale) as GraphQL.Locales
+    }
     const metadata = ((await optlyGraph.query({
         query: GetGenericMetaData,
-        variables: {
-            path: relativePath,
-            locale: locale as GraphQL.Locales
-        }
+        variables
     })).data?.getGenericMetaData?.items ?? [])[0]
     if (!metadata)
         return {}
