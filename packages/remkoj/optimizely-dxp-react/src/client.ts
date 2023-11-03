@@ -1,4 +1,4 @@
-import type { ApolloClientOptions, NormalizedCacheObject, ApolloCache, InMemoryCacheConfig, DefaultContext } from '@apollo/client/core'
+import type { ApolloClientOptions, NormalizedCacheObject, ApolloCache, InMemoryCacheConfig } from '@apollo/client/core'
 import { ApolloClient, InMemoryCache, ApolloLink, from, createHttpLink } from '@apollo/client/core'
 import { onError } from '@apollo/client/link/error'
 import { getContentGraphConfig, validateContentGraphConfig, type ContentGraphConfig } from './config'
@@ -141,6 +141,7 @@ export function createContentGraphLink(token?: string, config?: ContentGraphConf
             throw new Error("Invalid ContentGraph configuration")
         return createHttpLink({
             uri: new URL("/content/v2", optiConfig.gateway).href,
+            //@ts-expect-error Undici types is causing a type-checking error here
             fetch: epiHmacFetch,
             fetchOptions: {
                 cache: 'no-store',

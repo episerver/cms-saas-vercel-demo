@@ -29,8 +29,9 @@ export function createEpiHmacFetch(appKey, secret) {
             });
         });
     }
-    return async function newFetch(...args) {
-        const [input, init] = args;
+    //@ts-expect-error Undici types is causing type errors here
+    return async function newFetch(input, init) {
+        //#region HMAC Signature
         const url = new URL(isRequest(input) ? input.url : input.toString());
         const method = (isRequest(input) ? input.method : init?.method) ?? 'get';
         const secretBytes = Base64.parse(secret);
@@ -42,8 +43,9 @@ export function createEpiHmacFetch(appKey, secret) {
         const message = appKey + method + target + timestamp + nonce + body_b64;
         const hmac = hmacSHA256(message, secretBytes);
         const signature = Base64.stringify(hmac);
-        const newRequest = isRequest(input) ? input.clone() : new Request(input, init);
         const authHeaderValue = `epi-hmac ${appKey}:${timestamp}:${nonce}:${signature}`;
+        //#endregion
+        const newRequest = (isRequest(input) ? input.clone() : new Request(input, init));
         newRequest.headers.set('Authorization', authHeaderValue);
         return fetch(newRequest);
     };
