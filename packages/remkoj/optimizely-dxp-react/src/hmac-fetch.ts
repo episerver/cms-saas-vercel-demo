@@ -36,9 +36,10 @@ export function createEpiHmacFetch(appKey: string, secret: string) : FetchType
         })
     }
 
-    return async function newFetch(...args: Parameters<FetchType>) : ReturnType<FetchType>
+    //@ts-expect-error Undici types is causing type errors here
+    return async function newFetch(input: Parameters<FetchType>[0] | URL, init?: Parameters<FetchType>[1]) : ReturnType<FetchType>
     {
-        const [ input, init ] = args
+        //#region HMAC Signature
         const url = new URL(isRequest(input) ? input.url : input.toString())
         const method = (isRequest(input) ? input.method : init?.method) ?? 'get'
         const secretBytes = Base64.parse(secret)
@@ -50,12 +51,13 @@ export function createEpiHmacFetch(appKey: string, secret: string) : FetchType
         const message = appKey + method + target + timestamp + nonce + body_b64
         const hmac = hmacSHA256(message, secretBytes)
         const signature = Base64.stringify(hmac)
-
-        const newRequest = isRequest(input) ? input.clone() : new Request(input, init)
         const authHeaderValue = `epi-hmac ${ appKey }:${ timestamp }:${ nonce }:${ signature }`
+        //#endregion
+
+        const newRequest = (isRequest(input) ? input.clone() : new Request(input as URL, init)) as Request
         newRequest.headers.set('Authorization', authHeaderValue)
 
-        return fetch(newRequest)
+        return fetch(newRequest) as ReturnType<FetchType>
     }
 }
 
