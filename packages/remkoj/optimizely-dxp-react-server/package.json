@@ -17,7 +17,7 @@
     "@parcel/watcher": "^2.3.0",
     "@remkoj/optimizely-dxp-react": "workspace:*",
     "@types/node": "^20.8.10",
-    "@types/react": "^18.2.34",
+    "@types/react": "^18.2.36",
     "@types/uuid": "^9.0.6",
     "graphql": "^16.8.1",
     "prop-types": "^15.8.1",
