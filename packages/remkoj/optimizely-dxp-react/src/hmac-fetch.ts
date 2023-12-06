@@ -36,7 +36,6 @@ export function createEpiHmacFetch(appKey: string, secret: string) : FetchType
         })
     }
 
-    //@ts-expect-error Undici types is causing type errors here
     return async function newFetch(input: Parameters<FetchType>[0] | URL, init?: Parameters<FetchType>[1]) : ReturnType<FetchType>
     {
         //#region HMAC Signature

@@ -2,7 +2,9 @@
 
 import React, { type FunctionComponent, PropsWithChildren } from 'react'
 import { SessionProvider } from 'next-auth/react'
-import OdpPageView from '@/components/integrations/opti-data-platform'
+import DataPlatformTracking from '@/components/integrations/opti-data-platform'
+import ContentRecsTracking from '@/components/integrations/opti-content-recs'
+import WebExActivation from '@/components/integrations/opti-web-experimentation'
 
 export type GlobalProvidersProps = PropsWithChildren<{
 
@@ -18,11 +20,12 @@ export type GlobalProvidersProps = PropsWithChildren<{
  */
 export const GlobalProviders : FunctionComponent<GlobalProvidersProps> = props => 
 {
-    return <OdpPageView>
-        <SessionProvider>
-            { props.children }
-        </SessionProvider>
-    </OdpPageView>
+    return <SessionProvider>
+        <DataPlatformTracking />
+        <ContentRecsTracking />
+        <WebExActivation />
+        { props.children }
+    </SessionProvider>
 }
 
 export default GlobalProviders

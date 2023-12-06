@@ -1,15 +1,16 @@
 import type { Metadata } from 'next/types'
 import { Inter } from 'next/font/google'
-import Script from 'next/script'
 import getCurrentChannel from '@/lib/current-channel'
+import * as EnvTools from '@/lib/env'
+import OdpScript from '@components/integrations/server/optimizely-data-patform'
+import RecsScript from '@components/integrations/server/optimizely-content-recs'
+import WebExScript from '@components/integrations/server/optimizely-web-experimentation'
 
 import GlobalProviders from '@components/providers'
 
 import './globals.css'
 
 const inter = Inter({ subsets: ['latin'] })
-
-const odp_id = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? undefined
 
 export async function generateMetadata() : Promise<Metadata> {
     const channel = await getCurrentChannel()
@@ -21,12 +22,12 @@ export async function generateMetadata() : Promise<Metadata> {
         },
         openGraph: {
             title: {
-              default: `${ channel.name } - An Optimizely Demo Company`,
-              template: `%s | ${ channel.name } - An Optimizely Demo Company`
+                default: `${ channel.name } - An Optimizely Demo Company`,
+                template: `%s | ${ channel.name } - An Optimizely Demo Company`
             },
             siteName: channel.name,
             images: [{
-              url: "/assets/logo.png"
+                url: "/assets/logo.png"
             }]
         },
         description: 'A Demo showingcasing the power of combining the Optimizely DXP with Next.JS',
@@ -42,43 +43,23 @@ export async function generateMetadata() : Promise<Metadata> {
 }
 
 export type RootLayoutProps = {
-  children: React.ReactNode
+    children: React.ReactNode
 }
 
-export default function RootLayout({ children }: RootLayoutProps) {
+export default function RootLayout({ children }: RootLayoutProps) 
+{
+    const odp_id = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? undefined
+    const crecs_client = process.env.OPTIMIZELY_CONTENTRECS_CLIENT ?? undefined
+    const crecs_delivery = EnvTools.readValueAsInt("OPTIMIZELY_CONTNETRECS_DELIVERY")
+    const exp_id = process.env.OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT ?? undefined
+
     return <html>
+        <head>
+            { odp_id && <OdpScript trackerId={ odp_id } /> }
+            { crecs_client && crecs_delivery && <RecsScript client={ crecs_client } delivery={ crecs_delivery } /> }
+            { exp_id && <WebExScript projectId={ exp_id } /> }
+        </head>
         <body className={ `${ inter.className } bg-white text-slate-900` }>
-            { odp_id && <Script id='zaius-root-script'>{`
-              var zaius = window['zaius'] || (window['zaius'] = []);
-  zaius.methods = ['initialize', 'onload', 'customer', 'entity', 'event', 'subscribe', 'unsubscribe', 'consent', 'identify', 'anonymize', 'dispatch'];
-
-  // build queueing methods
-  zaius.factory = function (method) {
-    return function() {
-      var args = Array.prototype.slice.call(arguments);
-      args.unshift(method);
-      zaius.push(args);
-      return zaius;
-    };
-  };
-
-  (function() {
-    for (var i = 0; i < zaius.methods.length; i++) {
-      var method = zaius.methods[i];
-      zaius[method] = zaius.factory(method);
-    }
-
-    var script   = document.createElement('script');
-    script.type  = 'text/javascript';
-    script.async = true;
-    script.src   = ('https:' === document.location.protocol ? 'https://' : 'http://') +
-                  'd1igp3oop3iho5.cloudfront.net/v2/${ odp_id }/zaius.js';
-
-    var firstScript = document.getElementsByTagName('script')[0];
-    firstScript.parentNode.insertBefore(script, firstScript);
-  })();`}
-</Script>
-}
             <GlobalProviders>
                 { children }
             </GlobalProviders>

@@ -32,7 +32,12 @@ The frontend comes with Next-Auth pre-integrated, this table lists the defaults 
 | DXP_DEBUG | 0 | Set this value to "1" to enable verbose output of the frontend to aid in debugging
 | QUERY_LOG | 0 | Set this value to "1" to write all GraphQL queries to the console output |
 
-### Integration with other Optimizely products
-| Variable | Default value | Usage |
+### Optionally enable Optimizely One
+Use the environment variables below to enable the included integrations with [Optimizely One](https://www.optimizely.com/products/), to activate a product all environment variables for that product must have a valid value.
+
+| Product | Variable | Usage |
 | --- | --- | --- |
-| OPTIMIZELY_DATAPLATFORM_ID |  | Set this value to the ID of the JavaScript tracker of your Optimizely Data Platform instance to enable tracking and activate the "Optimizely Data Platform Embed" block.
+| [Data Platform](https://www.optimizely.com/enhancements/data-platform/) | OPTIMIZELY_DATAPLATFORM_ID | Set this value to the ID of the JavaScript tracker of your Optimizely Data Platform instance to enable tracking and activate the "Optimizely Data Platform Embed" block.
+| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTENTRECS_CLIENT | Set this value to the Client name of your instance |
+| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTNETRECS_DELIVERY | Set this value to the Delivery ID of your instance |
+| [Web Experimentation](https://www.optimizely.com/products/experiment/web-experimentation/) | OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT | Set this to the ProjectID of your Web Experimentation project |

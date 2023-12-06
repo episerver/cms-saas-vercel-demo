@@ -10,6 +10,8 @@ export async function getArticles(parent: string, locale: string, paging?: Types
     const pageSize = paging?.count ?? 10
     const pageNumber = paging?.page ?? 1
     const client = getServerClient()
+    const published : string | undefined = filters?.published
+    const publishedEnd = !published ? undefined : (() => { const d = new Date(published); d.setDate(d.getDate() +1); return d.toISOString()})()
     const result = await client.query({
         query: GetArticlesQuery,
         variables: {
@@ -18,7 +20,8 @@ export async function getArticles(parent: string, locale: string, paging?: Types
             pageSize: paging?.count ?? 10,
             start: pageSize * (pageNumber - 1),
             author: filters?.author,
-            published: filters?.published
+            published,
+            publishedEnd
         }
     })
     if (result.error)
@@ -64,45 +67,55 @@ export async function getArticles(parent: string, locale: string, paging?: Types
 export type * as Types from './types'
 export default getArticles
 
-const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date)
-{
-    getArticles: ArticlePage (
-        where: { 
-            ParentLink: { GuidValue: { eq: $parent }}
-            StartPublish: { eq: $published }
-        }
-        locale: $locale
-        limit: $pageSize
-        skip: $start
-        orderBy: { 
-            StartPublish: DESC 
-        }
+const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
+    getArticles: ArticlePage(
+      where: {
+        _and: [
+          { ParentLink: { GuidValue: { eq: $parent } } }
+          {
+            _and: [
+              { StartPublish: { gte: $published } }
+              { StartPublish: { lte: $publishedEnd } }
+            ]
+          }
+        ]
+      }
+      locale: $locale
+      limit: $pageSize
+      skip: $start
+      orderBy: { StartPublish: DESC }
     ) {
-        total
-        items {
-            id: ContentLink {
-                guid: GuidValue
-            }
-            name: Name
-            title: Title
-            description: SeoSettings {
-                text: MetaDescription
-            }
+      total
+      items {
+        id: ContentLink {
+          guid: GuidValue
+        }
+        name: Name
+        title: Title
+        description: SeoSettings {
+          text: MetaDescription
+        }
+        url: Url
+        path: RelativePath
+        author: ArticleAuthor
+        published: StartPublish
+        image: PageImage {
+          url: Url
+          data: Expanded {
             url: Url
             path: RelativePath
-            author: ArticleAuthor
-            published: StartPublish
-            image: PageImage {
-                url: Url
-                data: Expanded {
-                    url: Url
-                    path: RelativePath
-                }
-            }
+          }
         }
-        facets {
-            author: ArticleAuthor (orderType: VALUE, orderBy: ASC, filters: $author) { count, name }
-            published: StartPublish { count, name }
+      }
+      facets {
+        author: ArticleAuthor(orderType: VALUE, orderBy: ASC, filters: $author) {
+          count
+          name
         }
+        published: StartPublish(unit: DAY) {
+          count
+          name
+        }
+      }
     }
-}`)
+  }`)

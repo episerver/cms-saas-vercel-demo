@@ -63,7 +63,7 @@ export function createNewClient(config, token = undefined, configOverrides = und
     }
     links.push(createContentGraphLink(token, config));
     const cache = new InMemoryCache({
-        resultCaching: false,
+        resultCaching: false, // Disable caching at Apollo
         ...inMemoryCacheConfig
     });
     return new ApolloClient({
@@ -118,7 +118,6 @@ export function createContentGraphLink(token, config) {
             throw new Error("Invalid ContentGraph configuration");
         return createHttpLink({
             uri: new URL("/content/v2", optiConfig.gateway).href,
-            //@ts-expect-error Undici types is causing a type-checking error here
             fetch: epiHmacFetch,
             fetchOptions: {
                 cache: 'no-store',

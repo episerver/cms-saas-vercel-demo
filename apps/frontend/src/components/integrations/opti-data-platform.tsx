@@ -2,42 +2,30 @@
 
 import type { FunctionComponent, PropsWithChildren } from "react"
 import { useEffect, useRef } from "react"
-import { usePathname, useSearchParams } from 'next/navigation'
+import { usePathname } from 'next/navigation'
+import { OptimizelyDataPlatformApi } from './types'
 
-declare global
+export function useODP(): OptimizelyDataPlatformApi | undefined
 {
-    interface Window {
-        zaius?: ZaiusAPI
+    try {
+        return window.zaius
+    } catch {
+        //Purposefully ignored
     }
-}
-
-export type ZaiusAPI = {
-    event: (name: string, data?: { [param: string]: any }) => Promise<void>
-    dispatch: (group: string, action: string, params?: { [param: string]: any }) => Promise<void>
-}
-
-export function useODP(): ZaiusAPI | undefined
-{
-    const odp = useRef<ZaiusAPI | undefined>()
-    if (!odp.current) {
-        try {
-            odp.current = window.zaius
-        } catch {
-            //Purposefully ignored
-        }
-    }
-    return odp.current
+    return undefined
 }
 
 export const OptiDataPlatform : FunctionComponent<PropsWithChildren<{}>> = ({ children }) =>
 {
+    const debug = process.env.NODE_ENV == 'development'
     const path = usePathname()
     const zaius = useODP()
     useEffect(() => {
         if (!zaius)
             return
+        if (debug) console.log("Optimizely Data Platform: Track view of", path)
         zaius.event('pageview')
-    }, [ path, zaius ])
+    }, [ path, zaius, debug ])
     
     return <>{ children }</>
 }

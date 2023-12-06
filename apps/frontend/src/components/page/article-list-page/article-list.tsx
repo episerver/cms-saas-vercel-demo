@@ -1,6 +1,6 @@
 "use client"
 import type { Types } from '@/lib/api/articles'
-import React, { useState, useEffect, type FunctionComponent, type PropsWithChildren } from 'react'
+import React, { useState, useEffect, useMemo, type FunctionComponent, type PropsWithChildren } from 'react'
 import { CalendarDaysIcon, UserIcon } from '@heroicons/react/24/outline'
 import LocalTime from '@/components/shared/local-time'
 import BannerButton from '@/components/shared/banner-button'
@@ -19,22 +19,22 @@ export type ArticleListProps = PropsWithChildren<{
 const ARTICLES_SERVICE = "/api/content/articles"
 const ALL_AUTHORS = "-all-"
 const ALL_DATES = "-all-"
-const pageSizeOptions : number[] = [1,12,24,36]
+const pageSizeOptions : number[] = [6,12,24,36]
 const defaultPageSize : number = 12
 
 export const ArticleList : FunctionComponent<ArticleListProps> = ({ initialData, imageBaseUrl, parent, locale, className }) => {
     // Keep track of the list of articles to show
     const [{ facets, items }, setArticleList ] = useState<Types.GetArticlesResult>(initialData)
-    const authorOptions : DropdownItem<string>[] = [{ label: "All authors", value: ALL_AUTHORS } as DropdownItem<string>].concat(facets.author.map(x => { return { 
+    const authorOptions : DropdownItem<string>[] = useMemo(() => [{ label: "All authors", value: ALL_AUTHORS } as DropdownItem<string>].concat(facets.author.map(x => { return { 
         label: x.name, 
         value: x.name, 
         badge: x.count > 0 ? x.count.toString() : undefined 
-    }}))
-    const datesOptions : DropdownItem<string>[] = [{ label: "Any time", value: ALL_DATES } as DropdownItem<string>].concat(facets.published.map(x => { return { 
+    }})),[ facets ])
+    const datesOptions : DropdownItem<string>[] = useMemo(() => [{ label: "Any time", value: ALL_DATES } as DropdownItem<string>].concat(facets.published.map(x => { return { 
         label: <LocalTime date={ x.date } mode='Date' />, 
         value: x.date, 
         badge: x.count > 0 ? x.count.toString() : undefined 
-    }}))
+    }})),[ facets ])
     
     // Keep track of the external state
     const [ selectedAuthor, setSelectedAuthor ] = useUrlState<string>("author", ALL_AUTHORS, (author) => authorOptions.some(x => x.value == author), s=>s, s=>s)

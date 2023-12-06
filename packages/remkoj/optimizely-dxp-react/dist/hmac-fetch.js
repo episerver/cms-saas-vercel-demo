@@ -29,7 +29,6 @@ export function createEpiHmacFetch(appKey, secret) {
             });
         });
     }
-    //@ts-expect-error Undici types is causing type errors here
     return async function newFetch(input, init) {
         //#region HMAC Signature
         const url = new URL(isRequest(input) ? input.url : input.toString());
