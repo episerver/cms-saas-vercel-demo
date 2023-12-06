@@ -1,5 +1,10 @@
 {
   "possibleTypes": {
+    "IConfiguredCommerceCatalogEntry": [
+      "ConfiguredCommerceCatalogCategory",
+      "ConfiguredCommerceCatalogEntry",
+      "ConfiguredCommerceCatalogProduct"
+    ],
     "IContent": [
       "ArticleListPage",
       "ArticlePage",

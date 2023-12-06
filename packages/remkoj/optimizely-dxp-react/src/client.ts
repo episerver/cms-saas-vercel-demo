@@ -141,7 +141,6 @@ export function createContentGraphLink(token?: string, config?: ContentGraphConf
             throw new Error("Invalid ContentGraph configuration")
         return createHttpLink({
             uri: new URL("/content/v2", optiConfig.gateway).href,
-            //@ts-expect-error Undici types is causing a type-checking error here
             fetch: epiHmacFetch,
             fetchOptions: {
                 cache: 'no-store',

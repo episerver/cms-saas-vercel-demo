@@ -39,7 +39,8 @@ export function useUrlState<T = any>(parameter: string, initialValue: T, validat
             currentValue = initialValue
             hasStoreError = true
         }
-    } catch {
+    } catch (e) {
+        currentValue = initialValue
         hasStoreError = true
     }
 
