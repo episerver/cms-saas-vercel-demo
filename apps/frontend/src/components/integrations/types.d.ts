@@ -10,6 +10,7 @@ declare global
 export type OptimizelyDataPlatformApi = {
     event: (name: string, data?: { [param: string]: any }) => Promise<void>
     dispatch: (group: string, action: string, params?: { [param: string]: any }) => Promise<void>
+    customer: (customerProps: any) => void
 }
 
 export type OptimizelyContentRecsApi = {
