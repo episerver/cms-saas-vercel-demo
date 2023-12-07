@@ -6,7 +6,7 @@ import ClientSide from './client'
 export type OdpEmbedBlockType = CmsComponent<GraphQL.OdpEmbedBlockDataFragment>
 
 export const OdpEmbedBlock : OdpEmbedBlockType = ({ data }) => {
-    const contentId = data.contentId || undefined
+    const contentId = data.ContentId || undefined
 
     if (!contentId)
         return <div className="odp-embed-block empty-odp-embed-block"></div>
@@ -18,5 +18,5 @@ OdpEmbedBlock.displayName = "Optimizely Data Platform Embed"
 export default OdpEmbedBlock
 
 const OdpEmbedBlockData = gql(/* GraphQL */`fragment OdpEmbedBlockData on OdpEmbedBlock {
-    contentId: ContentId
+    ContentId
 }`)

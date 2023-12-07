@@ -7,8 +7,7 @@ const DXP_URL = process.env.DXP_URL ?? process.env.NEXT_PUBLIC_DXP_URL ?? undefi
 
 export const MediaImageAsset : CmsComponent<GraphQL.ImageMediaDataFragment> = ({data}) =>
 {
-    const relativePath = data?.path
-    //console.log("ImageMediaData", data)
+    const relativePath = (data as GraphQL.IContentDataFragment | undefined)?.path
     if (!(typeof(relativePath) == 'string' && relativePath.length > 0))
         return <></>
 
@@ -23,5 +22,5 @@ MediaImageAsset.displayName = "Optimizely CMS Image"
 export default MediaImageAsset
 
 export const MediaImageFragment = gql(/* GraphQL */`fragment ImageMediaData on Content {
-    path: RelativePath
+    RelativePath 
 }`)

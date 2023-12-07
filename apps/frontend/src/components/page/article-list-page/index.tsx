@@ -19,10 +19,10 @@ export const ArticleListPage : OptimizelyNextPage<GraphQL.ArticleListPageDataFra
     const articles = guid ? await getArticles(guid, locale, { page: 1, count: 12 }) : undefined
 
     return <>
-        <CmsContentArea fieldName='ArticleListHero' inEditMode={ inEditMode } items={ data.topArea ?? [] } client={ client } locale={ contentLink.locale } />
+        <CmsContentArea fieldName='ArticleListHero' inEditMode={ inEditMode } items={ data.ArticleListHero ?? [] } client={ client } locale={ contentLink.locale } />
         <div className='article-list-page'>
-            <h1 data-epi-edit={ inEditMode ? "ArticleListTitle" : undefined } className='pb-2 md:pb-4'>{ data.title ?? data.name ?? "Article list"}</h1>
-            <div data-epi-edit={ inEditMode ? "ArticleListBody" : undefined } className="rich-text" dangerouslySetInnerHTML={{ __html: data.text ?? ""}}></div>
+            <h1 data-epi-edit={ inEditMode ? "ArticleListTitle" : undefined } className='pb-2 md:pb-4'>{ data.ArticleListTitle ?? data.Name ?? "Article list"}</h1>
+            <div data-epi-edit={ inEditMode ? "ArticleListBody" : undefined } className="rich-text" dangerouslySetInnerHTML={{ __html: data.ArticleListBody ?? ""}}></div>
             { guid && articles && <ArticleList initialData={ articles } imageBaseUrl={ process.env.DXP_URL ?? 'http://localhost:3000' } parent={ guid } locale={ locale } className='pt-2 md:pt-4 lg:pt-6' /> }
         </div>
     </>
@@ -69,10 +69,10 @@ export default ArticleListPage
 
 
 export const ArticleListPageData = gql(/*GraphQL*/`fragment ArticleListPageData on ArticleListPage {
-    name: Name
-    title: ArticleListTitle
-    text: ArticleListBody
-    topArea: ArticleListHero {
+    Name
+    ArticleListTitle
+    ArticleListBody
+    ArticleListHero {
         ...ContentAreaItemData
     }
 }`)

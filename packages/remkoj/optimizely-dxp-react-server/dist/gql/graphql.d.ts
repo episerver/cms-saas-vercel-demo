@@ -3759,16 +3759,33 @@ export type TextBlockWhereInput = {
     _not?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
     _or?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
 };
+export type ContentLinkFragment = {
+    __typename?: 'ContentModelReference';
+    id?: number | null;
+    workId?: number | null;
+    guidValue?: string | null;
+} & {
+    ' $fragmentName'?: 'ContentLinkFragment';
+};
+export type ContentLinkSearchFragment = {
+    __typename?: 'ContentModelReferenceSearch';
+    id?: number | null;
+    workId?: number | null;
+    guidValue?: string | null;
+} & {
+    ' $fragmentName'?: 'ContentLinkSearchFragment';
+};
 type IContentData_ArticlePage_Fragment = {
     __typename?: 'ArticlePage';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3780,12 +3797,13 @@ type IContentData_ButtonBlock_Fragment = {
     __typename?: 'ButtonBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3797,12 +3815,13 @@ type IContentData_ContainerBlock_Fragment = {
     __typename?: 'ContainerBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3814,12 +3833,13 @@ type IContentData_Content_Fragment = {
     __typename?: 'Content';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3831,12 +3851,13 @@ type IContentData_HeaderConfigBlock_Fragment = {
     __typename?: 'HeaderConfigBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3848,12 +3869,13 @@ type IContentData_HeroBlock_Fragment = {
     __typename?: 'HeroBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3865,12 +3887,13 @@ type IContentData_HighlightTextBlock_Fragment = {
     __typename?: 'HighlightTextBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3882,12 +3905,13 @@ type IContentData_LandingPage_Fragment = {
     __typename?: 'LandingPage';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3899,12 +3923,13 @@ type IContentData_NavMenuItem_Fragment = {
     __typename?: 'NavMenuItem';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3916,12 +3941,13 @@ type IContentData_TextBlock_Fragment = {
     __typename?: 'TextBlock';
     contentType?: Array<string | null> | null;
     path?: string | null;
-    id?: {
+    id?: ({
         __typename?: 'ContentModelReference';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
+        };
+    }) | null;
     locale?: {
         __typename?: 'ContentLanguageModel';
         name?: string | null;
@@ -3933,11 +3959,8 @@ export type IContentDataFragment = IContentData_ArticlePage_Fragment | IContentD
 export type ContentAreaItemDataFragment = {
     __typename?: 'ContentAreaItemModelSearch';
     displayOption?: string | null;
-    item?: {
+    item?: ({
         __typename?: 'ContentModelReferenceSearch';
-        id?: number | null;
-        workId?: number | null;
-        guidValue?: string | null;
         data?: ({
             __typename?: 'ArticlePage';
         } & {
@@ -3999,9 +4022,253 @@ export type ContentAreaItemDataFragment = {
                 'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;
             };
         }) | null;
-    } | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkSearchFragment': ContentLinkSearchFragment;
+        };
+    }) | null;
 } & {
     ' $fragmentName'?: 'ContentAreaItemDataFragment';
+};
+export type BlockContentAreaItemDataFragment = {
+    __typename?: 'ContentAreaItemModelSearch';
+    displayOption?: string | null;
+    item?: ({
+        __typename?: 'ContentModelReferenceSearch';
+        data?: ({
+            __typename?: 'ArticlePage';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment;
+            };
+        }) | ({
+            __typename?: 'ButtonBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'ContainerBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ContainerBlock_Fragment': IContentData_ContainerBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'Content';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_Content_Fragment': IContentData_Content_Fragment;
+            };
+        }) | ({
+            __typename?: 'HeaderConfigBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HeaderConfigBlock_Fragment': IContentData_HeaderConfigBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'HeroBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'HighlightTextBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HighlightTextBlock_Fragment': IContentData_HighlightTextBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'LandingPage';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment;
+            };
+        }) | ({
+            __typename?: 'NavMenuItem';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_NavMenuItem_Fragment': IContentData_NavMenuItem_Fragment;
+            };
+        }) | ({
+            __typename?: 'TextBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;
+            };
+        }) | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkSearchFragment': ContentLinkSearchFragment;
+        };
+    }) | null;
+} & {
+    ' $fragmentName'?: 'BlockContentAreaItemDataFragment';
+};
+export type LinkItemDataFragment = {
+    __typename?: 'LinkItemNode';
+    children?: string | null;
+    title?: string | null;
+    href?: string | null;
+    target?: string | null;
+    content?: {
+        __typename?: 'ContentModelReference';
+        href?: string | null;
+        data?: {
+            __typename?: 'ArticlePage';
+            path?: string | null;
+        } | {
+            __typename?: 'ButtonBlock';
+            path?: string | null;
+        } | {
+            __typename?: 'ContainerBlock';
+            path?: string | null;
+        } | {
+            __typename?: 'Content';
+            path?: string | null;
+        } | {
+            __typename?: 'HeaderConfigBlock';
+            path?: string | null;
+        } | {
+            __typename?: 'HeroBlock';
+            path?: string | null;
+        } | {
+            __typename?: 'HighlightTextBlock';
+            path?: string | null;
+        } | {
+            __typename?: 'LandingPage';
+            path?: string | null;
+        } | {
+            __typename?: 'NavMenuItem';
+            path?: string | null;
+        } | {
+            __typename?: 'TextBlock';
+            path?: string | null;
+        } | null;
+    } | null;
+} & {
+    ' $fragmentName'?: 'LinkItemDataFragment';
+};
+export type ImageDataFragment = ({
+    __typename?: 'ContentModelReference';
+    url?: string | null;
+    data?: {
+        __typename?: 'ArticlePage';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'ButtonBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'ContainerBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'Content';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HeaderConfigBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HeroBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HighlightTextBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'LandingPage';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'NavMenuItem';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'TextBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | null;
+} & {
+    ' $fragmentRefs'?: {
+        'ContentLinkFragment': ContentLinkFragment;
+    };
+}) & {
+    ' $fragmentName'?: 'ImageDataFragment';
+};
+export type ImageDataSearchFragment = ({
+    __typename?: 'ContentModelReferenceSearch';
+    url?: string | null;
+    data?: {
+        __typename?: 'ArticlePage';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'ButtonBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'ContainerBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'Content';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HeaderConfigBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HeroBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'HighlightTextBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'LandingPage';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'NavMenuItem';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | {
+        __typename?: 'TextBlock';
+        url?: string | null;
+        alt?: string | null;
+        path?: string | null;
+    } | null;
+} & {
+    ' $fragmentRefs'?: {
+        'ContentLinkSearchFragment': ContentLinkSearchFragment;
+    };
+}) & {
+    ' $fragmentName'?: 'ImageDataSearchFragment';
 };
 type BlockData_ArticlePage_Fragment = ({
     __typename?: 'ArticlePage';
@@ -4439,9 +4706,15 @@ export type GetContentTypeQuery = {
         } | null> | null;
     } | null;
 };
+export declare const ContentLinkSearchFragmentDoc: DocumentNode<ContentLinkSearchFragment, unknown>;
+export declare const ContentLinkFragmentDoc: DocumentNode<ContentLinkFragment, unknown>;
 export declare const IContentDataFragmentDoc: DocumentNode<IContentDataFragment, unknown>;
 export declare const BlockDataFragmentDoc: DocumentNode<BlockDataFragment, unknown>;
 export declare const ContentAreaItemDataFragmentDoc: DocumentNode<ContentAreaItemDataFragment, unknown>;
+export declare const BlockContentAreaItemDataFragmentDoc: DocumentNode<BlockContentAreaItemDataFragment, unknown>;
+export declare const LinkItemDataFragmentDoc: DocumentNode<LinkItemDataFragment, unknown>;
+export declare const ImageDataFragmentDoc: DocumentNode<ImageDataFragment, unknown>;
+export declare const ImageDataSearchFragmentDoc: DocumentNode<ImageDataSearchFragment, unknown>;
 export declare const PageDataFragmentDoc: DocumentNode<PageDataFragment, unknown>;
 export declare const ContentAreaItemBaseFragmentDoc: DocumentNode<ContentAreaItemBaseFragment, unknown>;
 export declare const GetContentByIdDocument: DocumentNode<GetContentByIdQuery, Exact<{

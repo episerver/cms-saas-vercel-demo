@@ -1,9 +1,9 @@
 import type { Metadata, ResolvingMetadata } from 'next/types'
 import { slugToLocale, getFallbackLocale } from '@/lib/i18n'
-import deepmerge from 'deepmerge'
 
 import Header from '@components/layout/header'
 import Footer from '@components/layout/footer'
+import OptimizelyOne from '@components/layout/footer/optimizely-one'
 
 export type RootLayoutProps = {
     children: React.ReactNode,
@@ -39,5 +39,6 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
             { children }
         </main>
         <Footer locale={ currentLocale } />
+        <OptimizelyOne />
     </>
 }

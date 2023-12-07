@@ -50,7 +50,7 @@ export default function RootLayout({ children }: RootLayoutProps)
 {
     const odp_id = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? undefined
     const crecs_client = process.env.OPTIMIZELY_CONTENTRECS_CLIENT ?? undefined
-    const crecs_delivery = EnvTools.readValueAsInt("OPTIMIZELY_CONTNETRECS_DELIVERY")
+    const crecs_delivery = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTRECS_DELIVERY")
     const exp_id = process.env.OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT ?? undefined
 
     return <html>

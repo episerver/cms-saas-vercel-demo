@@ -13,8 +13,8 @@ export const BlockComponent : BlockComponentType = ({ data, inEditMode }) =>
     if (!data) 
         return <div className="highlight-block"></div>
 
-    const title = data.title || ""
-    const payoff = data.payOff || ""
+    const title = data.Title || ""
+    const payoff = data.PayOffText || ""
     return <div className="highlight-block">
         <div className="hlb-title" data-epi-edit={ inEditMode ? "Title" : undefined}>{ title }</div>
         <hr />
@@ -28,6 +28,6 @@ export default BlockComponent
 
 const BlockDataFragment = gql(/*graphql*/ `fragment HighlightBlockData on HighlightTextBlock
 {
-  title:Title
-  payOff:PayOffText
+  Title
+  PayOffText
 }`)

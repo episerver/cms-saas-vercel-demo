@@ -9,8 +9,8 @@ import ClassMapper from '@/lib/displayMode'
 import { Metadata } from 'next'
 
 export const LandingPage : OptimizelyNextPage<LandingPageDataFragment> = ({ contentLink, data, children, client, inEditMode }) => {
-    const topContentArea : ContentAreaItemDataFragment[] = data.topArea?.filter(Utils.isNotNullOrUndefined) ?? []
-    const mainContentArea : ContentAreaItemDataFragment[] = data.mainArea?.filter(Utils.isNotNullOrUndefined) ?? []
+    const topContentArea : ContentAreaItemDataFragment[] = data.TopContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
+    const mainContentArea : ContentAreaItemDataFragment[] = data.MainContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
     
     return <div className='landing-page'>
         <CmsContentArea inEditMode={ inEditMode } fieldName='TopContentArea' items={ topContentArea }  locale={ contentLink.locale } classMapper={ ClassMapper } client={ client } className="w-full"/>
@@ -54,10 +54,10 @@ LandingPage.getMetaData = async (contentLink, locale, client) => {
 export default LandingPage
 
 export const LandingPageData = gql(/* GraphQL */`fragment LandingPageData on LandingPage {
-    topArea: TopContentArea {
+    TopContentArea {
         ...ContentAreaItemData
     }
-    mainArea: MainContentArea {
+    MainContentArea {
         ...ContentAreaItemData
     }
 }`)
