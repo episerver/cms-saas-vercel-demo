@@ -118,7 +118,7 @@ const WebExPanel : FunctionComponent<{}> = () =>
     const data = webEx?.get ? webEx.get('data') : undefined
     
     const pagesArray : ((typeof pagesObject)[string])[] = []
-    for (const pageId in Object.getOwnPropertyNames(pagesObject))
+    for (const pageId of Object.getOwnPropertyNames(pagesObject))
         pagesArray.push(pagesObject[pageId])
 
     return <Tab.Panel as="div" className="p-1 md:p-2">
