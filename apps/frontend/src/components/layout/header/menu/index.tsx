@@ -10,8 +10,8 @@ export default function SiteMenu({ locale, items, brandName }: SiteMenuProps) {
     const menuItems = (items || [])
     let counter : number = 0
     return <>
-        <nav className='max-w-screen-2xl mx-auto px-6 sm:px-7 lg:px-8 relative'>
-            <div className='scrollable-menu-container overscroll-none overflow-auto touch-pan-x w-100'>
+        <nav className='max-w-screen-2xl mx-auto px-6 sm:px-7 lg:px-8 relative flex flex-row flex-nowrap justify-stretch h-14'>
+            <div className='scrollable-menu-container overscroll-none overflow-auto touch-pan-x w-100 flex-1'>
                 <div className='scrollable-menu flex flex-nowrap md:text-lg'>
                     <Link className='hidden lg:block grow-0 px-2 sm:px-3 lg:px-4 py-3 hover:bg-primary-dark' href="/" hrefLang={locale} lang={locale} >Home</Link>
                 { menuItems.map(x => { 
@@ -37,12 +37,7 @@ export default function SiteMenu({ locale, items, brandName }: SiteMenuProps) {
                     <div className='lg:hidden w-8 h-4 mx-2 sm:mx-3 lg:mx-4 py-3 grow-0 shrink-0'/>
                 </div>
             </div>
-            <div className='searchFeature absolute top-0 right-4 sm:right-6 lg:right-8 whitespace-nowrap'>
-                <div className='inline-block py-3 bg-gradient-to-r from-transparent to-teal-800'>
-                    <div className='inline-block w-4 h-4 md:h-5' />
-                </div>
-                <SiteSearch brandName={ brandName } buttonClassName='inline-block px-2 sm:px-3 lg:px-4 py-3 bg-teal-800 hover:bg-primary-dark' />
-            </div>
+            <SiteSearch brandName={ brandName } buttonClassName='inline-block h-14 px-2 sm:px-3 lg:px-4 py-3 bg-teal-800 hover:bg-primary-dark' />
         </nav>
     </>
 }

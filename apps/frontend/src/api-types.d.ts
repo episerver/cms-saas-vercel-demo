@@ -11,6 +11,7 @@ export type SiteSearchResult = {
     items: ContentSearchResultItems
     facets: ContentSearchResultFacets
     total: number
+    isPersonalized: boolean
 }
 export type ContentSearchResultFilters = {
     field: string

@@ -1,11 +1,15 @@
 import { NextResponse } from 'next/server'
 import { cookies } from 'next/headers'
+import * as EnvTools from '@/lib/env'
 import type { MeResponse } from './types'
 
 const NO_ID = 'n/a'
 
 async function handler() : Promise<NextResponse<MeResponse>>
 {
+    if (!EnvTools.readValueAsBoolean('OPTIMIZELY_ONE_HELPER'))
+        return new NextResponse(undefined, { status: 404 })
+
     const c = cookies()
     const contentRecsId = c.get('iv')?.value ?? NO_ID
     const zaiusId = c.get('vuid')?.value?.split("|")?.shift()?.replaceAll('-','') ?? NO_ID
@@ -31,8 +35,8 @@ async function handler() : Promise<NextResponse<MeResponse>>
 
 async function getODPAudiences(vuid: string) : Promise<{ id: string, name: string }[]>
 {
-    const odpApiKey = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? ""
-    const odpApi = process.env.OPTIMIZELY_DATAPLATFORM_API ?? "https://api.zaius.com/"
+    const odpApiKey = EnvTools.readValue('OPTIMIZELY_DATAPLATFORM_ID', "").split('.').shift()
+    const odpApi = EnvTools.readValue('OPTIMIZLEY_DATAPLATFORM_ENDPOINT', "https://api.zaius.com/")
     if (!odpApiKey || vuid == NO_ID)
         return []
     const query = `query GetVisitorAudiences ($vuid: String!) { customer(vuid: $vuid) { audiences { edges { node { name, description }}}}}`

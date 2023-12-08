@@ -43,7 +43,7 @@ const OptimizelyOnePanel : FunctionComponent<{}> = () =>
 
     useEffect(() => {
         const abort = new AbortController()
-        setTimeout(() => abort.abort("Timemout, please try again in a moment"), 15000)
+        setTimeout(() => abort.abort("Timemout, please try again in a moment"), 60000)
         setIsLoading(true)
         setDataError(undefined)
         fetch('/api/me', {
@@ -63,7 +63,7 @@ const OptimizelyOnePanel : FunctionComponent<{}> = () =>
     }, [ currentPath ])
 
     if (isLoading)
-        return <p className='m-2 md:m-4 rounded-md bg-amber-200 border border-amber-800 text-amber-800 p-1 md:p-2'>Loading your profile information, please wait...</p>
+        return <p className='m-2 md:m-4 rounded-md bg-amber-200 border border-amber-800 text-amber-800 p-1 md:p-2'>Loading your profile information, this may take a minute or two...</p>
 
     if (dataError)
         return <p className='m-2 md:m-4 rounded-md bg-red-200 border border-red-800 text-red-800 p-1 md:p-2'>{ dataError }</p>

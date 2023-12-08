@@ -3,6 +3,7 @@ import * as GraphQL from '@gql/graphql'
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import { gql } from '@gql/index'
 import { getServerClient } from '@/lib/client'
+import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
 
 async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchResponse>>
@@ -11,14 +12,19 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
     const searchTerm = req.nextUrl.searchParams.get('term') ?? ''
     const contentTypes = (req.nextUrl.searchParams.get('types') ?? '').split(',').filter(Utils.isNonEmptyString)
     const contentLocales = (req.nextUrl.searchParams.get('locales') ?? '').split(',').filter(Utils.isNonEmptyString)
+    const interests = await ContentIntel.getTopTopics()
+    const topInterest = interests.shift()
 
     if (!searchTerm)
         return NextResponse.json({ error: { type: "Bad Request", message: "The term parameter is required"} }, { status: 400 })
+
+    const isPersonalized = topInterest ? true : false
 
     const rawResponse = await client.query({
         query: ComponentSearchQuery,
         variables: {
             term: searchTerm,
+            topInterest,
             locale: contentLocales?.length > 0 ? contentLocales as GraphQL.Locales[] : null,
             types: contentTypes?.length > 0 ? contentTypes : null
         }
@@ -65,7 +71,8 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
         filters: [],
         total: resultCount ?? 0,
         items: resultItems,
-        facets: resultFacets
+        facets: resultFacets,
+        isPersonalized
     }
     if (contentTypes.length > 0)
         searchResults.filters.push({ field: "types", value: contentTypes })
@@ -85,8 +92,8 @@ const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String
     Content(
         where: {
             _and: [
-                { _fulltext: { contains: $term, boost: 20 } }
-                { _fulltext: { contains: $topInterest, boost: 10 } }
+                { _fulltext: { contains: $term, boost: 25 } }
+                { _fulltext: { contains: $topInterest, boost: 5 } }
                 { Url: { exist: true } }
             ]
         }
