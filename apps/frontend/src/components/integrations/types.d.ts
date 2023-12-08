@@ -19,6 +19,25 @@ export type OptimizelyContentRecsApi = {
 
 export type OptimizelyWebExperimentationApi = {
     initialized: boolean
-    push: (data: { type: string, [paramName: string]: any }) => void 
-    get?: (what: string) => any
+    push: (data: { type: string, [paramName: string]: any }) => void
+    get?: <T extends keyof OptlyWebGet>(what: T) => OptlyWebGet[T]
+    //get?: (what: string) => any
+}
+
+type OptlyWebGet = {
+    state: {
+        getPageStates: () => { 
+            [id: string]: { 
+                id: string, 
+                apiName: string, 
+                name: string | null, 
+                isActive: boolean 
+            }
+        }
+    }
+    data: {
+        projectId: string
+        accountId: string
+        revision: string
+    }
 }

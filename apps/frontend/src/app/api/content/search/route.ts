@@ -81,46 +81,39 @@ export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 export const fetchCache = 'default-no-store'
 
-const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String!, $locale: [Locales], $types: [String])
-{
+const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize:Int) {
     Content(
         where: {
-            _and: {
-                _fulltext: {
-                    contains: $term
-                },
-                ContentType: {
-                    in: $types
-                }
-                Url: {
-                    exist: true
-                }
-            }
+            _and: [
+                { _fulltext: { contains: $term, boost: 20 } }
+                { _fulltext: { contains: $topInterest, boost: 10 } }
+                { Url: { exist: true } }
+            ]
         }
-        orderBy: {
-            _ranking: SEMANTIC
-        }
-        locale: $locale
+        orderBy: { _ranking: SEMANTIC }
+        limit: $pageSize
     ) {
         total
+        cursor
+        items {
+            _score
+            name: Name
+            url: RelativePath
+            type: ContentType
+            changed: Changed
+            published: StartPublish
+        }
         facets {
-            ContentType {
+            ContentType (filters: $types) {
                 name
                 count
             }
             Language {
-                Name {
+                Name (filters: $locale) {
                     name
                     count
                 }
             }
-        }
-        items {
-            name : Name,
-            url : RelativePath,
-            type: ContentType,
-            changed: Changed
-            published: StartPublish
         }
     }
 }`)
