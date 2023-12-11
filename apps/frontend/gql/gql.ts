@@ -51,8 +51,8 @@ const documents = {
     "fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }": types.ContentAreaItemDataFragmentDoc,
     "fragment BlockContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...IContentData\n            }\n        }\n        displayOption:DisplayOption\n    }": types.BlockContentAreaItemDataFragmentDoc,
     "fragment LinkItemData on LinkItemNode {\n      children: Text\n      title: Title\n      href: Href\n      target: Target\n      content: ContentLink {\n        href: Url\n        data: Expanded {\n          path: RelativePath\n        }\n      }\n    }": types.LinkItemDataFragmentDoc,
-    "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": types.ImageDataFragmentDoc,
-    "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": types.ImageDataSearchFragmentDoc,
+    "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": types.ImageDataFragmentDoc,
+    "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": types.ImageDataSearchFragmentDoc,
     "fragment BlockData on IContent {\n        ...IContentData\n    }": types.BlockDataFragmentDoc,
     "fragment PageData on IContent {\n        ...IContentData\n    }": types.PageDataFragmentDoc,
     "fragment ContentAreaItemBase on ContentAreaItemModelSearch {\n      contentLink:ContentLink { \n          id:Id\n          workId:WorkId\n          guidValue:GuidValue\n          component:Expanded {\n              path:RelativePath\n              type:ContentType\n          }\n      }\n      displayOption:DisplayOption\n  }": types.ContentAreaItemBaseFragmentDoc,
@@ -236,11 +236,11 @@ export function gql(source: "fragment LinkItemData on LinkItemNode {\n      chil
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
+export function gql(source: "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
+export function gql(source: "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

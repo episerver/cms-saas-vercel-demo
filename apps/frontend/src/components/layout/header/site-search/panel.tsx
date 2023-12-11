@@ -125,17 +125,17 @@ export const SearchPanel : FunctionComponent<SearchPanelProps> = props =>
                 <div className='py-2 cursor-pointer' key={"recent-query-"+rq} onClick={ () => setSearchTerm(rq) }>{rq}</div>
             )}</div> }
         </div>
-        { (searchTerm != '' && searchTerm == searchResults?.query ) ? <>
+        { (searchTerm != '' && searchTerm == (searchResults?.query ?? '') ) ? <>
             <div className="font-bold text-lg col-span-8">Searched for &quot;<span>{ searchResults?.query ?? "" }</span>&quot;{ searchResults?.isPersonalized && <>&nbsp;showing personalized results</>}</div>
-            <Facets className='search-facets h-full col-span-3 md:col-span-2' facets={ searchResults?.facets ?? [] } activeFacets={ searchResults?.filters ?? []} onAddFacet={ (f,v)=>addFacet(f,v) } onRemoveFacet={ (f,v)=>removeFacet(f,v) } />
-            <SearchResults className='results-list overflow-auto touch-pan-y col-span-5 md:col-span-6' results={ searchResults?.items ?? [] } total={ searchResults?.total ?? 0 } />
-        </> : <>
+            <Facets className='search-facets col-span-3 md:col-span-2 max-h-96' facets={ searchResults?.facets ?? [] } activeFacets={ searchResults?.filters ?? []} onAddFacet={ (f,v)=>addFacet(f,v) } onRemoveFacet={ (f,v)=>removeFacet(f,v) } />
+            <SearchResults className='results-list overflow-auto touch-pan-y col-span-5 md:col-span-6 max-h-96' results={ searchResults?.items ?? [] } total={ searchResults?.total ?? 0 } />
+        </> : searchTerm != '' ? <>
             <div className="col-span-8">
                 <div className="m-8 p-2 rounded-md drop-shadow-md bg-amber-100 border border-amber-700 text-amber-900 text-xl font-bold">
                     <GlobeEuropeAfricaIcon className='inline-block h-8 w-8 animate-spin' /> { searchTerm ? "Awaiting results" : "Start by entering a search term or selecting one of your previous searches"}
                 </div>
             </div>
-        </>}
+        </> : <></> }
     </>
 }
 

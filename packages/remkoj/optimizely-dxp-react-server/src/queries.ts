@@ -56,6 +56,7 @@ export const CmsContentFragments = {
       ...ContentLink
       url: Url
       data: Expanded {
+        ...IContentData
         url: Url
         alt: Name 
         path: RelativePath
@@ -65,6 +66,7 @@ export const CmsContentFragments = {
       ...ContentLinkSearch
       url: Url
       data: Expanded {
+        ...IContentData
         url: Url
         alt: Name 
         path: RelativePath

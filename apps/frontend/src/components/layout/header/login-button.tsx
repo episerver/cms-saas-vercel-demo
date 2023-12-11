@@ -19,11 +19,11 @@ export const LoginButton : FunctionComponent<LoginButtonProps> = ({ className, t
     </button>
 
     if (status == 'authenticated')
-        return <button onClick={() => signOut() } className={ ('p-2 px-3 sm:p-3 sm:px-4 lg:p-4 lg:px-6 text-slate-100 bg-teal-800 hover:bg-teal-900 rounded ' + (className ?? "")).trim() }>
+        return <button onClick={() => signOut() } className={ ('p-2 px-3 sm:p-3 sm:px-4 lg:p-4 lg:px-6 bg-primary hover:bg-primary-dark rounded ' + (className ?? "")).trim() }>
             <LockClosedIcon className='inline-block w-6 h-6' /> <span>{ texts?.logout ?? "Logout"}</span>
         </button>
 
-    return <button onClick={() => signIn() } className={ ('p-2 px-3 sm:p-3 sm:px-4 lg:p-4 lg:px-6 text-slate-100 bg-sky-600 hover:bg-sky-800 rounded ' + (className ?? "")).trim() }>
+    return <button onClick={() => signIn() } className={ ('p-2 px-3 sm:p-3 sm:px-4 lg:p-4 lg:px-6 bg-secondary hover:bg-secondary-dark rounded ' + (className ?? "")).trim() }>
         <LockOpenIcon className='inline-block w-6 h-6' /> <span>{ texts?.login ?? "Login"}</span>
     </button>
 }

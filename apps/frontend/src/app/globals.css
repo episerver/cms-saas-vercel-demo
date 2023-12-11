@@ -44,6 +44,15 @@
     .bg-primary-light {
         @apply bg-teal-100 text-slate-900
     }
+    .bg-secondary {
+        @apply bg-sky-600 text-slate-100
+    }
+    .bg-secondary-dark {
+        @apply bg-sky-800 text-slate-100
+    }
+    .bg-secondary-light {
+        @apply bg-sky-100 text-slate-900
+    }
     .border-primary {
         @apply border-teal-800
     }
