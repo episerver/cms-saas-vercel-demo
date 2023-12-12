@@ -3,6 +3,8 @@ import type { OptimizelyWebExperimentationApi } from "./types"
 import { useLayoutEffect, type FunctionComponent, type PropsWithChildren } from 'react'
 import { usePathname } from 'next/navigation'
 
+export { type OptimizelyWebExperimentationApi, type OptlyWebGet } from "./types"
+
 export function useWebExperimentation(): OptimizelyWebExperimentationApi | undefined
 {
     try {

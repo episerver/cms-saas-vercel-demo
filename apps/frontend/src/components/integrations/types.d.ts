@@ -24,7 +24,7 @@ export type OptimizelyWebExperimentationApi = {
     //get?: (what: string) => any
 }
 
-type OptlyWebGet = {
+export type OptlyWebGet = {
     state: {
         getPageStates: () => { 
             [id: string]: { 
@@ -32,6 +32,21 @@ type OptlyWebGet = {
                 apiName: string, 
                 name: string | null, 
                 isActive: boolean 
+            }
+        },
+        getExperimentStates: () => {
+            [id: string]: {
+                audiences: any[]
+                experimentName: string | null
+                id: string
+                isActive: boolean
+                isInExperimentHoldback: boolean
+                reason?: undefined | string
+                variation: {
+                    id: string
+                    name: string | null
+                }
+                visitorRedirected: boolean
             }
         }
     }

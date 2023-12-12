@@ -63,7 +63,6 @@ export function createNewClient(config, token = undefined, configOverrides = und
     }
     links.push(createContentGraphLink(token, config));
     const cache = new InMemoryCache({
-        resultCaching: false, // Disable caching at Apollo
         ...inMemoryCacheConfig
     });
     return new ApolloClient({
