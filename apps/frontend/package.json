@@ -25,6 +25,7 @@
     "@remkoj/optimizely-dxp-react": "workspace:*",
     "@remkoj/optimizely-dxp-react-server": "workspace:*",
     "@tailwindcss/aspect-ratio": "^0.4.2",
+    "@vercel/speed-insights": "^1.0.2",
     "@vercel/stega": "^0.1.0",
     "autoprefixer": "10.4.16",
     "crypto-js": "^4.2.0",

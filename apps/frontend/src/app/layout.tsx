@@ -7,6 +7,7 @@ import RecsScript from '@components/integrations/server/optimizely-content-recs'
 import WebExScript from '@components/integrations/server/optimizely-web-experimentation'
 
 import GlobalProviders from '@components/providers'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import './globals.css'
 
@@ -63,6 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps)
             <GlobalProviders>
                 { children }
             </GlobalProviders>
+            <SpeedInsights />
         </body>
     </html>
 }

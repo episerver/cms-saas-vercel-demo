@@ -5343,6 +5343,15 @@ const RAW_RUNTIME_STATE =
         "linkType": "HARD"\
       }]\
     ]],\
+    ["@vercel/speed-insights", [\
+      ["npm:1.0.2", {\
+        "packageLocation": "./.yarn/unplugged/@vercel-speed-insights-npm-1.0.2-a50c331998/node_modules/@vercel/speed-insights/",\
+        "packageDependencies": [\
+          ["@vercel/speed-insights", "npm:1.0.2"]\
+        ],\
+        "linkType": "HARD"\
+      }]\
+    ]],\
     ["@vercel/static-build", [\
       ["npm:2.0.14", {\
         "packageLocation": "./.yarn/cache/@vercel-static-build-npm-2.0.14-31e3e4c63b-9153a28293.zip/node_modules/@vercel/static-build/",\
@@ -8555,6 +8564,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.45"],\
           ["@types/react-dom", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.17"],\
           ["@types/uuid", "npm:9.0.7"],\
+          ["@vercel/speed-insights", "npm:1.0.2"],\
           ["@vercel/stega", "npm:0.1.0"],\
           ["autoprefixer", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:10.4.16"],\
           ["chalk", "npm:5.3.0"],\
