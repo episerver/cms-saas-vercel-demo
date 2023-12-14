@@ -14,7 +14,10 @@
 			"**/yarn.lock": true
 		},
 		"typescript.enablePromptUseWorkspaceTsdk": true,
-		"typescript.tsdk": "./.yarn/sdks/typescript/lib"
+		"typescript.tsdk": "./.yarn/sdks/typescript/lib",
+		"graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
+		"graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [ "graphql", "gql", "ts", "tsx" ],
+		"graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*"
 	},
 	"extensions": {
 		"recommendations": [

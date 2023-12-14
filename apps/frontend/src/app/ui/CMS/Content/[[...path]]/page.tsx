@@ -134,7 +134,7 @@ export default async function OptimizelyCmsEditPage({ params, searchParams }: Op
     try {
         const contentInfo = await getContentById(client, variables)
         const contentItem = (contentInfo?.Content?.items ?? [])[0]
-        const contentType = Utils.normalizeContentType(contentItem?.contentType)
+        const contentType = Utils.normalizeContentType((contentItem as GraphQL.IContentDataFragment)?.contentType)
 
         // Return a 404 if the content item or type could not be resolved
         if (!contentItem) {
@@ -146,13 +146,21 @@ export default async function OptimizelyCmsEditPage({ params, searchParams }: Op
             return notFound()
         }
 
-        if (DEVELOPMENT)
-            console.log("Resolved content:", JSON.stringify({ id: contentItem.id?.id, workId: contentItem.id?.workId, guidValue: contentItem.id?.guidValue, locale: contentItem.locale?.name, type: (contentItem.contentType ?? []).slice(0,-1).join('/')}))
+        if (DEVELOPMENT) {
+            const contentItemId : GraphQL.ContentLinkFragment | null | undefined = (contentItem as GraphQL.IContentDataFragment).id
+            console.log("Resolved content:", JSON.stringify({ 
+                id: contentItemId?.id, 
+                workId: contentItemId?.workId, 
+                guidValue: contentItemId?.guidValue, 
+                locale: (contentItem as GraphQL.IContentDataFragment).locale?.name, 
+                type: ((contentItem as GraphQL.IContentDataFragment).contentType ?? []).slice(0,-1).join('/')
+            }))
+        }
 
         // Render the content, with edit mode context
-        const isPage = contentItem.contentType?.some(x => x?.toLowerCase() == "page") ?? false
+        const isPage = (contentItem as GraphQL.IContentDataFragment).contentType?.some(x => x?.toLowerCase() == "page") ?? false
         const inEditMode = epiEditMode == 'true'
-        const loadedContentId = Utils.normalizeContentLinkWithLocale({ ...contentItem?.id, locale: contentItem?.locale?.name })
+        const loadedContentId = Utils.normalizeContentLinkWithLocale({ ...(contentItem as GraphQL.IContentDataFragment)?.id, locale: (contentItem as GraphQL.IContentDataFragment)?.locale?.name })
         const output =  <>
             { inEditMode && <Script src={`${ config.dxp_url }/ui/CMS/latest/clientresources/communicationinjector.js`} strategy='afterInteractive' /> }
             { isPage && <Header locale={ locale } />}

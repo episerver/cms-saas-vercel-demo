@@ -34,7 +34,7 @@ export const ArticleList : FunctionComponent<ArticleListProps> = ({ initialData,
         label: <LocalTime date={ x.date } mode='Date' />, 
         value: x.date, 
         badge: x.count > 0 ? x.count.toString() : undefined 
-    }})),[ facets ])
+    }})).filter(x => typeof(x.badge) != undefined),[ facets ])
     
     // Keep track of the external state
     const [ selectedAuthor, setSelectedAuthor ] = useUrlState<string>("author", ALL_AUTHORS, (author) => authorOptions.some(x => x.value == author), s=>s, s=>s)
