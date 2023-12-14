@@ -9,6 +9,11 @@
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
-  "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [ "graphql", "gql", "ts", "tsx" ],
+  "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [
+    "graphql",
+    "gql",
+    "ts",
+    "tsx"
+  ],
   "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*"
 }
