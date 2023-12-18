@@ -25,9 +25,9 @@ export const LanguagePicker : FunctionComponent<LanguagePickerProps> = ({ classN
             <span className='inline-block mr-2'>{ texts?.button ?? "Language"}</span>
             <ChevronDownIcon className="inline-block w-4 h-4 ui-open:rotate-180 ui-open:transform" />
         </Popover.Button>
-        <Popover.Panel className="absolute top-8 right-0 bg-white border border-slate-900 border-solid rounded p-3 z-40 w-60 drop-shadow-lg">
+        <Popover.Panel className="absolute top-8 right-0 bg-white border border-stripe-dark border-solid rounded p-3 z-40 w-60 drop-shadow-lg transition duration-500 ease-in-out">
             <div className='font-bold cursor-default'>{ texts?.title ?? "Select language"}</div>
-            { locales.map(x => <div key={ `locale-picker-item-${ x.code ?? ''}`} className={(`${ locale == x.code ? 'active bg-slate-200' : '' } hover:bg-slate-300 rounded p-2 mt-2`).trim()}>
+            { locales.map(x => <div key={ `locale-picker-item-${ x.code ?? ''}`} className={(`${ locale == x.code ? 'active bg-stripe' : '' } hover:bg-stripe-dark rounded p-2 mt-2 transition duration-500 ease-in-out`).trim()}>
                 <Link href={ `/${ x.slug ?? ''}` } className="inline-block w-full">
                     <FlagIcon className='w-4 h-4 inline-block' /> { texts.locales[x.code] ?? 'Unknown language'}
                 </Link>

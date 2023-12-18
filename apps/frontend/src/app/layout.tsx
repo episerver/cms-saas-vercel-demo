@@ -64,7 +64,7 @@ export default function RootLayout({ children }: RootLayoutProps)
             { odp_id && <OdpScript trackerId={ odp_id } /> }
             { exp_id && <WebExScript projectId={ exp_id } /> }
         </head>
-        <body className={ `${ inter.className } bg-white text-slate-900` }>
+        <body className={ `${ inter.className } bg-white text-default` }>
             <GlobalProviders>
                 { children }
             </GlobalProviders>

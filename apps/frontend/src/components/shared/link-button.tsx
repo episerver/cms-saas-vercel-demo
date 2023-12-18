@@ -9,7 +9,7 @@ export const LinkButton : FunctionComponent<ComponentProps<typeof Link>> = (prop
     delete linkProps.children
     delete linkProps.className
 
-    return <Link {...linkProps} className={ `inline-block font-semibold bg-primary hover:bg-primary-light rounded-lg py-2 px-6 shadow hover:shadow-lg transition duration-500 ease-in-out ${ className ?? ''}`.trim() }>{ children }</Link>
+    return <Link {...linkProps} className={ `btn-primary btn-large btn-shadow m-0 ${ className ?? ''}`.trim() }>{ children }</Link>
 }
 
 export default LinkButton

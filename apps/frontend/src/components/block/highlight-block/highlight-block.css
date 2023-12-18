@@ -5,7 +5,7 @@
     @apply font-medium lg:font-semibold text-4xl md:text-5xl lg:text-5xl px-4;
 }
 .highlight-block hr {
-    @apply my-4 border-solid border-2 border-teal-700;
+    @apply my-4 border-solid border-2 border-primary;
 }
 .highlight-block .hlb-payoff {
     @apply  text-xl md:text-2xl lg:text-3xl px-4;

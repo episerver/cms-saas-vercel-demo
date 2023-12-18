@@ -35,21 +35,21 @@ export const SiteMenuItem : FunctionComponent<SiteMenuItemProps> = ({ label, lin
 
     let cntr : number = 0
     return <Popover as={ Fragment }>
-        <Popover.Button className="px-2 sm:px-3 lg:px-4 py-3 hover:bg-primary-dark grow-0 whitespace-nowrap ui-open:bg-primary-dark">{ label } <ChevronDownIcon className='inline-block w-4 h-4 md:w-6 md:h-6 ml-3 ui-open:rotate-180' /></Popover.Button>
+        <Popover.Button className="px-2 sm:px-3 lg:px-4 py-3 hover:bg-primary-dark grow-0 whitespace-nowrap ui-open:bg-primary-dark ui-open:rounded-t transition duration-500 ease-in-out">{ label } <ChevronDownIcon className='inline-block w-4 h-4 md:w-6 md:h-6 ml-3 ui-open:rotate-180' /></Popover.Button>
         <Popover.Panel className="absolute z-50 left-0 right-0 top-14" data-menu-label={ label }>
             <div className="relative w-full bg-primary-dark p-2 sm:p-3 lg:p-4 grid grid-cols-1 lg:grid-cols-4 gap-2 sm:gap-3 lg:gap-4 rounded-b-md shadow-md">
                 <div>
-                    <div className="font-semibold text-lg">{ label }</div>
+                    <div className="font-semibold text-lg border-b px-2 -mx-2">{ label }</div>
                     <ul>
                     { links.map(link => {
                         return <li key={`${ id }-${ ++cntr }`}>
-                            <Popover.Button as={ Link } className={`menu-item block${ link.href == path ? " active" : ""}`} href={ link.href } title={ link.title } target={ link.target }>
+                            <Popover.Button as={ Link } className={`menu-item block my-1 p-1 -mx-1 hover:bg-primary rounded transition duration-500 ease-in-out ${ link.href == path ? " active" : ""}`} href={ link.href } title={ link.title } target={ link.target }>
                                 { link.text }
                             </Popover.Button>
                         </li>
                     })}
                     </ul>
-                    { bottomLink && <Popover.Button as={ Link } className='block mt-6' href={ bottomLink.href } title={ bottomLink.title } target={ bottomLink.target }>{ bottomLink.text }</Popover.Button> }
+                    { bottomLink && <Popover.Button as={ Link } className='btn-white btn-large m-0 mt-6' href={ bottomLink.href } title={ bottomLink.title } target={ bottomLink.target }>{ bottomLink.text }</Popover.Button> }
                 </div>
                 <div className='lg:col-span-3'>{ children }</div>
             </div>

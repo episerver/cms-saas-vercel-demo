@@ -76,7 +76,7 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
             additionalClasses.push('bg-secondary-light border-solid border-b-4 border-t-8 border-secondary h-full')
             break
         case 'gray':
-            additionalClasses.push('bg-slate-100 border-solid border-b-4 border-t-8 border-slate-500 h-full')
+            additionalClasses.push('bg-stripe-light border-solid border-b-4 border-t-8 border-stripe-dark h-full')
             break
         case 'none':
         default:

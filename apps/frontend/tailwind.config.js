@@ -1,3 +1,5 @@
+const colors = require('tailwindcss/colors')
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   // Files to include
@@ -9,6 +11,38 @@ module.exports = {
   // Theme definition
   theme: {
     extend: {
+      colors: {
+        /** Site primary color (navigation bar, buttons, etc...) **/
+        primary: {
+          ...colors.teal,
+          DEFAULT: colors.teal[800],
+          light: colors.teal[100],
+          dark: colors.teal[900]
+        },
+        /** Site secondary color (buttons, interaction elements, etc...) **/
+        secondary: {
+          ...colors.sky,
+          DEFAULT: colors.sky[600],
+          light: colors.sky[200],
+          dark: colors.sky[800]
+        },
+        /** Site stripe color (background, borders, etc...) **/
+        stripe: {
+          ...colors.gray,
+          DEFAULT: colors.slate[200],
+          light: colors.slate[100],
+          dark: colors.slate[400],
+          verydark: colors.slate[600]
+        },
+        /** Default text color */
+        default: {
+          ...colors.slate,
+          DEFAULT: colors.slate[900],
+          light: colors.slate[100],
+          medium: colors.slate[600],
+          dark: colors.slate[900]
+        }
+      },
       maxWidth: {
         '1/3': '33%',
         '1/2': '50%',

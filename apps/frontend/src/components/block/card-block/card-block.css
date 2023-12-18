@@ -1,5 +1,5 @@
 .card-block {
-    @apply border-solid border rounded-2xl h-full overflow-hidden flex flex-col justify-stretch bg-white shadow-md hover:shadow-xl
+    @apply border-solid border border-stripe rounded-2xl h-full overflow-hidden flex flex-col justify-stretch bg-white shadow-md hover:shadow-xl transition duration-500 ease-in-out;
 }
 .card-block .card-block-image {
     @apply relative w-full pb-[45%]
