@@ -6,6 +6,7 @@ These instructions assume that you've just received the e-mail with login inform
 - [2. Configure the channel](#2-configure-the-channel)
 - [3. Configure the languages](#3-configure-the-languages)
 - [4. Update content in Optimizely Graph](#4-update-content-in-optimizely-graph)
+- [5. Update the Header/Footer configuration](#5-update-the-headerfooter-configuration)
 
 ### 1. Import the content pack
 
@@ -68,5 +69,31 @@ To make sure the content upload and configuration changes from the previous step
 - Once the status returns to "IDLE" the synchronization process has completed.
 
 The content will now be reflected correctly by Optimizely Graph
+
+### 5. Update the Header/Footer configuration
+The header and footer are referenced by the identifier of the website/channel, this identifier will only be created in step 2 above. These steps ensure the header & footer configuration can be found by the frontend:
+
+1. **Obtain the channel identifier:**
+    - Navigate to "Settings" (cog icon on the left-hand side) - and then go to "Manage Websites" under "Config"
+    - Click on the ***Name*** of the website you've created as part of step 2 above
+    - Copy the value of the "ID" field (Which looks like: xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx)
+
+2. **Make the "Multi-Channel Content" visible:**
+    - Navigate to "Edit" (page with pen icon on the left-hand side)
+    - Open the "Navigation pane" (tree icon, left-hand side, near the top of the page) and pin it (pin icon at the right top of the opened pane)
+    - Click the "Settings" icon of the "Navigation pane" (right top, left of "pin") and click "Add Gadgets"
+    - Search for "Multi" and click "Multi-Channel Content"
+    - Scroll within the "Navigation pane" to make the "Multi-Channel Content" visible
+
+3. **Apply the configuration:**
+    - Within the "Multi-Channel Content", navigate to `Content` > `Channel configuration` > `Web`
+    - Click on `Website Footer`; switch to "All properties" (bullet-list icon at the right top of the screen)
+    - Go to the "Settings" tab
+    - Paste identifier copied above, into the Channel ID field.
+    - At the right top a marker for the changed content should appear, next to the "Publish?" menu, open the menu and click "Publish changes"
+    - Within the "Omni-Channel Content", click `Website Header`
+    - Go to the "Settings" tab
+    - Paste identifier copied above, into the Channel ID field.
+    - At the right top a marker for the changed content should appear, next to the "Publish?" menu, open the menu and click "Publish changes"
 
 [Back to readme](../README.md)
