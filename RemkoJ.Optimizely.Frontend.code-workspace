@@ -24,7 +24,8 @@
 			"vscode.typescript-language-features",
 			"christian-kohler.npm-intellisense",
 			"arcanis.vscode-zipfs",
-			"mikestead.dotenv"
+			"mikestead.dotenv",
+			"yzhang.markdown-all-in-one"
 		]
 	}
 }

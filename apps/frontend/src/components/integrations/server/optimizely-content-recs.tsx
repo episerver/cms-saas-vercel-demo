@@ -14,8 +14,7 @@ export const OptimizelyContentRecsTrackingScript = (props: OptimizelyContentRecs
     // Set client and delivery
     _iaq = [
         ['client', ${ JSON.stringify(client_id) }],
-        ['delivery', ${ JSON.stringify(delivery_id) }],
-        ['track', "consume"]
+        ['delivery', ${ JSON.stringify(delivery_id) }]
     ];
 
     // Include the Content Analytics & Recommendations JavaScript

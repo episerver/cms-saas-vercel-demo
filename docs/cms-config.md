@@ -1,7 +1,11 @@
 [Back to readme](../README.md)
-## Optimizely CMS Configuration
+## Optimizely CMS Configuration <!-- omit in toc -->
 These instructions assume that you've just received the e-mail with login information for the CMS and are able to login to the fresh CMS instance.
 
+- [1. Import the content pack](#1-import-the-content-pack)
+- [2. Configure the channel](#2-configure-the-channel)
+- [3. Configure the languages](#3-configure-the-languages)
+- [4. Update content in Optimizely Graph](#4-update-content-in-optimizely-graph)
 
 ### 1. Import the content pack
 
@@ -54,5 +58,15 @@ The last step is to have the available languages match the languages in the cont
 
 After configuration the list should look like:
 ![Language configuration](./cms-languages.png)
+
+### 4. Update content in Optimizely Graph
+To make sure the content upload and configuration changes from the previous steps are reflected in Optimizely Graph, take the following steps:
+
+- Navigate to "Settings" (cog icon on the left-hand side) - and then go to "Scheduled Jobs" under "Scheduled Jobs"
+- Filter the job-list for "Graph" and click the "Optimizely Graph content synchronization job"
+- Click the "Start" button on the "Details" page that has just been opened, the status should change to "Running", with status updates next to it.
+- Once the status returns to "IDLE" the synchronization process has completed.
+
+The content will now be reflected correctly by Optimizely Graph
 
 [Back to readme](../README.md)
