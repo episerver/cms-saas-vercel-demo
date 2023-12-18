@@ -11,8 +11,14 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * Therefore it is highly recommended to use the babel or swc plugin for production.
  */
 declare const documents: {
-    "fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          id: Id,\n          workId: WorkId,\n          guidValue: GuidValue\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }": DocumentNode<types.IContentDataFragment, unknown>;
-    "fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            id: Id,\n            workId: WorkId,\n            guidValue: GuidValue\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }": DocumentNode<types.ContentAreaItemDataFragment, unknown>;
+    "fragment ContentLink on ContentModelReference {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }": DocumentNode<types.ContentLinkFragment, unknown>;
+    "fragment ContentLinkSearch on ContentModelReferenceSearch {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }": DocumentNode<types.ContentLinkSearchFragment, unknown>;
+    "fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          ...ContentLink\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }": DocumentNode<types.IContentDataFragment, unknown>;
+    "fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }": DocumentNode<types.ContentAreaItemDataFragment, unknown>;
+    "fragment BlockContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...IContentData\n            }\n        }\n        displayOption:DisplayOption\n    }": DocumentNode<types.BlockContentAreaItemDataFragment, unknown>;
+    "fragment LinkItemData on LinkItemNode {\n      children: Text\n      title: Title\n      href: Href\n      target: Target\n      content: ContentLink {\n        href: Url\n        data: Expanded {\n          path: RelativePath\n        }\n      }\n    }": DocumentNode<types.LinkItemDataFragment, unknown>;
+    "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": DocumentNode<types.ImageDataFragment, unknown>;
+    "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }": DocumentNode<types.ImageDataSearchFragment, unknown>;
     "fragment BlockData on IContent {\n        ...IContentData\n    }": DocumentNode<types.BlockDataFragment, unknown>;
     "fragment PageData on IContent {\n        ...IContentData\n    }": DocumentNode<types.PageDataFragment, unknown>;
     "fragment ContentAreaItemBase on ContentAreaItemModelSearch {\n      contentLink:ContentLink { \n          id:Id\n          workId:WorkId\n          guidValue:GuidValue\n          component:Expanded {\n              path:RelativePath\n              type:ContentType\n          }\n      }\n      displayOption:DisplayOption\n  }": DocumentNode<types.ContentAreaItemBaseFragment, unknown>;
@@ -51,11 +57,35 @@ export declare function gql(source: string): unknown;
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export declare function gql(source: "fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          id: Id,\n          workId: WorkId,\n          guidValue: GuidValue\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }"): (typeof documents)["fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          id: Id,\n          workId: WorkId,\n          guidValue: GuidValue\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }"];
+export declare function gql(source: "fragment ContentLink on ContentModelReference {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }"): (typeof documents)["fragment ContentLink on ContentModelReference {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export declare function gql(source: "fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            id: Id,\n            workId: WorkId,\n            guidValue: GuidValue\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }"): (typeof documents)["fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            id: Id,\n            workId: WorkId,\n            guidValue: GuidValue\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }"];
+export declare function gql(source: "fragment ContentLinkSearch on ContentModelReferenceSearch {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }"): (typeof documents)["fragment ContentLinkSearch on ContentModelReferenceSearch {\n      id: Id,\n      workId: WorkId,\n      guidValue: GuidValue\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          ...ContentLink\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }"): (typeof documents)["fragment IContentData on IContent {\n        contentType: ContentType\n        id: ContentLink {\n          ...ContentLink\n        }\n        locale: Language {\n            name: Name\n        }\n        path:RelativePath\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }"): (typeof documents)["fragment ContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...BlockData\n            }\n        }\n        displayOption:DisplayOption\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment BlockContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...IContentData\n            }\n        }\n        displayOption:DisplayOption\n    }"): (typeof documents)["fragment BlockContentAreaItemData on ContentAreaItemModelSearch {\n        item: ContentLink {\n            ...ContentLinkSearch\n            data: Expanded {\n            ...IContentData\n            }\n        }\n        displayOption:DisplayOption\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment LinkItemData on LinkItemNode {\n      children: Text\n      title: Title\n      href: Href\n      target: Target\n      content: ContentLink {\n        href: Url\n        data: Expanded {\n          path: RelativePath\n        }\n      }\n    }"): (typeof documents)["fragment LinkItemData on LinkItemNode {\n      children: Text\n      title: Title\n      href: Href\n      target: Target\n      content: ContentLink {\n        href: Url\n        data: Expanded {\n          path: RelativePath\n        }\n      }\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageData on ContentModelReference {\n      ...ContentLink\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export declare function gql(source: "fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"): (typeof documents)["fragment ImageDataSearch on ContentModelReferenceSearch {\n      ...ContentLinkSearch\n      url: Url\n      data: Expanded {\n        ...IContentData\n        url: Url\n        alt: Name \n        path: RelativePath\n      }\n    }"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

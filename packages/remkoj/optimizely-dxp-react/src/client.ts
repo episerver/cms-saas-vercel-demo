@@ -71,8 +71,7 @@ export function createNewClient<TCacheShape extends NormalizedCacheObject = Norm
     }
     links.push(createContentGraphLink(token, config))
 
-    const cache = new InMemoryCache({ 
-        resultCaching: false, // Disable caching at Apollo
+    const cache = new InMemoryCache({
         ...inMemoryCacheConfig
     }) as unknown as ApolloCache<TCacheShape>
 

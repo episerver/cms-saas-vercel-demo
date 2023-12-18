@@ -3,6 +3,7 @@
     "arcanis.vscode-zipfs",
     "mikestead.dotenv",
     "bradlc.vscode-tailwindcss",
-    "capaj.graphql-codegen-vscode"
+    "capaj.graphql-codegen-vscode",
+    "yzhang.markdown-all-in-one"
   ]
 }

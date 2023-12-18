@@ -38,6 +38,7 @@ Use the environment variables below to enable the included integrations with [Op
 | Product | Variable | Usage |
 | --- | --- | --- |
 | [Data Platform](https://www.optimizely.com/enhancements/data-platform/) | OPTIMIZELY_DATAPLATFORM_ID | Set this value to the ID of the JavaScript tracker of your Optimizely Data Platform instance to enable tracking and activate the "Optimizely Data Platform Embed" block.
-| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTENTRECS_CLIENT | Set this value to the Client name of your instance |
-| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTNETRECS_DELIVERY | Set this value to the Delivery ID of your instance |
+| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTENTRECS_CLIENT | Set this value to the Client name of your property |
+| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTENTRECS_DELIVERY | Set this value to the Delivery ID of your property |
+| [Content Intelligence / Recommendations](https://www.optimizely.com/recommendations/) | OPTIMIZELY_CONTENTRECS_DELIVERY_KEY | Set this value to the Engagement Delivery key to be used for this site |
 | [Web Experimentation](https://www.optimizely.com/products/experiment/web-experimentation/) | OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT | Set this to the ProjectID of your Web Experimentation project |

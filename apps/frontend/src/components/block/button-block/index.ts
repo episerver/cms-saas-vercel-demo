@@ -9,6 +9,16 @@ export const HeroBlock : ButtonBlockComponentType = dynamic(() => import('./butt
 HeroBlock.getDataQuery = () => ButtonBlockQuery
 export default HeroBlock
 
+
+export const ButtonBlockData = graphql(/* GraphQL */`fragment ButtonBlockData on ButtonBlock {
+  ButtonLink {
+    Href
+    Title
+    Target
+    Text
+  }
+}`)
+
 const ButtonBlockQuery = graphql(/* graphql */`query getButtonBlockData($id: Int, $workId: Int, $guidValue: String, $lang: [Locales])
 {
   ButtonBlock(

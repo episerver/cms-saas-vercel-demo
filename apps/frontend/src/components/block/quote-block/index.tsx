@@ -7,18 +7,20 @@ import './quote-block.css'
 
 export const QuoteBlock : CmsComponent<GraphQL.QuoteDataFragment> = ({ inEditMode, data, contentLink }) =>
 {
-    const hasImage = data?.photo?.guidValue ? true : false
-    const imageUrl = data?.photo?.data?.path ? new URL(data?.photo?.data?.path, process.env.DXP_URL) : undefined
+    /* @ts-expect-error */
+    const imageData : (GraphQL.ImageDataFragment & GraphQL.ContentLinkFragment) | undefined = data?.Photo ?? undefined
+    const hasImage = imageData?.guidValue ? true : false
+    const imageUrl = imageData?.data?.path ? new URL(imageData?.data?.path, process.env.DXP_URL) : undefined
     return <div className="quote-block" id={ contentLink?.guidValue ?? undefined }>
         { (hasImage || inEditMode) && <div className='image' data-epi-edit={ inEditMode ? "Photo" : undefined }>
-            { imageUrl && <Image src={ imageUrl.href } alt={`Image of ${ data?.name ?? "the quotee"}`} fill sizes='(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px' /> }
+            { imageUrl && <Image src={ imageUrl.href } alt={`Image of ${ data?.Quotee ?? "the quotee"}`} fill sizes='(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px' /> }
         </div> }
         <div className='quote'>
-            <div className='text' data-epi-edit={ inEditMode ? "Text" : undefined } dangerouslySetInnerHTML={{ __html: data?.quote ?? "" }}/>
+            <div className='text' data-epi-edit={ inEditMode ? "Text" : undefined } dangerouslySetInnerHTML={{ __html: data?.Text ?? "" }}/>
             <div className='quotee'>-&nbsp;
-                <span data-epi-edit={ inEditMode ? "Quotee" : undefined } className="name">{ data?.name }</span>
-                { (inEditMode || data?.role ) && <>,&nbsp;<span data-epi-edit={ inEditMode ? "Role" : undefined } className="role">{ data?.role ? data?.role : ""}</span></>}
-                { (inEditMode || data?.location ) && <>&nbsp;—&nbsp;<span data-epi-edit={ inEditMode ? "QuoteeLocation" : undefined } className="location">{ data?.location ? data?.location : ""}</span></>}
+                <span data-epi-edit={ inEditMode ? "Quotee" : undefined } className="name">{ data?.Quotee }</span>
+                { (inEditMode || data?.Role ) && <>,&nbsp;<span data-epi-edit={ inEditMode ? "Role" : undefined } className="role">{ data?.Role ?? ""}</span></>}
+                { (inEditMode || data?.QuoteeLocation ) && <>&nbsp;—&nbsp;<span data-epi-edit={ inEditMode ? "QuoteeLocation" : undefined } className="location">{ data?.QuoteeLocation ?? ""}</span></>}
             </div>
         </div>
     </div>
@@ -29,15 +31,11 @@ QuoteBlock.getDataFragment = () => ["QuoteData", QuoteData]
 export default QuoteBlock
 
 export const QuoteData = gql(/* GraphQL*/`fragment QuoteData on QuoteBlock {
-    quote: Text
-    name: Quotee
-    role: Role
-    location: QuoteeLocation
-    photo: Photo {
-        id: Id
-        guidValue: GuidValue
-        data: Expanded {
-            path: RelativePath
-        }
+    Text
+    Quotee
+    Role
+    QuoteeLocation
+    Photo {
+        ...ImageData
     }
 }`)

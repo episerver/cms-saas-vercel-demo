@@ -16,14 +16,14 @@
     "@graphql-typed-document-node/core": "^3.2.0",
     "@parcel/watcher": "^2.3.0",
     "@remkoj/optimizely-dxp-react": "workspace:*",
-    "@types/node": "^20.10.3",
-    "@types/react": "^18.2.42",
+    "@types/node": "^20.10.5",
+    "@types/react": "^18.2.45",
     "@types/uuid": "^9.0.7",
     "graphql": "^16.8.1",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "scheduler": "^0.23.0",
-    "typescript": "^5.3.2",
+    "typescript": "^5.3.3",
     "uuid": "^9.0.1"
   },
   "peerDependencies": {

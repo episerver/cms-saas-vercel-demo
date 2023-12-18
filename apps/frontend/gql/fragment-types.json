@@ -31,6 +31,38 @@
       "ProductTextProperty",
       "QuoteBlock",
       "TextBlock"
+    ],
+    "IData": [
+      "ArticleListPage",
+      "ArticlePage",
+      "ButtonBlock",
+      "CardBlock",
+      "CarouselBlock",
+      "ConfiguredCommerceCatalogCategory",
+      "ConfiguredCommerceCatalogEntry",
+      "ConfiguredCommerceCatalogProduct",
+      "ContainerBlock",
+      "Content",
+      "DAMAsset",
+      "DAMImageAsset",
+      "DAMVideoAsset",
+      "Data",
+      "FooterConfigBlock",
+      "HeaderConfigBlock",
+      "HeroBlock",
+      "HighlightTextBlock",
+      "LandingPage",
+      "LinkListBlock",
+      "LocationListPage",
+      "LocationPage",
+      "NavMenuItem",
+      "OdpEmbedBlock",
+      "PageSeoSettings",
+      "Product",
+      "ProductTextProperty",
+      "QuoteBlock",
+      "SiteDefinition",
+      "TextBlock"
     ]
   }
 }

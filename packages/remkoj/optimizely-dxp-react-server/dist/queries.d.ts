@@ -1,7 +1,13 @@
 export declare const CmsContentFragments: {
     IContentDataProps: string[];
+    ContentLink: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").ContentLinkFragment, unknown>;
+    ContentLinkSearch: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").ContentLinkSearchFragment, unknown>;
     IContentData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").IContentDataFragment, unknown>;
     ContentAreaItemData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").ContentAreaItemDataFragment, unknown>;
+    BlockContentAreaItemData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").BlockContentAreaItemDataFragment, unknown>;
+    LinkItemData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").LinkItemDataFragment, unknown>;
+    ImageData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").ImageDataFragment, unknown>;
+    ImageDataSearch: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").ImageDataSearchFragment, unknown>;
     BlockData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").BlockDataFragment, unknown>;
     PageData: import("@graphql-typed-document-node/core").TypedDocumentNode<import("./gql/graphql").PageDataFragment, unknown>;
 };

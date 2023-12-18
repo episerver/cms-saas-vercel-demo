@@ -7,8 +7,8 @@ export type TextBlockComponentType = CmsComponent<GraphQL.TextBlockDataFragment>
 
 export const TextBlock : TextBlockComponentType = ({inEditMode, data}) => 
 {
-    const textData = data.text ?? undefined
-    const spacing = data.spacing ?? 'none'
+    const textData = data.MainBody ?? undefined
+    const spacing = data.Spacing ?? 'none'
     if (!textData)
         return <></>
 
@@ -32,6 +32,6 @@ TextBlock.displayName = "Text Block"
 export default TextBlock
 
 const TextBlockData = gql(/* GraphQL */`fragment TextBlockData on TextBlock {
-    spacing: Spacing
-    text: MainBody
+    Spacing
+    MainBody
 }`)

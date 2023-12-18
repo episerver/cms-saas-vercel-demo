@@ -8,9 +8,11 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import { localeToContentGraphLocale } from '@/lib/i18n'
 import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
 import { getContentByPath } from '@gql/functions'
+import { type IContentDataFragment } from '@gql/graphql'
 import { getServerClient } from '@/lib/client'
 import siteConfig from '@/site-config'
 import deepmerge from 'deepmerge'
+
 
 const defaultLocale = siteConfig.defaultLocale
 
@@ -121,8 +123,8 @@ export default async function OptimizelyCmsPage({  params }: OptimizelyCmsPagePr
     }
 
     // Extract the type & link
-    const contentType = Utils.normalizeContentType(info.contentType)
-    const contentLink = Utils.normalizeContentLinkWithLocale({ ...info.id, locale: info.locale?.name })
+    const contentType = Utils.normalizeContentType((info as IContentDataFragment).contentType)
+    const contentLink = Utils.normalizeContentLinkWithLocale({ ...(info as IContentDataFragment).id, locale: (info as IContentDataFragment).locale?.name })
     if (!contentLink) {
         console.error("Unable to infer the contentLink from the retrieved content, this should not have happened!")
         return notFound()

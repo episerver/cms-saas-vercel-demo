@@ -23,8 +23,9 @@ export const GlobalProviders : FunctionComponent<GlobalProvidersProps> = props =
     return <SessionProvider>
         <DataPlatformTracking />
         <ContentRecsTracking />
-        <WebExActivation />
-        { props.children }
+        <WebExActivation>
+            { props.children }
+        </WebExActivation>
     </SessionProvider>
 }
 

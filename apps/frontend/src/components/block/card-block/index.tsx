@@ -10,24 +10,25 @@ import './card-block.css'
 export const CardBlock : CmsComponent<GraphQL.CardBlockDataFragment> = ({ data, inEditMode }) => 
 {
     const config = getContentGraphConfig()
-    const imageSrc = data?.image?.data?.path ?? data?.image?.url ?? undefined
-    const imageAlt = data?.image?.data?.name ?? ""
+    const imageSrc = data?.Image?.Expanded?.Path ?? data?.Image?.Url ?? undefined
+    const imageAlt = data?.Image?.Expanded?.Name ?? ""
+    const button : GraphQL.LinkItemDataFragment | undefined = data?.Button ?? undefined
     return <div className="card-block">
         <div className='card-block-image'>
             { imageSrc && <Image src={ new URL(imageSrc, config.dxp_url).href } alt={ imageAlt } fill sizes="(max-width: 768px) 100vw, (max-width: 1200px) 33vw, 25vw" />}
         </div>
         <div className='card-block-body'>
-            <div className='title' data-epi-edit={ inEditMode ? "Title" : undefined }>{ data?.title ?? "" }</div>
-            <div className='body rich-text' data-epi-edit={ inEditMode ? "Description" : undefined } dangerouslySetInnerHTML={{ __html: data?.body ?? ""}}></div>
+            <div className='title' data-epi-edit={ inEditMode ? "Title" : undefined }>{ data?.Title ?? "" }</div>
+            <div className='body rich-text' data-epi-edit={ inEditMode ? "Description" : undefined } dangerouslySetInnerHTML={{ __html: data?.Description ?? ""}}></div>
         </div>
-        <div className='card-block-footer'>
+        { button && <div className='card-block-footer'>
             <BannerButton
-                href={ data?.button?.link?.data?.path ?? data?.button?.href ?? "#" } 
-                title={ data?.button?.title ?? undefined } 
-                target={ data?.button?.target ?? undefined }
+                href={ button?.content?.data?.path ?? button?.href ?? "#" } 
+                title={ button?.title ?? undefined } 
+                target={ button?.target ?? undefined }
                 data-epi-edit={ inEditMode ? "Link" : undefined }
-                >{ data?.button?.children ?? "Read more"}</BannerButton>
-        </div>
+                >{ button?.children ?? "Read more"}</BannerButton>
+        </div> }
     </div>
 }
 CardBlock.getDataFragment = () => ['CardBlockData', CardBlockData]
@@ -36,24 +37,16 @@ CardBlock.displayName = "Card Block"
 export default CardBlock
 
 export const CardBlockData = gql(/* GraphQL */`fragment CardBlockData on CardBlock {
-    title: Title
-    body: Description
-    image: Image {
-        url: Url
-        data: Expanded {
-            name: Name
-            path: RelativePath
+    Title
+    Description
+    Image {
+        Url
+        Expanded {
+            Name
+            Path: RelativePath
         }
     }
-    button: Link {
-        href: Href
-        title: Title
-        children: Text
-        target: Target
-        link: ContentLink {
-            data: Expanded {
-                path:RelativePath
-            }
-        }
+    Button: Link {
+        ...LinkItemData
     }
 }`)

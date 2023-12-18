@@ -1,9 +1,19 @@
 {
   "search.exclude": {
     "**/.yarn": true,
+    "**/.vscode": true,
     "**/.pnp.*": true,
-    "**/.next.*": true
+    "**/.next.*": true,
+    "**/yarn.lock": true
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
+  "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [
+    "graphql",
+    "gql",
+    "ts",
+    "tsx"
+  ],
+  "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*"
 }

@@ -1,12 +1,20 @@
 import { gql } from './gql';
 export const CmsContentFragments = {
     IContentDataProps: ["contentType", "id", "locale", "path", "__typename"],
+    ContentLink: gql(/* graphql */ `fragment ContentLink on ContentModelReference {
+      id: Id,
+      workId: WorkId,
+      guidValue: GuidValue
+    }`),
+    ContentLinkSearch: gql(/* graphql */ `fragment ContentLinkSearch on ContentModelReferenceSearch {
+      id: Id,
+      workId: WorkId,
+      guidValue: GuidValue
+    }`),
     IContentData: gql(/* graphql */ `fragment IContentData on IContent {
         contentType: ContentType
         id: ContentLink {
-          id: Id,
-          workId: WorkId,
-          guidValue: GuidValue
+          ...ContentLink
         }
         locale: Language {
             name: Name
@@ -15,14 +23,53 @@ export const CmsContentFragments = {
     }`),
     ContentAreaItemData: gql(/* graphql */ `fragment ContentAreaItemData on ContentAreaItemModelSearch {
         item: ContentLink {
-            id: Id,
-            workId: WorkId,
-            guidValue: GuidValue
+            ...ContentLinkSearch
             data: Expanded {
             ...BlockData
             }
         }
         displayOption:DisplayOption
+    }`),
+    BlockContentAreaItemData: gql(/* graphql */ `fragment BlockContentAreaItemData on ContentAreaItemModelSearch {
+        item: ContentLink {
+            ...ContentLinkSearch
+            data: Expanded {
+            ...IContentData
+            }
+        }
+        displayOption:DisplayOption
+    }`),
+    LinkItemData: gql(/* graphql */ `fragment LinkItemData on LinkItemNode {
+      children: Text
+      title: Title
+      href: Href
+      target: Target
+      content: ContentLink {
+        href: Url
+        data: Expanded {
+          path: RelativePath
+        }
+      }
+    }`),
+    ImageData: gql(/* graphql */ `fragment ImageData on ContentModelReference {
+      ...ContentLink
+      url: Url
+      data: Expanded {
+        ...IContentData
+        url: Url
+        alt: Name 
+        path: RelativePath
+      }
+    }`),
+    ImageDataSearch: gql(/* graphql */ `fragment ImageDataSearch on ContentModelReferenceSearch {
+      ...ContentLinkSearch
+      url: Url
+      data: Expanded {
+        ...IContentData
+        url: Url
+        alt: Name 
+        path: RelativePath
+      }
     }`),
     BlockData: gql(/* graphql */ `fragment BlockData on IContent {
         ...IContentData

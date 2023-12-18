@@ -68,12 +68,12 @@ const config: CodegenConfig = {
                         // Add from all pages, except colocated blocks
                         into: "PageData",
                         pathRegex: "src\/components\/page.*(?<!block\.tsx)$"
-                    }/*,
+                    },
                     {
                         // Add from all blocks, included blocks colocated with pages
                         into: "BlockData",
                         pathRegex: "src\/components\/(block.*|page.*block.[tj]s[x]{0,1})$"
-                    }*/,
+                    },
                     {
                         // Add from all blocks
                         into: "BlockData",

@@ -10,12 +10,14 @@ import Link from 'next/link'
 
 export const ProductInfoBlock : CmsComponent<GraphQL.ProductBlockDataFragment> = async ({ inEditMode, data, client, contentLink }) => {
     const locale = contentLink.locale ?? 'en'
-    const productCode = data?.code ?? 'P000000'
-    const imageSrc = data?.thumbnail?.data?.path ?? data?.thumbnail?.data?.url ?? undefined
-    const productName = data?.title ?? "Unnamed product"
+    const productCode = data?.ProductCode ?? 'P000000'
+    /* @ts-expect-error */
+    const mainImage : GraphQL.ImageDataFragment | undefined = data?.MainImage || undefined
+    const imageSrc = mainImage?.data?.path ?? mainImage?.data?.url ?? undefined
+    const productName = data?.ProductName ?? "Unnamed product"
     const productsResponse = ((await client?.query({ 
         query: GetProductPropsQuery, 
-        variables: { code: data?.code ?? "-", locale: contentLink.locale as GraphQL.Locales }
+        variables: { code: data?.ProductCode ?? "-", locale: contentLink.locale as GraphQL.Locales }
     }))?.data?.product?.items ?? []).filter(Utils.isNotNullOrUndefined)
     const props = productsResponse.length != 1 ? [] : (productsResponse[0].properties?.texts?.items ?? []).filter(Utils.isNotNullOrUndefined)
 
@@ -26,8 +28,8 @@ export const ProductInfoBlock : CmsComponent<GraphQL.ProductBlockDataFragment> =
             </div>
             <div className="product-info">
                 <div className="title" data-epi-edit={ inEditMode ? "ProductName" : undefined }>{ productName }</div>
-                <div className="payoff" data-epi-edit={ inEditMode ? "ProductTagLine" : undefined }>{ data?.subtitle ?? " "}</div>
-                <div className="intro" data-epi-edit={ inEditMode ? "ShortDescription" : undefined } dangerouslySetInnerHTML={{ __html: data?.text ?? " "}} />
+                <div className="payoff" data-epi-edit={ inEditMode ? "ProductTagLine" : undefined }>{ data?.ProductTagLine ?? " "}</div>
+                <div className="intro" data-epi-edit={ inEditMode ? "ShortDescription" : undefined } dangerouslySetInnerHTML={{ __html: data?.ShortDescription ?? " "}} />
                 <div className="props">
                     <table>
                         <tbody>
@@ -89,16 +91,11 @@ const GetProductPropsQuery = gql(/*GraphQL*/`query getProductProps($code: String
 }`)
 
 const ProductBlockDataFragment = gql(/*GraphQL*/`fragment ProductBlockData on Product {
-    code: ProductCode
-    title: ProductName
-    subtitle: ProductTagLine
-    text: ShortDescription
-    thumbnail: MainImage {
-        id: Id
-        guidValue: GuidValue,
-        data: Expanded {
-            url: Url
-            path: RelativePath
-        }
+    ProductCode
+    ProductName
+    ProductTagLine
+    ShortDescription
+    MainImage {
+        ...ImageData
     }
 }`)

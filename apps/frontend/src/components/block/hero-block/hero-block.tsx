@@ -1,6 +1,7 @@
 import type { HeroBlockComponentType } from '.'
 import Link from '@/components/shared/banner-button'
 import Image from 'next/image'
+import type * as GraphQL from '@gql/graphql'
 
 import './hero-block.css'
 
@@ -10,14 +11,15 @@ export const HeroBlockComponent : HeroBlockComponentType = ({data, inEditMode}) 
     if (!heroData)
         return <div className='hero-block empty-hero-block' />
 
-    const pageImage = heroData.backgroundImage ?? "https://tecdn.b-cdn.net/img/new/slides/041.webp"
-    const calloutColor = `rgba(0,0,0,${ heroData.opacity ?? 0 })`
-    const calloutTitle = heroData.title ?? ""
-    const calloutText = heroData.text ?? ""
-    const btnText = heroData.button?.children ?? ""
-    const btnTitle = heroData.button?.title ?? ""
-    const btnTarget = heroData.button?.target || undefined
-    const btnHref = heroData.button?.content?.data?.path || heroData.button?.content?.href || heroData.button?.href || undefined
+    const pageImage = heroData.Background ?? "https://tecdn.b-cdn.net/img/new/slides/041.webp"
+    const calloutColor = `rgba(0,0,0,${ heroData.CalloutOpacity ?? 0 })`
+    const calloutTitle = heroData.BannerTitle ?? ""
+    const calloutText = heroData.BannerText ?? ""
+    const button : GraphQL.LinkItemDataFragment | undefined = heroData.BannerLink ?? undefined
+    const btnText = button?.children ?? ""
+    const btnTitle = button?.title ?? ""
+    const btnTarget = button?.target || undefined
+    const btnHref = button?.content?.data?.path || button?.content?.href || button?.href || undefined
 
     return <div className="hero-block">
         <Image src={pageImage} alt="Hero Image" fill className="object-cover" />

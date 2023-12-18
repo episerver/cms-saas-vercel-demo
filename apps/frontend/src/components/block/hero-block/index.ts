@@ -11,21 +11,12 @@ export default HeroBlock
 
 const HeroBlockData = gql(/* graphql */`fragment HeroBlockData on HeroBlock
 {
-    name: Name
-    backgroundImage: Background
-    title: BannerTitle
-    text: BannerText
-    opacity: CalloutOpacity
-    button: BannerLink {
-        children: Text
-        title: Title
-        href: Href
-        target: Target
-        content: ContentLink {
-            href: Url
-            data: Expanded {
-                path: RelativePath
-            }
-        }
+    Name
+    Background
+    BannerTitle
+    BannerText
+    CalloutOpacity
+    BannerLink {
+        ...LinkItemData
     }
 }`)

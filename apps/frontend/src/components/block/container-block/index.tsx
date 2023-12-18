@@ -8,13 +8,13 @@ const NoClassMapper : CmsContentAreaClassMapper = () => ''
 
 export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> = ({ contentLink, data, children, client, inEditMode }) => 
 {
-    const items = data.content
+    const items = data.MainContainerArea
     if (!items)
         return <div className='container-block empty-container-block w-full' data-epi-edit={ inEditMode ? "MainContentArea" : undefined } />
 
     const additionalClasses : string[] = []
     let classMapper = NoClassMapper
-    switch (data?.gap) {
+    switch (data?.Gap) {
         case 'small':
             additionalClasses.push('gap-y-1','md:gap-2','lg:gap-4')
             break
@@ -29,7 +29,7 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
             additionalClasses.push('gap-0')
             break
     }
-    switch (data?.spacing) {
+    switch (data?.Spacing) {
         case 'small':
             additionalClasses.push('p-1','md:p-2','lg:p-4')
             break
@@ -44,7 +44,7 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
             additionalClasses.push('p-0')
             break
     }
-    switch (data?.layout) {
+    switch (data?.GridLayout) {
         case '1-col':
             additionalClasses.push('grid-cols-1')
             break
@@ -68,7 +68,7 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
             additionalClasses.push('grid-cols-1','md:grid-cols-2','lg:grid-cols-4')
             break
     }
-    switch (data?.color) {
+    switch (data?.BackgroundColor) {
         case 'primary':
             additionalClasses.push('bg-primary-light border-solid border-b-4 border-t-8 border-primary h-full')
             break
@@ -98,21 +98,12 @@ export default ContainerBlock
 
 const Documents : Readonly<{[ field: string ]: any }> = {
     data: gql(/** GraphQL */`fragment ContainerBlockData on ContainerBlock {
-    content: MainContainerArea {
-        item: ContentLink {
-            id: Id
-            workId: WorkId
-            guidValue: GuidValue
-            data: Expanded {
-                contentType: ContentType
-                path: RelativePath
-            }
-        }
-        displayOption: DisplayOption
+    MainContainerArea {
+        ...BlockContentAreaItemData
     }
-    gap: Gap
-    spacing: Spacing
-    layout: GridLayout
-    color: BackgroundColor
+    Gap
+    Spacing
+    GridLayout
+    BackgroundColor
 }`)
 }

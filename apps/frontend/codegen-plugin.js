@@ -1,5 +1,4 @@
 const { concatAST, Kind, visit, print } = require('graphql')
-const tsPlugin = require('@graphql-codegen/typescript-operations')
 
 /**
  * Optimizely plugin for GraphQL Codegen, which transforms a list of GraphQL
@@ -41,34 +40,13 @@ module.exports = {
                 throw new Error(`The function name must exist as query and be unique within your GraphQL documents`)
             const fnDocument = fnDocuments[0]
             const fnTypeName = fn.charAt(0).toUpperCase() + fn.slice(1)
-            const fnNamespace = fnTypeName + 'NS'
+            const fnNamespace = "Types"
 
             // Build the pretty looking query
             const usedFragments = resolveSpreads(fnDocument, docs)
             const query = "\n"+[ fnDocument, ...usedFragments ]
                 .map(part => print(part))
                 .join("\n")+"\n"
-
-            // Create Namespace with function specific types
-            /** @type {import('graphql').DocumentNode} */
-            const tsDefDoc = { kind: Kind.DOCUMENT, definitions: [fnDocument, ...usedFragments]}
-            /** @type {import('@graphql-codegen/plugin-helpers').Types.DocumentFile[]} */
-            const tsDefDocs = [{schema, document: tsDefDoc,rawSDL: print(tsDefDoc)}]
-            const tsDefinitions = await tsPlugin.plugin(schema, tsDefDocs, {
-                namespacedImportName: "Types",
-                ...config
-            }, info)
-            fnOutput.push(`namespace ${ fnNamespace } {`)
-            if (typeof(tsDefinitions) == 'string')
-                fnOutput.push(tsDefinitions)
-            else {
-                if (tsDefinitions.prepend)
-                    fnOutput.push(...tsDefinitions.prepend)
-                fnOutput.push(tsDefinitions.content)
-                if (tsDefinitions.append)
-                    fnOutput.push(...tsDefinitions.append)
-            }
-            fnOutput.push('}')
 
             // Resolve the arguments
             const varsType = `${ fnNamespace }.${ fnTypeName }QueryVariables`
@@ -102,7 +80,7 @@ module.exports = {
         prepend.push(`import type * as Types from '${ clientPath }'`)
         prepend.push('import { gql as parse, type ApolloClient, type NormalizedCacheObject } from \'@apollo/client\'')
 
-        prepend.push("\n","\n")
+        prepend.push("\n")
         return {
             prepend,
             content,
