@@ -13,7 +13,7 @@ export default function SiteMenu({ locale, items, brandName }: SiteMenuProps) {
         <nav className='max-w-screen-2xl mx-auto px-6 sm:px-7 lg:px-8 relative flex flex-row flex-nowrap justify-stretch h-14'>
             <div className='scrollable-menu-container overscroll-none overflow-auto touch-pan-x w-100 flex-1'>
                 <div className='scrollable-menu flex flex-nowrap md:text-lg h-14'>
-                    <Link className='hidden lg:inline-block grow-0 px-2 sm:px-3 lg:px-4 py-3 hover:bg-primary-dark' href="/" hrefLang={locale} lang={locale} >Home</Link>
+                    <Link className='hidden lg:inline-block grow-0 px-2 sm:px-3 lg:px-4 py-3 hover:bg-primary-dark hover:text-default-onPrimaryDark transition duration-500 ease-in-out' href="/" hrefLang={locale} lang={locale} >Home</Link>
                 { menuItems.map(x => { 
                     const menuItemLinks : SiteMenuItemProps['links'] = (x.Links || []).filter(Utils.isNotNullOrUndefined).map(link => {
                         const href = link?.ContentLink?.Expanded?.RelativePath || link?.ContentLink?.Url || link?.Href || "/"
@@ -37,7 +37,7 @@ export default function SiteMenu({ locale, items, brandName }: SiteMenuProps) {
                     <div className='lg:hidden w-8 h-4 mx-2 sm:mx-3 lg:mx-4 py-3 grow-0 shrink-0'/>
                 </div>
             </div>
-            <SiteSearch brandName={ brandName } buttonClassName='inline-block h-14 px-2 sm:px-3 lg:px-4 py-3 bg-primary hover:bg-primary-dark' />
+            <SiteSearch brandName={ brandName } buttonClassName='inline-block h-14 px-2 sm:px-3 lg:px-4 py-3 bg-primary hover:bg-primary-dark transition duration-500 ease-in-out' />
         </nav>
     </>
 }

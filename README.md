@@ -38,3 +38,4 @@ Please refer to the [Supported environment variables](docs/env-vars.md) document
 * [CMS Configuration](docs/cms-config.md)
 * [Enable on-page / in context editing](docs/editing.md)
 * [Supported environment variables](docs/env-vars.md)
+* [Custom demo building](docs/demo-building.md)

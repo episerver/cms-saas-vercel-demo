@@ -36,7 +36,7 @@ export default async function SiteHeader({ locale }: SiteHeaderProps)
     const menuItems = (config?.NavMenuArea ?? []).filter(Utils.isNotNullOrUndefined).map(x => x.ContentLink?.Expanded).filter(isNavMenuItem)
 
     return <header className='shadow-md'>
-        <div className='bg-gray-200 text-gray-800'>
+        <div className='bg-stripe'>
             <div className='max-w-screen-2xl mx-auto py-3 px-4 sm:px-6 lg:px-8 flex justify-end content-stretch'>
                 <Notice text={ config?.PromoText ?? "" } className='truncate' />
                 <LanguagePicker locales={ siteInfo.locales } locale={ currentLocale } className='ml-auto' texts={ strings.picker } />
@@ -46,7 +46,7 @@ export default async function SiteHeader({ locale }: SiteHeaderProps)
             <BrandLogo brandName={siteName} href={config?.SiteLogo} locale={ locale } className="order-first aspect-[5/1] basis-1/2" />
             <LoginButton texts={ strings.login } />
         </div>
-        <div className='bg-primary w-full'>
+        <div className='bg-primary text-default-onPrimary w-full'>
             <Menu items={ menuItems } brandName={ siteName } />
         </div>
     </header>

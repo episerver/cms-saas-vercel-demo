@@ -50,7 +50,7 @@ export async function FooterProps ({ locale }: FooterProps)
             <FooterLinkList data={ footerConfig?.thirdLinks } />
             <FooterLinkList data={ footerConfig?.fourthLinks } />
         </div>
-        <div className='footer-copyright border-t border-slate-300 pt-8 mt-4 text-slate-600 text-xs'>
+        <div className='footer-copyright border-t border-stripe-dark pt-8 mt-4 text-default-medium text-xs'>
             <div className='copyright-notice'>
                 &copy; 2023-{ new Date().getFullYear() } Remko Jantzen / Optimizely / { channel.name } all rights reserved
             </div>
