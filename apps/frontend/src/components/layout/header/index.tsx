@@ -46,7 +46,7 @@ export default async function SiteHeader({ locale }: SiteHeaderProps)
             <BrandLogo brandName={siteName} href={config?.SiteLogo} locale={ locale } className="order-first aspect-[5/1] basis-1/2" />
             <LoginButton texts={ strings.login } />
         </div>
-        <div className='bg-primary text-default-light w-full'>
+        <div className='bg-primary text-default-onPrimary w-full'>
             <Menu items={ menuItems } brandName={ siteName } />
         </div>
     </header>

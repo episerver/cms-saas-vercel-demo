@@ -40,7 +40,13 @@ module.exports = {
           DEFAULT: colors.slate[900],
           light: colors.slate[100],
           medium: colors.slate[600],
-          dark: colors.slate[900]
+          dark: colors.slate[900],
+          onPrimary: colors.slate[100],
+          onPrimaryLight: colors.slate[900],
+          onPrimaryDark: colors.slate[100],
+          onSecondary: colors.slate[100],
+          onSecondaryLight: colors.slate[900],
+          onSecondaryDark: colors.slate[100]
         }
       },
       maxWidth: {

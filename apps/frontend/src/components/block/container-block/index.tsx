@@ -70,13 +70,13 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
     }
     switch (data?.BackgroundColor) {
         case 'primary':
-            additionalClasses.push('bg-primary-light border-solid border-b-4 border-t-8 border-primary h-full')
+            additionalClasses.push('bg-primary-light text-default-onPrimaryLight border-solid border-b-4 border-t-8 border-primary h-full')
             break
         case 'secondary':
-            additionalClasses.push('bg-secondary-light border-solid border-b-4 border-t-8 border-secondary h-full')
+            additionalClasses.push('bg-secondary-light text-default-onSecondaryLight border-solid border-b-4 border-t-8 border-secondary h-full')
             break
         case 'gray':
-            additionalClasses.push('bg-stripe-light border-solid border-b-4 border-t-8 border-stripe-dark h-full')
+            additionalClasses.push('bg-stripe-light text-default border-solid border-b-4 border-t-8 border-stripe-dark h-full')
             break
         case 'none':
         default:

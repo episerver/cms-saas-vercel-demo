@@ -51,9 +51,9 @@ export const ProductInfoBlock : CmsComponent<GraphQL.ProductBlockDataFragment> =
                     </table>
                 </div>
             </div>
-            <div className="product-actions h-10">
-                <Link href={`/${ locale }/products/${ productCode }`} className='inline-block p-2 whitespace-nowrap flex-0'>Read More</Link>
-                <Link href={`/${ locale }/products/${ productCode }`} className='inline-block bg-primary p-2 whitespace-nowrap flex-0'>Apply now</Link>
+            <div className="product-actions">
+                <Link href={`/${ locale }/products/${ productCode }`} className='btn-secondary'>Read More</Link>
+                <Link href={`/${ locale }/products/${ productCode }`} className='btn-primary'>Apply now</Link>
             </div>
         </div>
     </div>

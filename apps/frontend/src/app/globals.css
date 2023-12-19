@@ -7,10 +7,10 @@
         @apply inline-block font-semibold px-3 py-1 m-1 md:m-2 lg:m-3 rounded transition duration-500 ease-in-out;
     }
     .btn-primary {
-        @apply btn-base bg-primary hover:bg-primary-dark text-default-light;
+        @apply btn-base bg-primary text-default-onPrimary hover:bg-primary-dark hover:text-default-onPrimaryDark;
     }
     .btn-secondary {
-        @apply btn-base bg-secondary hover:bg-secondary-dark text-default-light;
+        @apply btn-base bg-secondary text-default-onSecondary hover:bg-secondary-dark hover:text-default-onSecondaryDark;
     }
     .btn-white {
         @apply btn-base bg-white hover:bg-stripe text-default;
@@ -19,7 +19,7 @@
         @apply btn-base border-2 border-neutral-50 px-7 pb-[8px] pt-[10px] text-sm font-medium uppercase leading-normal text-neutral-50 hover:border-neutral-100 hover:bg-neutral-500 hover:bg-opacity-10 hover:text-neutral-100 focus:border-neutral-100 focus:text-neutral-100 focus:outline-none focus:ring-0 active:border-neutral-200 active:text-neutral-200 dark:hover:bg-neutral-100 dark:hover:bg-opacity-10
     }
     .btn-disabled {
-        @apply btn-base bg-stripe hover:bg-stripe text-stripe-dark cursor-pointer;
+        @apply btn-base bg-stripe text-stripe-dark cursor-pointer;
     }
     .btn-large {
         @apply p-2 px-3 sm:p-3 sm:px-4 lg:p-4 lg:px-6 lg:rounded-lg;
