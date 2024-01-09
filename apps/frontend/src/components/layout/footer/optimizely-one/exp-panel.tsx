@@ -6,15 +6,18 @@ export const ExpPanel : FunctionComponent<{}> = () =>
 {
     const webEx = useWebExperimentation()
     const data = webEx?.get ? webEx.get('data') : undefined
-    const [ pagesObject, setPagesObject ] = useState<ReturnType<OptlyWebGet['state']['getPageStates']>>( {} )
-    const [ experimentStates, setExperimentStates ] = useState<ReturnType<OptlyWebGet['state']['getExperimentStates']>>( {} )
+    const [ pagesObject, setPagesObject ] = useState<ReturnType<OptlyWebGet['state']['getPageStates']>>({})
+    const [ experimentStates, setExperimentStates ] = useState<ReturnType<OptlyWebGet['state']['getExperimentStates']>>({})
+    const [ campaignStates, setCampaignStates ] = useState<ReturnType<OptlyWebGet['state']['getCampaignStates']>>({})
 
     useEffect(() => {
-        setPagesObject(webEx?.get ? webEx?.get('state').getPageStates() : {})
-        setExperimentStates(webEx?.get ? webEx?.get('state').getExperimentStates() : {})
+        setPagesObject(webEx?.get ? webEx?.get('state').getPageStates({ isActive: true }) : {})
+        setExperimentStates(webEx?.get ? webEx?.get('state').getExperimentStates({ isActive: true }) : {})
+        setCampaignStates(webEx?.get ? webEx?.get('state').getCampaignStates({ isActive: true }) : {})
         const intervalId = setInterval(() => {
-            setPagesObject(webEx?.get ? webEx?.get('state').getPageStates() : {})
-            setExperimentStates(webEx?.get ? webEx?.get('state').getExperimentStates() : {})
+            setPagesObject(webEx?.get ? webEx?.get('state').getPageStates({ isActive: true }) : {})
+            setExperimentStates(webEx?.get ? webEx?.get('state').getExperimentStates({ isActive: true }) : {})
+            setCampaignStates(webEx?.get ? webEx?.get('state').getCampaignStates({ isActive: true }) : {})
         }, 2000)
         return () => clearInterval(intervalId)
     }, [ webEx ])
@@ -29,16 +32,37 @@ export const ExpPanel : FunctionComponent<{}> = () =>
     for (const experimentId of Object.getOwnPropertyNames(experimentStates))
         experimentsArray.push(experimentStates[experimentId])
 
+    // Process campaigns
+    const campaignsArray : ((typeof campaignStates)[string])[] = []
+    for (const campaignId of Object.getOwnPropertyNames(campaignStates))
+        campaignsArray.push(campaignStates[campaignId])
+    const filteredCampaigns = campaignsArray.filter(c => {
+        const expIds = experimentsArray.map(ed => ed.id)
+        return !expIds.includes(c.experiment.id)
+    })
+
     return <dl className='text-sm'>
         <dt className='font-bold pt-1'>Script information:</dt>
         <dd>Account id: { data?.accountId }; Project id: <Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }`} target="_blank" className="underline text-blue-800">{ data?.projectId }</Link>; Revision: { data?.revision }</dd>
         <dt className='font-bold pt-1'>Active page(s):</dt>
-        <dd>{ pagesArray.filter(p => p && p.isActive).map(p => p.name || p.apiName).join("; ") ?? "n/a" }</dd>
+        <dd>
+            <ul>
+            { pagesArray.map(p => <li key={`exp-page-${data?.projectId}-${p.id}`}><Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }/implementation/pages/${ p.id }`} target="_blank" className="underline text-blue-800">{p.name || p.apiName}</Link></li>)}
+            </ul>
+        </dd>
         <dt className='font-bold pt-1'>Active experiment(s):</dt>
         <dd>
             <ul>
-                { experimentsArray.filter(e => e && e.isActive).map(e => <li key={`exp-${data?.projectId}-${e.id}`}>
+                { experimentsArray.map(e => <li key={`exp-${data?.projectId}-${e.id}`}>
                     <Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }/experiments/${ e.id }`} target="_blank" className="underline text-blue-800">{ e.experimentName || e.id }</Link>, variant: <Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }/experiments/${ e.id }/variations/${ e.variation.id }`} target="_blank" className="underline text-blue-800">{ e.variation.name || e.variation.id }</Link>
+                </li>)}
+            </ul>
+        </dd>
+        <dt className='font-bold pt-1'>Active Personalization Campaigns(s):</dt>
+        <dd>
+            <ul>
+                { filteredCampaigns.map(e => <li key={`campaign-${data?.projectId}-${e.id}`}>
+                    <Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }/campaigns/${ e.id }`} target="_blank" className="underline text-blue-800">{ e.campaignName || e.id }</Link>; Audience(s): { e.audiences.map(a => <span key={"exp-pers-aud-"+a.id}><Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }/audiences/${ a.id }`} target="_blank" className="underline text-blue-800">{ a.name }</Link>, </span>)}
                 </li>)}
             </ul>
         </dd>
