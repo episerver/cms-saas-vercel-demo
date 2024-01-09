@@ -7,7 +7,7 @@
   "main": "dist/index.js",
   "module": "dist/index.js",
   "devDependencies": {
-    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "@graphql-codegen/plugin-helpers": "^5.0.2",
     "typescript": "^5.3.3"
   },
   "dependencies": {
