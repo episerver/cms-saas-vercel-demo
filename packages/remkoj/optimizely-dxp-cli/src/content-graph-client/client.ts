@@ -16,6 +16,8 @@ export function createClient<TCacheShape extends NormalizedCacheObject = Normali
     if (!validateContentGraphConfig(optiConfig, forPublishedOnly))
         throw new Error("Invalid ContentGraph configuration")
 
+    type FetchType = NonNullable<NonNullable<Parameters<typeof createHttpLink>[0]>['fetch']>
+
     const sendRequest : ApolloLinkType = forPublishedOnly ? 
         // Published content, direct connection to CG
         createHttpLink({ 
@@ -23,7 +25,7 @@ export function createClient<TCacheShape extends NormalizedCacheObject = Normali
             headers: {
                 authorization: `epi-single ${ optiConfig.single_key }`
             },
-            fetch: fetch,
+            fetch: fetch as unknown as FetchType,
             fetchOptions: {
                 next: { tags: ["content-graph"] }
             }
@@ -32,7 +34,7 @@ export function createClient<TCacheShape extends NormalizedCacheObject = Normali
             // Unpublished content, using HMAC authentication
             createHttpLink({
                 uri: new URL("/content/v2", optiConfig.gateway).href,
-                fetch: epiHmacFetch,
+                fetch: epiHmacFetch as unknown as FetchType,
                 fetchOptions: {
                     cache: 'no-cache',
                     next: { tags: ["content-graph"] }
@@ -45,7 +47,7 @@ export function createClient<TCacheShape extends NormalizedCacheObject = Normali
                 headers: {
                     authorization: `bearer ${ token }`
                 },
-                fetch: fetch,
+                fetch: fetch as unknown as FetchType,
                 fetchOptions: {
                     cache: 'no-cache',
                     next: { tags: ["content-graph"] }
