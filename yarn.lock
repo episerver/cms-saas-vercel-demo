@@ -29,9 +29,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^3.8.8":
-  version: 3.8.8
-  resolution: "@apollo/client@npm:3.8.8"
+"@apollo/client@npm:^3.8.9":
+  version: 3.8.9
+  resolution: "@apollo/client@npm:3.8.9"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.1.1"
     "@wry/equality": "npm:^0.5.6"
@@ -60,7 +60,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 06a95d3cfd8da09172b67c0d704edd35c160fa98599526ac9d6d870c7a612e4bd342a7286bb01151775bb5d5c495d1e7987626c00d178acb85fe58c30ff25403
+  checksum: a3f048eaeb8d87cc9ea4a05106d853b2423354de167e0a5f6a96f8d7e775242388d25ada053ecd8bfce5881aca7eb1221d0dda5a4aaacf605d712cf42965c5b9
   languageName: node
   linkType: hard
 
@@ -2121,7 +2121,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-cli@workspace:packages/remkoj/optimizely-dxp-cli"
   dependencies:
-    "@apollo/client": "npm:^3.8.8"
+    "@apollo/client": "npm:^3.8.9"
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-json": "npm:^6.1.0"
     "@rollup/pluginutils": "npm:^5.1.0"
@@ -2154,7 +2154,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-nextjs@workspace:packages/remkoj/optimizely-dxp-nextjs"
   dependencies:
-    "@apollo/client": "npm:^3.8.8"
+    "@apollo/client": "npm:^3.8.9"
     "@apollo/experimental-nextjs-app-support": "npm:^0.6.0"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@types/node": "npm:^20.10.8"
@@ -2183,7 +2183,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server"
   dependencies:
-    "@apollo/client": "npm:^3.8.8"
+    "@apollo/client": "npm:^3.8.9"
     "@graphql-codegen/cli": "npm:^5.0.1"
     "@graphql-codegen/client-preset": "npm:^4.2.0"
     "@graphql-typed-document-node/core": "npm:^3.2.0"
@@ -2211,7 +2211,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react@workspace:packages/remkoj/optimizely-dxp-react"
   dependencies:
-    "@apollo/client": "npm:^3.8.8"
+    "@apollo/client": "npm:^3.8.9"
     "@types/crypto-js": "npm:^4.2.1"
     "@types/node": "npm:^20.10.8"
     "@types/react": "npm:^18.2.47"
@@ -5752,7 +5752,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:apps/frontend"
   dependencies:
-    "@apollo/client": "npm:^3.8.8"
+    "@apollo/client": "npm:^3.8.9"
     "@apollo/experimental-nextjs-app-support": "npm:^0.6.0"
     "@eslint/eslintrc": "npm:^3.0.0"
     "@formatjs/intl-localematcher": "npm:^0.5.2"

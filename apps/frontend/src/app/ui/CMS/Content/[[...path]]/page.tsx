@@ -1,62 +1,30 @@
 import 'server-only'
 import type * as Types from '@remkoj/optimizely-dxp-react'
-
-// Next.JS
+import type * as GraphQL from '@gql/graphql'
 import { notFound } from 'next/navigation'
 import Script from 'next/script'
-
-// Apollo Client
 import { isApolloError, type ServerError, type ApolloError } from '@apollo/client'
-
-// Re-usable Libraries
 import { getContentGraphConfig, Utils } from '@remkoj/optimizely-dxp-react'
 import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
-
-// GraphQL Client
-import type * as GraphQL from '@gql/graphql'
+import * as EnvTools from '@/lib/env'
 import { getContentById } from '@gql/functions'
 import { getAuthorizedServerClient } from '@/lib/client'
-
-// Components
 import { setupFactory } from '@components/factory'
 import OnPageEdit from '@/components/on-page-edit'
 import RefreshNotice from '@/components/refresh-notice'
 import Header from '@/components/layout/header'
 import Footer from '@/components/layout/footer'
 import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
-
-const DEVELOPMENT = process.env.NODE_ENV == "development"
-
-/**
- * 
- * @returns     The update delay in milliseconds
- */
-function getUpdateDelay(defaultValue: number = 2000) : number
-{
-    try {
-        const envValue = process.env.OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY ?? defaultValue.toString()
-        const parsedValue = Number.parseInt(envValue, 10)
-        if (typeof(parsedValue) == 'number') {
-            if (DEVELOPMENT)
-                console.log(`Setting update delay to ${ parsedValue }ms`)
-            return parsedValue
-        }
-    } catch (e) {
-        if (DEVELOPMENT)
-            console.log(`Error while reading update delay from environment`)
-    }
-    if (DEVELOPMENT)
-        console.log(`No valid update delay configured, defaulting to ${ defaultValue }ms`)
-    return defaultValue
-}
-
-// Site configuration
 import siteConfig from '@/site-config'
 
-const OPTIMIZELY_GRAPH_UPDATE_TIMEOUT_MS : number = getUpdateDelay()
+// Read environment
+const DEVELOPMENT = process.env.NODE_ENV == "development"
+const OPTIMIZELY_GRAPH_UPDATE_TIMEOUT_MS = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY", 2000)
+
+// Read Content Graph Configuration
 const config = getContentGraphConfig()
 
-export type OptimizelyCmsEditPageProps = {
+type OptimizelyCmsEditPageProps = {
     params: {
         path: string[]
     },
@@ -66,6 +34,7 @@ export type OptimizelyCmsEditPageProps = {
     }>
 }
 
+// Next.JS Configuration
 export const fetchCache = 'force-no-store' // Disable fetch caching
 export const revalidate = 0 // Ensure we're running in dynamic mode
 

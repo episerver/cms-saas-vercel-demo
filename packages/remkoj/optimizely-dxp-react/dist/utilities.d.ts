@@ -25,3 +25,5 @@ export declare function contentLocaleToGraphLocale<T>(contentLocale?: T): T exte
 export declare function contentLinkToRequestVariables(contentLink: Types.ContentLinkWithLocale): Types.ContentQueryProps;
 export declare function isInlineContentLink(contentLink: Types.ContentLink): contentLink is Types.InlineContentLink;
 export declare function contentLinkToString(contentLink: Types.ContentLink): string;
+export declare function toUniqueValues<R extends any>(value: R, index: number, array: Array<R>): value is R;
+export declare function trim<T extends string | null | undefined>(valueToTrim: T): T;

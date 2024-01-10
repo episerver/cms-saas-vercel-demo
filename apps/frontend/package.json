@@ -15,7 +15,7 @@
     "register-webhooks": "yarn frontend-cli register"
   },
   "dependencies": {
-    "@apollo/client": "^3.8.8",
+    "@apollo/client": "^3.8.9",
     "@apollo/experimental-nextjs-app-support": "^0.6.0",
     "@formatjs/intl-localematcher": "^0.5.2",
     "@headlessui/react": "^1.7.18",

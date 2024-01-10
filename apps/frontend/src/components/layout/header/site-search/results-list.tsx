@@ -20,7 +20,7 @@ export const SearchResults : FunctionComponent<SearchResultsProps> = ({ classNam
                 return <Popover.Button as={ Link } className="search-result-item w-full hover:bg-slate-100 rounded-md p-2" key={`search-result-id-${ ++resultId }`} href={ result.url } onClick={ onClick }>
                     <div className="search-result-title font-semibold">{ result.name ?? "Unnamed result"}
                     </div>
-                    <div className="search-result-text py-1">No description yet...</div>
+                    <div className="search-result-text py-1">{ result.description ?? "No description available"}</div>
                     <div className="search-result-published float-right">Published: { result.published ? (new Date(Date.parse(result.published))).toLocaleDateString() : "never"}</div>
                 </Popover.Button>
             })}

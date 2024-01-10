@@ -53,11 +53,11 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) 
 {
-    const odp_id = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? undefined
-    const crecs_client = process.env.OPTIMIZELY_CONTENTRECS_CLIENT ?? undefined
+    const odp_id = EnvTools.readValue("OPTIMIZELY_DATAPLATFORM_ID")
+    const crecs_client = EnvTools.readValue("OPTIMIZELY_CONTENTRECS_CLIENT")
     const crecs_delivery = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTRECS_DELIVERY")
-    const exp_id = process.env.OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT ?? undefined
-    const ga_id = process.env.GA_TRACKING_ID ?? undefined
+    const exp_id = EnvTools.readValue("OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT")
+    const ga_id = EnvTools.readValue("GA_TRACKING_ID")
 
     return <html>
         <head>

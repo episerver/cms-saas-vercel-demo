@@ -124,3 +124,15 @@ export function contentLinkToString(contentLink: Types.ContentLink) : string
 {
     return `${contentLink.id ?? 0}_${contentLink.workId ?? 0}#${ contentLink.guidValue ?? ''}\$${ (contentLink as Types.ContentLinkWithLocale).locale ?? ''}`
 }
+
+export function toUniqueValues<R extends any>(value: R, index: number, array: Array<R>) : value is R
+{
+    return array.indexOf(value) == index
+}
+
+export function trim<T extends string | null | undefined>(valueToTrim: T) : T
+{
+    if (typeof(valueToTrim) == 'string')
+        return valueToTrim.trim() as T
+    return valueToTrim
+}

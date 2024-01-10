@@ -4,9 +4,9 @@ import { Utils } from '@remkoj/optimizely-dxp-react'
 
 async function handler() : Promise<NextResponse<string[]>>
 {
-    const terms = (await ODP.getLastSearchTerms())
-                    .filter(Utils.isNotNullOrUndefined)
-                    .filter((value, index, array) => array.indexOf(value) == index)
+    const terms = (await ODP.getLastSearchTerms())      // Get all last search terms
+                    .filter(Utils.isNotNullOrUndefined) // Filter out null/undefined values
+                    .filter(Utils.toUniqueValues)       // Remove duplicates
     return NextResponse.json(terms)
 }
 

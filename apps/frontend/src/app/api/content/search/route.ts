@@ -10,8 +10,8 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
 {
     const client = getServerClient()
     const searchTerm = req.nextUrl.searchParams.get('term') ?? ''
-    const contentTypes = (req.nextUrl.searchParams.get('types') ?? '').split(',').filter(Utils.isNonEmptyString)
-    const contentLocales = (req.nextUrl.searchParams.get('locales') ?? '').split(',').filter(Utils.isNonEmptyString)
+    const contentTypes = (req.nextUrl.searchParams.get('types') ?? '').split(',').map(Utils.trim).filter(Utils.isNonEmptyString)
+    const contentLocales = (req.nextUrl.searchParams.get('locales') ?? '').split(',').map(Utils.trim).filter(Utils.isNonEmptyString)
     const interests = await ContentIntel.getTopTopics()
     const topInterest = interests.shift()
 
@@ -35,7 +35,9 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
             url: x.url ?? "",
             changed: x.changed ?? undefined,
             published: x.published ?? undefined,
-            type: x.type?.filter(Utils.isNonEmptyString) ?? undefined
+            type: x.type?.filter(Utils.isNonEmptyString) ?? undefined,
+            //@ts-expect-error: Fragment masked field
+            description: x.seo?.description ?? undefined
         }
     })
     const resultFacets : ContentSearchResultFacets = []
@@ -91,11 +93,12 @@ export const fetchCache = 'default-no-store'
 const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize:Int) {
     Content(
         where: {
-            _and: [
-                { _fulltext: { contains: $term, boost: 25 } }
-                { _fulltext: { contains: $topInterest, boost: 5 } }
-                { Url: { exist: true } }
+            _or: [
+                { _fulltext: { contains: $term } }
+                { _fulltext: { contains: $topInterest, boost: 2 } }
             ]
+            _fulltext: { contains: $term }
+            Url: { exist: true }
         }
         orderBy: { _ranking: SEMANTIC }
         limit: $pageSize
@@ -109,6 +112,31 @@ const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String
             type: ContentType
             changed: Changed
             published: StartPublish
+            ... on LandingPage {
+              seo: LandingPageSeo {
+                description: MetaDescription
+              }
+            }
+            ... on ArticlePage {
+              seo: SeoSettings {
+                description: MetaDescription
+              }
+            }
+            ... on LocationPage {
+              seo: LocationSeoSettings {
+                description:MetaDescription
+              }
+            }
+            ... on ArticleListPage {
+                seo: SeoSettings {
+                  description:MetaDescription
+                }
+            }
+            ... on LocationListPage {
+                seo: LocationListSeo {
+                  description:MetaDescription
+                }
+            }
         }
         facets {
             ContentType (filters: $types) {

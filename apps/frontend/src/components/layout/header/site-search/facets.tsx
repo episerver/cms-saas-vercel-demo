@@ -1,6 +1,6 @@
 import React, { FunctionComponent } from 'react'
 import type { ContentSearchResultFacets, ContentSearchResultFilters } from '@/api-types'
-import { MagnifyingGlassIcon, XMarkIcon, GlobeEuropeAfricaIcon, CheckIcon } from '@heroicons/react/24/outline'
+import { CheckIcon } from '@heroicons/react/24/outline'
 
 export type SearchFacetsProps = {
     className?: string
@@ -17,12 +17,16 @@ const facetNames : {[key: string]: string}= {
 const typeNames : {[key: string]: {[key: string]: string}} = {
     types: {
         ArticlePage: "Article",
-        LandingPage: "General page"
+        ArticleListPage: "Articles overview",
+        LandingPage: "General page",
+        LocationPage: "Office",
+        LocationListPage: "Offices overview"
     },
     locales: {
         en: "English",
         nl: "Nederlands",
-        "nl-be": "Nederlands (België)"
+        "nl-be": "Nederlands (België)",
+        "nl-BE": "Nederlands (België)"
     }
 }
 
