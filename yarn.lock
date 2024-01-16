@@ -894,12 +894,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@formatjs/intl-localematcher@npm:^0.5.2":
-  version: 0.5.2
-  resolution: "@formatjs/intl-localematcher@npm:0.5.2"
+"@formatjs/intl-localematcher@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@formatjs/intl-localematcher@npm:0.5.3"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 89db79ae89d6050b62d0a0f9e9c8ad4f8973eac37656f1d075ac76b6c372007f7e32791ae666fc061f7f5d89ea84ea42cfaa74dad39df4b1cf9878053e18b5d4
+  checksum: 6e715600f6f8e27727eece5bd9dd993d9ccfaee92a0aa776327c20ac717cd4490f6658fac1cbe0b3b8ffa849485655f1fea22f5ab4ae24c7134fbe2375be3c1d
   languageName: node
   linkType: hard
 
@@ -5755,7 +5755,7 @@ __metadata:
     "@apollo/client": "npm:^3.8.9"
     "@apollo/experimental-nextjs-app-support": "npm:^0.6.0"
     "@eslint/eslintrc": "npm:^3.0.0"
-    "@formatjs/intl-localematcher": "npm:^0.5.2"
+    "@formatjs/intl-localematcher": "npm:^0.5.3"
     "@graphql-codegen/cli": "npm:^5.0.1"
     "@graphql-codegen/client-preset": "npm:^4.2.0"
     "@graphql-codegen/fragment-matcher": "npm:^5.0.1"

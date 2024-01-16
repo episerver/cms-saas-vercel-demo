@@ -1614,10 +1614,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@formatjs/intl-localematcher", [\
-      ["npm:0.5.2", {\
-        "packageLocation": "./.yarn/cache/@formatjs-intl-localematcher-npm-0.5.2-7465fa5348-89db79ae89.zip/node_modules/@formatjs/intl-localematcher/",\
+      ["npm:0.5.3", {\
+        "packageLocation": "./.yarn/cache/@formatjs-intl-localematcher-npm-0.5.3-9c733c4908-6e715600f6.zip/node_modules/@formatjs/intl-localematcher/",\
         "packageDependencies": [\
-          ["@formatjs/intl-localematcher", "npm:0.5.2"],\
+          ["@formatjs/intl-localematcher", "npm:0.5.3"],\
           ["tslib", "npm:2.6.2"]\
         ],\
         "linkType": "HARD"\
@@ -8606,7 +8606,7 @@ const RAW_RUNTIME_STATE =
           ["@apollo/client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.8.9"],\
           ["@apollo/experimental-nextjs-app-support", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.6.0"],\
           ["@eslint/eslintrc", "npm:3.0.0"],\
-          ["@formatjs/intl-localematcher", "npm:0.5.2"],\
+          ["@formatjs/intl-localematcher", "npm:0.5.3"],\
           ["@graphql-codegen/cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.0.1"],\
           ["@graphql-codegen/client-preset", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.2.0"],\
           ["@graphql-codegen/fragment-matcher", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.0.1"],\
