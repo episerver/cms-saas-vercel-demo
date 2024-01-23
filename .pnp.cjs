@@ -5444,17 +5444,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@vercel/speed-insights", [\
-      ["npm:1.0.6", {\
-        "packageLocation": "./.yarn/unplugged/@vercel-speed-insights-virtual-f80d8af95d/node_modules/@vercel/speed-insights/",\
+      ["npm:1.0.7", {\
+        "packageLocation": "./.yarn/unplugged/@vercel-speed-insights-virtual-cc07a5779f/node_modules/@vercel/speed-insights/",\
         "packageDependencies": [\
-          ["@vercel/speed-insights", "npm:1.0.6"]\
+          ["@vercel/speed-insights", "npm:1.0.7"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.6", {\
-        "packageLocation": "./.yarn/unplugged/@vercel-speed-insights-virtual-f80d8af95d/node_modules/@vercel/speed-insights/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.7", {\
+        "packageLocation": "./.yarn/unplugged/@vercel-speed-insights-virtual-cc07a5779f/node_modules/@vercel/speed-insights/",\
         "packageDependencies": [\
-          ["@vercel/speed-insights", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.6"],\
+          ["@vercel/speed-insights", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.7"],\
           ["@sveltejs/kit", null],\
           ["@types/next", null],\
           ["@types/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.48"],\
@@ -8710,7 +8710,7 @@ const RAW_RUNTIME_STATE =
           ["@types/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.48"],\
           ["@types/react-dom", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:18.2.18"],\
           ["@types/uuid", "npm:9.0.7"],\
-          ["@vercel/speed-insights", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.6"],\
+          ["@vercel/speed-insights", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:1.0.7"],\
           ["@vercel/stega", "npm:0.1.0"],\
           ["autoprefixer", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:10.4.17"],\
           ["chalk", "npm:5.3.0"],\

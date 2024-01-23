@@ -2174,11 +2174,11 @@ __metadata:
     "@apollo/client": "*"
     "@apollo/experimental-nextjs-app-support": "*"
     "@remkoj/optimizely-dxp-react": "workspace:*"
-    "@remkoj/optimizely-dxp-react-server": "workspace:^"
+    "@remkoj/optimizely-dxp-react-server": "workspace:*"
     deepmerge: "*"
     graphql: "*"
     next: "*"
-    next-auth: ^4
+    next-auth: "*"
     react: "*"
   languageName: unknown
   linkType: soft
@@ -3041,11 +3041,11 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/speed-insights@npm:^1.0.6":
-  version: 1.0.6
-  resolution: "@vercel/speed-insights@npm:1.0.6"
+"@vercel/speed-insights@npm:^1.0.7":
+  version: 1.0.7
+  resolution: "@vercel/speed-insights@npm:1.0.7"
   peerDependencies:
-    "@sveltejs/kit": ^1
+    "@sveltejs/kit": ^1 || ^2
     next: ">= 13"
     react: ^18 || ^19
     svelte: ^4
@@ -3064,7 +3064,7 @@ __metadata:
       optional: true
     vue-router:
       optional: true
-  checksum: cf98dea1584f0cc399796de5ffb0e03caceada8b13ecf213cc6cba32a992899660b87de022d1b8a1bada57f9572a1b19f53d40cbb4dfe7c58d2bcd1712a36eff
+  checksum: 8a951d72c2e95740fac063aa92002f25a7c458cd88536cb83e60759460aac01aa5f901a754e5f58d13adf0fc7ae3b4ced4b041e29ba63a5e0748dde9bd86a32c
   languageName: node
   linkType: hard
 
@@ -5805,7 +5805,7 @@ __metadata:
     "@types/react": "npm:18.2.48"
     "@types/react-dom": "npm:18.2.18"
     "@types/uuid": "npm:^9.0.7"
-    "@vercel/speed-insights": "npm:^1.0.6"
+    "@vercel/speed-insights": "npm:^1.0.7"
     "@vercel/stega": "npm:^0.1.0"
     autoprefixer: "npm:10.4.17"
     chalk: "npm:^5.3.0"
