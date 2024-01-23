@@ -4,7 +4,7 @@ import { applyOnAllClients, NextFetchTags } from '@remkoj/optimizely-dxp-react'
 import { getServerClient as createClient, getAuthorizedServerClient as createAuthorizedClient } from '@/lib/client'
 import { gql } from '@gql/index'
 
-const editPaths = [ '/ui/CMS/Content/[[...path]]' ]
+const editPaths = [ '/ui/[[...path]]' ]
 const publishedPaths = [ '/[lang]', '/[lang]/[[...path]]', '/sitemap', '/sitemap.xml' ]
 const paths = [ ...editPaths, ...publishedPaths ]
 const tags = [ NextFetchTags.all, NextFetchTags.hmac, NextFetchTags.token, NextFetchTags.token ]

@@ -4030,7 +4030,7 @@ export type ContentAreaItemDataFragment = {
 } & {
     ' $fragmentName'?: 'ContentAreaItemDataFragment';
 };
-export type BlockContentAreaItemDataFragment = {
+export type BlockContentAreaItemSearchDataFragment = {
     __typename?: 'ContentAreaItemModelSearch';
     displayOption?: string | null;
     item?: ({
@@ -4099,6 +4099,80 @@ export type BlockContentAreaItemDataFragment = {
     } & {
         ' $fragmentRefs'?: {
             'ContentLinkSearchFragment': ContentLinkSearchFragment;
+        };
+    }) | null;
+} & {
+    ' $fragmentName'?: 'BlockContentAreaItemSearchDataFragment';
+};
+export type BlockContentAreaItemDataFragment = {
+    __typename?: 'ContentAreaItemModel';
+    displayOption?: string | null;
+    item?: ({
+        __typename?: 'ContentModelReference';
+        data?: ({
+            __typename?: 'ArticlePage';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment;
+            };
+        }) | ({
+            __typename?: 'ButtonBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'ContainerBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_ContainerBlock_Fragment': IContentData_ContainerBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'Content';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_Content_Fragment': IContentData_Content_Fragment;
+            };
+        }) | ({
+            __typename?: 'HeaderConfigBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HeaderConfigBlock_Fragment': IContentData_HeaderConfigBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'HeroBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'HighlightTextBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_HighlightTextBlock_Fragment': IContentData_HighlightTextBlock_Fragment;
+            };
+        }) | ({
+            __typename?: 'LandingPage';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment;
+            };
+        }) | ({
+            __typename?: 'NavMenuItem';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_NavMenuItem_Fragment': IContentData_NavMenuItem_Fragment;
+            };
+        }) | ({
+            __typename?: 'TextBlock';
+        } & {
+            ' $fragmentRefs'?: {
+                'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;
+            };
+        }) | null;
+    } & {
+        ' $fragmentRefs'?: {
+            'ContentLinkFragment': ContentLinkFragment;
         };
     }) | null;
 } & {
@@ -4791,6 +4865,7 @@ export declare const ContentLinkFragmentDoc: DocumentNode<ContentLinkFragment, u
 export declare const IContentDataFragmentDoc: DocumentNode<IContentDataFragment, unknown>;
 export declare const BlockDataFragmentDoc: DocumentNode<BlockDataFragment, unknown>;
 export declare const ContentAreaItemDataFragmentDoc: DocumentNode<ContentAreaItemDataFragment, unknown>;
+export declare const BlockContentAreaItemSearchDataFragmentDoc: DocumentNode<BlockContentAreaItemSearchDataFragment, unknown>;
 export declare const BlockContentAreaItemDataFragmentDoc: DocumentNode<BlockContentAreaItemDataFragment, unknown>;
 export declare const LinkItemDataFragmentDoc: DocumentNode<LinkItemDataFragment, unknown>;
 export declare const ImageDataFragmentDoc: DocumentNode<ImageDataFragment, unknown>;

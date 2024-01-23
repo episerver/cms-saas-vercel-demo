@@ -11,31 +11,31 @@ const DEV = process.env.NODE_ENV == 'development';
  * @param     param0
  * @returns
  */
-export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, factory, fragmentData, outputEditorWarning }) => {
+export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, fragmentData, outputEditorWarning }) => {
     // Parse & prepare props
-    factory = factory ?? getFactory();
+    const factory = getFactory();
     client = client ?? createClient();
     const isInlineBlock = Utils.isInlineContentLink(contentLink);
     // DEBUG Tracing
     if (DEBUG)
-        console.log("Rendering CMS Content for:", contentType, isInlineBlock ? "Inline content" : contentLink, inEditMode ? "edit-mode" : "published");
+        console.log("[CmsContent] Rendering CMS Content for:", JSON.stringify(contentType), isInlineBlock ? "Inline content" : JSON.stringify({ id: contentLink.id, workId: contentLink.workId, guidValue: contentLink.guidValue, locale: contentLink.locale }), inEditMode ? "edit-mode" : "published");
     // Ensure we have a content type to work with
     if (!isInlineBlock && !contentType) {
         if (DEBUG || DEV)
-            console.warn(`No content type provided for content ${JSON.stringify(contentLink)}, this causes an additional GraphQL query to resolve the ContentType`);
+            console.warn(`[CmsContent] No content type provided for content ${JSON.stringify({ id: contentLink.id, workId: contentLink.workId, guidValue: contentLink.guidValue, locale: contentLink.locale })}, this causes an additional GraphQL query to resolve the ContentType`);
         contentType = await getContentType(contentLink, client);
     }
     // Apply the content-type prefix if needed
     if (Array.isArray(contentType) && Utils.isNonEmptyString(contentTypePrefix) && contentType.length > 0 && contentType[0] != contentTypePrefix) {
         if (DEBUG || DEV)
-            console.info(`Component type [${contentType.join('/')}] doesn't have the configured prefix, adding ${contentTypePrefix} as prefix`);
+            console.info(`[CmsContent] Component type [${contentType.join('/')}] doesn't have the configured prefix, adding ${contentTypePrefix} as prefix`);
         contentType.unshift(contentTypePrefix);
     }
     // Resolve component
     const Component = (contentType ? factory.resolve(contentType) : undefined);
     if (!Component) {
         if (DEBUG || DEV) {
-            console.warn(`Component of type "${contentType?.join('/') ?? ""}" not resolved by factory`);
+            console.warn(`[CmsContent] Component of type "${contentType?.join('/') ?? ""}" not resolved by factory`);
         }
         if (DEBUG || inEditMode || outputEditorWarning) {
             const errorMsg = _jsxs("div", { className: 'opti-error', children: ["Component of type \"", contentType?.join('/') ?? "", "\" not resolved by factory"] });
@@ -44,14 +44,14 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         return _jsx(_Fragment, { children: children ? children : undefined });
     }
     if (DEBUG)
-        console.log("Rendering item using component:", Component?.displayName ?? Component);
+        console.log("[CmsContent] Rendering item using component:", Component?.displayName ?? Component);
     // Render with previously loaded data
     const fragmentProps = fragmentData ? Object.getOwnPropertyNames(fragmentData).filter(x => !Queries.CmsContentFragments.IContentDataProps.includes(x)) : [];
     if (fragmentProps.length > 0) {
         if (DEBUG)
-            console.log("Rendering CMS Component using fragment information", fragmentProps);
+            console.log("[CmsContent] Rendering CMS Component using fragment information", fragmentProps);
         if (Utils.validatesFragment(Component) && !Component.validateFragment(fragmentData)) {
-            console.error("Invalid fragment data received for ", Component.displayName ?? contentType?.join("/") ?? "[Undetermined component]");
+            console.error("[CmsContent] Invalid fragment data received for ", Component.displayName ?? contentType?.join("/") ?? "[Undetermined component]");
             return _jsx(_Fragment, {});
         }
         return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData, client: client });
@@ -64,32 +64,33 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         const gqlQuery = Component.getDataQuery();
         const gqlVariables = Utils.contentLinkToRequestVariables(contentLink);
         if (DEBUG)
-            console.log("Component data fetching variables:", gqlVariables);
+            console.log("[CmsContent] Component data fetching variables:", gqlVariables);
         const gqlResponse = await client.query({ query: gqlQuery, variables: gqlVariables });
         if (DEBUG)
-            console.log("Component request the following data:", gqlResponse.data);
+            console.log("[CmsContent] Component request the following data:", gqlResponse.data);
         return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: gqlResponse.data, client: client });
     }
     // Render using included fragment
     if (Utils.isCmsComponentWithFragment(Component)) {
         const [name, fragment] = Component.getDataFragment();
-        const fragmentQuery = parse(`query getContentById($id: Int!, $workId: Int, $guidValue: String, $locale: [Locales]! ) { contentById: Content( where: { ContentLink: { Id: { eq: $id }, WorkId: { eq: $workId }, GuidValue: { eq: $guidValue } }, Status: { eq: "Published" } }, locale: $locale, limit: 1 ) { total items { contentType: ContentType id: ContentLink { id: Id, workId: WorkId, guidValue: GuidValue } locale: Language { name: Name } ...${name} } } } ${print(fragment)}`);
+        const fragmentQuery = parse(`query getContentFragmentById($id: Int!, $workId: Int, $guidValue: String, $locale: [Locales]!, $isCommonDraft: Boolean ) { contentById: Content( where: { ContentLink: { Id: { eq: $id }, WorkId: { eq: $workId }, GuidValue: { eq: $guidValue } },IsCommonDraft: {eq: $isCommonDraft} }, orderBy: { Status: ASC }, locale: $locale, limit: 1 ) { total items { contentType: ContentType id: ContentLink { id: Id, workId: WorkId, guidValue: GuidValue } locale: Language { name: Name } ...${name} } } } ${print(fragment)}`);
         const fragmentVariables = Utils.contentLinkToRequestVariables(contentLink);
-        if (DEBUG) {
-            console.log(`Using fragment: ${name}`);
-            console.log(`Full query: ${print(fragmentQuery)}`);
-            console.log('Variables:', fragmentVariables);
-        }
+        if (!fragmentVariables?.workId && inEditMode)
+            fragmentVariables.isCommonDraft = true;
+        if (DEBUG)
+            console.log(`[CmsContent] Component data fetching using fragment ${name}, with variables: ${JSON.stringify(fragmentVariables)}`);
         const fragmentResponse = await client.query({ query: fragmentQuery, variables: fragmentVariables });
         const totalItems = fragmentResponse.data?.contentById?.total || 0;
-        if (totalItems != 1)
-            throw new Error(`Expected to load exactly one content item, received ${totalItems} from Optimizely Graph.`);
+        if (totalItems < 1)
+            throw new Error(`CmsContent expected to load exactly one content item, received ${totalItems} from Optimizely Graph.`);
+        if (totalItems > 1 && DEBUG)
+            console.warn(`[CmsContent] Resolved ${totalItems} content items, expected only 1. Picked the first one`);
         const data = (fragmentResponse.data?.contentById?.items || [])[0] || null;
         return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: data, client: client });
     }
     // Assume there's no server side prepared data needed for the component
     if (DEBUG)
-        console.log(`Component of type "${contentType?.join('/') ?? Component.displayName ?? '?'}" did not request pre-loading of data`);
+        console.log(`[CmsContent] Component of type "${contentType?.join('/') ?? Component.displayName ?? '?'}" did not request pre-loading of data`);
     return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData, client: client });
 };
 export default CmsContent;

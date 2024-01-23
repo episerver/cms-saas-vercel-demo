@@ -1,5 +1,5 @@
 import type { ComponentFactory } from '@remkoj/optimizely-dxp-react'
-import { getFactory } from '@remkoj/optimizely-dxp-react-server'
+import { getFactory, setFactory } from '@remkoj/optimizely-dxp-react-server'
 
 import pageComponents from './page'
 import blockComponents from './block'
@@ -12,6 +12,7 @@ export function setupFactory() : ComponentFactory
     factory.registerAll(pageComponents)
     factory.registerAll(blockComponents)
     factory.register('a', Link as unknown as ComponentType )
+    setFactory(factory)
     return factory
 }
 

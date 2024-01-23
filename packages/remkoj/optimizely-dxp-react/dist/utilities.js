@@ -74,7 +74,7 @@ export function contentLinkToRequestVariables(contentLink) {
     const variables = {
         id: contentLink.id ?? 0,
         workId: contentLink.workId,
-        guidValue: contentLink.guidValue ?? "",
+        guidValue: contentLink.guidValue ?? null,
         locale: contentLocaleToGraphLocale(contentLink.locale)
     };
     if (variables.workId == undefined || variables.workId <= 0)

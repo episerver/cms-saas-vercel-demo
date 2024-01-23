@@ -99,7 +99,7 @@ export default ContainerBlock
 const Documents : Readonly<{[ field: string ]: any }> = {
     data: gql(/** GraphQL */`fragment ContainerBlockData on ContainerBlock {
     MainContainerArea {
-        ...BlockContentAreaItemData
+        ...BlockContentAreaItemSearchData
     }
     Gap
     Spacing

@@ -31,9 +31,18 @@ export const CmsContentFragments = {
         }
         displayOption:DisplayOption
     }`),
-    BlockContentAreaItemData: gql(/* graphql */`fragment BlockContentAreaItemData on ContentAreaItemModelSearch {
+    BlockContentAreaItemSearchData: gql(/* graphql */`fragment BlockContentAreaItemSearchData on ContentAreaItemModelSearch {
         item: ContentLink {
             ...ContentLinkSearch
+            data: Expanded {
+            ...IContentData
+            }
+        }
+        displayOption:DisplayOption
+    }`),
+    BlockContentAreaItemData: gql(/* graphql */`fragment BlockContentAreaItemData on ContentAreaItemModel {
+        item: ContentLink {
+            ...ContentLink
             data: Expanded {
             ...IContentData
             }

@@ -57,6 +57,6 @@ export type CmsContentProps = PropsWithChildren<{
  * @param     param0
  * @returns
  */
-export declare const CmsContent: ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, factory, fragmentData, outputEditorWarning }: CmsContentProps) => Promise<JSX.Element>;
+export declare const CmsContent: ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, fragmentData, outputEditorWarning }: CmsContentProps) => Promise<JSX.Element>;
 export default CmsContent;
 export declare function getContentType(link: ContentLinkWithLocale, gqlClient: ReturnType<typeof createClient>): Promise<ContentType | undefined>;

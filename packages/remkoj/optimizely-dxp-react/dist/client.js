@@ -57,7 +57,7 @@ export function applyOnAllClients(callback) {
 export function createNewClient(config, token = undefined, configOverrides = undefined, inMemoryCacheConfig = undefined) {
     const links = [];
     links.push(createErrorLogger(console));
-    if (DEBUG || QUERY_LOG) {
+    if (QUERY_LOG) {
         console.log("[OptlyGraph] Enabled Query Logger");
         links.push(createQueryLogger(console));
     }
@@ -100,7 +100,7 @@ export function createQueryLogger(target) {
         target.log("[OptlyGraph] [Query-" + queryId + "] Variables:", operation.variables);
         operation.extensions["queryId"] = queryId;
         return forward(operation).map(response => {
-            target.log("[OptlyGraph] [Query-" + queryId + "] Response:", response);
+            target.log("[OptlyGraph] [Query-" + queryId + "] Response:", JSON.stringify(response, undefined, 2));
             return response;
         });
     });

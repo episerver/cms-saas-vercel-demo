@@ -1,7 +1,9 @@
-//@ts-expect-error
-import { cache } from 'react';
 const MERGE_SYMBOL = '/';
-export class FactoryClass {
+const DBG = process.env.DXP_DEBUG == '1';
+/**
+ * The default implementation of the ComponentFactory iterface
+ */
+export class DefaultComponentFactory {
     registry = {};
     register(type, component) {
         type = processComponentTypeHandle(type);
@@ -28,10 +30,34 @@ function processComponentTypeHandle(handle) {
         return handle.filter(s => s.toLowerCase() != 'content').join(MERGE_SYMBOL);
     throw new Error(`Invalid component type handle: ${typeof (handle)}`);
 }
-// Leverage React Cache to provide per request Factory Access
-const factory = cache(() => { return { current: new FactoryClass() }; });
-export const getFactory = () => factory().current;
+const _static = {};
+/**
+ * Retrieve the currently staticly cached ComponentFactory instance, if there's no
+ * currently staticly cached ComponentFactory, the default ComponentFactory will be
+ * returned
+ *
+ * @returns The ComponentFactory
+ */
+export const getFactory = () => {
+    if (!_static.factory) {
+        if (DBG)
+            console.log("Creating new Component Factory");
+        _static.factory = new DefaultComponentFactory();
+    }
+    else {
+        if (DBG)
+            console.log("Reusing existing Component Factory");
+    }
+    return _static.factory;
+};
+/**
+ * Update the staticly cached Component Factory, which will be returned by all future
+ * "getFactory" calls
+ *
+ * @param   newFactory    The ComponentFactory to set as staticly cached instance
+ * @returns void
+ */
 export const setFactory = (newFactory) => {
-    factory().current = newFactory;
+    _static.factory = newFactory;
 };
 export default getFactory();

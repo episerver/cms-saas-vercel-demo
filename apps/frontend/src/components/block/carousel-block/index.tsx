@@ -21,7 +21,7 @@ export default CarouselBlock
 
 export const CarouselBlockData = gql(/*GraphQL*/`fragment CarouselBlockData on CarouselBlock {
     CarouselSlides {
-        ...BlockContentAreaItemData
+        ...BlockContentAreaItemSearchData
     }
     ShowArrows
 }`)
