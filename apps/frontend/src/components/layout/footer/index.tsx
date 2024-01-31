@@ -1,10 +1,8 @@
 import React from 'react'
 import { Utils } from '@remkoj/optimizely-dxp-react'
-import { getCurrentChannel } from '@/lib/current-channel'
 import { getServerClient } from '@/lib/client'
 import { gql } from '@gql/index'
 import type * as GraphQL from '@gql/graphql'
-import { localeToContentGraphLocale, getFallbackLocale } from '@/lib/i18n'
 import SiteConfig from '@/site-config'
 
 export type FooterProps = {
@@ -17,7 +15,7 @@ import Image from 'next/image'
 
 export async function FooterProps ({ locale }: FooterProps)
 {
-    const channel = await getCurrentChannel()
+    const channel = SiteConfig
     const optlyGraphClient = getServerClient()
     
     // Read footer configuration
@@ -25,7 +23,7 @@ export async function FooterProps ({ locale }: FooterProps)
         query: GetFooter,
         variables: {
             channelId: channel.id,
-            locale: localeToContentGraphLocale(locale || getFallbackLocale()) as GraphQL.Locales
+            locale: channel.localeToGraphLocale(locale ?? channel.defaultLocale) as GraphQL.Locales
         }
     })
     const footerConfig = (graphResponse.data.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]

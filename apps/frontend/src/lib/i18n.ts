@@ -1,28 +1,45 @@
 import siteConfig from '@/site-config'
 
+/**
+ * @deprecated  Use '@/site-config' directly
+ * @see         import('@/site-config').slugToLocale
+ */
 export function slugToLocale<T extends string | undefined | null>(slug: string, defaultValue: T) : string | T
 {
-    const route = siteConfig.locales.filter(x => x.slug == slug)[0]
-    return route?.code || defaultValue
+    return siteConfig.slugToLocale(slug) ?? defaultValue
 }
 
+/**
+ * @deprecated  Use '@/site-config' directly
+ * @see         import('@/site-config').localeToSlug
+ */
 export function localeToSlug<T extends string | undefined | null>(locale: string, defaultValue: T) : string | T
 {
-    const route = siteConfig.locales.filter(x => x.code == locale)[0]
-    return route?.slug || defaultValue
+    return siteConfig.localeToSlug(locale) ?? defaultValue
 }
 
+/**
+ * @deprecated  Use '@/site-config' directly
+ * @see         import('@/site-config').localeToGraphLocale
+ */
 export function localeToContentGraphLocale(locale: string) : string
 {
-    const route = siteConfig.locales.filter(x => x.code == locale)[0]
-    return route ? route.graphLocale : locale.replaceAll("-","_") // ContentGraph can't handle dash, so we convert to an underscore
+    return siteConfig.localeToGraphLocale(locale) ?? locale.replaceAll('-', '_')
 }
 
+/**
+ * @deprecated  Use '@/site-config' directly
+ * @see         import('@/site-config').resolveLocale
+ */
 export function resolveLocale(requestedLocale?: string) : string
 {
-    return requestedLocale ?? siteConfig.defaultLocale
+    return siteConfig.resolveLocale(requestedLocale)
 }
 
+/**
+ * @deprecated  Use '@/site-config' directly
+ * @see         import('@/site-config').defaultLocale
+ */
 export function getFallbackLocale() 
 {
     return siteConfig.defaultLocale

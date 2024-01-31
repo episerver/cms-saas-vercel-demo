@@ -1,4 +1,5 @@
 import type { ComponentFactory, ComponentType, ComponentTypeHandle, ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react';
+export declare const EmptyComponentHandle = "$$fragment$$";
 /**
  * The default implementation of the ComponentFactory iterface
  */

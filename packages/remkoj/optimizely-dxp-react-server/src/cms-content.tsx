@@ -105,7 +105,7 @@ export const CmsContent = async ({contentType, contentTypePrefix, contentLink, c
     }
     
     // Resolve component
-    const Component = (contentType ? factory.resolve(contentType) : undefined) as EnhancedCmsComponent | undefined
+    const Component = factory.resolve(contentType ?? "") as EnhancedCmsComponent | undefined
     if (!Component) {
         if (DEBUG || DEV) {
             console.warn(`[CmsContent] Component of type "${ contentType?.join('/') ?? "" }" not resolved by factory`)

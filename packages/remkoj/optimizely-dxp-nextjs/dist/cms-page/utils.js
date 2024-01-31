@@ -6,8 +6,7 @@ export function urlToPath(baseUrl, language) {
     return slugs;
 }
 export function localeToGraphLocale(channel, locale) {
-    const route = channel.locales.filter(x => x.code == locale)[0];
-    return route ? route.graphLocale : locale.replaceAll("-", "_");
+    return channel.localeToGraphLocale(locale) ?? locale.replaceAll("-", "_");
 }
 export function slugToLocale(channel, slug, defaultValue) {
     const route = channel.locales.filter(x => x.slug == slug)[0];

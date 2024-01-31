@@ -10,8 +10,7 @@ export function urlToPath(baseUrl: URL, language: string) : string[] {
 
 export function localeToGraphLocale(channel: ChannelDefinition, locale: string) : string
 {
-    const route = channel.locales.filter(x => x.code == locale)[0]
-    return route ? route.graphLocale : locale.replaceAll("-","_")
+    return channel.localeToGraphLocale(locale) ?? locale.replaceAll("-","_")
 }
 
 export function slugToLocale<T extends string | undefined | null>(channel: ChannelDefinition, slug: string, defaultValue: T) : string | T

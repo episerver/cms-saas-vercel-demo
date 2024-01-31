@@ -32,7 +32,7 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         contentType.unshift(contentTypePrefix);
     }
     // Resolve component
-    const Component = (contentType ? factory.resolve(contentType) : undefined);
+    const Component = factory.resolve(contentType ?? "");
     if (!Component) {
         if (DEBUG || DEV) {
             console.warn(`[CmsContent] Component of type "${contentType?.join('/') ?? ""}" not resolved by factory`);

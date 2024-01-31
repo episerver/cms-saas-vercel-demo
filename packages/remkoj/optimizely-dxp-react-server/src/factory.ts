@@ -2,6 +2,8 @@ import type { ComponentFactory, ComponentType, ComponentTypeHandle, ComponentTyp
 const MERGE_SYMBOL = '/'
 const DBG = process.env.DXP_DEBUG == '1'
 
+export const EmptyComponentHandle =  '$$fragment$$'
+
 /**
  * The default implementation of the ComponentFactory iterface
  */
@@ -37,9 +39,9 @@ export class DefaultComponentFactory implements ComponentFactory {
 function processComponentTypeHandle(handle: ComponentTypeHandle) : string
 {
     if (typeof(handle) == 'string')
-        return handle
+        return handle == "" ? EmptyComponentHandle : handle
     if (Array.isArray(handle) && handle.every(s => typeof(s) == 'string'))
-        return handle.filter(s => s.toLowerCase() != 'content').join(MERGE_SYMBOL)
+        return handle.filter(s => s.toLowerCase() != 'content').map(s => s == "" ? EmptyComponentHandle : s).join(MERGE_SYMBOL)
     throw new Error(`Invalid component type handle: ${ typeof(handle) }`)
 }
 

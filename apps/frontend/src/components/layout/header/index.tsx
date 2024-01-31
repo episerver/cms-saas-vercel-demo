@@ -1,8 +1,7 @@
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import { gql as graphql } from '@gql/gql'
-import { getCurrentChannel } from '@/lib/current-channel'
 import { getServerClient } from '@/lib/client'
-import { getFallbackLocale, localeToContentGraphLocale, resolveLocale } from '@/lib/i18n'
+import siteInfo from '@/site-config'
 
 // Header components
 import Notice from './notice'
@@ -22,15 +21,14 @@ type SiteHeaderProps = {
 
 export default async function SiteHeader({ locale }: SiteHeaderProps) 
 {
-    const currentLocale = resolveLocale(locale)
+    const currentLocale = siteInfo.resolveLocale(locale)
     const client = getServerClient()
-    const siteInfo = await getCurrentChannel()
     const config = ((await client.query({query: HeaderConfigQuery, variables: {
-        locale: localeToContentGraphLocale(currentLocale) as any,
+        locale: siteInfo.localeToGraphLocale(currentLocale) as any,
         siteId: siteInfo.id
     }})).data?.HeaderConfigBlock?.items || [])[0]
     const siteName = config?.Name || "Brand name"
-    const strings = await getDictionary(currentLocale, getFallbackLocale())
+    const strings = await getDictionary(currentLocale, siteInfo.defaultLocale)
 
     // Process & filter the navigation menu, so we're sure that we only get the correct fragment back from it
     const menuItems = (config?.NavMenuArea ?? []).filter(Utils.isNotNullOrUndefined).map(x => x.ContentLink?.Expanded).filter(isNavMenuItem)
@@ -47,7 +45,7 @@ export default async function SiteHeader({ locale }: SiteHeaderProps)
             <LoginButton texts={ strings.login } />
         </div>
         <div className='bg-primary text-default-onPrimary w-full'>
-            <Menu items={ menuItems } brandName={ siteName } />
+            <Menu items={ menuItems } brandName={ siteName } locale={ currentLocale } />
         </div>
     </header>
 }

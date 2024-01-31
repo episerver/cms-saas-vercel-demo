@@ -1,7 +1,7 @@
 import type { Metadata } from 'next/types'
 import { Inter } from 'next/font/google'
-import getCurrentChannel from '@/lib/current-channel'
 import * as EnvTools from '@/lib/env'
+import channel from '@/site-config'
 
 // Client side context
 import GlobalProviders from '@components/providers'
@@ -18,7 +18,6 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export async function generateMetadata() : Promise<Metadata> {
-    const channel = await getCurrentChannel()
     return {
         metadataBase: channel.getPrimaryDomain(),
         title: {

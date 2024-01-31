@@ -106,12 +106,13 @@ export function createPage(
         CmsPage: async ({  params }) =>
         {
             // Resolve the content based upon the route
-            const slug = params?.lang ?? defaultLocale
+            const slug = params?.lang ?? defaultLocale.toLowerCase()
             const requestPath = (params?.path?.length ?? 0) > 0 ?
                 `/${ slug }/${ params?.path?.join("/") ?? "" }` :
                 `/${ slug }`
             
-            const response = await getContentByPath(client, { path: requestPath })
+            const graphLocale = channel.slugToGraphLocale(slug)
+            const response = await getContentByPath(client, { path: requestPath, locale: graphLocale })
             const info = (response.Content?.items ?? [])[0]
 
             if (!info) {
