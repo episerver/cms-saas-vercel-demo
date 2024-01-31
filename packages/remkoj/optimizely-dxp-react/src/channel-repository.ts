@@ -46,8 +46,8 @@ export class ChannelDefinition implements Readonly<ChannelDefinitionData> {
 
     protected dxp_url : string
     protected get editDomain() : string | undefined {
-        const primaryDomain : ChannelDomain | undefined = this.domains.filter(x => x.isEdit)[0]
-        return primaryDomain?.name
+        const editDomain : ChannelDomain | undefined = this.domains.filter(x => x.isEdit)[0]
+        return editDomain?.name
     }
     
     public constructor(initialData: ChannelDefinitionData, dxp_url: string) {

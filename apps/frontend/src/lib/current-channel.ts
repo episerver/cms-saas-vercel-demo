@@ -7,7 +7,8 @@ import currentChannel from '@/site-config'
  * Retrieve the current channel definition from the Optimizely Content
  * Management System. 
  * 
- * @deprecated  Use the build-time cache from '@/site-config' 
+ * @deprecated  Use the build-time cache from '@/site-config', this function
+ *              will be removed in a future commit
  * @returns     The current channel
  * @throws      When the current channel cannot be resolved
  */

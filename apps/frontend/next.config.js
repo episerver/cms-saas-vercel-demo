@@ -3,8 +3,8 @@ const nextConfig = {
     basePath: "",
     cleanDistDir: true,
     images: {
-        //loader: 'custom',
-        //loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
+        loader: 'custom',
+        loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
         remotePatterns: []
     }
 }

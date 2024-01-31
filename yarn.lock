@@ -2250,7 +2250,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions":
+"@remkoj/optimizely-graph-functions@workspace:^, @remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions"
   dependencies:
@@ -5797,6 +5797,7 @@ __metadata:
     "@remkoj/optimizely-dxp-nextjs": "workspace:*"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:*"
+    "@remkoj/optimizely-graph-functions": "workspace:^"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@types/chalk": "npm:^2.2.0"

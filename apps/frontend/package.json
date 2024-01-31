@@ -24,6 +24,7 @@
     "@remkoj/optimizely-dxp-nextjs": "workspace:*",
     "@remkoj/optimizely-dxp-react": "workspace:*",
     "@remkoj/optimizely-dxp-react-server": "workspace:*",
+    "@remkoj/optimizely-graph-functions": "workspace:^",
     "@tailwindcss/aspect-ratio": "^0.4.2",
     "@vercel/speed-insights": "^1.0.9",
     "@vercel/stega": "^0.1.0",

@@ -1,7 +1,8 @@
 import siteConfig from '@/site-config'
 
 /**
- * @deprecated  Use '@/site-config' directly
+ * @deprecated  Use '@/site-config' directly, this function will be removed in
+ *              a future commit
  * @see         import('@/site-config').slugToLocale
  */
 export function slugToLocale<T extends string | undefined | null>(slug: string, defaultValue: T) : string | T
@@ -10,7 +11,8 @@ export function slugToLocale<T extends string | undefined | null>(slug: string, 
 }
 
 /**
- * @deprecated  Use '@/site-config' directly
+ * @deprecated  Use '@/site-config' directly, this function will be removed in
+ *              a future commit
  * @see         import('@/site-config').localeToSlug
  */
 export function localeToSlug<T extends string | undefined | null>(locale: string, defaultValue: T) : string | T
@@ -19,7 +21,8 @@ export function localeToSlug<T extends string | undefined | null>(locale: string
 }
 
 /**
- * @deprecated  Use '@/site-config' directly
+ * @deprecated  Use '@/site-config' directly, this function will be removed in
+ *              a future commit
  * @see         import('@/site-config').localeToGraphLocale
  */
 export function localeToContentGraphLocale(locale: string) : string
@@ -28,7 +31,8 @@ export function localeToContentGraphLocale(locale: string) : string
 }
 
 /**
- * @deprecated  Use '@/site-config' directly
+ * @deprecated  Use '@/site-config' directly, this function will be removed in
+ *              a future commit
  * @see         import('@/site-config').resolveLocale
  */
 export function resolveLocale(requestedLocale?: string) : string
@@ -37,7 +41,8 @@ export function resolveLocale(requestedLocale?: string) : string
 }
 
 /**
- * @deprecated  Use '@/site-config' directly
+ * @deprecated  Use '@/site-config' directly, this function will be removed in
+ *              a future commit
  * @see         import('@/site-config').defaultLocale
  */
 export function getFallbackLocale() 
