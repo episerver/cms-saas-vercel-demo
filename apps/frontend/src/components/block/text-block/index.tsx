@@ -1,37 +1,66 @@
-import type { CmsComponent } from '@remkoj/optimizely-dxp-react'
-import type * as GraphQL from '@gql/graphql'
-import { gql } from '@gql/index'
-import './text-block.css'
+import { Variant } from "framer-motion";
 
-export type TextBlockComponentType = CmsComponent<GraphQL.TextBlockDataFragment>
-
-export const TextBlock : TextBlockComponentType = ({inEditMode, data}) => 
-{
-    const textData = data.MainBody ?? undefined
-    const spacing = data.Spacing ?? 'none'
-    if (!textData)
-        return <></>
-
-    const cssClasses : string[] = ["text-block rich-text"]
-    switch (spacing) {
-        case 'medium':
-            cssClasses.push('p-4','md:p-6','lg:p-8')
-            break
-        case 'none':
-        default:
-            // No additional classes needed
-            break
-        
-    }
-
-    //<StructuredHtml data={textData.MainBody || "null"} locale={ contentLink.locale } />
-    return <div data-epi-edit={ inEditMode ? 'MainBody' : undefined } className={cssClasses.join(' ')} dangerouslySetInnerHTML={{__html: textData}}></div>
+interface TextBlockProps {
+  className?: string;
+  center?: boolean;
+  width?: "full" | "small" | "medium" | "large";
+  headingSize: "small" | "medium" | "large" | "extraLarge";
+  animation?: {
+    hidden: Variant;
+    visible: Variant;
+  };
+  overline?: string;
+  heading?: string;
+  description?: string;
 }
-TextBlock.getDataFragment = () => ['TextBlockData', TextBlockData]
-TextBlock.displayName = "Text Block"
-export default TextBlock
 
-const TextBlockData = gql(/* GraphQL */`fragment TextBlockData on TextBlock {
-    Spacing
-    MainBody
-}`)
+export const TextBlock = ({ className = "", center = false, width = "full", headingSize = "medium", animation, overline = "", heading = "", description = "" }: TextBlockProps) => {
+  const additionalClasses: string[] = [];
+
+  switch (width) {
+    case "full":
+      additionalClasses.push("w-full");
+      break;
+    case "small":
+      additionalClasses.push("max-w-[400px] self-center");
+      break;
+    case "medium":
+      additionalClasses.push("max-w-[700px] self-center");
+      break;
+    case "large":
+      additionalClasses.push("max-w-[800px] self-center");
+      break;
+  }
+
+  if (center) {
+    additionalClasses.push("text-center justify-center");
+  }
+
+  if (className) {
+    additionalClasses.push(className);
+  }
+
+  switch (headingSize) {
+    case "small":
+      additionalClasses.push("prose-h2:text-[20px] prose-h2:my-[18px] prose-p:text-[20px]");
+      break;
+    case "medium":
+      additionalClasses.push("prose-h2:text-[36px] lg:prose-h2:text-[48px] prose-h2:my-[24px] prose-p:text-[20px]");
+      break;
+    case "large":
+      additionalClasses.push("prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px]");
+      break;
+    case "extraLarge":
+      additionalClasses.push("prose-h2:text-[96px] lg:prose-h2:text-[148px] prose-h2:my-[24px] prose-p:text-[36px] prose-p:mt-[24px] prose-p:mb-0");
+  }
+
+  return (
+    <section className={`${additionalClasses.join(" ")} flex`}>
+      <div className="prose max-w-none">
+        {overline && <span className="uppercase text-[12px]" dangerouslySetInnerHTML={{ __html: overline }}></span>}
+        {heading && <h2 dangerouslySetInnerHTML={{ __html: heading }}></h2>}
+        {description && <span dangerouslySetInnerHTML={{ __html: description }}></span>}
+      </div>
+    </section>
+  );
+};

@@ -1,124 +1,142 @@
-import React from 'react'
-import { Utils } from '@remkoj/optimizely-dxp-react'
-import { getServerClient } from '@/lib/client'
-import { gql } from '@gql/index'
-import type * as GraphQL from '@gql/graphql'
-import SiteConfig from '@/site-config'
+import Image from "next/image";
 
-export type FooterProps = {
-    locale?: string
-}
-
-import LinkButton from '@components/shared/link-button'
-import Link from 'next/link'
-import Image from 'next/image'
-
-export async function FooterProps ({ locale }: FooterProps)
-{
-    const channel = SiteConfig
-    const optlyGraphClient = getServerClient()
-    
-    // Read footer configuration
-    const graphResponse = await optlyGraphClient.query({
-        query: GetFooter,
-        variables: {
-            channelId: channel.id,
-            locale: channel.localeToGraphLocale(locale ?? channel.defaultLocale) as GraphQL.Locales
-        }
-    })
-    const footerConfig = (graphResponse.data.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
-
-    // Build the image src
-    const imageSrc = footerConfig?.logo || "/assets/logo.png"
-    const imageAlt = SiteConfig.name
-
-    return <footer className='max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8'>
-        <div className='footer-content grid gap-4 grid-cols-2 sm:grid-cols-3 lg:grid-cols-7 text-slate-900'>
-            <div className='col-span-2 lg:col-span-3 flex flex-col flex-nowrap footer-brand'>
-                <div className='small-brand-logo relative max-w-[10rem] aspect-[5/1] w-full'>
-                    <Image src={ imageSrc } alt={ imageAlt } fill className='object-contain' sizes="10rem" />
-                </div>
-                <div className='text-sm my-4' dangerouslySetInnerHTML={{ __html: footerConfig?.text || ""}}></div>
-                <div>
-                    <FooterLink data={ footerConfig?.button } showAsButton />
-                </div>
-            </div>
-            <FooterLinkList data={ footerConfig?.firstLinks } />
-            <FooterLinkList data={ footerConfig?.secondLinks } />
-            <FooterLinkList data={ footerConfig?.thirdLinks } />
-            <FooterLinkList data={ footerConfig?.fourthLinks } />
+export default async function Footer({ linkLists }: any) {
+  return (
+    <footer className="bg-vulcan py-16 lg:py-32 outer-padding">
+      <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 text-white">
+        <div className="mb-16 col-span-2 lg:col-span-1">
+          <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:underline hover:prose-a:no-underline prose-a:not-italic">
+            <h1>Global HQ</h1>
+            <address>
+              <p>
+                119 5th Ave, 7th floor
+                <br /> New York, NY 10003, USA
+              </p>
+              <p>
+                <a href="#">Contact us</a>
+                <br />
+                Phone: +1 603 594 0249
+              </p>
+            </address>
+          </section>
+          <h1 className="sr-only">Language select</h1>
+          <select className="form-select font-semibold bg-vulcan mt-10" name="" id="">
+            <option value="">English</option>
+            <option value="">Nederlands</option>
+            <option value="">Vlaams</option>
+          </select>
         </div>
-        <div className='footer-copyright border-t border-stripe-dark pt-8 mt-4 text-default-medium text-xs'>
-            <div className='copyright-notice'>
-                &copy; 2023-{ new Date().getFullYear() } Remko Jantzen / Optimizely / { channel.name } all rights reserved
-            </div>
+        <div className="flex lg:justify-center col-span-2 lg:col-span-1 mb-16">
+          <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:no-underline hover:prose-a:underline prose-a:not-italic prose-li:pl-0">
+            <h1>Services</h1>
+            <ul className="list-none pl-0">
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+            </ul>
+          </section>
         </div>
+        <div className="flex lg:justify-center col-span-2 lg:col-span-1 mb-16">
+          <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:no-underline hover:prose-a:underline prose-a:not-italic prose-li:pl-0">
+            <h1>Services</h1>
+            <ul className="list-none pl-0">
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div className="flex lg:justify-center col-span-2 lg:col-span-1 mb-16">
+          <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:no-underline hover:prose-a:underline prose-a:not-italic prose-li:pl-0">
+            <h1>Services</h1>
+            <ul className="list-none pl-0">
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+        <div className="flex lg:justify-center col-span-2 lg:col-span-1 mb-16">
+          <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:no-underline hover:prose-a:underline prose-a:not-italic prose-li:pl-0">
+            <h1>Services</h1>
+            <ul className="list-none pl-0">
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+              <li>
+                <a href="#">Link 1</a>
+              </li>
+            </ul>
+          </section>
+        </div>
+      </div>
+      <div className="container mx-auto grid text-white mt-16 lg:mt-32 lg:text-center lg:justify-center">
+        <div className="lg:justify-center flex mb-16">
+          <Image src={"/assets/moseybank-logo-white.svg"} width={200} height={35} alt="Moseybank Logo" />
+        </div>
+        <div className="md:flex items-center md:prose-li:ml-[24px] prose-a:text-[12px] prose-p:text-[12px]">
+          <p>© 2024 Optimizely / Moseybank. All rights reserved.</p>
+          <ul className="list-none md:flex mt-6 md:mt-0">
+            <li>
+              <a href="#">Privacy Policy</a>
+            </li>
+            <li>
+              <a href="#">Website terms of use</a>
+            </li>
+            <li>
+              <a href="#">Trust center</a>
+            </li>
+            <li>
+              <a href="#">Cookie settings</a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </footer>
+  );
 }
-
-function FooterLinkList({ data }: { data ?: GraphQL.FooterLinksFragment | null })
-{
-    if (!data)
-        return <></>
-
-    const caption = data.caption || "Unnamed list"
-    let linkId = 0
-
-    return <div className='w-full'>
-        <div className='font-semibold w-full pb-2'>{ caption }</div>
-        <div className='flex flex-col'>
-            { (data.items || []).map(link => <FooterLink key={`link-${++linkId}`} data={link} className='py-1' />) }
-        </div>
-    </div>
-}
-
-function FooterLink({data, showAsButton, className }: {data?: GraphQL.FooterLinkDataFragment | null, showAsButton?: boolean, className?: string}) 
-{
-    if (!data)
-        return <></>
-    
-    const href = data.content?.data?.path || data.content?.url || data.href || "/"
-    const target = data.target || undefined
-    const title = data.title || undefined
-    const text = data.children || undefined
-
-    const Component = showAsButton ? LinkButton : Link
-    return <Component href={href} target={target} title={title} className={ className }>{ text }</Component>
-}
-
-export default FooterProps
-
-const GetFooter = gql(/*GraphQL*/`query getFooter($channelId: String!, $locale: [Locales!]) {
-    FooterConfigBlock (
-        where: { FooterChannelID: { eq: $channelId } }, 
-        locale: $locale,
-        limit: 1
-    ) {
-        total
-        items {
-            logo: FooterLogo
-            text: FooterText
-            button: BrandButton { ...FooterLinkData }
-            firstLinks: FooterLinkGroup1 { ...FooterLinks }
-            secondLinks: FooterLinkGroup2 { ...FooterLinks }
-            thirdLinks: FooterLinkGroup3 { ...FooterLinks }
-            fourthLinks: FooterLinkGroup4 { ...FooterLinks }
-        }
-    }
-}`)
-const FooterLinks = gql(/*GraphQL*/`fragment FooterLinks on FooterConfigBlockBlockData {
-    caption:LinkListCaption
-    items: LinkListItems { ...FooterLinkData }
-}`)
-const FooterLinkData = gql(/*GraphQL*/`fragment FooterLinkData on LinkItemNode {
-    href: Href
-    children: Text
-    title: Title
-    target: Target
-    content: ContentLink {
-        url: Url
-        data: Expanded {
-            path: RelativePath
-        }
-    }
-}`)

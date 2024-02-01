@@ -1,109 +1,151 @@
-import type { CmsComponent } from '@remkoj/optimizely-dxp-react'
-import type { CmsContentAreaClassMapper } from '@remkoj/optimizely-dxp-react-server'
-import type * as GraphQL from '@gql/graphql'
-import { CmsContentArea } from '@remkoj/optimizely-dxp-react-server'
-import { gql } from '@gql/gql'
+type paddingSize = "none" | "small" | "medium" | "large" | "extraLarge";
+type marginSize = "none" | "small" | "medium" | "large" | "extraLarge";
+type gapSize = "none" | "small" | "medium" | "large" | "extraLarge";
 
-const NoClassMapper : CmsContentAreaClassMapper = () => ''
+type Image = { src: string; alt: string; width: number; height: number };
 
-export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> = ({ contentLink, data, children, client, inEditMode }) => 
-{
-    const items = data.MainContainerArea
-    if (!items)
-        return <div className='container-block empty-container-block w-full' data-epi-edit={ inEditMode ? "MainContentArea" : undefined } />
-
-    const additionalClasses : string[] = []
-    let classMapper = NoClassMapper
-    switch (data?.Gap) {
-        case 'small':
-            additionalClasses.push('gap-y-1','md:gap-2','lg:gap-4')
-            break
-        case 'medium':
-            additionalClasses.push('gap-y-4','md:gap-6','lg:gap-8')
-            break
-        case 'large':
-            additionalClasses.push('gap-y-8','md:gap-10','lg:gap-12')
-            break
-        default:
-        case 'none':
-            additionalClasses.push('gap-0')
-            break
-    }
-    switch (data?.Spacing) {
-        case 'small':
-            additionalClasses.push('p-1','md:p-2','lg:p-4')
-            break
-        case 'medium':
-            additionalClasses.push('p-4','md:p-6','lg:p-8')
-            break
-        case 'large':
-            additionalClasses.push('p-8','md:p-10','lg:p-12')
-            break
-        default:
-        case 'none':
-            additionalClasses.push('p-0')
-            break
-    }
-    switch (data?.GridLayout) {
-        case '1-col':
-            additionalClasses.push('grid-cols-1')
-            break
-        case '2-cols':
-            additionalClasses.push('grid-cols-1','md:grid-cols-2')
-            break
-        case '3-cols':
-            additionalClasses.push('grid-cols-1','lg:grid-cols-3')
-            break
-        case '3-cols-center':
-            additionalClasses.push('grid-cols-1','md:grid-cols-2','lg:grid-cols-4')
-            classMapper = (displayOption, contentType, idx) => {
-                const columnId = idx % 3
-                if (columnId == 1) // Second item in row
-                    return 'col-span-2 order-none md:order-first lg:order-none lg:py-16'
-                return 'order-none'
-            }
-            break
-        default:
-        case '4-cols':
-            additionalClasses.push('grid-cols-1','md:grid-cols-2','lg:grid-cols-4')
-            break
-    }
-    switch (data?.BackgroundColor) {
-        case 'primary':
-            additionalClasses.push('bg-primary-light text-default-onPrimaryLight border-solid border-b-4 border-t-8 border-primary h-full')
-            break
-        case 'secondary':
-            additionalClasses.push('bg-secondary-light text-default-onSecondaryLight border-solid border-b-4 border-t-8 border-secondary h-full')
-            break
-        case 'gray':
-            additionalClasses.push('bg-stripe-light text-default border-solid border-b-4 border-t-8 border-stripe-dark h-full')
-            break
-        case 'none':
-        default:
-            // Do nothing
-            break
-    }
-
-    return <CmsContentArea 
-                className={"container-block grid "+additionalClasses.join(' ')}
-                fieldName='MainContentArea' 
-                inEditMode={ inEditMode } 
-                locale={ contentLink.locale } 
-                items={ items } 
-                classMapper={ classMapper } />
+interface ContainerBlockProps {
+  columns: 1 | 2 | 3 | 4 | 5 | 6;
+  paddingTop?: paddingSize;
+  paddingBottom?: paddingSize;
+  marginTop: marginSize;
+  marginBottom: marginSize;
+  backgroundImage?: Image;
+  children?: React.ReactNode;
+  gap: gapSize;
+  color?: undefined | "light-blue" | "blue" | "orange" | "green" | "red" | "white";
 }
-ContainerBlock.displayName = "Container Block"
-ContainerBlock.getDataFragment = () => ["ContainerBlockData", Documents.data]
-export default ContainerBlock
 
-const Documents : Readonly<{[ field: string ]: any }> = {
-    data: gql(/** GraphQL */`fragment ContainerBlockData on ContainerBlock {
-    MainContainerArea {
-        ...BlockContentAreaItemSearchData
-    }
-    Gap
-    Spacing
-    GridLayout
-    BackgroundColor
-}`)
-}
+const columnClassMap: { [key in ContainerBlockProps["columns"]]: string } = {
+  1: "grid-cols-1",
+  2: "grid-cols-1 md:grid-cols-2",
+  3: "grid-cols-1 md:grid-cols-3",
+  4: "grid-cols-1 md:grid-cols-2 lg:grid-cols-4",
+  5: "grid-cols-1 md:grid-cols-2 lg:grid-cols-5",
+  6: "grid-cols-1 md:grid-cols-3 lg:grid-cols-6",
+};
+
+const gapSizeClassMap: { [key in ContainerBlockProps["gap"]]: string } = {
+  none: "",
+  small: "gap-4",
+  medium: "gap-8",
+  large: "gap-12",
+  extraLarge: "gap-24",
+};
+
+const ContainerBlock: React.FC<ContainerBlockProps> = ({
+  columns = 1,
+  paddingTop = "none",
+  paddingBottom = "none",
+  marginTop = "medium",
+  marginBottom = "medium",
+  backgroundImage,
+  gap = "small",
+  color,
+  children,
+}) => {
+  const columnClass = columnClassMap[columns];
+  const gapClass = gap ? gapSizeClassMap[gap] : "";
+  const additionalClasses: string[] = [];
+  const innerClasses: string[] = [];
+  let backgroundStyle = {};
+
+  if (backgroundImage && typeof backgroundImage === "object" && "src" in backgroundImage) {
+    // Set background image style
+    backgroundStyle = { backgroundImage: `url(${backgroundImage.src})`, backgroundSize: "cover", backgroundPosition: "center" };
+  }
+
+  switch (color) {
+    case "light-blue":
+      additionalClasses.push("bg-azure text-white");
+      break;
+    case "blue":
+      additionalClasses.push("bg-vulcan before:bg-vulcan text-white");
+      break;
+    case "orange":
+      additionalClasses.push("bg-tangy text-vulcan");
+      break;
+    case "green":
+      additionalClasses.push("bg-verdansk text-vulcan");
+      break;
+    case "red":
+      additionalClasses.push("bg-paleruby text-white");
+      break;
+    case "white":
+      additionalClasses.push("bg-white text-vulcan");
+      break;
+  }
+
+  switch (paddingTop) {
+    case "small":
+      additionalClasses.push("pt-8");
+      break;
+    case "medium":
+      additionalClasses.push("pt-16");
+      break;
+    case "large":
+      additionalClasses.push("pt-24");
+      break;
+    case "extraLarge":
+      additionalClasses.push("pt-64");
+      break;
+  }
+
+  switch (paddingBottom) {
+    case "small":
+      additionalClasses.push("pb-8");
+      break;
+    case "medium":
+      additionalClasses.push("pb-16");
+      break;
+    case "large":
+      additionalClasses.push("pb-24");
+      break;
+    case "extraLarge":
+      additionalClasses.push("pb-64");
+      break;
+  }
+
+  switch (marginTop) {
+    case "small":
+      additionalClasses.push("mt-8");
+      break;
+    case "medium":
+      additionalClasses.push("mt-16");
+      break;
+    case "large":
+      additionalClasses.push("mt-24");
+      break;
+    case "extraLarge":
+      additionalClasses.push("mt-64");
+      break;
+  }
+
+  switch (marginBottom) {
+    case "small":
+      additionalClasses.push("mb-8");
+      break;
+    case "medium":
+      additionalClasses.push("mb-16");
+      break;
+    case "large":
+      additionalClasses.push("mb-24");
+      break;
+    case "extraLarge":
+      additionalClasses.push("mb-64");
+      break;
+  }
+
+  if (backgroundImage && typeof backgroundImage === "object") {
+    additionalClasses.push("relative before:content-[''] before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-opacity-70");
+    innerClasses.push("z-10 relative");
+  }
+
+  return (
+    <section className={`outer-padding w-full ${additionalClasses.join(" ")}`} style={{ ...backgroundStyle }}>
+      <div className={`container mx-auto place-items-center grid ${columnClass} ${gapClass} ${innerClasses.join(" ")}`}>{children}</div>
+    </section>
+  );
+};
+
+export default ContainerBlock;

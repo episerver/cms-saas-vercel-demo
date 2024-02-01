@@ -5,7 +5,12 @@ const nextConfig = {
     images: {
         loader: 'custom',
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
-        remotePatterns: []
+        remotePatterns: [
+        {
+            protocol: 'https',
+            hostname: 'placekitten.com'
+        },
+        ]
     }
 }
 
