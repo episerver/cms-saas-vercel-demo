@@ -14,7 +14,16 @@ interface TextBlockProps {
   description?: string;
 }
 
-export const TextBlock = ({ className = "", center = false, width = "full", headingSize = "medium", animation, overline = "", heading = "", description = "" }: TextBlockProps) => {
+export const TextBlock = ({
+  className = "",
+  center = false,
+  width = "full",
+  headingSize = "medium",
+  animation,
+  overline = "",
+  heading = "",
+  description = "",
+}: TextBlockProps) => {
   const additionalClasses: string[] = [];
 
   switch (width) {
@@ -42,25 +51,42 @@ export const TextBlock = ({ className = "", center = false, width = "full", head
 
   switch (headingSize) {
     case "small":
-      additionalClasses.push("prose-h2:text-[20px] prose-h2:my-[18px] prose-p:text-[20px]");
+      additionalClasses.push(
+        "prose-h2:text-[20px] prose-h2:my-[18px] prose-p:text-[20px]"
+      );
       break;
     case "medium":
-      additionalClasses.push("prose-h2:text-[36px] lg:prose-h2:text-[48px] prose-h2:my-[24px] prose-p:text-[20px]");
+      additionalClasses.push(
+        "prose-h2:text-[36px] lg:prose-h2:text-[48px] prose-h2:my-[24px] prose-p:text-[20px]"
+      );
       break;
     case "large":
-      additionalClasses.push("prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px]");
+      additionalClasses.push(
+        "prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px]"
+      );
       break;
     case "extraLarge":
-      additionalClasses.push("prose-h2:text-[96px] lg:prose-h2:text-[148px] prose-h2:my-[24px] prose-p:text-[36px] prose-p:mt-[24px] prose-p:mb-0");
+      additionalClasses.push(
+        "prose-h2:text-[96px] lg:prose-h2:text-[148px] prose-h2:my-[24px] prose-p:text-[36px] prose-p:mt-[24px] prose-p:mb-0"
+      );
   }
 
   return (
     <section className={`${additionalClasses.join(" ")} flex`}>
       <div className="prose max-w-none">
-        {overline && <span className="uppercase text-[12px]" dangerouslySetInnerHTML={{ __html: overline }}></span>}
+        {overline && (
+          <span
+            className="uppercase text-[12px]"
+            dangerouslySetInnerHTML={{ __html: overline }}
+          ></span>
+        )}
         {heading && <h2 dangerouslySetInnerHTML={{ __html: heading }}></h2>}
-        {description && <span dangerouslySetInnerHTML={{ __html: description }}></span>}
+        {description && (
+          <span dangerouslySetInnerHTML={{ __html: description }}></span>
+        )}
       </div>
     </section>
   );
 };
+
+export default TextBlock;

@@ -13,14 +13,14 @@
       "DAMVideoAsset",
       "HeroBlock",
       "HomePageHeroBlock",
+      "HtmlBlock",
       "LayoutContainerBlock",
       "MegaMenuGroupBlock",
       "MenuNavigationBlock",
       "QuoteBlock",
       "StandardPage",
       "StartPage",
-      "TextBlock",
-      "HTMLBlock"
+      "TextBlock"
     ],
     "IData": [
       "BlogListingPage",
@@ -36,6 +36,7 @@
       "Data",
       "HeroBlock",
       "HomePageHeroBlock",
+      "HtmlBlock",
       "LayoutContainerBlock",
       "MegaMenuGroupBlock",
       "MenuNavigationBlock",
@@ -43,8 +44,7 @@
       "SiteDefinition",
       "StandardPage",
       "StartPage",
-      "TextBlock",
-      "HTMLBlock"
+      "TextBlock"
     ]
   }
 }

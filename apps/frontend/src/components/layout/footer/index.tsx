@@ -1,4 +1,3 @@
-import "server-only";
 import { Utils } from "@remkoj/optimizely-dxp-react";
 import { gql as graphql } from "@apollo/client";
 import { getCurrentChannel } from "@/lib/current-channel";
