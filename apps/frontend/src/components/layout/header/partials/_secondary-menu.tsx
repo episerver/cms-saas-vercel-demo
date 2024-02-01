@@ -4,7 +4,6 @@ import { HeaderContext } from "../_header";
 
 const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
   const { utilityItems } = useContext(HeaderContext);
-  console.log(utilityItems);
 
   if (!utilityItems) return null;
 
@@ -16,7 +15,7 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
             navigationItem: { text, type, url, variant },
           },
         }) => (
-          <li className="md:mr-6 xl:mr-12">
+          <li className="md:mr-6 xl:mr-12" key={text}>
             <Button buttonType={type} buttonVariant={variant} url={url}>
               {text}
             </Button>

@@ -19,8 +19,8 @@
       "QuoteBlock",
       "StandardPage",
       "StartPage",
-      "TextBlock"
- 
+      "TextBlock",
+      "HTMLBlock"
     ],
     "IData": [
       "BlogListingPage",
@@ -43,7 +43,8 @@
       "SiteDefinition",
       "StandardPage",
       "StartPage",
-      "TextBlock"
+      "TextBlock",
+      "HTMLBlock"
     ]
   }
 }

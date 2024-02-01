@@ -58,7 +58,6 @@ const HeaderConfigQuery = graphql(/* graphql */ `
 
   fragment MegaMenuItem on MegaMenuGroupBlock {
     menuName: MenuMenuHeading
-    mainUrl: MegaMenuUrl
     menuData: MegaMenuContentArea {
       contentLink: ContentLink {
         menuList: Expanded {
