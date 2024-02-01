@@ -7,12 +7,14 @@ import { CmsContent } from '@remkoj/optimizely-dxp-react-server';
 import { MetaDataResolver } from '../metadata';
 import { urlToPath, localeToGraphLocale } from './utils';
 import getContentByPathBase from './data';
+import { getServerClient } from '../client';
 const CreatePageOptionDefaults = {
     defaultLocale: "en",
-    getContentByPath: getContentByPathBase
+    getContentByPath: getContentByPathBase,
+    client: getServerClient
 };
-export function createPage(client, factory, channel, options) {
-    const { defaultLocale, getContentByPath } = {
+export function createPage(factory, channel, options) {
+    const { defaultLocale, getContentByPath, client: clientFactory } = {
         ...CreatePageOptionDefaults,
         ...{ defaultLocale: channel.defaultLocale },
         ...options
@@ -20,17 +22,18 @@ export function createPage(client, factory, channel, options) {
     const DEBUG = process.env.NODE_ENV == "development";
     const pageDefintion = {
         generateStaticParams: async () => {
+            const client = clientFactory();
             const resolver = new RouteResolver(client);
-            const routes = (await resolver.getRoutes()).map(r => {
+            return (await resolver.getRoutes()).map(r => {
                 return {
                     lang: r.language,
                     path: urlToPath(r.url, r.language)
                 };
             });
-            return routes;
         },
         generateMetadata: async ({ params: { lang, path } }, resolving) => {
             // Read variables from request
+            const client = clientFactory();
             const requestPath = (path?.length ?? 0) > 0 ?
                 `/${lang ?? ""}/${path?.join("/") ?? ""}` :
                 `/${lang ?? ""}`;
@@ -64,6 +67,7 @@ export function createPage(client, factory, channel, options) {
         },
         CmsPage: async ({ params }) => {
             // Resolve the content based upon the route
+            const client = clientFactory();
             const slug = params?.lang ?? defaultLocale.toLowerCase();
             const requestPath = (params?.path?.length ?? 0) > 0 ?
                 `/${slug}/${params?.path?.join("/") ?? ""}` :

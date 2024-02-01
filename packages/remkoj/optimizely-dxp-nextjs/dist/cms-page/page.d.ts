@@ -1,8 +1,7 @@
 /// <reference types="react" />
 import 'server-only';
-import type { ApolloClient } from '@apollo/client';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react';
+import { type ClientFactory, type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react';
 import { type GetContentByPathMethod } from './data';
 export type Params = {
     path: string[] | undefined;
@@ -23,5 +22,6 @@ export type NextJsPage = {
 export type CreatePageOptions = {
     defaultLocale: string;
     getContentByPath: GetContentByPathMethod;
+    client: ClientFactory;
 };
-export declare function createPage(client: ApolloClient<any>, factory: ComponentFactory, channel: ChannelDefinition, options?: Partial<CreatePageOptions>): NextJsPage;
+export declare function createPage(factory: ComponentFactory, channel: ChannelDefinition, options?: Partial<CreatePageOptions>): NextJsPage;

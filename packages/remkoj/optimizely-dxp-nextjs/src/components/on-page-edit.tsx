@@ -28,6 +28,8 @@ declare global {
     }
 }
 
+const DEV = process.env.NODE_ENV == 'development'
+
 export const OnPageEdit : FunctionComponent<OnPageEditProps> = ({ mode, children, className, timeout }) => 
 {
     const router = useRouter()
@@ -77,7 +79,7 @@ export const OnPageEdit : FunctionComponent<OnPageEditProps> = ({ mode, children
                 if (previewUrl == eventData.previewUrl) {
                     console.log(`Refreshing preview: ${ contentId } => ${ newContentId }`)
                     router.refresh()
-                    setShowMask(false)
+                    //setShowMask(false)
                 } else {
                     const newUrl = new URL(eventData.previewUrl)
                     console.log(`Navigating to new preview: ${ contentId } => ${ newContentId }`)

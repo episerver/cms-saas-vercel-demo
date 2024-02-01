@@ -1,4 +1,4 @@
-import { gql, type ApolloClient } from "@apollo/client"
+import { gql, GraphQLClient } from "graphql-request"
 
 export type GetContentByPathVariables = {
     path: string,
@@ -36,21 +36,17 @@ export type GetMetaDataByPathResponse = {
     }
 }
 
-export type GetContentByPathMethod = (client: ApolloClient<any>, variables: GetContentByPathVariables) => Promise<GetContentByPathResponse>
-export type GetMetaDataByPathMethod = (client: ApolloClient<any>, variables: GetContentByPathVariables) => Promise<GetMetaDataByPathResponse>
+export type GetContentByPathMethod = (client: GraphQLClient, variables: GetContentByPathVariables) => Promise<GetContentByPathResponse>
+export type GetMetaDataByPathMethod = (client: GraphQLClient, variables: GetContentByPathVariables) => Promise<GetMetaDataByPathResponse>
 
-export const getMetaDataByPath: GetMetaDataByPathMethod = async (client, variables) =>
+export const getMetaDataByPath: GetMetaDataByPathMethod = (client, variables) =>
 {
-    const result = await client.query<GetMetaDataByPathResponse,GetContentByPathVariables>({ query: metadataQuery, variables })
-    if (result.error) throw result.error
-    return result.data
+    return client.request<GetMetaDataByPathResponse,GetContentByPathVariables>(metadataQuery, variables)
 }
 
-export const getContentByPath: GetContentByPathMethod = async (client, variables) =>
+export const getContentByPath: GetContentByPathMethod = (client, variables) =>
 {
-    const result = await client.query<GetContentByPathResponse,GetContentByPathVariables>({ query: contentQuery, variables })
-    if (result.error) throw result.error
-    return result.data
+    return client.request<GetContentByPathResponse,GetContentByPathVariables>(contentQuery, variables)
 }
 
 export default getContentByPath

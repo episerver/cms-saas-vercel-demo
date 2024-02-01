@@ -1,12 +1,8 @@
-import type { ApolloClient, ApolloClientOptions, NormalizedCacheObject } from '@apollo/client';
-import { type ContentGraphConfig, type ContentLink } from '@remkoj/optimizely-dxp-react';
+import { type ComponentFactory, type ContentGraphConfig, type ContentLink, type ContentGraphClient } from '@remkoj/optimizely-dxp-react';
 import { Metadata } from 'next';
-import { ComponentFactory } from '@remkoj/optimizely-dxp-react';
-export declare class MetaDataResolver<TCacheShape extends NormalizedCacheObject = NormalizedCacheObject> {
+export declare class MetaDataResolver {
     private _cgClient;
-    private _config;
-    constructor(client: ApolloClient<TCacheShape>, config?: ContentGraphConfig);
-    constructor(token?: string, config?: ContentGraphConfig, apolloConfig?: Partial<ApolloClientOptions<TCacheShape>>);
+    constructor(clientOrConfig?: ContentGraphConfig | ContentGraphClient);
     /**
      * Resolve the meta data for a component, if it has a meta-data method exposed.
      *

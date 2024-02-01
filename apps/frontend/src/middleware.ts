@@ -27,17 +27,15 @@ function getLocale(request: NextRequest) : string
 
 export function middleware(request: NextRequest)
 {
-    if (DEBUG)
-        console.log("[Middleware] Caught request for: ", request.nextUrl.href)
     const pathname = request.nextUrl.pathname
 
     // If we don't have a locale, redirect to the same path with locale
     const pathnameIsMissingLocale = slugs.every(slug => !pathname.toLowerCase().startsWith(`/${slug.toLowerCase()}/`) && pathname !== `/${slug.toLowerCase()}`)
-    if (DEBUG)
-        console.log(`[Middleware] Detected locale missing: ${ pathnameIsMissingLocale ? 'yes' : 'no' }`)
     if (pathnameIsMissingLocale) {
         const locale = getLocale(request)
         const slug = siteConfig.resolveSlug(locale)
+        if (DEBUG)
+            console.log(`[Middleware] Detected locale missing, redirecting to /${ slug }${ pathname }`)
         return NextResponse.redirect(new URL(`/${ slug }${ pathname }`, request.url), {
             status: DEBUG ? 302 : 301
         })

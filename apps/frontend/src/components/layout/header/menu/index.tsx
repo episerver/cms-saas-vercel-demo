@@ -4,6 +4,7 @@ import MenuItem, { type SiteMenuItemProps } from './client'
 import SiteSearch from '../site-search'
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import { CmsContentArea } from '@remkoj/optimizely-dxp-react-server'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import type * as GraphQL from '@gql/graphql'
 import SiteInfo from '@/site-config'
 
@@ -33,7 +34,7 @@ export default function SiteMenu({ locale, items, brandName }: SiteMenuProps) {
                         title: x.lastLink?.title ?? undefined
                     } : undefined
                     return <MenuItem key={`menu-item-${ ++counter }`} label={ x?.Label ?? 'Menu Item' } links={ menuItemLinks } bottomLink={ bottomLink } >
-                        <CmsContentArea items={ (x.MenuContent || []).filter(Utils.isNotNullOrUndefined) } />
+                        <CmsContentArea items={ (x.MenuContent || []).filter(Utils.isNotNullOrUndefined) } client={ getServerClient() }/>
                     </MenuItem>
                 })}
                     <div className='lg:hidden w-8 h-4 mx-2 sm:mx-3 lg:mx-4 py-3 grow-0 shrink-0'/>

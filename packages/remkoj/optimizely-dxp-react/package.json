@@ -10,25 +10,22 @@
     "./dist"
   ],
   "devDependencies": {
-    "@apollo/client": "^3.9.0",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^20.11.13",
-    "@types/react": "^18.2.48",
-    "@types/uuid": "^9.0.8",
+    "@types/node": "^20.11.16",
+    "@types/react": "^18.2.51",
     "crypto-js": "^4.2.0",
     "graphql": "^16.8.1",
+    "graphql-request": "^6.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "scheduler": "^0.23.0",
-    "typescript": "^5.3.3",
-    "uuid": "^9.0.1"
+    "typescript": "^5.3.3"
   },
   "peerDependencies": {
-    "@apollo/client": "*",
     "crypto-js": "*",
     "graphql": "*",
-    "react": "*",
-    "uuid": "*"
+    "graphql-request": "*",
+    "react": "*"
   },
   "scripts": {
     "clean": "tsc --build --clean",

@@ -8,7 +8,7 @@ const NoClassMapper : CmsContentAreaClassMapper = () => ''
 
 export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> = ({ contentLink, data, children, client, inEditMode }) => 
 {
-    const items = data.MainContainerArea
+    const items = data?.MainContainerArea
     if (!items)
         return <div className='container-block empty-container-block w-full' data-epi-edit={ inEditMode ? "MainContentArea" : undefined } />
 
@@ -90,7 +90,8 @@ export const ContainerBlock : CmsComponent<GraphQL.ContainerBlockDataFragment> =
                 inEditMode={ inEditMode } 
                 locale={ contentLink.locale } 
                 items={ items } 
-                classMapper={ classMapper } />
+                classMapper={ classMapper }
+                client={ client } />
 }
 ContainerBlock.displayName = "Container Block"
 ContainerBlock.getDataFragment = () => ["ContainerBlockData", Documents.data]

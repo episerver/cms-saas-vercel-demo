@@ -1,5 +1,6 @@
-import { type ApolloClient, type DocumentNode, gql } from '@apollo/client/core'
 import getContentGraphConfig, { type ContentGraphConfig } from './config'
+import createClient, { isContentGraphClient, type ContentGraphClient } from './client'
+import { gql } from 'graphql-request'
 
 const IS_DEV = process.env.NODE_ENV == 'development'
 
@@ -68,6 +69,11 @@ export class ChannelDefinition implements Readonly<ChannelDefinitionData> {
     {
         const edit = this.editDomain
         return edit ? new URL(`https://${ edit }/`) : new URL(this.dxp_url)
+    }
+
+    public getCmsUrl() : string 
+    {
+        return this.dxp_url
     }
 
     /**
@@ -174,22 +180,16 @@ export class ChannelDefinition implements Readonly<ChannelDefinitionData> {
 
 export class ChannelRepository
 {
-    protected client : ApolloClient<any>
-    protected config : ContentGraphConfig
+    protected client : ContentGraphClient
 
-    public constructor(optimizelyGraphClient: ApolloClient<any>, optimizelyGraphConfig?: ContentGraphConfig)
+    public constructor(client?: ContentGraphClient | ContentGraphConfig)
     {
-        this.client = optimizelyGraphClient
-        this.config = optimizelyGraphConfig || getContentGraphConfig()
+        this.client = isContentGraphClient(client) ? client : createClient(client || getContentGraphConfig())
     }
 
     public async getAll() : Promise<ReadonlyArray<Readonly<ChannelDefinition>>>
     {
-        const { error, errors, data } = await this.client.query({ query: Queries.getAll, fetchPolicy: "cache-first" })
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph")
-        }
-        
+        const data = await this.client.request<{ GetAllChannels?: {channels: {}[]}}, {}>(Queries.getAll)
         const channels = data.GetAllChannels?.channels
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph")
@@ -199,11 +199,7 @@ export class ChannelRepository
 
     public async getById(id: string) : Promise<Readonly<ChannelDefinition> | null>
     {
-        const { error, errors, data } = await this.client.query({ query: Queries.getById, fetchPolicy: "cache-first", variables: { id } })
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph")
-        }
-        
+        const data = await this.client.request<{GetChannelById?: { channels: {}[]}}>(Queries.getById, { id })
         const channels = data.GetChannelById?.channels
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph")
@@ -216,11 +212,7 @@ export class ChannelRepository
 
     public async getByDomain(domain: string, fallback: boolean = true) : Promise<Readonly<ChannelDefinition> | null>
     {
-        const { error, errors, data } = await this.client.query({ query: Queries.getByDomain, fetchPolicy: "cache-first", variables: { domain, fallback: fallback ? "*" : "__NO_FALLBACK__" } })
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph")
-        }
-        
+        const data = await this.client.request<{ GetChannelByDomain?: { channels: {}[]}}>(Queries.getByDomain, { domain, fallback: fallback ? "*" : "__NO_FALLBACK__" })
         const channels = data.GetChannelByDomain?.channels
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph")
@@ -233,12 +225,12 @@ export class ChannelRepository
 
     public getDefaultDomain() : string
     {
-        return this.config.deploy_domain
+        return this.client.siteInfo.frontendDomain
     }
 
     public async getDefault() : Promise<Readonly<ChannelDefinition> | null>
     {
-        return this.getByDomain(this.config.deploy_domain, true)
+        return this.getByDomain(this.client.siteInfo.frontendDomain, true)
     }
 
     protected transformGraphResponse(ch: any) : ChannelDefinition
@@ -271,13 +263,13 @@ export class ChannelRepository
                     guidValue: ch.content?.startPage?.guidValue
                 }
             }
-        }, this.config.dxp_url)
+        }, this.client.siteInfo.cmsURL)
     }
 }
 
 export default ChannelRepository
 
-const Queries : { [code: string ]: DocumentNode } = {
+const Queries : { [code: string ]: string } = {
     getAll: gql`query GetAllChannels {
         GetAllChannels:SiteDefinition {
             channels: items {

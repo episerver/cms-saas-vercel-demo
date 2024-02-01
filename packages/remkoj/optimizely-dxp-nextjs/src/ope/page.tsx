@@ -3,9 +3,9 @@ import 'server-only'
 import type { EditPageProps, EditPageComponent, EditViewOptions } from './types'
 import { Utils, type ComponentFactory, type ChannelDefinition, type ContentLinkWithLocale } from '@remkoj/optimizely-dxp-react'
 import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
-import { isApolloError, type ServerError, type ApolloError, type ApolloClient } from '@apollo/client'
 import { notFound } from 'next/navigation'
 import OnPageEdit from '../components/on-page-edit'
+import { getAuthorizedServerClient } from '../client'
 import React from 'react'
 import Script from 'next/script'
 import { getContentById } from './data'
@@ -20,7 +20,8 @@ const defaultOptions : EditViewOptions = {
     layout: props => <div className='optly-edit-page' data-locale={ props.locale }>
         { props.children }
     </div>,
-    loader: getContentById
+    loader: getContentById,
+    clientFactory: (token?: string) => getAuthorizedServerClient(token)
 }
 
 /**
@@ -36,7 +37,6 @@ const defaultOptions : EditViewOptions = {
  */
 export function createEditPageComponent(
     dxpUrl: string,
-    client: ApolloClient<any>,
     channel: Readonly<ChannelDefinition>,
     factory: ComponentFactory,
     options?: Partial<EditViewOptions>
@@ -48,9 +48,10 @@ export function createEditPageComponent(
     const { 
         layout: PageLayout, 
         refreshNotice: RefreshNotice, 
-        refreshDelay, errorNotice: 
-        ErrorNotice, 
-        loader: getContentById 
+        refreshDelay, 
+        errorNotice: ErrorNotice, 
+        loader: getContentById,
+        clientFactory
     } = { ...defaultOptions, ...options }
 
     async function EditPage({ params, searchParams }: EditPageProps) : Promise<JSX.Element>
@@ -63,8 +64,9 @@ export function createEditPageComponent(
         }
 
         // Allow use-hmac as magic token to be used only on a development environment, otherwise require a minimal length string as token
+        const token = searchParams.preview_token
         const validDev = DEVELOPMENT && searchParams.preview_token == 'use-hmac'
-        if (!searchParams.preview_token || (searchParams.preview_token.length < 20 && !validDev)) {
+        if (!token || (token.length < 20 && !validDev)) {
             console.error("[OnPageEdit] Edit mode requested without valid Preview Token, refused to render the page")
             return notFound()
         }
@@ -83,7 +85,7 @@ export function createEditPageComponent(
                 }
             
                 // Normally take the information from the token
-                const jwt = JSON.parse(Buffer.from((searchParams.preview_token || '..').split('.',3)[1], 'base64').toString())
+                const jwt = JSON.parse(Buffer.from((token || '..').split('.',3)[1], 'base64').toString())
                 const contentId = Number.parseInt(jwt?.c_id || '-1', 10)
                 const workId = Number.parseInt(jwt?.c_ver || '0') || null
                 if ((jwt.exp * 1000) < Date.now())
@@ -113,9 +115,11 @@ export function createEditPageComponent(
             locale: contentLink.locale,
             isCommonDraft: !contentLink.workId ? true : null
         }
-        if (DEBUG)
+        if (DEBUG) {
             console.log("[OnPageEdit] Requested content:", JSON.stringify(variables))
-        
+            console.log("[OnPageEdit] Creating GraphQL Client:", token)
+        }
+        const client = clientFactory(token)
         try {
             const contentInfo = await getContentById(client, variables)
             const contentItem = (contentInfo?.Content?.items ?? [])[0]
@@ -159,13 +163,8 @@ export function createEditPageComponent(
             </>
             return output
         } catch (e) {
-            if (isApolloError(e as Error) && ((e as ApolloError).networkError as ServerError | null)?.statusCode == 404) {
-                return notFound()
-            }
-            if (isApolloError(e as Error) && ((e as ApolloError).networkError as ServerError | null)?.statusCode == 401) {
-                return <ErrorNotice title='Not authorized' message='The propagation of the CMS authentication yielded a &quot;Not authorized&quot; error from Optimizely Graph, please check your configuration.' />
-            }
-            throw e
+            console.error("[OnPageEdit] Caught error", e)
+            return notFound()
         }
     }
     return EditPage

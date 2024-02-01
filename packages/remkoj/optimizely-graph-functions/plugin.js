@@ -50,17 +50,15 @@ module.exports = {
 
             // Resolve the arguments
             const varsType = `${ fnNamespace }.${ fnTypeName }QueryVariables`
-            const returnType = `Promise<${ fnNamespace }.${ fnTypeName }Query>`
+            const returnType = `${ fnNamespace }.${ fnTypeName }Query`
             
             // Merge into the function
             /** @type { string[] } */
             const functionBody = []
-            functionBody.push(`export async function ${ fn }(client: ApolloClient<NormalizedCacheObject>, variables: ${ varsType}) : ${ returnType }`)
+            functionBody.push(`export function ${ fn }(client: GraphQLClient, variables: ${ varsType}) : Promise<${ returnType }>`)
             functionBody.push('{')
-            functionBody.push(`  const query = \`${ config.optlyPrettyQuery ? query : query.replace(/\s+/g, ' ').trim() }\``)
-            functionBody.push('  const result = await client.query({ query: parse(query), variables })')
-            functionBody.push('  if (result.error) throw result.error')
-            functionBody.push('  return result.data')
+            functionBody.push(`  const query = gql\`${ config.optlyPrettyQuery ? query : query.replace(/\s+/g, ' ').trim() }\``)
+            functionBody.push(`  return client.request<${ returnType }, ${ varsType }>(query, variables)`)
             functionBody.push('}')
 
             fnOutput.push(functionBody.join("\n"))
@@ -78,7 +76,7 @@ module.exports = {
         
         const clientPath = config.clientPath || "./graphql"
         prepend.push(`import type * as Types from '${ clientPath }'`)
-        prepend.push('import { gql as parse, type ApolloClient, type NormalizedCacheObject } from \'@apollo/client\'')
+        prepend.push('import { gql , type GraphQLClient } from \'graphql-request\'')
 
         prepend.push("\n")
         return {

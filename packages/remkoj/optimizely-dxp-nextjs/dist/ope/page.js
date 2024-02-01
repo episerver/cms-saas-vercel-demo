@@ -1,9 +1,9 @@
 import 'server-only';
 import { Utils } from '@remkoj/optimizely-dxp-react';
 import { CmsContent } from '@remkoj/optimizely-dxp-react-server';
-import { isApolloError } from '@apollo/client';
 import { notFound } from 'next/navigation';
 import OnPageEdit from '../components/on-page-edit';
+import { getAuthorizedServerClient } from '../client';
 import React from 'react';
 import Script from 'next/script';
 import { getContentById } from './data';
@@ -14,7 +14,8 @@ const defaultOptions = {
         React.createElement("div", { className: 'optly-error-title' }, props.title),
         React.createElement("div", { className: 'optly-error-message' }, props.message)),
     layout: props => React.createElement("div", { className: 'optly-edit-page', "data-locale": props.locale }, props.children),
-    loader: getContentById
+    loader: getContentById,
+    clientFactory: (token) => getAuthorizedServerClient(token)
 };
 /**
  * Create the EditPage component needed by Next.JS to render the "On Page
@@ -27,10 +28,10 @@ const defaultOptions = {
  * @param   options     The optional options to use to control the edit page
  * @returns The React Component that can be used by Next.JS to render the page
  */
-export function createEditPageComponent(dxpUrl, client, channel, factory, options) {
+export function createEditPageComponent(dxpUrl, channel, factory, options) {
     const DEVELOPMENT = process.env.NODE_ENV == 'development';
     const DEBUG = process.env.DXP_DEBUG == '1';
-    const { layout: PageLayout, refreshNotice: RefreshNotice, refreshDelay, errorNotice: ErrorNotice, loader: getContentById } = { ...defaultOptions, ...options };
+    const { layout: PageLayout, refreshNotice: RefreshNotice, refreshDelay, errorNotice: ErrorNotice, loader: getContentById, clientFactory } = { ...defaultOptions, ...options };
     async function EditPage({ params, searchParams }) {
         // Validate the search parameters
         const epiEditMode = searchParams?.epieditmode?.toLowerCase();
@@ -39,8 +40,9 @@ export function createEditPageComponent(dxpUrl, client, channel, factory, option
             return notFound();
         }
         // Allow use-hmac as magic token to be used only on a development environment, otherwise require a minimal length string as token
+        const token = searchParams.preview_token;
         const validDev = DEVELOPMENT && searchParams.preview_token == 'use-hmac';
-        if (!searchParams.preview_token || (searchParams.preview_token.length < 20 && !validDev)) {
+        if (!token || (token.length < 20 && !validDev)) {
             console.error("[OnPageEdit] Edit mode requested without valid Preview Token, refused to render the page");
             return notFound();
         }
@@ -56,7 +58,7 @@ export function createEditPageComponent(dxpUrl, client, channel, factory, option
                     return [Number.parseInt(contentId), workId ? Number.parseInt(workId) : null];
                 }
                 // Normally take the information from the token
-                const jwt = JSON.parse(Buffer.from((searchParams.preview_token || '..').split('.', 3)[1], 'base64').toString());
+                const jwt = JSON.parse(Buffer.from((token || '..').split('.', 3)[1], 'base64').toString());
                 const contentId = Number.parseInt(jwt?.c_id || '-1', 10);
                 const workId = Number.parseInt(jwt?.c_ver || '0') || null;
                 if ((jwt.exp * 1000) < Date.now())
@@ -85,8 +87,11 @@ export function createEditPageComponent(dxpUrl, client, channel, factory, option
             locale: contentLink.locale,
             isCommonDraft: !contentLink.workId ? true : null
         };
-        if (DEBUG)
+        if (DEBUG) {
             console.log("[OnPageEdit] Requested content:", JSON.stringify(variables));
+            console.log("[OnPageEdit] Creating GraphQL Client:", token);
+        }
+        const client = clientFactory(token);
         try {
             const contentInfo = await getContentById(client, variables);
             const contentItem = (contentInfo?.Content?.items ?? [])[0];
@@ -133,13 +138,8 @@ export function createEditPageComponent(dxpUrl, client, channel, factory, option
             return output;
         }
         catch (e) {
-            if (isApolloError(e) && e.networkError?.statusCode == 404) {
-                return notFound();
-            }
-            if (isApolloError(e) && e.networkError?.statusCode == 401) {
-                return React.createElement(ErrorNotice, { title: 'Not authorized', message: 'The propagation of the CMS authentication yielded a "Not authorized" error from Optimizely Graph, please check your configuration.' });
-            }
-            throw e;
+            console.error("[OnPageEdit] Caught error", e);
+            return notFound();
         }
     }
     return EditPage;

@@ -1,6 +1,6 @@
 import React from 'react'
 import { Utils } from '@remkoj/optimizely-dxp-react'
-import { getServerClient } from '@/lib/client'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import { gql } from '@gql/index'
 import type * as GraphQL from '@gql/graphql'
 import SiteConfig from '@/site-config'
@@ -19,14 +19,13 @@ export async function FooterProps ({ locale }: FooterProps)
     const optlyGraphClient = getServerClient()
     
     // Read footer configuration
-    const graphResponse = await optlyGraphClient.query({
-        query: GetFooter,
-        variables: {
+    const graphResponse = await optlyGraphClient.request(GetFooter,
+        {
             channelId: channel.id,
             locale: channel.localeToGraphLocale(locale ?? channel.defaultLocale) as GraphQL.Locales
         }
-    })
-    const footerConfig = (graphResponse.data.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
+    )
+    const footerConfig = (graphResponse.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
 
     // Build the image src
     const imageSrc = footerConfig?.logo || "/assets/logo.png"

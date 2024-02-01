@@ -1,6 +1,7 @@
 import { Utils } from '@remkoj/optimizely-dxp-react'
-import { gql as graphql } from '@gql/gql'
-import { getServerClient } from '@/lib/client'
+import { gql } from '@gql/gql'
+import type * as Types from '@gql/graphql'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import siteInfo from '@/site-config'
 
 // Header components
@@ -23,15 +24,17 @@ export default async function SiteHeader({ locale }: SiteHeaderProps)
 {
     const currentLocale = siteInfo.resolveLocale(locale)
     const client = getServerClient()
-    const config = ((await client.query({query: HeaderConfigQuery, variables: {
-        locale: siteInfo.localeToGraphLocale(currentLocale) as any,
+
+    const config = ((await client.request(HeaderConfigQuery, {
+        locale: siteInfo.localeToGraphLocale(currentLocale) as Types.Locales,
         siteId: siteInfo.id
-    }})).data?.HeaderConfigBlock?.items || [])[0]
+    })).HeaderConfigBlock?.items || [])[0]
+
     const siteName = config?.Name || "Brand name"
     const strings = await getDictionary(currentLocale, siteInfo.defaultLocale)
 
     // Process & filter the navigation menu, so we're sure that we only get the correct fragment back from it
-    const menuItems = (config?.NavMenuArea ?? []).filter(Utils.isNotNullOrUndefined).map(x => x.ContentLink?.Expanded).filter(isNavMenuItem)
+    const menuItems = (config?.NavMenuArea ?? []).filter(Utils.isNotNullOrUndefined).map(x => x.ContentLink?.Expanded).filter(isNavMenuItem) as Types.NavMenuItemDataFragment[]
 
     return <header className='shadow-md'>
         <div className='bg-stripe'>
@@ -60,7 +63,7 @@ function isNavMenuItem(toTest?: GqlBaseType<string> | null) : toTest is GqlBaseT
     return toTest?.__typename && toTest.__typename == "NavMenuItem" ? true : false
 }
 
-const HeaderConfigQuery = graphql(/* graphql */`query GetHeaderData($siteId: String!, $locale: [Locales]) {
+const HeaderConfigQuery = gql(`query GetHeaderData($siteId: String!, $locale: [Locales]) {
     HeaderConfigBlock(where: { ChannelId: { eq: $siteId } }, locale: $locale) {
         items {
             Name
@@ -72,6 +75,7 @@ const HeaderConfigQuery = graphql(/* graphql */`query GetHeaderData($siteId: Str
             DisplayOption
                 ContentLink {
                     Expanded {
+                        __typename
                         ...NavMenuItemData
                     }
                 }

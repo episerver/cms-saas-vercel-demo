@@ -1,11 +1,11 @@
-import { getServerClient } from "@/lib/client"
-import { CmsPage } from '@remkoj/optimizely-dxp-nextjs'
+import { CmsPage, getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import channel from '@/site-config'
-const client = getServerClient()
 
 const { 
     generateMetadata, 
     PageLayout
-} = CmsPage.createLayout(client, channel)
+} = CmsPage.createLayout(channel, {
+    client: getServerClient
+})
 export { generateMetadata }
 export default PageLayout

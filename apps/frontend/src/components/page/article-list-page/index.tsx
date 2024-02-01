@@ -35,11 +35,8 @@ ArticleListPage.getMetaData = async (contentLink, locale, client) =>
         ...contentLink,
         locale: locale as GraphQL.Locales
     }
-    const result = await client.query({
-        query: GetArticleListMetaData,
-        variables
-    })
-    const pageInfo = (result?.data?.getArticleListMetaData?.pages || [])[0]
+    const result = await client.request(GetArticleListMetaData,variables)
+    const pageInfo = (result?.getArticleListMetaData?.pages || [])[0]
     if (!pageInfo)
         return {}
     const imageSrc = pageInfo.head?.image?.data?.url || pageInfo.head?.image?.url || undefined

@@ -1,6 +1,7 @@
 'use client';
 import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
+const DEV = process.env.NODE_ENV == 'development';
 export const OnPageEdit = ({ mode, children, className, timeout }) => {
     const router = useRouter();
     const [optiCmsReady, setOptiCmsReady] = useState(false);
@@ -45,7 +46,7 @@ export const OnPageEdit = ({ mode, children, className, timeout }) => {
                 if (previewUrl == eventData.previewUrl) {
                     console.log(`Refreshing preview: ${contentId} => ${newContentId}`);
                     router.refresh();
-                    setShowMask(false);
+                    //setShowMask(false)
                 }
                 else {
                     const newUrl = new URL(eventData.previewUrl);

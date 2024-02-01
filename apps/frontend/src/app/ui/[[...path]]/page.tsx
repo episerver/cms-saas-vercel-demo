@@ -7,7 +7,6 @@ import { getContentGraphConfig } from '@remkoj/optimizely-dxp-react'
 
 // Import libraries & GraphQL
 import * as EnvTools from '@/lib/env'
-import { getAuthorizedServerClient } from '@/lib/client'
 import { getContentById } from '@gql/functions'
 
 // Import components & factory
@@ -22,9 +21,7 @@ import channel from '@/site-config'
 const refreshDelay = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY", 2000)
 
 // Read Content Graph Configuration
-const config = getContentGraphConfig()
 const factory = setupFactory()
-const client = getAuthorizedServerClient()
 
 // Prepare the error component
 const ErrorComponent = (props: { title: string, message: string }) => {
@@ -45,8 +42,7 @@ const PageLayout = (props: PropsWithChildren<{locale: string}>) =>
 }
 
 export default OnPageEdit.createEditPageComponent(
-    config.dxp_url,
-    client,
+    channel.getCmsUrl(),
     channel,
     factory,
     {

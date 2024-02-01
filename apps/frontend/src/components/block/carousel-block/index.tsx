@@ -10,7 +10,7 @@ const Carousel = dynamic(() => import('./client'), { ssr: true })
 export const CarouselBlock : CmsComponent<GraphQL.CarouselBlockDataFragment> = async ({ data, inEditMode, client, contentLink }) =>
 {
     const delay = 10
-    const slides = await processContentAreaItems(data.CarouselSlides, contentLink.locale, inEditMode, client)
+    const slides = data ? await processContentAreaItems(data.CarouselSlides, contentLink.locale, inEditMode, client) : []
 
     return <div className='carousel-block relative w-full'>
         { slides.length > 0 && <Carousel slides={ slides } durationMilliseconds={ delay*1000 } showArrows showDots /> }

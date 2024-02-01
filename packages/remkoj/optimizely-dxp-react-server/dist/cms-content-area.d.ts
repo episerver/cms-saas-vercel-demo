@@ -1,7 +1,7 @@
 import 'server-only';
 import { type SuspenseProps } from 'react';
 import type * as Types from '@remkoj/optimizely-dxp-react';
-import { getClient as createClient } from '@remkoj/optimizely-dxp-react';
+import { createClient } from '@remkoj/optimizely-dxp-react';
 type ClientType = ReturnType<typeof createClient>;
 type RawContentLink = {
     id?: number | null;

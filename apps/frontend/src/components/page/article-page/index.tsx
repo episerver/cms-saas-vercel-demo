@@ -37,14 +37,7 @@ export const ArticlePage : OptimizelyNextPage<GraphQL.ArticlePageDataFragment> =
 ArticlePage.displayName = "Article Page"
 ArticlePage.getDataFragment = () => ['ArticlePageData', ArticlePageData]
 ArticlePage.getMetaData = async (contentLink, locale, client) => {
-    const queriedMetaData = ((await client.query({
-        query: GetMetaDataQuery,
-        variables: {
-            guid: contentLink.guidValue ?? '',
-            locale: locale as GraphQL.Locales
-        }
-    })).data?.ArticlePage?.items ?? [])[0] ?? undefined
-    
+    const queriedMetaData = ((await client.request(GetMetaDataQuery, { guid: contentLink.guidValue ?? '', locale: locale as GraphQL.Locales })).ArticlePage?.items ?? [])[0] ?? undefined
     if (!queriedMetaData)
         return {}
     const title = queriedMetaData.seo?.metaTitle || queriedMetaData.title || queriedMetaData.name || undefined

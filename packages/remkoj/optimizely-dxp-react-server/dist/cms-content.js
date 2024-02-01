@@ -1,6 +1,6 @@
 import { jsxs as _jsxs, Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
-import { parse, print } from 'graphql';
-import { getClient as createClient, Utils } from '@remkoj/optimizely-dxp-react';
+import { print } from 'graphql';
+import { createClient, Utils } from '@remkoj/optimizely-dxp-react';
 import { getFactory } from './factory';
 import * as Queries from './queries';
 const DEBUG = process.env.DXP_DEBUG == '1';
@@ -12,6 +12,8 @@ const DEV = process.env.NODE_ENV == 'development';
  * @returns
  */
 export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, fragmentData, outputEditorWarning }) => {
+    if ((DEBUG || DEV) && !client)
+        console.warn(`[CmsContent] No Content Graph client provided with ${JSON.stringify(contentLink)}, this will cause problems with edit mode!`);
     // Parse & prepare props
     const factory = getFactory();
     client = client ?? createClient();
@@ -27,7 +29,7 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
     }
     // Apply the content-type prefix if needed
     if (Array.isArray(contentType) && Utils.isNonEmptyString(contentTypePrefix) && contentType.length > 0 && contentType[0] != contentTypePrefix) {
-        if (DEBUG || DEV)
+        if (DEBUG)
             console.info(`[CmsContent] Component type [${contentType.join('/')}] doesn't have the configured prefix, adding ${contentTypePrefix} as prefix`);
         contentType.unshift(contentTypePrefix);
     }
@@ -54,7 +56,7 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
             console.error("[CmsContent] Invalid fragment data received for ", Component.displayName ?? contentType?.join("/") ?? "[Undetermined component]");
             return _jsx(_Fragment, {});
         }
-        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData, client: client });
+        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData || {}, client: client });
     }
     // If we don't have previously loaded data we cannot load content for inline blocks
     if (isInlineBlock)
@@ -65,49 +67,45 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         const gqlVariables = Utils.contentLinkToRequestVariables(contentLink);
         if (DEBUG)
             console.log("[CmsContent] Component data fetching variables:", gqlVariables);
-        const gqlResponse = await client.query({ query: gqlQuery, variables: gqlVariables });
+        const gqlResponse = await client.query(gqlQuery, gqlVariables);
         if (DEBUG)
-            console.log("[CmsContent] Component request the following data:", gqlResponse.data);
-        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: gqlResponse.data, client: client });
+            console.log("[CmsContent] Component request the following data:", gqlResponse);
+        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: gqlResponse, client: client });
     }
     // Render using included fragment
     if (Utils.isCmsComponentWithFragment(Component)) {
         const [name, fragment] = Component.getDataFragment();
-        const fragmentQuery = parse(`query getContentFragmentById($id: Int!, $workId: Int, $guidValue: String, $locale: [Locales]!, $isCommonDraft: Boolean ) { contentById: Content( where: { ContentLink: { Id: { eq: $id }, WorkId: { eq: $workId }, GuidValue: { eq: $guidValue } },IsCommonDraft: {eq: $isCommonDraft} }, orderBy: { Status: ASC }, locale: $locale, limit: 1 ) { total items { contentType: ContentType id: ContentLink { id: Id, workId: WorkId, guidValue: GuidValue } locale: Language { name: Name } ...${name} } } } ${print(fragment)}`);
+        const fragmentQuery = `query getContentFragmentById($id: Int!, $workId: Int, $guidValue: String, $locale: [Locales]!, $isCommonDraft: Boolean ) { contentById: Content( where: { ContentLink: { Id: { eq: $id }, WorkId: { eq: $workId }, GuidValue: { eq: $guidValue } },IsCommonDraft: {eq: $isCommonDraft} }, orderBy: { Status: ASC }, locale: $locale, limit: 1 ) { total items { contentType: ContentType id: ContentLink { id: Id, workId: WorkId, guidValue: GuidValue } locale: Language { name: Name } ...${name} } } } ${print(fragment)}`;
         const fragmentVariables = Utils.contentLinkToRequestVariables(contentLink);
         if (!fragmentVariables?.workId && inEditMode)
             fragmentVariables.isCommonDraft = true;
         if (DEBUG)
             console.log(`[CmsContent] Component data fetching using fragment ${name}, with variables: ${JSON.stringify(fragmentVariables)}`);
-        const fragmentResponse = await client.query({ query: fragmentQuery, variables: fragmentVariables });
-        const totalItems = fragmentResponse.data?.contentById?.total || 0;
+        const fragmentResponse = await client.request(fragmentQuery, fragmentVariables);
+        const totalItems = fragmentResponse.contentById.total || 0;
         if (totalItems < 1)
             throw new Error(`CmsContent expected to load exactly one content item, received ${totalItems} from Optimizely Graph.`);
         if (totalItems > 1 && DEBUG)
             console.warn(`[CmsContent] Resolved ${totalItems} content items, expected only 1. Picked the first one`);
-        const data = (fragmentResponse.data?.contentById?.items || [])[0] || null;
-        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: data, client: client });
+        return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentResponse.contentById.items[0], client: client });
     }
     // Assume there's no server side prepared data needed for the component
     if (DEBUG)
         console.log(`[CmsContent] Component of type "${contentType?.join('/') ?? Component.displayName ?? '?'}" did not request pre-loading of data`);
-    return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData, client: client });
+    return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentData || {}, client: client });
 };
 export default CmsContent;
 export async function getContentType(link, gqlClient) {
     if ((!link.id || link.id < 1) && (!link.guidValue || link.guidValue == ""))
         throw new Error("Cannot dynamically determine the content type of an inline block");
     const gqlQueryVars = Utils.contentLinkToRequestVariables(link);
-    const gqlResponse = await gqlClient.query({
-        query: Queries.getContentTypeQuery,
-        variables: gqlQueryVars
-    });
-    if (gqlResponse.data?.Content?.total != 1) {
+    const gqlResponse = await gqlClient.request(Queries.getContentTypeQuery, gqlQueryVars);
+    if (gqlResponse.Content?.total != 1) {
         if (DEBUG)
-            console.error(`getContentType: Expected exactly one type, received ${gqlResponse.data?.Content?.total ?? 0} types for`, gqlQueryVars);
+            console.error(`getContentType: Expected exactly one type, received ${gqlResponse.Content?.total ?? 0} types for`, gqlQueryVars);
         return undefined;
     }
-    const items = gqlResponse.data.Content?.items;
+    const items = gqlResponse.Content?.items;
     if (!items || items.length == 0)
         throw new Error("The content item could not be found!");
     const contentType = Utils.normalizeContentType(items[0]?.ContentType);

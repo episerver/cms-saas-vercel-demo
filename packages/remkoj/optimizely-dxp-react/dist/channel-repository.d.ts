@@ -1,5 +1,5 @@
-import { type ApolloClient } from '@apollo/client/core';
 import { type ContentGraphConfig } from './config';
+import { type ContentGraphClient } from './client';
 type ChannelDomain = {
     name: string;
     isPrimary: boolean;
@@ -39,6 +39,7 @@ export declare class ChannelDefinition implements Readonly<ChannelDefinitionData
     constructor(initialData: ChannelDefinitionData, dxp_url: string);
     getPrimaryDomain(): URL;
     getEditDomain(): URL;
+    getCmsUrl(): string;
     /**
      * Retieve the default locale specification, defined as the locale marked
      * as "primary" else the first locale of the channel. When the channel
@@ -109,9 +110,8 @@ export declare class ChannelDefinition implements Readonly<ChannelDefinitionData
     localeToGraphLocale(code: string): string | undefined;
 }
 export declare class ChannelRepository {
-    protected client: ApolloClient<any>;
-    protected config: ContentGraphConfig;
-    constructor(optimizelyGraphClient: ApolloClient<any>, optimizelyGraphConfig?: ContentGraphConfig);
+    protected client: ContentGraphClient;
+    constructor(client?: ContentGraphClient | ContentGraphConfig);
     getAll(): Promise<ReadonlyArray<Readonly<ChannelDefinition>>>;
     getById(id: string): Promise<Readonly<ChannelDefinition> | null>;
     getByDomain(domain: string, fallback?: boolean): Promise<Readonly<ChannelDefinition> | null>;

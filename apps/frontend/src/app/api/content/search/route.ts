@@ -1,8 +1,7 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import * as GraphQL from '@gql/graphql'
-import { Utils } from '@remkoj/optimizely-dxp-react'
+import { Utils, createClient as getServerClient } from '@remkoj/optimizely-dxp-react'
 import { gql } from '@gql/index'
-import { getServerClient } from '@/lib/client'
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
 
@@ -20,16 +19,16 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
 
     const isPersonalized = topInterest ? true : false
 
-    const rawResponse = await client.query({
-        query: ComponentSearchQuery,
-        variables: {
+    const rawResponse = await client.query(
+        ComponentSearchQuery,
+        {
             term: searchTerm,
             topInterest,
             locale: contentLocales?.length > 0 ? contentLocales as GraphQL.Locales[] : null,
             types: contentTypes?.length > 0 ? contentTypes : null
         }
-    })
-    const resultItems : ContentSearchResultItems = (rawResponse.data?.Content?.items ?? []).filter(Utils.isNotNullOrUndefined).filter(x => x.name && x.url).map(x => {
+    )
+    const resultItems : ContentSearchResultItems = (rawResponse.Content?.items ?? []).filter(Utils.isNotNullOrUndefined).filter(x => x.name && x.url).map(x => {
         return {
             name: x.name ?? "",
             url: x.url ?? "",
@@ -43,7 +42,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
     const resultFacets : ContentSearchResultFacets = []
 
     // Process content type facets
-    const contentTypeFacetInfo = (rawResponse.data?.Content?.facets?.ContentType ?? []).filter(Utils.isNotNullOrUndefined)
+    const contentTypeFacetInfo = (rawResponse.Content?.facets?.ContentType ?? []).filter(Utils.isNotNullOrUndefined)
     resultFacets.push({
         field: "types",
         options: contentTypeFacetInfo.filter(x => x.name != "Content" && x.name != "Page").map(x => {
@@ -55,7 +54,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
     })
 
     // Process content language facets
-    const languageFacetInfo = (rawResponse.data?.Content?.facets?.Language?.Name ?? []).filter(Utils.isNotNullOrUndefined)
+    const languageFacetInfo = (rawResponse.Content?.facets?.Language?.Name ?? []).filter(Utils.isNotNullOrUndefined)
     resultFacets.push({
         field: "locales",
         options: languageFacetInfo.map(x => {
@@ -66,7 +65,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
         })
     })
     
-    const resultCount = rawResponse.data?.Content?.total
+    const resultCount = rawResponse.Content?.total
 
     const searchResults : SiteSearchResponse = {
         query: searchTerm,

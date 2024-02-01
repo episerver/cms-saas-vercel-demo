@@ -29,9 +29,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@apollo/client@npm:^3.9.0":
-  version: 3.9.0
-  resolution: "@apollo/client@npm:3.9.0"
+"@apollo/client@npm:^3.9.2":
+  version: 3.9.2
+  resolution: "@apollo/client@npm:3.9.2"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.1.1"
     "@wry/caches": "npm:^1.0.0"
@@ -62,22 +62,7 @@ __metadata:
       optional: true
     subscriptions-transport-ws:
       optional: true
-  checksum: 10/392901adcec6796ce3a30c8ef8a2ddbfa67d59edc0752d3f0c498837d854ffd0ce499ce84170e0349efcffec94bf9a96e0280ef27c6f413c8def129a457570fd
-  languageName: node
-  linkType: hard
-
-"@apollo/experimental-nextjs-app-support@npm:^0.7.0":
-  version: 0.7.0
-  resolution: "@apollo/experimental-nextjs-app-support@npm:0.7.0"
-  dependencies:
-    server-only: "npm:^0.0.1"
-    superjson: "npm:^1.12.2 || ^2.0.0"
-    ts-invariant: "npm:^0.10.3"
-  peerDependencies:
-    "@apollo/client": ">=3.8.0-rc || ^3.8.0 || >=3.9.0-alpha || >=3.9.0-beta || >=3.9.0-rc"
-    next: ^13.4.1 || ^14.0.0
-    react: ^18
-  checksum: 10/a8c36ea0fdf5ab764b7450317ff46de60160da41244c482686ba8f9a3954f15b7610236d674c41d560b84edb9ca424cf37b260d5ce19e303568c9618d61571e0
+  checksum: 10/c8b859a10c328491dd8008cfc1f3612dcbaafe8c6dc5adf55e9d8a8c9d55134f2754f9c61a25293d03e7fb013cc70a8a1e9ee0ed4480b38afe9f796f8cfd9f40
   languageName: node
   linkType: hard
 
@@ -2123,13 +2108,13 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-cli@workspace:packages/remkoj/optimizely-dxp-cli"
   dependencies:
-    "@apollo/client": "npm:^3.9.0"
+    "@apollo/client": "npm:^3.9.2"
     "@rollup/plugin-commonjs": "npm:^25.0.7"
     "@rollup/plugin-json": "npm:^6.1.0"
     "@rollup/pluginutils": "npm:^5.1.0"
     "@types/crypto-js": "npm:^4.2.2"
     "@types/glob": "npm:^8.1.0"
-    "@types/node": "npm:^20.11.13"
+    "@types/node": "npm:^20.11.16"
     "@types/source-map-support": "npm:^0.5.10"
     "@types/yargs": "npm:^17.0.32"
     ansi-styles: "npm:^6.2.1"
@@ -2156,15 +2141,14 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-nextjs@workspace:packages/remkoj/optimizely-dxp-nextjs"
   dependencies:
-    "@apollo/client": "npm:^3.9.0"
-    "@apollo/experimental-nextjs-app-support": "npm:^0.7.0"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:^"
-    "@types/node": "npm:^20.11.13"
-    "@types/react": "npm:^18.2.48"
+    "@types/node": "npm:^20.11.16"
+    "@types/react": "npm:^18.2.51"
     "@types/react-dom": "npm:18.2.18"
     deepmerge: "npm:^4.3.1"
     graphql: "npm:^16.8.1"
+    graphql-request: "npm:^6.1.0"
     next: "npm:^14.1.0"
     next-auth: "npm:^4.24.5"
     prop-types: "npm:^15.8.1"
@@ -2173,12 +2157,11 @@ __metadata:
     scheduler: "npm:^0.23.0"
     typescript: "npm:^5.3.3"
   peerDependencies:
-    "@apollo/client": "*"
-    "@apollo/experimental-nextjs-app-support": "*"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:*"
     deepmerge: "*"
     graphql: "*"
+    graphql-request: "*"
     next: "*"
     next-auth: "*"
     react: "*"
@@ -2189,25 +2172,25 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server"
   dependencies:
-    "@apollo/client": "npm:^3.9.0"
     "@graphql-codegen/cli": "npm:^5.0.1"
     "@graphql-codegen/client-preset": "npm:^4.2.0"
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     "@parcel/watcher": "npm:^2.4.0"
     "@remkoj/optimizely-dxp-react": "workspace:*"
-    "@types/node": "npm:^20.11.13"
-    "@types/react": "npm:^18.2.48"
+    "@types/node": "npm:^20.11.16"
+    "@types/react": "npm:^18.2.51"
     "@types/uuid": "npm:^9.0.8"
     graphql: "npm:^16.8.1"
+    graphql-request: "npm:^6.1.0"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     scheduler: "npm:^0.23.0"
     typescript: "npm:^5.3.3"
     uuid: "npm:^9.0.1"
   peerDependencies:
-    "@apollo/client": "*"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     graphql: "*"
+    graphql-request: "*"
     react: "*"
     uuid: "*"
   languageName: unknown
@@ -2217,24 +2200,21 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react@workspace:packages/remkoj/optimizely-dxp-react"
   dependencies:
-    "@apollo/client": "npm:^3.9.0"
     "@types/crypto-js": "npm:^4.2.2"
-    "@types/node": "npm:^20.11.13"
-    "@types/react": "npm:^18.2.48"
-    "@types/uuid": "npm:^9.0.8"
+    "@types/node": "npm:^20.11.16"
+    "@types/react": "npm:^18.2.51"
     crypto-js: "npm:^4.2.0"
     graphql: "npm:^16.8.1"
+    graphql-request: "npm:^6.1.0"
     prop-types: "npm:^15.8.1"
     react: "npm:^18.2.0"
     scheduler: "npm:^0.23.0"
     typescript: "npm:^5.3.3"
-    uuid: "npm:^9.0.1"
   peerDependencies:
-    "@apollo/client": "*"
     crypto-js: "*"
     graphql: "*"
+    graphql-request: "*"
     react: "*"
-    uuid: "*"
   languageName: unknown
   linkType: soft
 
@@ -2671,12 +2651,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.11.13, @types/node@npm:^20.11.13":
-  version: 20.11.13
-  resolution: "@types/node@npm:20.11.13"
+"@types/node@npm:*, @types/node@npm:20.11.16, @types/node@npm:^20.11.16":
+  version: 20.11.16
+  resolution: "@types/node@npm:20.11.16"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/ffe143dd5e52d0d29f5bcea165b752c5355eaff8b6b933441108b540419e14c0c7e0e7912783e914125ab957e30db93f9c827e8dd437ec7e5f03def995e9a5e6
+  checksum: 10/751f50ec5c9332b11515e82fe37c71479ac4449b711280aa3c7910edf67b1e3f5ac00041512add543f9a892096a68356406998bf02a2c809a73d176c44c28414
   languageName: node
   linkType: hard
 
@@ -2703,14 +2683,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.48, @types/react@npm:^18.2.48":
-  version: 18.2.48
-  resolution: "@types/react@npm:18.2.48"
+"@types/react@npm:*, @types/react@npm:18.2.51, @types/react@npm:^18.2.51":
+  version: 18.2.51
+  resolution: "@types/react@npm:18.2.51"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/2e56ea6bd821ae96bd943f727a59d85384eaf5f8a3e6fce4fa1d34453e32d8eedda742432b3857fa0de7a4214bf84ce4239757eb52918e76452c00384731e585
+  checksum: 10/af2935027172ea40695b90b02e98520a097160fa8517f6022e2e2cf8518017e0b84991cc34ee8d72cd91dcb7c5404784d4bada7a4836edf2727c3d6703c16ff8
   languageName: node
   linkType: hard
 
@@ -4451,15 +4431,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"copy-anything@npm:^3.0.2":
-  version: 3.0.5
-  resolution: "copy-anything@npm:3.0.5"
-  dependencies:
-    is-what: "npm:^4.1.8"
-  checksum: 10/4c41385a94a1cff6352a954f9b1c05b6bb1b70713a2d31f4c7b188ae7187ce00ddcc9c09bd58d24cd35b67fc6dd84df5954c0be86ea10700ff74e677db3cb09c
-  languageName: node
-  linkType: hard
-
 "core-util-is@npm:^1.0.2":
   version: 1.0.3
   resolution: "core-util-is@npm:1.0.3"
@@ -5778,8 +5749,6 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "frontend@workspace:apps/frontend"
   dependencies:
-    "@apollo/client": "npm:^3.9.0"
-    "@apollo/experimental-nextjs-app-support": "npm:^0.7.0"
     "@eslint/eslintrc": "npm:^3.0.0"
     "@formatjs/intl-localematcher": "npm:^0.5.4"
     "@graphql-codegen/cli": "npm:^5.0.1"
@@ -5804,8 +5773,8 @@ __metadata:
     "@types/deepmerge": "npm:^2.2.0"
     "@types/graphql": "npm:^14.5.0"
     "@types/negotiator": "npm:^0.6.3"
-    "@types/node": "npm:20.11.13"
-    "@types/react": "npm:18.2.48"
+    "@types/node": "npm:20.11.16"
+    "@types/react": "npm:18.2.51"
     "@types/react-dom": "npm:18.2.18"
     "@types/uuid": "npm:^9.0.8"
     "@vercel/speed-insights": "npm:^1.0.9"
@@ -5822,6 +5791,7 @@ __metadata:
     figures: "npm:^6.0.1"
     graphql: "npm:^16.8.1"
     graphql-config: "npm:^5.0.3"
+    graphql-request: "npm:^6.1.0"
     negotiator: "npm:^0.6.3"
     next: "npm:^14.1.0"
     next-auth: "npm:^4.24.5"
@@ -6239,7 +6209,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-request@npm:^6.0.0":
+"graphql-request@npm:^6.0.0, graphql-request@npm:^6.1.0":
   version: 6.1.0
   resolution: "graphql-request@npm:6.1.0"
   dependencies:
@@ -6945,13 +6915,6 @@ __metadata:
     call-bind: "npm:^1.0.2"
     get-intrinsic: "npm:^1.1.1"
   checksum: 10/8f2ddb9639716fd7936784e175ea1183c5c4c05274c34f34f6a53175313cb1c9c35a8b795623306995e2f7cc8f25aa46302f15a2113e51c5052d447be427195c
-  languageName: node
-  linkType: hard
-
-"is-what@npm:^4.1.8":
-  version: 4.1.15
-  resolution: "is-what@npm:4.1.15"
-  checksum: 10/5624028fc8fea69ae7ab332a263ca4f379cd796d87f7fdb1bc9aab8d1d57f22c7e35d90e7e85a545eb5a3c62463683f9b84d0c5616182964bd41394a80aa2295
   languageName: node
   linkType: hard
 
@@ -9249,13 +9212,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"server-only@npm:^0.0.1":
-  version: 0.0.1
-  resolution: "server-only@npm:0.0.1"
-  checksum: 10/c432348956641ea3f460af8dc3765f3a1bdbcf7a1e0205b0756d868e6e6fe8934cdee6bff68401a1dd49ba4a831c75916517a877446d54b334f7de36fa273e53
-  languageName: node
-  linkType: hard
-
 "set-blocking@npm:^2.0.0":
   version: 2.0.0
   resolution: "set-blocking@npm:2.0.0"
@@ -9731,15 +9687,6 @@ __metadata:
     sucrase: bin/sucrase
     sucrase-node: bin/sucrase-node
   checksum: 10/b64d154a7a7eaa4b39668c3124bd08cd505f683d36ac4fb94def6491fb3af155b24b6e41b55011e38582e7d59c440af79ffba8709f3da78aeedf2f07b6d51d84
-  languageName: node
-  linkType: hard
-
-"superjson@npm:^1.12.2 || ^2.0.0":
-  version: 2.2.1
-  resolution: "superjson@npm:2.2.1"
-  dependencies:
-    copy-anything: "npm:^3.0.2"
-  checksum: 10/bb8743a87c97f7845e0c27af1af0731d3185b32099ebce2aee0e67ac9a6ae9a7c4b9edfca7e1fe48693a78b56d5922d1cd13ef80c2fa12b788d3fc0ca25afe47
   languageName: node
   linkType: hard
 
