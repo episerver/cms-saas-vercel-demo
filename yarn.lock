@@ -902,7 +902,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/cli@npm:^5.0.1":
+"@graphql-codegen/cli@npm:^5.0.0":
   version: 5.0.1
   resolution: "@graphql-codegen/cli@npm:5.0.1"
   dependencies:
@@ -956,7 +956,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/client-preset@npm:^4.2.0":
+"@graphql-codegen/client-preset@npm:^4.0.0, @graphql-codegen/client-preset@npm:^4.2.0":
   version: 4.2.0
   resolution: "@graphql-codegen/client-preset@npm:4.2.0"
   dependencies:
@@ -993,7 +993,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/fragment-matcher@npm:^5.0.1":
+"@graphql-codegen/fragment-matcher@npm:^5.0.0":
   version: 5.0.1
   resolution: "@graphql-codegen/fragment-matcher@npm:5.0.1"
   dependencies:
@@ -1020,7 +1020,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/plugin-helpers@npm:^5.0.2":
+"@graphql-codegen/plugin-helpers@npm:^5.0.0, @graphql-codegen/plugin-helpers@npm:^5.0.2":
   version: 5.0.2
   resolution: "@graphql-codegen/plugin-helpers@npm:5.0.2"
   dependencies:
@@ -1064,7 +1064,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript-operations@npm:^4.1.0":
+"@graphql-codegen/typescript-operations@npm:^4.0.0, @graphql-codegen/typescript-operations@npm:^4.1.0":
   version: 4.1.0
   resolution: "@graphql-codegen/typescript-operations@npm:4.1.0"
   dependencies:
@@ -1079,7 +1079,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/typescript@npm:^4.0.2":
+"@graphql-codegen/typescript@npm:^4.0.0 , @graphql-codegen/typescript@npm:^4.0.2":
   version: 4.0.2
   resolution: "@graphql-codegen/typescript@npm:4.0.2"
   dependencies:
@@ -2172,8 +2172,8 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server"
   dependencies:
-    "@graphql-codegen/cli": "npm:^5.0.1"
-    "@graphql-codegen/client-preset": "npm:^4.2.0"
+    "@graphql-codegen/cli": "npm:^5.0.0"
+    "@graphql-codegen/client-preset": "npm:^4.0.0"
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     "@parcel/watcher": "npm:^2.4.0"
     "@remkoj/optimizely-dxp-react": "workspace:*"
@@ -2234,7 +2234,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions"
   dependencies:
-    "@graphql-codegen/plugin-helpers": "npm:^5.0.2"
+    "@graphql-codegen/plugin-helpers": "npm:^5.0.0"
     graphql: "npm:^16.8.1"
     tslib: "npm:^2.6.2"
     typescript: "npm:^5.3.3"
@@ -5751,12 +5751,12 @@ __metadata:
   dependencies:
     "@eslint/eslintrc": "npm:^3.0.0"
     "@formatjs/intl-localematcher": "npm:^0.5.4"
-    "@graphql-codegen/cli": "npm:^5.0.1"
-    "@graphql-codegen/client-preset": "npm:^4.2.0"
-    "@graphql-codegen/fragment-matcher": "npm:^5.0.1"
-    "@graphql-codegen/plugin-helpers": "npm:^5.0.2"
-    "@graphql-codegen/typescript": "npm:^4.0.2"
-    "@graphql-codegen/typescript-operations": "npm:^4.1.0"
+    "@graphql-codegen/cli": "npm:^5.0.0"
+    "@graphql-codegen/client-preset": "npm:^4.0.0"
+    "@graphql-codegen/fragment-matcher": "npm:^5.0.0"
+    "@graphql-codegen/plugin-helpers": "npm:^5.0.0"
+    "@graphql-codegen/typescript": "npm:^4.0.0 "
+    "@graphql-codegen/typescript-operations": "npm:^4.0.0"
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     "@headlessui/react": "npm:^1.7.18"
     "@headlessui/tailwindcss": "npm:^0.2.0"

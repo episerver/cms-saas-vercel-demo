@@ -12,5 +12,5 @@ import { type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizel
  * @param   options     The optional options to use to control the edit page
  * @returns The React Component that can be used by Next.JS to render the page
  */
-export declare function createEditPageComponent(dxpUrl: string, channel: Readonly<ChannelDefinition>, factory: ComponentFactory, options?: Partial<EditViewOptions>): EditPageComponent;
+export declare function createEditPageComponent(channel: Readonly<ChannelDefinition>, factory: ComponentFactory, options?: Partial<EditViewOptions>): EditPageComponent;
 export default createEditPageComponent;

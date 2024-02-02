@@ -36,7 +36,6 @@ const defaultOptions : EditViewOptions = {
  * @returns The React Component that can be used by Next.JS to render the page
  */
 export function createEditPageComponent(
-    dxpUrl: string,
     channel: Readonly<ChannelDefinition>,
     factory: ComponentFactory,
     options?: Partial<EditViewOptions>
@@ -53,6 +52,8 @@ export function createEditPageComponent(
         loader: getContentById,
         clientFactory
     } = { ...defaultOptions, ...options }
+
+    const dxpUrl = channel.getCmsUrl()
 
     async function EditPage({ params, searchParams }: EditPageProps) : Promise<JSX.Element>
     {

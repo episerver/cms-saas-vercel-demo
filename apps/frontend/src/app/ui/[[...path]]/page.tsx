@@ -3,7 +3,6 @@ import 'server-only'
 // Base frameworks & components
 import { type PropsWithChildren } from 'react'
 import { OnPageEdit } from '@remkoj/optimizely-dxp-nextjs'
-import { getContentGraphConfig } from '@remkoj/optimizely-dxp-react'
 
 // Import libraries & GraphQL
 import * as EnvTools from '@/lib/env'
@@ -19,9 +18,6 @@ import { ExclamationTriangleIcon } from '@heroicons/react/24/outline'
 // Read staticly generated site definition and environment variables
 import channel from '@/site-config'
 const refreshDelay = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY", 2000)
-
-// Read Content Graph Configuration
-const factory = setupFactory()
 
 // Prepare the error component
 const ErrorComponent = (props: { title: string, message: string }) => {
@@ -42,9 +38,8 @@ const PageLayout = (props: PropsWithChildren<{locale: string}>) =>
 }
 
 export default OnPageEdit.createEditPageComponent(
-    channel.getCmsUrl(),
     channel,
-    factory,
+    setupFactory(),
     {
         errorNotice: ErrorComponent,
         refreshNotice: RefreshNotice,

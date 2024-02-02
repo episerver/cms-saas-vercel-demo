@@ -28,10 +28,11 @@ const defaultOptions = {
  * @param   options     The optional options to use to control the edit page
  * @returns The React Component that can be used by Next.JS to render the page
  */
-export function createEditPageComponent(dxpUrl, channel, factory, options) {
+export function createEditPageComponent(channel, factory, options) {
     const DEVELOPMENT = process.env.NODE_ENV == 'development';
     const DEBUG = process.env.DXP_DEBUG == '1';
     const { layout: PageLayout, refreshNotice: RefreshNotice, refreshDelay, errorNotice: ErrorNotice, loader: getContentById, clientFactory } = { ...defaultOptions, ...options };
+    const dxpUrl = channel.getCmsUrl();
     async function EditPage({ params, searchParams }) {
         // Validate the search parameters
         const epiEditMode = searchParams?.epieditmode?.toLowerCase();

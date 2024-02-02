@@ -179,8 +179,10 @@ function inject(documents, into, nameRegex, pathRegex)
 
     })
 
-    if (matchingFragmentNames.length == 0)
-        throw new Error("No fragments to inject have been found")
+    if (matchingFragmentNames.length == 0) {
+        console.log(`[NOTICE] No fragments to inject have been found for ${ into }`)
+        return documents
+    }
 
     // Make sure the target can receive fragments
     if (matchingFragmentNames.length > 0 && !intoMatch.match.data?.selectionSet?.selections)
