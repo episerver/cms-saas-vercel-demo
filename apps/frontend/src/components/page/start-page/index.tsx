@@ -55,50 +55,10 @@ export default StartPage;
 export const StartPageData = gql(/* GraphQL */ `
   fragment StartPageData on StartPage {
     HomePageHeroContentArea {
-      ContentLink {
-        Expanded {
-          _deleted
-          _modified
-          _score
-          _id
-          Name
-          RouteSegment
-          Url
-          Changed
-          Created
-          StartPublish
-          StopPublish
-          Saved
-          Status
-          IsCommonDraft
-          RelativePath
-          SiteId
-          ContentType
-        }
-      }
+      ...ContentAreaItemData
     }
     HomePageMainContentArea {
-      ContentLink {
-        Expanded {
-          _deleted
-          _modified
-          _score
-          _id
-          Name
-          RouteSegment
-          Url
-          Changed
-          Created
-          StartPublish
-          StopPublish
-          Saved
-          Status
-          IsCommonDraft
-          RelativePath
-          SiteId
-          ContentType
-        }
-      }
+      ...ContentAreaItemData
     }
   }
 `);
