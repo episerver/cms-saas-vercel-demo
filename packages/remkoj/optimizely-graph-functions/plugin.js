@@ -166,7 +166,6 @@ function inject(documents, into, nameRegex, pathRegex)
             if (!rx.test(document.location))
                 return
         }
-
         // Then 
         document.document.definitions
             .filter(x => x.kind == Kind.FRAGMENT_DEFINITION && x.name.value)
@@ -181,8 +180,10 @@ function inject(documents, into, nameRegex, pathRegex)
 
     })
 
-    if (matchingFragmentNames.length == 0)
-        throw new Error("No fragments to inject have been found")
+    if (matchingFragmentNames.length == 0) {
+        console.log(`[NOTICE] No fragments to inject have been found for ${ into }`)
+        return documents
+    }
 
     // Make sure the target can receive fragments
     if (matchingFragmentNames.length > 0 && !intoMatch.match.data?.selectionSet?.selections)
