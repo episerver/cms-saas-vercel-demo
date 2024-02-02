@@ -1,22 +1,9 @@
-type paddingSize = "none" | "small" | "medium" | "large" | "extraLarge";
-type marginSize = "none" | "small" | "medium" | "large" | "extraLarge";
-type gapSize = "none" | "small" | "medium" | "large" | "extraLarge";
+import { gql } from "@gql/gql";
+import type * as GraphQL from "@gql/graphql";
+import { CmsComponent } from "@remkoj/optimizely-dxp-react";
+import { CmsContentArea } from "@remkoj/optimizely-dxp-react-server";
 
-type Image = { src: string; alt: string; width: number; height: number };
-
-interface ContainerBlockProps {
-  columns: 1 | 2 | 3 | 4 | 5 | 6;
-  paddingTop?: paddingSize;
-  paddingBottom?: paddingSize;
-  marginTop: marginSize;
-  marginBottom: marginSize;
-  backgroundImage?: Image;
-  children?: React.ReactNode;
-  gap: gapSize;
-  color?: undefined | "light-blue" | "blue" | "orange" | "green" | "red" | "white";
-}
-
-const columnClassMap: { [key in ContainerBlockProps["columns"]]: string } = {
+const columnClassMap: { [key: string]: string } = {
   1: "grid-cols-1",
   2: "grid-cols-1 md:grid-cols-2",
   3: "grid-cols-1 md:grid-cols-3",
@@ -25,7 +12,7 @@ const columnClassMap: { [key in ContainerBlockProps["columns"]]: string } = {
   6: "grid-cols-1 md:grid-cols-3 lg:grid-cols-6",
 };
 
-const gapSizeClassMap: { [key in ContainerBlockProps["gap"]]: string } = {
+const gapSizeClassMap: { [key: string]: string } = {
   none: "",
   small: "gap-4",
   medium: "gap-8",
@@ -33,26 +20,39 @@ const gapSizeClassMap: { [key in ContainerBlockProps["gap"]]: string } = {
   extraLarge: "gap-24",
 };
 
-const ContainerBlock: React.FC<ContainerBlockProps> = ({
-  columns = 1,
-  paddingTop = "none",
-  paddingBottom = "none",
-  marginTop = "medium",
-  marginBottom = "medium",
-  backgroundImage,
-  gap = "small",
-  color,
-  children,
-}) => {
+const ContainerBlock: CmsComponent<
+  GraphQL.LayoutContainerBlockDataFragment
+> = ({ data, inEditMode, contentLink, children }) => {
+  const items = data.LayoutContentArea;
+
+  const {
+    columns = 1,
+    paddingTop = "none",
+    paddingBottom = "none",
+    marginTop = "medium",
+    marginBottom = "medium",
+    backgroundImage,
+    gap = "small",
+    color,
+  } = data;
+
   const columnClass = columnClassMap[columns];
   const gapClass = gap ? gapSizeClassMap[gap] : "";
   const additionalClasses: string[] = [];
   const innerClasses: string[] = [];
   let backgroundStyle = {};
 
-  if (backgroundImage && typeof backgroundImage === "object" && "src" in backgroundImage) {
+  if (
+    backgroundImage &&
+    typeof backgroundImage === "object" &&
+    "src" in backgroundImage
+  ) {
     // Set background image style
-    backgroundStyle = { backgroundImage: `url(${backgroundImage.src})`, backgroundSize: "cover", backgroundPosition: "center" };
+    backgroundStyle = {
+      backgroundImage: `url(${backgroundImage.src})`,
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+    };
   }
 
   switch (color) {
@@ -137,15 +137,67 @@ const ContainerBlock: React.FC<ContainerBlockProps> = ({
   }
 
   if (backgroundImage && typeof backgroundImage === "object") {
-    additionalClasses.push("relative before:content-[''] before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-opacity-70");
+    additionalClasses.push(
+      "relative before:content-[''] before:absolute before:top-0 before:left-0 before:h-full before:w-full before:bg-opacity-70"
+    );
     innerClasses.push("z-10 relative");
   }
 
   return (
-    <section className={`outer-padding w-full ${additionalClasses.join(" ")}`} style={{ ...backgroundStyle }}>
-      <div className={`container mx-auto place-items-center grid ${columnClass} ${gapClass} ${innerClasses.join(" ")}`}>{children}</div>
+    <section
+      className={`outer-padding w-full ${additionalClasses.join(" ")}`}
+      style={{ ...backgroundStyle }}
+      data-epi-edit={inEditMode ? "LayoutContentArea" : undefined}
+    >
+      <div
+        className={`container mx-auto place-items-center grid ${columnClass} ${gapClass} ${innerClasses.join(
+          " "
+        )}`}
+      >
+        {items && (
+          <CmsContentArea
+            className={""}
+            fieldName="LayoutContentArea"
+            inEditMode={inEditMode}
+            locale={contentLink.locale}
+            items={items}
+          />
+        )}
+      </div>
     </section>
   );
 };
 
+ContainerBlock.displayName = "Container Block";
+ContainerBlock.getDataFragment = () => [
+  "LayoutContainerBlockData",
+  Documents.data,
+];
 export default ContainerBlock;
+
+const Documents: Readonly<{ [field: string]: any }> = {
+  data: gql(/** GraphQL */ `
+    fragment LayoutContainerBlockData on LayoutContainerBlock {
+    Name
+    columns: ColumnsCount
+    color: ContainerBackgroundColor
+    backgroundImage: ContainerBackgroundImage {
+      url: Url
+    }
+    marginBottom: ContainerMarginBottom
+    marginTop: ContainerMarginTop
+    paddingBottom: ContainerPaddingBottom
+    paddingTop: ContainerPaddingTop
+    gap: GapSize
+    LayoutContentArea {
+      item: ContentLink {
+            ...ContentLinkSearch
+            data: Expanded {
+            ...IContentData
+            }
+      }
+      displayOption:DisplayOption
+    }
+  }
+  `),
+};

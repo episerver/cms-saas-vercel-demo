@@ -9,7 +9,7 @@ import { DropdownMenuProps, MenuItem, Promo } from "../types/headerTypes";
 function MenuItem({ menuList, ...props }) {
   if (menuList.__typename === "MenuNavigationBlock") {
     return (
-      <div>
+      <div {...props}>
         {menuList.title ? (
           <h3 className="text-[16px] font-semibold uppercase tracking-[1px]">
             {menuList.title}

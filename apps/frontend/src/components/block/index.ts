@@ -25,7 +25,7 @@ export const Blocks : ComponentTypeDictionary = [
         component: Carousel as ComponentType
     },
     {
-        type: ['Block', 'ContainerBlock'],
+        type: ['Block', 'LayoutContainerBlock'],
         component: ContainerBlock as ComponentType
     },
     {

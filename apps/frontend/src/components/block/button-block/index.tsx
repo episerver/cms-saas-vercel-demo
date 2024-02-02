@@ -10,7 +10,7 @@ export interface ButtonBlockComponentType {
 
 const Button: React.FC<ButtonBlockComponentType> = ({
   className = "",
-  buttonType,
+  buttonType = "primary",
   buttonVariant = "default",
   url = "#",
   children,

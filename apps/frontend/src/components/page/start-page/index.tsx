@@ -42,7 +42,7 @@ export const StartPage: OptimizelyNextPage<StartPageDataFragment> = ({
         locale={contentLink.locale}
         classMapper={ClassMapper}
         client={client}
-        className="max-w-screen-2xl mx-auto"
+        className="w-full"
       />
     </div>
   );
