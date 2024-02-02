@@ -14,6 +14,7 @@ const Button: React.FC<ButtonBlockComponentType> = ({
   buttonVariant = "default",
   url = "#",
   children,
+  ...props
 }) => {
   const buttonTypes = {
     primary: "btn--primary",
@@ -27,8 +28,9 @@ const Button: React.FC<ButtonBlockComponentType> = ({
 
   return (
     <Link
-      href={url}
+      href={url ? url : "#"}
       className={`${buttonTypes[buttonType]} ${buttonVariants[buttonVariant]} ${className}`}
+      {...props}
     >
       <div className="btn__content">{children}</div>
     </Link>

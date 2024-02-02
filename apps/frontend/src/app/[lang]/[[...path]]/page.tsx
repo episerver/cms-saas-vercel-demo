@@ -22,8 +22,6 @@ export const dynamicParams = true; // Allow new pages to be resolved without reb
 export const revalidate = false; // Keep the cache untill manually revalidated using the Webhook
 export const fetchCache = "default-cache"; // Cache fetch results by default
 
-console.log(factory);
-
 // Create the page components and functions
 const {
   generateMetadata,
@@ -32,5 +30,6 @@ const {
 } = CmsPage.createPage(client, factory, channel, {
   getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
 });
+
 export { generateMetadata, generateStaticParams };
 export default Page;
