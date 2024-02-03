@@ -56,7 +56,9 @@ const config: Config = {
     'flex-row',
     'flex-col',
     'flex-row-reverse',
-    'flex-col-reverse'
+    'flex-col-reverse',
+    'opti-content-area',
+    'opti-content-area-item'
   ],
   plugins: [
     require('@tailwindcss/typography'),

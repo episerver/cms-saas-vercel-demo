@@ -1,29 +1,23 @@
 import { Variant } from "framer-motion";
+import type * as GraphQL from "@gql/graphql";
+import { gql } from "@gql/gql";
+import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
-interface TextBlockProps {
-  className?: string;
-  center?: boolean;
-  width?: "full" | "small" | "medium" | "large";
-  headingSize: "small" | "medium" | "large" | "extraLarge";
-  animation?: {
-    hidden: Variant;
-    visible: Variant;
-  };
-  overline?: string;
-  heading?: string;
-  description?: string;
-}
+const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
+  data,
+  inEditMode,
+}) => {
+  const {
+    className = "",
+    center = false,
+    width = "full",
+    headingSize = "medium",
+    animation,
+    overline = "",
+    heading = "",
+    description = "",
+  } = data;
 
-export const TextBlock = ({
-  className = "",
-  center = false,
-  width = "full",
-  headingSize = "medium",
-  animation,
-  overline = "",
-  heading = "",
-  description = "",
-}: TextBlockProps) => {
   const additionalClasses: string[] = [];
 
   switch (width) {
@@ -89,4 +83,21 @@ export const TextBlock = ({
   );
 };
 
+TextBlock.displayName = "Text Block";
+TextBlock.getDataFragment = () => ["TextBlockData", TextBlockData.data];
 export default TextBlock;
+
+const TextBlockData: Readonly<{ [field: string]: any }> = {
+  data: gql(/* GraphQL */ `
+    fragment TextBlockData on TextBlock {
+      Name
+      overline: TextBlockOverline
+      headingSize: TextBlockHeadingSize
+      heading: TextBlockHeading
+      description: TextBlockDescription
+      center: TextCenter
+      width: TextBlockWidth
+      className: TextClassName
+    }
+  `),
+};

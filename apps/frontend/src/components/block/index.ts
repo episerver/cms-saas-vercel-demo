@@ -6,6 +6,7 @@ import TextBlock from './text-block'
 import Carousel from './carousel-block'
 import ContainerBlock from './container-block'
 import CardBlock from './card-block'
+import QuoteBlock from './quote-block'
 
 export const Blocks : ComponentTypeDictionary = [
     {
@@ -31,6 +32,10 @@ export const Blocks : ComponentTypeDictionary = [
     {
         type: ['Block', 'CardBlock'],
         component: CardBlock as ComponentType
+    },
+    {
+        type: ['Block', 'QuoteBlock'],
+        component: QuoteBlock as ComponentType
     }
 ]
 export default Blocks

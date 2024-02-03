@@ -1,20 +1,8 @@
-"use client";
-
 import React, { useEffect } from "react";
+import type * as GraphQL from "@gql/graphql";
 import Image from "next/image";
-
-type User = {
-  profilePicture: string;
-  name: string;
-  location: string;
-};
-
-type QuoteBlockProps = {
-  user: User;
-  quote: string;
-  color: "blue" | "orange" | "green" | "red" | "white";
-  active?: string;
-};
+import { gql } from "@apollo/client";
+import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
 /**
  * React functional component for rendering a quote block with user information.
@@ -25,11 +13,17 @@ type QuoteBlockProps = {
  * @param {boolean} active - whether the block is active or not
  * @return {JSX.Element} the rendered quote block component
  */
-const QuoteBlock: React.FC<QuoteBlockProps> = ({ user, quote, color, active }) => {
+const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
+  data,
+  inEditMode,
+}) => {
+  const { profilePicture, name, location, quote, color, active } = data;
   const additionalClasses: string[] = [];
 
   if (active) {
-    additionalClasses.push("relative before:translate-x-[16px] before:translate-y-[16px]");
+    additionalClasses.push(
+      "relative before:translate-x-[16px] before:translate-y-[16px]"
+    );
   }
 
   switch (color) {
@@ -58,15 +52,45 @@ const QuoteBlock: React.FC<QuoteBlockProps> = ({ user, quote, color, active }) =
     >
       <blockquote className="text-[18px] lg:text-[24px]">{quote}</blockquote>
       <figcaption className="flex items-center mt-16">
-        <Image src={user.profilePicture} alt={user.name} width={200} height={200} className="rounded-full max-w-24" />
+        {profilePicture && profilePicture.url && (
+          <Image
+            src={profilePicture.url}
+            alt={name}
+            width={200}
+            height={200}
+            className="rounded-full max-w-24"
+          />
+        )}
+
         <cite className="ml-4 lg:flex not-italic">
-          <p className="whitespace-nowrap">{user.name}</p>
-          {user.location && <span className="mx-2 hidden lg:inline-block">&mdash;</span>}
-          {user.location ? <p className="text-[12px] lg:text-[16px]">{user.location}</p> : null}
+          <p className="whitespace-nowrap">{name}</p>
+          {location && (
+            <span className="mx-2 hidden lg:inline-block">&mdash;</span>
+          )}
+          {location ? (
+            <p className="text-[12px] lg:text-[16px]">{location}</p>
+          ) : null}
         </cite>
       </figcaption>
     </figure>
   );
 };
 
+QuoteBlock.displayName = "Quote Block";
+QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockData.data];
 export default QuoteBlock;
+
+const QuoteBlockData: Readonly<{ [field: string]: any }> = {
+  data: gql(/* GraphQL */ `
+    fragment QuoteBlockData on QuoteBlock {
+      quote: QuoteText
+      color: QuoteColor
+      active: QuoteActive
+      name: QuoteProfileName
+      profilePicture: QuoteProfilePicture {
+        url: Url
+      }
+      location: QuoteProfileLocation
+    }
+  `),
+};

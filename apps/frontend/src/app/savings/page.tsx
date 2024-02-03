@@ -6,7 +6,7 @@ import ContainerBlock from "@/components/block/container-block";
 import { FormBlock } from "@/components/block/form-block";
 import HeroBlock from "@/components/block/hero";
 import { TextBlock } from "@/components/block/text-block";
-import Carousel from "@/components/block/carousel-block";
+import Carousel from "@/components/block/carousel-block/carousel-block";
 import QuoteBlock from "@/components/block/quote-block";
 
 export default function SavingsPage() {

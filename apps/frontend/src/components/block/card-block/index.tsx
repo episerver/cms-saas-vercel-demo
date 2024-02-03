@@ -43,10 +43,10 @@ const CardBlockData = gql(/* graphql */ `fragment CardBlockData on CardBlock {
   description: CardDescription
   heading: CardHeading
   icon: CardIcon {
-    url: Url
+    src: Url
   }
   image: CardImage {
-    url: Url
+    src: Url
   }
   subheading:CardSubHeading
   imageLayout: ImageLayout

@@ -50,40 +50,6 @@ export const StartPage: OptimizelyNextPage<StartPageDataFragment> = ({
 
 StartPage.getDataFragment = () => ["StartPageData", StartPageData];
 
-StartPage.getMetaData = async (contentLink, locale, client) => {
-  const variables = { ...contentLink, locale: locale as GraphQL.Locales };
-  const result =
-    ((
-      await client.query({
-        query: GetStartPageMetaData,
-        variables,
-      })
-    ).data?.getStartPageMetaData?.pages ?? [])[0] ?? undefined;
-
-  if (!result) return {};
-
-  const title = result.head?.title || result.name || undefined;
-  const description = result.head?.description || undefined;
-  const metadata: Metadata = {};
-
-  if (title) {
-    metadata.title = title;
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      title: title,
-    };
-  }
-  if (description) {
-    metadata.description = description;
-    metadata.openGraph = {
-      ...metadata.openGraph,
-      description: description,
-    };
-  }
-
-  return metadata;
-};
-
 export default StartPage;
 
 export const StartPageData = gql(/* GraphQL */ `
@@ -93,33 +59,6 @@ export const StartPageData = gql(/* GraphQL */ `
     }
     HomePageMainContentArea {
       ...ContentAreaItemData
-    }
-  }
-`);
-
-export const GetStartPageMetaData = gql(/* GraphQL */ `
-  query getStartPageMetaData(
-    $id: Int
-    $workId: Int
-    $guidValue: String
-    $locale: [Locales!]
-    $isCommonDraft: Boolean
-  ) {
-    getStartPagedata: StartPage(
-      where: {
-        ContentLink: {
-          Id: { eq: $id }
-          WorkId: { eq: $workId }
-          GuidValue: { eq: $guidValue }
-        }
-        IsCommonDraft: { eq: $isCommonDraft }
-      }
-      locale: $locale
-    ) {
-      count: total
-      items {
-        name: Name
-      }
     }
   }
 `);

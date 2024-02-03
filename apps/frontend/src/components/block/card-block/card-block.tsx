@@ -83,11 +83,11 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
     >
       <div className="w-full h-full grid auto-rows-min @[80rem]/card:items-center grid-cols-1 gap-16 @[80rem]/card:grid-cols-12 @[80rem]/card:gap-32">
         <div
-          className={`prose prose-h2:text-[48px] prose-h2:mb-[24px] prose-h2:mt-[24px] prose-p:text-[20px] prose-img:my-4 @[80rem]/card:col-span-5 ${innerClasses.join(
+          className={`prose prose-h2:text-[48px] prose-h2:mb-[24px] prose-h2:mt-[24px] prose-h3:text-[24px] prose-p:text-[20px] prose-img:my-4 @[80rem]/card:col-span-5 ${innerClasses.join(
             " "
           )}`}
         >
-          {icon ? (
+          {icon && icon.src ? (
             <Image src={icon.src} alt={icon.alt} width={48} height={48} />
           ) : null}
           {heading ? (
@@ -99,9 +99,11 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
           {description ? (
             <div dangerouslySetInnerHTML={{ __html: description }}></div>
           ) : null}
-          {button ? <ButtonBlock {...button}></ButtonBlock> : null}
+          {button && button.children ? (
+            <ButtonBlock {...button}></ButtonBlock>
+          ) : null}
         </div>
-        {image ? (
+        {image && image.src ? (
           <motion.div
             className={`@[80rem]/card:col-span-7 ${
               imageLayout === "after"
@@ -113,8 +115,8 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
               className="rounded-[40px] w-full"
               src={image.src}
               alt={image.alt}
-              width={image.width}
-              height={image.height}
+              width={660}
+              height={440}
             />
           </motion.div>
         ) : null}

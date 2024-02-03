@@ -16,8 +16,8 @@ export class ChannelDefinition {
     }
     dxp_url;
     get editDomain() {
-        const primaryDomain = this.domains.filter(x => x.isEdit)[0];
-        return primaryDomain?.name;
+        const editDomain = this.domains.filter(x => x.isEdit)[0];
+        return editDomain?.name;
     }
     constructor(initialData, dxp_url) {
         this.id = initialData.id;

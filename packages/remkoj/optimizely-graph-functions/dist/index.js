@@ -1,4 +1,6 @@
-import { concatAST, Kind, visit, print } from 'graphql';
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const graphql_1 = require("graphql");
 const plugin = {
     validate: (schema, document, config, outputFile, allPlugins, pluginContext) => {
         if (config.optlyFunctions) {
@@ -17,16 +19,16 @@ const plugin = {
         config.optlyInjections?.forEach(injection => {
             documents = inject(documents, injection.into, injection.nameRegex, injection.pathRegex);
         });
-        const docs = concatAST(documents.filter(x => x.document).map(x => x.document));
+        const docs = (0, graphql_1.concatAST)(documents.filter(x => x.document).map(x => x.document));
         const output = [];
         functions.forEach(fn => {
-            const fnDocuments = docs.definitions.filter(x => x.kind == Kind.OPERATION_DEFINITION && x.operation == "query" && x.name?.value == fn);
+            const fnDocuments = docs.definitions.filter(x => x.kind == graphql_1.Kind.OPERATION_DEFINITION && x.operation == "query" && x.name?.value == fn);
             if (fnDocuments.length != 1)
                 throw new Error(`The function name must exist as query and be unique within your GraphQL documents`);
             const fnDocument = fnDocuments[0];
             const usedFragments = resolveSpreads(fnDocument, docs);
             const query = "\n" + [fnDocument, ...usedFragments]
-                .map(part => print(part))
+                .map(part => (0, graphql_1.print)(part))
                 .join("\n") + "\n";
             const varsType = `Types.${fn.charAt(0).toUpperCase()}${fn.slice(1)}QueryVariables`;
             const returnType = "Promise<any>";
@@ -60,9 +62,9 @@ const plugin = {
 };
 function resolveSpreads(definition, document, availableFragments = []) {
     const spreadNames = [];
-    visit(definition, {
+    (0, graphql_1.visit)(definition, {
         leave: (node) => {
-            if (node.kind == Kind.FRAGMENT_SPREAD && !availableFragments.includes(node.name.value))
+            if (node.kind == graphql_1.Kind.FRAGMENT_SPREAD && !availableFragments.includes(node.name.value))
                 spreadNames.push(node.name.value);
         }
     });
@@ -122,9 +124,9 @@ function inject(documents, into, nameRegex, pathRegex) {
         throw new Error("The matching element has no selections section, which is mandatory to be extended");
     matchingFragmentNames.forEach(fragmentName => {
         intoMatch.match.data.selectionSet.selections.push({
-            kind: Kind.FRAGMENT_SPREAD,
+            kind: graphql_1.Kind.FRAGMENT_SPREAD,
             name: {
-                kind: Kind.NAME,
+                kind: graphql_1.Kind.NAME,
                 value: fragmentName
             },
             directives: []
@@ -136,10 +138,10 @@ function inject(documents, into, nameRegex, pathRegex) {
     return documents;
 }
 function isFragmentDefinitionNode(node) {
-    return node?.kind == Kind.FRAGMENT_DEFINITION;
+    return node?.kind == graphql_1.Kind.FRAGMENT_DEFINITION;
 }
 function isSelectionDefinitionNode(node) {
-    return node?.kind == Kind.OPERATION_DEFINITION || node?.kind == Kind.FRAGMENT_DEFINITION;
+    return node?.kind == graphql_1.Kind.OPERATION_DEFINITION || node?.kind == graphql_1.Kind.FRAGMENT_DEFINITION;
 }
-export default plugin;
+exports.default = plugin;
 //# sourceMappingURL=index.js.map
