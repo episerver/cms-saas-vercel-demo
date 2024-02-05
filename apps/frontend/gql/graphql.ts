@@ -2368,6 +2368,7 @@ export type ContainerPage = IContent & IData & {
   Ancestors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Category?: Maybe<Array<Maybe<CategoryModel>>>;
   Changed?: Maybe<Scalars['Date']['output']>;
+  ContainerContent?: Maybe<Scalars['String']['output']>;
   ContentLink?: Maybe<ContentModelReference>;
   ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Created?: Maybe<Scalars['Date']['output']>;
@@ -2404,6 +2405,7 @@ export type ContainerPageAutocomplete = {
   __typename?: 'ContainerPageAutocomplete';
   Ancestors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Category?: Maybe<CategoryModelAutocomplete>;
+  ContainerContent?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
   ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
@@ -2419,6 +2421,12 @@ export type ContainerPageAutocomplete = {
 
 
 export type ContainerPageAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ContainerPageAutocompleteContainerContentArgs = {
   limit?: Scalars['Int']['input'];
   value: Scalars['String']['input'];
 };
@@ -2464,6 +2472,7 @@ export type ContainerPageFacet = {
   Ancestors?: Maybe<Array<Maybe<StringFacet>>>;
   Category?: Maybe<CategoryModelFacet>;
   Changed?: Maybe<Array<Maybe<DateFacet>>>;
+  ContainerContent?: Maybe<Array<Maybe<StringFacet>>>;
   ContentLink?: Maybe<ContentModelReferenceFacet>;
   ContentType?: Maybe<Array<Maybe<StringFacet>>>;
   Created?: Maybe<Array<Maybe<DateFacet>>>;
@@ -2495,6 +2504,14 @@ export type ContainerPageFacetAncestorsArgs = {
 export type ContainerPageFacetChangedArgs = {
   unit?: InputMaybe<DateFacetUnit>;
   value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ContainerPageFacetContainerContentArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
 };
 
 
@@ -2589,6 +2606,7 @@ export type ContainerPageOrderByInput = {
   Ancestors?: InputMaybe<OrderBy>;
   Category?: InputMaybe<CategoryModelOrderByInput>;
   Changed?: InputMaybe<OrderBy>;
+  ContainerContent?: InputMaybe<OrderBy>;
   ContentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
   ContentType?: InputMaybe<OrderBy>;
   Created?: InputMaybe<OrderBy>;
@@ -2627,6 +2645,7 @@ export type ContainerPageWhereInput = {
   Ancestors?: InputMaybe<StringFilterInput>;
   Category?: InputMaybe<CategoryModelWhereInput>;
   Changed?: InputMaybe<DateFilterInput>;
+  ContainerContent?: InputMaybe<StringFilterInput>;
   ContentLink?: InputMaybe<ContentModelReferenceWhereInput>;
   ContentType?: InputMaybe<StringFilterInput>;
   Created?: InputMaybe<DateFilterInput>;
@@ -9746,15 +9765,18 @@ export type StandardPage = IContent & IData & {
   Language?: Maybe<ContentLanguageModel>;
   /** The main body for this page */
   MainBody?: Maybe<Scalars['String']['output']>;
-  MainContentArea?: Maybe<Array<Maybe<ContentAreaItemModelSearch>>>;
   MasterLanguage?: Maybe<ContentLanguageModel>;
   Name?: Maybe<Scalars['String']['output']>;
   ParentLink?: Maybe<ContentModelReference>;
   RelativePath?: Maybe<Scalars['String']['output']>;
   RouteSegment?: Maybe<Scalars['String']['output']>;
   Saved?: Maybe<Scalars['Date']['output']>;
+  /** Configure the common properties to improve the indexing of the page by search engines */
+  SeoSettings?: Maybe<StandardPageBlockData>;
   SiteId?: Maybe<Scalars['String']['output']>;
   StandardPageHeading?: Maybe<Scalars['String']['output']>;
+  StandardPromoImage?: Maybe<ContentModelReference>;
+  StandardSubHeading?: Maybe<Scalars['String']['output']>;
   StartPublish?: Maybe<Scalars['Date']['output']>;
   Status?: Maybe<Scalars['String']['output']>;
   StopPublish?: Maybe<Scalars['Date']['output']>;
@@ -9786,7 +9808,10 @@ export type StandardPageAutocomplete = {
   ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
   RelativePath?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   RouteSegment?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  SeoSettings?: Maybe<StandardPageBlockDataAutocomplete>;
   SiteId?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  StandardPromoImage?: Maybe<ContentModelReferenceAutocomplete>;
+  StandardSubHeading?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Status?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Url?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
@@ -9822,6 +9847,12 @@ export type StandardPageAutocompleteSiteIdArgs = {
 };
 
 
+export type StandardPageAutocompleteStandardSubHeadingArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
 export type StandardPageAutocompleteStatusArgs = {
   limit?: Scalars['Int']['input'];
   value: Scalars['String']['input'];
@@ -9831,6 +9862,86 @@ export type StandardPageAutocompleteStatusArgs = {
 export type StandardPageAutocompleteUrlArgs = {
   limit?: Scalars['Int']['input'];
   value: Scalars['String']['input'];
+};
+
+export type StandardPageBlockData = {
+  __typename?: 'StandardPageBlockData';
+  GraphType?: Maybe<Scalars['String']['output']>;
+  MetaDescription?: Maybe<Scalars['String']['output']>;
+  MetaTitle?: Maybe<Scalars['String']['output']>;
+  SharingImage?: Maybe<ContentModelReference>;
+};
+
+export type StandardPageBlockDataAutocomplete = {
+  __typename?: 'StandardPageBlockDataAutocomplete';
+  GraphType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  MetaDescription?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  MetaTitle?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  SharingImage?: Maybe<ContentModelReferenceAutocomplete>;
+};
+
+
+export type StandardPageBlockDataAutocompleteGraphTypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type StandardPageBlockDataAutocompleteMetaDescriptionArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type StandardPageBlockDataAutocompleteMetaTitleArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type StandardPageBlockDataFacet = {
+  __typename?: 'StandardPageBlockDataFacet';
+  GraphType?: Maybe<Array<Maybe<StringFacet>>>;
+  MetaDescription?: Maybe<Array<Maybe<StringFacet>>>;
+  MetaTitle?: Maybe<Array<Maybe<StringFacet>>>;
+  SharingImage?: Maybe<ContentModelReferenceFacet>;
+};
+
+
+export type StandardPageBlockDataFacetGraphTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type StandardPageBlockDataFacetMetaDescriptionArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type StandardPageBlockDataFacetMetaTitleArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type StandardPageBlockDataOrderByInput = {
+  GraphType?: InputMaybe<OrderBy>;
+  MetaDescription?: InputMaybe<OrderBy>;
+  MetaTitle?: InputMaybe<OrderBy>;
+  SharingImage?: InputMaybe<ContentModelReferenceOrderByInput>;
+};
+
+export type StandardPageBlockDataWhereInput = {
+  GraphType?: InputMaybe<StringFilterInput>;
+  MetaDescription?: InputMaybe<StringFilterInput>;
+  MetaTitle?: InputMaybe<StringFilterInput>;
+  SharingImage?: InputMaybe<ContentModelReferenceWhereInput>;
 };
 
 export type StandardPageFacet = {
@@ -9845,15 +9956,17 @@ export type StandardPageFacet = {
   IsCommonDraft?: Maybe<Array<Maybe<StringFacet>>>;
   Language?: Maybe<ContentLanguageModelFacet>;
   MainBody?: Maybe<Array<Maybe<StringFacet>>>;
-  MainContentArea?: Maybe<ContentAreaItemModelSearchFacet>;
   MasterLanguage?: Maybe<ContentLanguageModelFacet>;
   Name?: Maybe<Array<Maybe<StringFacet>>>;
   ParentLink?: Maybe<ContentModelReferenceFacet>;
   RelativePath?: Maybe<Array<Maybe<StringFacet>>>;
   RouteSegment?: Maybe<Array<Maybe<StringFacet>>>;
   Saved?: Maybe<Array<Maybe<DateFacet>>>;
+  SeoSettings?: Maybe<StandardPageBlockDataFacet>;
   SiteId?: Maybe<Array<Maybe<StringFacet>>>;
   StandardPageHeading?: Maybe<Array<Maybe<StringFacet>>>;
+  StandardPromoImage?: Maybe<ContentModelReferenceFacet>;
+  StandardSubHeading?: Maybe<Array<Maybe<StringFacet>>>;
   StartPublish?: Maybe<Array<Maybe<DateFacet>>>;
   Status?: Maybe<Array<Maybe<StringFacet>>>;
   StopPublish?: Maybe<Array<Maybe<DateFacet>>>;
@@ -9951,6 +10064,14 @@ export type StandardPageFacetStandardPageHeadingArgs = {
 };
 
 
+export type StandardPageFacetStandardSubHeadingArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
 export type StandardPageFacetStartPublishArgs = {
   unit?: InputMaybe<DateFacetUnit>;
   value?: InputMaybe<Scalars['Int']['input']>;
@@ -9989,15 +10110,17 @@ export type StandardPageOrderByInput = {
   IsCommonDraft?: InputMaybe<OrderBy>;
   Language?: InputMaybe<ContentLanguageModelOrderByInput>;
   MainBody?: InputMaybe<OrderBy>;
-  MainContentArea?: InputMaybe<ContentAreaItemModelSearchOrderByInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelOrderByInput>;
   Name?: InputMaybe<OrderBy>;
   ParentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
   RelativePath?: InputMaybe<OrderBy>;
   RouteSegment?: InputMaybe<OrderBy>;
   Saved?: InputMaybe<OrderBy>;
+  SeoSettings?: InputMaybe<StandardPageBlockDataOrderByInput>;
   SiteId?: InputMaybe<OrderBy>;
   StandardPageHeading?: InputMaybe<OrderBy>;
+  StandardPromoImage?: InputMaybe<ContentModelReferenceOrderByInput>;
+  StandardSubHeading?: InputMaybe<OrderBy>;
   StartPublish?: InputMaybe<OrderBy>;
   Status?: InputMaybe<OrderBy>;
   StopPublish?: InputMaybe<OrderBy>;
@@ -10030,15 +10153,17 @@ export type StandardPageWhereInput = {
   IsCommonDraft?: InputMaybe<BoolFilterInput>;
   Language?: InputMaybe<ContentLanguageModelWhereInput>;
   MainBody?: InputMaybe<SearchableStringFilterInput>;
-  MainContentArea?: InputMaybe<ContentAreaItemModelSearchWhereInput>;
   MasterLanguage?: InputMaybe<ContentLanguageModelWhereInput>;
   Name?: InputMaybe<SearchableStringFilterInput>;
   ParentLink?: InputMaybe<ContentModelReferenceWhereInput>;
   RelativePath?: InputMaybe<StringFilterInput>;
   RouteSegment?: InputMaybe<StringFilterInput>;
   Saved?: InputMaybe<DateFilterInput>;
+  SeoSettings?: InputMaybe<StandardPageBlockDataWhereInput>;
   SiteId?: InputMaybe<StringFilterInput>;
   StandardPageHeading?: InputMaybe<SearchableStringFilterInput>;
+  StandardPromoImage?: InputMaybe<ContentModelReferenceWhereInput>;
+  StandardSubHeading?: InputMaybe<StringFilterInput>;
   StartPublish?: InputMaybe<DateFilterInput>;
   Status?: InputMaybe<StringFilterInput>;
   StopPublish?: InputMaybe<DateFilterInput>;
@@ -11313,6 +11438,8 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     & { ' $fragmentRefs'?: { 'ContentAreaItemDataFragment': ContentAreaItemDataFragment } }
   ) | null> | null } & { ' $fragmentName'?: 'LandingPageDataFragment' };
 
+export type StandardPageDataFragment = { __typename?: 'StandardPage', Name?: string | null, title?: string | null, subtitle?: string | null, description?: string | null, image?: { __typename?: 'ContentModelReference', src?: string | null } | null } & { ' $fragmentName'?: 'StandardPageDataFragment' };
+
 export type StartPageDataFragment = { __typename?: 'StartPage', HomePageHeroContentArea?: Array<(
     { __typename?: 'ContentAreaItemModelSearch' }
     & { ' $fragmentRefs'?: { 'ContentAreaItemDataFragment': ContentAreaItemDataFragment } }
@@ -12403,6 +12530,7 @@ export const BlogPostPageDataFragmentDoc = {"kind":"Document","definitions":[{"k
 export const BlockDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}}]} as unknown as DocumentNode<BlockDataFragment, unknown>;
 export const ContentAreaItemDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentAreaItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentAreaItemModelSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"item"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLinkSearch"}},{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"displayOption"},"name":{"kind":"Name","value":"DisplayOption"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLinkSearch"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReferenceSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}}]} as unknown as DocumentNode<ContentAreaItemDataFragment, unknown>;
 export const LandingPageDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LandingPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LandingPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"TopContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentAreaItemData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MainContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentAreaItemData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLinkSearch"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReferenceSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentAreaItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentAreaItemModelSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"item"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLinkSearch"}},{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"displayOption"},"name":{"kind":"Name","value":"DisplayOption"}}]}}]} as unknown as DocumentNode<LandingPageDataFragment, unknown>;
+export const StandardPageDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"StandardPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StandardPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}},{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"StandardPageHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"subtitle"},"name":{"kind":"Name","value":"StandardSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"StandardPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"Url"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"MainBody"}}]}}]} as unknown as DocumentNode<StandardPageDataFragment, unknown>;
 export const StartPageDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"StartPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"StartPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"HomePageHeroContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentAreaItemData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"HomePageMainContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentAreaItemData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLinkSearch"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReferenceSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentAreaItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentAreaItemModelSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"item"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLinkSearch"}},{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"displayOption"},"name":{"kind":"Name","value":"DisplayOption"}}]}}]} as unknown as DocumentNode<StartPageDataFragment, unknown>;
 export const BlockContentAreaItemDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockContentAreaItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentAreaItemModel"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"item"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}},{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"displayOption"},"name":{"kind":"Name","value":"DisplayOption"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}}]} as unknown as DocumentNode<BlockContentAreaItemDataFragment, unknown>;
 export const LinkItemDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LinkItemNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"Text"}},{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Title"}},{"kind":"Field","alias":{"kind":"Name","value":"href"},"name":{"kind":"Name","value":"Href"}},{"kind":"Field","alias":{"kind":"Name","value":"target"},"name":{"kind":"Name","value":"Target"}},{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"href"},"name":{"kind":"Name","value":"Url"}},{"kind":"Field","alias":{"kind":"Name","value":"data"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}}]}}]}}]} as unknown as DocumentNode<LinkItemDataFragment, unknown>;
