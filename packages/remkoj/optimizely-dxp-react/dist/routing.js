@@ -66,8 +66,9 @@ export class RouteResolver {
                 console.warn("No items in the resultset");
             return undefined;
         }
+
         if ((resultSet.data?.Content?.items?.length ?? 0) > 1)
-            throw new Error("Ambiguous URL provided, did you omit the siteId in a multi-channel setup?");
+            console.warn("Ambiguous URL provided, did you omit the siteId in a multi-channel setup?");
         if (DEBUG)
             console.log(`Resolved content info for ${path} to:`, resultSet.data.Content.items[0]);
         return this.convertResponse(resultSet.data.Content.items[0]);
