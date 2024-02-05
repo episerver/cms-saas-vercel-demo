@@ -54,6 +54,7 @@ export default OnPageEdit.createEditPageComponent(
   factory,
   {
     errorNotice: ErrorComponent,
+    /** @ts-ignore */
     refreshNotice: RefreshNotice,
     layout: PageLayout,
 
