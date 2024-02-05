@@ -1,27 +1,42 @@
+import { Maybe, Scalars } from "@gql/graphql";
 import Link from "next/link";
 
 export interface ButtonBlockComponentType {
-  buttonType: "primary" | "secondary";
-  buttonVariant?: "default" | "cta";
-  className?: string;
-  url: string;
-  children: React.ReactNode;
+  className?: Maybe<Scalars["String"]["output"]>;
+  /** The text of the button */
+  children?: Maybe<Scalars["String"]["output"]>;
+  /** The type of button to display */
+  buttonType?: Maybe<Scalars["String"]["output"]>;
+  url?: Maybe<Scalars["String"]["output"]>;
+  /** The type of button to display */
+  buttonVariant?: Maybe<Scalars["String"]["output"]>;
 }
+type ButtonTypes = {
+  primary: string;
+  secondary: string;
+  [key: string]: string;
+};
+
+type ButtonVariants = {
+  default: string;
+  cta: string;
+  [key: string]: string;
+};
 
 const Button: React.FC<ButtonBlockComponentType> = ({
   className = "",
-  buttonType = "primary",
-  buttonVariant = "default",
+  buttonType,
+  buttonVariant,
   url = "#",
   children,
   ...props
 }) => {
-  const buttonTypes = {
+  const buttonTypes: ButtonTypes = {
     primary: "btn--primary",
     secondary: "btn--secondary",
   };
 
-  const buttonVariants = {
+  const buttonVariants: ButtonVariants = {
     default: "btn--default",
     cta: "btn--cta",
   };
@@ -29,7 +44,9 @@ const Button: React.FC<ButtonBlockComponentType> = ({
   return (
     <Link
       href={url ? url : "#"}
-      className={`${buttonTypes[buttonType]} ${buttonVariants[buttonVariant]} ${className}`}
+      className={`${buttonTypes[buttonType ?? "primary"]} ${
+        buttonVariants[buttonVariant ?? "default"]
+      } ${className}`}
       {...props}
     >
       <div className="btn__content">{children}</div>

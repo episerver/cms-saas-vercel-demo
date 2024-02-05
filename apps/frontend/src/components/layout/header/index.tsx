@@ -10,11 +10,11 @@ import {
 } from "@/lib/i18n";
 import Header from "./_header";
 
-type SiteHeaderProps = {
+type HeaderWrapperProps = {
   locale?: string;
 };
 
-export default async function SiteHeader({ locale }: SiteHeaderProps) {
+export default async function SiteHeader({ locale }: HeaderWrapperProps) {
   const currentLocale = resolveLocale(locale);
   const client = getServerClient();
   const siteInfo = await getCurrentChannel();
@@ -31,7 +31,9 @@ export default async function SiteHeader({ locale }: SiteHeaderProps) {
   const menuItems = config.menuItems.items[0].headerNavigation;
   const utilityItems = config.menuItems.items[0].UtilityNavigationContentArea;
 
-  return <Header menuItems={menuItems} utilityItems={utilityItems} />;
+  return (
+    <Header locale={locale} menuItems={menuItems} utilityItems={utilityItems} />
+  );
 }
 
 const HeaderConfigQuery = graphql(/* graphql */ `
@@ -46,7 +48,7 @@ const HeaderConfigQuery = graphql(/* graphql */ `
           }
         }
         UtilityNavigationContentArea {
-          ContentLink {
+          contentLink: ContentLink {
             navigationItem: Expanded {
               ...Block
             }

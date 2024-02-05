@@ -7,6 +7,8 @@ import Carousel from './carousel-block'
 import ContainerBlock from './container-block'
 import CardBlock from './card-block'
 import QuoteBlock from './quote-block'
+import BlogListingBlock from './blog-listing-block'
+import OdpEmbedBlock from './odp-embed-block'
 
 export const Blocks : ComponentTypeDictionary = [
     {
@@ -14,7 +16,7 @@ export const Blocks : ComponentTypeDictionary = [
         component: HomeHero as ComponentType
     },
     {
-        type: ['Block','HomeBlock'],
+        type: ['Block','HeroBlock'],
         component: HeroBlock as ComponentType
     },
     {
@@ -30,12 +32,21 @@ export const Blocks : ComponentTypeDictionary = [
         component: ContainerBlock as ComponentType
     },
     {
+        type: ["Block", "OdpEmbedBlock" ],
+        component: OdpEmbedBlock as ComponentType
+    },
+    {
         type: ['Block', 'CardBlock'],
         component: CardBlock as ComponentType
     },
     {
         type: ['Block', 'QuoteBlock'],
         component: QuoteBlock as ComponentType
+    },
+    {
+        type: ['Block', 'BlogListingBlock'],
+        component: BlogListingBlock as ComponentType
     }
+
 ]
 export default Blocks

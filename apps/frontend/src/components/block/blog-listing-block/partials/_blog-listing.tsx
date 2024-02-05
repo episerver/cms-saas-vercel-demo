@@ -1,13 +1,17 @@
 import { useContext } from "react";
 import BlogPostCard from "../../blog-post-block";
-import { BlogListingContext } from "..";
+import { BlogListingContext } from "../blog-listing-block";
 import { motion } from "framer-motion";
 
 const BlogListing = () => {
-  const { currentItems } = useContext(BlogListingContext);
+  const { currentItems, showFilters } = useContext(BlogListingContext);
 
   return (
-    <div className="grid grid-cols-1 lg:grid-cols-3 gap-10 mt-16 lg:mt-32">
+    <div
+      className={`grid grid-cols-1 lg:grid-cols-3 gap-10 ${
+        showFilters ? "mt-16 lg:mt-32" : ""
+      }`}
+    >
       {currentItems.map((item, index) => (
         <motion.div
           key={item.title + index}

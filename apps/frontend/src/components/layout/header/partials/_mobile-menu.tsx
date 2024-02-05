@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { HeaderContext } from "../_header";
-import { DropdownMenuProps, MenuItem, MenuList } from "../types/headerTypes";
 import Link from "next/link";
 
 export default function MobileMenu() {
@@ -26,7 +25,7 @@ export default function MobileMenu() {
               contentLink: {
                 navigationItem: { menuName, menuData },
               },
-            }: DropdownMenuProps) => (
+            }) => (
               <li key={menuName}>
                 <button
                   className={`hover:text-azure focus:text-azure font-semibold text-[18px] py-6 text-left border-t mt-[-1px] w-full flex justify-between ${
@@ -44,7 +43,7 @@ export default function MobileMenu() {
                         contentLink: {
                           menuList: { title, items },
                         },
-                      }: MenuList) => (
+                      }) => (
                         <li key={title} className="mt-10">
                           {title ? (
                             <h3 className="text-[16px] font-semibold uppercase tracking-[1px]">
@@ -53,7 +52,7 @@ export default function MobileMenu() {
                           ) : null}
                           {items && (
                             <ul className="grid gap-5">
-                              {items.map((menuItem: MenuItem) => (
+                              {items.map((menuItem) => (
                                 <li key={menuItem.text}>
                                   <Link
                                     className="hover:text-azure focus:text-azure"

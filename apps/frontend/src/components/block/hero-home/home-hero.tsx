@@ -32,14 +32,14 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
           {inEditMode ? (
             <h1 data-epi-edit={"HomeHeroBlockHeading"}>{heading}</h1>
           ) : (
-            <AnimatedText el="h1" text={heading} />
+            <AnimatedText el="h1" text={heading ?? ""} />
           )}
           {inEditMode ? (
             <p data-epi-edit={"HomeHeroBlockSubHeading"}>{subheading}</p>
           ) : (
             <AnimatedText
               delay={1200}
-              text={subheading}
+              text={subheading ?? ""}
               animation={{
                 hidden: { opacity: 0, y: 2 },
                 visible: {

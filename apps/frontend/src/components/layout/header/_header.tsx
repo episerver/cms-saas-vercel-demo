@@ -6,6 +6,7 @@ import MainMenu from "./partials/_main-menu";
 import SecondaryMenu from "./partials/_secondary-menu";
 import MobileMenu from "./partials/_mobile-menu";
 import { HeaderContextType } from "./types/headerTypes";
+import type * as GraphQL from "@gql/graphql";
 
 export const HeaderContext = createContext<HeaderContextType>({
   menuItems: [],

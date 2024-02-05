@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useContext, useEffect, useRef, useState } from "react";
 import { HeaderContext } from "../_header";
-import { DropdownMenuProps, MenuItem, Promo } from "../types/headerTypes";
 
 function MenuItem({ menuList, ...props }) {
   if (menuList.__typename === "MenuNavigationBlock") {
@@ -17,7 +16,7 @@ function MenuItem({ menuList, ...props }) {
         ) : null}
         {menuList.items && (
           <ul className="grid gap-5">
-            {menuList.items.map((menuItem: MenuItem) => (
+            {menuList.items.map((menuItem) => (
               <li key={menuItem.text}>
                 <Link
                   className="hover:text-azure focus:text-azure"
@@ -47,7 +46,7 @@ function MenuItem({ menuList, ...props }) {
  * @param {string} menuName - The name of the dropdown menu
  * @return {JSX.Element} The rendered dropdown menu
  */
-function DropdownMenu({ menuName, menuData, ...props }: DropdownMenuProps) {
+function DropdownMenu({ menuName, menuData = [], ...props }: any) {
   const { currentMenu, setCurrentMenu } = useContext(HeaderContext);
   const [columns, setColumns] = useState(menuData?.length);
   const gridColumnClass = useRef("grid-cols-1");
@@ -73,7 +72,7 @@ function DropdownMenu({ menuName, menuData, ...props }: DropdownMenuProps) {
           gridColumnClass.current = "grid-cols-4";
       }
     }
-  }, [columns]);
+  }, [columns, menuData]);
 
   function handleToggle() {
     setCurrentMenu(menuName);
@@ -92,8 +91,10 @@ function DropdownMenu({ menuName, menuData, ...props }: DropdownMenuProps) {
       {menuData && currentMenu === menuName ? (
         <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)]">
           <div className={`container mx-auto grid ${gridColumnClass.current}`}>
-            {menuData.map(({ contentLink: { menuList } }) => {
-              return <MenuItem key={menuList.title} menuList={menuList} />;
+            {menuData.map(({ contentLink: { menuList }, index }) => {
+              return (
+                <MenuItem key={menuList.title + index} menuList={menuList} />
+              );
             })}
           </div>
         </section>
@@ -102,7 +103,7 @@ function DropdownMenu({ menuName, menuData, ...props }: DropdownMenuProps) {
   );
 }
 
-function PromoItem({ heading, description, link, image }: Promo) {
+function PromoItem({ heading, description, link, image }: any) {
   return (
     <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12">
       <div className="prose">

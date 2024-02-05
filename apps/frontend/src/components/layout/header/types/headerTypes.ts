@@ -1,5 +1,5 @@
 export type HeaderContextType = {
-  menuItems: DropdownMenuProps[];
+  menuItems: any[];
   utilityItems: any[];
   currentMenu: string;
   setCurrentMenu: (name: string) => void;

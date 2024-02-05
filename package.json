@@ -20,6 +20,7 @@
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
     "lint": "yarn workspace frontend lint",
+    "type-check": "yarn workspace frontend tsc --pretty --noEmit",
     "build-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run build",
     "rebuild-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run rebuild",
     "watch-pkgs": "yarn workspaces foreach -Apt --exclude frontend --exclude @remkoj/optimizely-frontend run watch",

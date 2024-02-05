@@ -12,7 +12,6 @@ const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
     center = false,
     width = "full",
     headingSize = "medium",
-    animation,
     overline = "",
     heading = "",
     description = "",
@@ -56,7 +55,7 @@ const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
       break;
     case "large":
       additionalClasses.push(
-        "prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px]"
+        "prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px] prose-h3:text-[24px] prose-h3:font-semibold"
       );
       break;
     case "extraLarge":

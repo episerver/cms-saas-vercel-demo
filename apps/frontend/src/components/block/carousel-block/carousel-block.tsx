@@ -1,29 +1,19 @@
 "use client";
 
-import React, {
-  useState,
-  ReactNode,
-  useEffect,
-  ReactElement,
-  useRef,
-  Children,
-} from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
 import { CarouselBlockComponentType } from ".";
-
 const Carousel: CarouselBlockComponentType = ({
   data,
   inEditMode,
   contentLink,
   children,
-  items,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(50);
   const windowWidth = useWindowWidth();
-
-  console.log(children);
+  const { itemCount } = data;
 
   const handlePrev = () => {
     setCurrentIndex((prevIndex) => (prevIndex === -1 ? -1 : prevIndex - 1));
@@ -31,7 +21,7 @@ const Carousel: CarouselBlockComponentType = ({
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === items.length - 2 ? items.length - 2 : prevIndex + 1
+      prevIndex === itemCount - 2 ? itemCount - 2 : prevIndex + 1
     );
   };
 
@@ -98,7 +88,7 @@ const Carousel: CarouselBlockComponentType = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={`${
-              currentIndex === items.length - 2 ? "text-mischka" : "text-vulcan"
+              currentIndex === itemCount - 2 ? "text-mischka" : "text-vulcan"
             }`}
           >
             <g clipPath="url(#clip0_5_4814)">
@@ -128,10 +118,9 @@ const Carousel: CarouselBlockComponentType = ({
       <motion.div
         className="flex px-12 order-first"
         style={{
+          // @ts-ignore - TS doesn't like inline css variables.
           [`--item-width`]: `${itemWidth}vw`,
-          width: `calc(${items.length * itemWidth}% + ${
-            (items.length - 1) * 30
-          }px)`,
+          width: `calc(${itemCount * itemWidth}% + ${(itemCount - 1) * 30}px)`,
           x: `calc(${
             (currentIndex + 1) * -itemWidth + (100 - itemWidth) / 2
           }vw - 3rem)`,

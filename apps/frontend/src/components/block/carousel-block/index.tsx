@@ -2,6 +2,7 @@ import createClient, {
   Utils,
   type CmsComponent,
   Errors,
+  ContentLinkWithLocale,
 } from "@remkoj/optimizely-dxp-react";
 import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
@@ -86,8 +87,10 @@ const CustomCmsContentArea = async ({
   return <>{componentData}</>;
 };
 
-export type CarouselBlockComponentType =
-  CmsComponent<GraphQL.CarouselBlockDataFragment>;
+export type CarouselBlockComponentType = CmsComponent<
+  GraphQL.CarouselBlockDataFragment & { itemCount: number }
+>;
+
 const CarouselBlockComponent: CarouselBlockComponentType = dynamic(
   () => import("./carousel-block"),
   { ssr: true }
@@ -100,10 +103,9 @@ export const CarouselBlock: CmsComponent<
 
   return (
     <CarouselBlockComponent
-      data={data}
+      data={{ ...data, itemCount: items.length }}
       inEditMode={inEditMode}
       contentLink={contentLink}
-      items={items}
     >
       <CustomCmsContentArea
         className={""}

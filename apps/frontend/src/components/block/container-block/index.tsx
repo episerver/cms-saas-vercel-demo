@@ -23,7 +23,10 @@ const gapSizeClassMap: { [key: string]: string } = {
 const ContainerBlock: CmsComponent<
   GraphQL.LayoutContainerBlockDataFragment
 > = ({ data, inEditMode, contentLink, children }) => {
-  const items = data.LayoutContentArea;
+  let items;
+  if (!children) {
+    items = data.LayoutContentArea;
+  }
 
   const {
     columns = 1,
@@ -36,7 +39,7 @@ const ContainerBlock: CmsComponent<
     color,
   } = data;
 
-  const columnClass = columnClassMap[columns];
+  const columnClass = columnClassMap[columns ?? 1];
   const gapClass = gap ? gapSizeClassMap[gap] : "";
   const additionalClasses: string[] = [];
   const innerClasses: string[] = [];
@@ -45,11 +48,11 @@ const ContainerBlock: CmsComponent<
   if (
     backgroundImage &&
     typeof backgroundImage === "object" &&
-    "src" in backgroundImage
+    "url" in backgroundImage
   ) {
     // Set background image style
     backgroundStyle = {
-      backgroundImage: `url(${backgroundImage.src})`,
+      backgroundImage: `url(${backgroundImage.url})`,
       backgroundSize: "cover",
       backgroundPosition: "center",
     };
@@ -154,15 +157,17 @@ const ContainerBlock: CmsComponent<
           " "
         )}`}
       >
-        {items && (
-          <CmsContentArea
-            className={""}
-            fieldName="LayoutContentArea"
-            inEditMode={inEditMode}
-            locale={contentLink.locale}
-            items={items}
-          />
-        )}
+        {children
+          ? children
+          : items && (
+              <CmsContentArea
+                className={""}
+                fieldName="LayoutContentArea"
+                inEditMode={inEditMode}
+                locale={contentLink.locale}
+                items={items}
+              />
+            )}
       </div>
     </section>
   );

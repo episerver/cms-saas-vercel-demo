@@ -51,12 +51,3 @@ const CardBlockData = gql(/* graphql */ `fragment CardBlockData on CardBlock {
   subheading:CardSubHeading
   imageLayout: ImageLayout
 }`);
-
-/*imageLayout = "before",
-    image,
-    heading = "",
-    subheading = "",
-    description = "",
-    color = "blue",
-    button,
-    icon,*/

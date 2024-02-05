@@ -1,6 +1,7 @@
 {
   "possibleTypes": {
     "IContent": [
+      "BlogListingBlock",
       "BlogListingPage",
       "BlogPostPage",
       "ButtonBlock",
@@ -15,15 +16,19 @@
       "HeroBlock",
       "HomePageHeroBlock",
       "HtmlBlock",
+      "LandingPage",
       "LayoutContainerBlock",
       "MegaMenuGroupBlock",
       "MenuNavigationBlock",
+      "OdpEmbedBlock",
+      "PageSeoSettings",
       "QuoteBlock",
       "StandardPage",
       "StartPage",
       "TextBlock"
     ],
     "IData": [
+      "BlogListingBlock",
       "BlogListingPage",
       "BlogPostPage",
       "ButtonBlock",
@@ -39,9 +44,12 @@
       "HeroBlock",
       "HomePageHeroBlock",
       "HtmlBlock",
+      "LandingPage",
       "LayoutContainerBlock",
       "MegaMenuGroupBlock",
       "MenuNavigationBlock",
+      "OdpEmbedBlock",
+      "PageSeoSettings",
       "QuoteBlock",
       "SiteDefinition",
       "StandardPage",

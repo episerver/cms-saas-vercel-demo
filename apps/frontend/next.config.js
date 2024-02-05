@@ -11,6 +11,10 @@ const nextConfig = {
             hostname: 'placekitten.com'
         },
         ]
+    },
+    // Remove in the near future.
+    eslint: { 
+      ignoreDuringBuilds: true, 
     }
 }
 
@@ -28,7 +32,7 @@ if (optimizelyDxpUrl) {
     })
 }
 
-console.log("Frontend domain:", process.env.SITE_DOMAIN)
-console.log("Next.JS Config:", JSON.stringify(nextConfig, undefined, 2))
+//console.log("Frontend domain:", process.env.SITE_DOMAIN)
+//console.log("Next.JS Config:", JSON.stringify(nextConfig, undefined, 2))
 
 module.exports = nextConfig

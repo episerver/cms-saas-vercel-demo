@@ -55,7 +55,7 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
         {profilePicture && profilePicture.url && (
           <Image
             src={profilePicture.url}
-            alt={name}
+            alt={name ?? ""}
             width={200}
             height={200}
             className="rounded-full max-w-24"

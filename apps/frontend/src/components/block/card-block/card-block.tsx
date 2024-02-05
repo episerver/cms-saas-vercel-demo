@@ -81,14 +81,14 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
         " "
       )}`}
     >
-      <div className="w-full h-full grid auto-rows-min @[80rem]/card:items-center grid-cols-1 gap-16 @[80rem]/card:grid-cols-12 @[80rem]/card:gap-32">
+      <div className="w-full h-full grid auto-rows-auto @[80rem]/card:items-center grid-cols-1 gap-16 @[80rem]/card:grid-cols-12">
         <div
           className={`prose prose-h2:text-[48px] prose-h2:mb-[24px] prose-h2:mt-[24px] prose-h3:text-[24px] prose-p:text-[20px] prose-img:my-4 @[80rem]/card:col-span-5 ${innerClasses.join(
             " "
           )}`}
         >
           {icon && icon.src ? (
-            <Image src={icon.src} alt={icon.alt} width={48} height={48} />
+            <Image src={icon.src} alt={""} width={48} height={48} />
           ) : null}
           {heading ? (
             <h2 dangerouslySetInnerHTML={{ __html: heading }}></h2>
@@ -105,16 +105,16 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
         </div>
         {image && image.src ? (
           <motion.div
-            className={`@[80rem]/card:col-span-7 ${
+            className={`@[80rem]/card:col-span-6 ${
               imageLayout === "after"
-                ? "order-first lg:order-last"
+                ? "order-first lg:order-last @[80rem]/card:col-start-7"
                 : "order-first"
             }`}
           >
             <Image
               className="rounded-[40px] w-full"
               src={image.src}
-              alt={image.alt}
+              alt={""}
               width={660}
               height={440}
             />

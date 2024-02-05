@@ -11,7 +11,7 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
     <ul ref={ref} className="flex items-center justify-end">
       {utilityItems.map(
         ({
-          ContentLink: {
+          contentLink: {
             navigationItem: { text, type, url, variant },
           },
         }) => (
