@@ -1,4 +1,3 @@
-import { Utils } from "@remkoj/optimizely-dxp-react";
 import { gql as graphql } from "@apollo/client";
 import { getCurrentChannel } from "@/lib/current-channel";
 import { getServerClient } from "@/lib/client";
@@ -8,6 +7,7 @@ import {
   resolveLocale,
 } from "@/lib/i18n";
 import Footer from "./_footer";
+import dict from "@shared/dictionary.json";
 
 type SiteFooterProps = {
   locale?: string;
@@ -33,6 +33,9 @@ export default async function SiteFooter({ locale }: SiteFooterProps) {
 
   return (
     <Footer
+      dict={dict}
+      locale={currentLocale}
+      locales={siteInfo.locales}
       footerItems={footerItems}
       footerCopyright={footerCopyright}
       footerSubLinks={footerSubLinks}

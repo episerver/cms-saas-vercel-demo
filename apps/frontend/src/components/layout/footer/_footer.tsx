@@ -1,8 +1,32 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter, usePathname } from "next/navigation";
+import { useCallback } from "react";
 
-function FooterColumn({ title, items, __typename, ...props }: any) {
+function FooterColumn({
+  title,
+  items,
+  __typename,
+  content,
+  locales,
+  locale,
+  dict,
+  ...props
+}: any) {
+  const router = useRouter();
+  const path = usePathname();
+
+  const switchToLocale = useCallback(
+    (locale: string) => {
+      console.log(router);
+
+      console.log(path);
+      return router.replace(locale);
+    },
+    [router]
+  );
+
   if (__typename === "MenuNavigationBlock") {
     return (
       <div
@@ -31,35 +55,41 @@ function FooterColumn({ title, items, __typename, ...props }: any) {
     return (
       <div className="mb-16 col-span-2 lg:col-span-1">
         <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:underline hover:prose-a:no-underline prose-a:not-italic">
-          <h1>Global HQ</h1>
-          <address>
-            <p>
-              119 5th Ave, 7th floor
-              <br /> New York, NY 10003, USA
-            </p>
-            <p>
-              <a href="#">Contact us</a>
-              <br />
-              Phone: +1 603 594 0249
-            </p>
-          </address>
+          <h1>{title}</h1>
+          <address dangerouslySetInnerHTML={{ __html: content }}></address>
         </section>
-        <h1 className="sr-only">Language select</h1>
-        <select
-          className="form-select font-semibold bg-vulcan mt-10"
-          name=""
-          id=""
-        >
-          <option value="">English</option>
-          <option value="">Nederlands</option>
-          <option value="">Vlaams</option>
-        </select>
+        {locales && locales.length > 1 && (
+          <>
+            <label htmlFor="footer-lang-select" className="sr-only">
+              {dict[locale].languagePicker.title}
+            </label>
+            <select
+              className="form-select font-semibold bg-vulcan mt-10"
+              name="footer-lang-select"
+              id="footer-lang-select"
+              onChange={(e) => {
+                switchToLocale(e.target.value);
+              }}
+            >
+              {locales.map(({ code }) => {
+                  return (
+                    <option key={code} value={code}>
+                      {dict[locale].languagePicker.locales[code]}
+                    </option>
+                  );
+                })}
+            </select>
+          </>
+        )}
       </div>
     );
   }
 }
 
 export default function Footer({
+  dict,
+  locales,
+  locale,
   footerItems,
   footerCopyright,
   footerSubLinks,
@@ -70,14 +100,18 @@ export default function Footer({
         {footerItems.map(
           ({
             contentLink: {
-              navigationItem: { title, items, __typename },
+              navigationItem: { title, items, content, __typename },
             },
           }) => (
             <FooterColumn
+              dict={dict}
               key={"footer-column" + title}
               __typename={__typename}
               title={title}
+              content={content}
               items={items}
+              locales={locales}
+              locale={locale}
             />
           )
         )}

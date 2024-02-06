@@ -17,11 +17,7 @@ type CustomControlProps = {
 
 type CombinedControlProps = CustomControlProps & SelectProps;
 
-const Control: React.FC<CombinedControlProps> = ({
-  children,
-  selectProps,
-  ...props
-}) => {
+const Control = ({ children, selectProps, ...props }) => {
   const labelString = selectProps?.label || "";
 
   return (
@@ -35,7 +31,7 @@ const Control: React.FC<CombinedControlProps> = ({
   );
 };
 
-const SelectComponent = (props: CombinedControlProps) => {
+const SelectComponent = (props) => {
   const optionStyles = {
     base: "hover:cursor-pointer text-vulcan font-semibold hover:text-azure",
     hover: "bg-ghost-white",
@@ -46,7 +42,6 @@ const SelectComponent = (props: CombinedControlProps) => {
   return (
     <Select
       unstyled
-      /** @ts-ignore */
       components={{
         Control: Control,
         Input: (props) => (
