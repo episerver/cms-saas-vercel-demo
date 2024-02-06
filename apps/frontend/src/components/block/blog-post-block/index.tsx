@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 export type BlogPostProps = {
   title: string;
@@ -44,12 +44,11 @@ const formatDate = (dateString?: string | null): any => {
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
   const { title, description, author, published, category, url, image } =
     blogPost;
+  const [date, setDate] = useState<string>("");
   // Use blog posts fields to generate the fields needed.
 
-  let date = "";
-
   useEffect(() => {
-    date = formatDate(published);
+    setDate(formatDate(published));
   }, []);
 
   return (

@@ -26,7 +26,7 @@ const Placeholder = (props) => (
 );
 
 const BlogListing = () => {
-  const { currentItems, showFilters, isLoading, pageSize } =
+  const { currentItems, showFilters, isLoading } =
     useContext(BlogListingContext);
 
   return (
@@ -58,6 +58,7 @@ const BlogListing = () => {
         </motion.div>
       ))}
       {isLoading &&
+        showFilters &&
         Array.from({ length: pageSize - currentItems.length }).map(
           (_, index) => (
             <motion.div
