@@ -1,6 +1,7 @@
 "use client";
 import Image from "next/image";
 import Link from "next/link";
+import { useEffect } from "react";
 
 export type BlogPostProps = {
   title: string;
@@ -45,7 +46,11 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
     blogPost;
   // Use blog posts fields to generate the fields needed.
 
-  const date = formatDate(published);
+  let date = "";
+
+  useEffect(() => {
+    date = formatDate(published);
+  }, []);
 
   return (
     <Link href={url} className="relative w-full">
@@ -59,7 +64,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
             height={430}
           />
         ) : (
-          <div className="w-full max-w-full rounded-[20px] bg-light-grey pb-[69.35%] w-[620px] mb-[2em]"></div>
+          <div className="max-w-full rounded-[20px] bg-light-grey pb-[69.35%] w-[620px] mb-[2em]"></div>
         )}
         {category ? (
           <p className="text-[12px] uppercase tracking-[2px] text-azure mb-[8px]">
