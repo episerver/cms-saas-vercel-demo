@@ -78,7 +78,7 @@ const BlogListing = () => {
                 layout: { duration: 0.6, ease: "easeInOut" },
               }}
             >
-              <Placeholder className="w-full" />
+              <Placeholder uniqueKey="blog-placeholder" className="w-full" />
             </motion.div>
           )
         )}

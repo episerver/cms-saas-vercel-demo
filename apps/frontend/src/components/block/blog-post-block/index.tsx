@@ -53,7 +53,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
           <Image
             className="w-full rounded-[20px]"
             src={image.src}
-            alt={image.alt}
+            alt={image.alt ?? ""}
             width={620}
             height={430}
           />
