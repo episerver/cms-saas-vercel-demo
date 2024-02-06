@@ -26,21 +26,23 @@ export const BlogListingBlock: CmsComponent<
   });
 
   return (
-    <ContainerBlock
-      inEditMode={inEditMode}
-      client={client}
-      contentLink={contentLink}
-      data={{ columns: 1 }}
-    >
-      {articles && (
-        <BlogListingBlockComponent
-          initialData={articles}
-          selectedPageSize={selectedPageSize ?? 12}
-          showFilters={showFilters}
-          locale={locale}
-        />
-      )}
-    </ContainerBlock>
+    <>
+      <ContainerBlock
+        inEditMode={inEditMode}
+        client={client}
+        contentLink={contentLink}
+        data={{ columns: 1 }}
+      >
+        {articles && (
+          <BlogListingBlockComponent
+            initialData={articles}
+            selectedPageSize={selectedPageSize ?? 12}
+            showFilters={showFilters}
+            locale={locale}
+          />
+        )}
+      </ContainerBlock>
+    </>
   );
 };
 

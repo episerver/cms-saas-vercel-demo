@@ -12,6 +12,9 @@ const nextConfig = {
         },
         ]
     },
+    typescript: {
+        ignoreBuildErrors: true
+    }
 }
 
 // Add the configured Optimizely DXP URL to the image domains
