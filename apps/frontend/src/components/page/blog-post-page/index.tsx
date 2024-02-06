@@ -7,25 +7,6 @@ import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
 import { BlogPostPageDataFragment } from "@gql/graphql";
 
-type DateTimeFormatOptions = {
-  year?: "numeric" | "2-digit";
-  month?: "numeric" | "2-digit" | "narrow" | "short" | "long";
-  day?: "numeric" | "2-digit";
-};
-
-const formatDate = (dateString: string): string => {
-  const options: DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formattedDate = new Date(dateString).toLocaleDateString(
-    "en-US",
-    options
-  );
-  return formattedDate;
-};
-
 export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
   contentLink,
   data,
@@ -50,7 +31,6 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
           )}
           <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto">
             <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2">
-              <p className="eyebrow">{formatDate(publish)}</p>
               <h1
                 className="mb-[24px] text-[48px]"
                 dangerouslySetInnerHTML={{ __html: title ?? "" }}

@@ -7,25 +7,6 @@ import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
 import { StandardPageDataFragment } from "@gql/graphql";
 
-type DateTimeFormatOptions = {
-  year?: "numeric" | "2-digit";
-  month?: "numeric" | "2-digit" | "narrow" | "short" | "long";
-  day?: "numeric" | "2-digit";
-};
-
-const formatDate = (dateString: string): string => {
-  const options: DateTimeFormatOptions = {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  };
-  const formattedDate = new Date(dateString).toLocaleDateString(
-    "en-US",
-    options
-  );
-  return formattedDate;
-};
-
 export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
   contentLink,
   data,
