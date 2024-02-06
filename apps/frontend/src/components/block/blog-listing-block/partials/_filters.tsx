@@ -85,8 +85,6 @@ const ListingFilters = ({}) => {
     datesOptions,
   } = useContext(BlogListingContext);
 
-  console.log(selectedPublishedDate);
-
   const resultsOptions = [
     { value: 6, label: "6" },
     { value: 12, label: "12" },
@@ -119,7 +117,6 @@ const ListingFilters = ({}) => {
         }
         label="Date"
         onChange={(v) => {
-          console.log(v);
           setPublishedDate(v.value);
         }}
       />
