@@ -6180,6 +6180,7 @@ __metadata:
     postcss: "npm:8.4.33"
     prop-types: "npm:^15.8.1"
     react: "npm:18.2.0"
+    react-content-loader: "npm:^6.2.1"
     react-dom: "npm:18.2.0"
     react-select: "npm:^5.8.0"
     sass: "npm:^1.70.0"
@@ -9173,6 +9174,15 @@ __metadata:
     iconv-lite: "npm:0.4.24"
     unpipe: "npm:1.0.0"
   checksum: 10/3775f08015bdd33e22589117fe168fc3a386ddc56e0798a9d47e75aeb4abce86cff9dfe1f3393fbe7dd036d9cfc755cb10e3645a980824e6a69eec0bef1377e3
+  languageName: node
+  linkType: hard
+
+"react-content-loader@npm:^6.2.1":
+  version: 6.2.1
+  resolution: "react-content-loader@npm:6.2.1"
+  peerDependencies:
+    react: ">=16.0.0"
+  checksum: 10/9a59fa25ab5418800c40eec5a1cd7c0bb14bab9654326288370240271e6591f0a921938a08ca01f3dc6c69df909622b9e8ed0992bcf255616cfa83d9c22f4285
   languageName: node
   linkType: hard
 

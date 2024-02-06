@@ -1,6 +1,11 @@
 "use client";
 import clsx from "clsx";
-import Select, { Props as SelectProps, components } from "react-select";
+import { useContext } from "react";
+import { Props as SelectProps, components } from "react-select";
+import { BlogListingContext } from "../blog-listing-block";
+import LocalTime from "@/components/shared/local-time";
+import Select from "react-select";
+import { ALL_DATES, ALL_AUTHORS } from "../blog-listing-block";
 
 type CustomControlProps = {
   children?: React.ReactNode;
@@ -12,7 +17,11 @@ type CustomControlProps = {
 
 type CombinedControlProps = CustomControlProps & SelectProps;
 
-const Control: React.FC<CombinedControlProps> = ({ children, selectProps, ...props }) => {
+const Control: React.FC<CombinedControlProps> = ({
+  children,
+  selectProps,
+  ...props
+}) => {
   const labelString = selectProps?.label || "";
 
   return (
@@ -38,13 +47,26 @@ const SelectComponent = (props: CombinedControlProps) => {
     <Select
       unstyled
       /** @ts-ignore */
-      components={{ Control }}
+      components={{
+        Control: Control,
+        Input: (props) => (
+          <components.Input {...props} aria-activedescendant={undefined} />
+        ),
+      }}
       classNames={{
-        control: () => "border-2 border-azure rounded-[10px] pl-8 py-[4px] pr-24 relative min-w-[160px]",
-        indicatorsContainer: () => "bg-azure text-white rounded-[0_7px_7px_0] absolute right-0 top-0 h-full px-[8px]",
+        control: () =>
+          "border-2 border-azure rounded-[10px] pl-8 py-[4px] pr-24 relative min-w-[160px]",
+        indicatorsContainer: () =>
+          "bg-azure text-white rounded-[0_7px_7px_0] absolute right-0 top-0 h-full px-[8px]",
         clearIndicator: () => "!hidden",
-        menu: () => "px-[20px] py-[8px] rounded-[10px] border-2 border-azure mt-[8px] bg-white",
-        option: ({ isFocused, isSelected }) => clsx(isFocused && optionStyles.focus, isSelected && optionStyles.selected, optionStyles.base),
+        menu: () =>
+          "px-[20px] py-[8px] rounded-[10px] border-2 border-azure mt-[8px] bg-white",
+        option: ({ isFocused, isSelected }) =>
+          clsx(
+            isFocused && optionStyles.focus,
+            isSelected && optionStyles.selected,
+            optionStyles.base
+          ),
       }}
       {...props}
     />
@@ -52,36 +74,63 @@ const SelectComponent = (props: CombinedControlProps) => {
 };
 
 const ListingFilters = ({}) => {
-  // Generate these options from graph.
-  const topicOptions = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
-  const authorOptions = [
-    { value: "chocolate", label: "Chocolate" },
-    { value: "strawberry", label: "Strawberry" },
-    { value: "vanilla", label: "Vanilla" },
-  ];
-  const dateOptions = [
-    { value: "", label: "Any time" },
-    { value: 1, label: "1 month ago" },
-    { value: 3, label: "3 months ago" },
-    { value: 6, label: "6 months ago" },
-    { value: 12, label: "A year ago" },
-  ];
+  const {
+    setPageSize,
+    pageSize,
+    authorOptions,
+    setSelectedAuthor,
+    selectedAuthor,
+    setPublishedDate,
+    selectedPublishedDate,
+    datesOptions,
+  } = useContext(BlogListingContext);
+
+  console.log(selectedPublishedDate);
+
   const resultsOptions = [
+    { value: 6, label: "6" },
     { value: 12, label: "12" },
     { value: 24, label: "24" },
     { value: 36, label: "36" },
-    { value: 48, label: "48" },
   ];
   return (
     <div className="grid gap-16 md:grid-flow-col md:auto-cols-fr grid-cols-1 max-w-[900px] mx-auto">
-      <SelectComponent options={topicOptions} isMulti label="Topic" />
-      <SelectComponent options={authorOptions} label="Author" />
-      <SelectComponent options={dateOptions} isMulti label="Date" />
-      <SelectComponent options={resultsOptions} label="Results" />
+      <SelectComponent
+        options={authorOptions}
+        defaultValue={
+          selectedAuthor !== ALL_AUTHORS
+            ? { value: selectedAuthor, label: selectedAuthor }
+            : null
+        }
+        label="Author"
+        onChange={(v) => {
+          setSelectedAuthor(v.value);
+        }}
+      />
+      <SelectComponent
+        options={datesOptions}
+        defaultValue={
+          selectedPublishedDate !== ALL_DATES
+            ? {
+                value: selectedPublishedDate,
+                label: <LocalTime date={selectedPublishedDate} mode="Date" />,
+              }
+            : null
+        }
+        label="Date"
+        onChange={(v) => {
+          console.log(v);
+          setPublishedDate(v.value);
+        }}
+      />
+      <SelectComponent
+        options={resultsOptions}
+        defaultValue={{ value: pageSize, label: pageSize.toString() }}
+        label="Results"
+        onChange={(v) => {
+          setPageSize(v.value);
+        }}
+      />
     </div>
   );
 };

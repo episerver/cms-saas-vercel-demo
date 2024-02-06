@@ -89,6 +89,7 @@ export default function Footer({
             width={200}
             height={35}
             alt="Moseybank Logo"
+            unoptimized
           />
         </div>
         <div className="md:flex items-center md:prose-li:ml-[24px] prose-a:text-[12px] prose-p:text-[12px]">

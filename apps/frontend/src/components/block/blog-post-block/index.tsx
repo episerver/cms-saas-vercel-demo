@@ -8,6 +8,7 @@ export type BlogPostProps = {
   published?: string;
   category: string;
   url: string;
+  id: string;
   image: { src: string; alt: string; width: number; height: number };
 };
 

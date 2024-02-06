@@ -1,9 +1,11 @@
 "use client";
 
-import { createContext, useEffect, useState } from "react";
+import { ReactNode, createContext, useEffect, useMemo, useState } from "react";
+import type { Types } from "@/lib/api/articles";
 import BlogListing from "./partials/_blog-listing";
 import ListingFilters from "./partials/_filters";
-import { BlogPostProps } from "../blog-post-block";
+import { useUrlState } from "@/lib/use-url-state";
+import LocalTime from "@/components/shared/local-time";
 
 type BlogListingComponent = {
   locale: string;
@@ -13,26 +15,44 @@ type BlogListingComponent = {
 };
 
 type BlogListingContext = {
-  currentItems: BlogPostProps[];
-  currentFilters: any;
-  setCurrentFilters: (value: any) => void;
+  currentItems: any[];
+  datesOptions: DropdownItem[];
+  setPublishedDate: (value: any) => void;
+  selectedPublishedDate: string;
+  authorOptions: DropdownItem[];
+  setSelectedAuthor: (value: any) => void;
+  selectedAuthor: string;
+  pageSize: number;
+  setPageSize: (value: any) => void;
   isLoading: boolean;
   showFilters: boolean;
 };
 
-export const BlogListingContext = createContext<BlogListingContext>({
-  currentItems: [],
-  currentFilters: [],
-  setCurrentFilters: (value: any) => {},
-  isLoading: false,
-  showFilters: false,
-});
+export type DropdownItem<T extends number | string | unknown = unknown> = {
+  value: T;
+  label: string | ReactNode;
+  count: number;
+};
 
 const ARTICLES_SERVICE = "/api/content/articles";
-const ALL_AUTHORS = "-all-";
-const ALL_DATES = "-all-";
+export const ALL_AUTHORS = "-all-";
+export const ALL_DATES = "-all-";
 const pageSizeOptions: number[] = [6, 12, 24, 36];
 const defaultPageSize: number = 12;
+
+export const BlogListingContext = createContext<BlogListingContext>({
+  currentItems: [],
+  pageSize: defaultPageSize,
+  setPageSize: (value: any) => {},
+  isLoading: false,
+  showFilters: false,
+  datesOptions: [],
+  setPublishedDate: (value: any) => {},
+  selectedPublishedDate: ALL_DATES,
+  authorOptions: [],
+  setSelectedAuthor: (value: any) => {},
+  selectedAuthor: ALL_AUTHORS,
+});
 
 const BlogListingBlock: React.FC<BlogListingComponent> = ({
   locale,
@@ -40,16 +60,74 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
   showFilters = true,
   initialData,
 }) => {
-  const [currentItems, setCurrentItems] = useState<BlogPostProps[]>(
-    initialData.items
+  const [{ facets, items }, setCurrentItems] =
+    useState<Types.GetArticlesResult>(initialData);
+
+  const authorOptions: DropdownItem<string>[] = useMemo(
+    () =>
+      [
+        { label: "All authors", value: ALL_AUTHORS } as DropdownItem<string>,
+      ].concat(
+        facets.author.map((x) => {
+          return {
+            label: x.name,
+            value: x.name,
+            count: x.count,
+          };
+        })
+      ),
+    [facets]
   );
-  const [currentFilters, setCurrentFilters] = useState<any>([]);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const datesOptions: DropdownItem<string>[] = useMemo(
+    () =>
+      [{ label: "Any time", value: ALL_DATES } as DropdownItem<string>]
+        .concat(
+          facets.published.map((x) => {
+            return {
+              label: <LocalTime date={x.date} mode="Date" />,
+              value: x.date,
+              count: x.count,
+            };
+          })
+        )
+        .filter((x) => x.count !== 0),
+    [facets]
+  );
+
+  const [selectedAuthor, setSelectedAuthor] = useUrlState<string>(
+    "author",
+    ALL_AUTHORS,
+    (author) => authorOptions.some((x) => x.value == author),
+    (s) => s,
+    (s) => s
+  );
+  const [selectedPublishedDate, setPublishedDate] = useUrlState<string>(
+    "published",
+    ALL_DATES,
+    (published) => datesOptions.some((x) => x.value == published),
+    (s) => s,
+    (s) => s
+  );
+  const [pageSize, setPageSize] = useUrlState<number>(
+    "pageSize",
+    selectedPageSize,
+    (size) => !isNaN(size) && pageSizeOptions.includes(size),
+    (n) => Number.parseInt(n, 10),
+    (n) => n.toString(10)
+  );
+
+  const [isLoading, setIsLoading] = useState<boolean>(true);
 
   const blogListingContext = {
-    currentItems,
-    currentFilters,
-    setCurrentFilters,
+    currentItems: items,
+    datesOptions,
+    setPublishedDate,
+    selectedPublishedDate,
+    authorOptions,
+    setSelectedAuthor,
+    selectedAuthor,
+    pageSize,
+    setPageSize,
     isLoading,
     showFilters,
   };
@@ -58,13 +136,13 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
   useEffect(() => {
     const searchParams = new URLSearchParams();
     searchParams.set("locale", locale);
-    searchParams.set("pageSize", selectedPageSize.toString());
-    /*if (selectedAuthor != ALL_AUTHORS){
+    searchParams.set("pageSize", pageSize.toString());
+    if (selectedAuthor != ALL_AUTHORS) {
       searchParams.set("author", selectedAuthor);
     }
     if (selectedPublishedDate != ALL_DATES) {
       searchParams.set("published", selectedPublishedDate);
-    }*/
+    }
 
     const path = `${ARTICLES_SERVICE}?${searchParams.toString()}`;
     const refreshArticles = new AbortController();
@@ -80,7 +158,7 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
       })
       .then((data) => {
         if (data.items) {
-          setCurrentItems(data.items);
+          setCurrentItems(data);
           setIsLoading(false);
         }
       })
@@ -90,11 +168,21 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
     return () => {
       refreshArticles.abort();
     };
-  }, [locale, selectedPageSize, showFilters]);
+  }, [locale, pageSize, selectedAuthor, selectedPublishedDate]);
+
+  useEffect(() => {
+    if (
+      selectedAuthor == "All authors" &&
+      selectedPublishedDate == "Any time" &&
+      pageSize == selectedPageSize
+    ) {
+      setIsLoading(false);
+    }
+  }, []);
 
   return (
     <BlogListingContext.Provider value={blogListingContext}>
-      <div className={`${showFilters ? "mt-32" : ""}`}>
+      <div className={`w-full ${showFilters ? "mt-32" : ""}`}>
         {showFilters && <ListingFilters />}
         <BlogListing />
       </div>
