@@ -26,7 +26,7 @@ const Placeholder = (props) => (
 );
 
 const BlogListing = () => {
-  const { currentItems, showFilters, isLoading } =
+  const { currentItems, showFilters, isLoading, pageSize } =
     useContext(BlogListingContext);
 
   return (
