@@ -1,15 +1,9 @@
-import { gql } from "@apollo/client";
-export const getMetaDataByPath = async (client, variables) => {
-    const result = await client.query({ query: metadataQuery, variables });
-    if (result.error)
-        throw result.error;
-    return result.data;
+import { gql } from "graphql-request";
+export const getMetaDataByPath = (client, variables) => {
+    return client.request(metadataQuery, variables);
 };
-export const getContentByPath = async (client, variables) => {
-    const result = await client.query({ query: contentQuery, variables });
-    if (result.error)
-        throw result.error;
-    return result.data;
+export const getContentByPath = (client, variables) => {
+    return client.request(contentQuery, variables);
 };
 export default getContentByPath;
 const contentQuery = gql `query getContentByPathBase($path: String!, $locale: [Locales], $siteId: String) {

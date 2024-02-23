@@ -4675,6 +4675,7 @@ export type GetContentByIdQuery = {
             __typename?: 'ArticlePage';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_ArticlePage_Fragment': IContentData_ArticlePage_Fragment;
                 'PageData_ArticlePage_Fragment': PageData_ArticlePage_Fragment;
                 'BlockData_ArticlePage_Fragment': BlockData_ArticlePage_Fragment;
             };
@@ -4682,6 +4683,7 @@ export type GetContentByIdQuery = {
             __typename?: 'ButtonBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;
                 'PageData_ButtonBlock_Fragment': PageData_ButtonBlock_Fragment;
                 'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment;
             };
@@ -4689,6 +4691,7 @@ export type GetContentByIdQuery = {
             __typename?: 'ContainerBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_ContainerBlock_Fragment': IContentData_ContainerBlock_Fragment;
                 'PageData_ContainerBlock_Fragment': PageData_ContainerBlock_Fragment;
                 'BlockData_ContainerBlock_Fragment': BlockData_ContainerBlock_Fragment;
             };
@@ -4696,6 +4699,7 @@ export type GetContentByIdQuery = {
             __typename?: 'Content';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_Content_Fragment': IContentData_Content_Fragment;
                 'PageData_Content_Fragment': PageData_Content_Fragment;
                 'BlockData_Content_Fragment': BlockData_Content_Fragment;
             };
@@ -4703,6 +4707,7 @@ export type GetContentByIdQuery = {
             __typename?: 'HeaderConfigBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_HeaderConfigBlock_Fragment': IContentData_HeaderConfigBlock_Fragment;
                 'PageData_HeaderConfigBlock_Fragment': PageData_HeaderConfigBlock_Fragment;
                 'BlockData_HeaderConfigBlock_Fragment': BlockData_HeaderConfigBlock_Fragment;
             };
@@ -4710,6 +4715,7 @@ export type GetContentByIdQuery = {
             __typename?: 'HeroBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_HeroBlock_Fragment': IContentData_HeroBlock_Fragment;
                 'PageData_HeroBlock_Fragment': PageData_HeroBlock_Fragment;
                 'BlockData_HeroBlock_Fragment': BlockData_HeroBlock_Fragment;
             };
@@ -4717,6 +4723,7 @@ export type GetContentByIdQuery = {
             __typename?: 'HighlightTextBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_HighlightTextBlock_Fragment': IContentData_HighlightTextBlock_Fragment;
                 'PageData_HighlightTextBlock_Fragment': PageData_HighlightTextBlock_Fragment;
                 'BlockData_HighlightTextBlock_Fragment': BlockData_HighlightTextBlock_Fragment;
             };
@@ -4724,6 +4731,7 @@ export type GetContentByIdQuery = {
             __typename?: 'LandingPage';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_LandingPage_Fragment': IContentData_LandingPage_Fragment;
                 'PageData_LandingPage_Fragment': PageData_LandingPage_Fragment;
                 'BlockData_LandingPage_Fragment': BlockData_LandingPage_Fragment;
             };
@@ -4731,6 +4739,7 @@ export type GetContentByIdQuery = {
             __typename?: 'NavMenuItem';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_NavMenuItem_Fragment': IContentData_NavMenuItem_Fragment;
                 'PageData_NavMenuItem_Fragment': PageData_NavMenuItem_Fragment;
                 'BlockData_NavMenuItem_Fragment': BlockData_NavMenuItem_Fragment;
             };
@@ -4738,6 +4747,7 @@ export type GetContentByIdQuery = {
             __typename?: 'TextBlock';
         } & {
             ' $fragmentRefs'?: {
+                'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment;
                 'PageData_TextBlock_Fragment': PageData_TextBlock_Fragment;
                 'BlockData_TextBlock_Fragment': BlockData_TextBlock_Fragment;
             };

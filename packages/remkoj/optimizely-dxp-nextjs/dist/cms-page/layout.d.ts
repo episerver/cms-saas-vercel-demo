@@ -1,7 +1,6 @@
-import type { ApolloClient } from "@apollo/client";
 import { type PropsWithChildren, type ReactNode } from "react";
 import { type Metadata, type ResolvingMetadata } from "next";
-import { type ChannelDefinition } from "@remkoj/optimizely-dxp-react";
+import { type ChannelDefinition, type ClientFactory } from "@remkoj/optimizely-dxp-react";
 import type { Props } from './page';
 import { type GetMetaDataByPathMethod } from './data';
 export type CmsPageLayout = {
@@ -11,6 +10,7 @@ export type CmsPageLayout = {
 export type CreateLayoutOptions = {
     defaultLocale: string;
     getMetaDataByPath: GetMetaDataByPathMethod;
+    client: ClientFactory;
 };
-export declare function createLayout(client: ApolloClient<any>, channel: ChannelDefinition, options?: Partial<CreateLayoutOptions>): CmsPageLayout;
+export declare function createLayout(channel: ChannelDefinition, options?: Partial<CreateLayoutOptions>): CmsPageLayout;
 export default createLayout;

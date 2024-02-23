@@ -5,13 +5,18 @@ import ClientSide from "./client";
 
 export type OdpEmbedBlockType = CmsComponent<GraphQL.OdpEmbedBlockDataFragment>;
 
-export const OdpEmbedBlock: OdpEmbedBlockType = ({ data }) => {
+export const OdpEmbedBlock: OdpEmbedBlockType = ({ data, inEditMode }) => {
   const contentId = data.ContentId || undefined;
 
   if (!contentId)
-    return <div className="odp-embed-block empty-odp-embed-block"></div>;
+    return (
+      <div
+        className="odp-embed-block empty-odp-embed-block"
+      ></div>
+    );
   return (
     <ClientSide
+      inEditMode={inEditMode ? true : false}
       contentId={contentId}
       className="odp-embed-block w-full overflow-hidden rounded-[40px]"
     />

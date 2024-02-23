@@ -118,6 +118,7 @@ export const getContentById = gql(/* GraphQL */`query getContentById($id: Int, $
     ) {
         total
         items {
+            ...IContentData
             ...PageData
             ...BlockData
         }

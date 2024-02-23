@@ -22,10 +22,12 @@ const gapSizeClassMap: { [key: string]: string } = {
 
 const ContainerBlock: CmsComponent<
   GraphQL.LayoutContainerBlockDataFragment
-> = ({ data, inEditMode, contentLink, children }) => {
+> = ({ data, contentLink, inEditMode, children, client }) => {
   let items;
+
+
   if (!children) {
-    items = data.LayoutContentArea;
+    items = data?.LayoutContentArea;
   }
 
   const {
@@ -161,6 +163,7 @@ const ContainerBlock: CmsComponent<
           ? children
           : items && (
               <CmsContentArea
+                client={client}
                 className={""}
                 fieldName="LayoutContentArea"
                 inEditMode={inEditMode}

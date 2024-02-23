@@ -126,6 +126,7 @@ const Carousel: CarouselBlockComponentType = ({
           }vw - 3rem)`,
           transition: "0.5s",
         }}
+        data-epi-edit={inEditMode ? "CarouselItemsContentArea" : undefined}
       >
         {children}
       </motion.div>

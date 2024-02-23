@@ -1,14 +1,14 @@
 import 'server-only'
-import type { ApolloClient } from '@apollo/client'
 import type { Metadata, ResolvingMetadata } from 'next'
 import React from 'react'
 import deepmerge from 'deepmerge'
 import { notFound } from 'next/navigation'
-import { RouteResolver, Utils, type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react'
+import { RouteResolver, Utils, type ClientFactory, type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react'
 import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
 import { MetaDataResolver } from '../metadata'
 import { urlToPath, localeToGraphLocale } from './utils'
 import getContentByPathBase, { type GetContentByPathMethod } from './data'
+import { getServerClient } from '../client'
 
 export type Params = {
     path: string[] | undefined,
@@ -33,20 +33,21 @@ export type NextJsPage = {
 export type CreatePageOptions = {
     defaultLocale: string
     getContentByPath: GetContentByPathMethod
+    client: ClientFactory
 }
 
 const CreatePageOptionDefaults : CreatePageOptions = {
     defaultLocale: "en",
-    getContentByPath: getContentByPathBase
+    getContentByPath: getContentByPathBase,
+    client: getServerClient
 }
 
 export function createPage(
-    client: ApolloClient<any>,
     factory: ComponentFactory,
     channel: ChannelDefinition,
     options?: Partial<CreatePageOptions>
 ) : NextJsPage {
-    const { defaultLocale, getContentByPath } = { 
+    const { defaultLocale, getContentByPath, client: clientFactory } = { 
         ...CreatePageOptionDefaults, 
         ...{ defaultLocale: channel.defaultLocale }, 
         ...options 
@@ -56,16 +57,19 @@ export function createPage(
     const pageDefintion : NextJsPage = {
         generateStaticParams : async () =>
         {
+            const client = clientFactory()
             const resolver = new RouteResolver(client)
-            const routes = (await resolver.getRoutes()).map(r => { return {
-                lang: r.language,
-                path: urlToPath(r.url, r.language)
-            }})
-            return routes
+            return (await resolver.getRoutes()).map(r => { 
+                return {
+                    lang: r.language,
+                    path: urlToPath(r.url, r.language)
+                }
+            })
         },
         generateMetadata: async ( { params: { lang, path } }, resolving ) =>
         {
             // Read variables from request
+            const client = clientFactory()
             const requestPath = (path?.length ?? 0) > 0 ?
                 `/${ lang ?? "" }/${ path?.join("/") ?? "" }` :
                 `/${ lang ?? "" }`
@@ -106,6 +110,7 @@ export function createPage(
         CmsPage: async ({  params }) =>
         {
             // Resolve the content based upon the route
+            const client = clientFactory()
             const slug = params?.lang ?? defaultLocale.toLowerCase()
             const requestPath = (params?.path?.length ?? 0) > 0 ?
                 `/${ slug }/${ params?.path?.join("/") ?? "" }` :

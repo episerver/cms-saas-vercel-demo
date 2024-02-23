@@ -2,7 +2,9 @@ import { jsx as _jsx } from "react/jsx-runtime";
 import 'server-only';
 import CmsContent from './cms-content';
 import { Errors } from '@remkoj/optimizely-dxp-react';
-import { getClient as createClient, Utils } from '@remkoj/optimizely-dxp-react';
+import { createClient, Utils } from '@remkoj/optimizely-dxp-react';
+const DEBUG = process.env.DXP_DEBUG == '1';
+const DEV = process.env.NODE_ENV == 'development';
 //#endregion
 /**
  * React server component to render a content area
@@ -11,8 +13,10 @@ import { getClient as createClient, Utils } from '@remkoj/optimizely-dxp-react';
  * @returns
  */
 export const CmsContentArea = async ({ items, locale, classMapper, className, inEditMode, fieldName, client, factory }) => {
-    // Convert the items to a list of enriched content types
-    const actualItems = items.filter(Utils.isNotNullOrUndefined);
+    if ((DEBUG || DEV) && !client)
+        console.warn("[CmsContent] No Content Graph client provided, this will cause problems with edit mode!");
+    // Convert the items to a list of enriched content types and filter out items cannot be loaded
+    const actualItems = items.filter(forValidContentAreaItems);
     const gqlClient = client ?? createClient();
     let counter = 0;
     const componentData = await Promise.all(actualItems.map(async (item, idx) => {
@@ -30,6 +34,15 @@ export const CmsContentArea = async ({ items, locale, classMapper, className, in
     }));
     return _jsx("div", { "data-epi-edit": inEditMode && fieldName ? fieldName : undefined, className: `opti-content-area ${Array.isArray(className) ? className.join(' ') : (className ?? '')}`.trim(), children: componentData });
 };
+function forValidContentAreaItems(itm) {
+    if (itm == undefined || itm == null)
+        return false;
+    if (itm.item == undefined || itm.item == null)
+        return false;
+    if (itm.item.data == undefined || itm.item.data == null)
+        return typeof (itm.item.guidValue) == 'string' && itm.item.guidValue.length > 0;
+    return itm.item.guidValue == itm.item.data.id?.guidValue;
+}
 export async function processContentAreaItems(items, locale = "en", inEditMode = false, client, factory) {
     const actualItems = (items ?? []).filter(Utils.isNotNullOrUndefined);
     const gqlClient = client ?? createClient();

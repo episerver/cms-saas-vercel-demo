@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react'
 import type * as Types from './types'
-import type { DocumentNode } from "@apollo/client"
+import type { DocumentNode } from 'graphql'
 
 export function isContentLink(toTest: any) : toTest is Types.ContentLink
 {

@@ -1,9 +1,6 @@
-import { gql } from '@apollo/client';
+import { gql } from 'graphql-request';
 export const getContentById = async (client, variables) => {
-    const result = await client.query({ query: gqlQuery, variables });
-    if (result.error)
-        throw result.error;
-    return result.data;
+    return await client.request(gqlQuery, variables);
 };
 const gqlQuery = gql `query getContentByIdBase($id: Int, $workId: Int, $guidValue: String, $locale: [Locales!], $isCommonDraft: Boolean) {
     Content(

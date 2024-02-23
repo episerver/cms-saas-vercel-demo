@@ -1,5 +1,6 @@
 import type { ComponentType, PropsWithChildren } from 'react';
-import type { ApolloClient } from '@apollo/client';
+import type { ClientFactory } from '@remkoj/optimizely-dxp-react';
+import type { GraphQLClient } from 'graphql-request';
 type ServerPageProps = {
     params: Record<string, string | Array<string>>;
     searchParams: Record<string, string>;
@@ -43,6 +44,7 @@ export type EditViewOptions = {
      * The base content loader to be used for the edit view
      */
     loader: GetContentByIdMethod;
+    clientFactory: ClientFactory;
 };
 export type GetContentByIdVariables = {
     id?: number;
@@ -67,5 +69,5 @@ export type GetContentByIdData = {
         }[];
     };
 };
-export type GetContentByIdMethod = (client: ApolloClient<any>, variables: GetContentByIdVariables) => Promise<GetContentByIdData>;
+export type GetContentByIdMethod = (client: GraphQLClient, variables: GetContentByIdVariables) => Promise<GetContentByIdData>;
 export {};

@@ -1,4 +1,4 @@
-import { type ApolloClient } from "@apollo/client";
+import { GraphQLClient } from "graphql-request";
 export type GetContentByPathVariables = {
     path: string;
     locale?: Array<string | null>[] | string | null;
@@ -32,8 +32,8 @@ export type GetMetaDataByPathResponse = {
         } | null>;
     };
 };
-export type GetContentByPathMethod = (client: ApolloClient<any>, variables: GetContentByPathVariables) => Promise<GetContentByPathResponse>;
-export type GetMetaDataByPathMethod = (client: ApolloClient<any>, variables: GetContentByPathVariables) => Promise<GetMetaDataByPathResponse>;
+export type GetContentByPathMethod = (client: GraphQLClient, variables: GetContentByPathVariables) => Promise<GetContentByPathResponse>;
+export type GetMetaDataByPathMethod = (client: GraphQLClient, variables: GetContentByPathVariables) => Promise<GetMetaDataByPathResponse>;
 export declare const getMetaDataByPath: GetMetaDataByPathMethod;
 export declare const getContentByPath: GetContentByPathMethod;
 export default getContentByPath;

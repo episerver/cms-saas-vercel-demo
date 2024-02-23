@@ -1,12 +1,14 @@
 import { Utils } from "@remkoj/optimizely-dxp-react";
 import { getMetaDataByPath as getMetaDataByPathBase } from './data';
 import { slugToLocale, slugToGraphLocale } from "./utils";
+import { getServerClient } from "../client";
 const defaultCreateLayoutOptions = {
     defaultLocale: "en",
-    getMetaDataByPath: getMetaDataByPathBase
+    getMetaDataByPath: getMetaDataByPathBase,
+    client: getServerClient
 };
-export function createLayout(client, channel, options) {
-    const { defaultLocale, getMetaDataByPath } = {
+export function createLayout(channel, options) {
+    const { defaultLocale, getMetaDataByPath, client: clientFactory } = {
         ...defaultCreateLayoutOptions,
         ...{ defaultLocale: channel.defaultLocale },
         ...options
@@ -29,6 +31,7 @@ export function createLayout(client, channel, options) {
                 path: relativePath,
                 locale: slugToGraphLocale(channel, params.lang ?? '', defaultLocale)
             };
+            const client = clientFactory();
             const response = await getMetaDataByPath(client, variables).catch(e => {
                 console.error(`[CmsPageLayout] Metadata error:`, e);
                 return undefined;

@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 import type * as Types from './types';
-import type { DocumentNode } from "@apollo/client";
+import type { DocumentNode } from 'graphql';
 export declare function isContentLink(toTest: any): toTest is Types.ContentLink;
 export declare function isContentLinkWithLocale(toTest: any): toTest is Types.ContentLinkWithLocale;
 export declare function isNonEmptyString(toTest: any): toTest is string;

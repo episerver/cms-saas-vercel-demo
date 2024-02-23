@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import type { ContentLinkWithLocale, ComponentFactory, ContentType } from '@remkoj/optimizely-dxp-react';
-import { getClient as createClient } from '@remkoj/optimizely-dxp-react';
+import { createClient } from '@remkoj/optimizely-dxp-react';
 export type CmsContentProps = PropsWithChildren<{
     /**
      * The content type to render

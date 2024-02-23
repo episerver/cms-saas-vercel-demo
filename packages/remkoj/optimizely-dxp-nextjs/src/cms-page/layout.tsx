@@ -1,10 +1,10 @@
-import type { ApolloClient } from "@apollo/client"
 import { type PropsWithChildren, type ReactNode } from "react"
 import { type Metadata, type ResolvingMetadata } from "next"
-import { Utils, type ChannelDefinition } from "@remkoj/optimizely-dxp-react"
+import { Utils, type ChannelDefinition, type ClientFactory } from "@remkoj/optimizely-dxp-react"
 import type { Props } from './page'
 import { getMetaDataByPath as getMetaDataByPathBase, type GetMetaDataByPathMethod } from './data'
 import { slugToLocale, slugToGraphLocale } from "./utils"
+import { getServerClient } from "../client"
 
 export type CmsPageLayout = {
     generateMetadata: (props: Omit<Props, 'searchParams'>, resolving: ResolvingMetadata) => Promise<Metadata>
@@ -14,19 +14,20 @@ export type CmsPageLayout = {
 export type CreateLayoutOptions = {
     defaultLocale: string
     getMetaDataByPath: GetMetaDataByPathMethod
+    client: ClientFactory
 }
 
 const defaultCreateLayoutOptions : CreateLayoutOptions = {
     defaultLocale: "en",
-    getMetaDataByPath: getMetaDataByPathBase
+    getMetaDataByPath: getMetaDataByPathBase,
+    client: getServerClient
 }
 
 export function createLayout(
-    client: ApolloClient<any>,
     channel: ChannelDefinition,
     options?: Partial<CreateLayoutOptions>
 ) : CmsPageLayout {
-    const { defaultLocale, getMetaDataByPath } : CreateLayoutOptions = {
+    const { defaultLocale, getMetaDataByPath, client: clientFactory } : CreateLayoutOptions = {
         ...defaultCreateLayoutOptions,
         ...{ defaultLocale: channel.defaultLocale },
         ...options
@@ -54,6 +55,7 @@ export function createLayout(
                 path: relativePath,
                 locale: slugToGraphLocale(channel, params.lang ?? '', defaultLocale)
             }
+            const client = clientFactory()
             const response = await getMetaDataByPath(client, variables).catch(e => {
                 console.error(`[CmsPageLayout] Metadata error:`, e)
                 return undefined

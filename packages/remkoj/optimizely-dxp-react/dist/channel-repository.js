@@ -1,5 +1,6 @@
-import { gql } from '@apollo/client/core';
 import getContentGraphConfig from './config';
+import createClient, { isContentGraphClient } from './client';
+import { gql } from 'graphql-request';
 const IS_DEV = process.env.NODE_ENV == 'development';
 export class ChannelDefinition {
     id;
@@ -33,6 +34,9 @@ export class ChannelDefinition {
     getEditDomain() {
         const edit = this.editDomain;
         return edit ? new URL(`https://${edit}/`) : new URL(this.dxp_url);
+    }
+    getCmsUrl() {
+        return this.dxp_url;
     }
     /**
      * Retieve the default locale specification, defined as the locale marked
@@ -121,26 +125,18 @@ export class ChannelDefinition {
 }
 export class ChannelRepository {
     client;
-    config;
-    constructor(optimizelyGraphClient, optimizelyGraphConfig) {
-        this.client = optimizelyGraphClient;
-        this.config = optimizelyGraphConfig || getContentGraphConfig();
+    constructor(client) {
+        this.client = isContentGraphClient(client) ? client : createClient(client || getContentGraphConfig());
     }
     async getAll() {
-        const { error, errors, data } = await this.client.query({ query: Queries.getAll, fetchPolicy: "cache-first" });
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph");
-        }
+        const data = await this.client.request(Queries.getAll);
         const channels = data.GetAllChannels?.channels;
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph");
         return channels.map(this.transformGraphResponse);
     }
     async getById(id) {
-        const { error, errors, data } = await this.client.query({ query: Queries.getById, fetchPolicy: "cache-first", variables: { id } });
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph");
-        }
+        const data = await this.client.request(Queries.getById, { id });
         const channels = data.GetChannelById?.channels;
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph");
@@ -149,10 +145,7 @@ export class ChannelRepository {
         return this.transformGraphResponse(channels[0]);
     }
     async getByDomain(domain, fallback = true) {
-        const { error, errors, data } = await this.client.query({ query: Queries.getByDomain, fetchPolicy: "cache-first", variables: { domain, fallback: fallback ? "*" : "__NO_FALLBACK__" } });
-        if (error || errors) {
-            throw new Error("Unable to retrieve the channel list from Optimizely Graph");
-        }
+        const data = await this.client.request(Queries.getByDomain, { domain, fallback: fallback ? "*" : "__NO_FALLBACK__" });
         const channels = data.GetChannelByDomain?.channels;
         if (!channels || !Array.isArray(channels))
             throw new Error("No channels returned by Optimizely Graph");
@@ -161,10 +154,10 @@ export class ChannelRepository {
         return this.transformGraphResponse(channels[0]);
     }
     getDefaultDomain() {
-        return this.config.deploy_domain;
+        return this.client.siteInfo.frontendDomain;
     }
     async getDefault() {
-        return this.getByDomain(this.config.deploy_domain, true);
+        return this.getByDomain(this.client.siteInfo.frontendDomain, true);
     }
     transformGraphResponse(ch) {
         return new ChannelDefinition({
@@ -195,7 +188,7 @@ export class ChannelRepository {
                     guidValue: ch.content?.startPage?.guidValue
                 }
             }
-        }, this.config.dxp_url);
+        }, this.client.siteInfo.cmsURL);
     }
 }
 export default ChannelRepository;

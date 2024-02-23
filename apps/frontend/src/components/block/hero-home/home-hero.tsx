@@ -10,7 +10,7 @@ import type { HomeHeroBlockComponentType } from ".";
 const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
   const { heading = "", subheading = "", button, leftImage, rightImage } = data;
   const [loaded, setLoaded] = useState(false);
-
+  
   useEffect(() => {
     setLoaded(true);
   }, []);
@@ -25,7 +25,13 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
             transition={{ duration: 1, delay: 1.25 }}
             className="absolute left-[-80%] top-[100px] rounded-[40px] overflow-hidden hidden lg:block"
           >
-            <Image src={leftImage.url} alt="" width={435} height={368} />
+            <Image
+              data-epi-edit={inEditMode ? "HomeHeroLeftImage" : undefined}
+              src={leftImage.url}
+              alt=""
+              width={435}
+              height={368}
+            />
           </motion.div>
         )}
         <div className="mb-24 prose prose-h1:text-[72px] prose-p:text-[24px] prose-h1:mb-10 prose-p:leading-tight">
@@ -69,7 +75,13 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
             transition={{ duration: 1, delay: 1.45 }}
             className="absolute right-[-80%] top-[100px] rounded-[40px] overflow-hidden hidden lg:block"
           >
-            <Image src={rightImage.url} alt="" width={435} height={368} />
+            <Image
+              data-epi-edit={inEditMode ? "HomeHeroRightImage" : undefined}
+              src={rightImage.url}
+              alt=""
+              width={435}
+              height={368}
+            />
           </motion.div>
         )}
       </div>

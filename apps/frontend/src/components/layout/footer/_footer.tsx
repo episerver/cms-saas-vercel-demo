@@ -15,17 +15,14 @@ function FooterColumn({
   ...props
 }: any) {
   const router = useRouter();
-  const path = usePathname();
 
   const switchToLocale = useCallback(
     (locale: string) => {
-      console.log(router);
-
-      console.log(path);
       return router.replace(locale);
     },
     [router]
   );
+
 
   if (__typename === "MenuNavigationBlock") {
     return (

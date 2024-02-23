@@ -1,6 +1,6 @@
 import { gql as graphql } from "@apollo/client";
 import { getCurrentChannel } from "@/lib/current-channel";
-import { getServerClient } from "@/lib/client";
+import { getServerClient } from "@remkoj/optimizely-dxp-nextjs";
 import {
   getFallbackLocale,
   localeToContentGraphLocale,
@@ -18,15 +18,12 @@ export default async function SiteFooter({ locale }: SiteFooterProps) {
   const client = getServerClient();
   const siteInfo = await getCurrentChannel();
 
-  const config = (
-    await client.query({
-      query: FooterConfigQuery,
-      variables: {
-        locale: localeToContentGraphLocale(currentLocale) as any,
-        siteId: siteInfo.id,
-      },
-    })
-  ).data;
+  const config =
+    (await client.request(FooterConfigQuery, {
+      locale: siteInfo.localeToGraphLocale(currentLocale) as any,
+      siteId: siteInfo.id,
+    })) || [];
+
   const footerCopyright = config.menuItems.items[0].footerCopyright;
   const footerSubLinks = config.menuItems.items[0].footerSubLinks;
   const footerItems = config.menuItems.items[0].footerNavigation;
@@ -71,6 +68,7 @@ const FooterConfigQuery = graphql(/* graphql */ `
   fragment HtmlBlock on HtmlBlock {
     title: HtmlBlockHeading
     content: HtmlContent
+    __typename
   }
 
   fragment FooterMenuNavigationItem on MenuNavigationBlock {
@@ -81,5 +79,6 @@ const FooterConfigQuery = graphql(/* graphql */ `
       target: Target
       text: Text
     }
+    __typename
   }
 `);

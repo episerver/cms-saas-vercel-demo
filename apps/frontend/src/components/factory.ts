@@ -7,14 +7,19 @@ import Link from 'next/link'
 import type { ComponentType } from 'react'
 import Fragment from './fragment'
 
+let setupExecuted = false;
+
 export function setupFactory() : ComponentFactory
 {
     const factory = getFactory()
-    factory.registerAll(pageComponents)
-    factory.registerAll(blockComponents)
-    factory.register('a', Link as unknown as ComponentType)
-    factory.register('$$fragment$$', Fragment as ComponentType)
-    setFactory(factory)
+    if (!setupExecuted) {
+        factory.registerAll(pageComponents)
+        factory.registerAll(blockComponents)
+        factory.register('a', Link as unknown as ComponentType)
+        factory.register('$$fragment$$', Fragment as ComponentType)
+        setFactory(factory)
+        setupExecuted = true
+    }
     return factory
 }
 

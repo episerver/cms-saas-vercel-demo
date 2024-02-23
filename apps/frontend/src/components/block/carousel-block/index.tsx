@@ -108,6 +108,7 @@ export const CarouselBlock: CmsComponent<
       contentLink={contentLink}
     >
       <CustomCmsContentArea
+        client={client}
         className={""}
         fieldName="CarouselItemsContentArea"
         inEditMode={inEditMode}

@@ -32,5 +32,8 @@
     "debug": "^4.3.4",
     "semver": "^7.5.4",
     "undici": "^5.27.2"
+  },
+  "dependencies": {
+    "graphql-request": "^6.1.0"
   }
 }

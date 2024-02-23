@@ -70,12 +70,21 @@ const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
         {overline && (
           <span
             className="uppercase text-[12px]"
+            data-epi-edit={inEditMode ? "TextBlockOverline" : undefined}
             dangerouslySetInnerHTML={{ __html: overline }}
           ></span>
         )}
-        {heading && <h2 dangerouslySetInnerHTML={{ __html: heading }}></h2>}
+        {heading && (
+          <h2
+            data-epi-edit={inEditMode ? "TextBlockHeading" : undefined}
+            dangerouslySetInnerHTML={{ __html: heading }}
+          ></h2>
+        )}
         {description && (
-          <span dangerouslySetInnerHTML={{ __html: description }}></span>
+          <span
+            data-epi-edit={inEditMode ? "TextBlockDescription" : undefined}
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></span>
         )}
       </div>
     </section>

@@ -88,19 +88,37 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
           )}`}
         >
           {icon && icon.src ? (
-            <Image src={icon.src} alt={""} width={48} height={48} />
+            <Image
+              data-epi-edit={inEditMode ? "CardIcon" : undefined}
+              src={icon.src}
+              alt={""}
+              width={48}
+              height={48}
+            />
           ) : null}
           {heading ? (
-            <h2 dangerouslySetInnerHTML={{ __html: heading }}></h2>
+            <h2
+              data-epi-edit={inEditMode ? "CardHeading" : undefined}
+              dangerouslySetInnerHTML={{ __html: heading }}
+            ></h2>
           ) : null}
           {subheading ? (
-            <h3 dangerouslySetInnerHTML={{ __html: subheading }}></h3>
+            <h3
+              data-epi-edit={inEditMode ? "CardSubHeading" : undefined}
+              dangerouslySetInnerHTML={{ __html: subheading }}
+            ></h3>
           ) : null}
           {description ? (
-            <div dangerouslySetInnerHTML={{ __html: description }}></div>
+            <div
+              data-epi-edit={inEditMode ? "CardDescription" : undefined}
+              dangerouslySetInnerHTML={{ __html: description }}
+            ></div>
           ) : null}
           {button && button.children ? (
-            <ButtonBlock {...button}></ButtonBlock>
+            <ButtonBlock
+              data-epi-edit={inEditMode ? "CardButton" : undefined}
+              {...button}
+            ></ButtonBlock>
           ) : null}
         </div>
         {image && image.src ? (
@@ -112,6 +130,7 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
             }`}
           >
             <Image
+              data-epi-edit={inEditMode ? "CardImage" : undefined}
               className="rounded-[40px] w-full"
               src={image.src}
               alt={""}

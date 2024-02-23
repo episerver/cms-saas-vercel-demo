@@ -1,8 +1,7 @@
-import type { OperationVariables, ApolloClient, NormalizedCacheObject, ApolloClientOptions } from "@apollo/client"
 import type { ContentLinkWithLocale } from "./types"
-import { gql } from "@apollo/client/core"
-import { createNewClient as createClient } from './client'
-import getContentGraphConfig, { type ContentGraphConfig, validateContentGraphConfig } from './config'
+import { gql } from "graphql-request"
+import createClient, { type ContentGraphClient, isContentGraphClient } from './client'
+import getContentGraphConfig, { type ContentGraphConfig } from './config'
 
 const DEBUG = process.env.DXP_DEBUG == '1'
 
@@ -21,8 +20,7 @@ export type Route = {
 }
 
 export class RouteResolver {
-    private _cgClient : ApolloClient<NormalizedCacheObject>
-    private _config : ContentGraphConfig
+    private _cgClient : ContentGraphClient
 
     /**
      * Create a new Route Resolver
@@ -30,62 +28,31 @@ export class RouteResolver {
      * @param client        ContentGraph configuration override
      * @param apolloConfig  Apollo Client configuration override
      */
-    public constructor (client: ApolloClient<NormalizedCacheObject>, config?: ContentGraphConfig)
-    /**
-     * Create a new edit-mode Route Resolver, based on the provided token. 
-     * 
-     * @param token         The token that allows reading data, or the magic value "use-hmac" to use the built-in HMAC authentication for ContentGraph
-     * @param config        ContentGraph configuration override
-     * @param apolloConfig  Apollo Client configuration override
-     */
-    public constructor (token?: string, config?: ContentGraphConfig, apolloConfig?: Partial<ApolloClientOptions<NormalizedCacheObject>>)
-    public constructor(clientOrToken?: ApolloClient<NormalizedCacheObject> | string, config?: ContentGraphConfig, apolloConfig?: Partial<ApolloClientOptions<NormalizedCacheObject>>)
+    public constructor (clientOrConfig?: ContentGraphClient | ContentGraphConfig)
     {
-        this._config = config ?? getContentGraphConfig()
-        if (!validateContentGraphConfig(this._config))
-            throw new Error("Invalid ContentGraph Configuration")
 
-        if (typeof clientOrToken == 'string' || clientOrToken == undefined)
-            this._cgClient = createClient(this._config, clientOrToken, apolloConfig)
-
-        else if (typeof clientOrToken == 'object' && clientOrToken != null && typeof clientOrToken.query == 'function')
-            this._cgClient = clientOrToken
-
-        else
-            throw new Error(`The first parameter "clientOrToken" must be either a valid token string or ApolloClient, you've provided a ${ typeof clientOrToken }`)
-
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig())
     }
 
     public async getRoutes(siteId?: string) : Promise<Route[]>
     {
-        let page = await this._cgClient.query<GetAllRoutes.Result, GetAllRoutes.Variables>({ 
-            query: GetAllRoutes.query, 
-            variables: {
-                siteId,
-                typeFilter: "Page"
-            },
-            fetchPolicy: "no-cache" 
-        })
-        if (!page?.data) {
-            return []
-        }
-        let results = page.data?.Content?.items ?? []
-        const totalCount = page.data?.Content?.total ?? 0
-        const cursor = page.data?.Content?.cursor ?? ''
+        let page = await this._cgClient.request<GetAllRoutes.Result, GetAllRoutes.Variables>(GetAllRoutes.query, { siteId, typeFilter: "Page" })
+        let results = page?.Content?.items ?? []
+        const totalCount = page?.Content?.total ?? 0
+        const cursor = page?.Content?.cursor ?? ''
 
         if (totalCount > 0 && cursor !== '' && totalCount > results.length)
-            while ((page.data?.Content?.items?.length ?? 0) > 0 && results.length < totalCount) 
+            while ((page?.Content?.items?.length ?? 0) > 0 && results.length < totalCount) 
             {
                 page = await this._cgClient.query<GetAllRoutes.Result, GetAllRoutes.Variables>({ 
-                    query: GetAllRoutes.query, 
+                    document: GetAllRoutes.query, 
                     variables: { 
                         cursor,
                         siteId,
                         typeFilter: "Page" 
-                    },
-                    fetchPolicy: "no-cache"
+                    }
                 })
-                results = results.concat(page.data?.Content?.items ?? [])
+                results = results.concat(page.Content?.items ?? [])
             }
 
         return results.map(this.convertResponse)
@@ -97,30 +64,25 @@ export class RouteResolver {
             console.log(`Resolving content info for ${ path } on ${ siteId ? "site " + siteId : "all sites"}`)
 
         const resultSet = await this._cgClient.query<GetRouteByPath.Result, GetRouteByPath.Variables>({
-            query: GetRouteByPath.query,
+            document: GetRouteByPath.query,
             variables: {
                 path,
                 siteId
             }
         })
 
-        if (resultSet.loading) {
-            if (DEBUG) console.warn("Still loading after result has been awaited")
-            return undefined
-        }
-
-        if ((resultSet.data?.Content?.items?.length ?? 0) === 0) {
+        if ((resultSet.Content?.items?.length ?? 0) === 0) {
             if (DEBUG) console.warn("No items in the resultset");
             return undefined
         }
-        
-        if ((resultSet.data?.Content?.items?.length ?? 0) > 1)
-            console.warn("Ambiguous URL provided, did you omit the siteId in a multi-channel setup?")
+
+        if ((resultSet.Content?.items?.length ?? 0) > 1)
+            throw new Error("Ambiguous URL provided, did you omit the siteId in a multi-channel setup?")
 
         if (DEBUG)
-            console.log(`Resolved content info for ${ path } to:`, resultSet.data.Content.items[0])
+            console.log(`Resolved content info for ${ path } to:`, resultSet.Content.items[0])
         
-        return this.convertResponse(resultSet.data.Content.items[0])
+        return this.convertResponse(resultSet.Content.items[0])
     }
 
     public async getContentInfoById(contentId: string, locale: string) : Promise<undefined | Route>
@@ -136,17 +98,14 @@ export class RouteResolver {
             console.log("Resolving content by id:", JSON.stringify(variables))
 
         const resultSet = await this._cgClient.query<GetRouteById.Result, GetRouteById.Variables>({
-            query: GetRouteById.query,
+            document: GetRouteById.query,
             variables
         })
 
-        if (!(resultSet.loading == false && !resultSet.error))
-            return undefined
-
-        if (resultSet.data.Content?.total >= 1) {
-            if (DEBUG && resultSet.data.Content?.total > 1)
-                console.warn(`Received multiple entries with this ID, returning the first one from: ${ (resultSet.data?.Content?.items || []).map(x => { return `${ x.contentLink.id }_${ x.contentLink.workId }_${ x.locale.name }`}).join('; ') }`)
-            return this.convertResponse(resultSet.data.Content.items[0])
+        if (resultSet.Content?.total >= 1) {
+            if (DEBUG && resultSet.Content?.total > 1)
+                console.warn(`Received multiple entries with this ID, returning the first one from: ${ (resultSet.Content?.items || []).map(x => { return `${ x.contentLink.id }_${ x.contentLink.workId }_${ x.locale.name }`}).join('; ') }`)
+            return this.convertResponse(resultSet.Content.items[0])
         }
         
         return undefined
@@ -225,13 +184,13 @@ export namespace GetAllRoutes {
             total: number
         }
     }
-
+ 
     export type Variables = {
         cursor?: string,
         pageSize?: number,
         typeFilter?: string | string[]
         siteId?: string
-    } & OperationVariables
+    }
 
     export const query = gql`query GetAllRoutes($cursor: String, $pageSize: Int = 100, $typeFilter: [String] = "Page", $siteId: String = null)
   {

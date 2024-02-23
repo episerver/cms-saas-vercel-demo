@@ -22,7 +22,7 @@ export const HeaderContext = createContext<HeaderContextType>({
  * @param {any} locale - the locale to render the header with
  * @return {JSX.Element} the rendered Header component
  */
-export default function Header({ locale, menuItems, utilityItems }: any) {
+export default function Header({ locale, menuItems, utilityItems, inEditMode }: any) {
   const logoRef = useRef<HTMLDivElement>(null);
   const secondaryMenuRef = useRef<HTMLUListElement>(null);
   const [currentMenu, setCurrentMenu] = useState("");

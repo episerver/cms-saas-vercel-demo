@@ -90,20 +90,56 @@ const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
             {eyebrow ? (
               <p
                 className="eyebrow"
+                data-epi-edit={inEditMode ? "Eyebrow" : undefined}
                 dangerouslySetInnerHTML={{ __html: eyebrow }}
               ></p>
+            ) : inEditMode && !eyebrow ? (
+              <div className="mt-16 flex justify-end">
+                <div data-epi-edit={inEditMode ? "Eyebrow" : undefined}>
+                  + Add Eyebrow
+                </div>
+              </div>
             ) : null}
             {heading ? (
-              <h1 dangerouslySetInnerHTML={{ __html: heading }}></h1>
+              <h1
+                data-epi-edit={inEditMode ? "Heading" : undefined}
+                dangerouslySetInnerHTML={{ __html: heading }}
+              ></h1>
+            ) : inEditMode && !heading ? (
+              <div className="mt-16 flex justify-end">
+                <div data-epi-edit={inEditMode ? "Heading" : undefined}>
+                  + Add Heading
+                </div>
+              </div>
             ) : null}
             {description ? (
-              <div dangerouslySetInnerHTML={{ __html: description }}></div>
+              <div
+                data-epi-edit={inEditMode ? "Description" : undefined}
+                dangerouslySetInnerHTML={{ __html: description }}
+              ></div>
+            ) : inEditMode && !description ? (
+              <div className="mt-16 flex justify-end">
+                <div data-epi-edit={inEditMode ? "Description" : undefined}>
+                  + Add Description
+                </div>
+              </div>
             ) : null}
             {button && button.children ? (
               <ButtonBlock
+                data-epi-edit={inEditMode ? "HeroButton" : undefined}
                 {...button}
                 className={buttonClassName}
               ></ButtonBlock>
+            ) : inEditMode && !(button && button.children) ? (
+              <div className="mt-16 flex justify-end">
+                <ButtonBlock
+                  buttonType={"secondary"}
+                  buttonVariant={"cta"}
+                  data-epi-edit={inEditMode ? "HeroButton" : undefined}
+                >
+                  + Add Button
+                </ButtonBlock>
+              </div>
             ) : null}
           </div>
           {image && image.src ? (
@@ -111,12 +147,23 @@ const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
               className={`@[80rem]/card:col-span-6 order-first lg:order-last`}
             >
               <Image
+                data-epi-edit={inEditMode ? "HeroImage" : undefined}
                 className="rounded-[40px] w-full"
                 src={image.src}
                 alt={""}
                 width={600}
                 height={500}
               />
+            </div>
+          ) : inEditMode && !(image && image.src) ? (
+            <div className="mt-16 flex justify-end">
+              <ButtonBlock
+                buttonType={"primary"}
+                buttonVariant={"cta"}
+                data-epi-edit={inEditMode ? "HeroImage" : undefined}
+              >
+                + Add Image
+              </ButtonBlock>
             </div>
           ) : null}
         </div>

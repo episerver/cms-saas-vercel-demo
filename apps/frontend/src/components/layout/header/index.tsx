@@ -1,8 +1,8 @@
 import "server-only";
-import { Utils } from "@remkoj/optimizely-dxp-react";
 import { gql as graphql } from "@apollo/client";
 import { getCurrentChannel } from "@/lib/current-channel";
-import { getServerClient } from "@/lib/client";
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs';
+
 import {
   getFallbackLocale,
   localeToContentGraphLocale,
@@ -18,15 +18,13 @@ export default async function SiteHeader({ locale }: HeaderWrapperProps) {
   const currentLocale = resolveLocale(locale);
   const client = getServerClient();
   const siteInfo = await getCurrentChannel();
-  const config = (
-    await client.query({
-      query: HeaderConfigQuery,
-      variables: {
-        locale: localeToContentGraphLocale(currentLocale) as any,
-        siteId: siteInfo.id,
-      },
+
+  const config = ((
+    await client.request(HeaderConfigQuery, {
+      locale: siteInfo.localeToGraphLocale(currentLocale) as any,
+      siteId: siteInfo.id,
     })
-  ).data;
+  ) || []);
 
   const menuItems = config.menuItems.items[0].headerNavigation;
   const utilityItems = config.menuItems.items[0].UtilityNavigationContentArea;
@@ -37,7 +35,7 @@ export default async function SiteHeader({ locale }: HeaderWrapperProps) {
 }
 
 const HeaderConfigQuery = graphql(/* graphql */ `
-  query Navigations($locale: [Locales] = en) {
+  query Navigations($locale: [Locales]) {
     menuItems: StartPage(locale: $locale) {
       items {
         headerNavigation: MainNavigationContentArea {
@@ -90,6 +88,7 @@ const HeaderConfigQuery = graphql(/* graphql */ `
       target: Target
       text: Text
     }
+    __typename
   }
 
   fragment CardItem on CardBlock {
@@ -104,5 +103,6 @@ const HeaderConfigQuery = graphql(/* graphql */ `
       title: ButtonText
       url: ButtonUrl
     }
+    __typename
   }
 `);

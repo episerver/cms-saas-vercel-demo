@@ -1,20 +1,19 @@
 import "server-only";
-import { loadErrorMessages, loadDevMessages } from "@apollo/client/dev";
+import { getServerClient, CmsPage } from "@remkoj/optimizely-dxp-nextjs";
 import { getContentByPath } from "@gql/functions";
-import { getServerClient } from "@/lib/client";
 import getFactory from "@components/factory";
 import channel from "@/site-config";
-import { CmsPage } from "@remkoj/optimizely-dxp-nextjs";
-const client = getServerClient();
+
+// Create the page components and functions
 const factory = getFactory();
-
-const DEBUG = process.env.NODE_ENV == "development";
-
-// Add Apollo Client messages only in a dev environment
-if (DEBUG) {
-  loadDevMessages();
-  loadErrorMessages();
-}
+const {
+  generateMetadata,
+  generateStaticParams,
+  CmsPage: Page,
+} = CmsPage.createPage(factory, channel, {
+  getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
+  client: getServerClient,
+});
 
 // Configure the Next.JS route handling for the pages
 export const dynamic = "force-static"; // Make sure we cache pages
@@ -22,14 +21,6 @@ export const dynamicParams = true; // Allow new pages to be resolved without reb
 export const revalidate = false; // Keep the cache untill manually revalidated using the Webhook
 export const fetchCache = "default-cache"; // Cache fetch results by default
 
-// Create the page components and functions
-const {
-  generateMetadata,
-  generateStaticParams,
-  CmsPage: Page,
-} = CmsPage.createPage(client, factory, channel, {
-  getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
-});
-
+// Export page & helper methods
 export { generateMetadata, generateStaticParams };
 export default Page;

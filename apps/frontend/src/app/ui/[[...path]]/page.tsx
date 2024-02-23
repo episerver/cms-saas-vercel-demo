@@ -3,18 +3,14 @@ import "server-only";
 // Base frameworks & components
 import { type PropsWithChildren } from "react";
 import { OnPageEdit } from "@remkoj/optimizely-dxp-nextjs";
-import { getContentGraphConfig } from "@remkoj/optimizely-dxp-react";
 
 // Import libraries & GraphQL
 import * as EnvTools from "@/lib/env";
-import { getAuthorizedServerClient } from "@/lib/client";
 import { getContentById } from "@gql/functions";
 
 // Import components & factory
 import { setupFactory } from "@components/factory";
 import RefreshNotice from "@components/refresh-notice";
-import Header from "@components/layout/header";
-import Footer from "@components/layout/footer";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
 
 // Read staticly generated site definition and environment variables
@@ -23,11 +19,6 @@ const refreshDelay = EnvTools.readValueAsInt(
   "OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY",
   2000
 );
-
-// Read Content Graph Configuration
-const config = getContentGraphConfig();
-const factory = setupFactory();
-const client = getAuthorizedServerClient();
 
 // Prepare the error component
 const ErrorComponent = (props: { title: string; message: string }) => {
@@ -44,25 +35,22 @@ const ErrorComponent = (props: { title: string; message: string }) => {
 
 // Prepare the Edit Mode Layout for page type components
 const PageLayout = (props: PropsWithChildren<{ locale: string }>) => {
-  return <>{props.children}</>;
+  return (
+    <>
+      {props.children}
+    </>
+  );
 };
 
-export default OnPageEdit.createEditPageComponent(
-  config.dxp_url,
-  client,
-  channel,
-  factory,
-  {
-    errorNotice: ErrorComponent,
-    /** @ts-ignore */
-    refreshNotice: RefreshNotice,
-    layout: PageLayout,
+export default OnPageEdit.createEditPageComponent(channel, setupFactory(), {
+  errorNotice: ErrorComponent,
+  refreshNotice: RefreshNotice,
+  layout: PageLayout,
 
-    // Casting is needed due to the locale being an enum in the generated types and a string in the generic query used by the loader
-    loader: getContentById as OnPageEdit.Types.GetContentByIdMethod,
-    refreshDelay,
-  }
-);
+  // Casting is needed due to the locale being an enum in the generated types and a string in the generic query used by the loader
+  loader: getContentById as OnPageEdit.Types.GetContentByIdMethod,
+  refreshDelay,
+});
 
 export const fetchCache = "force-no-store";
 export const revalidate = 0;

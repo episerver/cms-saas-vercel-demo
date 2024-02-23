@@ -1,6 +1,6 @@
 import type * as Types from './types'
 import type * as GraphQL from '@gql/graphql'
-import { getServerClient } from '@/lib/client'
+import { getServerClient } from "@remkoj/optimizely-dxp-nextjs";
 import { gql } from "@gql/index";
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import 'server-only'
@@ -12,9 +12,9 @@ export async function getArticles(locale: string, paging?: Types.PagingData, fil
     const client = getServerClient()
     const published : string | undefined = filters?.published
     const publishedEnd = !published ? undefined : (() => { const d = new Date(published); d.setDate(d.getDate() +1); return d.toISOString()})()
-    const result = await client.query({
-        query: GetArticlesQuery,
-        variables: {
+    const result = await client.query(
+        GetArticlesQuery,
+        {
             locale: locale as GraphQL.Locales,
             pageSize: paging?.count ?? 10,
             start: pageSize * (pageNumber - 1),
@@ -22,11 +22,12 @@ export async function getArticles(locale: string, paging?: Types.PagingData, fil
             published,
             publishedEnd
         }
-    })
+    )
+
     if (result.error)
         throw result.error
 
-    const articleResponse = result.data.getArticles
+    const articleResponse = result.getArticles
     if (!articleResponse)
         throw new Error("No data in the response")
 

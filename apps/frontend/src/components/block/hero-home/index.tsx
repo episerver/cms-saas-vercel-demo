@@ -2,7 +2,6 @@ import type { CmsComponent } from "@remkoj/optimizely-dxp-react";
 import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
-import "server-only";
 
 export type HomeHeroBlockComponentType =
   CmsComponent<GraphQL.HomeHeroBlockDataFragment>;

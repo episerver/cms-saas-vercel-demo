@@ -50,10 +50,16 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
         " "
       )}`}
     >
-      <blockquote className="text-[18px] lg:text-[24px]">{quote}</blockquote>
+      <blockquote
+        data-epi-edit={inEditMode ? "QuoteText" : undefined}
+        className="text-[18px] lg:text-[24px]"
+      >
+        {quote}
+      </blockquote>
       <figcaption className="flex items-center mt-16">
         {profilePicture && profilePicture.url && (
           <Image
+            data-epi-edit={inEditMode ? "QuoteProfilePicture" : undefined}
             src={profilePicture.url}
             alt={name ?? ""}
             width={200}
@@ -63,12 +69,22 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
         )}
 
         <cite className="ml-4 lg:flex not-italic">
-          <p className="whitespace-nowrap">{name}</p>
+          <p
+            data-epi-edit={inEditMode ? "QuoteProfileName" : undefined}
+            className="whitespace-nowrap"
+          >
+            {name}
+          </p>
           {location && (
             <span className="mx-2 hidden lg:inline-block">&mdash;</span>
           )}
           {location ? (
-            <p className="text-[12px] lg:text-[16px]">{location}</p>
+            <p
+              data-epi-edit={inEditMode ? "QuoteProfileLocation" : undefined}
+              className="text-[12px] lg:text-[16px]"
+            >
+              {location}
+            </p>
           ) : null}
         </cite>
       </figcaption>

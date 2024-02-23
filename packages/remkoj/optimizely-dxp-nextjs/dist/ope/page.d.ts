@@ -1,7 +1,6 @@
 import 'server-only';
 import type { EditPageComponent, EditViewOptions } from './types';
 import { type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react';
-import { type ApolloClient } from '@apollo/client';
 /**
  * Create the EditPage component needed by Next.JS to render the "On Page
  * Editing" variant of the content item selected by the editor.
@@ -13,5 +12,5 @@ import { type ApolloClient } from '@apollo/client';
  * @param   options     The optional options to use to control the edit page
  * @returns The React Component that can be used by Next.JS to render the page
  */
-export declare function createEditPageComponent(dxpUrl: string, client: ApolloClient<any>, channel: Readonly<ChannelDefinition>, factory: ComponentFactory, options?: Partial<EditViewOptions>): EditPageComponent;
+export declare function createEditPageComponent(channel: Readonly<ChannelDefinition>, factory: ComponentFactory, options?: Partial<EditViewOptions>): EditPageComponent;
 export default createEditPageComponent;
