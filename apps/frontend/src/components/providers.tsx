@@ -1,10 +1,7 @@
 'use client'
-
 import React, { type FunctionComponent, PropsWithChildren } from 'react'
 import { SessionProvider } from 'next-auth/react'
-import DataPlatformTracking from '@/components/integrations/opti-data-platform'
-import ContentRecsTracking from '@/components/integrations/opti-content-recs'
-import WebExActivation from '@/components/integrations/opti-web-experimentation'
+import { OptimizelyOneProvider, PageActivator, OptimizelyOneGadget } from '@remkoj/optimizely-one-nextjs/client'
 
 export type GlobalProvidersProps = PropsWithChildren<{
 
@@ -18,15 +15,15 @@ export type GlobalProvidersProps = PropsWithChildren<{
  * @param       props   Component properties
  * @returns     The global client side providers, wrapping the server components
  */
-export const GlobalProviders : FunctionComponent<GlobalProvidersProps> = props => 
+export const GlobalProviders : FunctionComponent<GlobalProvidersProps> = ({ children }) => 
 {
-    return <SessionProvider>
-        <DataPlatformTracking />
-        <ContentRecsTracking />
-        <WebExActivation>
-            { props.children }
-        </WebExActivation>
-    </SessionProvider>
+    return <OptimizelyOneProvider value={{ debug: true }} >
+        <PageActivator />
+        <SessionProvider>
+            { children }
+        </SessionProvider>
+        <OptimizelyOneGadget servicePrefix='/api/me' refreshInterval={ 2000 } />
+    </OptimizelyOneProvider>
 }
 
 export default GlobalProviders

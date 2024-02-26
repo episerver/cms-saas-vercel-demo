@@ -2,10 +2,8 @@ import type { Metadata, ResolvingMetadata } from 'next/types'
 
 import Header from '@components/layout/header'
 import Footer from '@components/layout/footer'
-import OptimizelyOne from '@components/layout/footer/optimizely-one'
 
 import 'server-only'
-import * as EnvTools from '@/lib/env'
 import Channel from '@/site-config'
 
 export type RootLayoutProps = {
@@ -35,7 +33,6 @@ export async function generateMetadata(props: RootLayoutProps, resolving: Resolv
 }
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
-    const OptimzelyOneDebug = EnvTools.readValueAsBoolean('OPTIMIZELY_ONE_HELPER')
     const currentLocale = Channel.slugToLocale(params?.lang ?? Channel.defaultLocale)
     return <>
         <Header locale={ currentLocale } />
@@ -43,6 +40,5 @@ export default function RootLayout({ children, params }: RootLayoutProps) {
             { children }
         </main>
         <Footer locale={ currentLocale } />
-        { OptimzelyOneDebug && <OptimizelyOne /> }
     </>
 }

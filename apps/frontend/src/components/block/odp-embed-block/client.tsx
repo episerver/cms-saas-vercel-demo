@@ -2,16 +2,15 @@
 
 import React, { useCallback, type FunctionComponent } from 'react'
 import { useEffect, useRef, useId } from 'react'
-import { useODP } from '@/components/integrations/opti-data-platform'
+import { useOptimizelyOne } from '@remkoj/optimizely-one-nextjs/client'
 
 export const OdpClientSide : FunctionComponent<{contentId: string, className: string}> = ({contentId, className}) =>
 {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const hasDispatched = useRef<boolean>(false)
-    const zaius = useODP()
+    const zaius = useOptimizelyOne().getService('odp')?.getBrowserApi()
     const containerId = useId().replaceAll(':',"-")
 
-    
     const showContent = useCallback(() => 
     {
         if (hasDispatched.current) 

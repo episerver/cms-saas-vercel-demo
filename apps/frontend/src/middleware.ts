@@ -1,8 +1,8 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import { v4 as createGuid } from 'uuid'
 import siteConfig from '@/site-config'
+import { Session } from '@remkoj/optimizely-one-nextjs/server'
 
 // Read the site configuration, default to "en" as only routed language if there's no configuration
 const defaultLocale = siteConfig.defaultLocale
@@ -42,15 +42,9 @@ export function middleware(request: NextRequest)
     }
 
     // Then make sure we have a visitorId cookie and move it forward in expiry
-    const visitorId = request.cookies.get('visitorId')?.value ?? createGuid()
+    const visitorId = Session.getOrCreateVisitorId(request)
     const response = NextResponse.next()
-    response.cookies.set({
-        name: 'visitorId',
-        value: visitorId,
-        sameSite: "strict",
-        path: "/",
-        secure: !DEBUG
-    })
+    Session.addVisitorId(response, visitorId)
     return response
 }
 

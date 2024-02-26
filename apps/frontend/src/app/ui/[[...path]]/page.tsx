@@ -3,9 +3,9 @@ import 'server-only'
 // Base frameworks & components
 import { type PropsWithChildren } from 'react'
 import { OnPageEdit } from '@remkoj/optimizely-dxp-nextjs'
+import { EnvTools } from '@remkoj/optimizely-one-nextjs/server'
 
 // Import libraries & GraphQL
-import * as EnvTools from '@/lib/env'
 import { getContentById } from '@gql/functions'
 
 // Import components & factory

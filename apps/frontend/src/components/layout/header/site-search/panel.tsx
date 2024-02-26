@@ -1,7 +1,7 @@
 'use client'
-import React, { useRef, useState, useCallback, useEffect, type FunctionComponent } from 'react'
+import React, { useRef, useState, useEffect, type FunctionComponent } from 'react'
 import { GlobeEuropeAfricaIcon } from '@heroicons/react/24/outline'
-import { useODP } from '@/components/integrations/opti-data-platform'
+import { useOptimizelyOne } from '@remkoj/optimizely-one-nextjs/client'
 import type { SiteSearchResult, SiteSearchResponse } from '@/api-types'
 
 // Client side imported components
@@ -26,16 +26,7 @@ export const SearchPanel : FunctionComponent<SearchPanelProps> = props =>
     const [ searchResults, setSearchResults ] = useState<SiteSearchResult | undefined>(undefined)
     const [ searchFilters, setSearchFilters ] = useState<CurrentFilters>({})
     const searchBox = useRef<HTMLInputElement | null>(null)
-    const zaius = useODP()
-
-    // Search tracking function
-    const track = useCallback((searchTerm: string) => {
-        if (zaius)
-            zaius.event("navigation", { 
-                action: "search", 
-                search_term: searchTerm
-            });
-    }, [ zaius ])
+    const opti = useOptimizelyOne()
 
     // Handler for keypresses, to search on type and accept the "Enter" key as trigger for search
     let timeoutId : NodeJS.Timeout | undefined
@@ -86,7 +77,6 @@ export const SearchPanel : FunctionComponent<SearchPanelProps> = props =>
             signal: abort.signal
         }).then(response => response.json()).then((searchResult: SiteSearchResponse) => {
             if (isResult(searchResult)) {
-                track(searchTerm)
                 setSearchResults(searchResult)
             } else
                 throw new Error("Error received")
@@ -98,7 +88,7 @@ export const SearchPanel : FunctionComponent<SearchPanelProps> = props =>
             abort.abort("Search term or filters changed")
         }
 
-    }, [searchTerm, searchFilters, track])
+    }, [searchTerm, searchFilters])
 
     // Handle last used terms
     useEffect(() => {
@@ -114,6 +104,12 @@ export const SearchPanel : FunctionComponent<SearchPanelProps> = props =>
             abort.abort("The search term changed")
         }
     }, [ searchTerm ])
+
+    // Handle tracking
+    useEffect(() => {
+        if (searchTerm && searchTerm != '')
+            opti?.track({ event: "navigation", action: "search", search_term: searchTerm })
+    }, [ opti, searchTerm ])
 
     return <>
         <div className="search-field container col-span-8">

@@ -12,7 +12,7 @@
     "@yarnpkg/sdks": "^3.1.0",
     "source-map-support": "^0.5.21",
     "typescript": "5.3.3",
-    "vercel": "^33.4.1"
+    "vercel": "^33.5.2"
   },
   "exports": null,
   "scripts": {
@@ -30,6 +30,7 @@
   "resolutions": {
     "debug": "^4.3.4",
     "semver": "^7.5.4",
-    "undici": "^5.27.2"
+    "typescript": "^5.3.3",
+    "uuid": "^9.0.1"
   }
 }
