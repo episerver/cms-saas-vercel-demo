@@ -1,4 +1,5 @@
 # Next.JS Optimizely One toolkit
+React components (both client & server) to integrate the browser-side products from Optimizely (Web Experimentation, Data Platform & Content Analytics / Recommendations)
 
 ## Requirements
 - Next.JS 14.1+

@@ -2105,7 +2105,7 @@ __metadata:
     "@rollup/pluginutils": "npm:^5.1.0"
     "@types/crypto-js": "npm:^4.2.2"
     "@types/glob": "npm:^8.1.0"
-    "@types/node": "npm:^20.11.20"
+    "@types/node": "npm:^20.11.21"
     "@types/source-map-support": "npm:^0.5.10"
     "@types/yargs": "npm:^17.0.32"
     ansi-styles: "npm:^6.2.1"
@@ -2134,8 +2134,8 @@ __metadata:
   dependencies:
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:^"
-    "@types/node": "npm:^20.11.20"
-    "@types/react": "npm:^18.2.58"
+    "@types/node": "npm:^20.11.21"
+    "@types/react": "npm:^18.2.60"
     "@types/react-dom": "npm:18.2.19"
     deepmerge: "npm:^4.3.1"
     graphql: "npm:^16.8.1"
@@ -2168,8 +2168,8 @@ __metadata:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     "@parcel/watcher": "npm:^2.4.1"
     "@remkoj/optimizely-dxp-react": "workspace:*"
-    "@types/node": "npm:^20.11.20"
-    "@types/react": "npm:^18.2.58"
+    "@types/node": "npm:^20.11.21"
+    "@types/react": "npm:^18.2.60"
     "@types/uuid": "npm:^9.0.8"
     graphql: "npm:^16.8.1"
     graphql-request: "npm:^6.1.0"
@@ -2192,8 +2192,8 @@ __metadata:
   resolution: "@remkoj/optimizely-dxp-react@workspace:packages/remkoj/optimizely-dxp-react"
   dependencies:
     "@types/crypto-js": "npm:^4.2.2"
-    "@types/node": "npm:^20.11.20"
-    "@types/react": "npm:^18.2.58"
+    "@types/node": "npm:^20.11.21"
+    "@types/react": "npm:^18.2.60"
     crypto-js: "npm:^4.2.0"
     graphql: "npm:^16.8.1"
     graphql-request: "npm:^6.1.0"
@@ -2239,8 +2239,8 @@ __metadata:
     "@headlessui/react": "npm:^1.7.18"
     "@headlessui/tailwindcss": "npm:^0.2.0"
     "@heroicons/react": "npm:^2.1.1"
-    "@types/node": "npm:^20.11.20"
-    "@types/react": "npm:^18.2.58"
+    "@types/node": "npm:^20.11.21"
+    "@types/react": "npm:^18.2.60"
     "@types/react-dom": "npm:18.2.19"
     "@types/uuid": "npm:^9.0.8"
     next: "npm:^14.1.0"
@@ -2673,12 +2673,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:20.11.20, @types/node@npm:^20.11.20":
-  version: 20.11.20
-  resolution: "@types/node@npm:20.11.20"
+"@types/node@npm:*, @types/node@npm:20.11.21, @types/node@npm:^20.11.21":
+  version: 20.11.21
+  resolution: "@types/node@npm:20.11.21"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10/ff449bdc94810dadb54e0f77dd587c6505ef79ffa5a208c16eb29b223365b188f4c935a3abaf0906a01d05257c3da1f72465594a841d35bcf7b6deac7a6938fb
+  checksum: 10/a31ecc6a3c615bca310ffe7dea23613153ff9e1e175c09d14198402b2cef9b1bb1bf3912aff6ffc6cb01b99a025ec6dd6474c797bfb0aaf83daf4edaea063760
   languageName: node
   linkType: hard
 
@@ -2705,14 +2705,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:*, @types/react@npm:18.2.58, @types/react@npm:^18.2.58":
-  version: 18.2.58
-  resolution: "@types/react@npm:18.2.58"
+"@types/react@npm:*, @types/react@npm:18.2.60, @types/react@npm:^18.2.60":
+  version: 18.2.60
+  resolution: "@types/react@npm:18.2.60"
   dependencies:
     "@types/prop-types": "npm:*"
     "@types/scheduler": "npm:*"
     csstype: "npm:^3.0.2"
-  checksum: 10/ec5e1a7d8acc55551efec7a3d63441d24c7e94b66bf8039944541a8408048668e51b7b4b0b6e8303cdea271b7c6da242cdc7bb8ca501eedf822956edbdbfc67e
+  checksum: 10/5f2f6091623f13375a5bbc7e5c222cd212b5d6366ead737b76c853f6f52b314db24af5ae3f688d2d49814c668c216858a75433f145311839d8989d46bb3cbecf
   languageName: node
   linkType: hard
 
@@ -5832,8 +5832,8 @@ __metadata:
     "@types/deepmerge": "npm:^2.2.0"
     "@types/graphql": "npm:^14.5.0"
     "@types/negotiator": "npm:^0.6.3"
-    "@types/node": "npm:20.11.20"
-    "@types/react": "npm:18.2.58"
+    "@types/node": "npm:20.11.21"
+    "@types/react": "npm:18.2.60"
     "@types/react-dom": "npm:18.2.19"
     "@types/uuid": "npm:^9.0.8"
     "@vercel/speed-insights": "npm:^1.0.10"
@@ -6644,9 +6644,9 @@ __metadata:
   linkType: hard
 
 "ip@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ip@npm:2.0.0"
-  checksum: 10/1270b11e534a466fb4cf4426cbcc3a907c429389f7f4e4e3b288b42823562e88d6a509ceda8141a507de147ca506141f745005c0aa144569d94cf24a54eb52bc
+  version: 2.0.1
+  resolution: "ip@npm:2.0.1"
+  checksum: 10/d6dd154e1bc5e8725adfdd6fb92218635b9cbe6d873d051bd63b178f009777f751a5eea4c67021723a7056325fc3052f8b6599af0a2d56f042c93e684b4a0349
   languageName: node
   linkType: hard
 
@@ -10247,12 +10247,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici@npm:5.26.5":
-  version: 5.26.5
-  resolution: "undici@npm:5.26.5"
+"undici@npm:^5.28.3":
+  version: 5.28.3
+  resolution: "undici@npm:5.28.3"
   dependencies:
     "@fastify/busboy": "npm:^2.0.0"
-  checksum: 10/b6fdd5afe34f97c7aeaaddc13ec48c066e6b4d72e64bb755cbcb72c80223131af09763c6650efaf203f391c31a72ffb87bfbc5249bd43b0449ba38a472bc9728
+  checksum: 10/779856ce14ba6907c0759df8e4babd61608b1f502569d44de7dd1d014afb7c67a0a2997b4f706e0daff8a55d87ee2f25b830b195fc0202cb6fbd25abe2d941eb
   languageName: node
   linkType: hard
 

@@ -7,6 +7,10 @@
     "apps/*",
     "packages/remkoj/*"
   ],
+  "engines": {
+    "node": ">=20.0.0 <21.0.0",
+    "vscode": "^1.22.0"
+  },
   "devDependencies": {
     "@types/source-map-support": "^0.5.10",
     "@yarnpkg/sdks": "^3.1.0",
@@ -25,12 +29,13 @@
     "watch-pkgs": "yarn workspaces foreach -Apt --exclude frontend --exclude @remkoj/optimizely-frontend run watch",
     "update-sdks": "yarn sdks vscode",
     "update-deps": "yarn upgrade-interactive && yarn dedupe && yarn sdks vscode",
-    "update-yarn": "yarn set version canary && yarn install && yarn sdks vscode"
+    "update-yarn": "yarn set version stable && yarn install && yarn sdks vscode"
   },
   "resolutions": {
     "debug": "^4.3.4",
     "semver": "^7.5.4",
     "typescript": "^5.3.3",
-    "uuid": "^9.0.1"
+    "uuid": "^9.0.1",
+    "undici": "^5.28.3"
   }
 }
