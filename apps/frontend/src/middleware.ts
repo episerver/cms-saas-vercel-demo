@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from "next/server"
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
 import siteConfig from '@/site-config'
-import { Session } from '@remkoj/optimizely-one-nextjs/server'
+import { Session } from '@remkoj/optimizely-one-nextjs/api'
 
 // Read the site configuration, default to "en" as only routed language if there's no configuration
 const defaultLocale = siteConfig.defaultLocale

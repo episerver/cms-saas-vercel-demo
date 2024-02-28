@@ -1,6 +1,6 @@
 import 'server-only'
 import { cookies } from 'next/headers'
-import { ContentRecs } from '@remkoj/optimizely-one-nextjs/server'
+import { ContentRecs } from '@remkoj/optimizely-one-nextjs/api'
 
 export function getTopTopics() : Promise<string[]>
 {

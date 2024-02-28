@@ -1,6 +1,6 @@
 import 'server-only'
 import { cookies } from 'next/headers'
-import { DataPlatform } from '@remkoj/optimizely-one-nextjs/server'
+import { DataPlatform } from '@remkoj/optimizely-one-nextjs/api'
 
 export function getLastSearchTerms() : Promise<string[]>
 {

@@ -13,5 +13,9 @@ export type ProfileApiResponse = {
         id: string;
         name: string;
     }[];
+    audiencesPageCount: number;
+    audiencesCount: number;
+    pageSize: number;
+    pageNumber: number;
     duration?: string;
 };

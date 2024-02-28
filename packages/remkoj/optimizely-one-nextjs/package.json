@@ -12,6 +12,7 @@
   ],
   "exports": {
     ".": "./dist/client.js",
+    "./api": "./dist/api.js",
     "./client": "./dist/client.js",
     "./server": "./dist/server.js",
     "./types": "./dist/types.js",
@@ -19,6 +20,9 @@
   },
   "typesVersions": {
     "*": {
+      "api": [
+        "dist/api.d.ts"
+      ],
       "client": [
         "dist/client.d.ts"
       ],

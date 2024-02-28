@@ -21,20 +21,28 @@ export const ProfileApiService = {
         const crId = ContentRecs.Tools.getVisitorID(cookies);
         const webExId = WebExperimentation.Tools.getVisitorID(cookies);
         const frontendId = Session.getVisitorId(cookies);
+        // Read parameters & set values
+        const pageSize = Math.max(stringToInt(query.get('limit'), 10), 1);
+        const pageNumber = Math.max(stringToInt(query.get('page'), 0), 0);
+        let audiencesPageCount = 0;
+        let audiencesCount = 0;
         // Determine audiences if needed
         let audiences = [];
         if (fetchODPAudiences && odpId) {
             const odp = new DataPlatform.Client();
             const allAudiences = await odp.getAllAudiences();
+            audiencesCount = allAudiences.length;
             // Split the list into manageable groups
             const chunks = [];
             allAudiences.forEach((item, idx) => {
-                const chunkId = Math.floor(idx / EnvTools.readValueAsInt(EnvVars.OdpAudienceBatchSize, 30));
+                const chunkId = Math.floor(idx / EnvTools.readValueAsInt(EnvVars.OdpAudienceBatchSize, pageSize));
                 chunks[chunkId] = chunks[chunkId] || [];
                 chunks[chunkId].push(item.id);
             });
+            audiencesPageCount = chunks.length;
             // Apply filtering to the audiences
-            const userAudienceIds = (await Promise.all(chunks.map(chunk => odp.filterAudiences(odpId, chunk)))).flat();
+            const userAudienceIds = /*chunkNr == 0 ?
+                (await Promise.all(chunks.map(chunk => odp.filterAudiences(odpId, chunk)))).flat() :*/ await odp.filterAudiences(odpId, chunks[pageNumber]);
             audiences = allAudiences.filter(a => userAudienceIds.includes(a.id));
         }
         // Determine topics if needed
@@ -50,10 +58,22 @@ export const ProfileApiService = {
                     contentIntelligence: crId || NO_ID,
                     webExperimentation: webExId || NO_ID
                 },
+                pageSize,
+                pageNumber,
                 audiences: audiences,
+                audiencesPageCount,
+                audiencesCount,
                 contentTopics: topics,
                 duration: `${Date.now() - start}ms`
             }, 200];
     }
 };
 export default ProfileApiService;
+function stringToInt(value, defaultValue) {
+    try {
+        const result = Number.parseInt(value ?? defaultValue.toString(), 10);
+        return isNaN(result) ? defaultValue : result;
+    }
+    catch { }
+    return defaultValue;
+}

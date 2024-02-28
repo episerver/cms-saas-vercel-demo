@@ -5,7 +5,7 @@ type RequestContext = {
     params: Record<string, string | string[]>;
 };
 type OptimizelyOneApi = (req: NextRequest, ctx: RequestContext) => Promise<NextResponse>;
-type OptimizelyOneApiConfig = {
+export type OptimizelyOneApiConfig = {
     /**
      * The URL Parameter you've setup in your Next.JS router to catch the
      * full path to be handled.

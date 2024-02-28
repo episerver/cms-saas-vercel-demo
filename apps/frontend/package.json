@@ -3,6 +3,10 @@
   "packageManager": "yarn@4.0.0-rc.50",
   "version": "0.1.0",
   "private": true,
+  "engines": {
+    "node": ">=18.0.0 <21.0.0",
+    "vscode": "^1.22.0"
+  },
   "scripts": {
     "dev": "yarn frontend-cli site-config && yarn next dev",
     "config": "yarn frontend-cli site-config",
