@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react'
 import type * as Types from './types'
-import type { DocumentNode } from "@apollo/client"
+import type { DocumentNode } from 'graphql'
 
 export function isContentLink(toTest: any) : toTest is Types.ContentLink
 {
@@ -107,7 +107,7 @@ export function contentLinkToRequestVariables(contentLink: Types.ContentLinkWith
     const variables : Types.ContentQueryProps = { 
         id: contentLink.id ?? 0, 
         workId: contentLink.workId,
-        guidValue: contentLink.guidValue ?? "",
+        guidValue: contentLink.guidValue ?? null,
         locale: contentLocaleToGraphLocale(contentLink.locale) 
     }
     if (variables.workId == undefined || variables.workId <= 0)
@@ -123,4 +123,16 @@ export function isInlineContentLink(contentLink: Types.ContentLink) : contentLin
 export function contentLinkToString(contentLink: Types.ContentLink) : string 
 {
     return `${contentLink.id ?? 0}_${contentLink.workId ?? 0}#${ contentLink.guidValue ?? ''}\$${ (contentLink as Types.ContentLinkWithLocale).locale ?? ''}`
+}
+
+export function toUniqueValues<R extends any>(value: R, index: number, array: Array<R>) : value is R
+{
+    return array.indexOf(value) == index
+}
+
+export function trim<T extends string | null | undefined>(valueToTrim: T) : T
+{
+    if (typeof(valueToTrim) == 'string')
+        return valueToTrim.trim() as T
+    return valueToTrim
 }

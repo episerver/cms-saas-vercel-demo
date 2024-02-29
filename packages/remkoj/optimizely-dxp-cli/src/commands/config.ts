@@ -72,7 +72,7 @@ export const createSiteConfigModule : CliModule<CreateSiteConfigProps> = {
         siteDefinition.locales = (siteDefinition.locales ?? []).map((c: any) => {
             const loc : any = {
                 code: c.code,
-                slug: c.slug,
+                slug: c.slug?.toLowerCase(),
                 graphLocale: (c.code as string).replace("-","_"),
                 isDefault: c.isDefault == true
             }

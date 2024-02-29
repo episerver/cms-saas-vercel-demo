@@ -1,10 +1,9 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { revalidatePath, revalidateTag } from 'next/cache'
-import { applyOnAllClients, NextFetchTags } from '@remkoj/optimizely-dxp-react'
-import { getServerClient as createClient, getAuthorizedServerClient as createAuthorizedClient } from '@/lib/client'
+import { createClient, NextFetchTags } from '@remkoj/optimizely-dxp-react'
 import { gql } from '@gql/index'
 
-const editPaths = [ '/ui/CMS/Content/[[...path]]' ]
+const editPaths = [ '/ui/[[...path]]' ]
 const publishedPaths = [ '/[lang]', '/[lang]/[[...path]]', '/sitemap', '/sitemap.xml' ]
 const paths = [ ...editPaths, ...publishedPaths ]
 const tags = [ NextFetchTags.all, NextFetchTags.hmac, NextFetchTags.token, NextFetchTags.token ]
@@ -16,8 +15,10 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
             req.nextUrl.searchParams.get("token") ?? 
             undefined
     if (process.env.FRONTEND_PUBLISH_TOKEN) {
-        if (xAuthToken != process.env.FRONTEND_PUBLISH_TOKEN)
+        if (xAuthToken != process.env.FRONTEND_PUBLISH_TOKEN) {
+            console.error("[Publish-API] The provided publishing token is invalid", xAuthToken)
             return NextResponse.json({ error: "Not authorized"}, { status: 401 })
+        }
     } else {
         console.error("No authentication configured, publishing has been disabled")
         return NextResponse.json({ error: "Application configuration error"}, { status: 500 })
@@ -26,19 +27,14 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
     // Read request data
     const requestBody = tryJsonParse(await req.text())
     const publishMode = toMode(req.nextUrl.searchParams.get("mode"))
-    const publicClient = createClient()
-    const editClient = createAuthorizedClient()
 
     // If we're explicitly publishing all, do so...
     if (publishMode == "all")
     {
-        const clearResult = await Promise.all(applyOnAllClients(c => c.clearStore()))
-        publicClient.clearStore()
-        editClient.clearStore()
         paths.forEach(p => revalidatePath(p, 'page'))
         tags.forEach(revalidateTag)
         console.log("Publish all => Revalidated (paths, tags)", paths, tags)
-        return NextResponse.json({revalidated: true, paths, tags, clearApolloStore: clearResult.length, now: Date.now()})
+        return NextResponse.json({revalidated: true, paths, tags, clearApolloStore: 2, now: Date.now()})
     }
 
     // Don't publish if we're in selective mode and there's no data
@@ -64,22 +60,18 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
         const [guid, lang, version] = docId.split('_').slice(-3)
         switch(version) {
             case "CheckedOut":
-                await editClient.clearStore()
                 revalidatePaths.push(...editPaths)
                 revalidateTags.push(NextFetchTags.hmac, NextFetchTags.token)
                 break
             case "PreviouslyPublished":
             case "Published":
-                // Clearing Apollo Client cache
-                await publicClient.clearStore()
-                await editClient.clearStore()
-
-                if (false) { // For now just publish everything
+                if (true) { // For now just publish everything
                     // Always update the sitemap
                     revalidatePaths.push("/sitemap.xml", "/sitemap")
 
                     // Retrieving the path of the published content
-                    const getPathByGuid = await publicClient.query({ query: gql(/* GraphQL */`query getPathByGuid($guid: String!)
+                    const publicClient = createClient()
+                    const getPathByGuid = await publicClient.query(gql(/* GraphQL */`query getPathByGuid($guid: String!)
                     {
                     pathByGuid: Content (
                         where: { ContentLink: { GuidValue: { eq: $guid } } }
@@ -89,10 +81,10 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
                         url:Url
                         }
                     }
-                    }`), variables: { guid }})
+                    }`), { guid })
 
                     // Revalidating just the path of the content item
-                    const path = (getPathByGuid.data.pathByGuid?.items || [])[0]?.path
+                    const path = (getPathByGuid.pathByGuid?.items || [])[0]?.path
                     if (path) {
                         revalidatePaths.push(path as string)
                     } else {
@@ -115,17 +107,16 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
     }
 
     // Revalidate site
-    const clearedStores = await Promise.all(applyOnAllClients(c => c.clearStore())).catch(() => [])
     revalidatePaths.forEach(p => { revalidatePath(p, 'page'); revalidatePath(p, 'layout'); })
     revalidateTags.forEach(t => revalidateTag(t))
 
     // Return response
-    console.log(`Revalidated ${ publishMode } (paths, tags, store count)`, revalidatePaths, revalidateTags, clearedStores.length)
+    console.log(`Revalidated ${ publishMode } (paths, tags, store count)`, revalidatePaths, revalidateTags, 0)
     return NextResponse.json({ 
         revalidated: true, 
         paths: revalidatePaths, 
         tags: revalidateTags,
-        clearApolloStore: clearedStores.length,
+        clearApolloStore: 0,
         now: Date.now() 
     })
 }

@@ -26,7 +26,7 @@ export type OptimizelyWebExperimentationApi = {
 
 export type OptlyWebGet = {
     state: {
-        getPageStates: () => { 
+        getPageStates: (filters?: { isActive: boolean }) => { 
             [id: string]: { 
                 id: string, 
                 apiName: string, 
@@ -34,7 +34,7 @@ export type OptlyWebGet = {
                 isActive: boolean 
             }
         },
-        getExperimentStates: () => {
+        getExperimentStates: (filters?: { isActive: boolean }) => {
             [id: string]: {
                 audiences: any[]
                 experimentName: string | null
@@ -45,6 +45,33 @@ export type OptlyWebGet = {
                 variation: {
                     id: string
                     name: string | null
+                }
+                visitorRedirected: boolean
+            }
+        },
+        getCampaignStates: (filters?: { isActive: boolean }) => {
+            [id: string]: {
+                allExperiments: {
+                    id: string
+                    name: string
+                }[]
+                audiences: {
+                    id: string
+                    name: string
+                }[]
+                campaignName: string
+                experiment: {
+                    campaignName: string
+                    id: string
+                    name: string
+                }
+                id: string
+                isActive: boolean
+                isInCampaignHoldback: boolean
+                reason?: any
+                variation: {
+                    id: string
+                    name: string
                 }
                 visitorRedirected: boolean
             }

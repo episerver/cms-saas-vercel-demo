@@ -68,7 +68,7 @@ export function getContentGraphConfig() : ContentGraphConfig
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns 
  */
-export function validateContentGraphConfig(toValidate: ContentGraphConfig, forPublishedOnly: boolean = true) : boolean
+export function validateContentGraphConfig(toValidate: ContentGraphConfig, forPublishedOnly: boolean = true) : toValidate is ContentGraphConfig
 {
     const hasSingleKey = isNonEmptyString(toValidate?.single_key)
     const hasGateway = isValidUrl(toValidate?.gateway)

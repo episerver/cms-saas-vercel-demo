@@ -4,7 +4,7 @@ import React, { useCallback, type FunctionComponent } from 'react'
 import { useEffect, useRef, useId } from 'react'
 import { useODP } from '@/components/integrations/opti-data-platform'
 
-export const OdpClientSide : FunctionComponent<{contentId: string, className: string}> = ({contentId, className}) =>
+export const OdpClientSide : FunctionComponent<{contentId: string, className: string, inEditMode: boolean}> = ({contentId, className, inEditMode}) =>
 {
     const containerRef = useRef<HTMLDivElement | null>(null)
     const hasDispatched = useRef<boolean>(false)
@@ -32,7 +32,14 @@ export const OdpClientSide : FunctionComponent<{contentId: string, className: st
             showContent()
     }, [showContent])
 
-    return <div className={ className } ref={ containerRef } id={ containerId } />
+    return (
+      <div
+        data-epi-edit={inEditMode ? "ContentId" : undefined}
+        className={className}
+        ref={containerRef}
+        id={containerId}
+      />
+    );
 }
 
 export default OdpClientSide

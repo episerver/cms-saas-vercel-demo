@@ -1,5 +1,6 @@
 import type { PropsWithChildren, ComponentType as ReactComponentType } from "react";
-import type { DocumentNode, TypedDocumentNode, ApolloClient, NormalizedCacheObject } from "@apollo/client";
+import type { DocumentNode, TypedQueryDocumentNode as TypedDocumentNode } from "graphql";
+import type { ContentGraphClient } from "./client";
 export type ContentType = string[];
 export type ContentLink = {
     id: number;
@@ -26,13 +27,13 @@ export type CmsComponentProps<T> = PropsWithChildren<{
     contentLink: ContentLinkWithLocale;
     data: T;
     inEditMode?: boolean;
-    client?: ApolloClient<NormalizedCacheObject>;
+    client?: ContentGraphClient;
 }>;
 export type ContentQueryProps = ContentLinkWithLocale;
 /**
  * Extract the data type from a GraphQL Query
  */
-export type ResponseDataType<T extends TypedDocumentNode | DocumentNode> = T extends TypedDocumentNode<infer DataType> ? DataType : {
+export type ResponseDataType<T extends DocumentNode> = T extends TypedDocumentNode<infer DataType> ? DataType : {
     [key: string]: any;
 };
 export type GetDataQuery<T> = () => TypedDocumentNode<T, ContentQueryProps> | DocumentNode;

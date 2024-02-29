@@ -3,14 +3,13 @@ import { getArticles, type Types } from '@/lib/api/articles'
 
 async function handler(req: NextRequest) : Promise<NextResponse<Types.getArticlesApiResponse>>
 {
-    const parent = req.nextUrl.searchParams.get("parent")
     const locale = req.nextUrl.searchParams.get("locale")
     const author = req.nextUrl.searchParams.get("author")
     const published = req.nextUrl.searchParams.get("published")
     const pageSize = parseInt(req.nextUrl.searchParams.get("pageSize") ?? "-", 10)
     const pageNumber = parseInt(req.nextUrl.searchParams.get("page") ?? "-", 10)
 
-    if (!parent || !locale)
+    if (!locale)
         return NextResponse.json({error: "Bad request"}, { status: 400 })
 
     const paging : Types.PagingData = {
@@ -22,7 +21,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<Types.getArticle
         published: published ?? undefined
     }
 
-    return NextResponse.json(await getArticles(parent, locale, paging, filters))
+    return NextResponse.json(await getArticles(locale, paging, filters))
 }
 
 export const GET = handler

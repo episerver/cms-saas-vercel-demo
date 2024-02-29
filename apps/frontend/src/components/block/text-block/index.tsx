@@ -1,37 +1,111 @@
-import type { CmsComponent } from '@remkoj/optimizely-dxp-react'
-import type * as GraphQL from '@gql/graphql'
-import { gql } from '@gql/index'
-import './text-block.css'
+import { Variant } from "framer-motion";
+import type * as GraphQL from "@gql/graphql";
+import { gql } from "@gql/gql";
+import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
-export type TextBlockComponentType = CmsComponent<GraphQL.TextBlockDataFragment>
+const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
+  data,
+  inEditMode,
+}) => {
+  const {
+    className = "",
+    center = false,
+    width = "full",
+    headingSize = "medium",
+    overline = "",
+    heading = "",
+    description = "",
+  } = data;
 
-export const TextBlock : TextBlockComponentType = ({inEditMode, data}) => 
-{
-    const textData = data.MainBody ?? undefined
-    const spacing = data.Spacing ?? 'none'
-    if (!textData)
-        return <></>
+  const additionalClasses: string[] = [];
 
-    const cssClasses : string[] = ["text-block rich-text"]
-    switch (spacing) {
-        case 'medium':
-            cssClasses.push('p-4','md:p-6','lg:p-8')
-            break
-        case 'none':
-        default:
-            // No additional classes needed
-            break
-        
+  switch (width) {
+    case "full":
+      additionalClasses.push("w-full");
+      break;
+    case "small":
+      additionalClasses.push("max-w-[400px] self-center");
+      break;
+    case "medium":
+      additionalClasses.push("max-w-[700px] self-center");
+      break;
+    case "large":
+      additionalClasses.push("max-w-[800px] self-center");
+      break;
+  }
+
+  if (center) {
+    additionalClasses.push("text-center justify-center");
+  }
+
+  if (className) {
+    additionalClasses.push(className);
+  }
+
+  switch (headingSize) {
+    case "small":
+      additionalClasses.push(
+        "prose-h2:text-[20px] prose-h2:my-[18px] prose-p:text-[20px]"
+      );
+      break;
+    case "medium":
+      additionalClasses.push(
+        "prose-h2:text-[36px] lg:prose-h2:text-[48px] prose-h2:my-[24px] prose-p:text-[20px]"
+      );
+      break;
+    case "large":
+      additionalClasses.push(
+        "prose-h2:text-[48px] lg:prose-h2:text-[96px] prose-h2:my-[24px] prose-p:text-[20px] prose-h3:text-[24px] prose-h3:font-semibold"
+      );
+      break;
+    case "extraLarge":
+      additionalClasses.push(
+        "prose-h2:text-[96px] lg:prose-h2:text-[148px] prose-h2:my-[24px] prose-p:text-[36px] prose-p:mt-[24px] prose-p:mb-0"
+      );
+  }
+
+  return (
+    <section className={`${additionalClasses.join(" ")} flex`}>
+      <div className="prose max-w-none">
+        {overline && (
+          <span
+            className="uppercase text-[12px]"
+            data-epi-edit={inEditMode ? "TextBlockOverline" : undefined}
+            dangerouslySetInnerHTML={{ __html: overline }}
+          ></span>
+        )}
+        {heading && (
+          <h2
+            data-epi-edit={inEditMode ? "TextBlockHeading" : undefined}
+            dangerouslySetInnerHTML={{ __html: heading }}
+          ></h2>
+        )}
+        {description && (
+          <span
+            data-epi-edit={inEditMode ? "TextBlockDescription" : undefined}
+            dangerouslySetInnerHTML={{ __html: description }}
+          ></span>
+        )}
+      </div>
+    </section>
+  );
+};
+
+TextBlock.displayName = "Text Block";
+TextBlock.getDataFragment = () => ["TextBlockData", TextBlockData.data];
+export default TextBlock;
+
+const TextBlockData: Readonly<{ [field: string]: any }> = {
+  data: gql(/* GraphQL */ `
+    fragment TextBlockData on TextBlock {
+      Name
+      overline: TextBlockOverline
+      headingSize: TextBlockHeadingSize
+      heading: TextBlockHeading
+      description: TextBlockDescription
+      center: TextCenter
+      width: TextBlockWidth
+      className: TextClassName
     }
-
-    //<StructuredHtml data={textData.MainBody || "null"} locale={ contentLink.locale } />
-    return <div data-epi-edit={ inEditMode ? 'MainBody' : undefined } className={cssClasses.join(' ')} dangerouslySetInnerHTML={{__html: textData}}></div>
-}
-TextBlock.getDataFragment = () => ['TextBlockData', TextBlockData]
-TextBlock.displayName = "Text Block"
-export default TextBlock
-
-const TextBlockData = gql(/* GraphQL */`fragment TextBlockData on TextBlock {
-    Spacing
-    MainBody
-}`)
+  `),
+};

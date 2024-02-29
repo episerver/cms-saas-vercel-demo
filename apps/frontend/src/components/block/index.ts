@@ -1,65 +1,51 @@
 import type { ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
 import type { ComponentType } from 'react'
-import HeroBlock from "./hero-block"
-import ButtonBlock from './button-block'
+import HomeHero from './hero-home'
+import HeroBlock from './hero'
 import TextBlock from './text-block'
+import Carousel from './carousel-block'
 import ContainerBlock from './container-block'
-import HighlightBlock from './highlight-block'
-import ImageAsset from './media-image-asset'
-import OdpEmbedBlock from './odp-embed-block'
 import CardBlock from './card-block'
-import CarouselBlock from './carousel-block'
 import QuoteBlock from './quote-block'
-import ProductBlock from './product'
+import BlogListingBlock from './blog-listing-block'
+import OdpEmbedBlock from './odp-embed-block'
 
 export const Blocks : ComponentTypeDictionary = [
+    {
+        type: ['Block','HomePageHeroBlock'],
+        component: HomeHero as ComponentType
+    },
     {
         type: ['Block','HeroBlock'],
         component: HeroBlock as ComponentType
     },
     {
-        type: ['Block', 'ButtonBlock'],
-        component: ButtonBlock as ComponentType
-    },
-    {
-        type: ['Block', 'TextBlock' ],
+        type: ['Block','TextBlock'],
         component: TextBlock as ComponentType
     },
     {
-        type: ['Block', 'ContainerBlock'],
+        type: ['Block', 'CarouselBlock'],
+        component: Carousel as ComponentType
+    },
+    {
+        type: ['Block', 'LayoutContainerBlock'],
         component: ContainerBlock as ComponentType
-    },
-    {
-        type: ['Block', 'HighlightTextBlock'],
-        component: HighlightBlock as ComponentType
-    },
-    {
-        type: ['image','Media','Image'],
-        component: ImageAsset as ComponentType<any>
-    },
-    {
-        type: ['Block','image','Media','Image'],
-        component: ImageAsset as ComponentType<any>
     },
     {
         type: ["Block", "OdpEmbedBlock" ],
         component: OdpEmbedBlock as ComponentType
     },
     {
-        type: ["Block", "CardBlock" ],
+        type: ['Block', 'CardBlock'],
         component: CardBlock as ComponentType
     },
     {
-        type: ["Block", "CarouselBlock"],
-        component: CarouselBlock as ComponentType
-    },
-    {
-        type: ["Block", "QuoteBlock"],
+        type: ['Block', 'QuoteBlock'],
         component: QuoteBlock as ComponentType
     },
     {
-        type: ["Block", "Product"],
-        component: ProductBlock as ComponentType
+        type: ['Block', 'BlogListingBlock'],
+        component: BlogListingBlock as ComponentType
     }
 
 ]

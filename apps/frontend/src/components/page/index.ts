@@ -1,36 +1,31 @@
 import type { ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
 import type { FunctionComponent } from 'react'
-import LandingPage from "./landing-page"
-import ArticlePage from './article-page'
-import ArticlePageBlock from './article-page/block'
-import ArticleListPage from './article-list-page'
-import LocationListPage from './location-list-page'
-import LocationPage from './location-page'
+import StartPage from "./start-page"
+import LandingPage from './landing-page'
+import BlogPostPage from './blog-post-page'
+import ContainerPage from './container-page'
+import StandardPage from './standard-page'
 
 export const Pages : ComponentTypeDictionary = [
+    {
+        type: ['Page', 'StartPage'],
+        component: StartPage as FunctionComponent
+    },
     {
         type: ['Page', 'LandingPage'],
         component: LandingPage as FunctionComponent
     },
     {
-        type: ['Page', 'ArticlePage'],
-        component: ArticlePage as FunctionComponent
+        type: ['Page', 'BlogPostPage'],
+        component: BlogPostPage as FunctionComponent
     },
     {
-        type: ['Block', 'Page', 'ArticlePage'],
-        component: ArticlePageBlock as FunctionComponent
+        type: ['Page', 'ContainerPage'],
+        component: ContainerPage as FunctionComponent
     },
     {
-        type: ['Page', 'ArticleListPage'],
-        component: ArticleListPage as FunctionComponent
-    },
-    {
-        type: ['Page', 'LocationListPage'],
-        component: LocationListPage as FunctionComponent
-    },
-    {
-        type: ['Page', 'LocationPage'],
-        component: LocationPage as FunctionComponent
+        type: ['Page', 'StandardPage'],
+        component: StandardPage as FunctionComponent
     }
 ]
 export default Pages

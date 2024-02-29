@@ -1,8 +1,15 @@
 // Docs: https://developers.cloudflare.com/images/url-format
-const CF_URL = process.env.DXP_URL || "https://example.com"
+import SiteConfig from './site-config'
 
 export default function cloudflareLoader({ src, width, quality }) {
-    const params = [`width=${width}`, `quality=${quality || 75}`, 'format=auto']
-    const path = `/cdn-cgi/image/${params.join(',')}/${src}`
-    return new URL(path, CF_URL).href
+    const srcUrl = new URL(src, SiteConfig.getPrimaryDomain())
+    const params = [
+        `width=${width}`,
+        `quality=${quality || 75}`,
+        'format=auto'
+    ]
+    if (srcUrl.hostname == 'localhost')
+        return srcUrl.href
+    const path = `/cdn-cgi/image/${params.join(',')}/${srcUrl.href}`
+    return new URL(path, SiteConfig.getEditDomain()).href
 }

@@ -1,21 +1,20 @@
 import type * as Types from './types'
 import type * as GraphQL from '@gql/graphql'
-import { getServerClient } from '@/lib/client'
-import { gql } from '@gql/index'
+import { getServerClient } from "@remkoj/optimizely-dxp-nextjs";
+import { gql } from "@gql/index";
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import 'server-only'
 
-export async function getArticles(parent: string, locale: string, paging?: Types.PagingData, filters?: Types.Filters) : Promise<Types.GetArticlesResult>
+export async function getArticles(locale: string, paging?: Types.PagingData, filters?: Types.Filters) : Promise<Types.GetArticlesResult>
 {
     const pageSize = paging?.count ?? 10
     const pageNumber = paging?.page ?? 1
     const client = getServerClient()
     const published : string | undefined = filters?.published
     const publishedEnd = !published ? undefined : (() => { const d = new Date(published); d.setDate(d.getDate() +1); return d.toISOString()})()
-    const result = await client.query({
-        query: GetArticlesQuery,
-        variables: {
-            parent: parent,
+    const result = await client.query(
+        GetArticlesQuery,
+        {
             locale: locale as GraphQL.Locales,
             pageSize: paging?.count ?? 10,
             start: pageSize * (pageNumber - 1),
@@ -23,11 +22,12 @@ export async function getArticles(parent: string, locale: string, paging?: Types
             published,
             publishedEnd
         }
-    })
+    )
+
     if (result.error)
         throw result.error
 
-    const articleResponse = result.data.getArticles
+    const articleResponse = result.getArticles
     if (!articleResponse)
         throw new Error("No data in the response")
 
@@ -35,7 +35,6 @@ export async function getArticles(parent: string, locale: string, paging?: Types
     const totalPages = Math.ceil(totalResults / pageSize)
 
     return {
-        parent,
         locale,
         totalResults,
         totalPages,
@@ -51,11 +50,10 @@ export async function getArticles(parent: string, locale: string, paging?: Types
                 name: item.name ?? "",
                 title: item.title ?? "",
                 description: item.description?.text ?? "",
-                author: item.author ?? "",
+                author: item.author ?? "",  
                 published: item.published ?? "2000-01-01T00:00:00Z",
                 image: {
-                    path: item.image?.data?.path ?? null,
-                    url: item.image?.data?.url ?? item.image?.url ?? null
+                    src: item.image?.src ?? null
                 },
                 path: item.path ?? null,
                 url: item.url ?? null
@@ -67,11 +65,10 @@ export async function getArticles(parent: string, locale: string, paging?: Types
 export type * as Types from './types'
 export default getArticles
 
-const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
-    getArticles: ArticlePage(
+const GetArticlesQuery = gql(/* GraphQL */`query GetArticles( $pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
+    getArticles: BlogPostPage(
       where: {
         _and: [
-          { ParentLink: { GuidValue: { eq: $parent } } }
           {
             _and: [
               { StartPublish: { gte: $published } }
@@ -91,7 +88,7 @@ const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pa
           guid: GuidValue
         }
         name: Name
-        title: Title
+        title: Heading
         description: SeoSettings {
           text: MetaDescription
         }
@@ -99,12 +96,8 @@ const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pa
         path: RelativePath
         author: ArticleAuthor
         published: StartPublish
-        image: PageImage {
-          url: Url
-          data: Expanded {
-            url: Url
-            path: RelativePath
-          }
+        image: BlogPostPromoImage {
+          src: Url
         }
       }
       facets {
@@ -118,4 +111,4 @@ const GetArticlesQuery = gql(/*GraphQL*/`query GetArticles($parent: String!, $pa
         }
       }
     }
-  }`)
+  }`);

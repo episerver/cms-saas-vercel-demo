@@ -3,11 +3,10 @@
   "private": true,
   "license": "Apache-2.0",
   "packageManager": "yarn@4.0.0-rc.50",
-  "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
+  "type": "commonjs",
+  "main": "plugin.js",
   "devDependencies": {
-    "@graphql-codegen/plugin-helpers": "^5.0.1",
+    "@graphql-codegen/plugin-helpers": "^5.0.0",
     "typescript": "^5.3.3"
   },
   "dependencies": {

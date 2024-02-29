@@ -15,7 +15,6 @@ export type Filters = {
 }
 
 export type GetArticlesResult = {
-    parent: string
     locale: string
     totalResults: number
     totalPages: number
@@ -39,8 +38,7 @@ export type GetArticlesResult = {
         author: string
         published: string
         image: {
-            url: string | null
-            path: string | null
+            src: string | null
         }
         url: string | null
         path: string | null

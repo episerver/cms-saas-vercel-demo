@@ -57,7 +57,7 @@ const config: CodegenConfig = {
             } as FragmentMatcherConfig,
         },
         './gql/functions.ts': {
-            plugins: ['codegen-plugin.js'],
+            plugins: ['@remkoj/optimizely-graph-functions'],
             config: {
                 optlyFunctions: [
                     'getContentByPath',

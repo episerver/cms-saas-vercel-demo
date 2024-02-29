@@ -1,32 +1,16 @@
-import type { ApolloClient, ApolloClientOptions, NormalizedCacheObject } from '@apollo/client'
-import { createNewClient as createClient, type ContentGraphConfig, type ContentLink } from '@remkoj/optimizely-dxp-react'
+import { createClient, isContentGraphClient, getContentGraphConfig, type ComponentFactory, type ContentGraphConfig, type ContentLink, type ContentGraphClient } from '@remkoj/optimizely-dxp-react'
 import { Metadata } from 'next'
 import { isOptimizelyNextPageWithMetaData } from './page'
-import { ComponentFactory, getContentGraphConfig, validateContentGraphConfig } from '@remkoj/optimizely-dxp-react'
 
 const DEBUG = process.env.DXP_DEBUG == '1'
 
-export class MetaDataResolver<TCacheShape extends NormalizedCacheObject = NormalizedCacheObject>
+export class MetaDataResolver
 {
-    private _cgClient : ApolloClient<TCacheShape>
-    private _config : ContentGraphConfig
+    private _cgClient : ContentGraphClient
 
-    public constructor (client: ApolloClient<TCacheShape>, config?: ContentGraphConfig)
-    public constructor (token?: string, config?: ContentGraphConfig, apolloConfig?: Partial<ApolloClientOptions<TCacheShape>>)
-    constructor(clientOrToken?: ApolloClient<TCacheShape> | string, config?: ContentGraphConfig, apolloConfig?: Partial<ApolloClientOptions<TCacheShape>>)
+    public constructor(clientOrConfig?: ContentGraphConfig | ContentGraphClient)
     {
-        this._config = config ?? getContentGraphConfig()
-        if (!validateContentGraphConfig(this._config))
-            throw new Error("Invalid ContentGraph Configuration")
-
-        if (typeof clientOrToken == 'string' || clientOrToken == undefined)
-            this._cgClient = createClient(this._config, clientOrToken, apolloConfig)
-
-        else if (typeof clientOrToken == 'object' && clientOrToken != null && typeof clientOrToken.query == 'function')
-            this._cgClient = clientOrToken
-
-        else
-            throw new Error(`The first parameter "clientOrToken" must be either a valid token string or ApolloClient, you've provided a ${ typeof clientOrToken }`)
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig())
     }
 
     /**
@@ -38,7 +22,7 @@ export class MetaDataResolver<TCacheShape extends NormalizedCacheObject = Normal
      * @param locale        The locale to be used, in a ContentGraph locale format
      * @returns             A Promise for the metadata of the given content type & instance
      */
-    public resolve(factory: ComponentFactory, contentLink: ContentLink, contentType: string[], locale: string): Promise<Metadata>
+    public async resolve(factory: ComponentFactory, contentLink: ContentLink, contentType: string[], locale: string): Promise<Metadata>
     {
         if (DEBUG)
             console.log("Resolving metadata for:", contentLink, contentType, locale)
@@ -48,16 +32,15 @@ export class MetaDataResolver<TCacheShape extends NormalizedCacheObject = Normal
 
         const Component = factory.resolve(contentType)
         if (!Component)
-            return Promise.resolve({})
+            return {}
 
-        if (isOptimizelyNextPageWithMetaData(Component) && Component.getMetaData) 
-            return Component.getMetaData(contentLink, locale, this._cgClient).then(meta => {
-                if (DEBUG)
-                    console.log("Resolved metadata to:", meta)
-                return meta
-            })
-
-        return Promise.resolve({})
+        if (isOptimizelyNextPageWithMetaData(Component) && Component.getMetaData) {
+            const meta = await Component.getMetaData(contentLink, locale, this._cgClient)
+            if (DEBUG)
+                console.log("Resolved metadata to:", meta)
+            return meta
+        }
+        return {}
     }
 }
 

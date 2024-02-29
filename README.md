@@ -39,3 +39,4 @@ Please refer to the [Supported environment variables](docs/env-vars.md) document
 * [Enable on-page / in context editing](docs/editing.md)
 * [Supported environment variables](docs/env-vars.md)
 * [Custom demo building](docs/demo-building.md)
+* [General solution description](docs/solution/index.md)

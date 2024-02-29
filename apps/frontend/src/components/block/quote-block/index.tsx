@@ -1,41 +1,112 @@
-import type * as GraphQL from '@gql/graphql'
-import type { CmsComponent } from '@remkoj/optimizely-dxp-react'
-import { gql } from '@gql/index'
+import React, { useEffect } from "react";
+import type * as GraphQL from "@gql/graphql";
+import Image from "next/image";
+import { gql } from "@apollo/client";
+import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
-import Image from 'next/image'
-import './quote-block.css'
+/**
+ * React functional component for rendering a quote block with user information.
+ *
+ * @param {QuoteBlockProps} user - the user object with profile information
+ * @param {string} quote - the quote to be displayed
+ * @param {string} color - the color theme of the block
+ * @param {boolean} active - whether the block is active or not
+ * @return {JSX.Element} the rendered quote block component
+ */
+const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
+  data,
+  inEditMode,
+}) => {
+  const { profilePicture, name, location, quote, color, active } = data;
+  const additionalClasses: string[] = [];
 
-export const QuoteBlock : CmsComponent<GraphQL.QuoteDataFragment> = ({ inEditMode, data, contentLink }) =>
-{
-    /* @ts-expect-error */
-    const imageData : (GraphQL.ImageDataFragment & GraphQL.ContentLinkFragment) | undefined = data?.Photo ?? undefined
-    const hasImage = imageData?.guidValue ? true : false
-    const imageUrl = imageData?.data?.path ? new URL(imageData?.data?.path, process.env.DXP_URL) : undefined
-    return <div className="quote-block" id={ contentLink?.guidValue ?? undefined }>
-        { (hasImage || inEditMode) && <div className='image' data-epi-edit={ inEditMode ? "Photo" : undefined }>
-            { imageUrl && <Image src={ imageUrl.href } alt={`Image of ${ data?.Quotee ?? "the quotee"}`} fill sizes='(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px' /> }
-        </div> }
-        <div className='quote'>
-            <div className='text' data-epi-edit={ inEditMode ? "Text" : undefined } dangerouslySetInnerHTML={{ __html: data?.Text ?? "" }}/>
-            <div className='quotee'>-&nbsp;
-                <span data-epi-edit={ inEditMode ? "Quotee" : undefined } className="name">{ data?.Quotee }</span>
-                { (inEditMode || data?.Role ) && <>,&nbsp;<span data-epi-edit={ inEditMode ? "Role" : undefined } className="role">{ data?.Role ?? ""}</span></>}
-                { (inEditMode || data?.QuoteeLocation ) && <>&nbsp;—&nbsp;<span data-epi-edit={ inEditMode ? "QuoteeLocation" : undefined } className="location">{ data?.QuoteeLocation ?? ""}</span></>}
-            </div>
-        </div>
-    </div>
-}
-QuoteBlock.displayName = "Quote"
-QuoteBlock.getDataFragment = () => ["QuoteData", QuoteData]
+  if (active) {
+    additionalClasses.push(
+      "relative before:translate-x-[16px] before:translate-y-[16px]"
+    );
+  }
 
-export default QuoteBlock
+  switch (color) {
+    case "blue":
+      additionalClasses.push("bg-vulcan text-white");
+      break;
+    case "orange":
+      additionalClasses.push("bg-tangy text-vulcan");
+      break;
+    case "green":
+      additionalClasses.push("bg-verdansk text-vulcan");
+      break;
+    case "red":
+      additionalClasses.push("bg-paleruby text-white");
+      break;
+    case "white":
+      additionalClasses.push("bg-white text-vulcan");
+      break;
+  }
 
-export const QuoteData = gql(/* GraphQL*/`fragment QuoteData on QuoteBlock {
-    Text
-    Quotee
-    Role
-    QuoteeLocation
-    Photo {
-        ...ImageData
+  return (
+    <figure
+      className={`p-8 lg:p-24 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
+        " "
+      )}`}
+    >
+      <blockquote
+        data-epi-edit={inEditMode ? "QuoteText" : undefined}
+        className="text-[18px] lg:text-[24px]"
+      >
+        {quote}
+      </blockquote>
+      <figcaption className="flex items-center mt-16">
+        {profilePicture && profilePicture.url && (
+          <Image
+            data-epi-edit={inEditMode ? "QuoteProfilePicture" : undefined}
+            src={profilePicture.url}
+            alt={name ?? ""}
+            width={200}
+            height={200}
+            className="rounded-full max-w-24"
+          />
+        )}
+
+        <cite className="ml-4 lg:flex not-italic">
+          <p
+            data-epi-edit={inEditMode ? "QuoteProfileName" : undefined}
+            className="whitespace-nowrap"
+          >
+            {name}
+          </p>
+          {location && (
+            <span className="mx-2 hidden lg:inline-block">&mdash;</span>
+          )}
+          {location ? (
+            <p
+              data-epi-edit={inEditMode ? "QuoteProfileLocation" : undefined}
+              className="text-[12px] lg:text-[16px]"
+            >
+              {location}
+            </p>
+          ) : null}
+        </cite>
+      </figcaption>
+    </figure>
+  );
+};
+
+QuoteBlock.displayName = "Quote Block";
+QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockData.data];
+export default QuoteBlock;
+
+const QuoteBlockData: Readonly<{ [field: string]: any }> = {
+  data: gql(/* GraphQL */ `
+    fragment QuoteBlockData on QuoteBlock {
+      quote: QuoteText
+      color: QuoteColor
+      active: QuoteActive
+      name: QuoteProfileName
+      profilePicture: QuoteProfilePicture {
+        url: Url
+      }
+      location: QuoteProfileLocation
     }
-}`)
+  `),
+};

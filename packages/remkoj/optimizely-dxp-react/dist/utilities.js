@@ -74,7 +74,7 @@ export function contentLinkToRequestVariables(contentLink) {
     const variables = {
         id: contentLink.id ?? 0,
         workId: contentLink.workId,
-        guidValue: contentLink.guidValue ?? "",
+        guidValue: contentLink.guidValue ?? null,
         locale: contentLocaleToGraphLocale(contentLink.locale)
     };
     if (variables.workId == undefined || variables.workId <= 0)
@@ -86,4 +86,12 @@ export function isInlineContentLink(contentLink) {
 }
 export function contentLinkToString(contentLink) {
     return `${contentLink.id ?? 0}_${contentLink.workId ?? 0}#${contentLink.guidValue ?? ''}\$${contentLink.locale ?? ''}`;
+}
+export function toUniqueValues(value, index, array) {
+    return array.indexOf(value) == index;
+}
+export function trim(valueToTrim) {
+    if (typeof (valueToTrim) == 'string')
+        return valueToTrim.trim();
+    return valueToTrim;
 }

@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import type { ContentLinkWithLocale, ComponentFactory, ContentType } from '@remkoj/optimizely-dxp-react';
-import { getClient as createClient } from '@remkoj/optimizely-dxp-react';
+import { createClient } from '@remkoj/optimizely-dxp-react';
 export type CmsContentProps = PropsWithChildren<{
     /**
      * The content type to render
@@ -57,6 +57,6 @@ export type CmsContentProps = PropsWithChildren<{
  * @param     param0
  * @returns
  */
-export declare const CmsContent: ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, factory, fragmentData, outputEditorWarning }: CmsContentProps) => Promise<JSX.Element>;
+export declare const CmsContent: ({ contentType, contentTypePrefix, contentLink, children, inEditMode, client, fragmentData, outputEditorWarning }: CmsContentProps) => Promise<JSX.Element>;
 export default CmsContent;
 export declare function getContentType(link: ContentLinkWithLocale, gqlClient: ReturnType<typeof createClient>): Promise<ContentType | undefined>;

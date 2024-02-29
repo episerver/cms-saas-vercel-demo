@@ -1,14 +1,13 @@
 import type { ComponentFactory, ComponentType, ComponentTypeHandle, ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
-
-//@ts-expect-error
-import { cache } from 'react'
-
-
 const MERGE_SYMBOL = '/'
+const DBG = process.env.DXP_DEBUG == '1'
 
+export const EmptyComponentHandle =  '$$fragment$$'
 
-
-export class FactoryClass implements ComponentFactory {
+/**
+ * The default implementation of the ComponentFactory iterface
+ */
+export class DefaultComponentFactory implements ComponentFactory {
     private registry : { [typeName: string]: ComponentType } = {}
 
     register(type: ComponentTypeHandle, component: ComponentType) : void
@@ -40,16 +39,38 @@ export class FactoryClass implements ComponentFactory {
 function processComponentTypeHandle(handle: ComponentTypeHandle) : string
 {
     if (typeof(handle) == 'string')
-        return handle
+        return handle == "" ? EmptyComponentHandle : handle
     if (Array.isArray(handle) && handle.every(s => typeof(s) == 'string'))
-        return handle.filter(s => s.toLowerCase() != 'content').join(MERGE_SYMBOL)
+        return handle.filter(s => s.toLowerCase() != 'content').map(s => s == "" ? EmptyComponentHandle : s).join(MERGE_SYMBOL)
     throw new Error(`Invalid component type handle: ${ typeof(handle) }`)
 }
 
-// Leverage React Cache to provide per request Factory Access
-const factory : () => { current: ComponentFactory } = cache(() => {return { current: new FactoryClass() }})
-export const getFactory : () => ComponentFactory = () => factory().current
+const _static : { factory ?: ComponentFactory } = {}
+
+/**
+ * Retrieve the currently staticly cached ComponentFactory instance, if there's no
+ * currently staticly cached ComponentFactory, the default ComponentFactory will be
+ * returned
+ * 
+ * @returns The ComponentFactory
+ */
+export const getFactory : () => ComponentFactory = () => {
+    if (!_static.factory) {
+        if (DBG) console.log("Creating new Component Factory")
+        _static.factory = new DefaultComponentFactory()
+    } else {
+        if (DBG) console.log("Reusing existing Component Factory")
+    }
+    return _static.factory
+}
+/**
+ * Update the staticly cached Component Factory, which will be returned by all future 
+ * "getFactory" calls
+ * 
+ * @param   newFactory    The ComponentFactory to set as staticly cached instance
+ * @returns void
+ */
 export const setFactory : (newFactory: ComponentFactory) => void = (newFactory: ComponentFactory) => {
-    factory().current = newFactory
+    _static.factory = newFactory
 }
 export default getFactory()

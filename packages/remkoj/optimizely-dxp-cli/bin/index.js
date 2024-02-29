@@ -404,7 +404,7 @@ const createSiteConfigModule = {
         siteDefinition.locales = (siteDefinition.locales ?? []).map((c) => {
             const loc = {
                 code: c.code,
-                slug: c.slug,
+                slug: c.slug?.toLowerCase(),
                 graphLocale: c.code.replace("-", "_"),
                 isDefault: c.isDefault == true
             };

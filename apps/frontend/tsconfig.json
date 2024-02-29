@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "noImplicitAny": false,
     "module": "esnext",
     "moduleResolution": "node",
     "resolveJsonModule": true,
@@ -24,7 +25,8 @@
       "@app/*": ["./src/app/*"],
       "@components/*": ["./src/components/*"],
       "@gql/*": ["./gql/*"],
-      "@public/*": ["./public/*"]
+      "@public/*": ["./public/*"],
+      "@shared/*": ["./src/components/shared/*"],
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

@@ -1,21 +1,9 @@
-import { ApolloClient, InMemoryCache, ApolloLink, from, createHttpLink } from '@apollo/client/core';
-import { onError } from '@apollo/client/link/error';
+import { GraphQLClient } from 'graphql-request';
 import { getContentGraphConfig, validateContentGraphConfig } from './config';
 import epiHmacFetch from './hmac-fetch';
-import { v4 as uuid } from 'uuid';
 const DEBUG = process.env.DXP_DEBUG == '1';
 const QUERY_LOG = process.env.QUERY_LOG == '1';
-const currentClients = {};
-/**
- * Create a client with this token to use the built-in support for HMAC Authentication
- */
-export const ForceHmacAuthentication = 'use-hmac';
-/**
- * Create a client with this token to use the built-in support for HMAC Authentication
- *
- * @deprecated Use ForceHmacAuthentication instead
- */
-export const USE_HMAC_TOKEN = ForceHmacAuthentication;
+const TOKEN_MIN_LENGTH = 16;
 /**
  * The Next.JS fetch cache tags used by the default clients
  */
@@ -25,144 +13,160 @@ export var NextFetchTags;
     NextFetchTags["public"] = "optly-graph-public";
     NextFetchTags["hmac"] = "optly-graph-hmac";
     NextFetchTags["token"] = "optly-graph-token";
+    NextFetchTags["basic"] = "optly-graph-basic";
 })(NextFetchTags || (NextFetchTags = {}));
-/**
- * Get (and create if needed) the GraphQL client, the clients are unique per token value
- *
- * @param config
- * @param token
- * @param configOverrides
- * @param inMemoryCacheConfig
- * @returns
- */
-export function getClient(config, token = undefined, configOverrides = undefined, inMemoryCacheConfig = undefined) {
-    const tokenKey = token == undefined ? "##undefined##" : token;
-    if (currentClients[tokenKey]) {
+export var AuthMode;
+(function (AuthMode) {
+    AuthMode["Public"] = "epi-single";
+    AuthMode["Basic"] = "use-basic";
+    AuthMode["HMAC"] = "use-hmac";
+    AuthMode["Token"] = "use-token";
+})(AuthMode || (AuthMode = {}));
+function validateToken(newToken) {
+    return newToken == undefined ||
+        newToken == ContentGraphClient.ForceHmacToken ||
+        newToken == ContentGraphClient.ForceBasicAuth ||
+        newToken.length > TOKEN_MIN_LENGTH;
+}
+function base64encode(binaryString) {
+    if (Buffer)
+        return Buffer.from(binaryString).toString('base64');
+    return btoa(binaryString);
+}
+function isError(toTest) {
+    return typeof (toTest) == 'object' && toTest != null && typeof toTest.name == 'string' && typeof toTest.message == 'string';
+}
+export class ContentGraphClient extends GraphQLClient {
+    static ForceHmacToken = 'use-hmac';
+    static ForceBasicAuth = 'use-basic';
+    _config;
+    _token;
+    get token() {
+        return this._token;
+    }
+    set token(newValue) {
+        if (!validateToken(newValue))
+            throw new Error("Invalid ContentGraph token");
         if (DEBUG)
-            console.log("Reusing existing GraphQL Client instance");
+            console.log(`[ContentGraph] Updating token to ${newValue}`);
+        this._token = newValue;
     }
-    else {
-        if (DEBUG)
-            console.log("Creating new Apollo Client");
-        currentClients[tokenKey] = createNewClient(config, token, configOverrides, inMemoryCacheConfig);
+    get siteInfo() {
+        return {
+            frontendDomain: this._config.deploy_domain,
+            cmsURL: this._config.dxp_url
+        };
     }
-    return currentClients[tokenKey];
-}
-export function applyOnAllClients(callback) {
-    const results = Object.getOwnPropertyNames(currentClients).map(tokenKey => {
-        return callback(currentClients[tokenKey]);
-    });
-    return results;
-}
-export function createNewClient(config, token = undefined, configOverrides = undefined, inMemoryCacheConfig = undefined) {
-    const links = [];
-    links.push(createErrorLogger(console));
-    if (DEBUG || QUERY_LOG) {
-        console.log("[OptlyGraph] Enabled Query Logger");
-        links.push(createQueryLogger(console));
+    get currentAuthMode() {
+        if (this._token == ContentGraphClient.ForceHmacToken)
+            return AuthMode.HMAC;
+        if (this._token == ContentGraphClient.ForceBasicAuth)
+            return AuthMode.Basic;
+        if (typeof (this._token) == 'string' && this._token.length > TOKEN_MIN_LENGTH)
+            return AuthMode.Token;
+        return AuthMode.Public;
     }
-    links.push(createContentGraphLink(token, config));
-    const cache = new InMemoryCache({
-        ...inMemoryCacheConfig
-    });
-    return new ApolloClient({
-        cache,
-        link: from(links),
-        ...configOverrides
-    });
-}
-export function createErrorLogger(target) {
-    return onError(({ graphQLErrors, networkError, operation, response }) => {
-        const queryId = operation.extensions.queryId || undefined;
-        const logPrefix = "[OptlyGraph]" + (queryId && ` [Query-${queryId}]`);
-        if (graphQLErrors)
-            graphQLErrors.forEach(({ message, locations, path, name, source }) => {
-                const locationList = (locations ?? []).map(loc => {
-                    return `[Line: ${loc.line}, Column: ${loc.column}]`;
-                }).join("; ");
-                const errorName = name && name != 'undefined' ? ` ${name}` : "";
-                const sourceInfo = source?.body ?? operation.query;
-                const sourceName = source?.name ? ` in ${source.name}` : (operation.operationName ? ` in ${operation.operationName}` : "");
-                target.error(`[GraphQL${errorName} error${sourceName}]:\n  Message: ${message}\n  Location: ${locationList}\n  Path: ${path}\n  Query: ${sourceInfo}`);
-            });
-        if (networkError) {
-            target.error(`${logPrefix} [Network error]: ${networkError.name} => ${networkError.message}`);
-            if (DEBUG || QUERY_LOG) {
-                target.error(`${logPrefix} [Network error]: Response:`, JSON.stringify(response, undefined, 2));
-            }
-        }
-    });
-}
-export function createQueryLogger(target) {
-    return new ApolloLink((operation, forward) => {
-        const queryId = uuid();
-        target.log("[OptlyGraph] [Query-" + queryId + "] Text:", operation.query.loc?.source?.body);
-        target.log("[OptlyGraph] [Query-" + queryId + "] Variables:", operation.variables);
-        operation.extensions["queryId"] = queryId;
-        return forward(operation).map(response => {
-            target.log("[OptlyGraph] [Query-" + queryId + "] Response:", response);
-            return response;
-        });
-    });
-}
-export function createContentGraphLink(token, config) {
-    //const forPublishedOnly = !(typeof token == 'string' && (token.length > 16 || token == USE_HMAC_TOKEN))
-    const optiConfig = config ?? getContentGraphConfig();
-    // If we have an USE-HMAC instruction in the token, we'll use the Optimizely Graph
-    // endpoint with HMAC authorization in place.
-    if (token == ForceHmacAuthentication) {
-        if (QUERY_LOG || DEBUG)
-            console.log("[OptlyGraph] Creating HMAC authorized client");
+    constructor(config, token = undefined) {
+        // Validate inputs
+        const optiConfig = config ?? getContentGraphConfig();
         if (!validateContentGraphConfig(optiConfig, false))
             throw new Error("Invalid ContentGraph configuration");
-        return createHttpLink({
-            uri: new URL("/content/v2", optiConfig.gateway).href,
-            fetch: epiHmacFetch,
-            fetchOptions: {
-                cache: 'no-store',
-                next: { tags: [NextFetchTags.all, NextFetchTags.hmac] }
-            }
-        });
-    }
-    if (typeof (token) == 'string' && token.length > 16) {
-        if (QUERY_LOG || DEBUG)
-            console.log("[OptlyGraph] Creating authorized client, using token:", token);
-        if (!validateContentGraphConfig(optiConfig, false))
-            throw new Error("Invalid ContentGraph configuration");
-        return createHttpLink({
-            uri: new URL("/content/v2", optiConfig.gateway).href,
-            headers: {
-                authorization: `Bearer ${token}`
+        if (!validateToken(token))
+            throw new Error("Invalid ContentGraph token");
+        // Create instance
+        const serviceUrl = new URL("/content/v2", optiConfig.gateway).href;
+        super(serviceUrl, {
+            requestMiddleware: request => {
+                if (QUERY_LOG) {
+                    console.log(`[ContentGraph] [Request Query] ${request.body}`);
+                    console.log(`[ContentGraph] [Request Variables] ${JSON.stringify(request.variables)}`);
+                }
+                return request;
             },
-            fetch: fetch,
-            fetchOptions: {
-                cache: 'no-store',
-                next: { tags: [NextFetchTags.all, NextFetchTags.token] }
+            responseMiddleware: response => {
+                if (isError(response)) {
+                    console.error(`[ContentGraph] [Error] ${response.name} => ${response.message}`);
+                }
+                else if (response.errors) {
+                    response.errors.forEach(({ message, locations, path, name, source }) => {
+                        const locationList = (locations ?? []).map(loc => {
+                            return `[Line: ${loc.line}, Column: ${loc.column}]`;
+                        }).join("; ");
+                        const errorName = name && name != 'undefined' ? ` ${name}` : "";
+                        const sourceInfo = source?.body ?? "";
+                        const sourceName = source?.name ? ` in ${source.name}` : "";
+                        console.error(`[ContentGraph] [GraphQL${errorName} error${sourceName}]:\n  Message: ${message}\n  Location: ${locationList}\n  Path: ${path}\n  Query: ${sourceInfo}`);
+                    });
+                }
+                else if (QUERY_LOG) {
+                    console.log(`[ContentGraph] [Response Data] ${JSON.stringify(response.data)}`);
+                    console.log(`[ContentGraph] [Response Cost] ${JSON.stringify(response.extensions?.cost || 0)}`);
+                }
+                return response;
             }
         });
+        // Set variables
+        this._config = optiConfig;
+        this._token = token;
+        this.updateRequestConfig();
     }
-    if (QUERY_LOG || DEBUG)
-        console.log("[OptlyGraph] Creating Public Content Client");
-    // Validate if we've got enough 
-    if (!validateContentGraphConfig(optiConfig, true))
-        throw new Error("Invalid ContentGraph configuration");
-    // There's no token information, so we're defaulting to published content
-    // only.
-    return createHttpLink({
-        uri: new URL("/content/v2", optiConfig.gateway).href,
-        headers: {
-            authorization: `epi-single ${optiConfig.single_key}`
-        },
-        fetch: fetch,
-        fetchOptions: {
-            next: { tags: [NextFetchTags.all, NextFetchTags.public] }
+    updateAuthentication(newToken) {
+        this.token = newToken;
+        this.updateRequestConfig();
+        return this;
+    }
+    query = (...args) => {
+        //@ts-expect-error
+        return this.request(...args);
+    };
+    updateRequestConfig() {
+        switch (this.currentAuthMode) {
+            case AuthMode.HMAC:
+                this.setHeaders({});
+                this.requestConfig.cache = 'no-store';
+                this.requestConfig.fetch = epiHmacFetch;
+                //@ts-expect-error: Next.JS specific tags
+                this.requestConfig.next = { tags: [NextFetchTags.all, NextFetchTags.hmac] };
+                break;
+            case AuthMode.Basic:
+                this.setHeaders({
+                    Authorization: `Basic ${base64encode(this._config.app_key + ":" + this._config.secret)}`
+                });
+                this.requestConfig.cache = 'no-store';
+                this.requestConfig.fetch = fetch;
+                //@ts-expect-error: Next.JS specific tags
+                this.requestConfig.next = { tags: [NextFetchTags.all, NextFetchTags.basic] };
+                break;
+            case AuthMode.Token:
+                this.setHeaders({
+                    Authorization: `Bearer ${this.token}`
+                });
+                this.requestConfig.cache = 'no-store';
+                this.requestConfig.fetch = fetch;
+                //@ts-expect-error: Next.JS specific tags
+                this.requestConfig.next = { tags: [NextFetchTags.all, NextFetchTags.token] };
+                break;
+            default:
+                this.setHeaders({
+                    Authorization: `epi-single ${this._config.single_key}`
+                });
+                this.requestConfig.fetch = fetch;
+                //@ts-expect-error: Next.JS specific tags
+                this.requestConfig.next = { tags: [NextFetchTags.all, NextFetchTags.public] };
+                break;
         }
-    });
+    }
+}
+export function isContentGraphClient(client) {
+    if (typeof (client) != 'object' || client == null)
+        return false;
+    return typeof client.updateAuthentication == 'function'
+        && typeof client.request == 'function';
+}
+export function createClient(config, token = undefined) {
+    return new ContentGraphClient(config, token);
 }
 /**
- * Get the client matching the provided configuration
- *
- * @deprecated  Prefer the explicit getClient / createNewClient over createClient
+ * Create a new GraphQL client instance
  */
-export const createClient = getClient;
-export default getClient;
+export default createClient;
