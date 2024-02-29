@@ -5,17 +5,15 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
 import getCurrentChannel from "@/lib/current-channel";
-import * as EnvTools from "@/lib/env";
+import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
 
 // Client side context
 import GlobalProviders from "@components/providers";
 
 // Client side trackers
-import OdpScript from "@components/integrations/server/optimizely-data-patform";
-import RecsScript from "@components/integrations/server/optimizely-content-recs";
-import WebExScript from "@components/integrations/server/optimizely-web-experimentation";
-import GoogleAnalytics from "@/components/integrations/server/google-analytics";
-import { SpeedInsights } from "@vercel/speed-insights/next";
+import { Scripts } from '@remkoj/optimizely-one-nextjs/server'
+import GoogleAnalytics from '@/components/integrations/google-analytics'
+import { SpeedInsights } from "@vercel/speed-insights/next"
 
 const figtree = Figtree({ subsets: ["latin"] });
 

@@ -6,7 +6,7 @@
   "type": "commonjs",
   "main": "plugin.js",
   "devDependencies": {
-    "@graphql-codegen/plugin-helpers": "^5.0.0",
+    "@graphql-codegen/plugin-helpers": "^5.0.3",
     "typescript": "^5.3.3"
   },
   "dependencies": {

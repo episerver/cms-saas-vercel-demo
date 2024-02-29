@@ -1,5 +1,4 @@
 import { NextResponse, type NextRequest } from 'next/server'
-import * as EnvTools from '@/lib/env'
 
 type ConsentResponse = {
     allowTracking: boolean
