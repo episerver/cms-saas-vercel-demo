@@ -16,7 +16,7 @@
     "@yarnpkg/sdks": "^3.1.0",
     "source-map-support": "^0.5.21",
     "typescript": "5.3.3",
-    "vercel": "^33.5.2"
+    "vercel": "^33.5.3"
   },
   "exports": null,
   "scripts": {
@@ -40,6 +40,7 @@
     "undici": "^5.28.3"
   },
   "dependencies": {
+    "graphql": "^16.8.1",
     "graphql-request": "^6.1.0"
   }
 }

@@ -1,7 +1,7 @@
 import type * as GraphQL from "@gql/graphql";
 import Image from "next/image";
 import ButtonBlock from "../button-block";
-import { gql } from "@apollo/client";
+import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
 const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({

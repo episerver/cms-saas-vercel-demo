@@ -1,7 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import type * as GraphQL from "@gql/graphql";
 import Image from "next/image";
-import { gql } from "@apollo/client";
+import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 
 /**

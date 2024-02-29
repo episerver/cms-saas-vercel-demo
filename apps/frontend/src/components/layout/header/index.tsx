@@ -1,13 +1,8 @@
 import "server-only";
-import { gql as graphql } from "@apollo/client";
-import { getCurrentChannel } from "@/lib/current-channel";
+import { gql as graphql } from "@gql/gql";
 import { getServerClient } from '@remkoj/optimizely-dxp-nextjs';
+import siteInfo from '@/site-config'
 
-import {
-  getFallbackLocale,
-  localeToContentGraphLocale,
-  resolveLocale,
-} from "@/lib/i18n";
 import Header from "./_header";
 
 type HeaderWrapperProps = {
@@ -15,19 +10,17 @@ type HeaderWrapperProps = {
 };
 
 export default async function SiteHeader({ locale }: HeaderWrapperProps) {
-  const currentLocale = resolveLocale(locale);
+  const currentLocale = siteInfo.resolveLocale(locale);
   const client = getServerClient();
-  const siteInfo = await getCurrentChannel();
 
   const config = ((
     await client.request(HeaderConfigQuery, {
-      locale: siteInfo.localeToGraphLocale(currentLocale) as any,
-      siteId: siteInfo.id,
+      locale: siteInfo.localeToGraphLocale(currentLocale) as any
     })
   ) || []);
 
-  const menuItems = config.menuItems.items[0].headerNavigation;
-  const utilityItems = config.menuItems.items[0].UtilityNavigationContentArea;
+  const menuItems = (config.menuItems?.items ?? [])[0]?.headerNavigation;
+  const utilityItems = (config.menuItems?.items ?? [])[0]?.UtilityNavigationContentArea;
 
   return (
     <Header locale={locale} menuItems={menuItems} utilityItems={utilityItems} />

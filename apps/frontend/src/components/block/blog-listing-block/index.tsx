@@ -4,8 +4,8 @@ import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
 import ContainerBlock from "../container-block";
-import { getFallbackLocale } from "@/lib/i18n";
 import getArticles from "@/lib/api/articles";
+import siteConfig from '@/site-config';
 
 export type BlogListingComponentType =
   CmsComponent<GraphQL.BlogListingBlockDataFragment>;
@@ -19,7 +19,7 @@ export const BlogListingBlock: CmsComponent<
   GraphQL.BlogListingBlockDataFragment
 > = async ({ data, inEditMode, client, contentLink }) => {
   const { selectedPageSize, showFilters } = data;
-  const locale = contentLink.locale ?? getFallbackLocale();
+  const locale = contentLink.locale ?? siteConfig.defaultLocale;
   const articles = await getArticles(locale, {
     page: 1,
     count: selectedPageSize ?? 12,

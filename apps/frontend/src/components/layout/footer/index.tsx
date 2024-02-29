@@ -1,32 +1,25 @@
-import { gql as graphql } from "@apollo/client";
-import { getCurrentChannel } from "@/lib/current-channel";
+import { gql as graphql } from "@gql/gql";
 import { getServerClient } from "@remkoj/optimizely-dxp-nextjs";
-import {
-  getFallbackLocale,
-  localeToContentGraphLocale,
-  resolveLocale,
-} from "@/lib/i18n";
 import Footer from "./_footer";
 import dict from "@shared/dictionary.json";
+import siteInfo from "@/site-config"
 
 type SiteFooterProps = {
   locale?: string;
 };
 
 export default async function SiteFooter({ locale }: SiteFooterProps) {
-  const currentLocale = resolveLocale(locale);
+  const currentLocale = siteInfo.resolveLocale(locale);
   const client = getServerClient();
-  const siteInfo = await getCurrentChannel();
 
   const config =
     (await client.request(FooterConfigQuery, {
-      locale: siteInfo.localeToGraphLocale(currentLocale) as any,
-      siteId: siteInfo.id,
-    })) || [];
+      locale: siteInfo.localeToGraphLocale(currentLocale) as any
+    }));
 
-  const footerCopyright = config.menuItems.items[0].footerCopyright;
-  const footerSubLinks = config.menuItems.items[0].footerSubLinks;
-  const footerItems = config.menuItems.items[0].footerNavigation;
+  const footerCopyright = (config.menuItems?.items ?? [])[0]?.footerCopyright;
+  const footerSubLinks = (config.menuItems?.items ?? [])[0]?.footerSubLinks;
+  const footerItems = (config.menuItems?.items ?? [])[0]?.footerNavigation;
 
   return (
     <Footer

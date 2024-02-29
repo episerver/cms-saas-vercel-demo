@@ -24,9 +24,6 @@ export async function getArticles(locale: string, paging?: Types.PagingData, fil
         }
     )
 
-    if (result.error)
-        throw result.error
-
     const articleResponse = result.getArticles
     if (!articleResponse)
         throw new Error("No data in the response")

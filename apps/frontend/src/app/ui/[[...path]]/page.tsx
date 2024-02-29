@@ -5,7 +5,7 @@ import { type PropsWithChildren } from "react";
 import { OnPageEdit } from "@remkoj/optimizely-dxp-nextjs";
 
 // Import libraries & GraphQL
-import * as EnvTools from "@/lib/env";
+import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
 import { getContentById } from "@gql/functions";
 
 // Import components & factory
