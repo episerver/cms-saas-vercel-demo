@@ -11,8 +11,8 @@
   ],
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^20.11.23",
-    "@types/react": "^18.2.61",
+    "@types/node": "^20.11.24",
+    "@types/react": "^18.2.63",
     "crypto-js": "^4.2.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
