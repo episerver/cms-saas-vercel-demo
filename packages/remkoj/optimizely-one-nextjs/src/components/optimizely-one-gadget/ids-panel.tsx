@@ -30,7 +30,7 @@ export const IdsPanel : FunctionComponent<IdsPanelProps> = ({ servicePrefix = '/
         return <p className='oo-m-2 md:oo-m-4 oo-rounded-md oo-bg-amber-200 oo-border oo-border-amber-800 oo-text-amber-800 oo-p-1 md:oo-p-2'>There was an error loading your profile information</p>
 
     return <>
-        <dl className='oo-text-sm'>
+        <dl className='oo-text-[14px]'>
             <dt className='oo-font-bold'>Frontend:</dt>
             <dd>{ profile?.ids.frontend ?? 'n/a' }</dd>
             <dt className='oo-font-bold oo-pt-1'>Web Experimentation:</dt>
