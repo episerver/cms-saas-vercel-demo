@@ -1,5 +1,6 @@
 import 'server-only'
 import { Utils, type CmsComponent } from "@remkoj/optimizely-dxp-react"
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import type * as GraphQL from '@gql/graphql'
 import { gql } from '@gql/index'
 
@@ -9,22 +10,25 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 export const ProductInfoBlock : CmsComponent<GraphQL.ProductBlockDataFragment> = async ({ inEditMode, data, client, contentLink }) => {
+    const contentGraphClient = client || getServerClient()
     const locale = contentLink.locale ?? 'en'
     const productCode = data?.ProductCode ?? 'P000000'
-    /* @ts-expect-error */
-    const mainImage : GraphQL.ImageDataFragment | undefined = data?.MainImage || undefined
+    const mainImage = (data?.MainImage || undefined) as GraphQL.ImageDataFragment | undefined
     const imageSrc = mainImage?.data?.path ?? mainImage?.data?.url ?? undefined
     const productName = data?.ProductName ?? "Unnamed product"
-    const productsResponse = ((await client?.query({ 
-        query: GetProductPropsQuery, 
-        variables: { code: data?.ProductCode ?? "-", locale: contentLink.locale as GraphQL.Locales }
-    }))?.data?.product?.items ?? []).filter(Utils.isNotNullOrUndefined)
+    const productsResponse = ((await contentGraphClient?.request(
+        GetProductPropsQuery, 
+        { 
+            code: data?.ProductCode ?? "-", 
+            locale: contentLink.locale as GraphQL.Locales 
+        }
+    ))?.product?.items ?? []).filter(Utils.isNotNullOrUndefined)
     const props = productsResponse.length != 1 ? [] : (productsResponse[0].properties?.texts?.items ?? []).filter(Utils.isNotNullOrUndefined)
 
     return <div className="product-tile-container">
         <div className="product-tile">
             <div className="product-image" data-epi-edit={ inEditMode ? "MainImage" : undefined }>
-                {imageSrc && <Image src={ new URL(imageSrc, process.env.DXP_URL ?? 'http://localhost:3000').href } alt={"Main picture of "+productName} fill className="object-contain"/>}
+                {imageSrc && <Image src={ new URL(imageSrc, contentGraphClient.siteInfo.cmsURL).href } alt={"Main picture of "+productName} fill className="object-contain"/>}
             </div>
             <div className="product-info">
                 <div className="title" data-epi-edit={ inEditMode ? "ProductName" : undefined }>{ productName }</div>

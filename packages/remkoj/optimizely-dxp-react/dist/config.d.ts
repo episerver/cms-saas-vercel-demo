@@ -52,5 +52,5 @@ export declare function getContentGraphConfig(): ContentGraphConfig;
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns
  */
-export declare function validateContentGraphConfig(toValidate: ContentGraphConfig, forPublishedOnly?: boolean): boolean;
+export declare function validateContentGraphConfig(toValidate: ContentGraphConfig, forPublishedOnly?: boolean): toValidate is ContentGraphConfig;
 export default getContentGraphConfig;

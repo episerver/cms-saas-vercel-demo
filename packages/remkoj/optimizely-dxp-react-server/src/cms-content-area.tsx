@@ -3,7 +3,10 @@ import React, { type SuspenseProps } from 'react'
 import CmsContent from './cms-content'
 import type * as Types from '@remkoj/optimizely-dxp-react'
 import { Errors } from '@remkoj/optimizely-dxp-react'
-import { getClient as createClient, Utils } from '@remkoj/optimizely-dxp-react'
+import { createClient, Utils } from '@remkoj/optimizely-dxp-react'
+
+const DEBUG = process.env.DXP_DEBUG == '1'
+const DEV = process.env.NODE_ENV == 'development'
 
 //#region Type definitions
 type ClientType = ReturnType<typeof createClient>
@@ -48,8 +51,11 @@ export type CmsContentAreaClassMapper = (displayOption: string, contentType: Typ
  */
 export const CmsContentArea = async ({ items, locale, classMapper, className, inEditMode, fieldName, client, factory }: CmsContentAreaProps) : Promise<JSX.Element> =>
 {
-    // Convert the items to a list of enriched content types
-    const actualItems = items.filter(Utils.isNotNullOrUndefined)
+    if ((DEBUG || DEV) && !client)
+        console.warn("[CmsContent] No Content Graph client provided, this will cause problems with edit mode!")
+
+    // Convert the items to a list of enriched content types and filter out items cannot be loaded
+    const actualItems = items.filter(forValidContentAreaItems)
     const gqlClient = client ?? createClient()
     let counter : number = 0
     const componentData = await Promise.all(actualItems.map(async (item, idx) : Promise<React.JSX.Element> => {
@@ -72,6 +78,20 @@ export const CmsContentArea = async ({ items, locale, classMapper, className, in
     return <div data-epi-edit={ inEditMode && fieldName ? fieldName : undefined } className={`opti-content-area ${ Array.isArray(className) ? className.join(' ') : ( className ?? '')}`.trim()}>
         { componentData }
     </div>
+}
+
+function forValidContentAreaItems(itm?: ContentAreaItemDefinition | null) : itm is ContentAreaItemDefinition
+{
+    if (itm == undefined || itm == null)
+        return false
+
+    if (itm.item == undefined || itm.item == null)
+        return false
+
+    if (itm.item.data == undefined || itm.item.data == null)
+        return typeof(itm.item.guidValue) == 'string' && itm.item.guidValue.length > 0
+
+    return itm.item.guidValue == itm.item.data.id?.guidValue
 }
 
 export async function processContentAreaItems( items?: (ContentAreaItemDefinition | null)[] | null, locale: string = "en", inEditMode: boolean = false, client?: ClientType, factory?: Types.ComponentFactory) : Promise<JSX.Element[]>

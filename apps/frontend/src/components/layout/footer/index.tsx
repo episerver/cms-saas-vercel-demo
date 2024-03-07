@@ -1,10 +1,8 @@
 import React from 'react'
 import { Utils } from '@remkoj/optimizely-dxp-react'
-import { getCurrentChannel } from '@/lib/current-channel'
-import { getServerClient } from '@/lib/client'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import { gql } from '@gql/index'
 import type * as GraphQL from '@gql/graphql'
-import { localeToContentGraphLocale, getFallbackLocale } from '@/lib/i18n'
 import SiteConfig from '@/site-config'
 
 export type FooterProps = {
@@ -17,18 +15,17 @@ import Image from 'next/image'
 
 export async function FooterProps ({ locale }: FooterProps)
 {
-    const channel = await getCurrentChannel()
+    const channel = SiteConfig
     const optlyGraphClient = getServerClient()
     
     // Read footer configuration
-    const graphResponse = await optlyGraphClient.query({
-        query: GetFooter,
-        variables: {
+    const graphResponse = await optlyGraphClient.request(GetFooter,
+        {
             channelId: channel.id,
-            locale: localeToContentGraphLocale(locale || getFallbackLocale()) as GraphQL.Locales
+            locale: channel.localeToGraphLocale(locale ?? channel.defaultLocale) as GraphQL.Locales
         }
-    })
-    const footerConfig = (graphResponse.data.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
+    )
+    const footerConfig = (graphResponse.FooterConfigBlock?.items || []).filter(Utils.isNotNullOrUndefined)[0]
 
     // Build the image src
     const imageSrc = footerConfig?.logo || "/assets/logo.png"

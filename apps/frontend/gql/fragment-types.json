@@ -1,10 +1,5 @@
 {
   "possibleTypes": {
-    "IConfiguredCommerceCatalogEntry": [
-      "ConfiguredCommerceCatalogCategory",
-      "ConfiguredCommerceCatalogEntry",
-      "ConfiguredCommerceCatalogProduct"
-    ],
     "IContent": [
       "ArticleListPage",
       "ArticlePage",
@@ -38,9 +33,6 @@
       "ButtonBlock",
       "CardBlock",
       "CarouselBlock",
-      "ConfiguredCommerceCatalogCategory",
-      "ConfiguredCommerceCatalogEntry",
-      "ConfiguredCommerceCatalogProduct",
       "ContainerBlock",
       "Content",
       "DAMAsset",

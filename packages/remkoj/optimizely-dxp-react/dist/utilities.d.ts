@@ -1,6 +1,6 @@
 import type { ComponentType } from 'react';
 import type * as Types from './types';
-import type { DocumentNode } from "@apollo/client";
+import type { DocumentNode } from 'graphql';
 export declare function isContentLink(toTest: any): toTest is Types.ContentLink;
 export declare function isContentLinkWithLocale(toTest: any): toTest is Types.ContentLinkWithLocale;
 export declare function isNonEmptyString(toTest: any): toTest is string;
@@ -25,3 +25,5 @@ export declare function contentLocaleToGraphLocale<T>(contentLocale?: T): T exte
 export declare function contentLinkToRequestVariables(contentLink: Types.ContentLinkWithLocale): Types.ContentQueryProps;
 export declare function isInlineContentLink(contentLink: Types.ContentLink): contentLink is Types.InlineContentLink;
 export declare function contentLinkToString(contentLink: Types.ContentLink): string;
+export declare function toUniqueValues<R extends any>(value: R, index: number, array: Array<R>): value is R;
+export declare function trim<T extends string | null | undefined>(valueToTrim: T): T;

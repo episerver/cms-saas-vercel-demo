@@ -1,16 +1,14 @@
 import type { Metadata } from 'next/types'
 import { Inter } from 'next/font/google'
-import getCurrentChannel from '@/lib/current-channel'
-import * as EnvTools from '@/lib/env'
+import { EnvTools } from '@remkoj/optimizely-one-nextjs/server'
+import channel from '@/site-config'
 
 // Client side context
 import GlobalProviders from '@components/providers'
 
 // Client side trackers
-import OdpScript from '@components/integrations/server/optimizely-data-patform'
-import RecsScript from '@components/integrations/server/optimizely-content-recs'
-import WebExScript from '@components/integrations/server/optimizely-web-experimentation'
-import GoogleAnalytics from '@/components/integrations/server/google-analytics'
+import { Scripts } from '@remkoj/optimizely-one-nextjs/server'
+import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
 import './globals.css'
@@ -18,7 +16,6 @@ import './globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export async function generateMetadata() : Promise<Metadata> {
-    const channel = await getCurrentChannel()
     return {
         metadataBase: channel.getPrimaryDomain(),
         title: {
@@ -53,23 +50,18 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) 
 {
-    const odp_id = process.env.OPTIMIZELY_DATAPLATFORM_ID ?? undefined
-    const crecs_client = process.env.OPTIMIZELY_CONTENTRECS_CLIENT ?? undefined
-    const crecs_delivery = EnvTools.readValueAsInt("OPTIMIZELY_CONTENTRECS_DELIVERY")
-    const exp_id = process.env.OPTIMIZELY_WEB_EXPERIMENTATION_PROJECT ?? undefined
-    const ga_id = process.env.GA_TRACKING_ID ?? undefined
+    const ga_id = EnvTools.readValue("GA_TRACKING_ID")
 
     return <html>
         <head>
-            { odp_id && <OdpScript trackerId={ odp_id } /> }
-            { exp_id && <WebExScript projectId={ exp_id } /> }
+            <Scripts.Header />
         </head>
         <body className={ `${ inter.className } bg-white text-default` }>
             <GlobalProviders>
                 { children }
             </GlobalProviders>
-            { crecs_client && crecs_delivery && <RecsScript client={ crecs_client } delivery={ crecs_delivery } /> }
-            { ga_id && <GoogleAnalytics measurementId={ ga_id } />}
+            <Scripts.Footer />
+            <GoogleAnalytics measurementId={ ga_id } />
             <SpeedInsights />
         </body>
     </html>

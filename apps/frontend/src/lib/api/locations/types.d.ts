@@ -1,9 +1,9 @@
+import type { ContentGraphClient } from '@remkoj/optimizely-dxp-react'
 import type * as GraphQL from '@gql/graphql'
-import type { ApolloClient } from '@apollo/client'
 export { DocumentNode } from '@gql/graphql'
 export type LocaleFilter = GraphQL.Locales | GraphQL.Locales[] | null
 
-export type GetLocations = (options: GetLocationsOptions, client?: ApolloClient<any>) => Promise<GetLocationsResult>
+export type GetLocations = (options: GetLocationsOptions, client?: ContentGraphClient) => Promise<GetLocationsResult>
 export type GetLocationsOptions = {
     parentId: string
     locale: LocaleFilter

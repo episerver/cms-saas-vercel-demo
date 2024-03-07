@@ -1,48 +1,34 @@
-import { gql } from "@apollo/client/core";
-import { createNewClient as createClient } from './client';
-import getContentGraphConfig, { validateContentGraphConfig } from './config';
+import { gql } from "graphql-request";
+import createClient, { isContentGraphClient } from './client';
+import getContentGraphConfig from './config';
 const DEBUG = process.env.DXP_DEBUG == '1';
 export class RouteResolver {
     _cgClient;
-    _config;
-    constructor(clientOrToken, config, apolloConfig) {
-        this._config = config ?? getContentGraphConfig();
-        if (!validateContentGraphConfig(this._config))
-            throw new Error("Invalid ContentGraph Configuration");
-        if (typeof clientOrToken == 'string' || clientOrToken == undefined)
-            this._cgClient = createClient(this._config, clientOrToken, apolloConfig);
-        else if (typeof clientOrToken == 'object' && clientOrToken != null && typeof clientOrToken.query == 'function')
-            this._cgClient = clientOrToken;
-        else
-            throw new Error(`The first parameter "clientOrToken" must be either a valid token string or ApolloClient, you've provided a ${typeof clientOrToken}`);
+    /**
+     * Create a new Route Resolver
+     *
+     * @param client        ContentGraph configuration override
+     * @param apolloConfig  Apollo Client configuration override
+     */
+    constructor(clientOrConfig) {
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig());
     }
     async getRoutes(siteId) {
-        let page = await this._cgClient.query({
-            query: GetAllRoutes.query,
-            variables: {
-                siteId,
-                typeFilter: "Page"
-            },
-            fetchPolicy: "no-cache"
-        });
-        if (!page?.data) {
-            return [];
-        }
-        let results = page.data?.Content?.items ?? [];
-        const totalCount = page.data?.Content?.total ?? 0;
-        const cursor = page.data?.Content?.cursor ?? '';
+        let page = await this._cgClient.request(GetAllRoutes.query, { siteId, typeFilter: "Page" });
+        let results = page?.Content?.items ?? [];
+        const totalCount = page?.Content?.total ?? 0;
+        const cursor = page?.Content?.cursor ?? '';
         if (totalCount > 0 && cursor !== '' && totalCount > results.length)
-            while ((page.data?.Content?.items?.length ?? 0) > 0 && results.length < totalCount) {
+            while ((page?.Content?.items?.length ?? 0) > 0 && results.length < totalCount) {
                 page = await this._cgClient.query({
-                    query: GetAllRoutes.query,
+                    document: GetAllRoutes.query,
                     variables: {
                         cursor,
                         siteId,
                         typeFilter: "Page"
-                    },
-                    fetchPolicy: "no-cache"
+                    }
                 });
-                results = results.concat(page.data?.Content?.items ?? []);
+                results = results.concat(page.Content?.items ?? []);
             }
         return results.map(this.convertResponse);
     }
@@ -50,27 +36,22 @@ export class RouteResolver {
         if (DEBUG)
             console.log(`Resolving content info for ${path} on ${siteId ? "site " + siteId : "all sites"}`);
         const resultSet = await this._cgClient.query({
-            query: GetRouteByPath.query,
+            document: GetRouteByPath.query,
             variables: {
                 path,
                 siteId
             }
         });
-        if (resultSet.loading) {
-            if (DEBUG)
-                console.warn("Still loading after result has been awaited");
-            return undefined;
-        }
-        if ((resultSet.data?.Content?.items?.length ?? 0) === 0) {
+        if ((resultSet.Content?.items?.length ?? 0) === 0) {
             if (DEBUG)
                 console.warn("No items in the resultset");
             return undefined;
         }
-        if ((resultSet.data?.Content?.items?.length ?? 0) > 1)
+        if ((resultSet.Content?.items?.length ?? 0) > 1)
             throw new Error("Ambiguous URL provided, did you omit the siteId in a multi-channel setup?");
         if (DEBUG)
-            console.log(`Resolved content info for ${path} to:`, resultSet.data.Content.items[0]);
-        return this.convertResponse(resultSet.data.Content.items[0]);
+            console.log(`Resolved content info for ${path} to:`, resultSet.Content.items[0]);
+        return this.convertResponse(resultSet.Content.items[0]);
     }
     async getContentInfoById(contentId, locale) {
         const [id, workId] = this.parseIdString(contentId);
@@ -82,15 +63,13 @@ export class RouteResolver {
         if (DEBUG)
             console.log("Resolving content by id:", JSON.stringify(variables));
         const resultSet = await this._cgClient.query({
-            query: GetRouteById.query,
+            document: GetRouteById.query,
             variables
         });
-        if (!(resultSet.loading == false && !resultSet.error))
-            return undefined;
-        if (resultSet.data.Content?.total >= 1) {
-            if (DEBUG && resultSet.data.Content?.total > 1)
-                console.warn(`Received multiple entries with this ID, returning the first one from: ${(resultSet.data?.Content?.items || []).map(x => { return `${x.contentLink.id}_${x.contentLink.workId}_${x.locale.name}`; }).join('; ')}`);
-            return this.convertResponse(resultSet.data.Content.items[0]);
+        if (resultSet.Content?.total >= 1) {
+            if (DEBUG && resultSet.Content?.total > 1)
+                console.warn(`Received multiple entries with this ID, returning the first one from: ${(resultSet.Content?.items || []).map(x => { return `${x.contentLink.id}_${x.contentLink.workId}_${x.locale.name}`; }).join('; ')}`);
+            return this.convertResponse(resultSet.Content.items[0]);
         }
         return undefined;
     }

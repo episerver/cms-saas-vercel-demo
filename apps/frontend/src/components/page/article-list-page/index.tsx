@@ -4,9 +4,9 @@ import { type OptimizelyNextPage } from '@remkoj/optimizely-dxp-nextjs'
 import { CmsContentArea } from '@remkoj/optimizely-dxp-react-server'
 import { gql } from '@gql/index'
 import getArticles from '@/lib/api/articles'
-import { getFallbackLocale } from '@/lib/i18n'
 import dynamic from 'next/dynamic'
 import deepmerge from 'deepmerge'
+import Channel from '@/site-config'
 
 const ArticleList = dynamic(() => import('./article-list'), { ssr: true })
 
@@ -15,7 +15,7 @@ import './article-list-page.css'
 export const ArticleListPage : OptimizelyNextPage<GraphQL.ArticleListPageDataFragment> = async ({ inEditMode, contentLink, data, client }) =>
 {
     const guid = contentLink.guidValue ?? undefined
-    const locale = contentLink.locale ?? getFallbackLocale()
+    const locale = contentLink.locale ?? Channel.defaultLocale
     const articles = guid ? await getArticles(guid, locale, { page: 1, count: 12 }) : undefined
 
     return <>
@@ -35,11 +35,8 @@ ArticleListPage.getMetaData = async (contentLink, locale, client) =>
         ...contentLink,
         locale: locale as GraphQL.Locales
     }
-    const result = await client.query({
-        query: GetArticleListMetaData,
-        variables
-    })
-    const pageInfo = (result?.data?.getArticleListMetaData?.pages || [])[0]
+    const result = await client.request(GetArticleListMetaData,variables)
+    const pageInfo = (result?.getArticleListMetaData?.pages || [])[0]
     if (!pageInfo)
         return {}
     const imageSrc = pageInfo.head?.image?.data?.url || pageInfo.head?.image?.url || undefined

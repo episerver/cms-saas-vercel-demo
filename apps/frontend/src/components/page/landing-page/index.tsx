@@ -21,11 +21,7 @@ export const LandingPage : OptimizelyNextPage<LandingPageDataFragment> = ({ cont
 LandingPage.getDataFragment = () => ['LandingPageData', LandingPageData]
 LandingPage.getMetaData = async (contentLink, locale, client) => {
     const variables = { ...contentLink, locale: locale as GraphQL.Locales }
-    const result = ((await client.query({
-        query: GetLandingPageMetaData,
-        variables
-    })).data?.getLandingPageMetaData?.pages ?? [])[0] ?? undefined
-
+    const result = ((await client.request(GetLandingPageMetaData, variables)).getLandingPageMetaData?.pages ?? [])[0] ?? undefined
     if (!result)
         return {}
 

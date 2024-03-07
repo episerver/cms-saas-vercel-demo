@@ -1,8 +1,8 @@
 import type * as Types from './types'
 import type * as GraphQL from '@gql/graphql'
-import { getServerClient } from '@/lib/client'
 import { gql } from '@gql/index'
 import { Utils } from '@remkoj/optimizely-dxp-react'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import 'server-only'
 
 export async function getArticles(parent: string, locale: string, paging?: Types.PagingData, filters?: Types.Filters) : Promise<Types.GetArticlesResult>
@@ -12,9 +12,9 @@ export async function getArticles(parent: string, locale: string, paging?: Types
     const client = getServerClient()
     const published : string | undefined = filters?.published
     const publishedEnd = !published ? undefined : (() => { const d = new Date(published); d.setDate(d.getDate() +1); return d.toISOString()})()
-    const result = await client.query({
-        query: GetArticlesQuery,
-        variables: {
+    const result = await client.query(
+        GetArticlesQuery,
+        {
             parent: parent,
             locale: locale as GraphQL.Locales,
             pageSize: paging?.count ?? 10,
@@ -23,11 +23,9 @@ export async function getArticles(parent: string, locale: string, paging?: Types
             published,
             publishedEnd
         }
-    })
-    if (result.error)
-        throw result.error
+    )
 
-    const articleResponse = result.data.getArticles
+    const articleResponse = result.getArticles
     if (!articleResponse)
         throw new Error("No data in the response")
 

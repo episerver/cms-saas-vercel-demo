@@ -23,6 +23,7 @@ export type ContentSearchResultItem = {
     type?: string[]
     changed?: string
     published?: string
+    description?: string
 }
 export type ContentSearchResultFacet = {
     field: string

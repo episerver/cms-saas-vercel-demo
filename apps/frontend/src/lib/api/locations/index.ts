@@ -1,6 +1,6 @@
 import type * as Types from './types'
 import { gql } from '@gql/index'
-import { getServerClient } from '@/lib/client'
+import { getServerClient } from '@remkoj/optimizely-dxp-nextjs'
 import { Utils } from '@remkoj/optimizely-dxp-react'
 import 'server-only'
 
@@ -9,16 +9,11 @@ export type { LocationListItem, GetLocationsResult, GetLocationsOptions } from '
 export const getLocations: Types.GetLocations = async (options, client) =>
 {
     client = client ?? getServerClient()
-    const { error, data } = await client.query({
-        query: getLocationsList,
-        variables: {
-            locale: options.locale,
-            parentId: options.parentId,
-            services: options.service
-        }
+    const data = await client.request(getLocationsList, {
+        locale: options.locale,
+        parentId: options.parentId,
+        services: options.service
     })
-    if (error)
-        throw new Error("GraphQL Error", { cause: error })
 
     return { 
         data: (data.getLocationsList?.items ?? []).filter(Utils.isNotNullOrUndefined).map(x => {
