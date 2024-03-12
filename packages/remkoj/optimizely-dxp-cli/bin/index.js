@@ -13,12 +13,8 @@ import * as dotenvExpand from 'dotenv-expand';
 import * as path from 'node:path';
 import path__default from 'node:path';
 import yargs from 'yargs';
-import '@apollo/client/core/index.js';
-import '@apollo/client/link/error/index.js';
-import Base64 from 'crypto-js/enc-base64.js';
-import hmacSHA256 from 'crypto-js/hmac-sha256.js';
-import md5 from 'crypto-js/md5.js';
-import fetch, { Request } from 'node-fetch';
+import { readEnvironmentVariables, validateConfig } from '@remkoj/optimizely-graph-client/config';
+import { createHmacFetch } from '@remkoj/optimizely-graph-client/client';
 import chalk from 'chalk';
 import figures from 'figures';
 import Table from 'cli-table3';
@@ -36,86 +32,6 @@ processEnvFile(`.${envName}`);
 processEnvFile('.local');
 processEnvFile();
 
-function getContentGraphConfig(defaults) {
-    return {
-        ...defaults,
-        secret: process?.env?.OPTIMIZELY_CONTENTGRAPH_SECRET ?? process?.env?.NEXT_PUBLIC_OPTIMIZELY_CONTENTGRAPH_SECRET ?? '',
-        app_key: process?.env?.OPTIMIZELY_CONTENTGRAPH_APP_KEY ?? process?.env?.NEXT_PUBLIC_OPTIMIZELY_CONTENTGRAPH_APP_KEY ?? '',
-        single_key: process?.env?.OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY ?? process?.env?.NEXT_PUBLIC_OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY ?? '',
-        gateway: process?.env?.OPTIMIZELY_CONTENTGRAPH_GATEWAY ?? process?.env?.NEXT_PUBLIC_OPTIMIZELY_CONTENTGRAPH_GATEWAY ?? 'https://cg.optimizely.com',
-        query_log: process?.env?.OPTIMIZELY_CONTENTGRAPH_QUERY_LOG ?
-            (process?.env?.OPTIMIZELY_CONTENTGRAPH_QUERY_LOG == '1' || process?.env?.OPTIMIZELY_CONTENTGRAPH_QUERY_LOG?.toLocaleLowerCase() == 'true') :
-            false,
-        deploy_domain: process?.env?.SITE_DOMAIN ?? process?.env?.NEXT_PUBLIC_SITE_DOMAIN ?? 'localhost:3000',
-        dxp_url: process?.env?.DXP_URL ?? process?.env?.NEXT_PUBLIC_DXP_URL ?? 'http://localhost:8000/'
-    };
-}
-function validateContentGraphConfig(toValidate, forPublishedOnly = true) {
-    const hasSingleKey = isNonEmptyString(toValidate?.single_key);
-    const hasGateway = isValidUrl(toValidate?.gateway);
-    if (forPublishedOnly)
-        return hasSingleKey && hasGateway;
-    const hasSecret = isNonEmptyString(toValidate?.secret);
-    const hasAppKey = isNonEmptyString(toValidate?.app_key);
-    return hasGateway && hasSingleKey && hasAppKey && hasSecret;
-}
-function isNonEmptyString(toTest) {
-    return typeof (toTest) == 'string' && toTest.length > 0;
-}
-function isValidUrl(toTest) {
-    if (!isNonEmptyString(toTest))
-        return false;
-    try {
-        var u = new URL(toTest);
-        if (u.protocol != 'https:')
-            return false;
-        return true;
-    }
-    catch {
-        return false;
-    }
-}
-
-function createHmacFetch(appKey, secret) {
-    function isRequest(toTest) {
-        if (typeof (toTest) != 'object' || toTest == null)
-            return false;
-        if (toTest.href)
-            return false;
-        return toTest.url ? true : false;
-    }
-    function readStream(stream) {
-        const chunks = [];
-        return new Promise((resolve, reject) => {
-            stream.on('data', chunk => chunks.push(chunk));
-            stream.on('error', reject);
-            stream.on('end', () => resolve(Buffer.concat(chunks).toString('utf8')));
-        });
-    }
-    return async function newFetch(...args) {
-        const [input, init] = args;
-        const url = new URL(isRequest(input) ? input.url : input.toString());
-        const method = (isRequest(input) ? input.method : init?.method) ?? 'get';
-        const secretBytes = Base64.parse(secret);
-        const target = url.pathname + url.search;
-        const timestamp = new Date().getTime();
-        const nonce = Math.random().toString(36).substring(7);
-        const body = isRequest(input) ?
-            (input.body ? await readStream(input.body) : "") :
-            new String(init?.body ?? "");
-        const body_b64 = md5(String(body || "")).toString(Base64);
-        const message = appKey + method + target + timestamp + nonce + body_b64;
-        const hmac = hmacSHA256(message, secretBytes);
-        const signature = Base64.stringify(hmac);
-        const newRequest = isRequest(input) ? input.clone() : new Request(input, init);
-        const authHeaderValue = `epi-hmac ${appKey}:${timestamp}:${nonce}:${signature}`;
-        newRequest.headers.set('Authorization', authHeaderValue);
-        return fetch(newRequest);
-    };
-}
-
-process.env.NODE_ENV == 'development';
-
 function isDemanded(value) {
     if (value == undefined || value == null)
         return true;
@@ -127,9 +43,7 @@ function isDemanded(value) {
 }
 
 function createCliApp(scriptName, version, epilogue) {
-    const config = getContentGraphConfig({
-        'gateway': 'https://cg.optimizely.com'
-    });
+    const config = readEnvironmentVariables();
     return yargs(process.argv)
         .scriptName(scriptName)
         .version(version ?? "development")
@@ -156,7 +70,7 @@ function getArgsConfig(args) {
         gateway: args.gateway,
         query_log: args.verbose
     };
-    if (!validateContentGraphConfig(config, false))
+    if (!validateConfig(config, false))
         throw new Error("Invalid Content-Graph connection details provided");
     return config;
 }
@@ -184,6 +98,8 @@ const publishToVercelModule$2 = {
             process.exitCode = 1;
             return;
         }
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
         const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
             method: "GET"
@@ -213,7 +129,7 @@ const publishToVercelModule$2 = {
             if (hookUrl.href == targetWithoutQuery.href) {
                 process.stdout.write(`${chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${chalk.yellow(hookUrl.href)}`);
                 const hookId = hook.id;
-                return secureFetch(new URL(`/api/webhooks/${hookId}?cache=false&t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" }).then(response => response.ok);
+                return secureFetch(new URL(`/api/webhooks/${hookId}?cache=false&t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" }).then((response) => response.ok);
             }
             return Promise.resolve(true);
         }));
@@ -254,6 +170,8 @@ const publishToVercelModule$1 = {
         const hookPath = args.path ?? '/';
         const token = args.publish_token;
         const token_id = args.token_id;
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
         if (typeof (token_id) == 'string' && token_id.length > 24) {
             process.stdout.write(`Removing Webhook with ID: ${token_id}\n`);
@@ -327,6 +245,8 @@ const publishToVercelModule = {
     command: ['list'],
     handler: async (args) => {
         const cgConfig = getArgsConfig(args);
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
         const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
             method: "GET"
@@ -358,6 +278,8 @@ const createSiteConfigModule = {
     command: ['site-config [file_path]'],
     handler: async (args) => {
         const cgConfig = getArgsConfig(args);
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const cgFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
         const siteHost = getFrontendURL(cgConfig).host;
         const targetFile = args.file_path ?? DEFAULT_CONFIG_FILE;
@@ -416,7 +338,7 @@ const createSiteConfigModule = {
             ' *',
             ' * Use yarn frontend-cli site-config to re-generate this file',
             ' */',
-            'import { ChannelDefinition, type ChannelDefinitionData } from "@remkoj/optimizely-dxp-react"',
+            'import { ChannelDefinition, type ChannelDefinitionData } from "@remkoj/optimizely-graph-client"',
             '',
             `const generated_data : ChannelDefinitionData = ${JSON.stringify(siteDefinition)};`,
             '',

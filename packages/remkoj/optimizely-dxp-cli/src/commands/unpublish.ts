@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL, type CliModule } from '../app.js'
-import { createSecureFetch } from '../content-graph-client/index.js'
+import { createHmacFetch as createSecureFetch } from '@remkoj/optimizely-graph-client/client'
 
 type PublishToVercelProps = { path: string, token_id:string, publish_token: string }
 
@@ -23,6 +23,8 @@ export const publishToVercelModule : CliModule<PublishToVercelProps> = {
         const token_id = args.token_id
 
         // Create secure client
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined")
         const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret)
 
         // Specific id

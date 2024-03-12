@@ -1,5 +1,4 @@
-import type { ComponentFactory } from '@remkoj/optimizely-dxp-react'
-import { getFactory, setFactory } from '@remkoj/optimizely-dxp-react-server'
+import { getFactory, setFactory, type ComponentFactory } from '@remkoj/optimizely-dxp-react'
 
 import pageComponents from './page'
 import blockComponents from './block'

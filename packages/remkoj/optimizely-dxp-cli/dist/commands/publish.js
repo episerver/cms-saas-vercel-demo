@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL } from '../app.js';
-import { createSecureFetch } from '../content-graph-client/index.js';
+import { createHmacFetch } from '@remkoj/optimizely-graph-client/client';
 import chalk from 'chalk';
 import figures from 'figures';
 export const publishToVercelModule = {
@@ -19,7 +19,9 @@ export const publishToVercelModule = {
             process.exitCode = 1;
             return;
         }
-        const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret);
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
+        const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
         const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
             method: "GET"
         });
@@ -48,7 +50,7 @@ export const publishToVercelModule = {
             if (hookUrl.href == targetWithoutQuery.href) {
                 process.stdout.write(`${chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${chalk.yellow(hookUrl.href)}`);
                 const hookId = hook.id;
-                return secureFetch(new URL(`/api/webhooks/${hookId}?cache=false&t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" }).then(response => response.ok);
+                return secureFetch(new URL(`/api/webhooks/${hookId}?cache=false&t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" }).then((response) => response.ok);
             }
             return Promise.resolve(true);
         }));

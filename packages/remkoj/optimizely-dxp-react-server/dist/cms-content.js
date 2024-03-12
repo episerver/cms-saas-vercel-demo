@@ -1,7 +1,7 @@
 import { jsxs as _jsxs, Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
+import createClient from '@remkoj/optimizely-graph-client';
 import { print } from 'graphql';
-import { createClient, Utils } from '@remkoj/optimizely-dxp-react';
-import { getFactory } from './factory';
+import { Utils, getFactory } from '@remkoj/optimizely-dxp-react';
 import * as Queries from './queries';
 const DEBUG = process.env.DXP_DEBUG == '1';
 const DEV = process.env.NODE_ENV == 'development';

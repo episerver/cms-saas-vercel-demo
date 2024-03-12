@@ -1,11 +1,10 @@
 import type { ComponentType, PropsWithChildren, ComponentProps } from 'react'
 import type { CmsComponent, ContentLinkWithLocale, ComponentFactory, ContentQueryProps, ContentType } from '@remkoj/optimizely-dxp-react'
+import createClient, { type ContentGraphClient } from '@remkoj/optimizely-graph-client'
 import { print } from 'graphql'
-import { createClient, Utils } from '@remkoj/optimizely-dxp-react'
-import { getFactory } from './factory'
+import { Utils, getFactory } from '@remkoj/optimizely-dxp-react'
 import * as Queries from './queries'
 import type * as GraphQL from './gql/graphql'
-import { gql } from 'graphql-request'
 
 const DEBUG = process.env.DXP_DEBUG == '1'
 const DEV = process.env.NODE_ENV == 'development'
@@ -53,7 +52,7 @@ export type CmsContentProps = PropsWithChildren<{
      * The Optimizely Graph client to use, it will use a new instance if none is provided,
      * the new instance will always use the SingleKey i.e. thus not load edit mode content
      */
-    client?: ReturnType<typeof createClient>
+    client?: ContentGraphClient
 
     /**
      * The component factory to use, it will use the default instance if not provided

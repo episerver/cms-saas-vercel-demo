@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL } from '../app.js';
-import { createSecureFetch } from '../content-graph-client/index.js';
+import { createHmacFetch as createSecureFetch } from '@remkoj/optimizely-graph-client/client';
 export const publishToVercelModule = {
     command: ['unregister [path]'],
     handler: async (args) => {
@@ -7,6 +7,8 @@ export const publishToVercelModule = {
         const hookPath = args.path ?? '/';
         const token = args.publish_token;
         const token_id = args.token_id;
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret);
         if (typeof (token_id) == 'string' && token_id.length > 24) {
             process.stdout.write(`Removing Webhook with ID: ${token_id}\n`);

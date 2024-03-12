@@ -1,6 +1,6 @@
 import { type PropsWithChildren, type ReactNode } from "react";
 import { type Metadata, type ResolvingMetadata } from "next";
-import { type ChannelDefinition, type ClientFactory } from "@remkoj/optimizely-dxp-react";
+import type { ChannelDefinition, ClientFactory } from "@remkoj/optimizely-graph-client";
 import type { Props } from './page';
 import { type GetMetaDataByPathMethod } from './data';
 export type CmsPageLayout = {

@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import * as GraphQL from '@gql/graphql'
-import { Utils, createClient as getServerClient } from '@remkoj/optimizely-dxp-react'
+import { Utils } from '@remkoj/optimizely-dxp-react'
 import { gql } from '@gql/index'
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
+import { createClient as getServerClient } from '@remkoj/optimizely-graph-client'
 
 async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchResponse>>
 {

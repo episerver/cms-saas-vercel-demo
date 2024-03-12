@@ -1,7 +1,7 @@
 'use client'
 
 import React, { type FunctionComponent } from 'react'
-import { type ChannelDefinition as SiteInfo } from '@remkoj/optimizely-dxp-react'
+import { type ChannelDefinition as SiteInfo } from '@remkoj/optimizely-graph-client'
 import { FlagIcon, ChevronDownIcon } from '@heroicons/react/24/outline'
 import Link from 'next/link'
 import { Popover } from '@headlessui/react'

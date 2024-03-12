@@ -1,4 +1,4 @@
-import type { ChannelDefinition } from "@remkoj/optimizely-dxp-react"
+import type { ChannelDefinition } from "@remkoj/optimizely-graph-client"
 
 // Extract the path as string array from a given URL
 export function urlToPath(baseUrl: URL, language: string) : string[] {

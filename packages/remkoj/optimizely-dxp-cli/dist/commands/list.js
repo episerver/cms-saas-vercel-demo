@@ -1,5 +1,5 @@
 import { getArgsConfig } from '../app.js';
-import { createSecureFetch } from '../content-graph-client/index.js';
+import { createHmacFetch as createSecureFetch } from '@remkoj/optimizely-graph-client/client';
 import chalk from 'chalk';
 import figures from 'figures';
 import Table from 'cli-table3';
@@ -7,6 +7,8 @@ export const publishToVercelModule = {
     command: ['list'],
     handler: async (args) => {
         const cgConfig = getArgsConfig(args);
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
         const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret);
         const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
             method: "GET"

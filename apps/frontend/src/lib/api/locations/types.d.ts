@@ -1,4 +1,4 @@
-import type { ContentGraphClient } from '@remkoj/optimizely-dxp-react'
+import type { ContentGraphClient } from '@remkoj/optimizely-graph-client'
 import type * as GraphQL from '@gql/graphql'
 export { DocumentNode } from '@gql/graphql'
 export type LocaleFilter = GraphQL.Locales | GraphQL.Locales[] | null

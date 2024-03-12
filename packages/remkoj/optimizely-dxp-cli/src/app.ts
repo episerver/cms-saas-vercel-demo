@@ -1,13 +1,11 @@
 import yargs, { type CommandModule } from 'yargs'
 import type { Argv } from 'yargs'
-import { getEnvConfig, validateConfig, type ContentGraphConfig } from './content-graph-client/index.js'
+import { readEnvironmentVariables as getEnvConfig, validateConfig, type ContentGraphConfig } from "@remkoj/optimizely-graph-client/config"
 import { isDemanded } from './utils/index.js'
 
 export function createCliApp(scriptName: string, version?: string, epilogue?: string)
 {
-    const config = getEnvConfig({
-        'gateway': 'https://cg.optimizely.com'
-    })
+    const config = getEnvConfig()
     return yargs(process.argv)
         .scriptName(scriptName)
         .version(version ?? "development")

@@ -1,10 +1,10 @@
-import { createClient, isContentGraphClient, getContentGraphConfig } from '@remkoj/optimizely-dxp-react';
+import createClient, { isContentGraphClient } from '@remkoj/optimizely-graph-client';
 import { isOptimizelyNextPageWithMetaData } from './page';
 const DEBUG = process.env.DXP_DEBUG == '1';
 export class MetaDataResolver {
     _cgClient;
     constructor(clientOrConfig) {
-        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig());
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig);
     }
     /**
      * Resolve the meta data for a component, if it has a meta-data method exposed.

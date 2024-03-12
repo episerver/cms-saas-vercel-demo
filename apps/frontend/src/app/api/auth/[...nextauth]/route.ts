@@ -1,7 +1,6 @@
 import NextAuth from "next-auth"
-import { getContentGraphConfig } from "@remkoj/optimizely-dxp-react"
+import { readEnvironmentVariables as getContentGraphConfig } from "@remkoj/optimizely-graph-client"
 import { Auth } from '@remkoj/optimizely-dxp-nextjs'
-
 
 const config = getContentGraphConfig()
 const optiOptions = {
