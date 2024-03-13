@@ -1,8 +1,8 @@
 import { jsx as _jsx } from "react/jsx-runtime";
 import 'server-only';
 import CmsContent from './cms-content';
-import { Errors } from '@remkoj/optimizely-dxp-react';
-import { createClient, Utils } from '@remkoj/optimizely-dxp-react';
+import { Errors, Utils } from '@remkoj/optimizely-dxp-react';
+import createClient from '@remkoj/optimizely-graph-client';
 const DEBUG = process.env.DXP_DEBUG == '1';
 const DEV = process.env.NODE_ENV == 'development';
 //#endregion

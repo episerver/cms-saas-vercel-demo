@@ -2,11 +2,13 @@ import 'server-only';
 import { NextResponse } from 'next/server';
 import { cookies } from 'next/headers';
 import ProfileApiService from './profile-api-service';
+import GraphInfoApiService from './graph-info-service';
 export function createOptimizelyOneApi(config) {
     const pathParameterName = config?.pathParameterName ?? 'path';
     const services = [
         ...(config?.services || []),
-        ProfileApiService
+        ProfileApiService,
+        GraphInfoApiService
     ];
     // Basic service matcher, but get's the job done for now
     function matchService(verb, path, serviceFor) {

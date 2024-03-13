@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL, type CliModule } from '../app.js'
-import { createSecureFetch } from '../content-graph-client/index.js'
+import createAdminApi, { isApiError } from '@remkoj/optimizely-graph-client/admin'
 import chalk from 'chalk'
 import figures from 'figures'
 
@@ -35,74 +35,66 @@ export const publishToVercelModule : CliModule<PublishToVercelProps> = {
         }
 
         // Create secure client
-        const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret)
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined")
+        const adminApi = createAdminApi(cgConfig)
 
         // Get current hooks
-        const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${ Date.now() }`, cgConfig.gateway), {
-            method: "GET"
-        })
-        if (!response.ok) {
-            process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Content Graph returned an error: HTTP ${ response.status }: ${ response.statusText }`)+"\n")
-            if (args.verbose)
-                console.error(chalk.redBright(await response.json()))
-            process.exitCode = 1
-            return
-        }
-
-        // Check if the hook is already installed
-        const currentHooks = (await response.json()) as {id: string, request: { url: string, method: string }}[]
-        if (currentHooks.some(x => x.request.url == webhookTarget.href)) 
-        {
-            process.stdout.write("\n"+chalk.greenBright(chalk.bold(figures.tick) + " Webhook already registered, no action needed")+"\n")
-            process.exitCode = 0
-            return
-        }
-
-        // Remove hooks to the same URL with different Query Parameters
-        function urlWithoutSearch(url: URL) : URL
-        {
-            const newURL = new URL(url.href)
-            for (const key in newURL.searchParams.keys)
-                newURL.searchParams.delete(key)
-            return newURL
-        }
-        const targetWithoutQuery = urlWithoutSearch(webhookTarget)
-        await Promise.allSettled(currentHooks.map(hook => {
-            const hookUrl = urlWithoutSearch(new URL(hook.request.url))
-            if (hookUrl.href == targetWithoutQuery.href) {
-                process.stdout.write(`${ chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${ chalk.yellow(hookUrl.href) }`)
-                const hookId = hook.id
-                return secureFetch(new URL(`/api/webhooks/${ hookId }?cache=false&t=${ Date.now() }`, cgConfig.gateway), { method: "DELETE" }).then(response => response.ok)
+        try {
+            const currentHooks = await adminApi.webhooks.listWebhookHandler()
+            if (currentHooks.some(x => x.request.url == webhookTarget.href)) 
+            {
+                process.stdout.write("\n"+chalk.greenBright(chalk.bold(figures.tick) + " Webhook already registered, no action needed")+"\n")
+                process.exitCode = 0
+                return
             }
-            return Promise.resolve(true)
-        }))
 
-        // Register the hook
-        const registerResponse = await secureFetch(
-            new URL(`/api/webhooks?cache=false&t=${ Date.now() }`, cgConfig.gateway), 
-            { 
-                method: 'POST', 
-                body: JSON.stringify({
-                    request: {
-                        url: webhookTarget.href,
-                        method: verb
+            // Remove hooks to the same URL with different Query Parameters
+            function urlWithoutSearch(url: URL) : URL
+            {
+                const newURL = new URL(url.href)
+                for (const key in newURL.searchParams.keys)
+                    newURL.searchParams.delete(key)
+                return newURL
+            }
+            const targetWithoutQuery = urlWithoutSearch(webhookTarget)
+            await Promise.allSettled(currentHooks.map(async hook => {
+                const hookUrl = urlWithoutSearch(new URL(hook.request.url))
+                if (hookUrl.href == targetWithoutQuery.href) {
+                    process.stdout.write(`${ chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${ chalk.yellow(hookUrl.href) }`)
+                    try {
+                        await adminApi.webhooks.deleteWebhookHandler(hook.id)
+                        return true
+                    } catch {
+                        return false
                     }
-                })
+                }
+                return true
+            }))
+
+            // Register the hook
+            await adminApi.webhooks.createWebhookHandler({
+                request: {
+                    url: webhookTarget.href,
+                    method: verb
+                }
             })
-        
-        if (!registerResponse.ok) {
-            process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Content Graph returned an error: HTTP ${ response.status }: ${ response.statusText }`)+"\n")
-            if (args.verbose)
-                console.error(chalk.redBright(await response.json()))
+
+            process.stdout.write("\n"+chalk.greenBright(`${chalk.bold(figures.tick)} ${ webhookTarget.href } has been added as Webhook recipient to Optimizely Graph`)+"\n")
+        } catch (e) {
+            if (isApiError(e)) {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an error: HTTP ${ e.status }: ${ e.statusText }`)+"\n")
+                if (args.verbose)
+                    console.error(chalk.redBright(JSON.stringify(e.body, undefined, 4)))
+            } else {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an error`)+"\n")
+            }
             process.exitCode = 1
             return
-        }
-
-        process.stdout.write("\n"+chalk.greenBright(`${chalk.bold(figures.tick)} ${ webhookTarget.href } has been added as Webhook recipient to Content-Graph`)+"\n")
-        
+        }        
     },
     aliases: [], 
-    describe: "Adds a webhook to ContentGraph that invokes /api/content/publish on every publish in ContentGraph",
+    describe: "Adds a webhook to Optimizely Graph that invokes /api/content/publish on every publish in Optimizely Graph",
     builder: (args) => 
     {
         const defaultToken = process.env.FRONTEND_PUBLISH_TOKEN || undefined

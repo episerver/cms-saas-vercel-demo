@@ -1,6 +1,6 @@
 import 'server-only';
 import React from 'react';
-import createClient from '@remkoj/optimizely-dxp-react';
+import createClient from '@remkoj/optimizely-graph-client';
 const DBG = process.env.DXP_DEBUG == '1';
 export const getServerClient = React.cache(() => {
     if (DBG)

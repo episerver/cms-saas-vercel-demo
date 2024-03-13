@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next"
-import { RouteResolver } from "@remkoj/optimizely-dxp-react"
+import { RouteResolver } from "@remkoj/optimizely-graph-client"
 
 export default async function sitemap() : Promise<MetadataRoute.Sitemap>
 {

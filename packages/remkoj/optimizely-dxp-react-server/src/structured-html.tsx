@@ -1,6 +1,6 @@
 import React, { type FunctionComponent, type ComponentType, type PropsWithChildren } from 'react'
 import CmsContent, { type CmsContentProps } from './cms-content'
-import { getFactory } from './factory'
+import { getFactory } from '@remkoj/optimizely-dxp-react'
 import * as Uuid from 'uuid'
 
 const DEBUG = process.env.NODE_ENV != 'production'

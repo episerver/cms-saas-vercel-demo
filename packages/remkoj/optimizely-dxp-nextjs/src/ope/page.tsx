@@ -1,7 +1,8 @@
 import 'server-only'
 
 import type { EditPageProps, EditPageComponent, EditViewOptions } from './types'
-import { Utils, type ComponentFactory, type ChannelDefinition, type ContentLinkWithLocale } from '@remkoj/optimizely-dxp-react'
+import type { Services } from '@remkoj/optimizely-graph-client'
+import { Utils, type ComponentFactory, type ContentLinkWithLocale } from '@remkoj/optimizely-dxp-react'
 import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
 import { notFound } from 'next/navigation'
 import OnPageEdit from '../components/on-page-edit'
@@ -36,7 +37,7 @@ const defaultOptions : EditViewOptions = {
  * @returns The React Component that can be used by Next.JS to render the page
  */
 export function createEditPageComponent(
-    channel: Readonly<ChannelDefinition>,
+    channel: Readonly<Services.ChannelDefinition>,
     factory: ComponentFactory,
     options?: Partial<EditViewOptions>
 ) : EditPageComponent

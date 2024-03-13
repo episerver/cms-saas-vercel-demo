@@ -1,3 +1,1 @@
-export { getContentGraphConfig as getEnvConfig, validateContentGraphConfig as validateConfig } from './config.js';
-export { createClient as default, createClient } from './client.js';
-export { createHmacFetch as createSecureFetch } from './hmac-fetch.js';
+export { createClient, createClient as default, readEnvironmentVariables as getEnvConfig, validateConfig, createHmacFetch as createSecureFetch } from '@remkoj/optimizely-graph-client';

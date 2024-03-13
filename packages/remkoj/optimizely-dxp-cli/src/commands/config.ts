@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL, type CliModule } from '../app.js'
-import { createSecureFetch } from '../content-graph-client/index.js'
+import { createHmacFetch as createSecureFetch } from '@remkoj/optimizely-graph-client/client'
 import fs from 'node:fs'
 import path from 'node:path'
 import chalk from 'chalk'
@@ -22,6 +22,8 @@ export const createSiteConfigModule : CliModule<CreateSiteConfigProps> = {
     command: ['site-config [file_path]'],
     handler: async (args) => {
         const cgConfig = getArgsConfig(args)
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined")
         const cgFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret)
         const siteHost = getFrontendURL(cgConfig).host
         const targetFile = args.file_path ?? DEFAULT_CONFIG_FILE
@@ -86,7 +88,7 @@ export const createSiteConfigModule : CliModule<CreateSiteConfigProps> = {
             ' *',
             ' * Use yarn frontend-cli site-config to re-generate this file',
             ' */',
-            'import { ChannelDefinition, type ChannelDefinitionData } from "@remkoj/optimizely-dxp-react"',
+            'import { ChannelDefinition, type ChannelDefinitionData } from "@remkoj/optimizely-graph-client"',
             '',
             `const generated_data : ChannelDefinitionData = ${ JSON.stringify(siteDefinition)};`,
             '',

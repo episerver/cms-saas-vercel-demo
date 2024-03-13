@@ -1,7 +1,7 @@
 import { jsxs as _jsxs, Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
 import React from 'react';
 import CmsContent from './cms-content';
-import { getFactory } from './factory';
+import { getFactory } from '@remkoj/optimizely-dxp-react';
 import * as Uuid from 'uuid';
 const DEBUG = process.env.NODE_ENV != 'production';
 export const StructuredHtml = async ({ data, locale }) => {

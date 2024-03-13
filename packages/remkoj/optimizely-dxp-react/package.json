@@ -9,19 +9,32 @@
   "files": [
     "./dist"
   ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./browser": "./dist/browser/index.js"
+  },
+  "typesVersions": {
+    "*": {
+      "browser": [
+        "dist/browser/index.d.ts"
+      ]
+    }
+  },
   "devDependencies": {
+    "@remkoj/optimizely-graph-client": "workspace:^",
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^20.11.24",
-    "@types/react": "^18.2.63",
+    "@types/node": "^20.11.27",
+    "@types/react": "^18.2.65",
     "crypto-js": "^4.2.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "scheduler": "^0.23.0",
-    "typescript": "^5.3.3"
+    "typescript": "^5.4.2"
   },
   "peerDependencies": {
+    "@remkoj/optimizely-graph-client": "workspace:^",
     "crypto-js": "*",
     "graphql": "*",
     "graphql-request": "*",

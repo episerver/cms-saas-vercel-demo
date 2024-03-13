@@ -1,6 +1,7 @@
 import { type PropsWithChildren, type ReactNode } from "react"
 import { type Metadata, type ResolvingMetadata } from "next"
-import { Utils, type ChannelDefinition, type ClientFactory } from "@remkoj/optimizely-dxp-react"
+import type { ChannelDefinition, ClientFactory } from "@remkoj/optimizely-graph-client"
+import { Utils } from "@remkoj/optimizely-dxp-react"
 import type { Props } from './page'
 import { getMetaDataByPath as getMetaDataByPathBase, type GetMetaDataByPathMethod } from './data'
 import { slugToLocale, slugToGraphLocale } from "./utils"
