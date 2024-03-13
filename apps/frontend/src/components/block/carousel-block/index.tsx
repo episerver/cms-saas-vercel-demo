@@ -1,17 +1,10 @@
-import createClient, {
-  Utils,
-  type CmsComponent,
-  Errors,
-  ContentLinkWithLocale,
-} from "@remkoj/optimizely-dxp-react";
+import { Utils, type CmsComponent, Errors } from "@remkoj/optimizely-dxp-react"
+import createClient from "@remkoj/optimizely-graph-client/client"
 import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
-import {
-  CmsContent,
-  CmsContentAreaProps,
-} from "@remkoj/optimizely-dxp-react-server";
+import { CmsContent, CmsContentAreaProps, } from "@remkoj/optimizely-dxp-react-server";
 
 const CustomCmsContentArea = async ({
   items,

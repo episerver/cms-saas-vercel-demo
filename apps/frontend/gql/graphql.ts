@@ -112,6 +112,18 @@ export type BlogListingBlock = IContent & IData & {
 
 
 /** Listing of blog pages with configuration for how many items to show and whether to show filters or not. */
+export type BlogListingBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Listing of blog pages with configuration for how many items to show and whether to show filters or not. */
+export type BlogListingBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Listing of blog pages with configuration for how many items to show and whether to show filters or not. */
 export type BlogListingBlock_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -420,6 +432,18 @@ export type BlogListingPage = IContent & IData & {
 
 
 /** A listing of blog articles.  This page allows you to filter articles by author, date, and categories. */
+export type BlogListingPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A listing of blog articles.  This page allows you to filter articles by author, date, and categories. */
+export type BlogListingPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A listing of blog articles.  This page allows you to filter articles by author, date, and categories. */
 export type BlogListingPage_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -714,6 +738,30 @@ export type BlogPostPage = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Represents a single blog post */
+export type BlogPostPageBlogPostBodyArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Represents a single blog post */
+export type BlogPostPageHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Represents a single blog post */
+export type BlogPostPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Represents a single blog post */
+export type BlogPostPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -1130,6 +1178,111 @@ export type BoolFilterInput = {
   notEq?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
+export type Button = IContent & IData & {
+  __typename?: 'Button';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  Category?: Maybe<Array<Maybe<CategoryModel>>>;
+  Changed?: Maybe<Scalars['Date']['output']>;
+  ContentLink?: Maybe<ContentModelReference>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  Created?: Maybe<Scalars['Date']['output']>;
+  ExistingLanguages?: Maybe<Array<Maybe<ContentLanguageModel>>>;
+  IsCommonDraft?: Maybe<Scalars['Bool']['output']>;
+  Language?: Maybe<ContentLanguageModel>;
+  MasterLanguage?: Maybe<ContentLanguageModel>;
+  Name?: Maybe<Scalars['String']['output']>;
+  ParentLink?: Maybe<ContentModelReference>;
+  RelativePath?: Maybe<Scalars['String']['output']>;
+  RouteSegment?: Maybe<Scalars['String']['output']>;
+  Saved?: Maybe<Scalars['Date']['output']>;
+  SiteId?: Maybe<Scalars['String']['output']>;
+  StartPublish?: Maybe<Scalars['Date']['output']>;
+  Status?: Maybe<Scalars['String']['output']>;
+  StopPublish?: Maybe<Scalars['Date']['output']>;
+  Url?: Maybe<Scalars['String']['output']>;
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type ButtonNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Button_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Button_LinkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type ButtonAutocomplete = {
+  __typename?: 'ButtonAutocomplete';
+  Ancestors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  Category?: Maybe<CategoryModelAutocomplete>;
+  ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelAutocomplete>;
+  Language?: Maybe<ContentLanguageModelAutocomplete>;
+  MasterLanguage?: Maybe<ContentLanguageModelAutocomplete>;
+  ParentLink?: Maybe<ContentModelReferenceAutocomplete>;
+  RelativePath?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  RouteSegment?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  SiteId?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  Status?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  Url?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type ButtonAutocompleteAncestorsArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteContentTypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteRelativePathArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteRouteSegmentArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteSiteIdArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteStatusArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type ButtonAutocompleteUrlArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
 /** Represents an instance of a button */
 export type ButtonBlock = IContent & IData & {
   __typename?: 'ButtonBlock';
@@ -1169,6 +1322,24 @@ export type ButtonBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Represents an instance of a button */
+export type ButtonBlockButtonTextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Represents an instance of a button */
+export type ButtonBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Represents an instance of a button */
+export type ButtonBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -1511,6 +1682,198 @@ export type ButtonBlockWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
 };
 
+export type ButtonFacet = {
+  __typename?: 'ButtonFacet';
+  Ancestors?: Maybe<Array<Maybe<StringFacet>>>;
+  Category?: Maybe<CategoryModelFacet>;
+  Changed?: Maybe<Array<Maybe<DateFacet>>>;
+  ContentLink?: Maybe<ContentModelReferenceFacet>;
+  ContentType?: Maybe<Array<Maybe<StringFacet>>>;
+  Created?: Maybe<Array<Maybe<DateFacet>>>;
+  ExistingLanguages?: Maybe<ContentLanguageModelFacet>;
+  IsCommonDraft?: Maybe<Array<Maybe<StringFacet>>>;
+  Language?: Maybe<ContentLanguageModelFacet>;
+  MasterLanguage?: Maybe<ContentLanguageModelFacet>;
+  Name?: Maybe<Array<Maybe<StringFacet>>>;
+  ParentLink?: Maybe<ContentModelReferenceFacet>;
+  RelativePath?: Maybe<Array<Maybe<StringFacet>>>;
+  RouteSegment?: Maybe<Array<Maybe<StringFacet>>>;
+  Saved?: Maybe<Array<Maybe<DateFacet>>>;
+  SiteId?: Maybe<Array<Maybe<StringFacet>>>;
+  StartPublish?: Maybe<Array<Maybe<DateFacet>>>;
+  Status?: Maybe<Array<Maybe<StringFacet>>>;
+  StopPublish?: Maybe<Array<Maybe<DateFacet>>>;
+  Url?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type ButtonFacetAncestorsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetChangedArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ButtonFacetContentTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetCreatedArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ButtonFacetIsCommonDraftArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetNameArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetRelativePathArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetRouteSegmentArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetSavedArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ButtonFacetSiteIdArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetStartPublishArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ButtonFacetStatusArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type ButtonFacetStopPublishArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type ButtonFacetUrlArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type ButtonOrderByInput = {
+  Ancestors?: InputMaybe<OrderBy>;
+  Category?: InputMaybe<CategoryModelOrderByInput>;
+  Changed?: InputMaybe<OrderBy>;
+  ContentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
+  ContentType?: InputMaybe<OrderBy>;
+  Created?: InputMaybe<OrderBy>;
+  ExistingLanguages?: InputMaybe<ContentLanguageModelOrderByInput>;
+  IsCommonDraft?: InputMaybe<OrderBy>;
+  Language?: InputMaybe<ContentLanguageModelOrderByInput>;
+  MasterLanguage?: InputMaybe<ContentLanguageModelOrderByInput>;
+  Name?: InputMaybe<OrderBy>;
+  ParentLink?: InputMaybe<ContentModelReferenceOrderByInput>;
+  RelativePath?: InputMaybe<OrderBy>;
+  RouteSegment?: InputMaybe<OrderBy>;
+  Saved?: InputMaybe<OrderBy>;
+  SiteId?: InputMaybe<OrderBy>;
+  StartPublish?: InputMaybe<OrderBy>;
+  Status?: InputMaybe<OrderBy>;
+  StopPublish?: InputMaybe<OrderBy>;
+  Url?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+};
+
+export type ButtonOutput = {
+  __typename?: 'ButtonOutput';
+  autocomplete?: Maybe<ButtonAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<ButtonFacet>;
+  items?: Maybe<Array<Maybe<Button>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ButtonOutputTotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type ButtonWhereInput = {
+  Ancestors?: InputMaybe<StringFilterInput>;
+  Category?: InputMaybe<CategoryModelWhereInput>;
+  Changed?: InputMaybe<DateFilterInput>;
+  ContentLink?: InputMaybe<ContentModelReferenceWhereInput>;
+  ContentType?: InputMaybe<StringFilterInput>;
+  Created?: InputMaybe<DateFilterInput>;
+  ExistingLanguages?: InputMaybe<ContentLanguageModelWhereInput>;
+  IsCommonDraft?: InputMaybe<BoolFilterInput>;
+  Language?: InputMaybe<ContentLanguageModelWhereInput>;
+  MasterLanguage?: InputMaybe<ContentLanguageModelWhereInput>;
+  Name?: InputMaybe<SearchableStringFilterInput>;
+  ParentLink?: InputMaybe<ContentModelReferenceWhereInput>;
+  RelativePath?: InputMaybe<StringFilterInput>;
+  RouteSegment?: InputMaybe<StringFilterInput>;
+  Saved?: InputMaybe<DateFilterInput>;
+  SiteId?: InputMaybe<StringFilterInput>;
+  StartPublish?: InputMaybe<DateFilterInput>;
+  Status?: InputMaybe<StringFilterInput>;
+  StopPublish?: InputMaybe<DateFilterInput>;
+  Url?: InputMaybe<StringFilterInput>;
+  _and?: InputMaybe<Array<InputMaybe<ButtonWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<ButtonWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<ButtonWhereInput>>>;
+};
+
 export type CardBlock = IContent & IData & {
   __typename?: 'CardBlock';
   Ancestors?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -1548,6 +1911,31 @@ export type CardBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type CardBlockCardHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CardBlockCardImageArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CardBlockCardSubHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CardBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CardBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -2039,6 +2427,21 @@ export type CarouselBlock = IContent & IData & {
 };
 
 
+export type CarouselBlockCarouselItemsContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CarouselBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type CarouselBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type CarouselBlock_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -2397,6 +2800,18 @@ export type ContainerPage = IContent & IData & {
 
 
 /** A page to group / hold content that is not an actual page.  This page is not url-addressable. */
+export type ContainerPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A page to group / hold content that is not an actual page.  This page is not url-addressable. */
+export type ContainerPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A page to group / hold content that is not an actual page.  This page is not url-addressable. */
 export type ContainerPage_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -2701,6 +3116,16 @@ export type Content = IContent & IData & {
 };
 
 
+export type ContentNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type Content_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type Content_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -2717,7 +3142,6 @@ export type ContentAreaItemModelAutocomplete = {
   __typename?: 'ContentAreaItemModelAutocomplete';
   ContentLink?: Maybe<ContentModelReferenceAutocomplete>;
   DisplayOption?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  InlineBlock?: Maybe<InlineBlockPropertyModelAutocomplete>;
   Tag?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
 
@@ -2770,6 +3194,26 @@ export type ContentAreaItemModelSearch = {
   DisplayOption?: Maybe<Scalars['String']['output']>;
   InlineBlock?: Maybe<InlineBlockPropertyModelSearch>;
   Tag?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type ContentAreaItemModelSearchContentLinkArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentAreaItemModelSearchDisplayOptionArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentAreaItemModelSearchInlineBlockArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentAreaItemModelSearchTagArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 export type ContentAreaItemModelSearchFacet = {
@@ -3076,6 +3520,21 @@ export type ContentLanguageModelSearch = {
   Name?: Maybe<Scalars['String']['output']>;
 };
 
+
+export type ContentLanguageModelSearchDisplayNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentLanguageModelSearchLinkArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentLanguageModelSearchNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
 export type ContentLanguageModelSearchFacet = {
   __typename?: 'ContentLanguageModelSearchFacet';
   DisplayName?: Maybe<Array<Maybe<StringFacet>>>;
@@ -3139,7 +3598,6 @@ export type ContentModelReference = {
 export type ContentModelReferenceAutocomplete = {
   __typename?: 'ContentModelReferenceAutocomplete';
   GuidValue?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-  Language?: Maybe<ContentLanguageModelAutocomplete>;
   ProviderName?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   Url?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
 };
@@ -3224,6 +3682,26 @@ export type ContentModelReferenceSearch = {
   ProviderName?: Maybe<Scalars['String']['output']>;
   Url?: Maybe<Scalars['String']['output']>;
   WorkId?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type ContentModelReferenceSearchExpandedArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentModelReferenceSearchLanguageArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentModelReferenceSearchProviderNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type ContentModelReferenceSearchUrlArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 export type ContentModelReferenceSearchFacet = {
@@ -3442,6 +3920,24 @@ export type DamAsset = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamAssetContentArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamAssetNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamAsset_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -3771,6 +4267,24 @@ export type DamImageAsset = IContent & IData & {
 
 
 /** Used by the DAM integration, cannot be edited */
+export type DamImageAssetContentArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamImageAssetNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamImageAsset_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
 export type DamImageAsset_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -4096,6 +4610,24 @@ export type DamVideoAsset = IContent & IData & {
 
 
 /** Used by the DAM integration, cannot be edited */
+export type DamVideoAssetContentArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamVideoAssetNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
+export type DamVideoAsset_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Used by the DAM integration, cannot be edited */
 export type DamVideoAsset_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -4396,6 +4928,11 @@ export type Data = IData & {
 };
 
 
+export type Data_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type Data_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -4486,6 +5023,16 @@ export type GroupCardListBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type GroupCardListBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type GroupCardListBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -4788,6 +5335,36 @@ export type HeroBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Hero */
+export type HeroBlockEyebrowArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero */
+export type HeroBlockHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero */
+export type HeroBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero */
+export type HeroBlockSubHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero */
+export type HeroBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -5255,6 +5832,13 @@ export type HeroBlockWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
 };
 
+/** Options for highlighting */
+export type HighlightOptions = {
+  enabled?: InputMaybe<Scalars['Boolean']['input']>;
+  endToken?: InputMaybe<Scalars['String']['input']>;
+  startToken?: InputMaybe<Scalars['String']['input']>;
+};
+
 /** Hero displayed on the home page */
 export type HomePageHeroBlock = IContent & IData & {
   __typename?: 'HomePageHeroBlock';
@@ -5292,6 +5876,36 @@ export type HomePageHeroBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Hero displayed on the home page */
+export type HomePageHeroBlockHomeHeroBlockHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero displayed on the home page */
+export type HomePageHeroBlockHomeHeroBlockSubHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero displayed on the home page */
+export type HomePageHeroBlockHomeHeroRightImageArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero displayed on the home page */
+export type HomePageHeroBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Hero displayed on the home page */
+export type HomePageHeroBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -5792,6 +6406,26 @@ export type HtmlBlock = IContent & IData & {
 };
 
 
+export type HtmlBlockHtmlBlockHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type HtmlBlockHtmlContentArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type HtmlBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type HtmlBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type HtmlBlock_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -6099,6 +6733,16 @@ export type IContent = {
 };
 
 
+export type IContentNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type IContent_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type IContent_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -6114,6 +6758,11 @@ export type IData = {
 };
 
 
+export type IData_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type IData_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -6121,17 +6770,6 @@ export type IData_LinkArgs = {
 export type InlineBlockPropertyModel = {
   __typename?: 'InlineBlockPropertyModel';
   ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-export type InlineBlockPropertyModelAutocomplete = {
-  __typename?: 'InlineBlockPropertyModelAutocomplete';
-  ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
-};
-
-
-export type InlineBlockPropertyModelAutocompleteContentTypeArgs = {
-  limit?: Scalars['Int']['input'];
-  value: Scalars['String']['input'];
 };
 
 export type InlineBlockPropertyModelFacet = {
@@ -6154,6 +6792,11 @@ export type InlineBlockPropertyModelOrderByInput = {
 export type InlineBlockPropertyModelSearch = {
   __typename?: 'InlineBlockPropertyModelSearch';
   ContentType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type InlineBlockPropertyModelSearchContentTypeArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 export type InlineBlockPropertyModelSearchFacet = {
@@ -6239,6 +6882,30 @@ export type LandingPage = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** A page entirely built out of blocks. */
+export type LandingPageMainContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A page entirely built out of blocks. */
+export type LandingPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A page entirely built out of blocks. */
+export type LandingPageTopContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A page entirely built out of blocks. */
+export type LandingPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -6631,6 +7298,30 @@ export type LayoutContainerBlock = IContent & IData & {
 
 
 /** Allows you to specify the layout for the blocks that come after this block */
+export type LayoutContainerBlockColumnsCountArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Allows you to specify the layout for the blocks that come after this block */
+export type LayoutContainerBlockLayoutContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Allows you to specify the layout for the blocks that come after this block */
+export type LayoutContainerBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Allows you to specify the layout for the blocks that come after this block */
+export type LayoutContainerBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Allows you to specify the layout for the blocks that come after this block */
 export type LayoutContainerBlock_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -7009,6 +7700,11 @@ export type LayoutContainerBlockWhereInput = {
   _or?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
 };
 
+export type LinkConfig = {
+  from?: InputMaybe<Scalars['String']['input']>;
+  to?: InputMaybe<Scalars['String']['input']>;
+};
+
 export type LinkItemNode = {
   __typename?: 'LinkItemNode';
   ContentLink?: Maybe<ContentModelReference>;
@@ -7151,6 +7847,26 @@ export type MegaMenuGroupBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type MegaMenuGroupBlockMegaMenuUrlArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type MegaMenuGroupBlockMenuMenuHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type MegaMenuGroupBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type MegaMenuGroupBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -7469,6 +8185,21 @@ export type MenuNavigationBlock = IContent & IData & {
 };
 
 
+export type MenuNavigationBlockMenuNavigationHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type MenuNavigationBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type MenuNavigationBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type MenuNavigationBlock_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -7777,6 +8508,18 @@ export type OdpEmbedBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** Place an embed from the Optimizely Data Platform into your site */
+export type OdpEmbedBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** Place an embed from the Optimizely Data Platform into your site */
+export type OdpEmbedBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -8100,6 +8843,16 @@ export type PageSeoSettings = IContent & IData & {
 };
 
 
+export type PageSeoSettingsNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type PageSeoSettings_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type PageSeoSettings_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -8418,6 +9171,7 @@ export type Query = {
   BlogListingBlock?: Maybe<BlogListingBlockOutput>;
   BlogListingPage?: Maybe<BlogListingPageOutput>;
   BlogPostPage?: Maybe<BlogPostPageOutput>;
+  Button?: Maybe<ButtonOutput>;
   ButtonBlock?: Maybe<ButtonBlockOutput>;
   CardBlock?: Maybe<CardBlockOutput>;
   CarouselBlock?: Maybe<CarouselBlockOutput>;
@@ -8448,10 +9202,10 @@ export type Query = {
 export type QueryBlogListingBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogListingBlockWhereInput>;
 };
 
@@ -8459,10 +9213,10 @@ export type QueryBlogListingBlockArgs = {
 export type QueryBlogListingPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogListingPageWhereInput>;
 };
 
@@ -8470,21 +9224,32 @@ export type QueryBlogListingPageArgs = {
 export type QueryBlogPostPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogPostPageWhereInput>;
+};
+
+
+export type QueryButtonArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ButtonOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  where?: InputMaybe<ButtonWhereInput>;
 };
 
 
 export type QueryButtonBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ButtonBlockWhereInput>;
 };
 
@@ -8492,10 +9257,10 @@ export type QueryButtonBlockArgs = {
 export type QueryCardBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<CardBlockWhereInput>;
 };
 
@@ -8503,10 +9268,10 @@ export type QueryCardBlockArgs = {
 export type QueryCarouselBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
 
@@ -8514,10 +9279,10 @@ export type QueryCarouselBlockArgs = {
 export type QueryContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContainerPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ContainerPageWhereInput>;
 };
 
@@ -8525,10 +9290,10 @@ export type QueryContainerPageArgs = {
 export type QueryContentArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ContentWhereInput>;
 };
 
@@ -8536,10 +9301,10 @@ export type QueryContentArgs = {
 export type QueryDamAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamAssetWhereInput>;
 };
 
@@ -8547,10 +9312,10 @@ export type QueryDamAssetArgs = {
 export type QueryDamImageAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamImageAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamImageAssetWhereInput>;
 };
 
@@ -8558,10 +9323,10 @@ export type QueryDamImageAssetArgs = {
 export type QueryDamVideoAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamVideoAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamVideoAssetWhereInput>;
 };
 
@@ -8569,10 +9334,10 @@ export type QueryDamVideoAssetArgs = {
 export type QueryDataArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<System_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DataWhereInput>;
 };
 
@@ -8580,10 +9345,10 @@ export type QueryDataArgs = {
 export type QueryGroupCardListBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GroupCardListBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<GroupCardListBlockWhereInput>;
 };
 
@@ -8591,10 +9356,10 @@ export type QueryGroupCardListBlockArgs = {
 export type QueryHeroBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HeroBlockWhereInput>;
 };
 
@@ -8602,10 +9367,10 @@ export type QueryHeroBlockArgs = {
 export type QueryHomePageHeroBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HomePageHeroBlockWhereInput>;
 };
 
@@ -8613,10 +9378,10 @@ export type QueryHomePageHeroBlockArgs = {
 export type QueryHtmlBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HtmlBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HtmlBlockWhereInput>;
 };
 
@@ -8624,10 +9389,10 @@ export type QueryHtmlBlockArgs = {
 export type QueryLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<LandingPageWhereInput>;
 };
 
@@ -8635,10 +9400,10 @@ export type QueryLandingPageArgs = {
 export type QueryLayoutContainerBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
 
@@ -8646,10 +9411,10 @@ export type QueryLayoutContainerBlockArgs = {
 export type QueryMegaMenuGroupBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
 
@@ -8657,10 +9422,10 @@ export type QueryMegaMenuGroupBlockArgs = {
 export type QueryMenuNavigationBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
 };
 
@@ -8668,10 +9433,10 @@ export type QueryMenuNavigationBlockArgs = {
 export type QueryOdpEmbedBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
 
@@ -8679,10 +9444,10 @@ export type QueryOdpEmbedBlockArgs = {
 export type QueryPageSeoSettingsArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
 
@@ -8690,10 +9455,10 @@ export type QueryPageSeoSettingsArgs = {
 export type QueryQuoteBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
 
@@ -8701,10 +9466,10 @@ export type QueryQuoteBlockArgs = {
 export type QuerySiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<SiteDefinitionWhereInput>;
 };
 
@@ -8712,10 +9477,10 @@ export type QuerySiteDefinitionArgs = {
 export type QueryStandardPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StandardPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<StandardPageWhereInput>;
 };
 
@@ -8723,10 +9488,10 @@ export type QueryStandardPageArgs = {
 export type QueryStartPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<StartPageWhereInput>;
 };
 
@@ -8734,10 +9499,10 @@ export type QueryStartPageArgs = {
 export type QueryTextBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<TextBlockWhereInput>;
 };
 
@@ -8746,6 +9511,7 @@ export type QueryRef = {
   BlogListingBlock?: Maybe<BlogListingBlockOutput>;
   BlogListingPage?: Maybe<BlogListingPageOutput>;
   BlogPostPage?: Maybe<BlogPostPageOutput>;
+  Button?: Maybe<ButtonOutput>;
   ButtonBlock?: Maybe<ButtonBlockOutput>;
   CardBlock?: Maybe<CardBlockOutput>;
   CarouselBlock?: Maybe<CarouselBlockOutput>;
@@ -8776,10 +9542,10 @@ export type QueryRef = {
 export type QueryRefBlogListingBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogListingBlockWhereInput>;
 };
 
@@ -8787,10 +9553,10 @@ export type QueryRefBlogListingBlockArgs = {
 export type QueryRefBlogListingPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogListingPageWhereInput>;
 };
 
@@ -8798,21 +9564,32 @@ export type QueryRefBlogListingPageArgs = {
 export type QueryRefBlogPostPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<BlogPostPageWhereInput>;
+};
+
+
+export type QueryRefButtonArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<ButtonOrderByInput>;
+  skip?: Scalars['Int']['input'];
+  where?: InputMaybe<ButtonWhereInput>;
 };
 
 
 export type QueryRefButtonBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ButtonBlockWhereInput>;
 };
 
@@ -8820,10 +9597,10 @@ export type QueryRefButtonBlockArgs = {
 export type QueryRefCardBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<CardBlockWhereInput>;
 };
 
@@ -8831,10 +9608,10 @@ export type QueryRefCardBlockArgs = {
 export type QueryRefCarouselBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
 
@@ -8842,10 +9619,10 @@ export type QueryRefCarouselBlockArgs = {
 export type QueryRefContainerPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContainerPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ContainerPageWhereInput>;
 };
 
@@ -8853,10 +9630,10 @@ export type QueryRefContainerPageArgs = {
 export type QueryRefContentArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<ContentWhereInput>;
 };
 
@@ -8864,10 +9641,10 @@ export type QueryRefContentArgs = {
 export type QueryRefDamAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamAssetWhereInput>;
 };
 
@@ -8875,10 +9652,10 @@ export type QueryRefDamAssetArgs = {
 export type QueryRefDamImageAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamImageAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamImageAssetWhereInput>;
 };
 
@@ -8886,10 +9663,10 @@ export type QueryRefDamImageAssetArgs = {
 export type QueryRefDamVideoAssetArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<DamVideoAssetOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DamVideoAssetWhereInput>;
 };
 
@@ -8897,10 +9674,10 @@ export type QueryRefDamVideoAssetArgs = {
 export type QueryRefDataArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<System_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<DataWhereInput>;
 };
 
@@ -8908,10 +9685,10 @@ export type QueryRefDataArgs = {
 export type QueryRefGroupCardListBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GroupCardListBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<GroupCardListBlockWhereInput>;
 };
 
@@ -8919,10 +9696,10 @@ export type QueryRefGroupCardListBlockArgs = {
 export type QueryRefHeroBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HeroBlockWhereInput>;
 };
 
@@ -8930,10 +9707,10 @@ export type QueryRefHeroBlockArgs = {
 export type QueryRefHomePageHeroBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HomePageHeroBlockWhereInput>;
 };
 
@@ -8941,10 +9718,10 @@ export type QueryRefHomePageHeroBlockArgs = {
 export type QueryRefHtmlBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HtmlBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<HtmlBlockWhereInput>;
 };
 
@@ -8952,10 +9729,10 @@ export type QueryRefHtmlBlockArgs = {
 export type QueryRefLandingPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<LandingPageWhereInput>;
 };
 
@@ -8963,10 +9740,10 @@ export type QueryRefLandingPageArgs = {
 export type QueryRefLayoutContainerBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
 
@@ -8974,10 +9751,10 @@ export type QueryRefLayoutContainerBlockArgs = {
 export type QueryRefMegaMenuGroupBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
 
@@ -8985,10 +9762,10 @@ export type QueryRefMegaMenuGroupBlockArgs = {
 export type QueryRefMenuNavigationBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
 };
 
@@ -8996,10 +9773,10 @@ export type QueryRefMenuNavigationBlockArgs = {
 export type QueryRefOdpEmbedBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
 
@@ -9007,10 +9784,10 @@ export type QueryRefOdpEmbedBlockArgs = {
 export type QueryRefPageSeoSettingsArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
 
@@ -9018,10 +9795,10 @@ export type QueryRefPageSeoSettingsArgs = {
 export type QueryRefQuoteBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
 
@@ -9029,10 +9806,10 @@ export type QueryRefQuoteBlockArgs = {
 export type QueryRefSiteDefinitionArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SiteDefinitionOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<SiteDefinitionWhereInput>;
 };
 
@@ -9040,10 +9817,10 @@ export type QueryRefSiteDefinitionArgs = {
 export type QueryRefStandardPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StandardPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<StandardPageWhereInput>;
 };
 
@@ -9051,10 +9828,10 @@ export type QueryRefStandardPageArgs = {
 export type QueryRefStartPageArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<StartPageWhereInput>;
 };
 
@@ -9062,10 +9839,10 @@ export type QueryRefStartPageArgs = {
 export type QueryRefTextBlockArgs = {
   cursor?: InputMaybe<Scalars['String']['input']>;
   ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
-  limit?: InputMaybe<Scalars['Int']['input']>;
+  limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
+  skip?: Scalars['Int']['input'];
   where?: InputMaybe<TextBlockWhereInput>;
 };
 
@@ -9110,6 +9887,24 @@ export type QuoteBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** A block used to display a quote. */
+export type QuoteBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A block used to display a quote. */
+export type QuoteBlockQuoteProfileLocationArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A block used to display a quote. */
+export type QuoteBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -9509,6 +10304,16 @@ export type SiteDefinition = IData & {
 };
 
 
+export type SiteDefinitionNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type SiteDefinition_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type SiteDefinition_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -9789,6 +10594,30 @@ export type StandardPage = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+/** A standard content page for xhtml / block layouts. */
+export type StandardPageMainBodyArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A standard content page for xhtml / block layouts. */
+export type StandardPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A standard content page for xhtml / block layouts. */
+export type StandardPageStandardPageHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** A standard content page for xhtml / block layouts. */
+export type StandardPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -10219,6 +11048,54 @@ export type StartPage = IContent & IData & {
 
 
 /** The start/home page for this site. */
+export type StartPageFooterNavigationContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageFooterNavigationCopyrightTextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageHomePageHeroContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageHomePageMainContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageMainNavigationContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPageUtilityNavigationContentAreaArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
+export type StartPage_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+/** The start/home page for this site. */
 export type StartPage_LinkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
@@ -10582,6 +11459,26 @@ export type TextBlock = IContent & IData & {
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+};
+
+
+export type TextBlockNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TextBlockTextBlockHeadingArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TextBlockTextBlockOverlineArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type TextBlock_FulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
 };
 
 
@@ -10955,7 +11852,18 @@ export type GetPathByGuidQueryVariables = Exact<{
 }>;
 
 
-export type GetPathByGuidQuery = { __typename?: 'Query', pathByGuid?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', path?: string | null, url?: string | null } | { __typename?: 'BlogListingPage', path?: string | null, url?: string | null } | { __typename?: 'BlogPostPage', path?: string | null, url?: string | null } | { __typename?: 'ButtonBlock', path?: string | null, url?: string | null } | { __typename?: 'CardBlock', path?: string | null, url?: string | null } | { __typename?: 'CarouselBlock', path?: string | null, url?: string | null } | { __typename?: 'ContainerPage', path?: string | null, url?: string | null } | { __typename?: 'Content', path?: string | null, url?: string | null } | { __typename?: 'DAMAsset', path?: string | null, url?: string | null } | { __typename?: 'DAMImageAsset', path?: string | null, url?: string | null } | { __typename?: 'DAMVideoAsset', path?: string | null, url?: string | null } | { __typename?: 'GroupCardListBlock', path?: string | null, url?: string | null } | { __typename?: 'HeroBlock', path?: string | null, url?: string | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, url?: string | null } | { __typename?: 'HtmlBlock', path?: string | null, url?: string | null } | { __typename?: 'LandingPage', path?: string | null, url?: string | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, url?: string | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, url?: string | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, url?: string | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, url?: string | null } | { __typename?: 'PageSeoSettings', path?: string | null, url?: string | null } | { __typename?: 'QuoteBlock', path?: string | null, url?: string | null } | { __typename?: 'StandardPage', path?: string | null, url?: string | null } | { __typename?: 'StartPage', path?: string | null, url?: string | null } | { __typename?: 'TextBlock', path?: string | null, url?: string | null } | null> | null } | null };
+export type GetPathByGuidQuery = { __typename?: 'Query', pathByGuid?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', path?: string | null, url?: string | null } | { __typename?: 'BlogListingPage', path?: string | null, url?: string | null } | { __typename?: 'BlogPostPage', path?: string | null, url?: string | null } | { __typename?: 'Button', path?: string | null, url?: string | null } | { __typename?: 'ButtonBlock', path?: string | null, url?: string | null } | { __typename?: 'CardBlock', path?: string | null, url?: string | null } | { __typename?: 'CarouselBlock', path?: string | null, url?: string | null } | { __typename?: 'ContainerPage', path?: string | null, url?: string | null } | { __typename?: 'Content', path?: string | null, url?: string | null } | { __typename?: 'DAMAsset', path?: string | null, url?: string | null } | { __typename?: 'DAMImageAsset', path?: string | null, url?: string | null } | { __typename?: 'DAMVideoAsset', path?: string | null, url?: string | null } | { __typename?: 'GroupCardListBlock', path?: string | null, url?: string | null } | { __typename?: 'HeroBlock', path?: string | null, url?: string | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, url?: string | null } | { __typename?: 'HtmlBlock', path?: string | null, url?: string | null } | { __typename?: 'LandingPage', path?: string | null, url?: string | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, url?: string | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, url?: string | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, url?: string | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, url?: string | null } | { __typename?: 'PageSeoSettings', path?: string | null, url?: string | null } | { __typename?: 'QuoteBlock', path?: string | null, url?: string | null } | { __typename?: 'StandardPage', path?: string | null, url?: string | null } | { __typename?: 'StartPage', path?: string | null, url?: string | null } | { __typename?: 'TextBlock', path?: string | null, url?: string | null } | null> | null } | null };
+
+export type ContentSearchQueryVariables = Exact<{
+  term: Scalars['String']['input'];
+  topInterest?: InputMaybe<Scalars['String']['input']>;
+  locale?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
+  types?: InputMaybe<Array<Scalars['String']['input']> | Scalars['String']['input']>;
+  pageSize?: InputMaybe<Scalars['Int']['input']>;
+}>;
+
+
+export type ContentSearchQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, cursor?: string | null, items?: Array<{ __typename?: 'BlogListingBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'BlogListingPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'BlogPostPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'Button', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'ButtonBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'CardBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'CarouselBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'ContainerPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'Content', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'DAMAsset', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'DAMImageAsset', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'DAMVideoAsset', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'GroupCardListBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'HeroBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'HomePageHeroBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'HtmlBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'LandingPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'LayoutContainerBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'MegaMenuGroupBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'MenuNavigationBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'OdpEmbedBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'PageSeoSettings', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'QuoteBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'StandardPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'StartPage', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | { __typename?: 'TextBlock', _score?: number | null, name?: string | null, url?: string | null, type?: Array<string | null> | null, changed?: any | null, published?: any | null } | null> | null, facets?: { __typename?: 'ContentFacet', ContentType?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null, Language?: { __typename?: 'ContentLanguageModelFacet', Name?: Array<{ __typename?: 'StringFacet', name?: string | null, count?: number | null } | null> | null } | null } | null } | null };
 
 export type BlogListingBlockDataFragment = { __typename?: 'BlogListingBlock', Name?: string | null, showFilters?: any | null, selectedPageSize?: number | null } & { ' $fragmentName'?: 'BlogListingBlockDataFragment' };
 
@@ -10976,6 +11884,9 @@ export type LayoutContainerBlockDataFragment = { __typename?: 'LayoutContainerBl
       ) | (
         { __typename?: 'BlogPostPage' }
         & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
+      ) | (
+        { __typename?: 'Button' }
+        & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
       ) | (
         { __typename?: 'ButtonBlock' }
         & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
@@ -11071,6 +11982,9 @@ export type FooterNavigationNewQuery = { __typename?: 'Query', menuItems?: { __t
             { __typename?: 'BlogPostPage' }
             & { ' $fragmentRefs'?: { 'FooterNavigationBlock_BlogPostPage_Fragment': FooterNavigationBlock_BlogPostPage_Fragment } }
           ) | (
+            { __typename?: 'Button' }
+            & { ' $fragmentRefs'?: { 'FooterNavigationBlock_Button_Fragment': FooterNavigationBlock_Button_Fragment } }
+          ) | (
             { __typename?: 'ButtonBlock' }
             & { ' $fragmentRefs'?: { 'FooterNavigationBlock_ButtonBlock_Fragment': FooterNavigationBlock_ButtonBlock_Fragment } }
           ) | (
@@ -11144,6 +12058,8 @@ type FooterNavigationBlock_BlogListingPage_Fragment = { __typename?: 'BlogListin
 
 type FooterNavigationBlock_BlogPostPage_Fragment = { __typename?: 'BlogPostPage' } & { ' $fragmentName'?: 'FooterNavigationBlock_BlogPostPage_Fragment' };
 
+type FooterNavigationBlock_Button_Fragment = { __typename?: 'Button' } & { ' $fragmentName'?: 'FooterNavigationBlock_Button_Fragment' };
+
 type FooterNavigationBlock_ButtonBlock_Fragment = { __typename?: 'ButtonBlock' } & { ' $fragmentName'?: 'FooterNavigationBlock_ButtonBlock_Fragment' };
 
 type FooterNavigationBlock_CardBlock_Fragment = { __typename?: 'CardBlock' } & { ' $fragmentName'?: 'FooterNavigationBlock_CardBlock_Fragment' };
@@ -11194,7 +12110,7 @@ type FooterNavigationBlock_StartPage_Fragment = { __typename?: 'StartPage' } & {
 
 type FooterNavigationBlock_TextBlock_Fragment = { __typename?: 'TextBlock' } & { ' $fragmentName'?: 'FooterNavigationBlock_TextBlock_Fragment' };
 
-export type FooterNavigationBlockFragment = FooterNavigationBlock_BlogListingBlock_Fragment | FooterNavigationBlock_BlogListingPage_Fragment | FooterNavigationBlock_BlogPostPage_Fragment | FooterNavigationBlock_ButtonBlock_Fragment | FooterNavigationBlock_CardBlock_Fragment | FooterNavigationBlock_CarouselBlock_Fragment | FooterNavigationBlock_ContainerPage_Fragment | FooterNavigationBlock_Content_Fragment | FooterNavigationBlock_DamAsset_Fragment | FooterNavigationBlock_DamImageAsset_Fragment | FooterNavigationBlock_DamVideoAsset_Fragment | FooterNavigationBlock_GroupCardListBlock_Fragment | FooterNavigationBlock_HeroBlock_Fragment | FooterNavigationBlock_HomePageHeroBlock_Fragment | FooterNavigationBlock_HtmlBlock_Fragment | FooterNavigationBlock_LandingPage_Fragment | FooterNavigationBlock_LayoutContainerBlock_Fragment | FooterNavigationBlock_MegaMenuGroupBlock_Fragment | FooterNavigationBlock_MenuNavigationBlock_Fragment | FooterNavigationBlock_OdpEmbedBlock_Fragment | FooterNavigationBlock_PageSeoSettings_Fragment | FooterNavigationBlock_QuoteBlock_Fragment | FooterNavigationBlock_StandardPage_Fragment | FooterNavigationBlock_StartPage_Fragment | FooterNavigationBlock_TextBlock_Fragment;
+export type FooterNavigationBlockFragment = FooterNavigationBlock_BlogListingBlock_Fragment | FooterNavigationBlock_BlogListingPage_Fragment | FooterNavigationBlock_BlogPostPage_Fragment | FooterNavigationBlock_Button_Fragment | FooterNavigationBlock_ButtonBlock_Fragment | FooterNavigationBlock_CardBlock_Fragment | FooterNavigationBlock_CarouselBlock_Fragment | FooterNavigationBlock_ContainerPage_Fragment | FooterNavigationBlock_Content_Fragment | FooterNavigationBlock_DamAsset_Fragment | FooterNavigationBlock_DamImageAsset_Fragment | FooterNavigationBlock_DamVideoAsset_Fragment | FooterNavigationBlock_GroupCardListBlock_Fragment | FooterNavigationBlock_HeroBlock_Fragment | FooterNavigationBlock_HomePageHeroBlock_Fragment | FooterNavigationBlock_HtmlBlock_Fragment | FooterNavigationBlock_LandingPage_Fragment | FooterNavigationBlock_LayoutContainerBlock_Fragment | FooterNavigationBlock_MegaMenuGroupBlock_Fragment | FooterNavigationBlock_MenuNavigationBlock_Fragment | FooterNavigationBlock_OdpEmbedBlock_Fragment | FooterNavigationBlock_PageSeoSettings_Fragment | FooterNavigationBlock_QuoteBlock_Fragment | FooterNavigationBlock_StandardPage_Fragment | FooterNavigationBlock_StartPage_Fragment | FooterNavigationBlock_TextBlock_Fragment;
 
 export type HtmlBlockFragment = { __typename: 'HtmlBlock', title?: string | null, content?: string | null } & { ' $fragmentName'?: 'HtmlBlockFragment' };
 
@@ -11205,7 +12121,7 @@ export type NavigationsQueryVariables = Exact<{
 }>;
 
 
-export type NavigationsQuery = { __typename?: 'Query', menuItems?: { __typename?: 'StartPageOutput', items?: Array<{ __typename?: 'StartPage', headerNavigation?: Array<{ __typename?: 'ContentAreaItemModelSearch', contentLink?: { __typename?: 'ContentModelReferenceSearch', navigationItem?: { __typename?: 'BlogListingBlock' } | { __typename?: 'BlogListingPage' } | { __typename?: 'BlogPostPage' } | { __typename?: 'ButtonBlock' } | { __typename?: 'CardBlock' } | { __typename?: 'CarouselBlock' } | { __typename?: 'ContainerPage' } | { __typename?: 'Content' } | { __typename?: 'DAMAsset' } | { __typename?: 'DAMImageAsset' } | { __typename?: 'DAMVideoAsset' } | { __typename?: 'GroupCardListBlock' } | { __typename?: 'HeroBlock' } | { __typename?: 'HomePageHeroBlock' } | { __typename?: 'HtmlBlock' } | { __typename?: 'LandingPage' } | { __typename?: 'LayoutContainerBlock' } | (
+export type NavigationsQuery = { __typename?: 'Query', menuItems?: { __typename?: 'StartPageOutput', items?: Array<{ __typename?: 'StartPage', headerNavigation?: Array<{ __typename?: 'ContentAreaItemModelSearch', contentLink?: { __typename?: 'ContentModelReferenceSearch', navigationItem?: { __typename?: 'BlogListingBlock' } | { __typename?: 'BlogListingPage' } | { __typename?: 'BlogPostPage' } | { __typename?: 'Button' } | { __typename?: 'ButtonBlock' } | { __typename?: 'CardBlock' } | { __typename?: 'CarouselBlock' } | { __typename?: 'ContainerPage' } | { __typename?: 'Content' } | { __typename?: 'DAMAsset' } | { __typename?: 'DAMImageAsset' } | { __typename?: 'DAMVideoAsset' } | { __typename?: 'GroupCardListBlock' } | { __typename?: 'HeroBlock' } | { __typename?: 'HomePageHeroBlock' } | { __typename?: 'HtmlBlock' } | { __typename?: 'LandingPage' } | { __typename?: 'LayoutContainerBlock' } | (
             { __typename?: 'MegaMenuGroupBlock' }
             & { ' $fragmentRefs'?: { 'MegaMenuItemFragment': MegaMenuItemFragment } }
           ) | { __typename?: 'MenuNavigationBlock' } | { __typename?: 'OdpEmbedBlock' } | { __typename?: 'PageSeoSettings' } | { __typename?: 'QuoteBlock' } | { __typename?: 'StandardPage' } | { __typename?: 'StartPage' } | { __typename?: 'TextBlock' } | null } | null } | null> | null, UtilityNavigationContentArea?: Array<{ __typename?: 'ContentAreaItemModelSearch', contentLink?: { __typename?: 'ContentModelReferenceSearch', navigationItem?: (
@@ -11217,6 +12133,9 @@ export type NavigationsQuery = { __typename?: 'Query', menuItems?: { __typename?
           ) | (
             { __typename?: 'BlogPostPage' }
             & { ' $fragmentRefs'?: { 'Block_BlogPostPage_Fragment': Block_BlogPostPage_Fragment } }
+          ) | (
+            { __typename?: 'Button' }
+            & { ' $fragmentRefs'?: { 'Block_Button_Fragment': Block_Button_Fragment } }
           ) | (
             { __typename?: 'ButtonBlock' }
             & { ' $fragmentRefs'?: { 'Block_ButtonBlock_Fragment': Block_ButtonBlock_Fragment } }
@@ -11295,6 +12214,9 @@ export type MegaMenuItemFragment = { __typename?: 'MegaMenuGroupBlock', menuName
         { __typename?: 'BlogPostPage' }
         & { ' $fragmentRefs'?: { 'Block_BlogPostPage_Fragment': Block_BlogPostPage_Fragment } }
       ) | (
+        { __typename?: 'Button' }
+        & { ' $fragmentRefs'?: { 'Block_Button_Fragment': Block_Button_Fragment } }
+      ) | (
         { __typename?: 'ButtonBlock' }
         & { ' $fragmentRefs'?: { 'Block_ButtonBlock_Fragment': Block_ButtonBlock_Fragment } }
       ) | (
@@ -11368,6 +12290,8 @@ type Block_BlogListingPage_Fragment = { __typename?: 'BlogListingPage' } & { ' $
 
 type Block_BlogPostPage_Fragment = { __typename?: 'BlogPostPage' } & { ' $fragmentName'?: 'Block_BlogPostPage_Fragment' };
 
+type Block_Button_Fragment = { __typename?: 'Button' } & { ' $fragmentName'?: 'Block_Button_Fragment' };
+
 type Block_ButtonBlock_Fragment = (
   { __typename?: 'ButtonBlock' }
   & { ' $fragmentRefs'?: { 'ButtonFragment': ButtonFragment } }
@@ -11421,7 +12345,7 @@ type Block_StartPage_Fragment = { __typename?: 'StartPage' } & { ' $fragmentName
 
 type Block_TextBlock_Fragment = { __typename?: 'TextBlock' } & { ' $fragmentName'?: 'Block_TextBlock_Fragment' };
 
-export type BlockFragment = Block_BlogListingBlock_Fragment | Block_BlogListingPage_Fragment | Block_BlogPostPage_Fragment | Block_ButtonBlock_Fragment | Block_CardBlock_Fragment | Block_CarouselBlock_Fragment | Block_ContainerPage_Fragment | Block_Content_Fragment | Block_DamAsset_Fragment | Block_DamImageAsset_Fragment | Block_DamVideoAsset_Fragment | Block_GroupCardListBlock_Fragment | Block_HeroBlock_Fragment | Block_HomePageHeroBlock_Fragment | Block_HtmlBlock_Fragment | Block_LandingPage_Fragment | Block_LayoutContainerBlock_Fragment | Block_MegaMenuGroupBlock_Fragment | Block_MenuNavigationBlock_Fragment | Block_OdpEmbedBlock_Fragment | Block_PageSeoSettings_Fragment | Block_QuoteBlock_Fragment | Block_StandardPage_Fragment | Block_StartPage_Fragment | Block_TextBlock_Fragment;
+export type BlockFragment = Block_BlogListingBlock_Fragment | Block_BlogListingPage_Fragment | Block_BlogPostPage_Fragment | Block_Button_Fragment | Block_ButtonBlock_Fragment | Block_CardBlock_Fragment | Block_CarouselBlock_Fragment | Block_ContainerPage_Fragment | Block_Content_Fragment | Block_DamAsset_Fragment | Block_DamImageAsset_Fragment | Block_DamVideoAsset_Fragment | Block_GroupCardListBlock_Fragment | Block_HeroBlock_Fragment | Block_HomePageHeroBlock_Fragment | Block_HtmlBlock_Fragment | Block_LandingPage_Fragment | Block_LayoutContainerBlock_Fragment | Block_MegaMenuGroupBlock_Fragment | Block_MenuNavigationBlock_Fragment | Block_OdpEmbedBlock_Fragment | Block_PageSeoSettings_Fragment | Block_QuoteBlock_Fragment | Block_StandardPage_Fragment | Block_StartPage_Fragment | Block_TextBlock_Fragment;
 
 export type ButtonFragment = { __typename?: 'ButtonBlock', text?: string | null, url?: string | null, type?: string | null, variant?: string | null } & { ' $fragmentName'?: 'ButtonFragment' };
 
@@ -11468,7 +12392,7 @@ export type GetContentByPathBaseQueryVariables = Exact<{
 }>;
 
 
-export type GetContentByPathBaseQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogListingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogPostPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ButtonBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CardBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CarouselBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ContainerPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Content', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMImageAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMVideoAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'GroupCardListBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HomePageHeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HtmlBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LandingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LayoutContainerBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MenuNavigationBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'OdpEmbedBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'PageSeoSettings', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'QuoteBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StandardPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StartPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'TextBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | null> | null } | null };
+export type GetContentByPathBaseQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogListingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogPostPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Button', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ButtonBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CardBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CarouselBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ContainerPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Content', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMImageAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMVideoAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'GroupCardListBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HomePageHeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HtmlBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LandingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LayoutContainerBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MenuNavigationBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'OdpEmbedBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'PageSeoSettings', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'QuoteBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StandardPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StartPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'TextBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | null> | null } | null };
 
 export type GetGenericMetaDataQueryVariables = Exact<{
   path: Scalars['String']['input'];
@@ -11477,7 +12401,7 @@ export type GetGenericMetaDataQueryVariables = Exact<{
 }>;
 
 
-export type GetGenericMetaDataQuery = { __typename?: 'Query', getGenericMetaData?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'BlogListingPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'BlogPostPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'ButtonBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'CardBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'CarouselBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'ContainerPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'Content', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMImageAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMVideoAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'GroupCardListBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HeroBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HomePageHeroBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HtmlBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'LandingPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'LayoutContainerBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'MegaMenuGroupBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'MenuNavigationBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'OdpEmbedBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'PageSeoSettings', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'QuoteBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'StandardPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'StartPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'TextBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | null> | null } | null };
+export type GetGenericMetaDataQuery = { __typename?: 'Query', getGenericMetaData?: { __typename?: 'ContentOutput', items?: Array<{ __typename?: 'BlogListingBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'BlogListingPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'BlogPostPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'Button', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'ButtonBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'CardBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'CarouselBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'ContainerPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'Content', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMImageAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'DAMVideoAsset', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'GroupCardListBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HeroBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HomePageHeroBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'HtmlBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'LandingPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'LayoutContainerBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'MegaMenuGroupBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'MenuNavigationBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'OdpEmbedBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'PageSeoSettings', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'QuoteBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'StandardPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'StartPage', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | { __typename?: 'TextBlock', name?: string | null, canonical?: string | null, alternatives?: Array<{ __typename?: 'ContentLanguageModel', locale?: string | null, href?: string | null } | null> | null } | null> | null } | null };
 
 export type GetContentByIdBaseQueryVariables = Exact<{
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -11488,7 +12412,7 @@ export type GetContentByIdBaseQueryVariables = Exact<{
 }>;
 
 
-export type GetContentByIdBaseQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogListingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogPostPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ButtonBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CardBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CarouselBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ContainerPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Content', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMImageAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMVideoAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'GroupCardListBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HomePageHeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HtmlBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LandingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LayoutContainerBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MenuNavigationBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'OdpEmbedBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'PageSeoSettings', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'QuoteBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StandardPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StartPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'TextBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | null> | null } | null };
+export type GetContentByIdBaseQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogListingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'BlogPostPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Button', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ButtonBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CardBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'CarouselBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'ContainerPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'Content', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMImageAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'DAMVideoAsset', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'GroupCardListBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HomePageHeroBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'HtmlBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LandingPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'LayoutContainerBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'MenuNavigationBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'OdpEmbedBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'PageSeoSettings', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'QuoteBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StandardPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'StartPage', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | { __typename?: 'TextBlock', contentType?: Array<string | null> | null, path?: string | null, id?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } | null> | null } | null };
 
 export type ContentLinkFragment = { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } & { ' $fragmentName'?: 'ContentLinkFragment' };
 
@@ -11508,6 +12432,11 @@ type IContentData_BlogPostPage_Fragment = { __typename?: 'BlogPostPage', content
     { __typename?: 'ContentModelReference' }
     & { ' $fragmentRefs'?: { 'ContentLinkFragment': ContentLinkFragment } }
   ) | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } & { ' $fragmentName'?: 'IContentData_BlogPostPage_Fragment' };
+
+type IContentData_Button_Fragment = { __typename?: 'Button', contentType?: Array<string | null> | null, path?: string | null, id?: (
+    { __typename?: 'ContentModelReference' }
+    & { ' $fragmentRefs'?: { 'ContentLinkFragment': ContentLinkFragment } }
+  ) | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } & { ' $fragmentName'?: 'IContentData_Button_Fragment' };
 
 type IContentData_ButtonBlock_Fragment = { __typename?: 'ButtonBlock', contentType?: Array<string | null> | null, path?: string | null, id?: (
     { __typename?: 'ContentModelReference' }
@@ -11619,7 +12548,7 @@ type IContentData_TextBlock_Fragment = { __typename?: 'TextBlock', contentType?:
     & { ' $fragmentRefs'?: { 'ContentLinkFragment': ContentLinkFragment } }
   ) | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null } & { ' $fragmentName'?: 'IContentData_TextBlock_Fragment' };
 
-export type IContentDataFragment = IContentData_BlogListingBlock_Fragment | IContentData_BlogListingPage_Fragment | IContentData_BlogPostPage_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContainerPage_Fragment | IContentData_Content_Fragment | IContentData_DamAsset_Fragment | IContentData_DamImageAsset_Fragment | IContentData_DamVideoAsset_Fragment | IContentData_GroupCardListBlock_Fragment | IContentData_HeroBlock_Fragment | IContentData_HomePageHeroBlock_Fragment | IContentData_HtmlBlock_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutContainerBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_QuoteBlock_Fragment | IContentData_StandardPage_Fragment | IContentData_StartPage_Fragment | IContentData_TextBlock_Fragment;
+export type IContentDataFragment = IContentData_BlogListingBlock_Fragment | IContentData_BlogListingPage_Fragment | IContentData_BlogPostPage_Fragment | IContentData_Button_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContainerPage_Fragment | IContentData_Content_Fragment | IContentData_DamAsset_Fragment | IContentData_DamImageAsset_Fragment | IContentData_DamVideoAsset_Fragment | IContentData_GroupCardListBlock_Fragment | IContentData_HeroBlock_Fragment | IContentData_HomePageHeroBlock_Fragment | IContentData_HtmlBlock_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutContainerBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_QuoteBlock_Fragment | IContentData_StandardPage_Fragment | IContentData_StartPage_Fragment | IContentData_TextBlock_Fragment;
 
 export type ContentAreaItemDataFragment = { __typename?: 'ContentAreaItemModelSearch', displayOption?: string | null, item?: (
     { __typename?: 'ContentModelReferenceSearch', data?: (
@@ -11631,6 +12560,9 @@ export type ContentAreaItemDataFragment = { __typename?: 'ContentAreaItemModelSe
     ) | (
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'BlockData_BlogPostPage_Fragment': BlockData_BlogPostPage_Fragment } }
+    ) | (
+      { __typename?: 'Button' }
+      & { ' $fragmentRefs'?: { 'BlockData_Button_Fragment': BlockData_Button_Fragment } }
     ) | (
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment } }
@@ -11712,6 +12644,9 @@ export type BlockContentAreaItemSearchDataFragment = { __typename?: 'ContentArea
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
     ) | (
+      { __typename?: 'Button' }
+      & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
+    ) | (
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
     ) | (
@@ -11792,6 +12727,9 @@ export type BlockContentAreaItemDataFragment = { __typename?: 'ContentAreaItemMo
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
     ) | (
+      { __typename?: 'Button' }
+      & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
+    ) | (
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
     ) | (
@@ -11861,7 +12799,7 @@ export type BlockContentAreaItemDataFragment = { __typename?: 'ContentAreaItemMo
     & { ' $fragmentRefs'?: { 'ContentLinkFragment': ContentLinkFragment } }
   ) | null } & { ' $fragmentName'?: 'BlockContentAreaItemDataFragment' };
 
-export type LinkItemDataFragment = { __typename?: 'LinkItemNode', children?: string | null, title?: string | null, href?: string | null, target?: string | null, content?: { __typename?: 'ContentModelReference', href?: string | null, data?: { __typename?: 'BlogListingBlock', path?: string | null } | { __typename?: 'BlogListingPage', path?: string | null } | { __typename?: 'BlogPostPage', path?: string | null } | { __typename?: 'ButtonBlock', path?: string | null } | { __typename?: 'CardBlock', path?: string | null } | { __typename?: 'CarouselBlock', path?: string | null } | { __typename?: 'ContainerPage', path?: string | null } | { __typename?: 'Content', path?: string | null } | { __typename?: 'DAMAsset', path?: string | null } | { __typename?: 'DAMImageAsset', path?: string | null } | { __typename?: 'DAMVideoAsset', path?: string | null } | { __typename?: 'GroupCardListBlock', path?: string | null } | { __typename?: 'HeroBlock', path?: string | null } | { __typename?: 'HomePageHeroBlock', path?: string | null } | { __typename?: 'HtmlBlock', path?: string | null } | { __typename?: 'LandingPage', path?: string | null } | { __typename?: 'LayoutContainerBlock', path?: string | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null } | { __typename?: 'MenuNavigationBlock', path?: string | null } | { __typename?: 'OdpEmbedBlock', path?: string | null } | { __typename?: 'PageSeoSettings', path?: string | null } | { __typename?: 'QuoteBlock', path?: string | null } | { __typename?: 'StandardPage', path?: string | null } | { __typename?: 'StartPage', path?: string | null } | { __typename?: 'TextBlock', path?: string | null } | null } | null } & { ' $fragmentName'?: 'LinkItemDataFragment' };
+export type LinkItemDataFragment = { __typename?: 'LinkItemNode', children?: string | null, title?: string | null, href?: string | null, target?: string | null, content?: { __typename?: 'ContentModelReference', href?: string | null, data?: { __typename?: 'BlogListingBlock', path?: string | null } | { __typename?: 'BlogListingPage', path?: string | null } | { __typename?: 'BlogPostPage', path?: string | null } | { __typename?: 'Button', path?: string | null } | { __typename?: 'ButtonBlock', path?: string | null } | { __typename?: 'CardBlock', path?: string | null } | { __typename?: 'CarouselBlock', path?: string | null } | { __typename?: 'ContainerPage', path?: string | null } | { __typename?: 'Content', path?: string | null } | { __typename?: 'DAMAsset', path?: string | null } | { __typename?: 'DAMImageAsset', path?: string | null } | { __typename?: 'DAMVideoAsset', path?: string | null } | { __typename?: 'GroupCardListBlock', path?: string | null } | { __typename?: 'HeroBlock', path?: string | null } | { __typename?: 'HomePageHeroBlock', path?: string | null } | { __typename?: 'HtmlBlock', path?: string | null } | { __typename?: 'LandingPage', path?: string | null } | { __typename?: 'LayoutContainerBlock', path?: string | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null } | { __typename?: 'MenuNavigationBlock', path?: string | null } | { __typename?: 'OdpEmbedBlock', path?: string | null } | { __typename?: 'PageSeoSettings', path?: string | null } | { __typename?: 'QuoteBlock', path?: string | null } | { __typename?: 'StandardPage', path?: string | null } | { __typename?: 'StartPage', path?: string | null } | { __typename?: 'TextBlock', path?: string | null } | null } | null } & { ' $fragmentName'?: 'LinkItemDataFragment' };
 
 export type ImageDataFragment = (
   { __typename?: 'ContentModelReference', url?: string | null, data?: (
@@ -11873,6 +12811,9 @@ export type ImageDataFragment = (
   ) | (
     { __typename?: 'BlogPostPage', url?: string | null, alt?: string | null, path?: string | null }
     & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
+  ) | (
+    { __typename?: 'Button', url?: string | null, alt?: string | null, path?: string | null }
+    & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
   ) | (
     { __typename?: 'ButtonBlock', url?: string | null, alt?: string | null, path?: string | null }
     & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
@@ -11953,6 +12894,9 @@ export type ImageDataSearchFragment = (
   ) | (
     { __typename?: 'BlogPostPage', url?: string | null, alt?: string | null, path?: string | null }
     & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
+  ) | (
+    { __typename?: 'Button', url?: string | null, alt?: string | null, path?: string | null }
+    & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
   ) | (
     { __typename?: 'ButtonBlock', url?: string | null, alt?: string | null, path?: string | null }
     & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment } }
@@ -12037,6 +12981,11 @@ type BlockData_BlogPostPage_Fragment = (
   { __typename?: 'BlogPostPage' }
   & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_BlogPostPage_Fragment' };
+
+type BlockData_Button_Fragment = (
+  { __typename?: 'Button' }
+  & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_Button_Fragment' };
 
 type BlockData_ButtonBlock_Fragment = (
   { __typename?: 'ButtonBlock' }
@@ -12148,7 +13097,7 @@ type BlockData_TextBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_TextBlock_Fragment' };
 
-export type BlockDataFragment = BlockData_BlogListingBlock_Fragment | BlockData_BlogListingPage_Fragment | BlockData_BlogPostPage_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContainerPage_Fragment | BlockData_Content_Fragment | BlockData_DamAsset_Fragment | BlockData_DamImageAsset_Fragment | BlockData_DamVideoAsset_Fragment | BlockData_GroupCardListBlock_Fragment | BlockData_HeroBlock_Fragment | BlockData_HomePageHeroBlock_Fragment | BlockData_HtmlBlock_Fragment | BlockData_LandingPage_Fragment | BlockData_LayoutContainerBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_QuoteBlock_Fragment | BlockData_StandardPage_Fragment | BlockData_StartPage_Fragment | BlockData_TextBlock_Fragment;
+export type BlockDataFragment = BlockData_BlogListingBlock_Fragment | BlockData_BlogListingPage_Fragment | BlockData_BlogPostPage_Fragment | BlockData_Button_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContainerPage_Fragment | BlockData_Content_Fragment | BlockData_DamAsset_Fragment | BlockData_DamImageAsset_Fragment | BlockData_DamVideoAsset_Fragment | BlockData_GroupCardListBlock_Fragment | BlockData_HeroBlock_Fragment | BlockData_HomePageHeroBlock_Fragment | BlockData_HtmlBlock_Fragment | BlockData_LandingPage_Fragment | BlockData_LayoutContainerBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_QuoteBlock_Fragment | BlockData_StandardPage_Fragment | BlockData_StartPage_Fragment | BlockData_TextBlock_Fragment;
 
 type PageData_BlogListingBlock_Fragment = (
   { __typename?: 'BlogListingBlock' }
@@ -12164,6 +13113,11 @@ type PageData_BlogPostPage_Fragment = (
   { __typename?: 'BlogPostPage' }
   & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_BlogPostPage_Fragment' };
+
+type PageData_Button_Fragment = (
+  { __typename?: 'Button' }
+  & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment } }
+) & { ' $fragmentName'?: 'PageData_Button_Fragment' };
 
 type PageData_ButtonBlock_Fragment = (
   { __typename?: 'ButtonBlock' }
@@ -12275,9 +13229,9 @@ type PageData_TextBlock_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_TextBlock_Fragment': IContentData_TextBlock_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_TextBlock_Fragment' };
 
-export type PageDataFragment = PageData_BlogListingBlock_Fragment | PageData_BlogListingPage_Fragment | PageData_BlogPostPage_Fragment | PageData_ButtonBlock_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContainerPage_Fragment | PageData_Content_Fragment | PageData_DamAsset_Fragment | PageData_DamImageAsset_Fragment | PageData_DamVideoAsset_Fragment | PageData_GroupCardListBlock_Fragment | PageData_HeroBlock_Fragment | PageData_HomePageHeroBlock_Fragment | PageData_HtmlBlock_Fragment | PageData_LandingPage_Fragment | PageData_LayoutContainerBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_PageSeoSettings_Fragment | PageData_QuoteBlock_Fragment | PageData_StandardPage_Fragment | PageData_StartPage_Fragment | PageData_TextBlock_Fragment;
+export type PageDataFragment = PageData_BlogListingBlock_Fragment | PageData_BlogListingPage_Fragment | PageData_BlogPostPage_Fragment | PageData_Button_Fragment | PageData_ButtonBlock_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContainerPage_Fragment | PageData_Content_Fragment | PageData_DamAsset_Fragment | PageData_DamImageAsset_Fragment | PageData_DamVideoAsset_Fragment | PageData_GroupCardListBlock_Fragment | PageData_HeroBlock_Fragment | PageData_HomePageHeroBlock_Fragment | PageData_HtmlBlock_Fragment | PageData_LandingPage_Fragment | PageData_LayoutContainerBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_PageSeoSettings_Fragment | PageData_QuoteBlock_Fragment | PageData_StandardPage_Fragment | PageData_StartPage_Fragment | PageData_TextBlock_Fragment;
 
-export type ContentAreaItemBaseFragment = { __typename?: 'ContentAreaItemModelSearch', displayOption?: string | null, contentLink?: { __typename?: 'ContentModelReferenceSearch', id?: number | null, workId?: number | null, guidValue?: string | null, component?: { __typename?: 'BlogListingBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'BlogListingPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'BlogPostPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'ButtonBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'CardBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'CarouselBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'ContainerPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'Content', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMImageAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMVideoAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'GroupCardListBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HeroBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HtmlBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'LandingPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'PageSeoSettings', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'QuoteBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'StandardPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'StartPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'TextBlock', path?: string | null, type?: Array<string | null> | null } | null } | null } & { ' $fragmentName'?: 'ContentAreaItemBaseFragment' };
+export type ContentAreaItemBaseFragment = { __typename?: 'ContentAreaItemModelSearch', displayOption?: string | null, contentLink?: { __typename?: 'ContentModelReferenceSearch', id?: number | null, workId?: number | null, guidValue?: string | null, component?: { __typename?: 'BlogListingBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'BlogListingPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'BlogPostPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'Button', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'ButtonBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'CardBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'CarouselBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'ContainerPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'Content', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMImageAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'DAMVideoAsset', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'GroupCardListBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HeroBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'HtmlBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'LandingPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'PageSeoSettings', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'QuoteBlock', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'StandardPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'StartPage', path?: string | null, type?: Array<string | null> | null } | { __typename?: 'TextBlock', path?: string | null, type?: Array<string | null> | null } | null } | null } & { ' $fragmentName'?: 'ContentAreaItemBaseFragment' };
 
 export type GetContentByIdQueryVariables = Exact<{
   id?: InputMaybe<Scalars['Int']['input']>;
@@ -12297,6 +13251,9 @@ export type GetContentByIdQuery = { __typename?: 'Query', Content?: { __typename
     ) | (
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment;'PageData_BlogPostPage_Fragment': PageData_BlogPostPage_Fragment;'BlockData_BlogPostPage_Fragment': BlockData_BlogPostPage_Fragment } }
+    ) | (
+      { __typename?: 'Button' }
+      & { ' $fragmentRefs'?: { 'IContentData_Button_Fragment': IContentData_Button_Fragment;'PageData_Button_Fragment': PageData_Button_Fragment;'BlockData_Button_Fragment': BlockData_Button_Fragment } }
     ) | (
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'IContentData_ButtonBlock_Fragment': IContentData_ButtonBlock_Fragment;'PageData_ButtonBlock_Fragment': PageData_ButtonBlock_Fragment;'BlockData_ButtonBlock_Fragment': BlockData_ButtonBlock_Fragment } }
@@ -12382,6 +13339,9 @@ export type GetContentByPathQuery = { __typename?: 'Query', Content?: { __typena
       { __typename?: 'BlogPostPage' }
       & { ' $fragmentRefs'?: { 'PageData_BlogPostPage_Fragment': PageData_BlogPostPage_Fragment } }
     ) | (
+      { __typename?: 'Button' }
+      & { ' $fragmentRefs'?: { 'PageData_Button_Fragment': PageData_Button_Fragment } }
+    ) | (
       { __typename?: 'ButtonBlock' }
       & { ' $fragmentRefs'?: { 'PageData_ButtonBlock_Fragment': PageData_ButtonBlock_Fragment } }
     ) | (
@@ -12457,7 +13417,7 @@ export type GetContentTypeQueryVariables = Exact<{
 }>;
 
 
-export type GetContentTypeQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', ContentType?: Array<string | null> | null } | { __typename?: 'BlogListingPage', ContentType?: Array<string | null> | null } | { __typename?: 'BlogPostPage', ContentType?: Array<string | null> | null } | { __typename?: 'ButtonBlock', ContentType?: Array<string | null> | null } | { __typename?: 'CardBlock', ContentType?: Array<string | null> | null } | { __typename?: 'CarouselBlock', ContentType?: Array<string | null> | null } | { __typename?: 'ContainerPage', ContentType?: Array<string | null> | null } | { __typename?: 'Content', ContentType?: Array<string | null> | null } | { __typename?: 'DAMAsset', ContentType?: Array<string | null> | null } | { __typename?: 'DAMImageAsset', ContentType?: Array<string | null> | null } | { __typename?: 'DAMVideoAsset', ContentType?: Array<string | null> | null } | { __typename?: 'GroupCardListBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HeroBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HomePageHeroBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HtmlBlock', ContentType?: Array<string | null> | null } | { __typename?: 'LandingPage', ContentType?: Array<string | null> | null } | { __typename?: 'LayoutContainerBlock', ContentType?: Array<string | null> | null } | { __typename?: 'MegaMenuGroupBlock', ContentType?: Array<string | null> | null } | { __typename?: 'MenuNavigationBlock', ContentType?: Array<string | null> | null } | { __typename?: 'OdpEmbedBlock', ContentType?: Array<string | null> | null } | { __typename?: 'PageSeoSettings', ContentType?: Array<string | null> | null } | { __typename?: 'QuoteBlock', ContentType?: Array<string | null> | null } | { __typename?: 'StandardPage', ContentType?: Array<string | null> | null } | { __typename?: 'StartPage', ContentType?: Array<string | null> | null } | { __typename?: 'TextBlock', ContentType?: Array<string | null> | null } | null> | null } | null };
+export type GetContentTypeQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', ContentType?: Array<string | null> | null } | { __typename?: 'BlogListingPage', ContentType?: Array<string | null> | null } | { __typename?: 'BlogPostPage', ContentType?: Array<string | null> | null } | { __typename?: 'Button', ContentType?: Array<string | null> | null } | { __typename?: 'ButtonBlock', ContentType?: Array<string | null> | null } | { __typename?: 'CardBlock', ContentType?: Array<string | null> | null } | { __typename?: 'CarouselBlock', ContentType?: Array<string | null> | null } | { __typename?: 'ContainerPage', ContentType?: Array<string | null> | null } | { __typename?: 'Content', ContentType?: Array<string | null> | null } | { __typename?: 'DAMAsset', ContentType?: Array<string | null> | null } | { __typename?: 'DAMImageAsset', ContentType?: Array<string | null> | null } | { __typename?: 'DAMVideoAsset', ContentType?: Array<string | null> | null } | { __typename?: 'GroupCardListBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HeroBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HomePageHeroBlock', ContentType?: Array<string | null> | null } | { __typename?: 'HtmlBlock', ContentType?: Array<string | null> | null } | { __typename?: 'LandingPage', ContentType?: Array<string | null> | null } | { __typename?: 'LayoutContainerBlock', ContentType?: Array<string | null> | null } | { __typename?: 'MegaMenuGroupBlock', ContentType?: Array<string | null> | null } | { __typename?: 'MenuNavigationBlock', ContentType?: Array<string | null> | null } | { __typename?: 'OdpEmbedBlock', ContentType?: Array<string | null> | null } | { __typename?: 'PageSeoSettings', ContentType?: Array<string | null> | null } | { __typename?: 'QuoteBlock', ContentType?: Array<string | null> | null } | { __typename?: 'StandardPage', ContentType?: Array<string | null> | null } | { __typename?: 'StartPage', ContentType?: Array<string | null> | null } | { __typename?: 'TextBlock', ContentType?: Array<string | null> | null } | null> | null } | null };
 
 export type GetAllChannelsQueryVariables = Exact<{ [key: string]: never; }>;
 
@@ -12487,7 +13447,7 @@ export type GetAllRoutesQueryVariables = Exact<{
 }>;
 
 
-export type GetAllRoutesQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', cursor?: string | null, total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
+export type GetAllRoutesQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', cursor?: string | null, total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Button', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', path?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, url?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
 
 export type GetRouteByPathQueryVariables = Exact<{
   path: Scalars['String']['input'];
@@ -12495,7 +13455,7 @@ export type GetRouteByPathQueryVariables = Exact<{
 }>;
 
 
-export type GetRouteByPathQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
+export type GetRouteByPathQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Button', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
 
 export type GetRouteByIdQueryVariables = Exact<{
   id: Scalars['Int']['input'];
@@ -12504,7 +13464,7 @@ export type GetRouteByIdQueryVariables = Exact<{
 }>;
 
 
-export type GetRouteByIdQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
+export type GetRouteByIdQuery = { __typename?: 'Query', Content?: { __typename?: 'ContentOutput', total?: number | null, items?: Array<{ __typename?: 'BlogListingBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogListingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'BlogPostPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Button', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ButtonBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CardBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'CarouselBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'ContainerPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'Content', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMImageAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'DAMVideoAsset', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'GroupCardListBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HomePageHeroBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'HtmlBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LandingPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'LayoutContainerBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MegaMenuGroupBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'MenuNavigationBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'OdpEmbedBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'PageSeoSettings', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'QuoteBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StandardPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'StartPage', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | { __typename?: 'TextBlock', route?: string | null, url?: string | null, name?: string | null, contentType?: Array<string | null> | null, slug?: string | null, changed?: any | null, published?: any | null, siteId?: string | null, locale?: { __typename?: 'ContentLanguageModel', name?: string | null } | null, contentLink?: { __typename?: 'ContentModelReference', id?: number | null, workId?: number | null, guidValue?: string | null } | null } | null> | null } | null };
 
 export const BlogListingBlockDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogListingBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogListingBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}},{"kind":"Field","alias":{"kind":"Name","value":"showFilters"},"name":{"kind":"Name","value":"BlogListingShowFilters"}},{"kind":"Field","alias":{"kind":"Name","value":"selectedPageSize"},"name":{"kind":"Name","value":"BlogListingItemCount"}}]}}]} as unknown as DocumentNode<BlogListingBlockDataFragment, unknown>;
 export const CardBlockDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CardBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CardBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"}},{"kind":"Field","alias":{"kind":"Name","value":"button"},"name":{"kind":"Name","value":"CardButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"color"},"name":{"kind":"Name","value":"CardColor"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"CardDescription"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"CardHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"icon"},"name":{"kind":"Name","value":"CardIcon"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"Url"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"CardImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"Url"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"subheading"},"name":{"kind":"Name","value":"CardSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"imageLayout"},"name":{"kind":"Name","value":"ImageLayout"}}]}}]} as unknown as DocumentNode<CardBlockDataFragment, unknown>;
@@ -12540,6 +13500,7 @@ export const ImageDataSearchFragmentDoc = {"kind":"Document","definitions":[{"ki
 export const PageDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentLink"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentModelReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentType"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentLink"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"locale"},"name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}}]}}]} as unknown as DocumentNode<PageDataFragment, unknown>;
 export const ContentAreaItemBaseFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentAreaItemBase"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentAreaItemModelSearch"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentLink"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"Id"}},{"kind":"Field","alias":{"kind":"Name","value":"workId"},"name":{"kind":"Name","value":"WorkId"}},{"kind":"Field","alias":{"kind":"Name","value":"guidValue"},"name":{"kind":"Name","value":"GuidValue"}},{"kind":"Field","alias":{"kind":"Name","value":"component"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}},{"kind":"Field","alias":{"kind":"Name","value":"type"},"name":{"kind":"Name","value":"ContentType"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"displayOption"},"name":{"kind":"Name","value":"DisplayOption"}}]}}]} as unknown as DocumentNode<ContentAreaItemBaseFragment, unknown>;
 export const GetPathByGuidDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getPathByGuid"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"guid"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"pathByGuid"},"name":{"kind":"Name","value":"Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"ContentLink"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"GuidValue"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"guid"}}}]}}]}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"Url"}}]}}]}}]}}]} as unknown as DocumentNode<GetPathByGuidQuery, GetPathByGuidQueryVariables>;
+export const ContentSearchDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"ContentSearch"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"term"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"topInterest"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"types"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"contains"},"value":{"kind":"Variable","name":{"kind":"Name","value":"term"}}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"contains"},"value":{"kind":"Variable","name":{"kind":"Name","value":"topInterest"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"boost"},"value":{"kind":"IntValue","value":"2"}}]}}]}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"contains"},"value":{"kind":"Variable","name":{"kind":"Name","value":"term"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"Url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"exist"},"value":{"kind":"BooleanValue","value":true}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ranking"},"value":{"kind":"EnumValue","value":"SEMANTIC"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"cursor"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_score"}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"RelativePath"}},{"kind":"Field","alias":{"kind":"Name","value":"type"},"name":{"kind":"Name","value":"ContentType"}},{"kind":"Field","alias":{"kind":"Name","value":"changed"},"name":{"kind":"Name","value":"Changed"}},{"kind":"Field","alias":{"kind":"Name","value":"published"},"name":{"kind":"Name","value":"StartPublish"}}]}},{"kind":"Field","name":{"kind":"Name","value":"facets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ContentType"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"types"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"Language"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"Name"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]}}]}}]} as unknown as DocumentNode<ContentSearchQuery, ContentSearchQueryVariables>;
 export const FooterNavigationNewDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"FooterNavigationNew"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}},"defaultValue":{"kind":"EnumValue","value":"en"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"menuItems"},"name":{"kind":"Name","value":"StartPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"footerSubLinks"},"name":{"kind":"Name","value":"FooterNavigationSubLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"Href"}},{"kind":"Field","alias":{"kind":"Name","value":"text"},"name":{"kind":"Name","value":"Text"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"footerCopyright"},"name":{"kind":"Name","value":"FooterNavigationCopyrightText"}},{"kind":"Field","alias":{"kind":"Name","value":"footerNavigation"},"name":{"kind":"Name","value":"FooterNavigationContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentLink"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"navigationItem"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterNavigationBlock"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterMenuNavigationItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuNavigationBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"MenuNavigationHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"NavigationLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"Href"}},{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Title"}},{"kind":"Field","alias":{"kind":"Name","value":"target"},"name":{"kind":"Name","value":"Target"}},{"kind":"Field","alias":{"kind":"Name","value":"text"},"name":{"kind":"Name","value":"Text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HtmlBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HtmlBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"HtmlBlockHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"HtmlContent"}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"FooterNavigationBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"FooterMenuNavigationItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HtmlBlock"}}]}}]} as unknown as DocumentNode<FooterNavigationNewQuery, FooterNavigationNewQueryVariables>;
 export const NavigationsDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"Navigations"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"menuItems"},"name":{"kind":"Name","value":"StartPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"headerNavigation"},"name":{"kind":"Name","value":"MainNavigationContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentLink"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"navigationItem"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuItem"}}]}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"UtilityNavigationContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentLink"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"navigationItem"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Block"}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MenuNavigationItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuNavigationBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"MenuNavigationHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"NavigationLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"Href"}},{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Title"}},{"kind":"Field","alias":{"kind":"Name","value":"target"},"name":{"kind":"Name","value":"Target"}},{"kind":"Field","alias":{"kind":"Name","value":"text"},"name":{"kind":"Name","value":"Text"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CardItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CardBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"CardHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"subheading"},"name":{"kind":"Name","value":"CardSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"CardDescription"}},{"kind":"Field","alias":{"kind":"Name","value":"color"},"name":{"kind":"Name","value":"CardColor"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"CardImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"Url"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"link"},"name":{"kind":"Name","value":"CardButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"}}]}},{"kind":"Field","name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Button"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"text"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"}},{"kind":"Field","alias":{"kind":"Name","value":"type"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"variant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"Block"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CardItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"Button"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MegaMenuItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuGroupBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"menuName"},"name":{"kind":"Name","value":"MenuMenuHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"menuData"},"name":{"kind":"Name","value":"MegaMenuContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"contentLink"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"menuList"},"name":{"kind":"Name","value":"Expanded"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"Block"}}]}}]}}]}}]}}]} as unknown as DocumentNode<NavigationsQuery, NavigationsQueryVariables>;
 export const GetArticlesDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"GetArticles"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"10"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"start"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"0"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"author"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"published"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Date"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"publishedEnd"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"Date"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"getArticles"},"name":{"kind":"Name","value":"BlogPostPage"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_and"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_and"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"StartPublish"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"gte"},"value":{"kind":"Variable","name":{"kind":"Name","value":"published"}}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"StartPublish"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"lte"},"value":{"kind":"Variable","name":{"kind":"Name","value":"publishedEnd"}}}]}}]}]}}]}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"start"}}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"StartPublish"},"value":{"kind":"EnumValue","value":"DESC"}}]}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"id"},"name":{"kind":"Name","value":"ContentLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"guid"},"name":{"kind":"Name","value":"GuidValue"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"Name"}},{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"text"},"name":{"kind":"Name","value":"MetaDescription"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"Url"}},{"kind":"Field","alias":{"kind":"Name","value":"path"},"name":{"kind":"Name","value":"RelativePath"}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"published"},"name":{"kind":"Name","value":"StartPublish"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"src"},"name":{"kind":"Name","value":"Url"}}]}}]}},{"kind":"Field","name":{"kind":"Name","value":"facets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"orderType"},"value":{"kind":"EnumValue","value":"VALUE"}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"EnumValue","value":"ASC"}},{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"author"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"published"},"name":{"kind":"Name","value":"StartPublish"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"unit"},"value":{"kind":"EnumValue","value":"DAY"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"count"}},{"kind":"Field","name":{"kind":"Name","value":"name"}}]}}]}}]}}]}}]} as unknown as DocumentNode<GetArticlesQuery, GetArticlesQueryVariables>;

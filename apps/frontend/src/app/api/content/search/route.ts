@@ -20,7 +20,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
 
     const isPersonalized = topInterest ? true : false
 
-    const rawResponse = await client.query(
+    const rawResponse = await client.request(
         ComponentSearchQuery,
         {
             term: searchTerm,
@@ -112,31 +112,6 @@ const ComponentSearchQuery = gql(/* graphql */`query ContentSearch($term: String
             type: ContentType
             changed: Changed
             published: StartPublish
-            ... on LandingPage {
-              seo: LandingPageSeo {
-                description: MetaDescription
-              }
-            }
-            ... on ArticlePage {
-              seo: SeoSettings {
-                description: MetaDescription
-              }
-            }
-            ... on LocationPage {
-              seo: LocationSeoSettings {
-                description:MetaDescription
-              }
-            }
-            ... on ArticleListPage {
-                seo: SeoSettings {
-                  description:MetaDescription
-                }
-            }
-            ... on LocationListPage {
-                seo: LocationListSeo {
-                  description:MetaDescription
-                }
-            }
         }
         facets {
             ContentType (filters: $types) {

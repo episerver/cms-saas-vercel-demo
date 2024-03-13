@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ComponentType as ReactComponentType } from "react"
 import type { DocumentNode, TypedQueryDocumentNode as TypedDocumentNode } from "graphql"
-import type { ContentGraphClient } from "@remkoj/optimizely-graph-client"
+import type { IOptiGraphClient as ContentGraphClient } from "@remkoj/optimizely-graph-client"
 
 export type ContentType = string[]
 
