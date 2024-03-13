@@ -1,13 +1,6 @@
-//import Base64 from 'crypto-js/enc-base64'
+import { AuthMode, type IOptiGraphClient } from "./types.js"
 
 const TOKEN_MIN_LENGTH = 16
-
-export enum AuthMode {
-    Public = "epi-single",
-    Basic = "use-basic",
-    HMAC = "use-hmac",
-    Token = "use-token"
-}
 
 export function validateToken(newToken ?: string) : boolean
 {
@@ -37,4 +30,12 @@ export function base64encode(binaryString: string) {
 
 export function isError(toTest: any): toTest is Error {
     return typeof(toTest) == 'object' && toTest != null && typeof(toTest as Error).name == 'string' && typeof(toTest as Error).message == 'string'
+}
+
+export function isContentGraphClient(client: any) : client is IOptiGraphClient
+{
+    if (typeof(client) != 'object' || client == null)
+        return false
+    return typeof(client as IOptiGraphClient).updateAuthentication == 'function' 
+        && typeof(client as IOptiGraphClient).request == 'function'
 }

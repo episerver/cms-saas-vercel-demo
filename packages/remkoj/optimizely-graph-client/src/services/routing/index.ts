@@ -1,10 +1,10 @@
 import type { ContentLinkWithLocale, Route } from "./types.js"
 import { gql } from "graphql-request"
-import createClient, { type ContentGraphClient, isContentGraphClient } from '../../client/index.js'
+import createClient, { type IOptiGraphClient, isContentGraphClient } from '../../client/index.js'
 import type { ContentGraphConfig } from '../../types.js'
 
 export class RouteResolver {
-    private _cgClient : ContentGraphClient
+    private _cgClient : IOptiGraphClient
 
     /**
      * Create a new Route Resolver
@@ -12,7 +12,7 @@ export class RouteResolver {
      * @param client        ContentGraph configuration override
      * @param apolloConfig  Apollo Client configuration override
      */
-    public constructor (clientOrConfig?: ContentGraphClient | ContentGraphConfig)
+    public constructor (clientOrConfig?: IOptiGraphClient | ContentGraphConfig)
     {
 
         this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig)
@@ -146,6 +146,8 @@ export class RouteResolver {
         }
     }
 }
+
+export default RouteResolver
 
 export namespace GetAllRoutes {
     export type Route = {

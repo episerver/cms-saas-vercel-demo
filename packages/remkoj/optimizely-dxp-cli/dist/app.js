@@ -1,5 +1,5 @@
 import yargs from 'yargs';
-import { readEnvironmentVariables as getEnvConfig, validateConfig } from "@remkoj/optimizely-graph-client/config";
+import { readEnvironmentVariables as getEnvConfig, validateConfig, applyConfigDefaults } from "@remkoj/optimizely-graph-client/config";
 import { isDemanded } from './utils/index.js';
 export function createCliApp(scriptName, version, epilogue) {
     const config = getEnvConfig();
@@ -20,7 +20,7 @@ export function createCliApp(scriptName, version, epilogue) {
         .help();
 }
 export function getArgsConfig(args) {
-    const config = {
+    const config = applyConfigDefaults({
         dxp_url: args.dxp_url,
         deploy_domain: args.deploy_domain,
         app_key: args.app_key,
@@ -28,13 +28,13 @@ export function getArgsConfig(args) {
         single_key: args.single_key,
         gateway: args.gateway,
         query_log: args.verbose
-    };
+    });
     if (!validateConfig(config, false))
         throw new Error("Invalid Content-Graph connection details provided");
     return config;
 }
 export function getFrontendURL(config) {
-    const host = config.deploy_domain;
+    const host = config.deploy_domain ?? 'http://localhost:3000';
     const hostname = host.split(":")[0];
     const scheme = hostname == 'localhost' || hostname.endsWith(".local") ? 'http:' : 'https:';
     return new URL(`${scheme}//${host}/`);

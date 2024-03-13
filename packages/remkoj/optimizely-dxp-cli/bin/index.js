@@ -13,7 +13,7 @@ import * as dotenvExpand from 'dotenv-expand';
 import * as path from 'node:path';
 import path__default from 'node:path';
 import yargs from 'yargs';
-import { readEnvironmentVariables, validateConfig } from '@remkoj/optimizely-graph-client/config';
+import { readEnvironmentVariables, applyConfigDefaults, validateConfig } from '@remkoj/optimizely-graph-client/config';
 import { createHmacFetch } from '@remkoj/optimizely-graph-client/client';
 import chalk from 'chalk';
 import figures from 'figures';
@@ -61,7 +61,7 @@ function createCliApp(scriptName, version, epilogue) {
         .help();
 }
 function getArgsConfig(args) {
-    const config = {
+    const config = applyConfigDefaults({
         dxp_url: args.dxp_url,
         deploy_domain: args.deploy_domain,
         app_key: args.app_key,
@@ -69,13 +69,13 @@ function getArgsConfig(args) {
         single_key: args.single_key,
         gateway: args.gateway,
         query_log: args.verbose
-    };
+    });
     if (!validateConfig(config, false))
         throw new Error("Invalid Content-Graph connection details provided");
     return config;
 }
 function getFrontendURL(config) {
-    const host = config.deploy_domain;
+    const host = config.deploy_domain ?? 'http://localhost:3000';
     const hostname = host.split(":")[0];
     const scheme = hostname == 'localhost' || hostname.endsWith(".local") ? 'http:' : 'https:';
     return new URL(`${scheme}//${host}/`);

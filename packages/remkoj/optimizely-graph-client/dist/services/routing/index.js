@@ -119,6 +119,7 @@ export class RouteResolver {
         };
     }
 }
+export default RouteResolver;
 export var GetAllRoutes;
 (function (GetAllRoutes) {
     GetAllRoutes.query = gql `query GetAllRoutes($cursor: String, $pageSize: Int = 100, $typeFilter: [String] = "Page", $siteId: String = null)

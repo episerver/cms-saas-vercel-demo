@@ -1,19 +1,35 @@
-import type { ContentGraphConfig } from './types.js'
-export type { ContentGraphConfig } from './types.js'
+import type * as Types from './types.js'
+export type { ContentGraphConfig, OptimizelyGraphConfigInternal, OptimizelyGraphConfig } from './types.js'
 
-export function readEnvironmentVariables() : ContentGraphConfig
+export function readEnvironmentVariables() : Types.OptimizelyGraphConfig
 {
-    const config : ContentGraphConfig = {
+    const config : Types.OptimizelyGraphConfig = {
         secret: getOptional('OPTIMIZELY_GRAPH_SECRET', () => getOptional('OPTIMIZELY_CONTENTGRAPH_SECRET')),
         app_key: getOptional('OPTIMIZELY_GRAPH_APP_KEY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_APP_KEY')),
-        single_key: getOptional('OPTIMIZELY_GRAPH_SINGLE_KEY', () => getMandatory('OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY')) as string,
-        gateway: getOptional('OPTIMIZELY_GRAPH_GATEWAY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_GATEWAY', 'https://cg.optimizely.com')) as string,
-        deploy_domain: getOptional('SITE_DOMAIN', 'localhost:3000') as string,
-        dxp_url: getOptional('OPTIMIZELY_CMS_URL', () => getOptional('DXP_URL', 'http://localhost:8000/')) as string,
+        single_key: getOptional('OPTIMIZELY_GRAPH_SINGLE_KEY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY', '')) as string,
+        gateway: getOptional('OPTIMIZELY_GRAPH_GATEWAY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_GATEWAY')),
+        deploy_domain: getOptional('SITE_DOMAIN'),
+        dxp_url: getOptional('OPTIMIZELY_CMS_URL', () => getOptional('DXP_URL')),
         query_log: getBoolean('OPTIMIZELY_GRAPH_QUERY_LOG', () => getBoolean('OPTIMIZELY_CONTENTGRAPH_QUERY_LOG', false)),
         debug: getBoolean('OPTIMIZELY_DEBUG', () => getBoolean('DXP_DEBUG', false)),
     }
     return config
+}
+
+export function applyConfigDefaults(configuredValues: Types.OptimizelyGraphConfig) : Types.OptimizelyGraphConfigInternal
+{
+    const defaults : Types.OptimizelyGraphConfigInternal = {
+        single_key: "",
+        gateway: "https://cg.optimizely.com",
+        dxp_url: "",
+        deploy_domain: "",
+        debug: false,
+        query_log: false,
+    }
+    return {
+        ...defaults,
+        ...configuredValues
+    }
 }
 
 /**
@@ -23,7 +39,7 @@ export function readEnvironmentVariables() : ContentGraphConfig
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns 
  */
-export function validateConfig(toValidate: ContentGraphConfig, forPublishedOnly: boolean = true) : toValidate is ContentGraphConfig
+export function validateConfig(toValidate: Types.OptimizelyGraphConfig, forPublishedOnly: boolean = true) : toValidate is Types.OptimizelyGraphConfigInternal
 {
     const hasSingleKey = isNonEmptyString(toValidate?.single_key)
     const hasGateway = isValidUrl(toValidate?.gateway)

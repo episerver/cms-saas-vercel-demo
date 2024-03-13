@@ -1,6 +1,6 @@
 import yargs, { type CommandModule } from 'yargs'
 import type { Argv } from 'yargs'
-import { readEnvironmentVariables as getEnvConfig, validateConfig, type ContentGraphConfig } from "@remkoj/optimizely-graph-client/config"
+import { readEnvironmentVariables as getEnvConfig, validateConfig, applyConfigDefaults, type OptimizelyGraphConfig, type OptimizelyGraphConfigInternal } from "@remkoj/optimizely-graph-client/config"
 import { isDemanded } from './utils/index.js'
 
 export function createCliApp(scriptName: string, version?: string, epilogue?: string)
@@ -23,9 +23,9 @@ export function createCliApp(scriptName: string, version?: string, epilogue?: st
         .help()
 }
 
-export function getArgsConfig(args: CliArgs) : ContentGraphConfig 
+export function getArgsConfig(args: CliArgs) : OptimizelyGraphConfigInternal 
 {
-    const config =  {
+    const config =  applyConfigDefaults({
         dxp_url: args.dxp_url,
         deploy_domain: args.deploy_domain,
         app_key: args.app_key,
@@ -33,17 +33,17 @@ export function getArgsConfig(args: CliArgs) : ContentGraphConfig
         single_key: args.single_key,
         gateway: args.gateway,
         query_log: args.verbose
-    }
-    
+    })
+
     if (!validateConfig(config, false))
         throw new Error("Invalid Content-Graph connection details provided")
 
     return config
 }
 
-export function getFrontendURL(config: ContentGraphConfig) : URL
+export function getFrontendURL(config: OptimizelyGraphConfigInternal) : URL
 {
-    const host = config.deploy_domain
+    const host = config.deploy_domain ?? 'http://localhost:3000'
     const hostname = host.split(":")[0]
     const scheme = hostname == 'localhost' || hostname.endsWith(".local") ? 'http:' : 'https:'
     return new URL(`${ scheme }//${ host }/`)

@@ -1,5 +1,5 @@
 import type { ContentLinkWithLocale, Route } from "./types.js";
-import { type ContentGraphClient } from '../../client/index.js';
+import { type IOptiGraphClient } from '../../client/index.js';
 import type { ContentGraphConfig } from '../../types.js';
 export declare class RouteResolver {
     private _cgClient;
@@ -9,7 +9,7 @@ export declare class RouteResolver {
      * @param client        ContentGraph configuration override
      * @param apolloConfig  Apollo Client configuration override
      */
-    constructor(clientOrConfig?: ContentGraphClient | ContentGraphConfig);
+    constructor(clientOrConfig?: IOptiGraphClient | ContentGraphConfig);
     getRoutes(siteId?: string): Promise<Route[]>;
     getContentInfoByPath(path: string, siteId?: null): Promise<undefined | Route>;
     getContentInfoById(contentId: string, locale: string): Promise<undefined | Route>;
@@ -17,6 +17,7 @@ export declare class RouteResolver {
     protected parseIdString(id: string): [number, number | null];
     protected convertResponse(item: GetAllRoutes.Route): Route;
 }
+export default RouteResolver;
 export declare namespace GetAllRoutes {
     type Route = {
         path: string;

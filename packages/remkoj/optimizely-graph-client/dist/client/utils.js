@@ -1,12 +1,5 @@
-//import Base64 from 'crypto-js/enc-base64'
+import { AuthMode } from "./types.js";
 const TOKEN_MIN_LENGTH = 16;
-export var AuthMode;
-(function (AuthMode) {
-    AuthMode["Public"] = "epi-single";
-    AuthMode["Basic"] = "use-basic";
-    AuthMode["HMAC"] = "use-hmac";
-    AuthMode["Token"] = "use-token";
-})(AuthMode || (AuthMode = {}));
 export function validateToken(newToken) {
     return newToken == undefined || newToken == AuthMode.HMAC || newToken == AuthMode.Basic || newToken.length > TOKEN_MIN_LENGTH;
 }
@@ -29,4 +22,10 @@ export function base64encode(binaryString) {
 }
 export function isError(toTest) {
     return typeof (toTest) == 'object' && toTest != null && typeof toTest.name == 'string' && typeof toTest.message == 'string';
+}
+export function isContentGraphClient(client) {
+    if (typeof (client) != 'object' || client == null)
+        return false;
+    return typeof client.updateAuthentication == 'function'
+        && typeof client.request == 'function';
 }

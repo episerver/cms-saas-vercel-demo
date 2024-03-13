@@ -2,14 +2,28 @@ export function readEnvironmentVariables() {
     const config = {
         secret: getOptional('OPTIMIZELY_GRAPH_SECRET', () => getOptional('OPTIMIZELY_CONTENTGRAPH_SECRET')),
         app_key: getOptional('OPTIMIZELY_GRAPH_APP_KEY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_APP_KEY')),
-        single_key: getOptional('OPTIMIZELY_GRAPH_SINGLE_KEY', () => getMandatory('OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY')),
-        gateway: getOptional('OPTIMIZELY_GRAPH_GATEWAY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_GATEWAY', 'https://cg.optimizely.com')),
-        deploy_domain: getOptional('SITE_DOMAIN', 'localhost:3000'),
-        dxp_url: getOptional('OPTIMIZELY_CMS_URL', () => getOptional('DXP_URL', 'http://localhost:8000/')),
+        single_key: getOptional('OPTIMIZELY_GRAPH_SINGLE_KEY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY', '')),
+        gateway: getOptional('OPTIMIZELY_GRAPH_GATEWAY', () => getOptional('OPTIMIZELY_CONTENTGRAPH_GATEWAY')),
+        deploy_domain: getOptional('SITE_DOMAIN'),
+        dxp_url: getOptional('OPTIMIZELY_CMS_URL', () => getOptional('DXP_URL')),
         query_log: getBoolean('OPTIMIZELY_GRAPH_QUERY_LOG', () => getBoolean('OPTIMIZELY_CONTENTGRAPH_QUERY_LOG', false)),
         debug: getBoolean('OPTIMIZELY_DEBUG', () => getBoolean('DXP_DEBUG', false)),
     };
     return config;
+}
+export function applyConfigDefaults(configuredValues) {
+    const defaults = {
+        single_key: "",
+        gateway: "https://cg.optimizely.com",
+        dxp_url: "",
+        deploy_domain: "",
+        debug: false,
+        query_log: false,
+    };
+    return {
+        ...defaults,
+        ...configuredValues
+    };
 }
 /**
  * Validate the configuration

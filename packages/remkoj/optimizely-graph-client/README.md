@@ -15,8 +15,10 @@ The package contains the following services:
 ### Usage
 ```typescript
 // Import the library
-import { gql , type GraphQLClient } from 'graphql-request'
-import createClient, { RouteResolver, ChannelRepository } from '@remkoj/optimizely-graph-client'
+import { gql } from 'graphql-request'
+import createClient, { AuthMode } from '@remkoj/optimizely-graph-client/client'
+import Router from '@remkoj/optimizely-graph-client/router'
+import ChannelRepository from '@remkoj/optimizely-graph-client/channels'
 
 // Prepare the query
 const document = gql`query {
@@ -38,10 +40,24 @@ const document = gql`query {
 // from the environment variables.
 // The variable client will be of type: GraphQLClient
 const client = createClient({
-  single_key: "your_single_key",
-  dxp_url: "https://example.com"
+  single_key: "your_single_key"
 })
+
+// By default the client will always use AuthMode.Public, unless overridden by the
+// second parameter of createClient. Use the updateAuthentication to change the
+// authentication mode after creation
+client.updateAuthentication(AuthMode.Public)
+
+// Execute a GraphQL query, the second paramer can be used to send in variables
 const result = await client.request(document)
+
+// Use the Router to get all routes registered by Optimizely CMS
+const router = new Router(client)
+const allPaths = await router.getRoutes()
+
+// Use the ChannelRepository to get all registered channels within Optimizely CMS
+const channels = new ChannelRepository(client)
+const allChannels = await channels.getAll()
 ```
 
 ### Configuration

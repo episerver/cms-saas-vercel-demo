@@ -1,4 +1,8 @@
+// GraphQL Client
+export * from './client/index.js';
+export { createClient as default } from './client/index.js';
+// Configuration 
+export * from './config.js';
+// Router & Channels
 export * as Services from './services/index.js';
-export { createClient, isContentGraphClient, createClient as default, createHmacFetch } from './client/index.js';
-export { readEnvironmentVariables, validateConfig } from './config.js';
 export * from './services/index.js';

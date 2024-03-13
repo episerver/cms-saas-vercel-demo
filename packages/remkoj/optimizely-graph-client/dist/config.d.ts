@@ -1,6 +1,7 @@
-import type { ContentGraphConfig } from './types.js';
-export type { ContentGraphConfig } from './types.js';
-export declare function readEnvironmentVariables(): ContentGraphConfig;
+import type * as Types from './types.js';
+export type { ContentGraphConfig, OptimizelyGraphConfigInternal, OptimizelyGraphConfig } from './types.js';
+export declare function readEnvironmentVariables(): Types.OptimizelyGraphConfig;
+export declare function applyConfigDefaults(configuredValues: Types.OptimizelyGraphConfig): Types.OptimizelyGraphConfigInternal;
 /**
  * Validate the configuration
  *
@@ -8,4 +9,4 @@ export declare function readEnvironmentVariables(): ContentGraphConfig;
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns
  */
-export declare function validateConfig(toValidate: ContentGraphConfig, forPublishedOnly?: boolean): toValidate is ContentGraphConfig;
+export declare function validateConfig(toValidate: Types.OptimizelyGraphConfig, forPublishedOnly?: boolean): toValidate is Types.OptimizelyGraphConfigInternal;
