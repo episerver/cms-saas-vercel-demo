@@ -1,9 +1,7 @@
 import { readEnvironmentVariables, applyConfigDefaults, validateConfig, type OptimizelyGraphConfig } from '../config.js'
-import { OptimizelyGraphAdminApi } from './client/OptimizelyGraphAdminApi.js'
-import { type ApiError } from './client/index.js'
+import { OptimizelyGraphAdminApi, type ApiError } from './client/index.js'
 
-export { OptimizelyGraphAdminApi } from './client/OptimizelyGraphAdminApi.js'
-export { ApiError } from './client/core/ApiError.js'
+export  * from './client/index.js'
 
 export function isApiError(error: any) : error is ApiError
 {
