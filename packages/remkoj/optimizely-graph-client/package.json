@@ -14,7 +14,8 @@
     "./client": "./dist/client/index.js",
     "./config": "./dist/config.js",
     "./router": "./dist/services/routing/index.js",
-    "./channels": "./dist/services/channel-repository/index.js"
+    "./channels": "./dist/services/channel-repository/index.js",
+    "./admin": "./dist/admin-api/index.js"
   },
   "typesVersions": {
     "*": {
@@ -32,28 +33,33 @@
       "channels": [
         "./dist/services/channel-repository/index.d.ts",
         "./dist/services/channel-repository/types.d.ts"
+      ],
+      "admin": [
+        "./dist/admin-api/index.d.ts"
       ]
     }
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^20.11.26",
+    "@types/node": "^20.11.27",
     "crypto-js": "^4.2.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",
+    "openapi-typescript-codegen": "^0.27.0",
     "prop-types": "^15.8.1",
     "scheduler": "^0.23.0",
     "typescript": "^5.4.2"
   },
   "peerDependencies": {
     "crypto-js": "*",
-    "graphql": "*",
     "graphql-request": "*"
   },
   "scripts": {
     "clean": "tsc --build --clean",
-    "build": "tsc --build",
+    "compile": "tsc --build",
+    "build": "openapi --input https://cg.optimizely.com/app/swagger/swagger.json --output ./src/admin-api/client --name OptimizelyGraphAdminApi && node ./build/update-imports.cjs && tsc --build",
     "watch": "tsc --watch",
-    "rebuild": "tsc --build --clean && tsc --build --force"
+    "rebuild": "tsc --build --clean && tsc --build --force",
+    "generate-admin": "openapi --input https://cg.optimizely.com/app/swagger/swagger.json --output ./src/admin-api/client --name OptimizelyGraphAdminApi && node ./build/update-imports.cjs"
   }
 }

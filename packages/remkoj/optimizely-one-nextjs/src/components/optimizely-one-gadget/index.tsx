@@ -1,7 +1,7 @@
 'use client'
 import { type FunctionComponent } from 'react'
 import { Popover, Tab } from '@headlessui/react'
-import { ChevronUpIcon, UserGroupIcon, TagIcon, RocketLaunchIcon, IdentificationIcon } from '@heroicons/react/20/solid'
+import { ChevronUpIcon, UserGroupIcon, TagIcon, RocketLaunchIcon, IdentificationIcon, Square3Stack3DIcon } from '@heroicons/react/20/solid'
 import OptiLogo from './logo'
 import { useIsInTestMode } from '../use-test-mode'
 
@@ -14,7 +14,8 @@ const Panels = {
     Ids: dynamic(() => import('./ids-panel'), { ssr: false }),
     Experiments: dynamic(() => import('./exp-panel'), { ssr: false }),
     Interests: dynamic(() => import('./interests-panel'), { ssr: false }),
-    Audiences: dynamic(() => import('./audiences-panel'), { ssr: false })
+    Audiences: dynamic(() => import('./audiences-panel'), { ssr: false }),
+    Graph: dynamic(() => import('./graph-panel'), { ssr: false })
 }
 
 export type OptimizelyOneGadgetProps = {
@@ -77,6 +78,7 @@ export const OptimizelyOneGadget : FunctionComponent<OptimizelyOneGadgetProps> =
                     <Tab as="div" className='oo-text-center oo-inline-block oo-cursor-pointer oo-px-2 oo-py-1 oo-border oo-border-b-0 oo-border-slate-300 oo-rounded-t-md oo-ui-selected:oo-bg-blue-500 oo-ui-selected:oo-text-white'><UserGroupIcon className='oo-inline-block oo-h-4 oo-w-4 oo-mr-2' />Audiences</Tab>
                     <Tab as="div" className='oo-text-center oo-inline-block oo-cursor-pointer oo-px-2 oo-py-1 oo-border oo-border-b-0 oo-border-slate-300 oo-rounded-t-md oo-ui-selected:oo-bg-blue-500 oo-ui-selected:oo-text-white'><RocketLaunchIcon className='oo-inline-block oo-h-4 oo-w-4 oo-mr-2' />Experiments</Tab>
                     <Tab as="div" className='oo-text-center oo-inline-block oo-cursor-pointer oo-px-2 oo-py-1 oo-border oo-border-b-0 oo-border-slate-300 oo-rounded-t-md oo-ui-selected:oo-bg-blue-500 oo-ui-selected:oo-text-white'><IdentificationIcon className='oo-inline-block oo-h-4 oo-w-4 oo-mr-2' />Identifiers</Tab>
+                    <Tab as="div" className='oo-text-center oo-inline-block oo-cursor-pointer oo-px-2 oo-py-1 oo-border oo-border-b-0 oo-border-slate-300 oo-rounded-t-md oo-ui-selected:oo-bg-blue-500 oo-ui-selected:oo-text-white'><Square3Stack3DIcon className='oo-inline-block oo-h-4 oo-w-4 oo-mr-2' />Graph</Tab>
                 </Tab.List>
                 <Tab.Panels className="oo-flex-1 md:oo-h-24 oo-overscroll-contain oo-overflow-y-auto">
                     <Tab.Panel as="div" className='oo-p-1 md:oo-p-2'>
@@ -90,6 +92,9 @@ export const OptimizelyOneGadget : FunctionComponent<OptimizelyOneGadgetProps> =
                     </Tab.Panel>
                     <Tab.Panel as="div" className='oo-p-1 md:oo-p-2'>
                         <Panels.Ids servicePrefix={ servicePrefix } refreshInterval={ refreshInterval } />
+                    </Tab.Panel>
+                    <Tab.Panel as="div" className='oo-p-1 md:oo-p-2'>
+                        <Panels.Graph servicePrefix={ servicePrefix } />
                     </Tab.Panel>
                 </Tab.Panels>
             </Tab.Group>

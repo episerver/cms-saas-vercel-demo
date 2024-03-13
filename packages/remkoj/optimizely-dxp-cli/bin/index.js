@@ -14,10 +14,11 @@ import * as path from 'node:path';
 import path__default from 'node:path';
 import yargs from 'yargs';
 import { readEnvironmentVariables, applyConfigDefaults, validateConfig } from '@remkoj/optimizely-graph-client/config';
-import { createHmacFetch } from '@remkoj/optimizely-graph-client/client';
+import createAdminApi, { isApiError } from '@remkoj/optimizely-graph-client/admin';
 import chalk from 'chalk';
 import figures from 'figures';
 import Table from 'cli-table3';
+import { createHmacFetch } from '@remkoj/optimizely-graph-client/client';
 import fs from 'node:fs';
 
 function processEnvFile(suffix = "") {
@@ -100,59 +101,58 @@ const publishToVercelModule$2 = {
         }
         if (!cgConfig.app_key || !cgConfig.secret)
             throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
-        const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
-        const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
-            method: "GET"
-        });
-        if (!response.ok) {
-            process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Content Graph returned an error: HTTP ${response.status}: ${response.statusText}`) + "\n");
-            if (args.verbose)
-                console.error(chalk.redBright(await response.json()));
-            process.exitCode = 1;
-            return;
-        }
-        const currentHooks = (await response.json());
-        if (currentHooks.some(x => x.request.url == webhookTarget.href)) {
-            process.stdout.write("\n" + chalk.greenBright(chalk.bold(figures.tick) + " Webhook already registered, no action needed") + "\n");
-            process.exitCode = 0;
-            return;
-        }
-        function urlWithoutSearch(url) {
-            const newURL = new URL(url.href);
-            for (const key in newURL.searchParams.keys)
-                newURL.searchParams.delete(key);
-            return newURL;
-        }
-        const targetWithoutQuery = urlWithoutSearch(webhookTarget);
-        await Promise.allSettled(currentHooks.map(hook => {
-            const hookUrl = urlWithoutSearch(new URL(hook.request.url));
-            if (hookUrl.href == targetWithoutQuery.href) {
-                process.stdout.write(`${chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${chalk.yellow(hookUrl.href)}`);
-                const hookId = hook.id;
-                return secureFetch(new URL(`/api/webhooks/${hookId}?cache=false&t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" }).then((response) => response.ok);
+        const adminApi = createAdminApi(cgConfig);
+        try {
+            const currentHooks = await adminApi.webhooks.listWebhookHandler();
+            if (currentHooks.some(x => x.request.url == webhookTarget.href)) {
+                process.stdout.write("\n" + chalk.greenBright(chalk.bold(figures.tick) + " Webhook already registered, no action needed") + "\n");
+                process.exitCode = 0;
+                return;
             }
-            return Promise.resolve(true);
-        }));
-        const registerResponse = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
-            method: 'POST',
-            body: JSON.stringify({
+            function urlWithoutSearch(url) {
+                const newURL = new URL(url.href);
+                for (const key in newURL.searchParams.keys)
+                    newURL.searchParams.delete(key);
+                return newURL;
+            }
+            const targetWithoutQuery = urlWithoutSearch(webhookTarget);
+            await Promise.allSettled(currentHooks.map(async (hook) => {
+                const hookUrl = urlWithoutSearch(new URL(hook.request.url));
+                if (hookUrl.href == targetWithoutQuery.href) {
+                    process.stdout.write(`${chalk.yellow(chalk.bold(figures.arrowRight))} Removing webhook with incorrect query parameters: ${chalk.yellow(hookUrl.href)}`);
+                    try {
+                        await adminApi.webhooks.deleteWebhookHandler(hook.id);
+                        return true;
+                    }
+                    catch {
+                        return false;
+                    }
+                }
+                return true;
+            }));
+            await adminApi.webhooks.createWebhookHandler({
                 request: {
                     url: webhookTarget.href,
                     method: verb
                 }
-            })
-        });
-        if (!registerResponse.ok) {
-            process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Content Graph returned an error: HTTP ${response.status}: ${response.statusText}`) + "\n");
-            if (args.verbose)
-                console.error(chalk.redBright(await response.json()));
+            });
+            process.stdout.write("\n" + chalk.greenBright(`${chalk.bold(figures.tick)} ${webhookTarget.href} has been added as Webhook recipient to Optimizely Graph`) + "\n");
+        }
+        catch (e) {
+            if (isApiError(e)) {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an error: HTTP ${e.status}: ${e.statusText}`) + "\n");
+                if (args.verbose)
+                    console.error(chalk.redBright(JSON.stringify(e.body, undefined, 4)));
+            }
+            else {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an error`) + "\n");
+            }
             process.exitCode = 1;
             return;
         }
-        process.stdout.write("\n" + chalk.greenBright(`${chalk.bold(figures.tick)} ${webhookTarget.href} has been added as Webhook recipient to Content-Graph`) + "\n");
     },
     aliases: [],
-    describe: "Adds a webhook to ContentGraph that invokes /api/content/publish on every publish in ContentGraph",
+    describe: "Adds a webhook to Optimizely Graph that invokes /api/content/publish on every publish in Optimizely Graph",
     builder: (args) => {
         const defaultToken = process.env.FRONTEND_PUBLISH_TOKEN || undefined;
         const hasDefaultToken = typeof (defaultToken) == 'string' && defaultToken.length > 0;
@@ -172,16 +172,23 @@ const publishToVercelModule$1 = {
         const token_id = args.token_id;
         if (!cgConfig.app_key || !cgConfig.secret)
             throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
-        const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
+        const adminApi = createAdminApi(cgConfig);
         if (typeof (token_id) == 'string' && token_id.length > 24) {
             process.stdout.write(`Removing Webhook with ID: ${token_id}\n`);
-            const deleteResponse = await secureFetch(new URL(`/api/webhooks/${token_id}?t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" });
-            if (!deleteResponse.ok) {
-                process.stderr.write(`!! Content Graph returned an error: HTTP ${deleteResponse.status}: ${deleteResponse.statusText}\n`);
-                if (args.verbose)
-                    console.error(await deleteResponse.json());
-                process.exitCode = 1;
-                return;
+            try {
+                await adminApi.webhooks.deleteWebhookHandler(token_id);
+            }
+            catch (e) {
+                if (isApiError(e)) {
+                    process.stderr.write(`!! Optimizely Graph returned an error: HTTP ${e.status}: ${e.statusText}\n`);
+                    if (args.verbose)
+                        console.error(e.body);
+                    process.exitCode = 1;
+                    return;
+                }
+                else {
+                    process.stderr.write(`!! Optimizely Graph returned an error\n`);
+                }
             }
             process.stdout.write(`Removed WebHook with ID ${token_id} from ContentGraph\n`);
             return;
@@ -196,37 +203,33 @@ const publishToVercelModule$1 = {
             process.exitCode = 1;
             return;
         }
-        const response = await secureFetch(new URL(`/api/webhooks?t=${Date.now()}`, cgConfig.gateway), {
-            method: "GET"
-        });
-        if (!response.ok) {
-            process.stderr.write(`!! Content Graph returned an error: HTTP ${response.status}: ${response.statusText}\n`);
-            if (args.verbose)
-                console.error(await response.json());
-            process.exitCode = 1;
-            return;
-        }
-        const currentHooks = (await response.json());
-        const hooks = currentHooks.filter(x => x.request.url == webhookTarget.href);
-        if (!hooks || hooks.length == 0) {
-            process.stdout.write("Webhook not found, not removing anything\n");
-            process.exitCode = 0;
-            return;
-        }
-        await Promise.all(hooks.map(async (hook) => {
-            const hookId = hook.id;
-            process.stdout.write(`Removing Webhook with ID: ${hookId}\n`);
-            const deleteResponse = await secureFetch(new URL(`/api/webhooks/${hookId}?t=${Date.now()}`, cgConfig.gateway), { method: "DELETE" });
-            if (!deleteResponse.ok) {
-                process.stderr.write(`!! Content Graph returned an error: HTTP ${deleteResponse.status}: ${deleteResponse.statusText}\n`);
-                if (args.verbose)
-                    console.error(await deleteResponse.json());
-                process.exitCode = 1;
-                return false;
+        try {
+            const currentHooks = await adminApi.webhooks.listWebhookHandler();
+            const hooks = currentHooks.filter(x => x.request.url == webhookTarget.href);
+            if (!hooks || hooks.length == 0) {
+                process.stdout.write("Webhook not found, not removing anything\n");
+                process.exitCode = 0;
+                return;
             }
-            process.stdout.write(`Removed WebHook with ID ${hookId} from ContentGraph\n`);
-            return true;
-        }));
+            await Promise.all(hooks.map(async (hook) => {
+                const hookId = hook.id;
+                process.stdout.write(`Removing Webhook with ID: ${hookId}\n`);
+                await adminApi.webhooks.deleteWebhookHandler(hookId).then(() => process.stdout.write(`Removed WebHook with ID ${hookId} from ContentGraph\n`));
+                return true;
+            }));
+        }
+        catch (e) {
+            if (isApiError(e)) {
+                process.stderr.write(`!! Optimizely Graph returned an error: HTTP ${e.status}: ${e.statusText}\n`);
+                if (args.verbose)
+                    console.error(e.body);
+                process.exitCode = 1;
+                return;
+            }
+            else {
+                process.stderr.write(`!! Optimizely Graph returned an error\n`);
+            }
+        }
         process.stdout.write("Done\n");
     },
     aliases: [],
@@ -247,27 +250,33 @@ const publishToVercelModule = {
         const cgConfig = getArgsConfig(args);
         if (!cgConfig.app_key || !cgConfig.secret)
             throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined");
-        const secureFetch = createHmacFetch(cgConfig.app_key, cgConfig.secret);
-        const response = await secureFetch(new URL(`/api/webhooks?cache=false&t=${Date.now()}`, cgConfig.gateway), {
-            method: "GET"
-        });
-        if (!response.ok) {
-            process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Content Graph returned an error: HTTP ${response.status}: ${response.statusText}`) + "\n");
-            if (args.verbose)
-                console.error(chalk.redBright(await response.json()));
+        const adminApi = createAdminApi(cgConfig);
+        try {
+            const currentHooks = await adminApi.webhooks.listWebhookHandler();
+            const hooks = new Table({
+                head: [chalk.yellow(chalk.bold("ID")), chalk.yellow(chalk.bold("Method")), chalk.yellow(chalk.bold("Url"))],
+                colWidths: [38, 8, 100]
+            });
+            currentHooks.forEach(x => {
+                hooks.push([x.id, x.request.method, x.request.url]);
+            });
+            process.stdout.write(hooks.toString() + "\n");
+            process.stdout.write(chalk.green(chalk.bold(figures.tick + " Done")) + "\n");
+        }
+        catch (e) {
+            if (isApiError(e)) {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an error: HTTP ${e.status}: ${e.statusText}`) + "\n");
+                if (args.verbose)
+                    console.error(chalk.redBright(JSON.stringify(e.body, undefined, 4)));
+            }
+            else {
+                process.stderr.write(chalk.redBright(`${chalk.bold(figures.cross)} Optimizely Graph returned an unknown error`) + "\n");
+                if (args.verbose)
+                    console.error(chalk.redBright(e));
+            }
             process.exitCode = 1;
             return;
         }
-        const currentHooks = (await response.json());
-        const hooks = new Table({
-            head: [chalk.yellow(chalk.bold("ID")), chalk.yellow(chalk.bold("Method")), chalk.yellow(chalk.bold("Url"))],
-            colWidths: [38, 8, 100]
-        });
-        currentHooks.forEach(x => {
-            hooks.push([x.id, x.request.method, x.request.url]);
-        });
-        process.stdout.write(hooks.toString() + "\n");
-        process.stdout.write(chalk.green(chalk.bold(figures.tick + " Done")) + "\n");
     },
     aliases: [],
     describe: "List all webhooks in ContentGraph",
