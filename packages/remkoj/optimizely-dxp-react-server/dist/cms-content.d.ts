@@ -1,6 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import type { ContentLinkWithLocale, ComponentFactory, ContentType } from '@remkoj/optimizely-dxp-react';
-import createClient, { type ContentGraphClient } from '@remkoj/optimizely-graph-client';
+import createClient, { type IOptiGraphClient } from '@remkoj/optimizely-graph-client';
 export type CmsContentProps = PropsWithChildren<{
     /**
      * The content type to render
@@ -34,7 +34,7 @@ export type CmsContentProps = PropsWithChildren<{
      * The Optimizely Graph client to use, it will use a new instance if none is provided,
      * the new instance will always use the SingleKey i.e. thus not load edit mode content
      */
-    client?: ContentGraphClient;
+    client?: IOptiGraphClient;
     /**
      * The component factory to use, it will use the default instance if not provided
      */

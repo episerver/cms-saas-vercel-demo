@@ -1,5 +1,5 @@
 import { type ComponentFactory, type ContentLink } from '@remkoj/optimizely-dxp-react'
-import createClient, { isContentGraphClient, type ContentGraphConfig, type ContentGraphClient } from '@remkoj/optimizely-graph-client'
+import createClient, { isContentGraphClient, type OptimizelyGraphConfig, type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 import { Metadata } from 'next'
 import { isOptimizelyNextPageWithMetaData } from './page'
 
@@ -7,9 +7,9 @@ const DEBUG = process.env.DXP_DEBUG == '1'
 
 export class MetaDataResolver
 {
-    private _cgClient : ContentGraphClient
+    private _cgClient : IOptiGraphClient
 
-    public constructor(clientOrConfig?: ContentGraphConfig | ContentGraphClient)
+    public constructor(clientOrConfig?: OptimizelyGraphConfig | IOptiGraphClient)
     {
         this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig)
     }

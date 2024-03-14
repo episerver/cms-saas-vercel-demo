@@ -1,9 +1,9 @@
-import type { ContentGraphClient } from '@remkoj/optimizely-graph-client'
+import type { IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 import type * as GraphQL from '@gql/graphql'
 export { DocumentNode } from '@gql/graphql'
 export type LocaleFilter = GraphQL.Locales | GraphQL.Locales[] | null
 
-export type GetLocations = (options: GetLocationsOptions, client?: ContentGraphClient) => Promise<GetLocationsResult>
+export type GetLocations = (options: GetLocationsOptions, client?: IOptiGraphClient) => Promise<GetLocationsResult>
 export type GetLocationsOptions = {
     parentId: string
     locale: LocaleFilter
