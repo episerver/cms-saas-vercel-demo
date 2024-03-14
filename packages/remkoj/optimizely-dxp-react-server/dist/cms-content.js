@@ -67,7 +67,7 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         const gqlVariables = Utils.contentLinkToRequestVariables(contentLink);
         if (DEBUG)
             console.log("[CmsContent] Component data fetching variables:", gqlVariables);
-        const gqlResponse = await client.query(gqlQuery, gqlVariables);
+        const gqlResponse = await client.request(gqlQuery, gqlVariables);
         if (DEBUG)
             console.log("[CmsContent] Component request the following data:", gqlResponse);
         return _jsx(Component, { inEditMode: inEditMode, contentLink: contentLink, data: gqlResponse, client: client });

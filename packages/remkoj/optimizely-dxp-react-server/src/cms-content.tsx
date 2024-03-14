@@ -1,6 +1,6 @@
 import type { ComponentType, PropsWithChildren, ComponentProps } from 'react'
 import type { CmsComponent, ContentLinkWithLocale, ComponentFactory, ContentQueryProps, ContentType } from '@remkoj/optimizely-dxp-react'
-import createClient, { type ContentGraphClient } from '@remkoj/optimizely-graph-client'
+import createClient, { type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 import { print } from 'graphql'
 import { Utils, getFactory } from '@remkoj/optimizely-dxp-react'
 import * as Queries from './queries'
@@ -52,7 +52,7 @@ export type CmsContentProps = PropsWithChildren<{
      * The Optimizely Graph client to use, it will use a new instance if none is provided,
      * the new instance will always use the SingleKey i.e. thus not load edit mode content
      */
-    client?: ContentGraphClient
+    client?: IOptiGraphClient
 
     /**
      * The component factory to use, it will use the default instance if not provided
@@ -146,7 +146,7 @@ export const CmsContent = async ({contentType, contentTypePrefix, contentLink, c
         const gqlVariables : ContentQueryProps = Utils.contentLinkToRequestVariables(contentLink) as Omit<ContentLinkWithLocale, 'guidValue'> & { guidValue: string }
         if (DEBUG)
             console.log("[CmsContent] Component data fetching variables:", gqlVariables)
-        const gqlResponse = await client.query<{}>(gqlQuery, gqlVariables)
+        const gqlResponse = await client.request<{}>(gqlQuery, gqlVariables)
         if (DEBUG)
             console.log("[CmsContent] Component request the following data:", gqlResponse)
         return <Component inEditMode={ inEditMode } contentLink={ contentLink } data={ gqlResponse } client={ client } />
