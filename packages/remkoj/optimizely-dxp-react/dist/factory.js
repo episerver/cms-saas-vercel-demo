@@ -42,12 +42,12 @@ const _static = {};
 export const getFactory = () => {
     if (!_static.factory) {
         if (DBG)
-            console.log("Creating new Component Factory");
+            console.log("⚪ [ComponentFactory] Creating new Component Factory");
         _static.factory = new DefaultComponentFactory();
     }
     else {
         if (DBG)
-            console.log("Reusing existing Component Factory");
+            console.log("⚪ [ComponentFactory] Reusing existing Component Factory");
     }
     return _static.factory;
 };

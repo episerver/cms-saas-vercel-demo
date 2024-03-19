@@ -1,16 +1,21 @@
 import { readEnvironmentVariables, applyConfigDefaults, validateConfig, type OptimizelyGraphConfigInternal, type OptimizelyGraphConfig } from "../config.js"
 import { GraphQLClient } from "graphql-request"
-import { AuthMode, type RequestMethod, type IOptiGraphClient, type OptiGraphSiteInfo } from "./types.js"
+import { AuthMode, type RequestMethod, type IOptiGraphClient, type OptiGraphSiteInfo, type IOptiGraphClientFlags } from "./types.js"
 import createHmacFetch, { type FetchAPI } from "./hmac-fetch.js"
 import { base64encode, isError, validateToken, getAuthMode } from "./utils.js"
+
+const defaultFlags : IOptiGraphClientFlags = {
+    queryCache: true
+}
 
 export class ContentGraphClient extends GraphQLClient implements IOptiGraphClient
 {
     public static readonly ForceHmacToken : string = 'use-hmac'
     public static readonly ForceBasicAuth : string = 'use-basic'
-    protected readonly _config : OptimizelyGraphConfigInternal
+    protected readonly _config : Readonly<OptimizelyGraphConfigInternal>
     private _token : string | undefined
     private _hmacFetch : FetchAPI | undefined
+    private _flags : IOptiGraphClientFlags
 
     public get debug() : boolean 
     {
@@ -55,8 +60,10 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
         return getAuthMode(this._token)
     }
 
-    public constructor(config?: OptimizelyGraphConfig, token: AuthMode | string | undefined = undefined)
+    public constructor(config?: OptimizelyGraphConfig, token: AuthMode | string | undefined = undefined, flags?: Partial<IOptiGraphClientFlags>)
     {
+        const configFlags = { ...defaultFlags, ...flags }
+
         // Validate inputs
         const optiConfig : OptimizelyGraphConfig = applyConfigDefaults(config ?? readEnvironmentVariables())
         if (!validateToken(token))
@@ -67,8 +74,12 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
 
         // Create instance
         const QUERY_LOG = optiConfig.query_log ?? false
-        const serviceUrl = new URL("/content/v2", optiConfig.gateway).href
-        super(serviceUrl, {
+        const serviceUrl = new URL("/content/v2", optiConfig.gateway)
+        if (configFlags.queryCache)
+            serviceUrl.searchParams.set('stored', 'true')
+        super(serviceUrl.href, {
+            credentials: "include",
+            method: "post",
             requestMiddleware: request => {
                 if (QUERY_LOG) {
                     console.log(`[ContentGraph] [Request Query] ${ request.body }`)
@@ -104,6 +115,7 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
         // Set variables
         this._config = optiConfig
         this._token = token
+        this._flags = configFlags
         this.updateRequestConfig()
     }
 
@@ -131,16 +143,55 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
         return this.request(...args)
     }
 
+    private _oldFlags : IOptiGraphClientFlags | undefined = undefined
+
+    public updateFlags(newFlags: Partial<IOptiGraphClientFlags>, temporary: boolean = false) : IOptiGraphClient
+    {
+        // Determine the new flags
+        if (this._oldFlags)
+            throw new Error("There's a temporary flag update in progress, revert that one first prior to updating the flags")
+        if (temporary)
+            this._oldFlags = this._flags
+        this._flags = { ...this._flags, ...newFlags }
+
+        if (this._config.debug)
+            console.log(`🔵 [ContentGraph] ${ temporary ? 'Temporary updating' : 'Updating'} the feature configuration of the client`)
+
+        // Update the request configuration
+        this.updateRequestConfig()
+        return this
+    }
+
+    public restoreFlags() : IOptiGraphClient
+    {
+        // Restore the flags
+        if (!this._oldFlags)
+            return this
+        this._flags = this._oldFlags
+        this._oldFlags = undefined
+
+        if (this._config.debug)
+            console.log(`🔵 [ContentGraph] Rolling back the feature configuration of the client`)
+
+        // Update the request configuration
+        this.updateRequestConfig()
+        return this
+    }
+
     protected updateRequestConfig() : void
     {
+        // Update headers & fetch method
         switch (this.currentAuthMode) {
             case AuthMode.HMAC:
-                this.setHeaders({})
+                this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient"
+                })
                 this.requestConfig.cache = 'no-store'
-                this.requestConfig.fetch = this._hmacFetch
+                this.requestConfig.fetch = this.hmacFetch
                 break
             case AuthMode.Basic:
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `Basic ${ base64encode(this._config.app_key + ":" + this._config.secret) }`
                 })
                 this.requestConfig.cache = 'no-store'
@@ -148,6 +199,7 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
                 break
             case AuthMode.Token: 
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `Bearer ${ this.token }`
                 })
                 this.requestConfig.cache = 'no-store'
@@ -155,11 +207,18 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
                 break
             default:
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `epi-single ${ this._config.single_key }`
                 })
                 this.requestConfig.fetch = fetch
                 break
         }
+
+        // Update endpoint
+        const serviceUrl = new URL("/content/v2", this._config.gateway)
+        if (this._flags.queryCache)
+            serviceUrl.searchParams.set('stored', 'true')
+        this.setEndpoint(serviceUrl.href)
     } 
 }
 

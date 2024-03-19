@@ -5,9 +5,9 @@ import path from 'node:path'
 import fs from 'node:fs'
 import figures from 'figures'
 import chalk from 'chalk'
-import type { FragmentMatcherConfig } from '@graphql-codegen/fragment-matcher'
+import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
 
-
+// Process environment files, to ensure the enviornment configuration is applied
 const envFiles : string[] = [".env", ".env.local"]
 if (process.env.NODE_ENV) {
     envFiles.push(`.env.${ process.env.NODE_ENV }`)
@@ -19,50 +19,23 @@ envFiles.map(s => path.join(process.cwd(), s)).filter(s => fs.existsSync(s)).rev
     console.log(`${ chalk.greenBright(figures.tick) } Processed ${fileName}`)
 })
 
-const cgGateway = `${ process.env.OPTIMIZELY_CONTENTGRAPH_GATEWAY }/content/v2?cache=false`
-
-const schemaInfo : CodegenConfig['schema'] = {}
-schemaInfo[cgGateway] = {
-    headers: {
-        Authorization: `epi-single ${ process.env.OPTIMIZELY_CONTENTGRAPH_SINGLE_KEY }`
-    }
-}
-
+// Create the configuration itself
 const config: CodegenConfig = {
-    schema: schemaInfo,
+    schema: getSchemaInfo(),
     documents: [
         // Add local GQL files
         'src/**/*.graphql',
 
         // Add Definitions from components
-        'src/**/!(*.d).{ts,tsx}',
-
-        // Add Definitions from mono-repo
-        '../../packages/**/!(*.d).{ts,tsx}'
+        'src/**/!(*.d).{ts,tsx}'
     ],
     generates: {
         './gql/': {
-            preset: 'client',
+            //@ts-expect-error: Type of the preset isn't detected properly
+            preset: '@remkoj/optimizely-graph-functions/preset',
             plugins: [],
             presetConfig: {
-                gqlTagName: 'gql'
-            }
-        },
-        './gql/fragment-types.json': {
-            plugins: ['fragment-matcher'],
-            config: {
-              module: 'es2015',
-              apolloClientVersion: 3,
-              useExplicitTyping: true
-            } as FragmentMatcherConfig,
-        },
-        './gql/functions.ts': {
-            plugins: ['@remkoj/optimizely-graph-functions'],
-            config: {
-                optlyFunctions: [
-                    'getContentByPath',
-                    'getContentById'
-                ],
+                gqlTagName: 'gql',
                 optlyInjections: [
                     {
                         // Add from all pages, except colocated blocks

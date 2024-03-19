@@ -2,6 +2,7 @@ import type { Metadata, ResolvingMetadata } from 'next/types'
 
 import Header from '@components/layout/header'
 import Footer from '@components/layout/footer'
+import { getServerContext } from '@remkoj/optimizely-dxp-react/rsc'
 
 import 'server-only'
 import Channel from '@/site-config'
@@ -34,6 +35,8 @@ export async function generateMetadata(props: RootLayoutProps, resolving: Resolv
 
 export default function RootLayout({ children, params }: RootLayoutProps) {
     const currentLocale = Channel.slugToLocale(params?.lang ?? Channel.defaultLocale)
+    const ctx = getServerContext()
+    ctx.setLocale(Channel.localeToGraphLocale(currentLocale ?? Channel.defaultLocale))
     return <>
         <Header locale={ currentLocale } />
         <main>

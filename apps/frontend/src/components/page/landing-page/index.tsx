@@ -1,20 +1,20 @@
 import 'server-only'
 import type * as GraphQL from '@gql/graphql'
 import { gql } from '@gql/index'
-import { type LandingPageDataFragment, type ContentAreaItemDataFragment, Locales } from '@gql/graphql'
 import type { OptimizelyNextPage } from '@remkoj/optimizely-dxp-nextjs'
 import { Utils } from '@remkoj/optimizely-dxp-react'
-import { CmsContentArea } from '@remkoj/optimizely-dxp-react-server'
+import CmsContentArea from '@remkoj/optimizely-dxp-react/rsc/cms-content-area'
 import ClassMapper from '@/lib/displayMode'
 import { Metadata } from 'next'
+import React from 'react'
 
-export const LandingPage : OptimizelyNextPage<LandingPageDataFragment> = ({ contentLink, data, children, client, inEditMode }) => {
-    const topContentArea : ContentAreaItemDataFragment[] = data.TopContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
-    const mainContentArea : ContentAreaItemDataFragment[] = data.MainContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
+export const LandingPage : OptimizelyNextPage<GraphQL.LandingPageDataFragment> = ({ data }) => {
+    const topContentArea : GraphQL.ContentAreaItemDataFragment[] = data.TopContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
+    const mainContentArea : GraphQL.ContentAreaItemDataFragment[] = data.MainContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
     
     return <div className='landing-page'>
-        <CmsContentArea inEditMode={ inEditMode } fieldName='TopContentArea' items={ topContentArea }  locale={ contentLink.locale } classMapper={ ClassMapper } client={ client } className="w-full"/>
-        <CmsContentArea inEditMode={ inEditMode } fieldName='MainContentArea' items={ mainContentArea } locale={ contentLink.locale } classMapper={ ClassMapper } client={ client } className="max-w-screen-2xl mx-auto"/>
+        <CmsContentArea fieldName='TopContentArea' items={ topContentArea }  classMapper={ ClassMapper } className="w-full" />
+        <CmsContentArea fieldName='MainContentArea' items={ mainContentArea } classMapper={ ClassMapper } className="max-w-screen-2xl mx-auto"/>
     </div>
 }
 

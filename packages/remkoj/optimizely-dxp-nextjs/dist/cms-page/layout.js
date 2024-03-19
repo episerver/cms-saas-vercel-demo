@@ -2,6 +2,7 @@ import { Utils } from "@remkoj/optimizely-dxp-react";
 import { getMetaDataByPath as getMetaDataByPathBase } from './data';
 import { slugToLocale, slugToGraphLocale } from "./utils";
 import { getServerClient } from "../client";
+import { isDebug } from '@remkoj/optimizely-dxp-react/rsc';
 const defaultCreateLayoutOptions = {
     defaultLocale: "en",
     getMetaDataByPath: getMetaDataByPathBase,
@@ -13,7 +14,6 @@ export function createLayout(channel, options) {
         ...{ defaultLocale: channel.defaultLocale },
         ...options
     };
-    const DEBUG = process.env.DXP_DEBUG == '1';
     const pageLayoutDefinition = {
         /**
          * Make sure that there's a sane default for the title, canonical URL
@@ -25,8 +25,8 @@ export function createLayout(channel, options) {
         generateMetadata: async ({ params }, resolving) => {
             const locale = slugToLocale(channel, params?.lang ?? '', defaultLocale);
             const relativePath = `/${params.lang}${params.path ? '/' + params.path.join('/') : ''}`;
-            if (DEBUG)
-                console.log(`[CmsPageLayout] Generating metadata for: ${relativePath}`);
+            if (isDebug())
+                console.log(`⚪ [CmsPageLayout] Generating metadata for: ${relativePath}`);
             const variables = {
                 path: relativePath,
                 locale: slugToGraphLocale(channel, params.lang ?? '', defaultLocale)
@@ -38,8 +38,8 @@ export function createLayout(channel, options) {
             });
             const metadata = (response?.getGenericMetaData?.items ?? [])[0];
             if (!metadata) {
-                if (DEBUG)
-                    console.log(`[CmsPageLayout] Unable to locate metadata for: ${relativePath}`);
+                if (isDebug())
+                    console.log(`🟡 [CmsPageLayout] Unable to locate metadata for: ${relativePath}`);
                 return {};
             }
             const base = await resolving;

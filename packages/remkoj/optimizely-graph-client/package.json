@@ -15,7 +15,8 @@
     "./config": "./dist/config.js",
     "./router": "./dist/services/routing/index.js",
     "./channels": "./dist/services/channel-repository/index.js",
-    "./admin": "./dist/admin-api/index.js"
+    "./admin": "./dist/admin-api/index.js",
+    "./codegen": "./dist/codegen.js"
   },
   "typesVersions": {
     "*": {
@@ -36,12 +37,15 @@
       ],
       "admin": [
         "./dist/admin-api/index.d.ts"
+      ],
+      "codegen": [
+        "dist/codegen.d.ts"
       ]
     }
   },
   "devDependencies": {
     "@types/crypto-js": "^4.2.2",
-    "@types/node": "^20.11.27",
+    "@types/node": "^20.11.29",
     "crypto-js": "^4.2.0",
     "graphql": "^16.8.1",
     "graphql-request": "^6.1.0",

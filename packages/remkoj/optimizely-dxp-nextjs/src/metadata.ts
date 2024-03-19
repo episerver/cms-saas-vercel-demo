@@ -26,7 +26,7 @@ export class MetaDataResolver
     public async resolve(factory: ComponentFactory, contentLink: ContentLink, contentType: string[], locale: string): Promise<Metadata>
     {
         if (DEBUG)
-            console.log("Resolving metadata for:", contentLink, contentType, locale)
+            console.log("[MetaDataResolver] Resolving metadata for:", contentLink, contentType, locale)
 
         if (locale.includes("-"))
             throw new Error("Invalid character detected within the locale")
@@ -38,7 +38,7 @@ export class MetaDataResolver
         if (isOptimizelyNextPageWithMetaData(Component) && Component.getMetaData) {
             const meta = await Component.getMetaData(contentLink, locale, this._cgClient)
             if (DEBUG)
-                console.log("Resolved metadata to:", meta)
+                console.log("[MetaDataResolver] Resolved metadata to:", meta)
             return meta
         }
         return {}

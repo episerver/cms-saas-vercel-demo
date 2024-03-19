@@ -1,4 +1,5 @@
 /// <reference types="react" />
+import 'server-only';
 export type StructuredHtmlProps = {
     data?: string | StructuredHtmlData | StructuredHtmlData[];
     locale?: string;

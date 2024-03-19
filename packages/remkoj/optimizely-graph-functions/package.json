@@ -2,11 +2,30 @@
   "name": "@remkoj/optimizely-graph-functions",
   "private": true,
   "license": "Apache-2.0",
-  "packageManager": "yarn@4.0.0-rc.50",
+  "packageManager": "yarn@4.1.1",
   "type": "commonjs",
-  "main": "plugin.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./preset": "./dist/preset.js",
+    "./documents": "./dist/documents.js"
+  },
+  "typesVersions": {
+    "*": {
+      "preset": [
+        "dist/preset.d.ts"
+      ],
+      "documents": [
+        "dist/documents.d.ts"
+      ]
+    }
+  },
   "devDependencies": {
+    "@graphql-codegen/add": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.4",
+    "@graphql-codegen/fragment-matcher": "^5.0.2",
     "@graphql-codegen/plugin-helpers": "^5.0.3",
+    "@types/node": "^20.11.29",
     "typescript": "^5.4.2"
   },
   "dependencies": {
@@ -16,6 +35,12 @@
   "scripts": {
     "clean": "tsc --clean",
     "build": "tsc --build",
-    "rebuild": "tsc --build --clean && tsc --build"
+    "rebuild": "tsc --build --clean && tsc --build --force",
+    "watch": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@graphql-codegen/add": "*",
+    "@graphql-codegen/client-preset": "*",
+    "@graphql-codegen/fragment-matcher": "*"
   }
 }

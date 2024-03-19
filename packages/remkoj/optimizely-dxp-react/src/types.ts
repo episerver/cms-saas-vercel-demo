@@ -31,7 +31,17 @@ export type ContentLinkWithLocale = ContentLink & {
 export type CmsComponentProps<T> = PropsWithChildren<{
     contentLink: ContentLinkWithLocale
     data: T,
+    /**
+     * Use the Server/Client context instead if you need this information
+     * 
+     * @deprecated
+     */
     inEditMode?: boolean
+    /**
+     * Use the Server/Client context instead if you need this information
+     * 
+     * @deprecated
+     */
     client?: IOptiGraphClient
 }>
 

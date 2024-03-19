@@ -6,7 +6,7 @@ import { OnPageEdit } from '@remkoj/optimizely-dxp-nextjs'
 import { EnvTools } from '@remkoj/optimizely-one-nextjs/server'
 
 // Import libraries & GraphQL
-import { getContentById } from '@gql/functions'
+import { getContentById } from '@gql'
 
 // Import components & factory
 import { setupFactory } from '@components/factory'

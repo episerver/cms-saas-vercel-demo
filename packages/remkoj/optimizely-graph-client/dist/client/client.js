@@ -3,12 +3,16 @@ import { GraphQLClient } from "graphql-request";
 import { AuthMode } from "./types.js";
 import createHmacFetch from "./hmac-fetch.js";
 import { base64encode, isError, validateToken, getAuthMode } from "./utils.js";
+const defaultFlags = {
+    queryCache: true
+};
 export class ContentGraphClient extends GraphQLClient {
     static ForceHmacToken = 'use-hmac';
     static ForceBasicAuth = 'use-basic';
     _config;
     _token;
     _hmacFetch;
+    _flags;
     get debug() {
         return this._config.debug ?? false;
     }
@@ -43,7 +47,8 @@ export class ContentGraphClient extends GraphQLClient {
     get currentAuthMode() {
         return getAuthMode(this._token);
     }
-    constructor(config, token = undefined) {
+    constructor(config, token = undefined, flags) {
+        const configFlags = { ...defaultFlags, ...flags };
         // Validate inputs
         const optiConfig = applyConfigDefaults(config ?? readEnvironmentVariables());
         if (!validateToken(token))
@@ -53,8 +58,12 @@ export class ContentGraphClient extends GraphQLClient {
             throw new Error("Invalid ContentGraph configuration");
         // Create instance
         const QUERY_LOG = optiConfig.query_log ?? false;
-        const serviceUrl = new URL("/content/v2", optiConfig.gateway).href;
-        super(serviceUrl, {
+        const serviceUrl = new URL("/content/v2", optiConfig.gateway);
+        if (configFlags.queryCache)
+            serviceUrl.searchParams.set('stored', 'true');
+        super(serviceUrl.href, {
+            credentials: "include",
+            method: "post",
             requestMiddleware: request => {
                 if (QUERY_LOG) {
                     console.log(`[ContentGraph] [Request Query] ${request.body}`);
@@ -87,6 +96,7 @@ export class ContentGraphClient extends GraphQLClient {
         // Set variables
         this._config = optiConfig;
         this._token = token;
+        this._flags = configFlags;
         this.updateRequestConfig();
     }
     /**
@@ -109,15 +119,45 @@ export class ContentGraphClient extends GraphQLClient {
         //@ts-expect-error
         return this.request(...args);
     };
+    _oldFlags = undefined;
+    updateFlags(newFlags, temporary = false) {
+        // Determine the new flags
+        if (this._oldFlags)
+            throw new Error("There's a temporary flag update in progress, revert that one first prior to updating the flags");
+        if (temporary)
+            this._oldFlags = this._flags;
+        this._flags = { ...this._flags, ...newFlags };
+        if (this._config.debug)
+            console.log(`🔵 [ContentGraph] ${temporary ? 'Temporary updating' : 'Updating'} the feature configuration of the client`);
+        // Update the request configuration
+        this.updateRequestConfig();
+        return this;
+    }
+    restoreFlags() {
+        // Restore the flags
+        if (!this._oldFlags)
+            return this;
+        this._flags = this._oldFlags;
+        this._oldFlags = undefined;
+        if (this._config.debug)
+            console.log(`🔵 [ContentGraph] Rolling back the feature configuration of the client`);
+        // Update the request configuration
+        this.updateRequestConfig();
+        return this;
+    }
     updateRequestConfig() {
+        // Update headers & fetch method
         switch (this.currentAuthMode) {
             case AuthMode.HMAC:
-                this.setHeaders({});
+                this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient"
+                });
                 this.requestConfig.cache = 'no-store';
-                this.requestConfig.fetch = this._hmacFetch;
+                this.requestConfig.fetch = this.hmacFetch;
                 break;
             case AuthMode.Basic:
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `Basic ${base64encode(this._config.app_key + ":" + this._config.secret)}`
                 });
                 this.requestConfig.cache = 'no-store';
@@ -125,6 +165,7 @@ export class ContentGraphClient extends GraphQLClient {
                 break;
             case AuthMode.Token:
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `Bearer ${this.token}`
                 });
                 this.requestConfig.cache = 'no-store';
@@ -132,11 +173,17 @@ export class ContentGraphClient extends GraphQLClient {
                 break;
             default:
                 this.setHeaders({
+                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
                     Authorization: `epi-single ${this._config.single_key}`
                 });
                 this.requestConfig.fetch = fetch;
                 break;
         }
+        // Update endpoint
+        const serviceUrl = new URL("/content/v2", this._config.gateway);
+        if (this._flags.queryCache)
+            serviceUrl.searchParams.set('stored', 'true');
+        this.setEndpoint(serviceUrl.href);
     }
 }
 export const createClient = (config, token = undefined) => new ContentGraphClient(config, token);

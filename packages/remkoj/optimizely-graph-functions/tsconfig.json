@@ -3,9 +3,9 @@
     "compilerOptions": {
       // Set build target
       "target": "ES2020",
-      "module": "NodeNext",
-      "moduleResolution": "NodeNext",
-      "lib": ["ES2020","ES2020.BigInt","ES2020.Date","ES2020.Intl","ES2020.Number","ES2020.Promise","ES2020.SharedMemory","ES2020.String","ES2020.Symbol.WellKnown","ES2016","ES2016.Array.Include"],
+      "module": "CommonJS",
+      "moduleResolution": "Node10",
+      "lib": ["DOM","ES2020","ES2020.BigInt","ES2020.Date","ES2020.Intl","ES2020.Number","ES2020.Promise","ES2020.SharedMemory","ES2020.String","ES2020.Symbol.WellKnown","ES2016","ES2016.Array.Include"],
   
       // Set Output & Module resolution
       "baseUrl": "./",

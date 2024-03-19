@@ -20,6 +20,7 @@ export class RouteResolver {
 
     public async getRoutes(siteId?: string) : Promise<Route[]>
     {
+        this._cgClient.updateFlags({ queryCache: false }, true)
         let page = await this._cgClient.request<GetAllRoutes.Result, GetAllRoutes.Variables>(GetAllRoutes.query, { siteId, typeFilter: "Page" })
         let results = page?.Content?.items ?? []
         const totalCount = page?.Content?.total ?? 0
@@ -28,7 +29,7 @@ export class RouteResolver {
         if (totalCount > 0 && cursor !== '' && totalCount > results.length)
             while ((page?.Content?.items?.length ?? 0) > 0 && results.length < totalCount) 
             {
-                page = await this._cgClient.query<GetAllRoutes.Result, GetAllRoutes.Variables>({ 
+                page = await this._cgClient.request<GetAllRoutes.Result, GetAllRoutes.Variables>({ 
                     document: GetAllRoutes.query, 
                     variables: { 
                         cursor,
@@ -39,6 +40,7 @@ export class RouteResolver {
                 results = results.concat(page.Content?.items ?? [])
             }
 
+        this._cgClient.restoreFlags()
         return results.map(this.convertResponse)
     }
 

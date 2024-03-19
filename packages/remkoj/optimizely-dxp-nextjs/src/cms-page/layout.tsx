@@ -6,6 +6,7 @@ import type { Props } from './page'
 import { getMetaDataByPath as getMetaDataByPathBase, type GetMetaDataByPathMethod } from './data'
 import { slugToLocale, slugToGraphLocale } from "./utils"
 import { getServerClient } from "../client"
+import { isDebug } from '@remkoj/optimizely-dxp-react/rsc'
 
 export type CmsPageLayout = {
     generateMetadata: (props: Omit<Props, 'searchParams'>, resolving: ResolvingMetadata) => Promise<Metadata>
@@ -34,8 +35,6 @@ export function createLayout(
         ...options
     }
 
-    const DEBUG = process.env.DXP_DEBUG == '1'
-
     const pageLayoutDefinition : CmsPageLayout = {
 
         /**
@@ -49,8 +48,8 @@ export function createLayout(
             const locale = slugToLocale(channel, params?.lang ?? '', defaultLocale)
             const relativePath = `/${ params.lang }${ params.path ? '/' + params.path.join('/') : '' }`
             
-            if (DEBUG)
-                console.log(`[CmsPageLayout] Generating metadata for: ${ relativePath }`)
+            if (isDebug())
+                console.log(`⚪ [CmsPageLayout] Generating metadata for: ${ relativePath }`)
 
             const variables = {
                 path: relativePath,
@@ -63,8 +62,8 @@ export function createLayout(
             })
             const metadata = (response?.getGenericMetaData?.items ?? [])[0]
             if (!metadata) {
-                if (DEBUG)
-                    console.log(`[CmsPageLayout] Unable to locate metadata for: ${ relativePath }`)
+                if (isDebug())
+                    console.log(`🟡 [CmsPageLayout] Unable to locate metadata for: ${ relativePath }`)
                 return {}
             }
             

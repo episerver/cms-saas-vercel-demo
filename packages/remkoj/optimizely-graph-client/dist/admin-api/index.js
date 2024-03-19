@@ -14,7 +14,10 @@ export function createClient(config) {
         BASE: graphConfig.gateway,
         CREDENTIALS: "include",
         USERNAME: graphConfig.app_key,
-        PASSWORD: graphConfig.secret
+        PASSWORD: graphConfig.secret,
+        HEADERS: {
+            "X-Client": "@RemkoJ/OptimizelyGraphClient",
+        }
     });
     return client;
 }
