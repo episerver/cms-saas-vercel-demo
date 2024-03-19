@@ -32,13 +32,19 @@ export function applyConfigDefaults(configuredValues) {
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns
  */
-export function validateConfig(toValidate, forPublishedOnly = true) {
+export function validateConfig(toValidate, forPublishedOnly = true, throwError = false) {
     const hasSingleKey = isNonEmptyString(toValidate?.single_key);
     const hasGateway = isValidUrl(toValidate?.gateway);
-    if (forPublishedOnly)
-        return hasSingleKey && hasGateway;
-    const hasSecret = isNonEmptyString(toValidate?.secret);
-    const hasAppKey = isNonEmptyString(toValidate?.app_key);
+    const hasSecret = forPublishedOnly || isNonEmptyString(toValidate?.secret);
+    const hasAppKey = forPublishedOnly || isNonEmptyString(toValidate?.app_key);
+    if (throwError && !hasSingleKey)
+        throw new Error("Optimizely Graph Configuration does not have a valid Single Key");
+    if (throwError && !hasGateway)
+        throw new Error("Optimizely Graph Configuration does not have a valid Gateway");
+    if (throwError && !hasSecret)
+        throw new Error("Optimizely Graph Configuration does not have a valid Secret");
+    if (throwError && !hasAppKey)
+        throw new Error("Optimizely Graph Configuration does not have a valid App Key");
     return hasGateway && hasSingleKey && hasAppKey && hasSecret;
 }
 function isNonEmptyString(toTest) {
