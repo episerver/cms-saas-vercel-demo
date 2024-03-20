@@ -1,7 +1,7 @@
 import 'server-only';
 import getContentType from './get-content-type';
 import getServerContext from '../context';
-import createClient from '@remkoj/optimizely-graph-client';
+import createClient, { AuthMode } from '@remkoj/optimizely-graph-client';
 import { print } from 'graphql';
 import * as Utils from "../../utilities";
 import * as Queries from './queries';
@@ -17,11 +17,15 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
     if (context.isDebugOrDevelopment && !context.client)
         console.warn(`🟠 [CmsContent] No Content Graph client provided with ${JSON.stringify(contentLink)}, this will cause problems with edit mode!`);
     // Parse & prepare props
-    const inEditMode = context.inEditMode;
+    const inEditMode = context.inEditMode && context.isEditableContent(contentLink);
     const outputEditorWarning = context.forceEditorWarnings;
     const factory = context.factory;
     const client = context.client ?? createClient();
     const isInlineBlock = Utils.isInlineContentLink(contentLink);
+    if (context.isDebug && inEditMode)
+        console.log(`👔 [CmsContent] Edit mode active for content with id: ${JSON.stringify(contentLink)}`);
+    if (context.isDebug && inEditMode && client.currentAuthMode == AuthMode.Public)
+        console.warn(`🟠 [CmsContent] Edit mode active without an authenticated client, this will cause problems`);
     // DEBUG Tracing
     if (context.isDebug)
         console.log("⚪ [CmsContent] Rendering CMS Content for:", JSON.stringify(contentType), isInlineBlock ? "Inline content" : JSON.stringify({ id: contentLink.id, workId: contentLink.workId, guidValue: contentLink.guidValue, locale: contentLink.locale }), inEditMode ? "edit-mode" : "published");
@@ -93,7 +97,7 @@ export const CmsContent = async ({ contentType, contentTypePrefix, contentLink, 
         const fragmentResponse = await client.request(fragmentQuery, fragmentVariables);
         const totalItems = fragmentResponse.contentById.total || 0;
         if (totalItems < 1)
-            throw new Error(`CmsContent expected to load exactly one content item, received ${totalItems} from Optimizely Graph.`);
+            throw new Error(`CmsContent expected to load exactly one content item of type ${name}, received ${totalItems} from Optimizely Graph. Content Item: ${JSON.stringify(fragmentVariables)}`);
         if (totalItems > 1 && context.isDebug)
             console.warn(`🟠 [CmsContent] Resolved ${totalItems} content items, expected only 1. Picked the first one`);
         return React.createElement(Component, { inEditMode: inEditMode, contentLink: contentLink, data: fragmentResponse.contentById.items[0], client: client });

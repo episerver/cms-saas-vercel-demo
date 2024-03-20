@@ -23,9 +23,8 @@ exports.isIntoMatch = isIntoMatch;
 function extractPluginConfigAndApplyDefaults(baseConfig, defaultValues) {
     const extractedConfig = {
         clientPath: baseConfig?.clientPath || undefined,
-        optlyFunctions: baseConfig?.optlyFunctions || undefined,
-        optlyInjections: baseConfig?.optlyInjections || undefined,
-        optlyPrettyQuery: baseConfig?.optlyPrettyQuery || undefined
+        functions: baseConfig?.functions || undefined,
+        prettyPrintQuery: baseConfig?.prettyPrintQuery || undefined
     };
     for (const propName of Object.getOwnPropertyNames(extractedConfig))
         if (extractedConfig[propName] == null || extractedConfig[propName] == undefined)

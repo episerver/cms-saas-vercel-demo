@@ -1,6 +1,15 @@
 import 'server-only';
 import type { ComponentFactory } from '../types';
 import type { IOptiGraphClient } from "@remkoj/optimizely-graph-client";
+export type EditableContentId = {
+    id: number | null;
+    workId?: number | null;
+    guidValue?: string | null;
+} | {
+    id?: number | null;
+    workId?: number | null;
+    guidValue: string | null;
+};
 export interface ServerContext {
     readonly inEditMode: Readonly<boolean>;
     readonly isDevelopment: boolean;
@@ -15,6 +24,8 @@ export interface ServerContext {
     setComponentFactory(newValue: ComponentFactory): ServerContext;
     setForceEditorWarnings(newValue: boolean): ServerContext;
     setLocale(newValue: string | undefined): ServerContext;
+    setEditableContentId(newId: EditableContentId): ServerContext;
+    isEditableContent(id: EditableContentId): boolean;
 }
 /**
  * Retrieve the working instance of the component factory, which is memoized through the React.cache()

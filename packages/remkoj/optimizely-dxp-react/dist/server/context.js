@@ -8,6 +8,7 @@ class DefaultServerContext {
     _client = undefined;
     _factory = undefined;
     _locale = undefined;
+    _editableContent = undefined;
     get inEditMode() {
         return this._inEditMode;
     }
@@ -51,6 +52,19 @@ class DefaultServerContext {
     setLocale(newValue) {
         this._locale = newValue;
         return this;
+    }
+    setEditableContentId(newId) {
+        this._editableContent = newId;
+        return this;
+    }
+    isEditableContent(id) {
+        if (!this.inEditMode || !this._editableContent)
+            return false; // We can on be editable in edit mode and with an id set
+        if (id.id != this._editableContent.id && id.guidValue != this._editableContent.guidValue)
+            return false; // Both ID and GUID don't match
+        if (this._editableContent.workId && this._editableContent.workId != id.workId)
+            return false; // We know the work ID and it doesn't match
+        return true;
     }
 }
 /**

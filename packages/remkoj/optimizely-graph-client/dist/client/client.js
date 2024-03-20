@@ -4,7 +4,9 @@ import { AuthMode } from "./types.js";
 import createHmacFetch from "./hmac-fetch.js";
 import { base64encode, isError, validateToken, getAuthMode } from "./utils.js";
 const defaultFlags = {
-    queryCache: true
+    queryCache: true,
+    cache: true,
+    recursive: false
 };
 export class ContentGraphClient extends GraphQLClient {
     static ForceHmacToken = 'use-hmac';
@@ -146,18 +148,22 @@ export class ContentGraphClient extends GraphQLClient {
         return this;
     }
     updateRequestConfig() {
+        // Build headers that are shared across authentication modes
+        const headers = {
+            "X-Client": "@RemkoJ/OptimizelyGraphClient"
+        };
+        if (this._flags.recursive)
+            headers["cg-recursive-enabled"] = "true";
         // Update headers & fetch method
         switch (this.currentAuthMode) {
             case AuthMode.HMAC:
-                this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient"
-                });
+                this.setHeaders(headers);
                 this.requestConfig.cache = 'no-store';
                 this.requestConfig.fetch = this.hmacFetch;
                 break;
             case AuthMode.Basic:
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `Basic ${base64encode(this._config.app_key + ":" + this._config.secret)}`
                 });
                 this.requestConfig.cache = 'no-store';
@@ -165,7 +171,7 @@ export class ContentGraphClient extends GraphQLClient {
                 break;
             case AuthMode.Token:
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `Bearer ${this.token}`
                 });
                 this.requestConfig.cache = 'no-store';
@@ -173,7 +179,7 @@ export class ContentGraphClient extends GraphQLClient {
                 break;
             default:
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `epi-single ${this._config.single_key}`
                 });
                 this.requestConfig.fetch = fetch;
@@ -183,6 +189,7 @@ export class ContentGraphClient extends GraphQLClient {
         const serviceUrl = new URL("/content/v2", this._config.gateway);
         if (this._flags.queryCache)
             serviceUrl.searchParams.set('stored', 'true');
+        serviceUrl.searchParams.set('cache', this._flags.cache ? 'true' : 'false');
         this.setEndpoint(serviceUrl.href);
     }
 }

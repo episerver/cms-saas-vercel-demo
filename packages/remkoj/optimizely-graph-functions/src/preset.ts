@@ -1,55 +1,45 @@
 import type { Types } from '@graphql-codegen/plugin-helpers'
-import type * as OptlyFunctionsTypes from './types'
-import * as fragmentMatcherPlugin from '@graphql-codegen/fragment-matcher'
-import * as optlyFunctionsPlugin from './index'
-import { preset as clientPreset, type ClientPresetConfig } from '@graphql-codegen/client-preset'
 import { fragments, queries } from './documents'
-import { extractPluginConfigAndApplyDefaults } from './utils'
 
-export type OptimizelyGraphFunctionsPresetConfig = ClientPresetConfig & OptlyFunctionsTypes.OptimizelyFunctionOptions
+// Import base preset
+import { preset as clientPreset, type ClientPresetConfig as ClientPresetOptions } from '@graphql-codegen/client-preset'
 
-const defaultOptions : Partial<OptlyFunctionsTypes.OptimizelyFunctionOptions> = {
-    optlyFunctions: [
-        'getContentByPath',
-        'getContentById'
-    ],
-    optlyPrettyQuery: false
-}
+// Import injected parts
+import plugin, { pickPluginOptions, type PluginOptions } from './index'
+import transform, { pickTransformOptions, type TransformOptions } from './transform'
 
-export const preset : Types.OutputPreset<OptimizelyGraphFunctionsPresetConfig> =
+// Create preset configuration
+export type PresetOptions = ClientPresetOptions & PluginOptions & TransformOptions
+
+export const preset : Types.OutputPreset<PresetOptions> =
 {
-    prepareDocuments: async (outputFilePath, outputSpecificDocuments) => [...outputSpecificDocuments, `!${outputFilePath}`, ...fragments, ...queries],
+    prepareDocuments: async (outputFilePath, outputSpecificDocuments) => {
+        // Get the base documents
+        const documents = clientPreset.prepareDocuments ? await clientPreset.prepareDocuments(outputFilePath, outputSpecificDocuments) : [...outputSpecificDocuments, `!${outputFilePath}`]
+
+        // Then add the implicit documents to it
+        documents.push([...fragments, ...queries].join("\n"))
+
+        // Finally return the extended array
+        return documents
+    },
+
     buildGeneratesSection: async (options)  => {
-        const baseGenerates = await clientPreset.buildGeneratesSection(options)
-        //console.log(baseGenerates)
-        //console.log(Object.getOwnPropertyNames(options.presetConfig), options.baseOutputDir)
-        const indexFilePluginIndex = baseGenerates.findIndex(fileDefinition => fileDefinition.filename.endsWith("index.ts"))
-        const indexFilePlugin = indexFilePluginIndex >= 0 ? baseGenerates.splice(indexFilePluginIndex, 1) : []
-        baseGenerates.push({
-            filename: `${ options.baseOutputDir }fragment-types.json`,
-            pluginMap: {
-                //[`add`]: addPlugin,
-                [`fragment-matcher`]: fragmentMatcherPlugin,
-              },
-              plugins: [
-                //{ [`add`]: { content: `/* eslint-disable */` } },
-                {
-                  [`fragment-matcher`]: {},
-                },
-              ],
-              schema: options.schema,
-              config: {
-                module: 'es2015',
-                apolloClientVersion: 3,
-                useExplicitTyping: true,
-              },
-              documents: [],
-              documentTransforms: options.documentTransforms,
-        })
-        baseGenerates.unshift({
+        options.documentTransforms = [
+            {
+                name: 'optly-transform',
+                transformObject: transform,
+                config: pickTransformOptions(options.presetConfig)
+            }
+        ]
+
+        const section = await clientPreset.buildGeneratesSection(options)
+        
+        // Add the functions file
+        section.push({
             filename: `${ options.baseOutputDir }functions.ts`,
             pluginMap: {
-                ['optly-functions']: optlyFunctionsPlugin
+                ['optly-functions']: plugin
             },
             plugins: [
                 {
@@ -57,23 +47,22 @@ export const preset : Types.OutputPreset<OptimizelyGraphFunctionsPresetConfig> =
                 }
             ],
             schema: options.schema,
-            config: extractPluginConfigAndApplyDefaults(options.presetConfig, defaultOptions),
+            config: pickPluginOptions(options.presetConfig),
             documents: options.documents,
             documentTransforms: options.documentTransforms
         })
 
-        // Add functions
-        if (indexFilePlugin.length > 0) {
-            const currentContent = indexFilePlugin[0]?.plugins[0]?.add?.content
-            if (currentContent)
-                indexFilePlugin[0].plugins[0].add.content = `export * as Schema from "./graphql";\n${currentContent}\nexport * from "./functions";`
-        }
+        // Add functions to index plugin
+        section.forEach((fileConfig, idx) => {
+            if (fileConfig.filename.endsWith("index.ts")) {
+                const currentContent = section[idx].plugins[0]?.add?.content
+                if (currentContent)
+                    section[idx].plugins[0].add.content = `export * as Schema from "./graphql";\n${currentContent}\nexport * from "./functions";`
+            }
+        })
 
-        // Re-add the indexFilePlugin at the end
-        baseGenerates.push(...indexFilePlugin)
-
-        return baseGenerates
+        return section
     },
 }
 
-export default { preset }
+export default preset

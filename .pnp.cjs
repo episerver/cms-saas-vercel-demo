@@ -1585,21 +1585,6 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:83101cd72d042d5603fb392b397c1dfb7e4c89a691a6a4663fe1462cac93100e4032eb1e38efe1a61e9f3a1dbbaba73b65052cbf80fe3509b61b8047fca3fcc1#npm:5.0.2", {\
-        "packageLocation": "./.yarn/__virtual__/@graphql-codegen-fragment-matcher-virtual-b9be51376a/0/cache/@graphql-codegen-fragment-matcher-npm-5.0.2-49071a5b43-4934035313.zip/node_modules/@graphql-codegen/fragment-matcher/",\
-        "packageDependencies": [\
-          ["@graphql-codegen/fragment-matcher", "virtual:83101cd72d042d5603fb392b397c1dfb7e4c89a691a6a4663fe1462cac93100e4032eb1e38efe1a61e9f3a1dbbaba73b65052cbf80fe3509b61b8047fca3fcc1#npm:5.0.2"],\
-          ["@graphql-codegen/plugin-helpers", "virtual:1e77a44a0acd39064ccefef60956ccc8fd8bfb81cbeb57e5d1529030c6f9ba23ac9634f9b4e054d5e7036fb1c271c710dec8b3cd63bcfa4f8ae7c08360fc0514#npm:5.0.3"],\
-          ["@types/graphql", null],\
-          ["graphql", "npm:16.8.1"],\
-          ["tslib", "npm:2.6.2"]\
-        ],\
-        "packagePeers": [\
-          "@types/graphql",\
-          "graphql"\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.0.2", {\
         "packageLocation": "./.yarn/__virtual__/@graphql-codegen-fragment-matcher-virtual-2f996b68a5/0/cache/@graphql-codegen-fragment-matcher-npm-5.0.2-49071a5b43-4934035313.zip/node_modules/@graphql-codegen/fragment-matcher/",\
         "packageDependencies": [\
@@ -3833,22 +3818,22 @@ const RAW_RUNTIME_STATE =
           ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#workspace:packages/remkoj/optimizely-graph-functions"],\
           ["@graphql-codegen/add", "virtual:1e77a44a0acd39064ccefef60956ccc8fd8bfb81cbeb57e5d1529030c6f9ba23ac9634f9b4e054d5e7036fb1c271c710dec8b3cd63bcfa4f8ae7c08360fc0514#npm:5.0.2"],\
           ["@graphql-codegen/client-preset", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.2.4"],\
-          ["@graphql-codegen/fragment-matcher", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.0.2"],\
           ["@graphql-codegen/plugin-helpers", "virtual:1e77a44a0acd39064ccefef60956ccc8fd8bfb81cbeb57e5d1529030c6f9ba23ac9634f9b4e054d5e7036fb1c271c710dec8b3cd63bcfa4f8ae7c08360fc0514#npm:5.0.3"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#workspace:packages/remkoj/optimizely-graph-client"],\
           ["@types/graphql-codegen__add", null],\
           ["@types/graphql-codegen__client-preset", null],\
-          ["@types/graphql-codegen__fragment-matcher", null],\
           ["@types/node", "npm:20.11.29"],\
+          ["@types/remkoj__optimizely-graph-client", null],\
           ["graphql", "npm:16.8.1"],\
           ["tslib", "npm:2.6.2"],\
           ["typescript", "patch:typescript@npm%3A5.4.2#optional!builtin<compat/typescript>::version=5.4.2&hash=5adc0c"]\
         ],\
         "packagePeers": [\
           "@graphql-codegen/client-preset",\
-          "@graphql-codegen/fragment-matcher",\
+          "@remkoj/optimizely-graph-client",\
           "@types/graphql-codegen__add",\
           "@types/graphql-codegen__client-preset",\
-          "@types/graphql-codegen__fragment-matcher"\
+          "@types/remkoj__optimizely-graph-client"\
         ],\
         "linkType": "SOFT"\
       }],\
@@ -3858,7 +3843,6 @@ const RAW_RUNTIME_STATE =
           ["@remkoj/optimizely-graph-functions", "workspace:packages/remkoj/optimizely-graph-functions"],\
           ["@graphql-codegen/add", "virtual:1e77a44a0acd39064ccefef60956ccc8fd8bfb81cbeb57e5d1529030c6f9ba23ac9634f9b4e054d5e7036fb1c271c710dec8b3cd63bcfa4f8ae7c08360fc0514#npm:5.0.2"],\
           ["@graphql-codegen/client-preset", "virtual:83101cd72d042d5603fb392b397c1dfb7e4c89a691a6a4663fe1462cac93100e4032eb1e38efe1a61e9f3a1dbbaba73b65052cbf80fe3509b61b8047fca3fcc1#npm:4.2.4"],\
-          ["@graphql-codegen/fragment-matcher", "virtual:83101cd72d042d5603fb392b397c1dfb7e4c89a691a6a4663fe1462cac93100e4032eb1e38efe1a61e9f3a1dbbaba73b65052cbf80fe3509b61b8047fca3fcc1#npm:5.0.2"],\
           ["@graphql-codegen/plugin-helpers", "virtual:1e77a44a0acd39064ccefef60956ccc8fd8bfb81cbeb57e5d1529030c6f9ba23ac9634f9b4e054d5e7036fb1c271c710dec8b3cd63bcfa4f8ae7c08360fc0514#npm:5.0.3"],\
           ["@types/node", "npm:20.11.29"],\
           ["graphql", "npm:16.8.1"],\

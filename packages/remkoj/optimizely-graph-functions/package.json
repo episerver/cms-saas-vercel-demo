@@ -7,23 +7,30 @@
   "main": "./dist/index.js",
   "exports": {
     ".": "./dist/index.js",
+    "./plugin": "./dist/index.js",
     "./preset": "./dist/preset.js",
+    "./transform": "./dist/transform.js",
     "./documents": "./dist/documents.js"
   },
   "typesVersions": {
     "*": {
+      "plugin": [
+        "dist/index.d.ts"
+      ],
       "preset": [
         "dist/preset.d.ts"
       ],
       "documents": [
         "dist/documents.d.ts"
+      ],
+      "transform": [
+        "dist/transform.d.ts"
       ]
     }
   },
   "devDependencies": {
     "@graphql-codegen/add": "^5.0.2",
     "@graphql-codegen/client-preset": "^4.2.4",
-    "@graphql-codegen/fragment-matcher": "^5.0.2",
     "@graphql-codegen/plugin-helpers": "^5.0.3",
     "@types/node": "^20.11.29",
     "typescript": "^5.4.2"
@@ -41,6 +48,6 @@
   "peerDependencies": {
     "@graphql-codegen/add": "*",
     "@graphql-codegen/client-preset": "*",
-    "@graphql-codegen/fragment-matcher": "*"
+    "@remkoj/optimizely-graph-client": "*"
   }
 }

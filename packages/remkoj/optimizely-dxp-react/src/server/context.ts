@@ -5,6 +5,16 @@ import { getFactory } from '../factory'
 import type { ComponentFactory } from '../types'
 import type { IOptiGraphClient } from "@remkoj/optimizely-graph-client"
 
+export type EditableContentId = {
+    id: number | null,
+    workId?: number | null,
+    guidValue?: string | null
+} | {
+    id?: number | null,
+    workId?: number | null,
+    guidValue: string | null
+}
+
 export interface ServerContext {
     readonly inEditMode: Readonly<boolean>
     readonly isDevelopment: boolean
@@ -19,6 +29,8 @@ export interface ServerContext {
     setComponentFactory(newValue: ComponentFactory) : ServerContext
     setForceEditorWarnings(newValue: boolean) : ServerContext
     setLocale(newValue: string | undefined): ServerContext
+    setEditableContentId(newId: EditableContentId) : ServerContext
+    isEditableContent(id: EditableContentId) : boolean
 }
 
 class DefaultServerContext implements ServerContext {
@@ -27,6 +39,7 @@ class DefaultServerContext implements ServerContext {
     private _client : IOptiGraphClient | undefined = undefined
     private _factory : ComponentFactory | undefined = undefined
     private _locale : string | undefined = undefined
+    private _editableContent : EditableContentId | undefined = undefined
     public get inEditMode() : boolean {
         return this._inEditMode
     }
@@ -71,6 +84,18 @@ class DefaultServerContext implements ServerContext {
     public setLocale(newValue: string | undefined): ServerContext {
         this._locale = newValue
         return this
+    }
+    public setEditableContentId(newId: EditableContentId) {
+        this._editableContent = newId
+        return this;
+    }
+    public isEditableContent(id: EditableContentId) : boolean {
+        if (!this.inEditMode || !this._editableContent) return false // We can on be editable in edit mode and with an id set
+        if (id.id != this._editableContent.id && id.guidValue != this._editableContent.guidValue)
+            return false // Both ID and GUID don't match
+        if (this._editableContent.workId && this._editableContent.workId != id.workId)
+            return false // We know the work ID and it doesn't match
+        return true
     }
 }
 

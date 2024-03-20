@@ -1,11 +1,10 @@
-import type { CodegenConfig  } from '@graphql-codegen/cli'
+// Environment file parsing and updating
 import * as DotEnv from 'dotenv'
 import { expand } from 'dotenv-expand'
 import path from 'node:path'
 import fs from 'node:fs'
 import figures from 'figures'
 import chalk from 'chalk'
-import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
 
 // Process environment files, to ensure the enviornment configuration is applied
 const envFiles : string[] = [".env", ".env.local"]
@@ -19,6 +18,11 @@ envFiles.map(s => path.join(process.cwd(), s)).filter(s => fs.existsSync(s)).rev
     console.log(`${ chalk.greenBright(figures.tick) } Processed ${fileName}`)
 })
 
+// Actual code generation setup
+import type { CodegenConfig  } from '@graphql-codegen/cli'
+import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
+import OptimizelyGraphPreset, {type PresetOptions as OptimizelyGraphPresetOptions}  from '@remkoj/optimizely-graph-functions/preset'
+
 // Create the configuration itself
 const config: CodegenConfig = {
     schema: getSchemaInfo(),
@@ -31,12 +35,10 @@ const config: CodegenConfig = {
     ],
     generates: {
         './gql/': {
-            //@ts-expect-error: Type of the preset isn't detected properly
-            preset: '@remkoj/optimizely-graph-functions/preset',
-            plugins: [],
+            preset: OptimizelyGraphPreset,
             presetConfig: {
                 gqlTagName: 'gql',
-                optlyInjections: [
+                injections: [
                     {
                         // Add from all pages, except colocated blocks
                         into: "PageData",
@@ -52,8 +54,8 @@ const config: CodegenConfig = {
                         into: "BlockData",
                         pathRegex: "src\/components\/block"
                     }
-                ]
-            }
+                ],
+            } as OptimizelyGraphPresetOptions
         }
     },
     ignoreNoDocuments: false

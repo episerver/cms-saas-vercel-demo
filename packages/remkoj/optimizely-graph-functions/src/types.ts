@@ -1,16 +1,6 @@
-import type { CodegenPlugin } from '@graphql-codegen/plugin-helpers'
 import type { FragmentDefinitionNode, OperationDefinitionNode } from 'graphql'
 
-export type OptimizelyFunctionInjection = { into: string, nameRegex?: string, pathRegex?: string }
-
-export type OptimizelyFunctionOptions = {
-    optlyFunctions: string[],
-    optlyInjections?: OptimizelyFunctionInjection[],
-    optlyPrettyQuery?:boolean,
-    clientPath?:string
-}
-
-export type OptimizelyGraphFunctionPlugin = CodegenPlugin<OptimizelyFunctionOptions>
+export type Injection = { into: string, nameRegex?: string, pathRegex?: string }
 
 export type IntoMatchType = { 
     docId: number, 

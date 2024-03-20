@@ -122,6 +122,8 @@ export function createEditPageComponent(channel, factory, options) {
                     type: (contentItem.contentType ?? []).slice(0, -1).join('/')
                 }));
             }
+            // Store the editable content so it can be tested
+            context.setEditableContentId(contentLink);
             // Render the content, with edit mode context
             const isPage = contentItem.contentType?.some(x => x?.toLowerCase() == "page") ?? false;
             const loadedContentId = Utils.normalizeContentLinkWithLocale({ ...contentItem?.id, locale: contentItem?.locale?.name });

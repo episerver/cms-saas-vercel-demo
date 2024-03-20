@@ -17,6 +17,8 @@ export type OptiGraphSiteInfo = {
 };
 export type IOptiGraphClientFlags = {
     queryCache: boolean;
+    recursive: boolean;
+    cache: boolean;
 };
 export interface IOptiGraphClient extends ClientInstanceType {
     /**

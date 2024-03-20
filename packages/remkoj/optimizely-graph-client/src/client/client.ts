@@ -5,7 +5,9 @@ import createHmacFetch, { type FetchAPI } from "./hmac-fetch.js"
 import { base64encode, isError, validateToken, getAuthMode } from "./utils.js"
 
 const defaultFlags : IOptiGraphClientFlags = {
-    queryCache: true
+    queryCache: true,
+    cache: true,
+    recursive: false
 }
 
 export class ContentGraphClient extends GraphQLClient implements IOptiGraphClient
@@ -180,18 +182,23 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
 
     protected updateRequestConfig() : void
     {
+        // Build headers that are shared across authentication modes
+        const headers : Record<string, string> = {
+            "X-Client": "@RemkoJ/OptimizelyGraphClient"
+        }
+        if (this._flags.recursive)
+            headers["cg-recursive-enabled"] = "true"
+
         // Update headers & fetch method
         switch (this.currentAuthMode) {
             case AuthMode.HMAC:
-                this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient"
-                })
+                this.setHeaders(headers)
                 this.requestConfig.cache = 'no-store'
                 this.requestConfig.fetch = this.hmacFetch
                 break
             case AuthMode.Basic:
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `Basic ${ base64encode(this._config.app_key + ":" + this._config.secret) }`
                 })
                 this.requestConfig.cache = 'no-store'
@@ -199,7 +206,7 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
                 break
             case AuthMode.Token: 
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `Bearer ${ this.token }`
                 })
                 this.requestConfig.cache = 'no-store'
@@ -207,7 +214,7 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
                 break
             default:
                 this.setHeaders({
-                    "X-Client": "@RemkoJ/OptimizelyGraphClient",
+                    ...headers,
                     Authorization: `epi-single ${ this._config.single_key }`
                 })
                 this.requestConfig.fetch = fetch
@@ -218,6 +225,7 @@ export class ContentGraphClient extends GraphQLClient implements IOptiGraphClien
         const serviceUrl = new URL("/content/v2", this._config.gateway)
         if (this._flags.queryCache)
             serviceUrl.searchParams.set('stored', 'true')
+        serviceUrl.searchParams.set('cache', this._flags.cache ? 'true' : 'false')
         this.setEndpoint(serviceUrl.href)
     } 
 }
