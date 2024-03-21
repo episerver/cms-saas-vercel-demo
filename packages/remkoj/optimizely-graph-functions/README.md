@@ -10,30 +10,26 @@ Create a codegen.ts within your application root folder (e.g. apps/frontend/code
 ```typescript
 import type { CodegenConfig  } from '@graphql-codegen/cli'
 import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
+import OptimizelyGraphPreset, {type PresetOptions as OptimizelyGraphPresetOptions}  from '@remkoj/optimizely-graph-functions/preset'
 
-// If needed add logic to read/update the environment variables,
-// or build a configuration object for the getSchemaInfo() below
+// This example assumes the configuration can be read from the environment variables, make sure .env files (if you use them) are processed prior to invoking getSchemaInfo()
 
 // Create the configuration itself
 const config: CodegenConfig = {
-    // Get a fully pre-configured schema
     schema: getSchemaInfo(),
+    documents: [
+        // Add local GQL files
+        'src/**/*.graphql',
 
-    // Add the location of your GraphQL queries, this assumes you're using an app folder
-    documents: [ 'src/**/!(*.d).{ts,tsx}' ],
+        // Add Definitions from components
+        'src/**/!(*.d).{ts,tsx}'
+    ],
     generates: {
-        // Output folder
         './gql/': {
-            // Add the provided preset from this package
-            //@ts-expect-error: Type of the preset isn't detected properly
-            preset: '@remkoj/optimizely-graph-functions/preset',
-            plugins: [],
+            preset: OptimizelyGraphPreset,
             presetConfig: {
-                // All options from the 'client' preset are valid here
                 gqlTagName: 'gql',
-
-                // Configure how block and page fragments can be identified
-                optlyInjections: [
+                injections: [
                     {
                         // Add from all pages, except colocated blocks
                         into: "PageData",
@@ -49,8 +45,8 @@ const config: CodegenConfig = {
                         into: "BlockData",
                         pathRegex: "src\/components\/block"
                     }
-                ]
-            }
+                ],
+            } as OptimizelyGraphPresetOptions
         }
     },
     ignoreNoDocuments: false
@@ -60,13 +56,27 @@ export default config
 ```
 
 ## Usage
-After running the code generation, you can use the following API's (assuming the folder where the generated files are stored is available at '@/gql'):
+After running the code generation, you can use the following API's (assuming the folder where the generated files are stored is available at '@gql'):
 
+### Option 1: Direct methods
 ```typescript
-import { getContentById, getContentByPath } from '@/gql'
+import { getContentById, getContentByPath } from '@gql'
 
 const client = /* fetch your client */
 
 const contentFromId = await getContentById(client, { guidValue: '00000000-0000-0000-0000-000000000000', locale: 'en' })
 const contentFromPath = await getContentByPath(client, { path: '/en' })
+```
+
+### Option 2: Enhanced Client
+```typescript
+import { OptimizelyGraphClient, Schema } from '@gql'
+
+const client = new OptimizelyGraphClient({
+    single_key: "your single key here"
+})
+const contentId = '00000000-0000-0000-0000-000000000000'
+const locale = Schema.Locales.En
+
+const contentItem = await client.getContentById({ guidValue: contentId, locale })
 ```

@@ -32,8 +32,8 @@
     "@graphql-codegen/add": "^5.0.2",
     "@graphql-codegen/client-preset": "^4.2.4",
     "@graphql-codegen/plugin-helpers": "^5.0.3",
-    "@types/node": "^20.11.29",
-    "typescript": "^5.4.2"
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
   },
   "dependencies": {
     "graphql": "^16.8.1",
