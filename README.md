@@ -1,6 +1,7 @@
 # Optimizely CMS Demo Site <!-- omit in toc -->
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
+![GitHub package.json version](https://img.shields.io/github/package-json/v/episerver/cms-saas-vercel-demo?filename=package.json)
 
 ## Contents <!-- omit in toc -->
 - [Introduction](#introduction)
@@ -62,6 +63,7 @@ This project uses a mono-repository to hold both the main frontend application, 
 | @remkoj/optimizely-dxp-cli | Command line utitilities to work with the Optimizely CMS - SaaS Core and Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-cli/README.md)
 | @remkoj/optimizely-dxp-nextjs | Extensions for Next.JS and standard implementation components for Optimizely CMS - SaaS Core  | [Available in the package README.md](packages/remkoj/optimizely-dxp-nextjs/README.md)
 | @remkoj/optimizely-dxp-react | React client components, with SSR support, to render content from Optimizely Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-react/README.md)
-| @remkoj/optimizely-dxp-react-server | React server components, to render content from Optimizely Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-react-server/README.md)
-| @remkoj/optimizely-graph-functions | GraphQL Codegen plugin to dynamically build functions that load the correct fields for each content item on a generic lookup. Used for the "getContentByPath" and "getContentById" methods of the sample site. | [Available in the package README.md](packages/remkoj/optimizely-graph-functions/README.md)
+| @remkoj/optimizely-dxp-react-server | React server components, to render content from Optimizely Content Graph *(depricated)* | [Available in the package README.md](packages/remkoj/optimizely-dxp-react-server/README.md)
+| @remkoj/optimizely-graph-client | Optimizely Graph JavaScript SDK | [Available in the package README.md](packages/remkoj/optimizely-graph-functions/README.md)
+| @remkoj/optimizely-graph-functions | Optimizely Graph Preset for [GraphQL Codegen](https://the-guild.dev/graphql/codegen) | [Available in the package README.md](packages/remkoj/optimizely-graph-functions/README.md)
 | @remkoj/optimizely-one-nextjs | React components (both client & server) to integrate the browser-side products from Optimizely (Web Experimentation, Data Platform & Content Analytics / Recommendations) | [Available in the package README.md](packages/remkoj/optimizely-one-nextjs/README.md)

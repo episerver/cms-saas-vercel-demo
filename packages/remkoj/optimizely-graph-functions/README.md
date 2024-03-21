@@ -80,3 +80,20 @@ const locale = Schema.Locales.En
 
 const contentItem = await client.getContentById({ guidValue: contentId, locale })
 ```
+
+## Query Fragments
+The preset automatically injects the following fragments into your list of documents when generating the code. This allows optimization of the generated query size and normalize output so it can be used by the `CmsContent` and `CmsContentArea` components (Which are available in the `@remkoj/optimizely-dxp-react` package).
+
+The following GraphQL Fragments are available:
+
+| Name | Description |
+| --- | --- |
+| ContentLink | Get the fields needed from a ContentLink field, so it can be used to look up content |
+| ContentLinkSearch | Get the fields needed from a ContentLink field, so it can be used to look up content, within a searchable context |
+| IContentData | The fields on an IContent item needed by the `CmsContent` component to reliably determine the content type and load it's data
+| ContentAreaItemData | Retrieve the items within a *searchable* ContentArea on a **Page** component, so that the content can be rendered by the `CmsContentArea` component
+| BlockContentAreaItemData | Retrieve the items within a *non-searchable* ContentArea on a **Block** component, so that the content can be rendered by the `CmsContentArea` component |
+| BlockContentAreaItemSearchData | Retrieve the items within a *searchable* ContentArea on a **Block** component, so that the content can be rendered by the `CmsContentArea` component |
+| LinkItemData | |
+| ImageData | |
+| ImageDataSearch | |
