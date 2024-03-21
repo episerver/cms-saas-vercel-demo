@@ -1,7 +1,7 @@
 {
   "name": "@remkoj/optimizely-graph-client",
-  "version": "0.0.2",
-  "packageManager": "yarn@3.6.0",
+  "version": "1.0.0-pre1.0",
+  "packageManager": "yarn@4.1.1",
   "private": true,
   "type": "module",
   "main": "./dist/index.js",

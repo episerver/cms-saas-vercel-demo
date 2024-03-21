@@ -2069,7 +2069,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-dxp-cli@workspace:^, @remkoj/optimizely-dxp-cli@workspace:packages/remkoj/optimizely-dxp-cli":
+"@remkoj/optimizely-dxp-cli@workspace:*, @remkoj/optimizely-dxp-cli@workspace:packages/remkoj/optimizely-dxp-cli":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-cli@workspace:packages/remkoj/optimizely-dxp-cli"
   dependencies:
@@ -2106,8 +2106,8 @@ __metadata:
   resolution: "@remkoj/optimizely-dxp-nextjs@workspace:packages/remkoj/optimizely-dxp-nextjs"
   dependencies:
     "@remkoj/optimizely-dxp-react": "workspace:*"
-    "@remkoj/optimizely-dxp-react-server": "workspace:^"
-    "@remkoj/optimizely-graph-client": "workspace:^"
+    "@remkoj/optimizely-dxp-react-server": "workspace:*"
+    "@remkoj/optimizely-graph-client": "workspace:*"
     "@types/node": "npm:^20.11.30"
     "@types/react": "npm:^18.2.67"
     "@types/react-dom": "npm:18.2.22"
@@ -2124,7 +2124,7 @@ __metadata:
   peerDependencies:
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:*"
-    "@remkoj/optimizely-graph-client": "workspace:^"
+    "@remkoj/optimizely-graph-client": "workspace:*"
     deepmerge: "*"
     graphql: "*"
     graphql-request: "*"
@@ -2134,7 +2134,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-dxp-react-server@workspace:*, @remkoj/optimizely-dxp-react-server@workspace:^, @remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server":
+"@remkoj/optimizely-dxp-react-server@workspace:*, @remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-dxp-react-server@workspace:packages/remkoj/optimizely-dxp-react-server"
   dependencies:
@@ -2193,7 +2193,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-graph-client@workspace:^, @remkoj/optimizely-graph-client@workspace:packages/remkoj/optimizely-graph-client":
+"@remkoj/optimizely-graph-client@workspace:*, @remkoj/optimizely-graph-client@workspace:^, @remkoj/optimizely-graph-client@workspace:packages/remkoj/optimizely-graph-client":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-graph-client@workspace:packages/remkoj/optimizely-graph-client"
   dependencies:
@@ -2212,7 +2212,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-graph-functions@workspace:^, @remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions":
+"@remkoj/optimizely-graph-functions@workspace:*, @remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-graph-functions@workspace:packages/remkoj/optimizely-graph-functions"
   dependencies:
@@ -2230,7 +2230,7 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-one-nextjs@workspace:^, @remkoj/optimizely-one-nextjs@workspace:packages/remkoj/optimizely-one-nextjs":
+"@remkoj/optimizely-one-nextjs@workspace:*, @remkoj/optimizely-one-nextjs@workspace:packages/remkoj/optimizely-one-nextjs":
   version: 0.0.0-use.local
   resolution: "@remkoj/optimizely-one-nextjs@workspace:packages/remkoj/optimizely-one-nextjs"
   dependencies:
@@ -5764,13 +5764,13 @@ __metadata:
     "@headlessui/tailwindcss": "npm:^0.2.0"
     "@heroicons/react": "npm:^2.1.1"
     "@parcel/watcher": "npm:^2.4.1"
-    "@remkoj/optimizely-dxp-cli": "workspace:^"
+    "@remkoj/optimizely-dxp-cli": "workspace:*"
     "@remkoj/optimizely-dxp-nextjs": "workspace:*"
     "@remkoj/optimizely-dxp-react": "workspace:*"
     "@remkoj/optimizely-dxp-react-server": "workspace:*"
-    "@remkoj/optimizely-graph-client": "workspace:^"
-    "@remkoj/optimizely-graph-functions": "workspace:^"
-    "@remkoj/optimizely-one-nextjs": "workspace:^"
+    "@remkoj/optimizely-graph-client": "workspace:*"
+    "@remkoj/optimizely-graph-functions": "workspace:*"
+    "@remkoj/optimizely-one-nextjs": "workspace:*"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/forms": "npm:^0.5.7"
     "@types/chalk": "npm:^2.2.0"

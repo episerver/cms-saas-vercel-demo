@@ -1,6 +1,7 @@
 {
   "name": "@remkoj/optimizely-dxp-cli",
-  "version": "1.0.0",
+  "version": "1.0.0-pre1.0",
+  "packageManager": "yarn@4.1.1",
   "type": "module",
   "description": "CLI Utilities for Optimizely DXP",
   "main": "dist/index.js",
