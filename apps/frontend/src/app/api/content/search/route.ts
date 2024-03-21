@@ -1,9 +1,10 @@
 import { type NextRequest, NextResponse } from 'next/server'
 import * as GraphQL from '@gql/graphql'
-import { Utils, createClient as getServerClient } from '@remkoj/optimizely-dxp-react'
+import { Utils } from '@remkoj/optimizely-dxp-react'
 import { gql } from '@gql/index'
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
+import { createClient as getServerClient } from '@remkoj/optimizely-graph-client'
 
 async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchResponse>>
 {
@@ -84,7 +85,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
 }
 
 export const GET = handler
-export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+export const runtime = 'nodejs' // 'nodejs' (default) | 'edge'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 export const fetchCache = 'default-no-store'

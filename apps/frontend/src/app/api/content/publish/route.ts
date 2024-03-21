@@ -1,14 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidatePath, revalidateTag } from 'next/cache'
-import { createClient, NextFetchTags } from '@remkoj/optimizely-dxp-react'
+import { revalidatePath } from 'next/cache'
+import { createClient } from '@remkoj/optimizely-graph-client'
 import { gql } from '@gql/index'
 
 const editPaths = [ '/ui/[[...path]]' ]
 const publishedPaths = [ '/[lang]', '/[lang]/[[...path]]', '/sitemap', '/sitemap.xml' ]
 const paths = [ ...editPaths, ...publishedPaths ]
-const tags = [ NextFetchTags.all, NextFetchTags.hmac, NextFetchTags.token, NextFetchTags.token ]
 
-async function handler(req: NextRequest, params: any) : Promise<NextResponse<{revalidated: boolean, paths: string[], tags: string[], clearApolloStore: number, now: number} | { error: string }>>
+async function handler(req: NextRequest, params: any) : Promise<NextResponse<{revalidated: boolean, paths: string[], clearApolloStore: number, now: number} | { error: string }>>
 {
     // Authorize request
     const xAuthToken = req.headers.get("X-OPTLY-PUBLISH") ?? 
@@ -32,15 +31,14 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
     if (publishMode == "all")
     {
         paths.forEach(p => revalidatePath(p, 'page'))
-        tags.forEach(revalidateTag)
-        console.log("Publish all => Revalidated (paths, tags)", paths, tags)
-        return NextResponse.json({revalidated: true, paths, tags, clearApolloStore: 2, now: Date.now()})
+        console.log("Publish all => Revalidated (paths)", paths)
+        return NextResponse.json({revalidated: true, paths, clearApolloStore: 2, now: Date.now()})
     }
 
     // Don't publish if we're in selective mode and there's no data
     if (!requestBody) {
         console.log("Not flushing due to missing request body")
-        return NextResponse.json({revalidated: false, paths: [], tags: [], clearApolloStore: 0, now: Date.now()})
+        return NextResponse.json({revalidated: false, paths: [], clearApolloStore: 0, now: Date.now()})
     }
 
     const action = requestBody.type?.action
@@ -49,11 +47,10 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
     // Only publish on updated documents
     if (subject != "doc" || action != "updated") {
         console.log("Not flushing due to incorrect subject or type", JSON.stringify(requestBody))
-        return NextResponse.json({revalidated: false, paths: [], tags: [], clearApolloStore: 0, now: Date.now()})
+        return NextResponse.json({revalidated: false, paths: [], clearApolloStore: 0, now: Date.now()})
     }
 
     let revalidatePaths : string[] = []
-    let revalidateTags : string[] = []
 
     const docId : string | null = requestBody.data?.docId ?? null
     if (typeof(docId) == 'string') {
@@ -61,7 +58,6 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
         switch(version) {
             case "CheckedOut":
                 revalidatePaths.push(...editPaths)
-                revalidateTags.push(NextFetchTags.hmac, NextFetchTags.token)
                 break
             case "PreviouslyPublished":
             case "Published":
@@ -95,9 +91,6 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
                 } else {
                     revalidatePaths.push(...paths)
                 }
-
-                // Revalidating relevant cache tags
-                revalidateTags.push(NextFetchTags.all, NextFetchTags.public, NextFetchTags.token, NextFetchTags.hmac)
                 break;
             default:
                 console.log("Unknown version detected", version, JSON.stringify(requestBody))
@@ -108,14 +101,12 @@ async function handler(req: NextRequest, params: any) : Promise<NextResponse<{re
 
     // Revalidate site
     revalidatePaths.forEach(p => { revalidatePath(p, 'page'); revalidatePath(p, 'layout'); })
-    revalidateTags.forEach(t => revalidateTag(t))
 
     // Return response
-    console.log(`Revalidated ${ publishMode } (paths, tags, store count)`, revalidatePaths, revalidateTags, 0)
+    console.log(`Revalidated ${ publishMode } (paths)`, revalidatePaths)
     return NextResponse.json({ 
         revalidated: true, 
-        paths: revalidatePaths, 
-        tags: revalidateTags,
+        paths: revalidatePaths,
         clearApolloStore: 0,
         now: Date.now() 
     })
@@ -124,7 +115,7 @@ export const dynamic = 'force-dynamic'      // Make sure all API-Requests are ex
 export const dynamicParams = true           // Make sure all matching routes are always executed
 export const revalidate = 0                 // Don't cache
 export const fetchCache = 'force-no-store'  // Don't cache
-export const runtime = 'edge'               // Run at the edge
+export const runtime = 'nodejs'             // Run on Node.JS
 export const GET = handler
 export const POST = handler
 

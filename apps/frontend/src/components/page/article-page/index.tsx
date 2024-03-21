@@ -5,6 +5,7 @@ import type { Metadata } from 'next/types'
 import Image from 'next/image'
 import LocalTime from '@/components/shared/local-time'
 import { CalendarDaysIcon, UserIcon } from '@heroicons/react/24/outline'
+import Channel from '@/site-config'
 
 export const ArticlePage : OptimizelyNextPage<GraphQL.ArticlePageDataFragment> = ({ data, inEditMode }) => {
     const article = data
@@ -13,7 +14,7 @@ export const ArticlePage : OptimizelyNextPage<GraphQL.ArticlePageDataFragment> =
 
     const imageData = (data.PageImage ?? undefined) as GraphQL.ImageDataFragment | undefined
     const imageUrl = imageData?.data?.path ?? imageData?.data?.url ?? undefined
-    const imageSrc = imageUrl ? new URL(imageUrl, process.env.DXP_URL ?? 'http://localhost:3000').href : undefined
+    const imageSrc = imageUrl ? new URL(imageUrl, Channel.getCmsUrl()).href : undefined
 
     return <div className='article-page max-w-screen-2xl mx-auto p-4 sm:p-6 lg:p-8'>
         <div className='article-meta-info pb-2 sm:pb-4 lg:pb-6 text-slate-400 text-sm font-light align-middle'>

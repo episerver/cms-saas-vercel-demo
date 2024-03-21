@@ -1,7 +1,8 @@
 /// <reference types="react" />
 import 'server-only';
 import type { Metadata, ResolvingMetadata } from 'next';
-import { type ClientFactory, type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react';
+import { type ClientFactory, type ChannelDefinition } from '@remkoj/optimizely-graph-client';
+import { type ComponentFactory } from '@remkoj/optimizely-dxp-react/rsc';
 import { type GetContentByPathMethod } from './data';
 export type Params = {
     path: string[] | undefined;

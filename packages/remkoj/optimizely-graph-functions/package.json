@@ -2,12 +2,39 @@
   "name": "@remkoj/optimizely-graph-functions",
   "private": true,
   "license": "Apache-2.0",
-  "packageManager": "yarn@4.0.0-rc.50",
+  "version": "1.0.0-pre1.0",
+  "packageManager": "yarn@4.1.1",
   "type": "commonjs",
-  "main": "plugin.js",
+  "main": "./dist/index.js",
+  "exports": {
+    ".": "./dist/index.js",
+    "./plugin": "./dist/index.js",
+    "./preset": "./dist/preset.js",
+    "./transform": "./dist/transform.js",
+    "./documents": "./dist/documents.js"
+  },
+  "typesVersions": {
+    "*": {
+      "plugin": [
+        "dist/index.d.ts"
+      ],
+      "preset": [
+        "dist/preset.d.ts"
+      ],
+      "documents": [
+        "dist/documents.d.ts"
+      ],
+      "transform": [
+        "dist/transform.d.ts"
+      ]
+    }
+  },
   "devDependencies": {
+    "@graphql-codegen/add": "^5.0.2",
+    "@graphql-codegen/client-preset": "^4.2.4",
     "@graphql-codegen/plugin-helpers": "^5.0.3",
-    "typescript": "^5.3.3"
+    "@types/node": "^20.11.30",
+    "typescript": "^5.4.3"
   },
   "dependencies": {
     "graphql": "^16.8.1",
@@ -16,6 +43,12 @@
   "scripts": {
     "clean": "tsc --clean",
     "build": "tsc --build",
-    "rebuild": "tsc --build --clean && tsc --build"
+    "rebuild": "tsc --build --clean && tsc --build --force",
+    "watch": "tsc --watch"
+  },
+  "peerDependencies": {
+    "@graphql-codegen/add": "*",
+    "@graphql-codegen/client-preset": "*",
+    "@remkoj/optimizely-graph-client": "*"
   }
 }

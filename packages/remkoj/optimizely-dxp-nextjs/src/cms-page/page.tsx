@@ -3,8 +3,10 @@ import type { Metadata, ResolvingMetadata } from 'next'
 import React from 'react'
 import deepmerge from 'deepmerge'
 import { notFound } from 'next/navigation'
-import { RouteResolver, Utils, type ClientFactory, type ComponentFactory, type ChannelDefinition } from '@remkoj/optimizely-dxp-react'
-import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
+import { RouteResolver, type ClientFactory, type ChannelDefinition } from '@remkoj/optimizely-graph-client'
+import { CmsContent, isDebug, getServerContext, type ComponentFactory } from '@remkoj/optimizely-dxp-react/rsc'
+import { Utils } from '@remkoj/optimizely-dxp-react'
+
 import { MetaDataResolver } from '../metadata'
 import { urlToPath, localeToGraphLocale } from './utils'
 import getContentByPathBase, { type GetContentByPathMethod } from './data'
@@ -52,7 +54,6 @@ export function createPage(
         ...{ defaultLocale: channel.defaultLocale }, 
         ...options 
     }
-    const DEBUG = process.env.NODE_ENV == "development"
 
     const pageDefintion : NextJsPage = {
         generateStaticParams : async () =>
@@ -68,7 +69,7 @@ export function createPage(
         },
         generateMetadata: async ( { params: { lang, path } }, resolving ) =>
         {
-            // Read variables from request
+            // Read variables from request            
             const client = clientFactory()
             const requestPath = (path?.length ?? 0) > 0 ?
                 `/${ lang ?? "" }/${ path?.join("/") ?? "" }` :
@@ -80,6 +81,10 @@ export function createPage(
             const route = await routeResolver.getContentInfoByPath(requestPath)
             if (!route)
                 return Promise.resolve({})
+            
+            // Set context
+            getServerContext().setLocale(localeToGraphLocale(channel, route.language))
+            getServerContext().setOptimizelyGraphClient(client)
 
             // Prepare metadata fetching
             const contentLink = routeResolver.routeToContentLink(route)
@@ -109,8 +114,14 @@ export function createPage(
         },
         CmsPage: async ({  params }) =>
         {
+            // Prepare the context
+            const context = getServerContext()
+            const client = context.client ?? clientFactory()
+            if (!context.client)
+                context.setOptimizelyGraphClient(client)
+            context.setComponentFactory(factory)
+
             // Resolve the content based upon the route
-            const client = clientFactory()
             const slug = params?.lang ?? defaultLocale.toLowerCase()
             const requestPath = (params?.path?.length ?? 0) > 0 ?
                 `/${ slug }/${ params?.path?.join("/") ?? "" }` :
@@ -119,10 +130,11 @@ export function createPage(
             const graphLocale = channel.slugToGraphLocale(slug)
             const response = await getContentByPath(client, { path: requestPath, locale: graphLocale })
             const info = (response.Content?.items ?? [])[0]
+            context.setLocale(graphLocale)
 
             if (!info) {
-                if (DEBUG) {
-                    console.error(`[CmsPage] Unable to load content for ${ requestPath }, data received: `, response)
+                if (isDebug()) {
+                    console.error(`🔴 [CmsPage] Unable to load content for ${ requestPath }, data received: `, response)
                 }
                 return notFound()
             }
@@ -131,13 +143,14 @@ export function createPage(
             const contentType = Utils.normalizeContentType(info.contentType)
             const contentLink = Utils.normalizeContentLinkWithLocale({ ...info.id, locale: info.locale?.name })
             if (!contentLink) {
-                console.error("[CmsPage] Unable to infer the contentLink from the retrieved content, this should not have happened!")
+                console.error("🔴 [CmsPage] Unable to infer the contentLink from the retrieved content, this should not have happened!")
                 return notFound()
             }
 
             // Render the content link
-            return <CmsContent contentType={ contentType } contentLink={ contentLink } client={ client } fragmentData={ info } factory={ factory } />
+            return <CmsContent contentType={ contentType } contentLink={ contentLink } fragmentData={ info } />
         }
     }
+    
     return pageDefintion
 }

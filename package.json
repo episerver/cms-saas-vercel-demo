@@ -1,6 +1,7 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.1.0",
+  "version": "1.0.0-pre1.0",
+  "packageManager": "yarn@4.1.1",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
@@ -15,15 +16,14 @@
     "@types/source-map-support": "^0.5.10",
     "@yarnpkg/sdks": "^3.1.0",
     "source-map-support": "^0.5.21",
-    "typescript": "5.3.3",
-    "vercel": "^33.5.2"
+    "typescript": "^5.4.3",
+    "vercel": "^33.6.1"
   },
   "exports": null,
   "scripts": {
     "dev": "yarn workspace frontend dev",
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
-    "lint": "yarn workspace frontend lint",
     "build-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run build",
     "rebuild-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run rebuild",
     "watch-pkgs": "yarn workspaces foreach -Apt --exclude frontend --exclude @remkoj/optimizely-frontend run watch",
@@ -33,9 +33,9 @@
   },
   "resolutions": {
     "debug": "^4.3.4",
-    "semver": "^7.5.4",
-    "typescript": "^5.3.3",
+    "semver": "^7.6.0",
     "uuid": "^9.0.1",
-    "undici": "^5.28.3"
+    "typescript": "^5.4.3",
+    "undici": "^6.9.0"
   }
 }

@@ -1,10 +1,10 @@
-import { createClient, isContentGraphClient, getContentGraphConfig } from '@remkoj/optimizely-dxp-react';
+import createClient, { isContentGraphClient } from '@remkoj/optimizely-graph-client';
 import { isOptimizelyNextPageWithMetaData } from './page';
 const DEBUG = process.env.DXP_DEBUG == '1';
 export class MetaDataResolver {
     _cgClient;
     constructor(clientOrConfig) {
-        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig());
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig);
     }
     /**
      * Resolve the meta data for a component, if it has a meta-data method exposed.
@@ -17,7 +17,7 @@ export class MetaDataResolver {
      */
     async resolve(factory, contentLink, contentType, locale) {
         if (DEBUG)
-            console.log("Resolving metadata for:", contentLink, contentType, locale);
+            console.log("[MetaDataResolver] Resolving metadata for:", contentLink, contentType, locale);
         if (locale.includes("-"))
             throw new Error("Invalid character detected within the locale");
         const Component = factory.resolve(contentType);
@@ -26,7 +26,7 @@ export class MetaDataResolver {
         if (isOptimizelyNextPageWithMetaData(Component) && Component.getMetaData) {
             const meta = await Component.getMetaData(contentLink, locale, this._cgClient);
             if (DEBUG)
-                console.log("Resolved metadata to:", meta);
+                console.log("[MetaDataResolver] Resolved metadata to:", meta);
             return meta;
         }
         return {};

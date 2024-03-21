@@ -43,7 +43,7 @@ export const ExpPanel : FunctionComponent<{}> = () =>
         return !expIds.includes(c.experiment.id)
     })
 
-    return <dl className='oo-text-sm'>
+    return <dl className='oo-text-[14px]'>
         <dt className='oo-font-bold oo-pt-1'>Script information:</dt>
         <dd>Account id: { data?.accountId }; Project id: <Link href={`https://app.optimizely.com/v2/projects/${ data?.projectId ?? '' }`} target="_blank" className="oo-underline oo-text-blue-800">{ data?.projectId }</Link>; Revision: { data?.revision }</dd>
         <dt className='oo-font-bold oo-pt-1'>Active page(s):</dt>

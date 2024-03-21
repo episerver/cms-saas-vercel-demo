@@ -9,11 +9,14 @@ export type { LocationListItem, GetLocationsResult, GetLocationsOptions } from '
 export const getLocations: Types.GetLocations = async (options, client) =>
 {
     client = client ?? getServerClient()
+    // Order by as parameter isn't supported on the query cache
+    client.updateFlags({queryCache: false}, true)
     const data = await client.request(getLocationsList, {
         locale: options.locale,
         parentId: options.parentId,
         services: options.service
     })
+    client.restoreFlags()
 
     return { 
         data: (data.getLocationsList?.items ?? []).filter(Utils.isNotNullOrUndefined).map(x => {

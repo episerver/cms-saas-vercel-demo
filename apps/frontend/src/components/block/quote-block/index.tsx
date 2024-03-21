@@ -4,13 +4,14 @@ import { gql } from '@gql/index'
 
 import Image from 'next/image'
 import './quote-block.css'
+import Channel from '@/site-config'
 
 export const QuoteBlock : CmsComponent<GraphQL.QuoteDataFragment> = ({ inEditMode, data, contentLink }) =>
 {
     /* @ts-expect-error */
     const imageData : (GraphQL.ImageDataFragment & GraphQL.ContentLinkFragment) | undefined = data?.Photo ?? undefined
     const hasImage = imageData?.guidValue ? true : false
-    const imageUrl = imageData?.data?.path ? new URL(imageData?.data?.path, process.env.DXP_URL) : undefined
+    const imageUrl = imageData?.data?.path ? new URL(imageData?.data?.path, Channel.getCmsUrl()) : undefined
     return <div className="quote-block" id={ contentLink?.guidValue ?? undefined }>
         { (hasImage || inEditMode) && <div className='image' data-epi-edit={ inEditMode ? "Photo" : undefined }>
             { imageUrl && <Image src={ imageUrl.href } alt={`Image of ${ data?.Quotee ?? "the quotee"}`} fill sizes='(max-width: 768px) 128px, (max-width: 1024px) 160px, 192px' /> }

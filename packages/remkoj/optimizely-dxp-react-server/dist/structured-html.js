@@ -1,7 +1,7 @@
 import { jsxs as _jsxs, Fragment as _Fragment, jsx as _jsx } from "react/jsx-runtime";
+import 'server-only';
 import React from 'react';
-import CmsContent from './cms-content';
-import { getFactory } from './factory';
+import { getServerContext, CmsContent } from '@remkoj/optimizely-dxp-react/rsc';
 import * as Uuid from 'uuid';
 const DEBUG = process.env.NODE_ENV != 'production';
 export const StructuredHtml = async ({ data, locale }) => {
@@ -18,7 +18,7 @@ export const StructuredHtml = async ({ data, locale }) => {
 };
 const selfClosing = ['img', 'br'];
 async function StructuredHtmlElement({ componentInfo, locale, key }) {
-    const factory = getFactory();
+    const factory = getServerContext().factory;
     // Handle empty componentType
     if (!componentInfo.componentType)
         return _jsx(_Fragment, {});

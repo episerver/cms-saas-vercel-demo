@@ -1,6 +1,6 @@
+import 'server-only'
 import React, { type FunctionComponent, type ComponentType, type PropsWithChildren } from 'react'
-import CmsContent, { type CmsContentProps } from './cms-content'
-import { getFactory } from './factory'
+import { getServerContext, CmsContent, type CmsContentProps } from '@remkoj/optimizely-dxp-react/rsc'
 import * as Uuid from 'uuid'
 
 const DEBUG = process.env.NODE_ENV != 'production'
@@ -41,7 +41,7 @@ const selfClosing = [ 'img', 'br' ]
 
 async function StructuredHtmlElement({ componentInfo, locale, key}: StructuredHtmlElementProps) : Promise<JSX.Element>
 {
-    const factory = getFactory()
+    const factory = getServerContext().factory
 
     // Handle empty componentType
     if (!componentInfo.componentType)

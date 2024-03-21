@@ -1,5 +1,5 @@
 import type { ComponentType, PropsWithChildren } from 'react';
-import type { ClientFactory } from '@remkoj/optimizely-dxp-react';
+import type { ClientFactory } from '@remkoj/optimizely-graph-client';
 import type { GraphQLClient } from 'graphql-request';
 type ServerPageProps = {
     params: Record<string, string | Array<string>>;

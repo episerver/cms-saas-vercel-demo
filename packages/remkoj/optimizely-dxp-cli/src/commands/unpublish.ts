@@ -1,5 +1,5 @@
 import { getArgsConfig, getFrontendURL, type CliModule } from '../app.js'
-import { createSecureFetch } from '../content-graph-client/index.js'
+import createAdminApi, { isApiError } from '@remkoj/optimizely-graph-client/admin'
 
 type PublishToVercelProps = { path: string, token_id:string, publish_token: string }
 
@@ -23,19 +23,26 @@ export const publishToVercelModule : CliModule<PublishToVercelProps> = {
         const token_id = args.token_id
 
         // Create secure client
-        const secureFetch = createSecureFetch(cgConfig.app_key, cgConfig.secret)
+        if (!cgConfig.app_key || !cgConfig.secret)
+            throw new Error("Make sure both the Optimizely Graph App Key & Secret have been defined")
+        const adminApi = createAdminApi(cgConfig)
 
         // Specific id
         if (typeof(token_id) == 'string' && token_id.length > 24)
         {
             process.stdout.write(`Removing Webhook with ID: ${ token_id }\n`)
-            const deleteResponse = await secureFetch(new URL(`/api/webhooks/${ token_id }?t=${ Date.now() }`, cgConfig.gateway), { method: "DELETE" })
-            if (!deleteResponse.ok) {
-                process.stderr.write(`!! Content Graph returned an error: HTTP ${ deleteResponse.status }: ${ deleteResponse.statusText }\n`)
-                if (args.verbose)
-                    console.error(await deleteResponse.json())
-                process.exitCode = 1
-                return
+            try {
+                await adminApi.webhooks.deleteWebhookHandler(token_id)
+            } catch (e) {
+                if (isApiError(e)) {
+                    process.stderr.write(`!! Optimizely Graph returned an error: HTTP ${ e.status }: ${ e.statusText }\n`)
+                    if (args.verbose)
+                        console.error(e.body)
+                    process.exitCode = 1
+                    return
+                } else {
+                    process.stderr.write(`!! Optimizely Graph returned an error\n`)
+                }
             }
             process.stdout.write(`Removed WebHook with ID ${ token_id } from ContentGraph\n`)
             return
@@ -53,44 +60,40 @@ export const publishToVercelModule : CliModule<PublishToVercelProps> = {
             return
         }
 
-        // Get current hooks
-        const response = await secureFetch(new URL(`/api/webhooks?t=${ Date.now() }`, cgConfig.gateway), {
-            method: "GET"
-        })
-        if (!response.ok) {
-            process.stderr.write(`!! Content Graph returned an error: HTTP ${ response.status }: ${ response.statusText }\n`)
-            if (args.verbose)
-                console.error(await response.json())
-            process.exitCode = 1
-            return
-        }
-        const currentHooks = (await response.json()) as {id: string, request: { url: string, method: string }}[]
-        const hooks = currentHooks.filter(x => x.request.url == webhookTarget.href)
+        // Delete hook by url
+        try {
+            const currentHooks = await adminApi.webhooks.listWebhookHandler()
+            const hooks = currentHooks.filter(x => x.request.url == webhookTarget.href)
 
-        // Check if the hook is present
-        if (!hooks || hooks.length == 0) {
-            process.stdout.write("Webhook not found, not removing anything\n")
-            process.exitCode = 0
-            return
-        }
+            // Check if the hook is present
+            if (!hooks || hooks.length == 0) {
+                process.stdout.write("Webhook not found, not removing anything\n")
+                process.exitCode = 0
+                return
+            }
 
-        // Run the delete request
-        await Promise.all(
-            hooks.map(async hook => {
-                const hookId = hook.id
-                process.stdout.write(`Removing Webhook with ID: ${ hookId }\n`)
-                const deleteResponse = await secureFetch(new URL(`/api/webhooks/${ hookId }?t=${ Date.now() }`, cgConfig.gateway), { method: "DELETE" })
-                if (!deleteResponse.ok) {
-                    process.stderr.write(`!! Content Graph returned an error: HTTP ${ deleteResponse.status }: ${ deleteResponse.statusText }\n`)
-                    if (args.verbose)
-                        console.error(await deleteResponse.json())
-                    process.exitCode = 1
-                    return false
-                }
-                process.stdout.write(`Removed WebHook with ID ${ hookId } from ContentGraph\n`)
-                return true
-            })
-        )
+            // Run the delete request
+            await Promise.all(
+                hooks.map(async hook => {
+                    const hookId = hook.id
+                    process.stdout.write(`Removing Webhook with ID: ${ hookId }\n`)
+                    await adminApi.webhooks.deleteWebhookHandler(hookId).then(() =>
+                        process.stdout.write(`Removed WebHook with ID ${ hookId } from ContentGraph\n`)
+                    )
+                    return true
+                })
+            )
+        } catch (e) {
+            if (isApiError(e)) {
+                process.stderr.write(`!! Optimizely Graph returned an error: HTTP ${ e.status }: ${ e.statusText }\n`)
+                if (args.verbose)
+                    console.error(e.body)
+                process.exitCode = 1
+                return
+            } else {
+                process.stderr.write(`!! Optimizely Graph returned an error\n`)
+            }
+        }
         process.stdout.write("Done\n")
     },
     aliases: [], 

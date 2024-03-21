@@ -9,7 +9,7 @@
         "composite": true,
         "rootDir": "./src",
         "outDir": "./dist",
-        "jsx": "react-jsx",
+        "jsx": "react",
         "resolveJsonModule": true,
         "esModuleInterop": true,
         "isolatedModules": true,

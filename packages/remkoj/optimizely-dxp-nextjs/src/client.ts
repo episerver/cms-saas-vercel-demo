@@ -1,22 +1,21 @@
 import 'server-only'
 import React from 'react'
-import createClient from '@remkoj/optimizely-dxp-react'
+import createClient, { type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
+import { isDebug } from '@remkoj/optimizely-dxp-react/rsc'
 
-const DBG = process.env.DXP_DEBUG == '1'
-
-export const getServerClient = React.cache(() => {
-    if (DBG)
-        console.log('[ContentGraph Shared Client] Creating new ContentGraph client')
+export const getServerClient : () => IOptiGraphClient = React.cache(() => {
+    if (isDebug())
+        console.log('⚪ [ContentGraph Shared Client] Creating new Optimizely Graph client')
     return createClient()
 })
 
-export const getAuthorizedServerClient = (token?: string) => {
-    if (DBG)
-        console.log('[ContentGraph Shared Client] Updating cached client with authentication details')
-    const client = getServerClient()
+export const getAuthorizedServerClient : (token?:string) => IOptiGraphClient = (token) => {
+    if (isDebug())
+        console.log('⚪ [ContentGraph Shared Client] Creating new Optimizely Graph client with authentication details')
+    const client = createClient()
     client.updateAuthentication(token)
-    if (DBG)
-        console.log(`[ContentGraph Shared Client] Updated authentication, current mode: ${ client.currentAuthMode }`)
+    if (isDebug())
+        console.log(`🟡 [ContentGraph Shared Client] Updated authentication, current mode: ${ client.currentAuthMode }`)
     return client
 }
 

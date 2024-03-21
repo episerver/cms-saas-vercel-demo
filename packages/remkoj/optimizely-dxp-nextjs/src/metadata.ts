@@ -1,4 +1,5 @@
-import { createClient, isContentGraphClient, getContentGraphConfig, type ComponentFactory, type ContentGraphConfig, type ContentLink, type ContentGraphClient } from '@remkoj/optimizely-dxp-react'
+import { type ComponentFactory, type ContentLink } from '@remkoj/optimizely-dxp-react'
+import createClient, { isContentGraphClient, type OptimizelyGraphConfig, type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 import { Metadata } from 'next'
 import { isOptimizelyNextPageWithMetaData } from './page'
 
@@ -6,11 +7,11 @@ const DEBUG = process.env.DXP_DEBUG == '1'
 
 export class MetaDataResolver
 {
-    private _cgClient : ContentGraphClient
+    private _cgClient : IOptiGraphClient
 
-    public constructor(clientOrConfig?: ContentGraphConfig | ContentGraphClient)
+    public constructor(clientOrConfig?: OptimizelyGraphConfig | IOptiGraphClient)
     {
-        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig || getContentGraphConfig())
+        this._cgClient = isContentGraphClient(clientOrConfig) ? clientOrConfig : createClient(clientOrConfig)
     }
 
     /**
@@ -25,7 +26,7 @@ export class MetaDataResolver
     public async resolve(factory: ComponentFactory, contentLink: ContentLink, contentType: string[], locale: string): Promise<Metadata>
     {
         if (DEBUG)
-            console.log("Resolving metadata for:", contentLink, contentType, locale)
+            console.log("[MetaDataResolver] Resolving metadata for:", contentLink, contentType, locale)
 
         if (locale.includes("-"))
             throw new Error("Invalid character detected within the locale")
@@ -37,7 +38,7 @@ export class MetaDataResolver
         if (isOptimizelyNextPageWithMetaData(Component) && Component.getMetaData) {
             const meta = await Component.getMetaData(contentLink, locale, this._cgClient)
             if (DEBUG)
-                console.log("Resolved metadata to:", meta)
+                console.log("[MetaDataResolver] Resolved metadata to:", meta)
             return meta
         }
         return {}
