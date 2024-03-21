@@ -23,7 +23,7 @@ export const ArticleListPage : OptimizelyNextPage<GraphQL.ArticleListPageDataFra
         <div className='article-list-page'>
             <h1 data-epi-edit={ inEditMode ? "ArticleListTitle" : undefined } className='pb-2 md:pb-4'>{ data.ArticleListTitle ?? data.Name ?? "Article list"}</h1>
             <div data-epi-edit={ inEditMode ? "ArticleListBody" : undefined } className="rich-text" dangerouslySetInnerHTML={{ __html: data.ArticleListBody ?? ""}}></div>
-            { guid && articles && <ArticleList initialData={ articles } imageBaseUrl={ process.env.DXP_URL ?? 'http://localhost:3000' } parent={ guid } locale={ locale } className='pt-2 md:pt-4 lg:pt-6' /> }
+            { guid && articles && <ArticleList initialData={ articles } imageBaseUrl={ Channel.getCmsUrl() } parent={ guid } locale={ locale } className='pt-2 md:pt-4 lg:pt-6' /> }
         </div>
     </>
 }

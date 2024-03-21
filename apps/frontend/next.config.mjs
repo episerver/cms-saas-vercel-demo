@@ -1,7 +1,14 @@
+import { applyConfigDefaults, readEnvironmentVariables, validateConfig } from '@remkoj/optimizely-graph-client/config'
+const optiConfig = applyConfigDefaults(readEnvironmentVariables())
+if (!validateConfig(optiConfig, true)) {
+    throw new Error("Invalid Optimizely Graph Configuration")
+}
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     basePath: "",
     cleanDistDir: true,
+    reactStrictMode: true,
     images: {
         loader: 'custom',
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
@@ -10,8 +17,7 @@ const nextConfig = {
 }
 
 // Add the configured Optimizely DXP URL to the image domains
-
-const optimizelyDxpUrl = process.env.DXP_URL
+const optimizelyDxpUrl = optiConfig.dxp_url
 if (optimizelyDxpUrl) {
     const optimizelyDxpHost = new URL(optimizelyDxpUrl)
 
@@ -24,8 +30,8 @@ if (optimizelyDxpUrl) {
 }
 
 if (process.env.NODE_ENV != 'production') {
-    console.log("Frontend domain:", process.env.SITE_DOMAIN)
+    console.log("Frontend domain:", optiConfig.deploy_domain)
     console.log("Next.JS Config:", JSON.stringify(nextConfig, undefined, 2))
 }
 
-module.exports = nextConfig
+export default nextConfig
