@@ -15,9 +15,9 @@ const CustomCmsContentArea = async ({
   fieldName,
   client,
   factory,
-}: CmsContentAreaProps): Promise<JSX.Element> => {
+}: CmsContentAreaProps<"div","div">): Promise<JSX.Element> => {
   // Convert the items to a list of enriched content types
-  const actualItems = items.filter(Utils.isNotNullOrUndefined);
+  const actualItems = items?.filter(Utils.isNotNullOrUndefined) || [];
   const gqlClient = client ?? createClient();
   let counter: number = 0;
   const componentData = await Promise.all(
