@@ -12,7 +12,7 @@ export declare const base64: (str: string) => string;
 export declare const getQueryString: (params: Record<string, any>) => string;
 export declare const getFormData: (options: ApiRequestOptions) => FormData | undefined;
 type Resolver<T> = (options: ApiRequestOptions) => Promise<T>;
-export declare const resolve: <T>(options: ApiRequestOptions, resolver?: T | Resolver<T> | undefined) => Promise<T | undefined>;
+export declare const resolve: <T>(options: ApiRequestOptions, resolver?: T | Resolver<T>) => Promise<T | undefined>;
 export declare const getHeaders: (config: OpenAPIConfig, options: ApiRequestOptions) => Promise<Headers>;
 export declare const getRequestBody: (options: ApiRequestOptions) => any;
 export declare const sendRequest: (config: OpenAPIConfig, options: ApiRequestOptions, url: string, body: any, formData: FormData | undefined, headers: Headers, onCancel: OnCancel) => Promise<Response>;

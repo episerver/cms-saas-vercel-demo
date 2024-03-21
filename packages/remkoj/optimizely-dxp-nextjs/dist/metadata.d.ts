@@ -1,9 +1,9 @@
 import { type ComponentFactory, type ContentLink } from '@remkoj/optimizely-dxp-react';
-import { type ContentGraphConfig, type ContentGraphClient } from '@remkoj/optimizely-graph-client';
+import { type OptimizelyGraphConfig, type IOptiGraphClient } from '@remkoj/optimizely-graph-client';
 import { Metadata } from 'next';
 export declare class MetaDataResolver {
     private _cgClient;
-    constructor(clientOrConfig?: ContentGraphConfig | ContentGraphClient);
+    constructor(clientOrConfig?: OptimizelyGraphConfig | IOptiGraphClient);
     /**
      * Resolve the meta data for a component, if it has a meta-data method exposed.
      *

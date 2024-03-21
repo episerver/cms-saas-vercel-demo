@@ -9,4 +9,4 @@ export declare function applyConfigDefaults(configuredValues: Types.OptimizelyGr
  * @param forPublishedOnly Whether to only validate for published content access
  * @returns
  */
-export declare function validateConfig(toValidate: Types.OptimizelyGraphConfig, forPublishedOnly?: boolean): toValidate is Types.OptimizelyGraphConfigInternal;
+export declare function validateConfig(toValidate: Types.OptimizelyGraphConfig, forPublishedOnly?: boolean, throwError?: boolean): toValidate is Types.OptimizelyGraphConfigInternal;

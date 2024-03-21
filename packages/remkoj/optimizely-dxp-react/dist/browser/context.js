@@ -1,10 +1,10 @@
-import { jsx as _jsx } from "react/jsx-runtime";
+import React from 'react';
 import { Services } from '@remkoj/optimizely-graph-client';
 import { createContext, useContext } from 'react';
 const RouteResolverContext = createContext(undefined);
 export const OptimizelyRouterProvider = ({ clientOrConfig, children }) => {
     const router = new Services.RouteResolver(clientOrConfig);
-    return _jsx(RouteResolverContext.Provider, { value: router, children: children });
+    return React.createElement(RouteResolverContext.Provider, { value: router }, children);
 };
 export const useOptimizelyRouter = () => {
     const router = useContext(RouteResolverContext);

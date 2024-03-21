@@ -1,15 +1,11 @@
-import type { CodegenPlugin } from '@graphql-codegen/plugin-helpers';
-type OptimizelyFunctionInjection = {
-    into: string;
-    nameRegex?: string;
-    pathRegex?: string;
-};
-type OptimizelyFunctionOptions = {
-    optlyFunctions: string[];
-    optlyInjections?: OptimizelyFunctionInjection[];
-    optlyPrettyQuery?: boolean;
+import type { CodegenPlugin, PluginFunction, PluginValidateFn } from '@graphql-codegen/plugin-helpers';
+export type PluginOptions = {
+    functions?: string[];
+    prettyPrintQuery?: boolean;
     clientPath?: string;
 };
-type OptimizelyGraphFunctionPlugin = CodegenPlugin<OptimizelyFunctionOptions>;
-declare const plugin: OptimizelyGraphFunctionPlugin;
-export default plugin;
+export declare function pickPluginOptions(options: Record<string, any>): PluginOptions;
+export declare const validate: PluginValidateFn<PluginOptions>;
+export declare const plugin: PluginFunction<PluginOptions>;
+declare const _default: CodegenPlugin<PluginOptions>;
+export default _default;

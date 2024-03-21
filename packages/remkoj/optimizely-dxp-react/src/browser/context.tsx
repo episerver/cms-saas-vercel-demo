@@ -1,9 +1,10 @@
-import { Services, type ContentGraphConfig, type ContentGraphClient } from '@remkoj/optimizely-graph-client'
+import React from 'react'
+import { Services, type OptimizelyGraphConfig, type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 import { createContext, useContext, type FunctionComponent, type PropsWithChildren } from 'react'
 
 const RouteResolverContext = createContext<Services.RouteResolver | undefined>(undefined)
 
-export const OptimizelyRouterProvider : FunctionComponent<PropsWithChildren<{ clientOrConfig: ContentGraphClient | ContentGraphConfig }>> = ({ clientOrConfig, children }) =>
+export const OptimizelyRouterProvider : FunctionComponent<PropsWithChildren<{ clientOrConfig: IOptiGraphClient | OptimizelyGraphConfig }>> = ({ clientOrConfig, children }) =>
 {
     const router = new Services.RouteResolver(clientOrConfig)
     return <RouteResolverContext.Provider value={ router }>{ children }</RouteResolverContext.Provider>

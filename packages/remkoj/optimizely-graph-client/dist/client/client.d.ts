@@ -1,20 +1,21 @@
 import { type OptimizelyGraphConfigInternal, type OptimizelyGraphConfig } from "../config.js";
 import { GraphQLClient } from "graphql-request";
-import { AuthMode, type RequestMethod, type IOptiGraphClient, type OptiGraphSiteInfo } from "./types.js";
+import { AuthMode, type RequestMethod, type IOptiGraphClient, type OptiGraphSiteInfo, type IOptiGraphClientFlags } from "./types.js";
 import { type FetchAPI } from "./hmac-fetch.js";
 export declare class ContentGraphClient extends GraphQLClient implements IOptiGraphClient {
     static readonly ForceHmacToken: string;
     static readonly ForceBasicAuth: string;
-    protected readonly _config: OptimizelyGraphConfigInternal;
+    protected readonly _config: Readonly<OptimizelyGraphConfigInternal>;
     private _token;
     private _hmacFetch;
+    private _flags;
     get debug(): boolean;
     protected get token(): string | undefined;
     protected set token(newValue: string | undefined);
     protected get hmacFetch(): FetchAPI;
     get siteInfo(): OptiGraphSiteInfo;
     get currentAuthMode(): AuthMode;
-    constructor(config?: OptimizelyGraphConfig, token?: AuthMode | string | undefined);
+    constructor(config?: OptimizelyGraphConfig, token?: AuthMode | string | undefined, flags?: Partial<IOptiGraphClientFlags>);
     /**
      * Update the authentication data for this client.
      * - Set to AuthMode.HMAC or AuthMode.Basic to use that authentication scheme, this requires the AppKey and Secret to be part of the configuration
@@ -26,6 +27,9 @@ export declare class ContentGraphClient extends GraphQLClient implements IOptiGr
      */
     updateAuthentication(tokenOrAuthmode?: string | AuthMode | undefined): ContentGraphClient;
     query: RequestMethod;
+    private _oldFlags;
+    updateFlags(newFlags: Partial<IOptiGraphClientFlags>, temporary?: boolean): IOptiGraphClient;
+    restoreFlags(): IOptiGraphClient;
     protected updateRequestConfig(): void;
 }
 export declare const createClient: (config?: OptimizelyGraphConfig, token?: string | undefined) => IOptiGraphClient;

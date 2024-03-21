@@ -7,6 +7,7 @@ An extension of the [graphql-request](https://www.npmjs.com/package/graphql-requ
   - [2.1. GraphQL Client](#21-graphql-client)
   - [2.2. Admin API](#22-admin-api)
 - [3. Configuration](#3-configuration)
+  - [3.1. Advanced Features](#31-advanced-features)
 
 ## 1. Provided services
 The package contains the following services:
@@ -101,3 +102,34 @@ The following configuration options are available, the table lists both the envi
 | `OPTIMIZELY_CMS_URL` | dxp_url | yes | The domain where the CMS has been installed |
 | `OPTIMIZELY_GRAPH_QUERY_LOG` | query_log | no | Set to "true" to enable query output to the console |
 | `OPTIMIZELY_DEBUG` | debug | no | Set to "true" to enable verbose debug output to the console |
+
+### 3.1. Advanced Features
+The Optimizely Graph Client has support for a number of the feature flags in Optimizely Graph and can enable/disable those on the fly.
+
+The following features can currently be toggled:
+- **Caching *[Default: enabled]*:** Provides control over the service output cache, setting this to false will make all requests be evaluated in real time instead of being cached.
+- **Stored queries *[Default: enabled]*:** This will store the query to the underlying data store, so even when the output cache is invalidated, this will prevent the query to the data store to be regenerated. **Warning**: This feature does not work with cursors, so either disable it temporary or completely if you need cursors in you queries.
+- **Recursive queries *[Default: disabled]*:** When enabled it enables the execution of the `@recursive(depth: n)` directive. If compatible with the queries used, this can significantly reduce the number of queries needed to build a page.
+
+The flags are controlled by the following instance methods & fields on the Client object:
+- `updateFlags(newFlags, temporary)`: Update the flags for the instance. If there's roll-back information it will throw an Error. When temporary is enabled it will create a roll-back copy of the current flags prior to updating.
+- `restoreFlags()`: Restore the flags to the stored 'roll-back' copy, if there's no roll-back copy, no action is taken and no Error will be thrown.
+
+#### Example <!-- omit in toc -->
+For server-side code, with access to environment variables, adjust according to your case.
+```typescript
+// Import client & create instance
+import createClient from '@remkoj/optimizely-graph-client/client';
+const client = createClient();
+
+// Set the default for this client to add support for recursive queries
+client.updateFlags({ recursive: true });
+
+// Temporary disable the query cache to allow queries with cursor
+client.updateFlags({ queryCache: false }, true);
+
+...
+
+// Roll-back to preferred flag settings
+client.restoreFlags();
+```

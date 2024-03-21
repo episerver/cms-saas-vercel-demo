@@ -1,6 +1,6 @@
 import type { PropsWithChildren, ComponentType as ReactComponentType } from "react";
 import type { DocumentNode, TypedQueryDocumentNode as TypedDocumentNode } from "graphql";
-import type { IOptiGraphClient as ContentGraphClient } from "@remkoj/optimizely-graph-client";
+import type { IOptiGraphClient } from "@remkoj/optimizely-graph-client";
 export type ContentType = string[];
 export type ContentLink = {
     id: number;
@@ -26,8 +26,18 @@ export type ContentLinkWithLocale = ContentLink & {
 export type CmsComponentProps<T> = PropsWithChildren<{
     contentLink: ContentLinkWithLocale;
     data: T;
+    /**
+     * Use the Server/Client context instead if you need this information
+     *
+     * @deprecated
+     */
     inEditMode?: boolean;
-    client?: ContentGraphClient;
+    /**
+     * Use the Server/Client context instead if you need this information
+     *
+     * @deprecated
+     */
+    client?: IOptiGraphClient;
 }>;
 export type ContentQueryProps = ContentLinkWithLocale;
 /**

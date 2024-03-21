@@ -4,7 +4,7 @@ import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
-import { CmsContent, CmsContentAreaProps, } from "@remkoj/optimizely-dxp-react-server";
+import { CmsContent, CmsContentAreaProps, } from "@remkoj/optimizely-dxp-react/rsc";
 
 const CustomCmsContentArea = async ({
   items,

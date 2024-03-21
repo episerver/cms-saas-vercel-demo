@@ -10,53 +10,25 @@
     "./dist"
   ],
   "devDependencies": {
-    "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/client-preset": "^4.2.4",
-    "@graphql-typed-document-node/core": "^3.2.0",
-    "@parcel/watcher": "^2.4.1",
     "@remkoj/optimizely-dxp-react": "workspace:*",
-    "@remkoj/optimizely-graph-client": "workspace:^",
-    "@types/node": "^20.11.27",
-    "@types/react": "^18.2.65",
+    "@types/node": "^20.11.30",
+    "@types/react": "^18.2.67",
     "@types/uuid": "^9.0.8",
-    "graphql": "^16.8.1",
-    "graphql-request": "^6.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "scheduler": "^0.23.0",
-    "typescript": "^5.4.2",
+    "typescript": "^5.4.3",
     "uuid": "^9.0.1"
   },
   "peerDependencies": {
     "@remkoj/optimizely-dxp-react": "workspace:*",
-    "@remkoj/optimizely-graph-client": "workspace:^",
-    "graphql": "*",
-    "graphql-request": "*",
     "react": "*",
     "uuid": "*"
   },
   "scripts": {
     "clean": "tsc --build --clean",
-    "compile": "graphql-codegen",
-    "build": "graphql-codegen && tsc --build",
+    "build": "tsc --build",
     "watch": "tsc --watch",
-    "watch.gql": "graphql-codegen --watch",
-    "rebuild": "tsc --build --clean && graphql-codegen && tsc --build --force"
-  },
-  "codegen": {
-    "schema": "./schema.json",
-    "documents": [
-      "src/**/queries.ts",
-      "src/queries.ts",
-      "!src/gql/**/*"
-    ],
-    "generates": {
-      "./src/gql/": {
-        "preset": "client",
-        "presetConfig": {
-          "gqlTagName": "gql"
-        }
-      }
-    }
+    "rebuild": "tsc --build --clean && tsc --build --force"
   }
 }

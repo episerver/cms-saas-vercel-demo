@@ -1,9 +1,9 @@
 import 'server-only'
 
 import type { EditPageProps, EditPageComponent, EditViewOptions } from './types'
-import type { Services } from '@remkoj/optimizely-graph-client'
-import { Utils, type ComponentFactory, type ContentLinkWithLocale } from '@remkoj/optimizely-dxp-react'
-import { CmsContent } from '@remkoj/optimizely-dxp-react-server'
+import { type Services, AuthMode } from '@remkoj/optimizely-graph-client'
+import { Utils, type ContentLinkWithLocale } from '@remkoj/optimizely-dxp-react'
+import { CmsContent, getServerContext, type ComponentFactory } from '@remkoj/optimizely-dxp-react/rsc'
 import { notFound } from 'next/navigation'
 import OnPageEdit from '../components/on-page-edit'
 import { getAuthorizedServerClient } from '../client'
@@ -42,8 +42,6 @@ export function createEditPageComponent(
     options?: Partial<EditViewOptions>
 ) : EditPageComponent
 {
-    const DEVELOPMENT = process.env.NODE_ENV == 'development'
-    const DEBUG = process.env.DXP_DEBUG == '1'
 
     const { 
         layout: PageLayout, 
@@ -58,6 +56,9 @@ export function createEditPageComponent(
 
     async function EditPage({ params, searchParams }: EditPageProps) : Promise<JSX.Element>
     {
+        // Create context
+        const context = getServerContext()
+
         // Validate the search parameters
         const epiEditMode = searchParams?.epieditmode?.toLowerCase()
         if (epiEditMode != 'true' && epiEditMode != 'false') {
@@ -67,12 +68,12 @@ export function createEditPageComponent(
 
         // Allow use-hmac as magic token to be used only on a development environment, otherwise require a minimal length string as token
         const token = searchParams.preview_token
-        const validDev = DEVELOPMENT && searchParams.preview_token == 'use-hmac'
+        const validDev = context.isDevelopment && (searchParams.preview_token == AuthMode.HMAC || searchParams.preview_token == AuthMode.Basic)
         if (!token || (token.length < 20 && !validDev)) {
             console.error("[OnPageEdit] Edit mode requested without valid Preview Token, refused to render the page")
             return notFound()
         }
-        if (DEBUG)
+        if (context.isDebug)
             console.log(`[OnPageEdit] Valid edit mode request: EpiEditMode=${ searchParams.epieditmode }`)
 
         // Helper function to read the ContentID & WorkID
@@ -97,14 +98,20 @@ export function createEditPageComponent(
                 return [ -1, null ]
             }
         }
+        // Build context
+        const client = clientFactory(token)
+        context.setOptimizelyGraphClient(client)
+        context.setComponentFactory(factory)
+        context.setInEditMode(epiEditMode == 'true')
 
         // Get information from the Request URI
         const requestPath = ('/'+params.path.map(decodeURIComponent).join('/')).replace(/^(\/ui){0,1}(\/cms){0,1}(\/content){0,1}\//i, '')
         const slugs = requestPath.split('/')
         const locale = channel.locales.some(x => x.slug == slugs[0]) ? slugs[0] : channel.defaultLocale
-        if (DEBUG) 
+        if (context.isDebug) 
             console.log(`[OnPageEdit] Inferred content locale from path: ${ locale }`)
         const [ contentId, workId ] = getContentIds()
+        context.setLocale(channel.localeToGraphLocale(locale))
         
         const contentLink : ContentLinkWithLocale = {
             id: contentId,
@@ -117,11 +124,11 @@ export function createEditPageComponent(
             locale: contentLink.locale,
             isCommonDraft: !contentLink.workId ? true : null
         }
-        if (DEBUG) {
+        if (context.isDebug) {
             console.log("[OnPageEdit] Requested content:", JSON.stringify(variables))
             console.log("[OnPageEdit] Creating GraphQL Client:", token)
         }
-        const client = clientFactory(token)
+        
         try {
             const contentInfo = await getContentById(client, variables)
             const contentItem = (contentInfo?.Content?.items ?? [])[0]
@@ -137,7 +144,7 @@ export function createEditPageComponent(
                 return notFound()
             }
 
-            if (DEBUG) {
+            if (context.isDebug) {
                 const contentItemId = contentItem?.id
                 console.log("[OnPageEdit] Resolved content:", JSON.stringify({ 
                     id: contentItemId?.id, 
@@ -148,18 +155,20 @@ export function createEditPageComponent(
                 }))
             }
 
+            // Store the editable content so it can be tested
+            context.setEditableContentId(contentLink)
+
             // Render the content, with edit mode context
             const isPage = contentItem.contentType?.some(x => x?.toLowerCase() == "page") ?? false
-            const inEditMode = epiEditMode == 'true'
             const loadedContentId = Utils.normalizeContentLinkWithLocale({ ...contentItem?.id, locale: contentItem?.locale?.name })
             const Layout = isPage ? PageLayout : React.Fragment
             const output =  <>
-                { inEditMode && <Script src={`${ dxpUrl }/ui/CMS/latest/clientresources/communicationinjector.js`} strategy='afterInteractive' /> }
+                { context.inEditMode && <Script src={`${ dxpUrl }/ui/CMS/latest/clientresources/communicationinjector.js`} strategy='afterInteractive' /> }
                 <Layout locale={ locale }>
-                    <OnPageEdit timeout={ refreshDelay } mode={ inEditMode ? 'edit' : 'preview' } className='bg-slate-900 absolute top-0 left-0 w-screen h-screen opacity-60 z-50'>
+                    <OnPageEdit timeout={ refreshDelay } mode={ context.inEditMode ? 'edit' : 'preview' } className='bg-slate-900 absolute top-0 left-0 w-screen h-screen opacity-60 z-50'>
                         <RefreshNotice />
                     </OnPageEdit>
-                    <CmsContent contentType={ contentType } contentLink={ contentLink } inEditMode={ inEditMode } fragmentData={ contentItem } factory={ factory } client={ client } />
+                    <CmsContent contentType={ contentType } contentLink={ contentLink } fragmentData={ contentItem } />
                 </Layout>
                 <div className='optly-contentLink'>ID: { loadedContentId?.id ?? "-"} | Version: { loadedContentId?.workId ?? "-"} | Global ID: { loadedContentId?.guidValue ?? "-"} | Locale: { loadedContentId?.locale ?? ""}</div>
             </>

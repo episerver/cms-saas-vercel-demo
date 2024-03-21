@@ -15,6 +15,11 @@ export type OptiGraphSiteInfo = {
     frontendDomain?: string;
     cmsURL?: string;
 };
+export type IOptiGraphClientFlags = {
+    queryCache: boolean;
+    recursive: boolean;
+    cache: boolean;
+};
 export interface IOptiGraphClient extends ClientInstanceType {
     /**
      * Retrieve the debug indicator, as configured for this client
@@ -44,5 +49,19 @@ export interface IOptiGraphClient extends ClientInstanceType {
      * @deprecated  Use the "request" method instead
      */
     query: RequestMethod;
+    /**
+     * Set the client controllable service configuration
+     *
+     * @param   newFlags      The configuration values to override
+     * @param   temporary     Set to true to store the old configuration, please note that you cannot invoke this method again untill the configuration has been restored first
+     * @returns Itself, so you chain it in a request
+     */
+    updateFlags(newFlags: Partial<IOptiGraphClientFlags>, temporary?: boolean): IOptiGraphClient;
+    /**
+     * Restore client controllable service configuration, after it has been saved by a temporary update. If there's nothing to restore this method will do nothing
+     *
+     * @returns Itself, so you chain it in a request
+     */
+    restoreFlags(): IOptiGraphClient;
 }
 export type ClientFactory = (token?: string) => IOptiGraphClient;
