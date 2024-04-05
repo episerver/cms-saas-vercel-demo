@@ -61,7 +61,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <Scripts.Header />
       </head>
-      <body className={`${figtree.className} bg-ghost-white light`}>
+      <body className={`${figtree.className} bg-ghost-white djo`}>
         <div className="flex min-h-screen flex-col justify-between">
           <GlobalProviders>
             <Header />
