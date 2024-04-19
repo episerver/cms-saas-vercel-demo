@@ -19,7 +19,7 @@ function MenuItem({ menuList, ...props }) {
             {menuList.items.map((menuItem) => (
               <li key={menuItem.text}>
                 <Link
-                  className="hover:text-azure focus:text-azure"
+                  className="hover:text-azure focus:text-azure dark:hover:text-verdansk"
                   href={menuItem.url}
                 >
                   {menuItem.text}
@@ -80,16 +80,16 @@ function DropdownMenu({ menuName, menuData = [], ...props }: any) {
 
   return (
     <li
-      className="mx-4 xl:mx-8 h-full flex items-center"
+      className="mx-4 xl:mx-8 h-full flex items-center "
       onMouseOver={handleToggle}
       onFocus={handleToggle}
       {...props}
     >
-      <button className="hover:text-azure focus:text-azure font-semibold">
+      <button className="hover:text-azure focus:text-azure font-semibold dark:text-white dark:hover:text-verdansk">
         {menuName}
       </button>
       {menuData && currentMenu === menuName ? (
-        <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)]">
+        <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)] dark:bg-vulcan dark:text-white">
           <div className={`container mx-auto grid ${gridColumnClass.current}`}>
             {menuData.map(({ contentLink: { menuList }, index }) => {
               return (
@@ -105,12 +105,12 @@ function DropdownMenu({ menuName, menuData = [], ...props }: any) {
 
 function PromoItem({ heading, description, link, image }: any) {
   return (
-    <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12">
+    <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12 dark:bg-vulcan-85">
       <div className="prose">
         {heading && <h3 className="mb-4 leading-[1.5]">{heading}</h3>}
         {description && <p className="leading-[1.5]">{description}</p>}
         {link && (
-          <Link className="link--arrow" href={link.url}>
+          <Link className="link--arrow dark:text-white dark:brightness-0	dark:invert" href={link.url}>
             {link.title}
           </Link>
         )}

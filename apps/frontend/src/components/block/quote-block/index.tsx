@@ -28,7 +28,7 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
 
   switch (color) {
     case "blue":
-      additionalClasses.push("bg-vulcan text-white");
+      additionalClasses.push("bg-vulcan text-white dark:bg-vulcan-85");
       break;
     case "orange":
       additionalClasses.push("bg-tangy text-vulcan");

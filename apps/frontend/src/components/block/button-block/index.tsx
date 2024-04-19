@@ -33,7 +33,7 @@ const Button: React.FC<ButtonBlockComponentType> = ({
 }) => {
   const buttonTypes: ButtonTypes = {
     primary: "btn--primary",
-    secondary: "btn--secondary",
+    secondary: "btn--secondary [&>*]:dark:!bg-vulcan [&>*]:dark:!text-ghost-white",
   };
 
   const buttonVariants: ButtonVariants = {
@@ -49,7 +49,7 @@ const Button: React.FC<ButtonBlockComponentType> = ({
       } ${className}`}
       {...props}
     >
-      <div className="btn__content">{children}</div>
+      <div className="btn__content dark:!bg-ghost-white dark:!border-ghost-white dark:!text-ghost-white dark:!text-vulcan">{children}</div>
     </Link>
   );
 };

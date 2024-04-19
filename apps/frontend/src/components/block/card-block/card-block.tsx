@@ -28,39 +28,39 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
 
       break;
     case "blue":
-      additionalClasses.push("bg-azure");
-      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
+      additionalClasses.push("bg-azure dark:bg-transparent dark:border-azure dark:border-4");
+      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white ");
       if (button) {
         button.className = "btn--light";
       }
       break;
     case "dark-blue":
-      additionalClasses.push("bg-vulcan");
+      additionalClasses.push("bg-vulcan ");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         button.className = "btn--light";
       }
       break;
     case "orange":
-      additionalClasses.push("bg-tangy");
+      additionalClasses.push("bg-tangy dark:bg-transparent dark:border-tangy dark:border-4 ");
       innerClasses.push(
-        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
+        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan "
       );
       if (button) {
         button.className = "btn--dark";
       }
       break;
     case "green":
-      additionalClasses.push("bg-verdansk");
+      additionalClasses.push("bg-verdansk dark:bg-transparent dark:border-verdansk dark:border-4");
       innerClasses.push(
-        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
+        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan "
       );
       if (button) {
         button.className = "btn--dark";
       }
       break;
     case "red":
-      additionalClasses.push("bg-paleruby");
+      additionalClasses.push("bg-paleruby dark:bg-transparent dark:border-paleruby dark:border-4");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         button.className = "btn--light";
@@ -79,13 +79,13 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
     <section
       className={`w-full h-full p-12 lg:p-24 rounded-[40px] @container/card ${additionalClasses.join(
         " "
-      )}`}
+      )} dark:!text-ghost-white dark:prose-h3:text-ghost-white dark:prose-h2:text-ghost-white`}
     >
       <div className="w-full h-full grid auto-rows-auto @[80rem]/card:items-center grid-cols-1 gap-16 @[80rem]/card:grid-cols-12">
         <div
           className={`prose prose-h2:text-[48px] prose-h2:mb-[24px] prose-h2:mt-[24px] prose-h3:text-[24px] prose-p:text-[20px] prose-img:my-4 @[80rem]/card:col-span-5 ${innerClasses.join(
             " "
-          )}`}
+          )} dark:!text-ghost-white dark:prose-h3:text-ghost-white dark:prose-h2:text-ghost-white`}
         >
           {icon && icon.src ? (
             <Image

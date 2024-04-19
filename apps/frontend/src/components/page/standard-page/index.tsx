@@ -29,8 +29,8 @@ export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
               height={1080}
             />
           )}
-          <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto">
-            <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2">
+          <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto ">
+            <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2 dark:text-ghost-white">
               <h1
                 className="mb-[24px] text-[48px]"
                 dangerouslySetInnerHTML={{ __html: title ?? "" }}
@@ -39,8 +39,8 @@ export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
                 className="text-[30px] leading-[36px] mt-[24px] mb-20"
                 dangerouslySetInnerHTML={{ __html: subtitle ?? "" }}
               ></p>
-
-              <div
+              
+              <div className="dark:!text-ghost-white [&>*]:dark:!text-ghost-white"
                 dangerouslySetInnerHTML={{ __html: description ?? "" }}
               ></div>
 

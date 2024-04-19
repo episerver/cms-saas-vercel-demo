@@ -63,7 +63,7 @@ export default function Header({ locale, menuItems, utilityItems, inEditMode }: 
   return (
     <HeaderContext.Provider value={headerContext}>
       <header
-        className="outer-padding bg-ghost-white"
+        className="outer-padding bg-ghost-white dark:bg-vulcan"
         onMouseLeave={handleMouseLeave}
         onMouseEnter={handleMouseEnter}
         onBlur={handleFocusLeave}
@@ -72,6 +72,7 @@ export default function Header({ locale, menuItems, utilityItems, inEditMode }: 
           <Logo ref={logoRef} />
 
           <div className="lg:hidden">
+            
             <button
               className="btn btn--secondary"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}

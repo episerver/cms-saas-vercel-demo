@@ -66,7 +66,7 @@ const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
 
   return (
     <section className={`${additionalClasses.join(" ")} flex`}>
-      <div className="prose max-w-none">
+      <div className="prose max-w-none dark:text-ghost-white">
         {overline && (
           <span
             className="uppercase text-[12px]"

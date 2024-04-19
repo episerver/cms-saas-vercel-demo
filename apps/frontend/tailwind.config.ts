@@ -6,6 +6,7 @@ const config: Config = {
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
+  darkMode: 'selector',
   theme: {
     colors: {
       'white': '#ffffff',
@@ -37,6 +38,7 @@ const config: Config = {
             'h4': { color: 'inherit' },
             'h5': { color: 'inherit' },
             'h6': { color: 'inherit' },
+            '.dark strong':{ color: 'var(--ghost-white)' },
           },
         },
       },

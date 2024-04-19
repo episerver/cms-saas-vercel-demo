@@ -1,6 +1,7 @@
 import { forwardRef, useContext } from "react";
 import Button from "@/components/block/button-block";
 import { HeaderContext } from "../_header";
+import { ThemePicker } from "./_themepicker";
 
 const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
   const { utilityItems } = useContext(HeaderContext);
@@ -9,6 +10,9 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
 
   return (
     <ul ref={ref} className="flex items-center justify-end">
+      <li>
+        <ThemePicker />
+      </li>
       {utilityItems.map(
         ({
           contentLink: {
