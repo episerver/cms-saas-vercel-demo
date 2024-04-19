@@ -6,9 +6,10 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 export const ThemePicker :  FunctionComponent = () =>
 {
-  var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
-  var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
-
+  if (typeof document !== 'undefined') {
+    var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
+    var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
+  }
   const [theme, setTheme] = useState<string | undefined>(undefined);
 
   useEffect (() => {
