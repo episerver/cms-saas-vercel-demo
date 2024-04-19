@@ -9,7 +9,7 @@ export const ThemePicker :  FunctionComponent = () =>
   var themeToggleDarkIcon = document.getElementById('theme-toggle-dark-icon');
   var themeToggleLightIcon = document.getElementById('theme-toggle-light-icon');
 
-  const [theme, setTheme] = useState();
+  const [theme, setTheme] = useState<string | undefined>(undefined);
 
   useEffect (() => {
     if (localStorage.getItem('color-theme') === 'dark' || (!('color-theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
@@ -34,8 +34,13 @@ export const ThemePicker :  FunctionComponent = () =>
 
   const handleThemeSwitch = () => {
     // toggle icons inside button
-    themeToggleDarkIcon.classList.toggle('hidden');
-    themeToggleLightIcon.classList.toggle('hidden');
+    if (themeToggleDarkIcon) {
+      themeToggleDarkIcon.classList.toggle('hidden');
+    }
+    if (themeToggleLightIcon) {
+       themeToggleLightIcon.classList.toggle('hidden');
+    }
+   
 
     setTheme(theme === "dark" ? "light" : "dark");
 
