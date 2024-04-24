@@ -34,7 +34,7 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
             />
           </motion.div>
         )}
-        <div className="mb-24 prose prose-h1:text-[72px] prose-p:text-[24px] prose-h1:mb-10 prose-p:leading-tight">
+        <div className="mb-24 prose prose-h1:text-[72px] prose-p:text-[24px] prose-h1:mb-10 prose-p:leading-tight dark:!text-white">
           {inEditMode ? (
             <h1 data-epi-edit={"HomeHeroBlockHeading"}>{heading}</h1>
           ) : (

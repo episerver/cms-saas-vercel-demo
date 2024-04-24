@@ -23,30 +23,30 @@ const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
   let buttonClassName = "";
   switch (color) {
     case "dark-blue":
-      additionalClasses.push("bg-vulcan");
+      additionalClasses.push("bg-vulcan dark:bg-transparent");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         buttonClassName = "btn--light";
       }
       break;
     case "blue":
-      additionalClasses.push("bg-azure");
+      additionalClasses.push("bg-azure dark:bg-transparent");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         buttonClassName = "btn--light";
       }
       break;
     case "orange":
-      additionalClasses.push("bg-tangy");
+      additionalClasses.push("bg-tangy dark:bg-transparent");
       innerClasses.push(
         "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
       );
       if (button) {
-        buttonClassName = "btn--dark";
+        buttonClassName = "btn--dark ";
       }
       break;
     case "green":
-      additionalClasses.push("bg-verdansk");
+      additionalClasses.push("bg-verdansk dark:bg-transparent");
       innerClasses.push(
         "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
       );
@@ -55,14 +55,14 @@ const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
       }
       break;
     case "red":
-      additionalClasses.push("bg-paleruby");
+      additionalClasses.push("bg-paleruby dark:bg-transparent");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         buttonClassName = "btn--light";
       }
       break;
     case "purple":
-      additionalClasses.push("bg-people-eater");
+      additionalClasses.push("bg-people-eater dark:bg-transparent");
       innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
       if (button) {
         buttonClassName = "btn--light";

@@ -55,7 +55,7 @@ const Carousel: CarouselBlockComponentType = ({
             xmlns="http://www.w3.org/2000/svg"
             style={{ transform: "rotate(180deg)" }}
             className={`${
-              currentIndex === -1 ? "text-mischka" : "text-vulcan"
+              currentIndex === -1 ? "text-mischka dark:text-ghost-white" : "text-vulcan dark:text-light-grey"
             }`}
           >
             <g clipPath="url(#clip0_5_4814)">
@@ -88,7 +88,7 @@ const Carousel: CarouselBlockComponentType = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={`${
-              currentIndex === itemCount - 2 ? "text-mischka" : "text-vulcan"
+              currentIndex === itemCount - 2 ? "text-mischka dark:text-light-grey" : "text-vulcan dark:text-ghost-white"
             }`}
           >
             <g clipPath="url(#clip0_5_4814)">
