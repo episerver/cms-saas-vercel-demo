@@ -1,4 +1,4 @@
-import type { CmsContentAreaClassMapper } from '@remkoj/optimizely-dxp-react-server'
+import type { CmsContentAreaClassMapper } from '@remkoj/optimizely-cms-react/rsc'
 
 export const ContentAreaClassMapper : CmsContentAreaClassMapper = displayOption => {
     // Make sure that the classes returned here are in the Tailwind safelist

@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useRouter, usePathname } from "next/navigation";
 import { useCallback } from "react";
+import { Schema } from "@gql"
 
 function FooterColumn({
   title,
@@ -53,7 +54,7 @@ function FooterColumn({
       <div className="mb-16 col-span-2 lg:col-span-1">
         <section className="prose prose-h1:text-[12px] prose-h1:uppercase prose-h1:font-[400] prose-h1:tracking-[1px] prose-a:text-white prose-a:underline hover:prose-a:no-underline prose-a:not-italic">
           <h1>{title}</h1>
-          <address dangerouslySetInnerHTML={{ __html: content }}></address>
+          <address dangerouslySetInnerHTML={{ __html: content?.html ?? '' }}></address>
         </section>
         {locales && locales.length > 1 && (
           <>
@@ -83,6 +84,15 @@ function FooterColumn({
   }
 }
 
+type FooterProps = {
+  dict: any
+  locales: any
+  locale: any
+  footerItems: Array<Schema.FooterMenuNavigationItemFragment | Schema.HtmlBlockFragment>
+  footerCopyright: string
+  footerSubLinks: any
+}
+
 export default function Footer({
   dict,
   locales,
@@ -90,16 +100,12 @@ export default function Footer({
   footerItems,
   footerCopyright,
   footerSubLinks,
-}: any) {
+}: FooterProps) {
   return (
     <footer className="bg-vulcan py-16 lg:py-32 outer-padding">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 text-white">
-        {footerItems.map(
-          ({
-            contentLink: {
-              navigationItem: { title, items, content, __typename },
-            },
-          }) => (
+        {/*@ts-expect-error Destructuring one of two types */}
+        {footerItems.map(({ title, items, content, __typename }) => (
             <FooterColumn
               dict={dict}
               key={"footer-column" + title}

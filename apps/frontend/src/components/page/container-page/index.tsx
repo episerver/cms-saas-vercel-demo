@@ -1,6 +1,6 @@
 import "server-only";
 
-import type { OptimizelyNextPage } from "@remkoj/optimizely-dxp-nextjs";
+import type { OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
 
 export const ContainerPage = ({
   contentLink,

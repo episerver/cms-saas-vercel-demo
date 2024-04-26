@@ -1,11 +1,19 @@
 "use client";
-
+import { type FunctionComponent } from "react";
+import { type Schema } from "@gql";
+import { type InlineContentLinkWithLocale, type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import ButtonBlock from "../button-block";
-import { CardBlockComponentType } from ".";
+import { refToURL } from '@/lib/conversions'
 
-const Card: CardBlockComponentType = ({ data, inEditMode }) => {
+type CardProps = {
+  data: Schema.CardBlockDataFragment
+  inEditMode?: boolean,
+  contentLink?: InlineContentLinkWithLocale | ContentLinkWithLocale | null
+}
+
+const Card: FunctionComponent<CardProps> = ({ data, inEditMode }) => {
   const {
     imageLayout = "before",
     image,
@@ -75,6 +83,9 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
       break;
   }
 
+  const iconUrl = refToURL(icon)
+  const imageUrl = refToURL(image)
+
   return (
     <section
       className={`w-full h-full p-12 lg:p-24 rounded-[40px] @container/card ${additionalClasses.join(
@@ -87,15 +98,15 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
             " "
           )} dark:!text-ghost-white dark:prose-h3:text-ghost-white dark:prose-h2:text-ghost-white`}
         >
-          {icon && icon.src ? (
+          {iconUrl && (
             <Image
               data-epi-edit={inEditMode ? "CardIcon" : undefined}
-              src={icon.src}
+              src={ iconUrl.href }
               alt={""}
               width={48}
               height={48}
-            />
-          ) : null}
+            />)
+          }
           {heading ? (
             <h2
               data-epi-edit={inEditMode ? "CardHeading" : undefined}
@@ -111,7 +122,7 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
           {description ? (
             <div
               data-epi-edit={inEditMode ? "CardDescription" : undefined}
-              dangerouslySetInnerHTML={{ __html: description }}
+              dangerouslySetInnerHTML={{ __html: description?.html ?? '' }}
             ></div>
           ) : null}
           {button && button.children ? (
@@ -121,7 +132,7 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
             ></ButtonBlock>
           ) : null}
         </div>
-        {image && image.src ? (
+        {imageUrl &&  (
           <motion.div
             className={`@[80rem]/card:col-span-6 ${
               imageLayout === "after"
@@ -132,13 +143,13 @@ const Card: CardBlockComponentType = ({ data, inEditMode }) => {
             <Image
               data-epi-edit={inEditMode ? "CardImage" : undefined}
               className="rounded-[40px] w-full"
-              src={image.src}
+              src={ imageUrl.href }
               alt={""}
               width={660}
               height={440}
             />
           </motion.div>
-        ) : null}
+        )}
       </div>
     </section>
   );

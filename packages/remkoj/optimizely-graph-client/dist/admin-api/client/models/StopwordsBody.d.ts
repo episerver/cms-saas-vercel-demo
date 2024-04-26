@@ -1,1 +1,0 @@
-export type StopwordsBody = string;

@@ -1,24 +1,27 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { Schema, useFragment } from '@gql'
+import { type FunctionComponent } from "react";
 import Button from "../button-block";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { AnimatedText } from "@/components/partial/animatedText";
-import type { HomeHeroBlockComponentType } from ".";
 
-const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
-  const { heading = "", subheading = "", button, leftImage, rightImage } = data;
-  const [loaded, setLoaded] = useState(false);
-  
-  useEffect(() => {
-    setLoaded(true);
-  }, []);
+type HomeHeroBlockComponentType = FunctionComponent<{
+  data: Schema.HomeHeroBlockDataFragment
+  inEditMode?: boolean
+}>
+
+const HomeHero: HomeHeroBlockComponentType = ({ data: { heading = "", subheading = "", button, leftImage, rightImage }, inEditMode }) => {
+  const leftImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, leftImage)?.url)
+  const rightImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, rightImage)?.url)
+  const leftImageUrl = leftImageUrlData ? new URL(leftImageUrlData.default ?? '/', leftImageUrlData.base ?? 'https://example.com').href : undefined
+  const rightImageUrl = rightImageUrlData ? new URL(rightImageUrlData.default ?? '/', rightImageUrlData.base ?? 'https://example.com').href : undefined
 
   return (
     <section className="py-20 lg:py-40 w-full overflow-hidden relative outer-padding">
       <div className="container mx-auto text-center flex flex-col items-center max-w-[580px] relative z-10 pt-[40px]">
-        {leftImage && leftImage.url && (
+        {leftImageUrl && (
           <motion.div
             initial={{ opacity: 0, clipPath: "circle(0% at 100%)" }}
             animate={{ opacity: 1, clipPath: "circle(120% at 100%)" }}
@@ -27,7 +30,7 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
           >
             <Image
               data-epi-edit={inEditMode ? "HomeHeroLeftImage" : undefined}
-              src={leftImage.url}
+              src={leftImageUrl}
               alt=""
               width={435}
               height={368}
@@ -68,7 +71,7 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
             {...button}
           ></Button>
         </motion.div>
-        {rightImage && rightImage.url && (
+        {rightImageUrl && (
           <motion.div
             initial={{ opacity: 0, clipPath: "circle(0% at 0%)" }}
             animate={{ opacity: 1, clipPath: "circle(120% at 0%)" }}
@@ -77,7 +80,7 @@ const HomeHero: HomeHeroBlockComponentType = ({ data, inEditMode }) => {
           >
             <Image
               data-epi-edit={inEditMode ? "HomeHeroRightImage" : undefined}
-              src={rightImage.url}
+              src={rightImageUrl}
               alt=""
               width={435}
               height={368}

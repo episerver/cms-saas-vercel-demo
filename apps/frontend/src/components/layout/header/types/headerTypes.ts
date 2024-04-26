@@ -1,6 +1,8 @@
+import { type Schema } from '@gql'
+
 export type HeaderContextType = {
-  menuItems: any[];
-  utilityItems: any[];
+  menuItems: Array<Schema.MegaMenuItemFragment>;
+  utilityItems: Array<Schema.MenuItemFragment>;
   currentMenu: string;
   setCurrentMenu: (name: string) => void;
   mobileMenuOpen: boolean;

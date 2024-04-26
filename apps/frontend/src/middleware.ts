@@ -1,13 +1,12 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { match } from '@formatjs/intl-localematcher'
 import Negotiator from 'negotiator'
-import siteConfig from '@/site-config'
 import { Session } from '@remkoj/optimizely-one-nextjs/api'
 
 // Read the site configuration, default to "en" as only routed language if there's no configuration
-const defaultLocale = siteConfig.defaultLocale
-const locales = siteConfig.locales.map(x => x.code)
-const slugs = siteConfig.getSlugs()
+const defaultLocale = 'en'
+const locales = ['en','nl']
+const slugs = ['en','nl']
 const DEBUG = process.env.NODE_ENV == 'development'
 
 /**
@@ -33,7 +32,7 @@ export function middleware(request: NextRequest)
     const pathnameIsMissingLocale = slugs.every(slug => !pathname.toLowerCase().startsWith(`/${slug.toLowerCase()}/`) && pathname !== `/${slug.toLowerCase()}`)
     if (pathnameIsMissingLocale) {
         const locale = getLocale(request)
-        const slug = siteConfig.resolveSlug(locale)
+        const slug = locale
         if (DEBUG)
             console.log(`[Middleware] Detected locale missing, redirecting to /${ slug }${ pathname }`)
         return NextResponse.redirect(new URL(`/${ slug }${ pathname }`, request.url), {

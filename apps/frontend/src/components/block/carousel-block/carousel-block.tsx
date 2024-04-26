@@ -1,13 +1,20 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, type FunctionComponent, type PropsWithChildren } from "react";
 import { motion } from "framer-motion";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
-import { CarouselBlockComponentType } from ".";
-const Carousel: CarouselBlockComponentType = ({
+import type { ContentLinkWithLocale, InlineContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
+import { type Schema } from '@gql'
+
+type CarouselProps = PropsWithChildren<{
+  data: Schema.CarouselBlockDataFragment & { itemCount: number }
+  inEditMode?: boolean,
+  contentLink?: ContentLinkWithLocale | InlineContentLinkWithLocale | null
+}>
+
+const Carousel: FunctionComponent<CarouselProps> = ({
   data,
   inEditMode,
-  contentLink,
   children,
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);

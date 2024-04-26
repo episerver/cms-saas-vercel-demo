@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useMemo } from "react";
 import { HeaderContext } from "../_header";
+import { useFragment, Schema } from "@gql";
+import { MenuItemFragment } from "@gql/graphql";
 
 function MenuItem({ menuList, ...props }) {
   if (menuList.__typename === "MenuNavigationBlock") {
@@ -46,18 +48,17 @@ function MenuItem({ menuList, ...props }) {
  * @param {string} menuName - The name of the dropdown menu
  * @return {JSX.Element} The rendered dropdown menu
  */
-function DropdownMenu({ menuName, menuData = [], ...props }: any) {
+function DropdownMenu({ menuName, menuData = [], ...props }: Schema.MegaMenuItemFragment) {
   const { currentMenu, setCurrentMenu } = useContext(HeaderContext);
-  const [columns, setColumns] = useState(menuData?.length);
   const gridColumnClass = useRef("grid-cols-1");
-
-  useEffect(() => {
-    menuData?.forEach(({ contentLink: { menuList } }) => {
-      if (menuList.__typename === "CardBlock") {
-        setColumns(columns + 1);
-      }
+  const columns = useMemo(() => {
+    let count = menuData?.length ?? 0;
+    menuData?.forEach(menuList => {
+      if ((menuList as MenuItemFragment)?.__typename === "CardBlock")
+        count++;
     });
-  }, []);
+    return count;
+  }, [ menuData ]);
 
   useEffect(() => {
     if (menuData) {
@@ -75,7 +76,7 @@ function DropdownMenu({ menuName, menuData = [], ...props }: any) {
   }, [columns, menuData]);
 
   function handleToggle() {
-    setCurrentMenu(menuName);
+    setCurrentMenu(menuName ?? "");
   }
 
   return (
@@ -91,9 +92,9 @@ function DropdownMenu({ menuName, menuData = [], ...props }: any) {
       {menuData && currentMenu === menuName ? (
         <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)] dark:bg-vulcan dark:text-white">
           <div className={`container mx-auto grid ${gridColumnClass.current}`}>
-            {menuData.map(({ contentLink: { menuList }, index }) => {
+            {menuData.filter(isMenuNavigationItem).map((menuList, index) => {
               return (
-                <MenuItem key={menuList.title + index} menuList={menuList} />
+                <MenuItem key={(menuList?.title ?? '') + index} menuList={menuList} />
               );
             })}
           </div>
@@ -101,6 +102,11 @@ function DropdownMenu({ menuName, menuData = [], ...props }: any) {
       ) : null}
     </li>
   );
+}
+
+function isMenuNavigationItem(toTest: any) : toTest is Schema.MenuNavigationItemFragment
+{
+  return toTest?.__typename == "MenuNavigationBlock"
 }
 
 function PromoItem({ heading, description, link, image }: any) {
@@ -135,7 +141,7 @@ export default function MainMenu() {
 
   return (
     <ul className="flex justify-between items-center">
-      {menuItems.map(({ contentLink: { navigationItem } }) => (
+      {menuItems.map(navigationItem => (
         <DropdownMenu key={navigationItem.menuName} {...navigationItem} />
       ))}
     </ul>

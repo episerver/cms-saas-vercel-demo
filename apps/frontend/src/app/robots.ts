@@ -1,9 +1,10 @@
 import { MetadataRoute } from 'next'
-import ChannelConfig from '@/site-config'
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-    const host = ChannelConfig.defaultDomain
-    const sitemap = new URL('/sitemap.xml', ChannelConfig.getPrimaryDomain()).href
+    const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN
+    const scheme = domain && (domain.startsWith("localhost") || domain.endsWith(".local")) ? 'http' : 'https'
+    const host = domain ? new URL(`${scheme}://${domain}`) : undefined
+    const sitemap = new URL('/sitemap.xml', host).href
 
     return {
         rules: {
@@ -11,6 +12,6 @@ export default async function robots(): Promise<MetadataRoute.Robots> {
             disallow: '/',
         },
         sitemap,
-        host
+        host: host?.href
     }
 }

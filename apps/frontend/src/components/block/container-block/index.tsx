@@ -1,7 +1,7 @@
 import { gql } from "@gql/gql";
 import type * as GraphQL from "@gql/graphql";
-import { CmsComponent } from "@remkoj/optimizely-dxp-react";
-import { CmsContentArea } from "@remkoj/optimizely-dxp-react-server";
+import { type CmsComponent } from "@remkoj/optimizely-cms-react";
+import { CmsContentArea, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
 const columnClassMap: { [key: string]: string } = {
   1: "grid-cols-1",
@@ -22,13 +22,9 @@ const gapSizeClassMap: { [key: string]: string } = {
 
 const ContainerBlock: CmsComponent<
   GraphQL.LayoutContainerBlockDataFragment
-> = ({ data, contentLink, inEditMode, children, client }) => {
-  let items;
-
-
-  if (!children) {
-    items = data?.LayoutContentArea;
-  }
+> = ({ data, children }) => {
+  const { inEditMode } = getServerContext()
+  const items = children ? undefined : data?.LayoutContentArea
 
   const {
     columns = 1,
@@ -163,11 +159,8 @@ const ContainerBlock: CmsComponent<
           ? children
           : items && (
               <CmsContentArea
-                client={client}
                 className={""}
                 fieldName="LayoutContentArea"
-                inEditMode={inEditMode}
-                locale={contentLink.locale}
                 items={items}
               />
             )}
@@ -184,28 +177,21 @@ ContainerBlock.getDataFragment = () => [
 export default ContainerBlock;
 
 const Documents: Readonly<{ [field: string]: any }> = {
-  data: gql(/** GraphQL */ `
-    fragment LayoutContainerBlockData on LayoutContainerBlock {
-    Name
-    columns: ColumnsCount
-    color: ContainerBackgroundColor
-    backgroundImage: ContainerBackgroundImage {
-      url: Url
-    }
-    marginBottom: ContainerMarginBottom
-    marginTop: ContainerMarginTop
-    paddingBottom: ContainerPaddingBottom
-    paddingTop: ContainerPaddingTop
-    gap: GapSize
-    LayoutContentArea {
-      item: ContentLink {
-            ...ContentLinkSearch
-            data: Expanded {
-            ...IContentData
-            }
-      }
-      displayOption:DisplayOption
-    }
+  data: gql(`
+fragment LayoutContainerBlockData on LayoutContainerBlock {
+  columns: ColumnsCount
+  color: ContainerBackgroundColor
+  backgroundImage: ContainerBackgroundImage {
+    ...ReferenceData
   }
+  marginBottom: ContainerMarginBottom
+  marginTop: ContainerMarginTop
+  paddingBottom: ContainerPaddingBottom
+  paddingTop: ContainerPaddingTop
+  gap: GapSize
+  LayoutContentArea {
+    ...IContentListItem
+  }
+}
   `),
 };

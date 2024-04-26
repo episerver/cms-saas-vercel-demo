@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useEffect, useRef, useState } from "react";
+import { createContext, useRef, useState, type FunctionComponent } from "react";
 import Logo from "./partials/_logo";
 import MainMenu from "./partials/_main-menu";
 import SecondaryMenu from "./partials/_secondary-menu";
@@ -16,13 +16,18 @@ export const HeaderContext = createContext<HeaderContextType>({
   mobileMenuOpen: false,
 });
 
+type ClientHeaderProps = {
+  menuItems: Array<GraphQL.MegaMenuItemFragment>
+  utilityItems: Array<GraphQL.MenuItemFragment>
+}
+
 /**
  * Renders the Header component with a specific locale.
  *
  * @param {any} locale - the locale to render the header with
  * @return {JSX.Element} the rendered Header component
  */
-export default function Header({ locale, menuItems, utilityItems, inEditMode }: any) {
+export const Header : FunctionComponent<ClientHeaderProps> = ({ menuItems, utilityItems }) => {
   const logoRef = useRef<HTMLDivElement>(null);
   const secondaryMenuRef = useRef<HTMLUListElement>(null);
   const [currentMenu, setCurrentMenu] = useState("");
@@ -93,3 +98,5 @@ export default function Header({ locale, menuItems, utilityItems, inEditMode }: 
     </HeaderContext.Provider>
   );
 }
+
+export default Header

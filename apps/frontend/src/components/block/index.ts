@@ -1,5 +1,4 @@
-import type { ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
-import type { ComponentType } from 'react'
+import type { ComponentTypeDictionary } from '@remkoj/optimizely-cms-react'
 import HomeHero from './hero-home'
 import HeroBlock from './hero'
 import TextBlock from './text-block'
@@ -12,40 +11,40 @@ import OdpEmbedBlock from './odp-embed-block'
 
 export const Blocks : ComponentTypeDictionary = [
     {
-        type: ['Block','HomePageHeroBlock'],
-        component: HomeHero as ComponentType
+        type: ['Component','HomePageHeroBlock'],
+        component: HomeHero
     },
     {
-        type: ['Block','HeroBlock'],
-        component: HeroBlock as ComponentType
+        type: ['Component','HeroBlock'],
+        component: HeroBlock
     },
     {
-        type: ['Block','TextBlock'],
-        component: TextBlock as ComponentType
+        type: ['Component','TextBlock'],
+        component: TextBlock
     },
     {
-        type: ['Block', 'CarouselBlock'],
-        component: Carousel as ComponentType
+        type: ['Component', 'CarouselBlock'],
+        component: Carousel
     },
     {
-        type: ['Block', 'LayoutContainerBlock'],
-        component: ContainerBlock as ComponentType
+        type: ['Component', 'LayoutContainerBlock'],
+        component: ContainerBlock
     },
     {
-        type: ["Block", "OdpEmbedBlock" ],
-        component: OdpEmbedBlock as ComponentType
+        type: ["Component", "OdpEmbedBlock" ],
+        component: OdpEmbedBlock
     },
     {
-        type: ['Block', 'CardBlock'],
-        component: CardBlock as ComponentType
+        type: ['Component', 'CardBlock'],
+        component: CardBlock
     },
     {
-        type: ['Block', 'QuoteBlock'],
-        component: QuoteBlock as ComponentType
+        type: ['Component', 'QuoteBlock'],
+        component: QuoteBlock
     },
     {
-        type: ['Block', 'BlogListingBlock'],
-        component: BlogListingBlock as ComponentType
+        type: ['Component', 'BlogListingBlock'],
+        component: BlogListingBlock
     }
 
 ]

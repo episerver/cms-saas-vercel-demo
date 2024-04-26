@@ -1,7 +1,9 @@
 import "server-only";
-import { gql as graphql } from "@gql/gql";
-import { getServerClient } from '@remkoj/optimizely-dxp-nextjs';
-import siteInfo from '@/site-config'
+import {getSdk } from "@/sdk";
+import { type Locales, type MegaMenuItemFragment, type MenuItemFragment } from "@gql/graphql"
+import { Utils } from "@remkoj/optimizely-cms-react";
+import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
 import Header from "./_header";
 
@@ -10,92 +12,17 @@ type HeaderWrapperProps = {
 };
 
 export default async function SiteHeader({ locale }: HeaderWrapperProps) {
-  const currentLocale = siteInfo.resolveLocale(locale);
-  const client = getServerClient();
+  const sdk = getSdk()
+  const { locale: currentLocale } = getServerContext()
+  const headerLocale = currentLocale ?? locale ?? 'en'
+  const config = await sdk.getHeader({
+    locale: localeToGraphLocale(headerLocale) as Locales
+  });
 
-  const config = ((
-    await client.request(HeaderConfigQuery, {
-      locale: siteInfo.localeToGraphLocale(currentLocale) as any
-    })
-  ) || []);
-
-  const menuItems = (config.menuItems?.items ?? [])[0]?.headerNavigation;
-  const utilityItems = (config.menuItems?.items ?? [])[0]?.UtilityNavigationContentArea;
+  const menuItems = ((config.menuItems?.items ?? [])[0]?.headerNavigation ?? []).filter(Utils.isNotNullOrUndefined) as Array<MegaMenuItemFragment>;
+  const utilityItems = ((config.menuItems?.items ?? [])[0]?.UtilityNavigationContentArea ?? []).filter(Utils.isNotNullOrUndefined) as Array<MenuItemFragment>;
 
   return (
-    <Header locale={locale} menuItems={menuItems} utilityItems={utilityItems} />
+    <Header menuItems={menuItems} utilityItems={utilityItems} />
   );
 }
-
-const HeaderConfigQuery = graphql(/* graphql */ `
-  query Navigations($locale: [Locales]) {
-    menuItems: StartPage(locale: $locale) {
-      items {
-        headerNavigation: MainNavigationContentArea {
-          contentLink: ContentLink {
-            navigationItem: Expanded {
-              ...MegaMenuItem
-            }
-          }
-        }
-        UtilityNavigationContentArea {
-          contentLink: ContentLink {
-            navigationItem: Expanded {
-              ...Block
-            }
-          }
-        }
-      }
-    }
-  }
-
-  fragment MegaMenuItem on MegaMenuGroupBlock {
-    menuName: MenuMenuHeading
-    menuData: MegaMenuContentArea {
-      contentLink: ContentLink {
-        menuList: Expanded {
-          ...Block
-        }
-      }
-    }
-  }
-
-  fragment Block on IContent {
-    ...MenuNavigationItem
-    ...CardItem
-    ...Button
-  }
-
-  fragment Button on ButtonBlock {
-    text: ButtonText
-    url: ButtonUrl
-    type: ButtonType
-    variant: ButtonVariant
-  }
-
-  fragment MenuNavigationItem on MenuNavigationBlock {
-    title: MenuNavigationHeading
-    items: NavigationLinks {
-      url: Href
-      title: Title
-      target: Target
-      text: Text
-    }
-    __typename
-  }
-
-  fragment CardItem on CardBlock {
-    heading: CardHeading
-    subheading: CardSubHeading
-    description: CardDescription
-    color: CardColor
-    image: CardImage {
-      src: Url
-    }
-    link: CardButton {
-      title: ButtonText
-      url: ButtonUrl
-    }
-    __typename
-  }
-`);

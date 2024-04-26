@@ -21,17 +21,13 @@ export default function MobileMenu() {
       <div className="container mx-auto grid">
         <ul>
           {menuItems.map(
-            ({
-              contentLink: {
-                navigationItem: { menuName, menuData },
-              },
-            }) => (
+            ({ menuName, menuData }) => (
               <li key={menuName}>
                 <button
                   className={`hover:text-azure focus:text-azure font-semibold text-[18px] py-6 text-left border-t mt-[-1px] w-full flex justify-between ${
                     currentMenu === menuName ? "" : "border-b"
                   }`}
-                  onClick={() => handleMenuToggle(menuName)}
+                  onClick={() => handleMenuToggle(menuName ?? '')}
                 >
                   <span>{menuName}</span>
                   <span>{currentMenu === menuName ? "–" : "+"}</span>
@@ -39,11 +35,7 @@ export default function MobileMenu() {
                 {currentMenu === menuName && menuData && (
                   <ul className="mb-16">
                     {menuData.map(
-                      ({
-                        contentLink: {
-                          menuList: { title, items },
-                        },
-                      }) => (
+                      ({ title, items }: any) => (
                         <li key={title} className="mt-10">
                           {title ? (
                             <h3 className="text-[16px] font-semibold uppercase tracking-[1px]">

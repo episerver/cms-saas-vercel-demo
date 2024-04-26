@@ -1,16 +1,19 @@
-import { Maybe, Scalars } from "@gql/graphql";
+import type { ComponentProps } from "react";
+import type { Maybe, ButtonBlock, IContent, LinkDataFragment } from "@gql/graphql";
 import Link from "next/link";
 
-export interface ButtonBlockComponentType {
-  className?: Maybe<Scalars["String"]["output"]>;
-  /** The text of the button */
-  children?: Maybe<Scalars["String"]["output"]>;
-  /** The type of button to display */
-  buttonType?: Maybe<Scalars["String"]["output"]>;
-  url?: Maybe<Scalars["String"]["output"]>;
-  /** The type of button to display */
-  buttonVariant?: Maybe<Scalars["String"]["output"]>;
+type ButtonBlockType = Required<Omit<ButtonBlock, keyof IContent>>
+export type ButtonBlockComponentType = Omit<ComponentProps<typeof Link>, 'href' | 'className'> & {
+  className?: Maybe<string>
+  url?: Maybe<string> | {
+    base?: Maybe<string>
+    hierarchical?: Maybe<string>
+    default?: Maybe<string>
+  } | LinkDataFragment
+  buttonType?: ButtonBlockType["ButtonType"]
+  buttonVariant?: ButtonBlockType["ButtonVariant"]
 }
+
 type ButtonTypes = {
   primary: string;
   secondary: string;
@@ -41,9 +44,11 @@ const Button: React.FC<ButtonBlockComponentType> = ({
     cta: "btn--cta",
   };
 
+  const linkHref = !url ? '#' : typeof(url) == 'string' ? url : new URL(url.default ?? '/', url.base ?? 'https://example.com').href
+
   return (
     <Link
-      href={url ? url : "#"}
+      href={ linkHref }
       className={`${buttonTypes[buttonType ?? "primary"]} ${
         buttonVariants[buttonVariant ?? "default"]
       } ${className}`}

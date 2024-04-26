@@ -1,5 +1,4 @@
-import type { ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
-import type { FunctionComponent } from 'react'
+import type { ComponentTypeDictionary } from '@remkoj/optimizely-cms-react'
 import StartPage from "./start-page"
 import LandingPage from './landing-page'
 import BlogPostPage from './blog-post-page'
@@ -9,23 +8,23 @@ import StandardPage from './standard-page'
 export const Pages : ComponentTypeDictionary = [
     {
         type: ['Page', 'StartPage'],
-        component: StartPage as FunctionComponent
+        component: StartPage
     },
     {
         type: ['Page', 'LandingPage'],
-        component: LandingPage as FunctionComponent
+        component: LandingPage
     },
     {
         type: ['Page', 'BlogPostPage'],
-        component: BlogPostPage as FunctionComponent
+        component: BlogPostPage
     },
     {
         type: ['Page', 'ContainerPage'],
-        component: ContainerPage as FunctionComponent
+        component: ContainerPage
     },
     {
         type: ['Page', 'StandardPage'],
-        component: StandardPage as FunctionComponent
+        component: StandardPage
     }
 ]
 export default Pages

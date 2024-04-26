@@ -1,24 +1,29 @@
-import type * as GraphQL from "@gql/graphql";
+import { type HeroBlockDataFragment, ReferenceDataFragmentDoc, LinkDataFragmentDoc } from "@gql/graphql";
 import Image from "next/image";
 import ButtonBlock from "../button-block";
-import { gql } from "@gql/gql";
-import { CmsComponent } from "@remkoj/optimizely-dxp-react";
+import { gql, useFragment } from "@gql";
+import { CmsComponent } from "@remkoj/optimizely-cms-react";
+import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
-const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
-  data,
-  inEditMode,
-}) => {
-  const {
+const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
+  data: {
     image,
     eyebrow = "",
     heading = "",
     description = "",
     color = "blue",
-    button,
-  } = data;
+    button
+  }
+}) => {
+  const { inEditMode } = getServerContext()
+  
   const additionalClasses: string[] = [];
   const innerClasses: string[] = [];
-  const hasImage = image && image.src;
+
+  const heroImage = useFragment(ReferenceDataFragmentDoc, image)
+  const heroImageLink = useFragment(LinkDataFragmentDoc, heroImage?.url)
+  const heroImageSrc = new URL(heroImageLink?.default ?? '/', heroImageLink?.base ?? 'https://example.com').href
+  const hasImage = heroImageLink != null && heroImageLink != undefined
 
   let buttonClassName = "";
   switch (color) {
@@ -142,20 +147,20 @@ const HeroBlock: CmsComponent<GraphQL.HeroBlockDataFragment> = ({
               </div>
             ) : null}
           </div>
-          {image && image.src ? (
+          {hasImage ? (
             <div
               className={`@[80rem]/card:col-span-6 order-first lg:order-last`}
             >
               <Image
                 data-epi-edit={inEditMode ? "HeroImage" : undefined}
                 className="rounded-[40px] w-full"
-                src={image.src}
+                src={ heroImageSrc }
                 alt={""}
                 width={600}
                 height={500}
               />
             </div>
-          ) : inEditMode && !(image && image.src) ? (
+          ) : inEditMode && !( hasImage ) ? (
             <div className="mt-16 flex justify-end">
               <ButtonBlock
                 buttonType={"primary"}
@@ -179,23 +184,24 @@ export default HeroBlock;
 const HeroBlockData: Readonly<{ [field: string]: any }> = {
   data: gql(/* GraphQL */ `
     fragment HeroBlockData on HeroBlock {
-      Name
       heading: Heading
       subheading: SubHeading
       button: HeroButton {
         className: ButtonClass
         children: ButtonText
         buttonType: ButtonType
-        url: ButtonUrl
+        url: ButtonUrl {
+          ...LinkData
+        }
         buttonVariant: ButtonVariant
       }
       color: HeroColor
-      description: Description
+      description: Description {
+        structure
+      }
       eyebrow: Eyebrow
       image: HeroImage {
-        src: Url
-        GuidValue
-        Id
+        ...ReferenceData
       }
     }
   `),

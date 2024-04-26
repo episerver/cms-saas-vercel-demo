@@ -1,77 +1,35 @@
-import { gql as graphql } from "@gql/gql";
-import { getServerClient } from "@remkoj/optimizely-dxp-nextjs";
+import {getSdk } from "@/sdk";
+import { type Locales, type FooterMenuNavigationItemFragment, type HtmlBlockFragment } from "@gql/graphql"
 import Footer from "./_footer";
 import dict from "@shared/dictionary.json";
-import siteInfo from "@/site-config"
+import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
+import { Utils } from '@remkoj/optimizely-cms-react'
 
 type SiteFooterProps = {
   locale?: string;
 };
 
 export default async function SiteFooter({ locale }: SiteFooterProps) {
-  const currentLocale = siteInfo.resolveLocale(locale);
-  const client = getServerClient();
-
-  const config =
-    (await client.request(FooterConfigQuery, {
-      locale: siteInfo.localeToGraphLocale(currentLocale) as any
-    }));
+  const sdk = getSdk()
+  const { locale: currentLocale } = getServerContext()
+  const footerLocale = currentLocale ?? locale ?? 'en'
+  const config = await sdk.getFooter({
+    locale: localeToGraphLocale(footerLocale) as Locales
+  });
 
   const footerCopyright = (config.menuItems?.items ?? [])[0]?.footerCopyright;
   const footerSubLinks = (config.menuItems?.items ?? [])[0]?.footerSubLinks;
-  const footerItems = (config.menuItems?.items ?? [])[0]?.footerNavigation;
+  const footerItems = ((config.menuItems?.items ?? [])[0]?.footerNavigation ?? []).filter(Utils.isNotNullOrUndefined) as Array<FooterMenuNavigationItemFragment | HtmlBlockFragment>;
 
   return (
     <Footer
       dict={dict}
-      locale={currentLocale}
-      locales={siteInfo.locales}
+      locale={footerLocale}
+      locales={[{code: 'en'},{code: 'nl'}]}
       footerItems={footerItems}
-      footerCopyright={footerCopyright}
+      footerCopyright={footerCopyright ?? ""}
       footerSubLinks={footerSubLinks}
     />
   );
 }
-
-const FooterConfigQuery = graphql(/* graphql */ `
-  query FooterNavigationNew($locale: [Locales] = en) {
-    menuItems: StartPage(locale: $locale) {
-      items {
-        footerSubLinks: FooterNavigationSubLinks {
-          url: Href
-          text: Text
-        }
-        footerCopyright: FooterNavigationCopyrightText
-        footerNavigation: FooterNavigationContentArea {
-          contentLink: ContentLink {
-            navigationItem: Expanded {
-              ...FooterNavigationBlock
-            }
-          }
-        }
-      }
-    }
-  }
-
-  fragment FooterNavigationBlock on IContent {
-    ...FooterMenuNavigationItem
-    ...HtmlBlock
-  }
-
-  fragment HtmlBlock on HtmlBlock {
-    title: HtmlBlockHeading
-    content: HtmlContent
-    __typename
-  }
-
-  fragment FooterMenuNavigationItem on MenuNavigationBlock {
-    title: MenuNavigationHeading
-    items: NavigationLinks {
-      url: Href
-      title: Title
-      target: Target
-      text: Text
-    }
-    __typename
-  }
-`);

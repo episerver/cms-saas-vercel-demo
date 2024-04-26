@@ -4,7 +4,6 @@ import "./globals.scss";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-import channel from '@/site-config'
 import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
 
 // Client side context
@@ -18,18 +17,21 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 const figtree = Figtree({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
+  const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN
+  const scheme = domain && (domain.startsWith("localhost") || domain.endsWith(".local")) ? 'http' : 'https'
+  const base = domain ? new URL(`${scheme}://${domain}`) : undefined
   return {
-    metadataBase: channel.getPrimaryDomain(),
+    metadataBase: base,
     title: {
-      default: `${channel.name} - An Optimizely Demo Company`,
-      template: `%s | ${channel.name} - An Optimizely Demo Company`,
+      default: `Mosey Bank - An Optimizely Demo Company`,
+      template: `%s | Mosey Bank - An Optimizely Demo Company`,
     },
     openGraph: {
       title: {
-        default: `${channel.name} - An Optimizely Demo Company`,
-        template: `%s | ${channel.name} - An Optimizely Demo Company`,
+        default: `Mosey Bank - An Optimizely Demo Company`,
+        template: `%s | Mosey Bank - An Optimizely Demo Company`,
       },
-      siteName: channel.name,
+      siteName: "Mosey Bank",
       images: [
         {
           url: "/assets/logo.png",
@@ -50,11 +52,12 @@ export async function generateMetadata(): Promise<Metadata> {
 }
 
 export type RootLayoutProps = {
-  children: React.ReactNode;
+  children: React.ReactNode
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const ga_id = EnvTools.readValue("GA_TRACKING_ID");
+  
 
   return (
     <html>

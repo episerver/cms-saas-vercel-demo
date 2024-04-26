@@ -1,4 +1,4 @@
-import type { CmsComponent } from "@remkoj/optimizely-dxp-react";
+import type { CmsComponent } from "@remkoj/optimizely-cms-react";
 import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/index";
 import ClientSide from "./client";

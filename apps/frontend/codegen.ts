@@ -27,7 +27,7 @@ import OptimizelyGraphPreset, {type PresetOptions as OptimizelyGraphPresetOption
 const config: CodegenConfig = {
     schema: getSchemaInfo(),
     documents: [
-        // Add local GQL files
+        // Add local GraphQL files
         'src/**/*.graphql',
 
         // Add Definitions from components
@@ -37,7 +37,21 @@ const config: CodegenConfig = {
         './gql/': {
             preset: OptimizelyGraphPreset,
             presetConfig: {
+                // By default the preset will generate recursive queries
+                // untill multiple recursions are supported, this needs to
+                // be disabled when there's more then one component that
+                // will use recursion
+                recursion: false,
+
+                // The GQL tag to be used to identify inline GraphQL queries
                 gqlTagName: 'gql',
+
+                // Configure the fragments that will be spread into the utility
+                // partial fragments. You can use any fragment here, however the
+                // system is designed for the following receiving fragments:
+                // - PageData => For all page-level components
+                // - BlockData => For everyting that can be rendered as individual component
+                // - ElementData => For all element types that are useable within Visual Builder
                 injections: [
                     {
                         // Add from all pages, except colocated blocks

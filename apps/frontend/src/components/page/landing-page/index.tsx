@@ -1,54 +1,39 @@
 import "server-only";
 import { gql } from "@gql/index";
 import type * as GraphQL from "@gql/graphql";
-import { type ContentAreaItemDataFragment, Locales } from "@gql/graphql";
-import type { OptimizelyNextPage } from "@remkoj/optimizely-dxp-nextjs";
-import { Utils } from "@remkoj/optimizely-dxp-react";
-import { CmsContentArea } from "@remkoj/optimizely-dxp-react-server";
+import type { OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
+import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
 import ClassMapper from "@/lib/displayMode";
-import { Metadata } from "next";
 
-export const LandingPage: OptimizelyNextPage<
-  GraphQL.LandingPageDataFragment
-> = ({ contentLink, data, children, client, inEditMode }) => {
-  const TopContentArea: ContentAreaItemDataFragment[] =
-    data.TopContentArea?.filter(Utils.isNotNullOrUndefined) ?? [];
-  const MainContentArea: ContentAreaItemDataFragment[] =
-    data.MainContentArea?.filter(Utils.isNotNullOrUndefined) ?? [];
+export const LandingPage: OptimizelyNextPage<GraphQL.LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea } }) => {
 
   return (
     <div className="landing-page">
       <CmsContentArea
-        inEditMode={inEditMode}
         fieldName="TopContentArea"
         items={TopContentArea}
-        locale={contentLink.locale}
         classMapper={ClassMapper}
-        client={client}
         className="w-full"
       />
       <CmsContentArea
-        inEditMode={inEditMode}
         fieldName="MainContentArea"
         items={MainContentArea}
-        locale={contentLink.locale}
         classMapper={ClassMapper}
-        client={client}
         className="w-full"
       />
     </div>
   );
 };
-
+LandingPage.getDataFragment = () => ['LandingPageData', LandingPageData]
 export default LandingPage;
 
-export const LandingPageData = gql(/* GraphQL */ `
+export const LandingPageData = gql(`
   fragment LandingPageData on LandingPage {
     TopContentArea {
-      ...ContentAreaItemData
+      ...BlockData
     }
     MainContentArea {
-      ...ContentAreaItemData
+      ...BlockData
     }
   }
 `);

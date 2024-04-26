@@ -2,7 +2,8 @@ import React from "react";
 import type * as GraphQL from "@gql/graphql";
 import Image from "next/image";
 import { gql } from "@gql/gql";
-import { CmsComponent } from "@remkoj/optimizely-dxp-react";
+import { CmsComponent } from "@remkoj/optimizely-cms-react";
+import { refToURL } from "@/lib/conversions"
 
 /**
  * React functional component for rendering a quote block with user information.
@@ -16,7 +17,7 @@ import { CmsComponent } from "@remkoj/optimizely-dxp-react";
 const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
   data,
   inEditMode,
-}) => {
+}): JSX.Element => {
   const { profilePicture, name, location, quote, color, active } = data;
   const additionalClasses: string[] = [];
 
@@ -44,6 +45,8 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
       break;
   }
 
+  const profileUrl = refToURL(profilePicture)
+
   return (
     <figure
       className={`p-8 lg:p-24 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
@@ -57,10 +60,10 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
         {quote}
       </blockquote>
       <figcaption className="flex items-center mt-16">
-        {profilePicture && profilePicture.url && (
+        {profileUrl && (
           <Image
             data-epi-edit={inEditMode ? "QuoteProfilePicture" : undefined}
-            src={profilePicture.url}
+            src={ profileUrl.href }
             alt={name ?? ""}
             width={200}
             height={200}
@@ -93,20 +96,18 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
 };
 
 QuoteBlock.displayName = "Quote Block";
-QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockData.data];
+QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockData];
 export default QuoteBlock;
 
-const QuoteBlockData: Readonly<{ [field: string]: any }> = {
-  data: gql(/* GraphQL */ `
+const QuoteBlockData = gql(`
     fragment QuoteBlockData on QuoteBlock {
       quote: QuoteText
       color: QuoteColor
       active: QuoteActive
       name: QuoteProfileName
       profilePicture: QuoteProfilePicture {
-        url: Url
+        ...ReferenceData
       }
       location: QuoteProfileLocation
     }
-  `),
-};
+  `);

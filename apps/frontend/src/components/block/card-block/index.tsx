@@ -1,12 +1,11 @@
-import type { CmsComponent } from "@remkoj/optimizely-dxp-react";
+import type { CmsComponent } from "@remkoj/optimizely-cms-react";
 import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
 
-export type CardBlockComponentType =
-  CmsComponent<GraphQL.CardBlockDataFragment>;
-const CardBlockComponent: CardBlockComponentType = dynamic(
+
+const CardBlockComponent = dynamic(
   () => import("./card-block"),
   { ssr: true }
 );
@@ -30,24 +29,30 @@ CardBlock.displayName = "Card Block";
 CardBlock.getDataFragment = () => ["CardBlockData", CardBlockData];
 export default CardBlock;
 
-const CardBlockData = gql(/* graphql */ `fragment CardBlockData on CardBlock {
-  Name
+const CardBlockData = gql(`
+fragment CardBlockData on CardBlock {
   button: CardButton {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType
-    url: ButtonUrl
+    url: ButtonUrl {
+      ...LinkData
+    }
     buttonVariant: ButtonVariant
   }
   color: CardColor
-  description: CardDescription
+  description: CardDescription {
+    structure
+    html
+  }
   heading: CardHeading
   icon: CardIcon {
-    src: Url
+    ...ReferenceData
   }
   image: CardImage {
-    src: Url
+    ...ReferenceData
   }
-  subheading:CardSubHeading
+  subheading: CardSubHeading
   imageLayout: ImageLayout
-}`);
+}
+`);

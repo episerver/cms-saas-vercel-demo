@@ -2,23 +2,15 @@ import "server-only";
 
 // Base frameworks & components
 import { type PropsWithChildren } from "react";
-import { OnPageEdit } from "@remkoj/optimizely-dxp-nextjs";
+import { OnPageEdit } from "@remkoj/optimizely-cms-nextjs";
 
 // Import libraries & GraphQL
-import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
 import { getContentById } from "@gql";
 
 // Import components & factory
 import { setupFactory } from "@components/factory";
 import RefreshNotice from "@components/refresh-notice";
 import { ExclamationTriangleIcon } from "@heroicons/react/24/outline";
-
-// Read staticly generated site definition and environment variables
-import channel from "@/site-config";
-const refreshDelay = EnvTools.readValueAsInt(
-  "OPTIMIZELY_CONTENTGRAPH_UPDATE_DELAY",
-  2000
-);
 
 // Prepare the error component
 const ErrorComponent = (props: { title: string; message: string }) => {
@@ -42,14 +34,13 @@ const PageLayout = (props: PropsWithChildren<{ locale: string }>) => {
   );
 };
 
-export default OnPageEdit.createEditPageComponent(channel, setupFactory(), {
+export default OnPageEdit.createEditPageComponent(setupFactory(), {
   errorNotice: ErrorComponent,
   refreshNotice: RefreshNotice,
   layout: PageLayout,
 
   // Casting is needed due to the locale being an enum in the generated types and a string in the generic query used by the loader
   loader: getContentById as OnPageEdit.Types.GetContentByIdMethod,
-  refreshDelay,
 });
 
 export const fetchCache = "force-no-store";

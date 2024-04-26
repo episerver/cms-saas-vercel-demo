@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import { readEnvironmentVariables as getGraphConfig, applyConfigDefaults } from "@remkoj/optimizely-graph-client"
-import { Auth } from '@remkoj/optimizely-dxp-nextjs'
+import { Auth } from '@remkoj/optimizely-cms-nextjs'
 
 const config = applyConfigDefaults(getGraphConfig())
 const optiOptions = {

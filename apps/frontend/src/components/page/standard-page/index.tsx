@@ -1,7 +1,7 @@
 import "server-only";
-import { gql } from "@gql/index";
+import { gql, useFragment, Schema } from "@gql/index";
 import Image from "next/image";
-import type { OptimizelyNextPage } from "@remkoj/optimizely-dxp-nextjs";
+import type { OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
 import ContainerBlock from "@/components/block/container-block";
 import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
@@ -9,21 +9,19 @@ import { StandardPageDataFragment } from "@gql/graphql";
 
 export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
   contentLink,
-  data,
-  children,
-  client,
-  inEditMode,
+  data: { title, image, description, subtitle }
 }) => {
-  const { title, image, description, subtitle } = data;
+  const imageUrlData = useFragment(Schema.LinkDataFragmentDoc, image?.src)
+  const imageUrl = imageUrlData ? new URL(imageUrlData?.default ?? '/', imageUrlData?.base ?? 'https://example.com').href : undefined
 
   return (
     <>
       <div className="outer-padding">
         <div className="container mx-auto grid grid-cols-12">
-          {image && image.src && (
+          {imageUrl && (
             <Image
               className="col-span-12 rounded-[40px] mt-16 lg:mt-32 mb-24 lg:mb-48 mx-auto"
-              src={image.src}
+              src={imageUrl}
               alt=""
               width={1920}
               height={1080}
@@ -41,7 +39,7 @@ export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
               ></p>
               
               <div className="dark:!text-ghost-white [&>*]:dark:!text-ghost-white"
-                dangerouslySetInnerHTML={{ __html: description ?? "" }}
+                dangerouslySetInnerHTML={{ __html: description?.html ?? "" }}
               ></div>
 
               <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 my-64"></div>
@@ -78,14 +76,18 @@ StandardPage.getDataFragment = () => ["StandardPageData", StandardPageData];
 
 export default StandardPage;
 
-export const StandardPageData = gql(/* GraphQL */ `
+export const StandardPageData = gql(`
   fragment StandardPageData on StandardPage {
-    Name
     title: StandardPageHeading
     subtitle: StandardSubHeading
     image: StandardPromoImage {
-      src: Url
+      src: url {
+        ...LinkData
+      }
     }
-    description: MainBody
+    description: MainBody {
+      structure
+      html
+    }
   }
 `);
