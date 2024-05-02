@@ -13,6 +13,7 @@ Run this project locally with a local version of CMS SaaS.
 
 ### Steps
 1. Configure your local CMS SaaS by following [these instructions](./cms-config.md). Keep in mind the urls used in the configuration will be your localhost.
+    1. Use the file `InitialData_Testing.episerverdata` (in order) instead of `InitialData.episerverdata`
 1. Create a copy of the `.env` file and name it `.env.local`. 
     1. Set `OPTIMIZELY_CMS_URL` to the url from your requested CMS instance (ex. https://app-xxxxx.cmstest.optimizely.com/).
     1. Set `SITE_DOMAIN` to `localhost:3000`.
