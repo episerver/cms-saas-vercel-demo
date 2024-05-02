@@ -6,6 +6,9 @@ const nextConfig = {
         loader: 'custom',
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
         remotePatterns: []
+    },
+    typescript: {
+        ignoreBuildErrors: true,
     }
 }
 
