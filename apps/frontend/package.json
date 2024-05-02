@@ -10,8 +10,8 @@
   "scripts": {
     "dev": "yarn next dev",
     "config": "yarn opti-graph config:create",
-    "build": "yarn next build && yarn opti-graph webhook:create",
-    "build:full": "yarn graphql-codegen && yarn next build && yarn opti-graph webhook:create",
+    "build": "yarn next build",
+    "build:full": "yarn graphql-codegen && yarn next build",
     "start": "yarn next start",
     "lint": "yarn next lint",
     "compile": "yarn graphql-codegen",
