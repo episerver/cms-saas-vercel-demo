@@ -32,10 +32,5 @@
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
-  "exclude": ["node_modules"],
-  "references": [
-    {
-      "path": "../../packages/remkoj/optimizely-dxp-react"
-    }
-  ]
+  "exclude": ["node_modules"]
 }

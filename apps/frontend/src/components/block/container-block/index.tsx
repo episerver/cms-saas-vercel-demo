@@ -34,7 +34,7 @@ const ContainerBlock: CmsComponent<
     marginBottom = "medium",
     backgroundImage,
     gap = "small",
-    color,
+    containerColor: color,
   } = data;
 
   const columnClass = columnClassMap[columns ?? 1];
@@ -180,7 +180,7 @@ const Documents: Readonly<{ [field: string]: any }> = {
   data: gql(`
 fragment LayoutContainerBlockData on LayoutContainerBlock {
   columns: ColumnsCount
-  color: ContainerBackgroundColor
+  containerColor: ContainerBackgroundColor
   backgroundImage: ContainerBackgroundImage {
     ...ReferenceData
   }

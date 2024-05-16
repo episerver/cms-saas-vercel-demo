@@ -15,14 +15,14 @@ type CardProps = {
 
 const Card: FunctionComponent<CardProps> = ({ data, inEditMode }) => {
   const {
-    imageLayout = "before",
-    image,
-    heading = "",
-    subheading = "",
-    description = "",
-    color = "blue",
-    button,
-    icon,
+    cardImageLayout: imageLayout = "before",
+    cardImage: image,
+    cardHeading: heading = "",
+    cardSubheading: subheading = "",
+    cardDescription: description = "",
+    cardColor: color = "blue",
+    cardButton: button,
+    cardIcon: icon,
   } = data;
   const additionalClasses: string[] = [];
   const innerClasses: string[] = [];

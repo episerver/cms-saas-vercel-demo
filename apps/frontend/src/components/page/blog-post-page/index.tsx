@@ -9,7 +9,7 @@ import { BlogPostPageDataFragment } from "@gql/graphql";
 
 export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
   contentLink,
-  data: { title, image, description, author, subtitle },
+  data: { blogTitle: title, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle },
 }) => {
   const imageUrlData = useFragment(Schema.LinkDataFragmentDoc, image?.src)
   const imageUrl = imageUrlData ? new URL(imageUrlData?.default ?? '/', imageUrlData?.base ?? 'https://example.com').href : undefined
@@ -51,7 +51,7 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
         </div>
       </div>
       <ContainerBlock
-        data={{ columns: 1, color: "none", marginBottom: "large" }}
+        data={{ columns: 1, containerColor: "none", marginBottom: "large" }}
         contentLink={contentLink}
       >
         <TextBlock
@@ -81,17 +81,17 @@ export default BlogPostPage;
 
 export const BlogPostPageData = gql(`
   fragment BlogPostPageData on BlogPostPage {
-    title: Heading
-    subtitle: ArticleSubHeading
-    image: BlogPostPromoImage {
+    blogTitle: Heading
+    blogSubtitle: ArticleSubHeading
+    blogImage: BlogPostPromoImage {
       src: url {
         ...LinkData
       }
     }
-    description: BlogPostBody {
+    blogBody: BlogPostBody {
       structure
       html
     }
-    author: ArticleAuthor
+    blogAuthor: ArticleAuthor
   }
 `);

@@ -31,18 +31,18 @@ export const IContentDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlogPostPageData on BlogPostPage {
-  title: Heading
-  subtitle: ArticleSubHeading
-  image: BlogPostPromoImage {
+  blogTitle: Heading
+  blogSubtitle: ArticleSubHeading
+  blogImage: BlogPostPromoImage {
     src: url {
       ...LinkData
     }
   }
-  description: BlogPostBody {
+  blogBody: BlogPostBody {
     structure
     html
   }
-  author: ArticleAuthor
+  blogAuthor: ArticleAuthor
 }
     `;
 export const BlogListingBlockDataFragmentDoc = /*#__PURE__*/ gql`
@@ -57,7 +57,6 @@ export const BlogListingBlockDataFragmentDoc = /*#__PURE__*/ gql`
 export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
     fragment ReferenceData on ContentReference {
   key
-  locale
   url {
     ...LinkData
   }
@@ -65,7 +64,7 @@ export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const CardBlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment CardBlockData on CardBlock {
-  button: CardButton {
+  cardButton: CardButton {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType
@@ -74,20 +73,20 @@ export const CardBlockDataFragmentDoc = /*#__PURE__*/ gql`
     }
     buttonVariant: ButtonVariant
   }
-  color: CardColor
-  description: CardDescription {
+  cardColor: CardColor
+  cardDescription: CardDescription {
     structure
     html
   }
-  heading: CardHeading
-  icon: CardIcon {
+  cardHeading: CardHeading
+  cardIcon: CardIcon {
     ...ReferenceData
   }
-  image: CardImage {
+  cardImage: CardImage {
     ...ReferenceData
   }
-  subheading: CardSubHeading
-  imageLayout: ImageLayout
+  cardSubheading: CardSubHeading
+  cardImageLayout: ImageLayout
 }
     `;
 export const IContentListItemFragmentDoc = /*#__PURE__*/ gql`
@@ -105,7 +104,7 @@ export const CarouselBlockDataFragmentDoc = /*#__PURE__*/ gql`
 export const LayoutContainerBlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment LayoutContainerBlockData on LayoutContainerBlock {
   columns: ColumnsCount
-  color: ContainerBackgroundColor
+  containerColor: ContainerBackgroundColor
   backgroundImage: ContainerBackgroundImage {
     ...ReferenceData
   }
@@ -121,9 +120,9 @@ export const LayoutContainerBlockDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const HomeHeroBlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment HomeHeroBlockData on HomePageHeroBlock {
-  heading: HomeHeroBlockHeading
-  subheading: HomeHeroBlockSubHeading
-  button: HomeHeroButtonBlock {
+  homeHeroHeading: HomeHeroBlockHeading
+  homeHeroSubheading: HomeHeroBlockSubHeading
+  homeHeroButton: HomeHeroButtonBlock {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType
@@ -142,9 +141,9 @@ export const HomeHeroBlockDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const HeroBlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment HeroBlockData on HeroBlock {
-  heading: Heading
-  subheading: SubHeading
-  button: HeroButton {
+  heroHeading: Heading
+  heroSubheading: SubHeading
+  heroButton: HeroButton {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType
@@ -153,12 +152,12 @@ export const HeroBlockDataFragmentDoc = /*#__PURE__*/ gql`
     }
     buttonVariant: ButtonVariant
   }
-  color: HeroColor
-  description: Description {
+  heroColor: HeroColor
+  heroDescription: Description {
     structure
   }
   eyebrow: Eyebrow
-  image: HeroImage {
+  heroImage: HeroImage {
     ...ReferenceData
   }
 }
@@ -220,14 +219,14 @@ export const LandingPageDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const StandardPageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment StandardPageData on StandardPage {
-  title: StandardPageHeading
-  subtitle: StandardSubHeading
-  image: StandardPromoImage {
+  sptitle: StandardPageHeading
+  spsubtitle: StandardSubHeading
+  spimage: StandardPromoImage {
     src: url {
       ...LinkData
     }
   }
-  description: MainBody {
+  spdescription: MainBody {
     structure
     html
   }
@@ -267,16 +266,34 @@ export const ElementDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const CompositionDataFragmentDoc = /*#__PURE__*/ gql`
     fragment CompositionData on ICompositionNode {
-  name
+  name: displayName
+  layoutType
   type
+  key
   ... on ICompositionStructureNode {
     nodes @recursive(depth: 5) {
-      name
+      name: displayName
     }
   }
   ... on ICompositionElementNode {
     element {
       ...ElementData
+    }
+  }
+}
+    `;
+export const ExperienceDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ExperienceData on IExperience {
+  experience: _metadata {
+    ... on CompositionMetadata {
+      composition {
+        key
+        layoutType
+        type
+        nodes {
+          ...CompositionData
+        }
+      }
     }
   }
 }
@@ -305,16 +322,21 @@ export const FooterMenuNavigationItemFragmentDoc = /*#__PURE__*/ gql`
   __typename
 }
     `;
+export const LinkItemDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment LinkItemData on Link {
+  title
+  text
+  target
+  url {
+    ...LinkData
+  }
+}
+    `;
 export const MenuNavigationItemFragmentDoc = /*#__PURE__*/ gql`
     fragment MenuNavigationItem on MenuNavigationBlock {
   title: MenuNavigationHeading
   items: NavigationLinks {
-    url {
-      ...LinkData
-    }
-    title
-    target
-    text
+    ...LinkItemData
   }
   __typename
 }
@@ -420,7 +442,7 @@ export const getContentTypeDocument = /*#__PURE__*/ gql`
 export const getContentByPathDocument = /*#__PURE__*/ gql`
     query getContentByPath($path: String!, $version: String, $locale: [Locales!], $domain: String) {
   content: Content(
-    where: {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}
+    where: {_metadata: {url: {default: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}
     locale: $locale
   ) {
     total
@@ -523,6 +545,7 @@ export const getHeaderDocument = /*#__PURE__*/ gql`
     ${MegaMenuItemFragmentDoc}
 ${MenuItemFragmentDoc}
 ${MenuNavigationItemFragmentDoc}
+${LinkItemDataFragmentDoc}
 ${LinkDataFragmentDoc}
 ${MenuCardItemFragmentDoc}
 ${MenuButtonFragmentDoc}`;

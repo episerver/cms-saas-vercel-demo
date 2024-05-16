@@ -38,12 +38,7 @@ fragment MenuButton on ButtonBlock {
 fragment MenuNavigationItem on MenuNavigationBlock {
   title: MenuNavigationHeading
   items: NavigationLinks {
-    url {
-      ...LinkData
-    }
-    title
-    target
-    text
+    ...LinkItemData
   }
   __typename
 }
@@ -67,4 +62,13 @@ fragment MenuCardItem on CardBlock {
     }
   }
   __typename
+}
+
+fragment LinkItemData on Link {
+    title
+    text
+    target
+    url {
+        ...LinkData
+    }
 }

@@ -4,16 +4,11 @@ import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
 
-
-const CardBlockComponent = dynamic(
-  () => import("./card-block"),
-  { ssr: true }
-);
+const CardBlockComponent = dynamic(() => import("./card-block"), { ssr: true });
 
 export const CardBlock: CmsComponent<GraphQL.CardBlockDataFragment> = async ({
   data,
   inEditMode,
-  client,
   contentLink,
 }) => {
   return (
@@ -31,7 +26,7 @@ export default CardBlock;
 
 const CardBlockData = gql(`
 fragment CardBlockData on CardBlock {
-  button: CardButton {
+  cardButton: CardButton {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType
@@ -40,19 +35,19 @@ fragment CardBlockData on CardBlock {
     }
     buttonVariant: ButtonVariant
   }
-  color: CardColor
-  description: CardDescription {
+  cardColor: CardColor
+  cardDescription: CardDescription {
     structure
     html
   }
-  heading: CardHeading
-  icon: CardIcon {
+  cardHeading: CardHeading
+  cardIcon: CardIcon {
     ...ReferenceData
   }
-  image: CardImage {
+  cardImage: CardImage {
     ...ReferenceData
   }
-  subheading: CardSubHeading
-  imageLayout: ImageLayout
+  cardSubheading: CardSubHeading
+  cardImageLayout: ImageLayout
 }
 `);

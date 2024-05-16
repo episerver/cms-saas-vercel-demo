@@ -1,44 +1,57 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { useContext, useEffect, useRef, useState, useMemo } from "react";
+import Link from "@components/shared/cms_link";
+import Image from "@components/shared/cms_image";
+import { useContext, useEffect, useRef, useState, useMemo, type FunctionComponent } from "react";
 import { HeaderContext } from "../_header";
-import { useFragment, Schema } from "@gql";
+import { type Schema } from "@gql";
 import { MenuItemFragment } from "@gql/graphql";
+import { RichText } from '@remkoj/optimizely-cms-react/components'
+import type { ComponentFactory } from "@remkoj/optimizely-cms-react";
 
-function MenuItem({ menuList, ...props }) {
-  if (menuList.__typename === "MenuNavigationBlock") {
-    return (
-      <div {...props}>
-        {menuList.title ? (
-          <h3 className="text-[16px] font-semibold uppercase tracking-[1px]">
-            {menuList.title}
-          </h3>
-        ) : null}
-        {menuList.items && (
-          <ul className="grid gap-5">
-            {menuList.items.map((menuItem) => (
-              <li key={menuItem.text}>
-                <Link
-                  className="hover:text-azure focus:text-azure dark:hover:text-verdansk"
-                  href={menuItem.url}
-                >
-                  {menuItem.text}
-                </Link>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
-    );
-  }
-  if (menuList.__typename === "CardBlock") {
-    return (
-      <div className="col-span-2 flex justify-end">
-        <PromoItem {...menuList} />
-      </div>
-    );
+function isLinkItemData(item?: any): item is Schema.LinkItemDataFragment
+{
+  if (typeof(item) != 'object' || item == null)
+    return false
+  return item.text != undefined && typeof(item.url) == 'object' && item.url != null && item.url.default != undefined
+}
+
+type MenuItemProps = JSX.IntrinsicElements['div'] & { menuList: Schema.MenuNavigationItemFragment | Schema.MenuCardItemFragment | Schema.MenuButtonFragment }
+
+const MenuItem : FunctionComponent<MenuItemProps> = ({ menuList, ...props }) => {
+  switch (menuList.__typename) {
+    case 'MenuNavigationBlock':
+      return (
+        <div {...props}>
+          {menuList.title ? (
+            <h3 className="text-[16px] font-semibold uppercase tracking-[1px]">
+              {menuList.title}
+            </h3>
+          ) : null}
+          {menuList.items && (
+            <ul className="grid gap-5">
+              {menuList.items?.filter(isLinkItemData)?.map((menuItem) => (
+                <li key={menuItem.text}>
+                  <Link
+                    className="hover:text-azure focus:text-azure dark:hover:text-verdansk"
+                    href={menuItem}
+                  />
+                </li>
+              ))}
+            </ul>
+          )}
+        </div>
+      );
+    case 'CardBlock':
+      console.log("Card block", menuList);
+      return (
+        <div className="col-span-2 flex justify-end">
+          <PromoItem {...menuList} />
+        </div>
+      );
+    default:
+      console.log("Unhandled menu item", menuList);
+      break;
   }
 }
 
@@ -93,8 +106,9 @@ function DropdownMenu({ menuName, menuData = [], ...props }: Schema.MegaMenuItem
         <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)] dark:bg-vulcan dark:text-white">
           <div className={`container mx-auto grid ${gridColumnClass.current}`}>
             {menuData.filter(isMenuNavigationItem).map((menuList, index) => {
+              const keyPrefix = (menuList.__typename == "MenuNavigationBlock" ? menuList.title : menuList.heading) ?? ''
               return (
-                <MenuItem key={(menuList?.title ?? '') + index} menuList={menuList} />
+                <MenuItem key={keyPrefix + index} menuList={menuList} />
               );
             })}
           </div>
@@ -104,21 +118,27 @@ function DropdownMenu({ menuName, menuData = [], ...props }: Schema.MegaMenuItem
   );
 }
 
-function isMenuNavigationItem(toTest: any) : toTest is Schema.MenuNavigationItemFragment
+function isMenuNavigationItem(toTest: any) : toTest is Schema.MenuNavigationItemFragment | Schema.MenuCardItemFragment
 {
-  return toTest?.__typename == "MenuNavigationBlock"
+  return toTest?.__typename == "MenuNavigationBlock" || toTest?.__typename == "CardBlock"
 }
 
-function PromoItem({ heading, description, link, image }: any) {
+const factory : ComponentFactory = {
+  has() { return true },
+  register() { },
+  registerAll() { },
+  resolve() { return "div" }
+}
+
+function PromoItem({ heading, description, link, image }: Schema.MenuCardItemFragment) {
+  console.log("Promo Item!")
   return (
     <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12 dark:bg-vulcan-85">
       <div className="prose">
         {heading && <h3 className="mb-4 leading-[1.5]">{heading}</h3>}
-        {description && <p className="leading-[1.5]">{description}</p>}
+        {description && <RichText text={ description?.structure } className="leading-[1.5]" factory={factory} />}
         {link && (
-          <Link className="link--arrow dark:text-white dark:brightness-0	dark:invert" href={link.url}>
-            {link.title}
-          </Link>
+          <Link className="link--arrow dark:text-white dark:brightness-0	dark:invert" href={{ text: link.title, url: link.url }} />
         )}
       </div>
       <div>
@@ -126,7 +146,7 @@ function PromoItem({ heading, description, link, image }: any) {
           <Image
             className="w-full rounded-[20px]"
             src={image.src}
-            alt={image.alt ? image.alt : ""}
+            alt={""}
             width={207}
             height={232}
           />

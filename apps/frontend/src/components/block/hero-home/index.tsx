@@ -25,9 +25,9 @@ export default HomeHeroBlock;
 
 const HeroBlockData =
   gql(`fragment HomeHeroBlockData on HomePageHeroBlock {
-  heading: HomeHeroBlockHeading
-  subheading: HomeHeroBlockSubHeading
-  button: HomeHeroButtonBlock {
+  homeHeroHeading: HomeHeroBlockHeading
+  homeHeroSubheading: HomeHeroBlockSubHeading
+  homeHeroButton: HomeHeroButtonBlock {
     className: ButtonClass
     children: ButtonText
     buttonType: ButtonType

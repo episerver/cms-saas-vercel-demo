@@ -7,12 +7,12 @@ import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
 const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
   data: {
-    image,
+    heroImage: image,
     eyebrow = "",
-    heading = "",
-    description = "",
-    color = "blue",
-    button
+    heroHeading: heading = "",
+    heroDescription: description = "",
+    heroColor: color = "blue",
+    heroButton: button
   }
 }) => {
   const { inEditMode } = getServerContext()
@@ -184,9 +184,9 @@ export default HeroBlock;
 const HeroBlockData: Readonly<{ [field: string]: any }> = {
   data: gql(/* GraphQL */ `
     fragment HeroBlockData on HeroBlock {
-      heading: Heading
-      subheading: SubHeading
-      button: HeroButton {
+      heroHeading: Heading
+      heroSubheading: SubHeading
+      heroButton: HeroButton {
         className: ButtonClass
         children: ButtonText
         buttonType: ButtonType
@@ -195,12 +195,12 @@ const HeroBlockData: Readonly<{ [field: string]: any }> = {
         }
         buttonVariant: ButtonVariant
       }
-      color: HeroColor
-      description: Description {
+      heroColor: HeroColor
+      heroDescription: Description {
         structure
       }
       eyebrow: Eyebrow
-      image: HeroImage {
+      heroImage: HeroImage {
         ...ReferenceData
       }
     }

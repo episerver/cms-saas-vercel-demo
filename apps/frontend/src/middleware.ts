@@ -16,17 +16,17 @@ const DEBUG = process.env.NODE_ENV == 'development'
  *                          be fetched
  * @returns     The requested ISO Language Code from the request
  */
-function getLocale(request: NextRequest) : string
+/*function getLocale(request: NextRequest) : string
 {
     const headers : {[key: string]: string} = {}
     request.headers.forEach((v, k) => { headers[k] = v})
     const languages = new Negotiator({ headers }).languages()
     return match(languages, locales, defaultLocale)
-}
+}*/
 
 export function middleware(request: NextRequest)
 {
-    const pathname = request.nextUrl.pathname
+    /*const pathname = request.nextUrl.pathname
 
     // If we don't have a locale, redirect to the same path with locale
     const pathnameIsMissingLocale = slugs.every(slug => !pathname.toLowerCase().startsWith(`/${slug.toLowerCase()}/`) && pathname !== `/${slug.toLowerCase()}`)
@@ -38,7 +38,7 @@ export function middleware(request: NextRequest)
         return NextResponse.redirect(new URL(`/${ slug }${ pathname }`, request.url), {
             status: DEBUG ? 302 : 301
         })
-    }
+    }*/
 
     // Then make sure we have a visitorId cookie and move it forward in expiry
     const visitorId = Session.getOrCreateVisitorId(request)

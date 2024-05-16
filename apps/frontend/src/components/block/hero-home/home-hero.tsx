@@ -12,7 +12,7 @@ type HomeHeroBlockComponentType = FunctionComponent<{
   inEditMode?: boolean
 }>
 
-const HomeHero: HomeHeroBlockComponentType = ({ data: { heading = "", subheading = "", button, leftImage, rightImage }, inEditMode }) => {
+const HomeHero: HomeHeroBlockComponentType = ({ data: { homeHeroHeading: heading = "", homeHeroSubheading: subheading = "", homeHeroButton: button, leftImage, rightImage }, inEditMode }) => {
   const leftImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, leftImage)?.url)
   const rightImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, rightImage)?.url)
   const leftImageUrl = leftImageUrlData ? new URL(leftImageUrlData.default ?? '/', leftImageUrlData.base ?? 'https://example.com').href : undefined

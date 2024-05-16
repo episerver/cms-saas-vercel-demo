@@ -9,7 +9,7 @@ import { StandardPageDataFragment } from "@gql/graphql";
 
 export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
   contentLink,
-  data: { title, image, description, subtitle }
+  data: { sptitle: title, spimage: image, spdescription: description, spsubtitle: subtitle }
 }) => {
   const imageUrlData = useFragment(Schema.LinkDataFragmentDoc, image?.src)
   const imageUrl = imageUrlData ? new URL(imageUrlData?.default ?? '/', imageUrlData?.base ?? 'https://example.com').href : undefined
@@ -48,7 +48,7 @@ export const StandardPage: OptimizelyNextPage<StandardPageDataFragment> = ({
         </div>
       </div>
       <ContainerBlock
-        data={{ columns: 1, color: "none", marginBottom: "large" }}
+        data={{ columns: 1, containerColor: "none", marginBottom: "large" }}
         contentLink={contentLink}
       >
         <TextBlock
@@ -78,14 +78,14 @@ export default StandardPage;
 
 export const StandardPageData = gql(`
   fragment StandardPageData on StandardPage {
-    title: StandardPageHeading
-    subtitle: StandardSubHeading
-    image: StandardPromoImage {
+    sptitle: StandardPageHeading
+    spsubtitle: StandardSubHeading
+    spimage: StandardPromoImage {
       src: url {
         ...LinkData
       }
     }
-    description: MainBody {
+    spdescription: MainBody {
       structure
       html
     }
