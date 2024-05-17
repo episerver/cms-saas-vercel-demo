@@ -2,10 +2,7 @@ query getFooter($locale: [Locales] = en) {
   menuItems: StartPage(locale: $locale) {
     items {
       footerSubLinks: FooterNavigationSubLinks {
-        url {
-          ...LinkData
-        }
-        text
+        ...LinkItemData
       }
       footerCopyright: FooterNavigationCopyrightText
       footerNavigation: FooterNavigationContentArea {

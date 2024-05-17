@@ -1,9 +1,18 @@
 "use client";
 import Image from "next/image";
-import Link from "next/link";
-import { useRouter, usePathname } from "next/navigation";
+import Link from "@components/shared/cms_link";
+import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import { Schema } from "@gql"
+import type { FooterMenuNavigationItemFragment, HtmlBlockFragment, LinkItemDataFragment, LinkDataFragment } from '@gql/graphql'
+
+type FooterColumnData = (FooterMenuNavigationItemFragment & { content?: never } | (HtmlBlockFragment & { items?: never}))
+
+type FooterColumnProps = Omit<JSX.IntrinsicElements['div'], keyof FooterColumnData> & FooterColumnData &
+{
+  dict: Record<string, any>
+  locale: string,
+  locales: Array<{code: string}>
+}
 
 function FooterColumn({
   title,
@@ -14,7 +23,7 @@ function FooterColumn({
   locale,
   dict,
   ...props
-}: any) {
+}: FooterColumnProps) {
   const router = useRouter();
 
   const switchToLocale = useCallback(
@@ -37,9 +46,7 @@ function FooterColumn({
             <ul className="list-none pl-0">
               {items.map((item, index) => (
                 <li key={"footer" + index}>
-                  <a target={item.target} href={item.url}>
-                    {item.text}
-                  </a>
+                  { item && <Link href={ item } />}
                 </li>
               ))}
             </ul>
@@ -85,12 +92,12 @@ function FooterColumn({
 }
 
 type FooterProps = {
-  dict: any
-  locales: any
-  locale: any
-  footerItems: Array<Schema.FooterMenuNavigationItemFragment | Schema.HtmlBlockFragment>
+  dict: Record<string, any>
+  locale: string,
+  locales: Array<{code: string}>
+  footerItems: Array<FooterColumnData>
   footerCopyright: string
-  footerSubLinks: any
+  footerSubLinks?: null | Array<LinkItemDataFragment | null>
 }
 
 export default function Footer({
@@ -104,17 +111,13 @@ export default function Footer({
   return (
     <footer className="bg-vulcan py-16 lg:py-32 outer-padding">
       <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 text-white">
-        {/*@ts-expect-error Destructuring one of two types */}
-        {footerItems.map(({ title, items, content, __typename }) => (
+        {footerItems.map(footerItem => (
             <FooterColumn
+              key={"footer-column" + footerItem.title}
               dict={dict}
-              key={"footer-column" + title}
-              __typename={__typename}
-              title={title}
-              content={content}
-              items={items}
               locales={locales}
               locale={locale}
+              { ...footerItem }
             />
           )
         )}
@@ -133,11 +136,9 @@ export default function Footer({
           <p dangerouslySetInnerHTML={{ __html: footerCopyright }}></p>
           {footerCopyright && (
             <ul className="list-none md:flex mt-6 md:mt-0">
-              {footerSubLinks.map(({ url, text, target, title }) => (
-                <li key={text}>
-                  <Link href={url} target={target} title={title}>
-                    {text}
-                  </Link>
+              {footerSubLinks?.map(linkItem => linkItem && (
+                <li key={linkItem.text + ((linkItem.url as LinkDataFragment | null | undefined)?.default ?? '')}>
+                  <Link href={ linkItem } />
                 </li>
               ))}
             </ul>

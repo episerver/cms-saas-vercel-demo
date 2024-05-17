@@ -512,10 +512,7 @@ export const getFooterDocument = /*#__PURE__*/ gql`
   menuItems: StartPage(locale: $locale) {
     items {
       footerSubLinks: FooterNavigationSubLinks {
-        url {
-          ...LinkData
-        }
-        text
+        ...LinkItemData
       }
       footerCopyright: FooterNavigationCopyrightText
       footerNavigation: FooterNavigationContentArea {
@@ -526,7 +523,8 @@ export const getFooterDocument = /*#__PURE__*/ gql`
     }
   }
 }
-    ${LinkDataFragmentDoc}
+    ${LinkItemDataFragmentDoc}
+${LinkDataFragmentDoc}
 ${FooterMenuNavigationItemFragmentDoc}
 ${HtmlBlockFragmentDoc}`;
 export const getHeaderDocument = /*#__PURE__*/ gql`
