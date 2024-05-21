@@ -1,6 +1,6 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.2.1",
+  "packageManager": "yarn@4.2.2",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
@@ -16,7 +16,7 @@
     "@yarnpkg/sdks": "^3.1.2",
     "source-map-support": "^0.5.21",
     "typescript": "^5.4.5",
-    "vercel": "^34.1.14"
+    "vercel": "^34.2.0"
   },
   "exports": null,
   "scripts": {
