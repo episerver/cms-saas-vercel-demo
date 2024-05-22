@@ -34,7 +34,7 @@ export async function generateMetadata(): Promise<Metadata> {
       siteName: "Mosey Bank",
       images: [
         {
-          url: "/assets/logo.png",
+          url: "/apple-touch-icon.png",
         },
       ],
     },
