@@ -1,6 +1,5 @@
 'use client'
 import React, { type FunctionComponent, PropsWithChildren } from 'react'
-import { SessionProvider } from 'next-auth/react'
 import { OptimizelyOneProvider, PageActivator, OptimizelyOneGadget } from '@remkoj/optimizely-one-nextjs/client'
 
 export type GlobalProvidersProps = PropsWithChildren<{
@@ -19,9 +18,7 @@ export const GlobalProviders : FunctionComponent<GlobalProvidersProps> = ({ chil
 {
     return <OptimizelyOneProvider value={{ debug: true }} >
         <PageActivator />
-        <SessionProvider>
-            { children }
-        </SessionProvider>
+        { children }
         <OptimizelyOneGadget servicePrefix='/api/me' refreshInterval={ 2000 } />
     </OptimizelyOneProvider>
 }

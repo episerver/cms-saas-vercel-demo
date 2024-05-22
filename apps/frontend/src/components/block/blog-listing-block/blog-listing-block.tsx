@@ -134,6 +134,7 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
 
   // api call
   useEffect(() => {
+    const abortErrorMessage = "Article refresh aborted"
     const searchParams = new URLSearchParams();
     searchParams.set("locale", locale);
     searchParams.set("pageSize", pageSize.toString());
@@ -163,10 +164,11 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
         }
       })
       .catch((e) => {
-        console.error("Caught error", e);
+        if (e != abortErrorMessage)
+          console.error("Caught error", e);
       });
     return () => {
-      refreshArticles.abort();
+      refreshArticles.abort(abortErrorMessage);
     };
   }, [locale, pageSize, selectedAuthor, selectedPublishedDate]);
 

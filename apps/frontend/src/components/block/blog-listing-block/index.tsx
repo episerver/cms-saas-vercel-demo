@@ -16,8 +16,7 @@ const BlogListingBlockComponent = dynamic(
 
 export const BlogListingBlock: CmsComponent<
   GraphQL.BlogListingBlockDataFragment
-> = async ({ data, contentLink }) => {
-  const { selectedPageSize, showFilters } = data;
+> = async ({ data: { selectedPageSize, showFilters }, contentLink }) => {
   const locale = contentLink.locale ?? 'en';
   const articles = await getArticles(locale, {
     page: 1,
