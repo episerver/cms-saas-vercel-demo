@@ -37,7 +37,7 @@ fragment CardBlockData on CardBlock {
   }
   cardColor: CardColor
   cardDescription: CardDescription {
-    structure
+    json
     html
   }
   cardHeading: CardHeading

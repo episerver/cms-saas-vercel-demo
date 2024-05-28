@@ -39,7 +39,7 @@ export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
     }
   }
   blogBody: BlogPostBody {
-    structure
+    json
     html
   }
   blogAuthor: ArticleAuthor
@@ -75,7 +75,7 @@ export const CardBlockDataFragmentDoc = /*#__PURE__*/ gql`
   }
   cardColor: CardColor
   cardDescription: CardDescription {
-    structure
+    json
     html
   }
   cardHeading: CardHeading
@@ -154,7 +154,8 @@ export const HeroBlockDataFragmentDoc = /*#__PURE__*/ gql`
   }
   heroColor: HeroColor
   heroDescription: Description {
-    structure
+    html
+    json
   }
   eyebrow: Eyebrow
   heroImage: HeroImage {
@@ -185,7 +186,7 @@ export const TextBlockDataFragmentDoc = /*#__PURE__*/ gql`
   headingSize: TextBlockHeadingSize
   heading: TextBlockHeading
   description: TextBlockDescription {
-    structure
+    json
     html
   }
   center: TextCenter
@@ -227,7 +228,7 @@ export const StandardPageDataFragmentDoc = /*#__PURE__*/ gql`
     }
   }
   spdescription: MainBody {
-    structure
+    json
     html
   }
 }
@@ -270,8 +271,13 @@ export const CompositionDataFragmentDoc = /*#__PURE__*/ gql`
   layoutType
   type
   key
+  template: displayTemplateKey
+  settings: displaySettings {
+    key
+    value
+  }
   ... on ICompositionStructureNode {
-    nodes @recursive(depth: 5) {
+    nodes @recursive(depth: 10) {
       name: displayName
     }
   }
@@ -287,12 +293,7 @@ export const ExperienceDataFragmentDoc = /*#__PURE__*/ gql`
   experience: _metadata {
     ... on CompositionMetadata {
       composition {
-        key
-        layoutType
-        type
-        nodes {
-          ...CompositionData
-        }
+        ...CompositionData
       }
     }
   }
@@ -302,7 +303,7 @@ export const HtmlBlockFragmentDoc = /*#__PURE__*/ gql`
     fragment HtmlBlock on HtmlBlock {
   title: HtmlBlockHeading
   content: HtmlContent {
-    structure
+    json
     html
   }
   __typename
@@ -346,7 +347,7 @@ export const MenuCardItemFragmentDoc = /*#__PURE__*/ gql`
   heading: CardHeading
   subheading: CardSubHeading
   description: CardDescription {
-    structure
+    json
   }
   color: CardColor
   image: CardImage {
@@ -398,16 +399,15 @@ export const getContentByIdDocument = /*#__PURE__*/ gql`
   ) {
     total
     items {
-      ...IContentData
       ...BlockData
       ...PageData
     }
   }
 }
-    ${IContentDataFragmentDoc}
+    ${BlockDataFragmentDoc}
+${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
-${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
@@ -447,15 +447,16 @@ export const getContentByPathDocument = /*#__PURE__*/ gql`
   ) {
     total
     items {
-      ...IContentData
-      ...BlockData
       ...PageData
     }
   }
 }
-    ${IContentDataFragmentDoc}
+    ${PageDataFragmentDoc}
+${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
+${BlogPostPageDataFragmentDoc}
+${LandingPageDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
@@ -468,9 +469,6 @@ ${HeroBlockDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
-${PageDataFragmentDoc}
-${BlogPostPageDataFragmentDoc}
-${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`

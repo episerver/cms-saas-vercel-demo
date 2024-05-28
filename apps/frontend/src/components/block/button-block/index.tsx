@@ -1,6 +1,7 @@
 import type { ComponentProps } from "react";
 import type { Maybe, ButtonBlock, IContent, LinkDataFragment } from "@gql/graphql";
 import Link from "next/link";
+import { urlToRelative } from '@components/shared/cms_link'
 
 type ButtonBlockType = Required<Omit<ButtonBlock, keyof IContent>>
 export type ButtonBlockComponentType = Omit<ComponentProps<typeof Link>, 'href' | 'className'> & {
@@ -44,7 +45,7 @@ const Button: React.FC<ButtonBlockComponentType> = ({
     cta: "btn--cta",
   };
 
-  const linkHref = !url ? '#' : typeof(url) == 'string' ? url : new URL(url.default ?? '/', url.base ?? 'https://example.com').href
+  const linkHref = (!url || url == '#') ? '#' : urlToRelative(typeof(url) == 'string' ? new URL(url) : new URL(url.default ?? '/', url.base ?? 'https://example.com'))
 
   return (
     <Link

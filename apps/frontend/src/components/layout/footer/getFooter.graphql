@@ -17,7 +17,7 @@ query getFooter($locale: [Locales] = en) {
 fragment HtmlBlock on HtmlBlock {
   title: HtmlBlockHeading
   content: HtmlContent {
-    structure
+    json
     html
   }
   __typename

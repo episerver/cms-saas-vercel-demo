@@ -100,7 +100,7 @@ const TextBlockData = gql(`
       headingSize: TextBlockHeadingSize
       heading: TextBlockHeading
       description: TextBlockDescription {
-        structure
+        json
         html
       }
       center: TextCenter

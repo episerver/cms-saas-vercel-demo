@@ -89,7 +89,7 @@ export const BlogPostPageData = gql(`
       }
     }
     blogBody: BlogPostBody {
-      structure
+      json
       html
     }
     blogAuthor: ArticleAuthor

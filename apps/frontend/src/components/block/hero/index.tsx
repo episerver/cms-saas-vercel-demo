@@ -1,7 +1,8 @@
-import { type HeroBlockDataFragment, ReferenceDataFragmentDoc, LinkDataFragmentDoc } from "@gql/graphql";
+import { useMemo } from 'react'
 import Image from "next/image";
 import ButtonBlock from "../button-block";
-import { gql, useFragment } from "@gql";
+import { useFragment } from "@gql";
+import { HeroBlockDataFragmentDoc, ReferenceDataFragmentDoc, LinkDataFragmentDoc, type HeroBlockDataFragment} from '@gql/graphql'
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
@@ -10,70 +11,72 @@ const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
     heroImage: image,
     eyebrow = "",
     heroHeading: heading = "",
-    heroDescription: description = "",
+    heroDescription: description = { html: "", structure: "{}"},
     heroColor: color = "blue",
     heroButton: button
   }
 }) => {
   const { inEditMode } = getServerContext()
-  
-  const additionalClasses: string[] = [];
-  const innerClasses: string[] = [];
-
   const heroImage = useFragment(ReferenceDataFragmentDoc, image)
   const heroImageLink = useFragment(LinkDataFragmentDoc, heroImage?.url)
   const heroImageSrc = new URL(heroImageLink?.default ?? '/', heroImageLink?.base ?? 'https://example.com').href
   const hasImage = heroImageLink != null && heroImageLink != undefined
 
-  let buttonClassName = "";
-  switch (color) {
-    case "dark-blue":
-      additionalClasses.push("bg-vulcan dark:bg-transparent");
-      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-      if (button) {
-        buttonClassName = "btn--light";
-      }
-      break;
-    case "blue":
-      additionalClasses.push("bg-azure dark:bg-transparent");
-      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-      if (button) {
-        buttonClassName = "btn--light";
-      }
-      break;
-    case "orange":
-      additionalClasses.push("bg-tangy dark:bg-transparent");
-      innerClasses.push(
-        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
-      );
-      if (button) {
-        buttonClassName = "btn--dark ";
-      }
-      break;
-    case "green":
-      additionalClasses.push("bg-verdansk dark:bg-transparent");
-      innerClasses.push(
-        "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
-      );
-      if (button) {
-        buttonClassName = "btn--dark";
-      }
-      break;
-    case "red":
-      additionalClasses.push("bg-paleruby dark:bg-transparent");
-      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-      if (button) {
-        buttonClassName = "btn--light";
-      }
-      break;
-    case "purple":
-      additionalClasses.push("bg-people-eater dark:bg-transparent");
-      innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-      if (button) {
-        buttonClassName = "btn--light";
-      }
-      break;
-  }
+  // Determine the classes based upon color and button being available
+  const [additionalClasses, innerClasses, buttonClassName] = useMemo<[Array<string>,Array<string>, string]>(() => {
+    const _additionalClasses: string[] = [];
+    const _innerClasses: string[] = [];
+    let _buttonClassName = "";
+    switch (color) {
+      case "dark-blue":
+        _additionalClasses.push("bg-vulcan dark:bg-transparent");
+        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
+        if (button) {
+          _buttonClassName = "btn--light";
+        }
+        break;
+      case "blue":
+        _additionalClasses.push("bg-azure dark:bg-transparent");
+        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
+        if (button) {
+          _buttonClassName = "btn--light";
+        }
+        break;
+      case "orange":
+        _additionalClasses.push("bg-tangy dark:bg-transparent");
+        _innerClasses.push(
+          "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
+        );
+        if (button) {
+          _buttonClassName = "btn--dark ";
+        }
+        break;
+      case "green":
+        _additionalClasses.push("bg-verdansk dark:bg-transparent");
+        _innerClasses.push(
+          "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
+        );
+        if (button) {
+          _buttonClassName = "btn--dark";
+        }
+        break;
+      case "red":
+        _additionalClasses.push("bg-paleruby dark:bg-transparent");
+        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
+        if (button) {
+          _buttonClassName = "btn--light";
+        }
+        break;
+      case "purple":
+        _additionalClasses.push("bg-people-eater dark:bg-transparent");
+        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
+        if (button) {
+          _buttonClassName = "btn--light";
+        }
+        break;
+    }
+    return [ _additionalClasses, _innerClasses, _buttonClassName ]
+  }, [ color, button ])
 
   return (
     <section
@@ -117,12 +120,12 @@ const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
                 </div>
               </div>
             ) : null}
-            {description ? (
+            {description?.html ? (
               <div
                 data-epi-edit={inEditMode ? "Description" : undefined}
-                dangerouslySetInnerHTML={{ __html: description }}
+                dangerouslySetInnerHTML={{ __html: description?.html ?? "" }}
               ></div>
-            ) : inEditMode && !description ? (
+            ) : inEditMode && !description?.html ? (
               <div className="mt-16 flex justify-end">
                 <div data-epi-edit={inEditMode ? "Description" : undefined}>
                   + Add Description
@@ -178,31 +181,5 @@ const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
 };
 
 HeroBlock.displayName = "Hero Block";
-HeroBlock.getDataFragment = () => ["HeroBlockData", HeroBlockData.data];
+HeroBlock.getDataFragment = () => ["HeroBlockData", HeroBlockDataFragmentDoc];
 export default HeroBlock;
-
-const HeroBlockData: Readonly<{ [field: string]: any }> = {
-  data: gql(/* GraphQL */ `
-    fragment HeroBlockData on HeroBlock {
-      heroHeading: Heading
-      heroSubheading: SubHeading
-      heroButton: HeroButton {
-        className: ButtonClass
-        children: ButtonText
-        buttonType: ButtonType
-        url: ButtonUrl {
-          ...LinkData
-        }
-        buttonVariant: ButtonVariant
-      }
-      heroColor: HeroColor
-      heroDescription: Description {
-        structure
-      }
-      eyebrow: Eyebrow
-      heroImage: HeroImage {
-        ...ReferenceData
-      }
-    }
-  `),
-};

@@ -136,7 +136,7 @@ function PromoItem({ heading, description, link, image }: Schema.MenuCardItemFra
     <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12 dark:bg-vulcan-85">
       <div className="prose">
         {heading && <h3 className="mb-4 leading-[1.5]">{heading}</h3>}
-        {description && <RichText text={ description?.structure } className="leading-[1.5]" factory={factory} />}
+        {description && <RichText text={ description?.json } className="leading-[1.5]" factory={factory} />}
         {link && (
           <Link className="link--arrow dark:text-white dark:brightness-0	dark:invert" href={{ text: link.title, url: link.url }} />
         )}

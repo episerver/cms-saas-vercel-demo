@@ -47,7 +47,7 @@ fragment MenuCardItem on CardBlock {
   heading: CardHeading
   subheading: CardSubHeading
   description: CardDescription {
-    structure
+    json
   }
   color: CardColor
   image: CardImage {

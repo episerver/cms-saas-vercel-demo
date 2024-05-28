@@ -86,7 +86,7 @@ export const StandardPageData = gql(`
       }
     }
     spdescription: MainBody {
-      structure
+      json
       html
     }
   }

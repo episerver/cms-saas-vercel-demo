@@ -3,6 +3,7 @@ import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
 const handler = createPublishApi({
     paths: [
         '/',
+        '/[[...path]]',
         '/[lang]',
         '/[lang]/[[...path]]'
     ]

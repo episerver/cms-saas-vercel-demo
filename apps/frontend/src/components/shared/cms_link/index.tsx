@@ -47,11 +47,8 @@ export function linkToUrl(item: LinkItemDataFragment)  : URL | undefined
 export function urlToRelative(url?: URL | undefined) : string
 {
     const primaryHost = getPrimaryHost();
-    const isDev = process.env.NODE_ENV == 'development'
     if (url && url.host == primaryHost) {
         const linkHref = `${ url?.pathname || '/'}${ url?.search ? '?'+url.search : ''}${url?.hash ? '#'+url.hash: ''}`
-        if (isDev)
-            console.log(`⚪ [CmsLink] Development mode active, representing ${ url?.href || '#' } as ${ linkHref }`)
         return linkHref
     }
     return url?.href || '#'
