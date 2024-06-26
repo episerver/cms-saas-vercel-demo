@@ -6,8 +6,8 @@ import { useContext, useEffect, useRef, useState, useMemo, type FunctionComponen
 import { HeaderContext } from "../_header";
 import { type Schema } from "@gql";
 import { MenuItemFragment } from "@gql/graphql";
-import { RichText } from '@remkoj/optimizely-cms-react/components'
-import type { ComponentFactory } from "@remkoj/optimizely-cms-react";
+import { RichText, DefaultComponents } from '@remkoj/optimizely-cms-react/components'
+import { DefaultComponentFactory, type ComponentFactory } from "@remkoj/optimizely-cms-react";
 
 function isLinkItemData(item?: any): item is Schema.LinkItemDataFragment
 {
@@ -123,12 +123,7 @@ function isMenuNavigationItem(toTest: any) : toTest is Schema.MenuNavigationItem
   return toTest?.__typename == "MenuNavigationBlock" || toTest?.__typename == "CardBlock"
 }
 
-const factory : ComponentFactory = {
-  has() { return true },
-  register() { },
-  registerAll() { },
-  resolve() { return "div" }
-}
+const factory = new DefaultComponentFactory(DefaultComponents)
 
 function PromoItem({ heading, description, link, image }: Schema.MenuCardItemFragment) {
   console.log("Promo Item!")

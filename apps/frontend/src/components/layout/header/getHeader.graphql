@@ -18,7 +18,7 @@ fragment MegaMenuItem on MegaMenuGroupBlock {
   }
 }
 
-fragment MenuItem on IContent {
+fragment MenuItem on _IContent {
   __typename
   ...MenuNavigationItem
   ...MenuCardItem

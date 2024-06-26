@@ -21,8 +21,51 @@ export const IContentInfoFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const IElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment IElementData on _IElement {
+  _metadata {
+    ...IContentInfo
+  }
+  _type: __typename
+}
+    `;
+export const ElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ElementData on _IElement {
+  ...IElementData
+}
+    `;
+export const CompositionDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment CompositionData on ICompositionNode {
+  name: displayName
+  layoutType: nodeType
+  type
+  key
+  template: displayTemplateKey
+  settings: displaySettings {
+    key
+    value
+  }
+  ... on ICompositionStructureNode {
+    nodes @recursive(depth: 10) {
+      name: displayName
+    }
+  }
+  ... on ICompositionElementNode {
+    element {
+      ...ElementData
+    }
+  }
+}
+    `;
+export const ExperienceDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ExperienceData on _IExperience {
+  composition {
+    ...CompositionData
+  }
+}
+    `;
 export const IContentDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment IContentData on IContent {
+    fragment IContentData on _IContent {
   _metadata {
     ...IContentInfo
   }
@@ -90,7 +133,7 @@ export const CardBlockDataFragmentDoc = /*#__PURE__*/ gql`
 }
     `;
 export const IContentListItemFragmentDoc = /*#__PURE__*/ gql`
-    fragment IContentListItem on IContent {
+    fragment IContentListItem on _IContent {
   ...IContentData
 }
     `;
@@ -195,7 +238,7 @@ export const TextBlockDataFragmentDoc = /*#__PURE__*/ gql`
 }
     `;
 export const BlockDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment BlockData on IContent {
+    fragment BlockData on _IContent {
   ...IContentData
   ...BlogListingBlockData
   ...CardBlockData
@@ -244,59 +287,12 @@ export const StartPageDataFragmentDoc = /*#__PURE__*/ gql`
 }
     `;
 export const PageDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment PageData on IContent {
+    fragment PageData on _IContent {
   ...IContentData
   ...BlogPostPageData
   ...LandingPageData
   ...StandardPageData
   ...StartPageData
-}
-    `;
-export const IElementDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment IElementData on IElement {
-  _metadata {
-    ...IContentInfo
-  }
-  _type: __typename
-}
-    `;
-export const ElementDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment ElementData on IElement {
-  ...IElementData
-}
-    `;
-export const CompositionDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment CompositionData on ICompositionNode {
-  name: displayName
-  layoutType
-  type
-  key
-  template: displayTemplateKey
-  settings: displaySettings {
-    key
-    value
-  }
-  ... on ICompositionStructureNode {
-    nodes @recursive(depth: 10) {
-      name: displayName
-    }
-  }
-  ... on ICompositionElementNode {
-    element {
-      ...ElementData
-    }
-  }
-}
-    `;
-export const ExperienceDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment ExperienceData on IExperience {
-  experience: _metadata {
-    ... on CompositionMetadata {
-      composition {
-        ...CompositionData
-      }
-    }
-  }
 }
     `;
 export const HtmlBlockFragmentDoc = /*#__PURE__*/ gql`
@@ -376,7 +372,7 @@ export const MenuButtonFragmentDoc = /*#__PURE__*/ gql`
 }
     `;
 export const MenuItemFragmentDoc = /*#__PURE__*/ gql`
-    fragment MenuItem on IContent {
+    fragment MenuItem on _IContent {
   __typename
   ...MenuNavigationItem
   ...MenuCardItem
@@ -391,9 +387,24 @@ export const MegaMenuItemFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const getContentTypeDocument = /*#__PURE__*/ gql`
+    query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
+  content: _Content(
+    where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}]}
+    locale: $locale
+  ) {
+    total
+    items {
+      _metadata {
+        types
+      }
+    }
+  }
+}
+    `;
 export const getContentByIdDocument = /*#__PURE__*/ gql`
     query getContentById($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
-  content: Content(
+  content: _Content(
     where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}]}
     locale: $locale
   ) {
@@ -424,24 +435,9 @@ ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;
-export const getContentTypeDocument = /*#__PURE__*/ gql`
-    query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
-  content: Content(
-    where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}]}
-    locale: $locale
-  ) {
-    total
-    items {
-      _metadata {
-        types
-      }
-    }
-  }
-}
-    `;
 export const getContentByPathDocument = /*#__PURE__*/ gql`
     query getContentByPath($path: String!, $version: String, $locale: [Locales!], $domain: String) {
-  content: Content(
+  content: _Content(
     where: {_metadata: {url: {default: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}
     locale: $locale
   ) {
@@ -473,7 +469,7 @@ ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`
     query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int) {
-  Content(
+  Content: _Content(
     where: {_or: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "Page"}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
@@ -595,11 +591,11 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getContentById(variables: Schema.getContentByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByIdQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByIdQuery>(getContentByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentById', 'query', variables);
-    },
     getContentType(variables: Schema.getContentTypeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentTypeQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentTypeQuery>(getContentTypeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentType', 'query', variables);
+    },
+    getContentById(variables: Schema.getContentByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByIdQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByIdQuery>(getContentByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentById', 'query', variables);
     },
     getContentByPath(variables: Schema.getContentByPathQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByPathQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByPathQuery>(getContentByPathDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentByPath', 'query', variables);

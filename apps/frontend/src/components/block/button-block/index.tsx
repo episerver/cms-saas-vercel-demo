@@ -1,9 +1,9 @@
 import type { ComponentProps } from "react";
-import type { Maybe, ButtonBlock, IContent, LinkDataFragment } from "@gql/graphql";
+import type { Maybe, ButtonBlockProperty, LinkDataFragment } from "@gql/graphql";
 import Link from "next/link";
 import { urlToRelative } from '@components/shared/cms_link'
 
-type ButtonBlockType = Required<Omit<ButtonBlock, keyof IContent>>
+type ButtonBlockType = ButtonBlockProperty
 export type ButtonBlockComponentType = Omit<ComponentProps<typeof Link>, 'href' | 'className'> & {
   className?: Maybe<string>
   url?: Maybe<string> | {

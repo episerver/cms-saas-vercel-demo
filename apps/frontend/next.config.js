@@ -22,9 +22,9 @@ if (optimizelyDxpUrl) {
     })
 }
 
-if (process.env.NODE_ENV != 'production') {
+/*if (process.env.NODE_ENV != 'production') {
     console.log("Frontend domain:", process.env.SITE_DOMAIN)
     console.log("Next.JS Config:", JSON.stringify(nextConfig, undefined, 2))
-}
+}*/
 
 module.exports = nextConfig
