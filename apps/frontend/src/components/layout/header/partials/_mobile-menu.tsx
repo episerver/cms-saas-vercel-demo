@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { HeaderContext } from "../_header";
 import Link from "next/link";
+import { ThemePicker } from "./_themepicker"
 
 export default function MobileMenu() {
   const { currentMenu, setCurrentMenu, menuItems, mobileMenuOpen } =
@@ -64,6 +65,7 @@ export default function MobileMenu() {
               </li>
             )
           )}
+          <li className="pt-6"><ThemePicker /></li>
         </ul>
       </div>
     </section>

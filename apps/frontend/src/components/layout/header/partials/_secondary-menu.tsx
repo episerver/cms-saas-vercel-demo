@@ -11,7 +11,7 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
 
   return (
     <ul ref={ref} className="flex items-center justify-end">
-      <li>
+      <li className="md:mr-6 xl:mr-12">
         <ThemePicker />
       </li>
       {utilityItems.filter(isButtonBlock).map(

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.scss";
+import { Body, ThemeProvider } from "@/components/theme"
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
@@ -64,18 +65,20 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <head>
         <Scripts.Header />
       </head>
-      <body className={`${figtree.className} bg-ghost-white dark:bg-vulcan`}>
-        <div className="flex min-h-screen flex-col justify-between">
-          <GlobalProviders>
-            <Header />
-            <main className="grow">{children}</main>
-            <Footer />
-          </GlobalProviders>
-          <Scripts.Footer />
-          <GoogleAnalytics measurementId={ga_id} />
-          <SpeedInsights />
-        </div>
-      </body>
+      <ThemeProvider value={{ theme: "system" }}>
+        <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan`}>
+          <div className="flex min-h-screen flex-col justify-between">
+            <GlobalProviders>
+              <Header />
+              <main className="grow">{children}</main>
+              <Footer />
+            </GlobalProviders>
+            <Scripts.Footer />
+            <GoogleAnalytics measurementId={ga_id} />
+            <SpeedInsights />
+          </div>
+        </Body>
+      </ThemeProvider>
     </html>
   );
 }
