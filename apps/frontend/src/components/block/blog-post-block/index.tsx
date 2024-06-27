@@ -49,7 +49,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
 
   useEffect(() => {
     setDate(formatDate(published));
-  }, []);
+  }, [published]);
 
   return (
     <Link href={url} className="relative w-full">

@@ -172,16 +172,6 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
     };
   }, [locale, pageSize, selectedAuthor, selectedPublishedDate]);
 
-  useEffect(() => {
-    if (
-      selectedAuthor == "All authors" &&
-      selectedPublishedDate == "Any time" &&
-      pageSize == selectedPageSize
-    ) {
-      setIsLoading(false);
-    }
-  }, []);
-
   return (
     <BlogListingContext.Provider value={blogListingContext}>
       <div className={`w-full ${showFilters ? "mt-32" : ""}`}>

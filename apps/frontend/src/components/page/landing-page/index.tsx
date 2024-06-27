@@ -35,16 +35,22 @@ LandingPage.getMetaData = async (contentLink, locale, client) => {
     title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName,
     description: cmsManagedData.SeoSettings?.MetaDescription,
     openGraph: {
-      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType),
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
     }
   }
+  // Apply image if available
   const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage))
   if (pageImage) {
     meta.openGraph.images = [{
       url: pageImage
     }]
+  }
+  // Apply type if available
+  const openGraphType = toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType)
+  if (openGraphType) {
+    //@ts-expect-error The Type is only available when setting directly as it'll determine the subtype of the openGraph data
+    meta.openGraph.type = openGraphType
   }
   return meta
 }
