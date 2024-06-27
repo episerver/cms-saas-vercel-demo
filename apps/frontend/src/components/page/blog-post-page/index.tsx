@@ -2,17 +2,15 @@ import "server-only";
 // Next.JS
 import { type Metadata } from "next";
 
-// Optimizely Graph
+// Optimizely Graph types and SDK
 import { type Locales, type BlogPostPageDataFragment, BlogPostPageDataFragmentDoc } from "@gql/graphql";
+import { getSdk } from "@gql";
 
 // Implementation components
 import ContainerBlock from "@/components/block/container-block";
 import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
 import Image from "@/components/shared/cms_image"
-
-// Get Compiled in GraphQL methods
-import { getSdk } from "@gql";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
@@ -32,7 +30,7 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
     <>
       <div className="outer-padding">
         <div className="container mx-auto grid grid-cols-12">
-          { image && <Image className="col-span-12 rounded-[40px] mt-16 lg:mt-32 mb-24 lg:mb-48 mx-auto" src={image} alt="" width={1920} height={1080} /> }
+          { image && <CmsEditable cmsFieldName="BlogPostPromoImage" as={ Image } className="col-span-12 rounded-[40px] mt-16 lg:mt-32 mb-24 lg:mb-48 mx-auto" src={image} alt="" width={1920} height={1080} /> }
           <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto">
             <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2">
               <CmsEditable cmsFieldName="Heading" as="h1" className="mb-[24px] text-[48px]">{ title ?? "" }</CmsEditable>
