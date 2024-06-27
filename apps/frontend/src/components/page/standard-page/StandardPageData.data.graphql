@@ -6,6 +6,5 @@ fragment StandardPageData on StandardPage {
     }
     spdescription: MainBody {
         json
-        html
     }
 }

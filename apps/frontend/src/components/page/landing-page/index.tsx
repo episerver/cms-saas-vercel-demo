@@ -3,24 +3,13 @@ import { gql } from "@gql/index";
 import type * as GraphQL from "@gql/graphql";
 import type { OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
 import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
-import ClassMapper from "@/lib/displayMode";
 
 export const LandingPage: OptimizelyNextPage<GraphQL.LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea } }) => {
 
   return (
     <div className="landing-page">
-      <CmsContentArea
-        fieldName="TopContentArea"
-        items={TopContentArea}
-        classMapper={ClassMapper}
-        className="w-full"
-      />
-      <CmsContentArea
-        fieldName="MainContentArea"
-        items={MainContentArea}
-        classMapper={ClassMapper}
-        className="w-full"
-      />
+      <CmsContentArea fieldName="TopContentArea" items={TopContentArea} className="w-full" />
+      <CmsContentArea fieldName="MainContentArea" items={MainContentArea} className="w-full" />
     </div>
   );
 };
