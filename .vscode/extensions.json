@@ -4,6 +4,7 @@
     "mikestead.dotenv",
     "bradlc.vscode-tailwindcss",
     "capaj.graphql-codegen-vscode",
-    "yzhang.markdown-all-in-one"
+    "yzhang.markdown-all-in-one",
+    "graphql.vscode-graphql"
   ]
 }

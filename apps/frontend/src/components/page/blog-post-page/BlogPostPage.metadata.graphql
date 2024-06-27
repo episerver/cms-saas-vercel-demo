@@ -1,0 +1,32 @@
+query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {
+  BlogPostPage (
+    where: {
+      _metadata: {
+        key: { eq: $key }
+        version: { eq: $version }
+      }
+    }
+    locale: $locale
+  ) {
+  	pages: items {
+      _metadata {
+        displayName
+        key
+        version
+        locale
+      }
+      Heading
+      BlogPostPromoImage {
+        ...ReferenceData
+      }
+      SeoSettings {
+        MetaTitle
+        MetaDescription
+        SharingImage {
+          ...ReferenceData
+        }
+        GraphType
+      }
+    }  
+  }
+}

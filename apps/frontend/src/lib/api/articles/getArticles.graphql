@@ -1,0 +1,42 @@
+query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
+  getArticles: BlogPostPage(
+    where: {
+      _and: [
+        { _metadata: { published: { gte: $published } } }
+        { _metadata: { published: { lte: $publishedEnd } } }
+      ]
+    }
+    locale: $locale
+    limit: $pageSize
+    skip: $start
+    orderBy: { _metadata: { published: DESC } }
+  ) {
+    total
+    items {
+      ...IContentData
+      _metadata {
+        published
+      }
+      title: Heading
+      description: SeoSettings {
+        text: MetaDescription
+      }
+      author: ArticleAuthor
+      image: BlogPostPromoImage {
+        ...ReferenceData
+      }
+    }
+    facets {
+      author: ArticleAuthor(orderType: VALUE, orderBy: ASC, filters: $author) {
+        count
+        name
+      }
+      _metadata {
+        published(unit: DAY) {
+          count
+          name
+        }
+      }
+    }
+  }
+}

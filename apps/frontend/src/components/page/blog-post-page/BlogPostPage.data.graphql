@@ -1,0 +1,11 @@
+fragment BlogPostPageData on BlogPostPage {
+    blogTitle: Heading
+    blogSubtitle: ArticleSubHeading
+    blogImage: BlogPostPromoImage {
+        ...ReferenceData
+    }
+    blogBody: BlogPostBody {
+        json
+    }
+    blogAuthor: ArticleAuthor
+}

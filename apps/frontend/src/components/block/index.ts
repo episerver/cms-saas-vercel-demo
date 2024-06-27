@@ -1,65 +1,50 @@
-import type { ComponentTypeDictionary } from '@remkoj/optimizely-dxp-react'
-import type { ComponentType } from 'react'
-import HeroBlock from "./hero-block"
-import ButtonBlock from './button-block'
+import type { ComponentTypeDictionary } from '@remkoj/optimizely-cms-react'
+import HomeHero from './hero-home'
+import HeroBlock from './hero'
 import TextBlock from './text-block'
+import Carousel from './carousel-block'
 import ContainerBlock from './container-block'
-import HighlightBlock from './highlight-block'
-import ImageAsset from './media-image-asset'
-import OdpEmbedBlock from './odp-embed-block'
 import CardBlock from './card-block'
-import CarouselBlock from './carousel-block'
 import QuoteBlock from './quote-block'
-import ProductBlock from './product'
+import BlogListingBlock from './blog-listing-block'
+import OdpEmbedBlock from './odp-embed-block'
 
 export const Blocks : ComponentTypeDictionary = [
     {
-        type: ['Block','HeroBlock'],
-        component: HeroBlock as ComponentType
+        type: ['Component','HomePageHeroBlock'],
+        component: HomeHero
     },
     {
-        type: ['Block', 'ButtonBlock'],
-        component: ButtonBlock as ComponentType
+        type: ['Component','HeroBlock'],
+        component: HeroBlock
     },
     {
-        type: ['Block', 'TextBlock' ],
-        component: TextBlock as ComponentType
+        type: ['Component','TextBlock'],
+        component: TextBlock
     },
     {
-        type: ['Block', 'ContainerBlock'],
-        component: ContainerBlock as ComponentType
+        type: ['Component', 'CarouselBlock'],
+        component: Carousel
     },
     {
-        type: ['Block', 'HighlightTextBlock'],
-        component: HighlightBlock as ComponentType
+        type: ['Component', 'LayoutContainerBlock'],
+        component: ContainerBlock
     },
     {
-        type: ['image','Media','Image'],
-        component: ImageAsset as ComponentType<any>
+        type: ["Component", "OdpEmbedBlock" ],
+        component: OdpEmbedBlock
     },
     {
-        type: ['Block','image','Media','Image'],
-        component: ImageAsset as ComponentType<any>
+        type: ['Component', 'CardBlock'],
+        component: CardBlock
     },
     {
-        type: ["Block", "OdpEmbedBlock" ],
-        component: OdpEmbedBlock as ComponentType
+        type: ['Component', 'QuoteBlock'],
+        component: QuoteBlock
     },
     {
-        type: ["Block", "CardBlock" ],
-        component: CardBlock as ComponentType
-    },
-    {
-        type: ["Block", "CarouselBlock"],
-        component: CarouselBlock as ComponentType
-    },
-    {
-        type: ["Block", "QuoteBlock"],
-        component: QuoteBlock as ComponentType
-    },
-    {
-        type: ["Block", "Product"],
-        component: ProductBlock as ComponentType
+        type: ['Component', 'BlogListingBlock'],
+        component: BlogListingBlock
     }
 
 ]

@@ -1,6 +1,5 @@
 import { MetadataRoute } from "next"
 
-import SiteConfig from '../site-config'
 import ThemeConfig from '../../tailwind.config'
 
 let defaultColor: string = '#115e59'
@@ -12,8 +11,8 @@ export default function manifest() : MetadataRoute.Manifest
 {
     return {
         id: "@optly/saas-cms-demo",
-        name: `${ SiteConfig.name } online`,
-        short_name: SiteConfig.name,
+        name: `Mosey Bank online`,
+        short_name: "Mosey Bank",
         description: "The Mosey Bank digital environment",
         icons:[
             {src:"/android-chrome-192x192.png",sizes:"192x192",type:"image/png"},

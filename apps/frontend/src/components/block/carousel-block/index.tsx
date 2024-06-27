@@ -1,29 +1,46 @@
-import 'server-only'
-import { Fragment } from 'react'
-import dynamic from 'next/dynamic'
-import { CmsContentArea, CmsComponent } from '@remkoj/optimizely-dxp-react/rsc'
-import type * as GraphQL from '@gql/graphql'
-import { gql } from '@gql/index'
+import { Fragment } from "react";
+import { type CmsComponent } from "@remkoj/optimizely-cms-react";
+import { gql, type Schema as GraphQL } from "@gql";
+import dynamic from "next/dynamic";
+import "server-only";
+import { CmsContentArea, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
-const Carousel = dynamic(() => import('./client'), { ssr: true })
+const CarouselBlockComponent = dynamic(() => import("./carousel-block"), { ssr: true });
 
-export const CarouselBlock : CmsComponent<GraphQL.CarouselBlockDataFragment> = async ({ data }) =>
-{
-    const delay = 10
-    const showArrows : boolean | undefined = true
-    const showDots : boolean | undefined = true
+export const CarouselBlock: CmsComponent<GraphQL.CarouselBlockDataFragment> = async ({ data, contentLink }) => {
+  const { inEditMode } = getServerContext()
+  const items = data?.CarouselItemsContentArea || [];
 
-    return <div className='carousel-block relative w-full'>
-        <CmsContentArea items={ data.CarouselSlides } as={ Carousel } itemsProperty='slides' itemWrapper={{ as: Fragment }} durationMilliseconds={ delay*1000 } showArrows={showArrows} showDots={showDots} />
-    </div>
-}
-CarouselBlock.getDataFragment = () => ['CarouselBlockData', CarouselBlockData]
-CarouselBlock.displayName = "Carousel"
-export default CarouselBlock
+  return (
+    <CarouselBlockComponent
+      data={{ ...data, itemCount: items.length }}
+      inEditMode={inEditMode}
+      contentLink={contentLink}
+    >
+      <CmsContentArea
+        as={ Fragment }
+        itemWrapper={{ 
+          as: "div",
+          style: {
+            flex: `0 0 var(--item-width)`,
+            width: `var(--item-width)`,
+            display: "inline-block",
+            paddingLeft: "15px",
+            paddingRight: "15px"
+          }
+        }}
+        items={items}
+      />
+    </CarouselBlockComponent>
+  );
+};
 
-export const CarouselBlockData = gql(/*GraphQL*/`fragment CarouselBlockData on CarouselBlock {
-    CarouselSlides {
-        ...BlockContentAreaItemSearchData
+CarouselBlock.displayName = "Carousel Block";
+CarouselBlock.getDataFragment = () => ["CarouselBlockData", CarouselBlockData];
+export default CarouselBlock;
+
+const CarouselBlockData = gql(`fragment CarouselBlockData on CarouselBlock {
+    CarouselItemsContentArea {
+        ...IContentListItem
     }
-    ShowArrows
-}`)
+}`);

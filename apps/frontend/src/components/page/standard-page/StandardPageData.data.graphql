@@ -1,0 +1,10 @@
+fragment StandardPageData on StandardPage {
+    sptitle: StandardPageHeading
+    spsubtitle: StandardSubHeading
+    spimage: StandardPromoImage {
+        ...ReferenceData
+    }
+    spdescription: MainBody {
+        json
+    }
+}

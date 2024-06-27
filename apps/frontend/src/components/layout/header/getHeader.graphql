@@ -1,0 +1,74 @@
+query getHeader($locale: [Locales]) {
+  menuItems: StartPage(locale: $locale) {
+    items {
+      headerNavigation: MainNavigationContentArea {
+        ...MegaMenuItem
+      }
+      UtilityNavigationContentArea {
+        ...MenuItem
+      }
+    }
+  }
+}
+
+fragment MegaMenuItem on MegaMenuGroupBlock {
+  menuName: MenuMenuHeading
+  menuData: MegaMenuContentArea {
+    ...MenuItem
+  }
+}
+
+fragment MenuItem on _IContent {
+  __typename
+  ...MenuNavigationItem
+  ...MenuCardItem
+  ...MenuButton
+}
+
+fragment MenuButton on ButtonBlock {
+  text: ButtonText
+  url: ButtonUrl {
+    ...LinkData
+  }
+  type: ButtonType
+  variant: ButtonVariant
+  __typename
+}
+
+fragment MenuNavigationItem on MenuNavigationBlock {
+  title: MenuNavigationHeading
+  items: NavigationLinks {
+    ...LinkItemData
+  }
+  __typename
+}
+
+fragment MenuCardItem on CardBlock {
+  heading: CardHeading
+  subheading: CardSubHeading
+  description: CardDescription {
+    json
+  }
+  color: CardColor
+  image: CardImage {
+    src: url {
+      ...LinkData
+    }
+  }
+  link: CardButton {
+    title: ButtonText
+    url: ButtonUrl {
+      ...LinkData
+    }
+  }
+  __typename
+}
+
+fragment LinkItemData on Link {
+    title
+    text
+    target
+    url {
+        ...LinkData
+    }
+}

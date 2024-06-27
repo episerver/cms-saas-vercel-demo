@@ -13,5 +13,4 @@ export default async function sitemap() : Promise<MetadataRoute.Sitemap>
     }})
 }
 
-//export const runtime = 'edge' //Uncomment to move to React 18 Streaming
 export const revalidate = 21600 // Revalidate at a minimum every 6 hours

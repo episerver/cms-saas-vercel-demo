@@ -1,0 +1,22 @@
+fragment HeroBlockData on HeroBlock {
+    heroHeading: Heading
+    heroSubheading: SubHeading
+    heroButton: HeroButton {
+        className: ButtonClass
+        children: ButtonText
+        buttonType: ButtonType
+        url: ButtonUrl {
+            ...LinkData
+        }
+        buttonVariant: ButtonVariant
+    }
+    heroColor: HeroColor
+    heroDescription: Description {
+        html
+        json
+    }
+    eyebrow: Eyebrow
+    heroImage: HeroImage {
+        ...ReferenceData
+    }
+}

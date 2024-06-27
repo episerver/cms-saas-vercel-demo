@@ -1,0 +1,39 @@
+query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int) {
+  Content: _Content (
+    where: {
+      _or: [
+        { _fulltext: { contains: $term } }
+        { _fulltext: { contains: $topInterest, boost: 2 } }
+      ]
+      _fulltext: { contains: $term }
+      _metadata: { types: { in: "Page" } }
+    }
+    orderBy: { _ranking: SEMANTIC }
+    limit: $pageSize
+  ) {
+    total
+    cursor
+    items {
+      _score
+      ...IContentData
+      _metadata {
+        published
+      }
+      _fulltext(
+        highlight: { enabled: true, startToken: "<span>", endToken: "</span>" }
+      )
+    }
+    facets {
+      _metadata {
+        types(filters: $types) {
+          name
+          count
+        }
+        locale(filters: $locale) {
+          name
+          count
+        }
+      }
+    }
+  }
+}

@@ -18,7 +18,7 @@ Within the CMS, take the following steps:
 | - | - |
 | Host Name | The domain name of your frontend (for example: `my-project.vercel.app`) |
 | Type | Set to `Primary` |
-| Culture | Keep this field empty |
+| Culture | Set this to the primary language ("en") |
 | Scheme | Set this to the correct value for your frontend, typically:  `HTTPS` |
 
 - Click on "Add Host"
@@ -26,7 +26,7 @@ Within the CMS, take the following steps:
 
 | Field | Instruction |
 | - | - |
-| Type | Set to `Edit` |
+| Type | Set to blank |
 | Scheme | Set to `HTTPS` |
 
 - Click on "Save Host"

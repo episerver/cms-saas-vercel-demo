@@ -1,0 +1,22 @@
+{
+    "en": {
+        "languagePicker": {
+            "title": "Select Language",
+            "locales": {
+                "en": "English",
+                "nl": "Nederlands",
+                "nl-BE": "Vlaams"
+            }
+        }
+    },
+    "nl": {
+        "languagePicker": {
+            "title": "Selecteer taal",
+            "locales": {
+                "en": "English",
+                "nl": "Nederlands",
+                "nl-BE": "Vlaams"
+            }
+        }
+    }
+}

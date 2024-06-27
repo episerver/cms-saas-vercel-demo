@@ -1,90 +1,64 @@
-import 'server-only'
-import type * as GraphQL from '@gql/graphql'
-import { gql } from '@gql/index'
-import type { OptimizelyNextPage } from '@remkoj/optimizely-dxp-nextjs'
-import { Utils } from '@remkoj/optimizely-dxp-react'
-import CmsContentArea from '@remkoj/optimizely-dxp-react/rsc/cms-content-area'
-import ClassMapper from '@/lib/displayMode'
-import { Metadata } from 'next'
-import React from 'react'
+import "server-only";
+import { type Metadata } from "next";
 
-export const LandingPage : OptimizelyNextPage<GraphQL.LandingPageDataFragment> = ({ data }) => {
-    const topContentArea : GraphQL.ContentAreaItemDataFragment[] = data.TopContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
-    const mainContentArea : GraphQL.ContentAreaItemDataFragment[] = data.MainContentArea?.filter(Utils.isNotNullOrUndefined) ?? []
-    
-    return <div className='landing-page'>
-        <CmsContentArea fieldName='TopContentArea' items={ topContentArea }  classMapper={ ClassMapper } className="w-full" />
-        <CmsContentArea fieldName='MainContentArea' items={ mainContentArea } classMapper={ ClassMapper } className="max-w-screen-2xl mx-auto"/>
+// Optimizely Graph
+import { getSdk } from "@gql";
+import { type Locales, type LandingPageDataFragment, LandingPageDataFragmentDoc } from "@gql/graphql";
+
+// Optimizely SaaS CMS SDK
+import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
+import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
+import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
+
+// Implementation Components
+import { getLinkData, linkDataToUrl } from "@/lib/urls";
+import { toValidOpenGraphType } from "@/lib/opengraph";
+
+export const LandingPage: OptimizelyNextPage<LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea } }) => {
+
+  return (
+    <div className="landing-page">
+      <CmsContentArea fieldName="TopContentArea" items={TopContentArea} className="w-full" />
+      <CmsContentArea fieldName="MainContentArea" items={MainContentArea} className="w-full" />
     </div>
-}
-
-LandingPage.getDataFragment = () => ['LandingPageData', LandingPageData]
+  );
+};
+LandingPage.getDataFragment = () => ['LandingPageData', LandingPageDataFragmentDoc]
 LandingPage.getMetaData = async (contentLink, locale, client) => {
-    const variables = { ...contentLink, locale: locale as GraphQL.Locales }
-    const result = ((await client.request(GetLandingPageMetaData, variables)).getLandingPageMetaData?.pages ?? [])[0] ?? undefined
-    if (!result)
-        return {}
-
-    const title = result.head?.title || result.name || undefined
-    const description = result.head?.description || undefined 
-    const metadata : Metadata = {}
-
-    if (title) {
-        metadata.title = title
-        metadata.openGraph = {
-            ...metadata.openGraph,
-            title: title
-        }
+  const sdk = getSdk(client) // Get the SDK with authentication applied - if needed
+  const result = await sdk.getLandingPageMetaData({ ...contentLink, locale: locale ? localeToGraphLocale(locale) as Locales : null })
+  const matchingPosts = (result.LandingPage?.pages || []).filter(isNotNullOrUndefined)
+  if (matchingPosts.length != 1)
+    return {}
+  const cmsManagedData = matchingPosts[0]
+  const meta : WithPropertySet<Metadata, 'openGraph'> = {
+    title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName,
+    description: cmsManagedData.SeoSettings?.MetaDescription,
+    openGraph: {
+      title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
+      description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
     }
-    if (description) {
-        metadata.description = description
-        metadata.openGraph = {
-            ...metadata.openGraph,
-            description: description
-        }
-    }
-        
-    return metadata
+  }
+  // Apply image if available
+  const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage))
+  if (pageImage) {
+    meta.openGraph.images = [{
+      url: pageImage
+    }]
+  }
+  // Apply type if available
+  const openGraphType = toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType)
+  if (openGraphType) {
+    //@ts-expect-error The Type is only available when setting directly as it'll determine the subtype of the openGraph data
+    meta.openGraph.type = openGraphType
+  }
+  return meta
 }
 
+type WithPropertySet<T, K extends keyof T> = Omit<T, K> & { [P in K] -?: NonNullable<Required<T>[P]> }
+
+function isNotNullOrUndefined<T>(toTest?: T | null | undefined): toTest is T
+{
+  return toTest ? true : false
+}
 export default LandingPage
-
-export const LandingPageData = gql(/* GraphQL */`fragment LandingPageData on LandingPage {
-    TopContentArea {
-        ...ContentAreaItemData
-    }
-    MainContentArea {
-        ...ContentAreaItemData
-    }
-}`)
-
-export const GetLandingPageMetaData = gql(/*GraphQL*/`query getLandingPageMetaData($id: Int, $workId: Int, $guidValue: String, $locale: [Locales!], $isCommonDraft: Boolean) {
-    getLandingPageMetaData: LandingPage(
-        where: {
-            ContentLink: { 
-                Id: { eq: $id }, 
-                WorkId: { eq: $workId }, 
-                GuidValue: { eq: $guidValue } 
-            }
-            IsCommonDraft: { eq: $isCommonDraft }
-        }
-        locale: $locale
-    ) {
-        count: total
-        pages: items {
-            name: Name
-            head: LandingPageSeo {
-                title: MetaTitle
-                description: MetaDescription
-                image: SharingImage {
-                    url: Url
-                    data: Expanded {
-                        url: Url
-                        path: RelativePath
-                    }
-                }
-                type: GraphType
-            }
-        }
-    }
-}`)

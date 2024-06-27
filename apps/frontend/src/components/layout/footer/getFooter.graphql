@@ -1,0 +1,37 @@
+query getFooter($locale: [Locales] = en) {
+  menuItems: StartPage(locale: $locale) {
+    items {
+      footerSubLinks: FooterNavigationSubLinks {
+        ...LinkItemData
+      }
+      footerCopyright: FooterNavigationCopyrightText
+      footerNavigation: FooterNavigationContentArea {
+        __typename
+        ...FooterMenuNavigationItem
+        ...HtmlBlock
+      }
+    }
+  }
+}
+
+fragment HtmlBlock on HtmlBlock {
+  title: HtmlBlockHeading
+  content: HtmlContent {
+    json
+    html
+  }
+  __typename
+}
+
+fragment FooterMenuNavigationItem on MenuNavigationBlock {
+  title: MenuNavigationHeading
+  items: NavigationLinks {
+    url {
+      ...LinkData
+    }
+    title
+    target
+    text
+  }
+  __typename
+}

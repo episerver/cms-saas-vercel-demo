@@ -1,6 +1,6 @@
-import type { CmsComponent } from "@remkoj/optimizely-dxp-react"
+import { type PropsWithChildren, type FunctionComponent } from "react"
 
-export const Fragment : CmsComponent = props => 
+export const Fragment : FunctionComponent<PropsWithChildren<{}>> = props => 
 {
     return props.children
 }
