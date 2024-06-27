@@ -1,0 +1,32 @@
+query getStandardPageMetaData($key: String!, $version: String, $locale: [Locales]) {
+  StandardPage (
+    where: {
+      _metadata: {
+        key: { eq: $key }
+        version: { eq: $version }
+      }
+    }
+    locale: $locale
+  ) {
+  	pages: items {
+      _metadata {
+        displayName
+        key
+        version
+        locale
+      }
+      StandardPageHeading
+      StandardPromoImage {
+        ...ReferenceData
+      }
+      SeoSettings {
+        MetaTitle
+        MetaDescription
+        SharingImage {
+          ...ReferenceData
+        }
+        GraphType
+      }
+    }  
+  }
+}

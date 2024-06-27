@@ -10,14 +10,15 @@ import { getSdk } from "@gql";
 import ContainerBlock from "@/components/block/container-block";
 import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
-import Image from "@/components/shared/cms_image"
+import Image from "@/components/shared/cms_image";
+import { getLinkData, linkDataToUrl } from "@/lib/urls";
+import { toValidOpenGraphType } from "@/lib/opengraph";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
 import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 import { RichText } from "@remkoj/optimizely-cms-react/components";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
-import { getLinkData, linkDataToUrl } from "@/lib/urls"
 
 export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
   contentLink,
@@ -79,8 +80,7 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
     title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.Heading ?? cmsManagedData._metadata?.displayName,
     description: cmsManagedData.SeoSettings?.MetaDescription,
     openGraph: {
-      // @ts-expect-error: Optimizely Graph doesn't yield the correct enumeration as option values
-      type: (cmsManagedData.SeoSettings?.GraphType) ?? 'article',
+      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article'),
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.Heading ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
     }
