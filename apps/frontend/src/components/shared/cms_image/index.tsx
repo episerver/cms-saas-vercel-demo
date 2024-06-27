@@ -1,6 +1,7 @@
 import { type ComponentProps, type FunctionComponent } from 'react'
 import { type LinkDataFragment, type ReferenceDataFragment } from '@gql/graphql'
 import Image from 'next/image'
+import { linkDataToUrl, getLinkData } from '@/lib/urls'
 
 type CmsImageProps = Readonly<{
     src?: LinkDataFragment | ReferenceDataFragment | null,
@@ -23,22 +24,6 @@ export const CmsImage : FunctionComponent<CmsImageProps> = ({ src, fallbackSrc, 
     return <Image src={ imgSrc } alt={ alt } {...props} />
 }
 
-function getLinkData(input?: LinkDataFragment | ReferenceDataFragment | null) : LinkDataFragment | undefined
-{
-    if (!input)
-        return undefined
-    if ((input as ReferenceDataFragment).url)
-        return (input as ReferenceDataFragment).url ?? undefined
-    return input as LinkDataFragment ?? undefined
-}
 
-function linkDataToUrl(item: LinkDataFragment | null | undefined) : URL | undefined
-{
-    try {
-        return new URL(item?.default ?? '/', item?.base ?? undefined)
-    } catch {
-        return undefined
-    }
-}
 
 export default CmsImage

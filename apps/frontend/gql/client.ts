@@ -72,18 +72,23 @@ export const IContentDataFragmentDoc = /*#__PURE__*/ gql`
   _type: __typename
 }
     `;
+export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ReferenceData on ContentReference {
+  key
+  url {
+    ...LinkData
+  }
+}
+    `;
 export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlogPostPageData on BlogPostPage {
   blogTitle: Heading
   blogSubtitle: ArticleSubHeading
   blogImage: BlogPostPromoImage {
-    src: url {
-      ...LinkData
-    }
+    ...ReferenceData
   }
   blogBody: BlogPostBody {
     json
-    html
   }
   blogAuthor: ArticleAuthor
 }
@@ -95,14 +100,6 @@ export const BlogListingBlockDataFragmentDoc = /*#__PURE__*/ gql`
   }
   showFilters: BlogListingShowFilters
   selectedPageSize: BlogListingItemCount
-}
-    `;
-export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment ReferenceData on ContentReference {
-  key
-  url {
-    ...LinkData
-  }
 }
     `;
 export const CardBlockDataFragmentDoc = /*#__PURE__*/ gql`
@@ -452,11 +449,11 @@ ${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
+${ReferenceDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
-${ReferenceDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
 ${LayoutContainerBlockDataFragmentDoc}
@@ -541,6 +538,36 @@ ${LinkItemDataFragmentDoc}
 ${LinkDataFragmentDoc}
 ${MenuCardItemFragmentDoc}
 ${MenuButtonFragmentDoc}`;
+export const getBlogPostPageMetaDataDocument = /*#__PURE__*/ gql`
+    query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {
+  BlogPostPage(
+    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}
+    locale: $locale
+  ) {
+    pages: items {
+      _metadata {
+        displayName
+        key
+        version
+        locale
+      }
+      Heading
+      BlogPostPromoImage {
+        ...ReferenceData
+      }
+      SeoSettings {
+        MetaTitle
+        MetaDescription
+        SharingImage {
+          ...ReferenceData
+        }
+        GraphType
+      }
+    }
+  }
+}
+    ${ReferenceDataFragmentDoc}
+${LinkDataFragmentDoc}`;
 export const getArticlesDocument = /*#__PURE__*/ gql`
     query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
   getArticles: BlogPostPage(
@@ -608,6 +635,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getHeader(variables?: Schema.getHeaderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getHeaderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderQuery>(getHeaderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHeader', 'query', variables);
+    },
+    getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogPostPageMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>(getBlogPostPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogPostPageMetaData', 'query', variables);
     },
     getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticlesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>(getArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticles', 'query', variables);
