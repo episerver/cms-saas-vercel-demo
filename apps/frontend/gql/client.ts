@@ -565,6 +565,32 @@ export const getBlogPostPageMetaDataDocument = /*#__PURE__*/ gql`
 }
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
+export const getLandingPageMetaDataDocument = /*#__PURE__*/ gql`
+    query getLandingPageMetaData($key: String!, $version: String, $locale: [Locales]) {
+  LandingPage(
+    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}
+    locale: $locale
+  ) {
+    pages: items {
+      _metadata {
+        displayName
+        key
+        version
+        locale
+      }
+      SeoSettings {
+        MetaTitle
+        MetaDescription
+        SharingImage {
+          ...ReferenceData
+        }
+        GraphType
+      }
+    }
+  }
+}
+    ${ReferenceDataFragmentDoc}
+${LinkDataFragmentDoc}`;
 export const getStandardPageMetaDataDocument = /*#__PURE__*/ gql`
     query getStandardPageMetaData($key: String!, $version: String, $locale: [Locales]) {
   StandardPage(
@@ -694,6 +720,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogPostPageMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>(getBlogPostPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogPostPageMetaData', 'query', variables);
+    },
+    getLandingPageMetaData(variables: Schema.getLandingPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getLandingPageMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLandingPageMetaDataQuery>(getLandingPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLandingPageMetaData', 'query', variables);
     },
     getStandardPageMetaData(variables: Schema.getStandardPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getStandardPageMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getStandardPageMetaDataQuery>(getStandardPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getStandardPageMetaData', 'query', variables);

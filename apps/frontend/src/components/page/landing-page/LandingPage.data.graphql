@@ -1,0 +1,8 @@
+fragment LandingPageData on LandingPage {
+    TopContentArea {
+        ...BlockData
+    }
+    MainContentArea {
+        ...BlockData
+    }
+}
