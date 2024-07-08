@@ -68,17 +68,16 @@ const config: CodegenConfig = {
                         into: "BlockData",
                         pathRegex: "src\/components\/block"
                     },
-                    // Add Page GraphQL Files
+                    // Add Page/Experience GraphQL Files
                     {
                         into: "PageData",
                         pathRegex: "src\/components\/.*\.page\.graphql"
                     },
-                    // Add Experience GraphQL Files
                     {
                         into: "PageData",
                         pathRegex: "src\/components\/.*\.experience\.graphql"
                     },
-                    // Add Block/Component GraphQL Files
+                    // Add Block/Component/Section GraphQL Files
                     {
                         into: "BlockData",
                         pathRegex: "src\/components\/.*\.block\.graphql"
@@ -86,6 +85,10 @@ const config: CodegenConfig = {
                     {
                         into: "BlockData",
                         pathRegex: "src\/components\/.*\.component\.graphql"
+                    },
+                    {
+                        into: "BlockData",
+                        pathRegex: "src\/components\/.*\.section\.graphql"
                     },
                     // Add Element GraphQL Files
                     {

@@ -306,6 +306,13 @@ export const TextBlockDataFragmentDoc = /*#__PURE__*/ gql`
   className: TextClassName
 }
     `;
+export const BlankSectionDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment BlankSectionData on BlankSection {
+  _metadata {
+    key
+  }
+}
+    `;
 export const BlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlockData on _IContent {
   ...IContentData
@@ -318,6 +325,7 @@ export const BlockDataFragmentDoc = /*#__PURE__*/ gql`
   ...OdpEmbedBlockData
   ...QuoteBlockData
   ...TextBlockData
+  ...BlankSectionData
 }
     `;
 export const LandingPageDataFragmentDoc = /*#__PURE__*/ gql`
@@ -360,13 +368,6 @@ export const PageDataFragmentDoc = /*#__PURE__*/ gql`
   ...LandingPageData
   ...StandardPageData
   ...StartPageData
-}
-    `;
-export const BlankSectionDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment BlankSectionData on BlankSection {
-  _metadata {
-    key
-  }
 }
     `;
 export const HtmlBlockFragmentDoc = /*#__PURE__*/ gql`
@@ -504,6 +505,7 @@ ${HeroBlockDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
+${BlankSectionDataFragmentDoc}
 ${PageDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
@@ -563,6 +565,7 @@ ${HeroBlockDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
+${BlankSectionDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`
