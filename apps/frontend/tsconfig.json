@@ -27,6 +27,8 @@
       "@components/*": ["./src/components/*"],
       "@gql": ["./gql"],
       "@gql/*": ["./gql/*"],
+      "@/gql": ["./gql"],
+      "@/gql/*": ["./gql/*"],
       "@public/*": ["./public/*"],
       "@shared/*": ["./src/components/shared/*"],
     }

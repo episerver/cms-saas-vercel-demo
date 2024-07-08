@@ -1,0 +1,85 @@
+{
+  "key": "CardRow",
+  "displayName": "Card",
+  "nodeType": "row",
+  "isDefault": false,
+  "created": "2024-06-27T14:20:51.0746353+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:01.8695281+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "columnOrderOnSmallScreen": {
+      "displayName": "Colums on small screen",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "reversed": {
+          "displayName": "Reversed",
+          "sortOrder": 20
+        },
+        "normal": {
+          "displayName": "Normal",
+          "sortOrder": 10
+        }
+      }
+    },
+    "rowBackgroundColor": {
+      "displayName": "Background color",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "purple": {
+          "displayName": "Purple",
+          "sortOrder": 70
+        },
+        "red": {
+          "displayName": "Red",
+          "sortOrder": 60
+        },
+        "green": {
+          "displayName": "Green",
+          "sortOrder": 50
+        },
+        "orange": {
+          "displayName": "Orange",
+          "sortOrder": 40
+        },
+        "dark_blue": {
+          "displayName": "Dark blue",
+          "sortOrder": 30
+        },
+        "blue": {
+          "displayName": "Blue",
+          "sortOrder": 20
+        },
+        "white": {
+          "displayName": "White",
+          "sortOrder": 10
+        }
+      }
+    },
+    "vSpacing": {
+      "displayName": "Vertical Spacing",
+      "editor": "",
+      "sortOrder": 5,
+      "choices": {
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

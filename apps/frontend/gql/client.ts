@@ -21,6 +21,32 @@ export const IContentInfoFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const IContentDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment IContentData on _IContent {
+  _metadata {
+    ...IContentInfo
+  }
+  _type: __typename
+}
+    `;
+export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ReferenceData on ContentReference {
+  key
+  url {
+    ...LinkData
+  }
+}
+    `;
+export const PageSeoSettingsPropertyDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {
+  MetaTitle
+  MetaDescription
+  SharingImage {
+    ...ReferenceData
+  }
+  GraphType
+}
+    `;
 export const IElementDataFragmentDoc = /*#__PURE__*/ gql`
     fragment IElementData on _IElement {
   _metadata {
@@ -29,9 +55,63 @@ export const IElementDataFragmentDoc = /*#__PURE__*/ gql`
   _type: __typename
 }
     `;
+export const ArticleListElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ArticleListElementData on ArticleListElement {
+  articleListCount
+}
+    `;
+export const CTAElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment CTAElementData on CTAElement {
+  Text
+  Link {
+    ...LinkData
+  }
+}
+    `;
+export const HeadingElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment HeadingElementData on HeadingElement {
+  headingText
+}
+    `;
+export const ImageElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ImageElementData on ImageElement {
+  altText
+  imageLink {
+    ...ReferenceData
+  }
+}
+    `;
+export const ParagraphElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ParagraphElementData on ParagraphElement {
+  text {
+    json
+    html
+  }
+}
+    `;
+export const TestimonialElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment TestimonialElementData on TestimonialElement {
+  customerName
+  customerLocation
+  customerImage {
+    ...ReferenceData
+  }
+  referenceTitle
+  referenceText {
+    json
+    html
+  }
+}
+    `;
 export const ElementDataFragmentDoc = /*#__PURE__*/ gql`
     fragment ElementData on _IElement {
   ...IElementData
+  ...ArticleListElementData
+  ...CTAElementData
+  ...HeadingElementData
+  ...ImageElementData
+  ...ParagraphElementData
+  ...TestimonialElementData
 }
     `;
 export const CompositionDataFragmentDoc = /*#__PURE__*/ gql`
@@ -64,20 +144,12 @@ export const ExperienceDataFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
-export const IContentDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment IContentData on _IContent {
-  _metadata {
-    ...IContentInfo
+export const BlankExperienceDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment BlankExperienceData on BlankExperience {
+  BlankExperienceSeoSettings {
+    ...PageSeoSettingsPropertyData
   }
-  _type: __typename
-}
-    `;
-export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
-    fragment ReferenceData on ContentReference {
-  key
-  url {
-    ...LinkData
-  }
+  ...ExperienceData
 }
     `;
 export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
@@ -283,10 +355,18 @@ export const StartPageDataFragmentDoc = /*#__PURE__*/ gql`
 export const PageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment PageData on _IContent {
   ...IContentData
+  ...BlankExperienceData
   ...BlogPostPageData
   ...LandingPageData
   ...StandardPageData
   ...StartPageData
+}
+    `;
+export const BlankSectionDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment BlankSectionData on BlankSection {
+  _metadata {
+    key
+  }
 }
     `;
 export const HtmlBlockFragmentDoc = /*#__PURE__*/ gql`
@@ -425,6 +505,18 @@ ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${PageDataFragmentDoc}
+${BlankExperienceDataFragmentDoc}
+${PageSeoSettingsPropertyDataFragmentDoc}
+${ExperienceDataFragmentDoc}
+${CompositionDataFragmentDoc}
+${ElementDataFragmentDoc}
+${IElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
@@ -445,8 +537,20 @@ export const getContentByPathDocument = /*#__PURE__*/ gql`
 ${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
-${BlogPostPageDataFragmentDoc}
+${BlankExperienceDataFragmentDoc}
+${PageSeoSettingsPropertyDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
+${ExperienceDataFragmentDoc}
+${CompositionDataFragmentDoc}
+${ElementDataFragmentDoc}
+${IElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
+${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}

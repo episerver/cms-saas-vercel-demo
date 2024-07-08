@@ -1,0 +1,54 @@
+{
+  "key": "DefaultGrid",
+  "displayName": "Default",
+  "baseType": "section",
+  "isDefault": true,
+  "created": "2024-06-27T14:20:51.129764+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:02.2199744+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "vSpacing": {
+      "displayName": "Vertical spacing",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    },
+    "gridWidth": {
+      "displayName": "Width",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "narrow": {
+          "displayName": "Narrow",
+          "sortOrder": 40
+        },
+        "wide": {
+          "displayName": "Wide",
+          "sortOrder": 30
+        },
+        "full": {
+          "displayName": "Full width",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

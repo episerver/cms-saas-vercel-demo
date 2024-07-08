@@ -1,0 +1,73 @@
+{
+  "key": "CTAElementDefaultStyles",
+  "displayName": "Default",
+  "contentType": "CTAElement",
+  "isDefault": true,
+  "created": "2024-06-27T14:20:51.1541072+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:01.7506378+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "buttonAlign": {
+      "displayName": "Align button",
+      "editor": "selectOne",
+      "sortOrder": 20,
+      "choices": {
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 40
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 30
+        },
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 20
+        },
+        "auto": {
+          "displayName": "Auto",
+          "sortOrder": 10
+        }
+      }
+    },
+    "buttonType": {
+      "displayName": "Button Type",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "link": {
+          "displayName": "Link",
+          "sortOrder": 30
+        },
+        "secondary": {
+          "displayName": "Secondary",
+          "sortOrder": 20
+        },
+        "primary": {
+          "displayName": "Primary",
+          "sortOrder": 10
+        }
+      }
+    },
+    "buttonColor": {
+      "displayName": "Button color",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "dark": {
+          "displayName": "Dark",
+          "sortOrder": 30
+        },
+        "light": {
+          "displayName": "Light",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}
