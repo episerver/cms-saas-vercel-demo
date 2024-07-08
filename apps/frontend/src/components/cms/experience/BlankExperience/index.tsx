@@ -10,7 +10,7 @@ import { getSdk } from "@/gql"
  */
 export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragment> = ({ data }) => {
     const composition = (data as ExperienceDataFragment).composition as Maybe<ICompositionNode>
-    return <CmsEditable as="div" className="mx-auto px-2 container" cmsFieldName="unstructuredData">
+    return <CmsEditable as="div" className="vb:experience" cmsFieldName="unstructuredData">
         { composition && isNode(composition) && <OptimizelyComposition node={composition} /> }
     </CmsEditable>
 }
