@@ -1,19 +1,33 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { ParagraphElementDataFragmentDoc, type ParagraphElementDataFragment } from "@/gql/graphql";
+import { getServerContext, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
+import { RichText, extractSettings } from "@remkoj/optimizely-cms-react/components";
+import getFactory from "@/components/factory";
+import { DefaultParagraphProps } from "./displayTemplates";
+
+enum AlignClasses {
+    left = " mr-auto ml-0",
+    center = " mx-auto",
+    right = " ml-auto mr-0"
+}
 
 /**
  * Paragraph
  * 
  */
-export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment> = ({ data, children }) => {
-    const componentName = 'Paragraph'
-    const componentInfo = ''
-    return <div className="w-full border-y border-y-solid border-y-slate-900 py-2 mb-4">
-        <div className="font-bold italic">{ componentName }</div>
-        <div>{ componentInfo }</div>
-        { Object.getOwnPropertyNames(data).length > 0 && <pre className="w-full overflow-x-hidden font-mono text-sm bg-slate-200 p-2 rounded-sm border border-solid border-slate-900 text-slate-900">{ JSON.stringify(data, undefined, 4) }</pre> }
-        { children && <div className="mt-4 mx-4 flex flex-col">{ children }</div>}
-    </div>
+export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment, DefaultParagraphProps> = ({ data: { text }, contentLink, layoutProps }) => {
+    const { factory } = getServerContext()
+    const {
+        placement = "left",
+        transform = "default"
+    } = extractSettings(layoutProps)
+
+    const width = transform == "full" ? ' max-w-none' : ''
+    const align = AlignClasses[placement]
+
+    
+
+    return <CmsEditable as={RichText} factory={ factory ?? getFactory() } text={ text?.json } cmsId={ contentLink.key } className={`rich-text prose${ width }${ align }`}/>
 }
 ParagraphElementElement.displayName = "Paragraph (Element/ParagraphElement)"
 ParagraphElementElement.getDataFragment = () => ['ParagraphElementData', ParagraphElementDataFragmentDoc]
