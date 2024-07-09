@@ -13,7 +13,7 @@ enum VSpacings {
     large = "py-8 md:py-16 lg:py-24"
 }
 
-export const DefaultGrid : DefaultGridComponent = ({ layoutProps, children }) => {
+export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children, ...htmlProps }) => {
     const {
         gridWidth = "default",
         vSpacing = "default"
@@ -22,7 +22,7 @@ export const DefaultGrid : DefaultGridComponent = ({ layoutProps, children }) =>
     const width = GridWidths[gridWidth] ?? ''
     const spacing = VSpacings[vSpacing] ?? ''
 
-    return <section className={`vb:section vb:section:DefaultGrid ${ width } flex flex-col ${ spacing}`}>
+    return <section className={`vb:section vb:section:DefaultGrid ${ width } flex flex-col ${ spacing}`} {...htmlProps}>
         { children }
     </section>;
 }

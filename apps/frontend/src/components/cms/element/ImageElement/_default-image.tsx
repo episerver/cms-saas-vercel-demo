@@ -8,7 +8,42 @@ import { type MotionProps } from 'framer-motion'
 import Image from '@/components/shared/cms_image'
 import { DefaultImageElementComponent } from './displayTemplates'
 
-export const ImageElement : DefaultImageElementComponent<ImageElementDataFragment> = ({ data: { altText, imageLink }, layoutProps, ...props }) => {
+enum portraitAspectRatioClasses {
+    square = 'aspect-square',
+    banner = 'aspect-[1/4]',
+    photo = 'aspect-[2/3]',
+    monitor = 'aspect-[3/4]',
+    widescreen = 'aspect-[9/16]'
+}
+enum landscapeAspectRatioClasses {
+    square = 'aspect-square',
+    banner = 'aspect-[4/1]',
+    photo = 'aspect-[3/2]',
+    monitor = 'aspect-[4/3]',
+    widescreen = 'aspect-[16/9]'
+}
+enum roundedCornersClasses {
+    small = 'rounded',
+    medium = 'rounded-md',
+    large = 'rounded-lg',
+    huge = 'rounded-[40px]',
+    full = 'rounded-full',
+    none = ''
+}
+enum durationClasses {
+    short = 0.5,
+    medium = 1,
+    long = 1.5,
+    verylong = 2,
+}
+enum delayClasses {
+    short = 0.5,
+    medium = 1,
+    long = 1.5,
+    verylong = 2,
+}
+
+export const ImageElement : DefaultImageElementComponent<ImageElementDataFragment> = ({ data: { altText, imageLink }, layoutProps, children, ...props }) => {
     const { 
         roundedCorners="none", 
         appear="none", 
@@ -23,87 +58,17 @@ export const ImageElement : DefaultImageElementComponent<ImageElementDataFragmen
     const isPortrait = orientation == 'portrait'
 
     const cssClasses : string[] = ["relative w-full overflow-hidden not-prose"]
-    switch (aspectRatio) {
-        case 'square':
-            cssClasses.push('aspect-square')
-            break
-        case 'banner':
-            cssClasses.push(isPortrait ? 'aspect-[1/4]' : 'aspect-[4/1]')
-            break
-        case 'photo':
-            cssClasses.push(isPortrait ? 'aspect-[2/3]' : 'aspect-[3/2]')
-            break
-        case 'monitor':
-            cssClasses.push(isPortrait ? 'aspect-[3/4]' : 'aspect-[4/3]')
-            break
-        case 'widescreen':
-            cssClasses.push(isPortrait ? 'aspect-[9/16]' : 'aspect-[16/9]')
-            break
-        default:
-            cssClasses.push('aspect-'+aspectRatio)
-            break
-    }
-
-    switch (roundedCorners) {
-        case 'small':
-            cssClasses.push('rounded')
-            break;
-        case 'medium':
-            cssClasses.push('rounded-md')
-            break;
-        case 'large':
-            cssClasses.push('rounded-lg')
-            break;
-        case 'huge':
-            cssClasses.push('rounded-[40px]')
-            break;
-        case 'full':
-            cssClasses.push('rounded-full')
-            break;
-        default:
-            // No rounded classes
-            break;
-    }
+    cssClasses.push((isPortrait ? portraitAspectRatioClasses[aspectRatio] : landscapeAspectRatioClasses[aspectRatio]) ?? '') //Add aspect ratio
+    cssClasses.push(roundedCornersClasses[roundedCorners] ?? '') // Add rounded corners
 
     if (useFadeIn) {
-        let fadeInDuration : number = 0
-        let fadeInDelay : number = 0
-    
-        switch (duration) {
-            case 'short':
-                fadeInDuration = 0.5
-                break
-            case 'medium':
-                fadeInDuration = 1
-                break
-            case 'long':
-                fadeInDuration = 1.5
-                break
-            case 'verylong':
-                fadeInDuration = 2
-                break
-        }
-    
-        switch (delay) {
-            case 'short':
-                fadeInDelay = 0.5
-                break
-            case 'medium':
-                fadeInDelay = 1
-                break
-            case 'long':
-                fadeInDelay = 1.5
-                break
-            case 'verylong':
-                fadeInDelay = 2
-                break
-        }
-
+        const fadeInDuration : number = durationClasses[duration] ?? 0
+        const fadeInDelay : number = delayClasses[delay] ?? 0
         const initialClip = direction == 'rtl' ? "circle(0% at 100%)" : "circle(0% at 0%)"
         const targetClip = direction == 'rtl' ? "circle(120% at 100%)" : "circle(120% at 0%)"
 
         return <Animation 
-            className={ cssClasses.join(' ')}
+            className={ cssClasses.filter(x=>x && x.length > 0).join(' ')}
             initial={{ opacity: 0, clipPath: initialClip }}
             animate={{ opacity: 1, clipPath: targetClip }}
             transition={{ duration: fadeInDuration, delay: fadeInDelay }}
@@ -112,7 +77,7 @@ export const ImageElement : DefaultImageElementComponent<ImageElementDataFragmen
             <Image alt={altText ?? ""} src={ imageLink } fill className="object-cover" />
         </Animation>
     }
-    return <div className={ cssClasses.join(' ')} { ...props }>
+    return <div className={ cssClasses.filter(x=>x && x.length > 0).join(' ')} { ...props }>
         <Image alt={altText ?? ""} src={ imageLink } fill className="object-cover" />
     </div>
 }
