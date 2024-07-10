@@ -15,5 +15,6 @@
     "ts",
     "tsx"
   ],
-  "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*"
+  "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*",
+  "eslint.nodePath": ".yarn/sdks"
 }

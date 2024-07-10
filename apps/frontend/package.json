@@ -20,7 +20,7 @@
   },
   "dependencies": {
     "@formatjs/intl-localematcher": "^0.5.4",
-    "@headlessui/react": "^2.1.1",
+    "@headlessui/react": "^2.1.2",
     "@heroicons/react": "^2.1.4",
     "@react-hook/window-size": "^3.1.1",
     "@remkoj/optimizely-cms-nextjs": "2.0.0",
@@ -41,13 +41,13 @@
     "entities": "^5.0.0",
     "eslint": "8.57.0",
     "eslint-config-next": "14.2.4",
-    "framer-motion": "^11.2.12",
+    "framer-motion": "^11.2.13",
     "graphql": "^16.9.0",
-    "graphql-request": "^6.1.0",
+    "graphql-request": "^7.1.0",
     "graphql-tag": "^2.12.6",
     "negotiator": "^0.6.3",
     "next": "^14.2.4",
-    "postcss": "8.4.38",
+    "postcss": "8.4.39",
     "react": "18.3.1",
     "react-content-loader": "^7.0.2",
     "react-dom": "18.3.1",
@@ -61,11 +61,11 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3.1.0",
     "@graphql-codegen/cli": "^5.0.2",
-    "@graphql-codegen/client-preset": "^4.3.0",
+    "@graphql-codegen/client-preset": "^4.3.2",
     "@graphql-codegen/fragment-matcher": "^5.0.2",
     "@graphql-codegen/plugin-helpers": "^5.0.4",
-    "@graphql-codegen/typescript": "^4.0.7",
-    "@graphql-codegen/typescript-operations": "^4.2.1",
+    "@graphql-codegen/typescript": "^4.0.9",
+    "@graphql-codegen/typescript-operations": "^4.2.3",
     "@graphql-typed-document-node/core": "^3.2.0",
     "@headlessui/tailwindcss": "^0.2.1",
     "@parcel/watcher": "^2.4.1",
@@ -74,7 +74,7 @@
     "@types/deepmerge": "^2.2.0",
     "@types/graphql": "^14.5.0",
     "@types/negotiator": "^0.6.3",
-    "@types/node": "^20.14.9",
+    "@types/node": "^20.14.10",
     "@types/react": "18.3.3",
     "@types/react-dom": "18.3.0",
     "@types/uuid": "^10.0.0",
@@ -86,6 +86,6 @@
     "graphql-config": "^5.0.3",
     "prop-types": "^15.8.1",
     "scheduler": "^0.23.2",
-    "typescript": "^5.5.2"
+    "typescript": "^5.5.3"
   }
 }
