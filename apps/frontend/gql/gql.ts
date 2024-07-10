@@ -44,7 +44,7 @@ const documents = {
     "fragment HeadingElementData on HeadingElement {\n  headingText\n}": types.HeadingElementDataFragmentDoc,
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
-    "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n    html\n  }\n}": types.TestimonialElementDataFragmentDoc,
+    "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}": types.TestimonialElementDataFragmentDoc,
     "fragment BlankExperienceData on BlankExperience {\n  BlankExperienceSeoSettings {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}": types.BlankExperienceDataFragmentDoc,
     "fragment BlankSectionData on BlankSection {\n  _metadata {\n    key\n  }\n}": types.BlankSectionDataFragmentDoc,
     "query getFooter($locale: [Locales] = en) {\n  menuItems: StartPage(locale: $locale) {\n    items {\n      footerSubLinks: FooterNavigationSubLinks {\n        ...LinkItemData\n      }\n      footerCopyright: FooterNavigationCopyrightText\n      footerNavigation: FooterNavigationContentArea {\n        __typename\n        ...FooterMenuNavigationItem\n        ...HtmlBlock\n      }\n    }\n  }\n}\n\nfragment HtmlBlock on HtmlBlock {\n  title: HtmlBlockHeading\n  content: HtmlContent {\n    json\n    html\n  }\n  __typename\n}\n\nfragment FooterMenuNavigationItem on MenuNavigationBlock {\n  title: MenuNavigationHeading\n  items: NavigationLinks {\n    url {\n      ...LinkData\n    }\n    title\n    target\n    text\n  }\n  __typename\n}": types.getFooterDocument,
@@ -201,7 +201,7 @@ export function gql(source: "fragment ParagraphElementData on ParagraphElement {
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n    html\n  }\n}"): (typeof documents)["fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n    html\n  }\n}"];
+export function gql(source: "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"): (typeof documents)["fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

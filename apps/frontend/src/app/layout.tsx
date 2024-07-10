@@ -66,7 +66,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <Scripts.Header />
       </head>
       <ThemeProvider value={{ theme: "system" }}>
-        <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan`}>
+        <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan dark:text-white overflow-x-hidden`}>
           <div className="flex min-h-screen flex-col justify-between">
             <GlobalProviders>
               <Header />

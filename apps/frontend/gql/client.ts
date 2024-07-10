@@ -98,7 +98,6 @@ export const TestimonialElementDataFragmentDoc = /*#__PURE__*/ gql`
   referenceTitle
   referenceText {
     json
-    html
   }
 }
     `;

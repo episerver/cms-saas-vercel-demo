@@ -3,5 +3,5 @@ fragment TestimonialElementData on TestimonialElement {
   customerLocation
   customerImage { ...ReferenceData }
   referenceTitle
-  referenceText { json, html }
+  referenceText { json }
 }
