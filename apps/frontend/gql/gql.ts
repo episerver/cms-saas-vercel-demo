@@ -40,7 +40,7 @@ const documents = {
     "\n    fragment TextBlockData on TextBlock {\n      overline: TextBlockOverline\n      headingSize: TextBlockHeadingSize\n      heading: TextBlockHeading\n      description: TextBlockDescription {\n        json\n        html\n      }\n      center: TextCenter\n      width: TextBlockWidth\n      className: TextClassName\n    }\n  ": types.TextBlockDataFragmentDoc,
     "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsPropertyDataFragmentDoc,
     "fragment ArticleListElementData on ArticleListElement {\n  articleListCount\n}": types.ArticleListElementDataFragmentDoc,
-    "fragment CTAElementData on CTAElement {\n  Text\n  Link {\n    ...LinkData\n  }\n}": types.CTAElementDataFragmentDoc,
+    "fragment CTAElementData on CTAElement {\n  cta_text: Text\n  cta_link: Link {\n    ...LinkData\n  }\n}": types.CTAElementDataFragmentDoc,
     "fragment HeadingElementData on HeadingElement {\n  headingText\n}": types.HeadingElementDataFragmentDoc,
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
@@ -185,7 +185,7 @@ export function gql(source: "fragment ArticleListElementData on ArticleListEleme
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment CTAElementData on CTAElement {\n  Text\n  Link {\n    ...LinkData\n  }\n}"): (typeof documents)["fragment CTAElementData on CTAElement {\n  Text\n  Link {\n    ...LinkData\n  }\n}"];
+export function gql(source: "fragment CTAElementData on CTAElement {\n  cta_text: Text\n  cta_link: Link {\n    ...LinkData\n  }\n}"): (typeof documents)["fragment CTAElementData on CTAElement {\n  cta_text: Text\n  cta_link: Link {\n    ...LinkData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

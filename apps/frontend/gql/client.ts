@@ -62,8 +62,8 @@ export const ArticleListElementDataFragmentDoc = /*#__PURE__*/ gql`
     `;
 export const CTAElementDataFragmentDoc = /*#__PURE__*/ gql`
     fragment CTAElementData on CTAElement {
-  Text
-  Link {
+  cta_text: Text
+  cta_link: Link {
     ...LinkData
   }
 }

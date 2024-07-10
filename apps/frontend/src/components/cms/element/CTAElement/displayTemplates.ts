@@ -25,3 +25,13 @@ export type CTAElementComponentProps<DT extends Record<string, any> = Record<str
 } & JSX.IntrinsicElements['div']
 
 export type CTAElementComponent<DT extends Record<string, any> = Record<string, any>, LP extends CTAElementLayoutProps = CTAElementLayoutProps> = (props: CTAElementComponentProps<DT,LP>) => ReactNode
+
+export function isAnimatedTemplate(props?: CTAElementLayoutProps | null) : props is CTAElementAnimatedStylesProps
+{
+    return props?.template == "CTAElementAnimatedStyles"
+}
+
+export function isDefaultTemplate(props?: CTAElementLayoutProps | null) : props is CTAElementDefaultStylesProps
+{
+    return props?.template == "CTAElementDefaultStyles" || props?.template == null
+}
