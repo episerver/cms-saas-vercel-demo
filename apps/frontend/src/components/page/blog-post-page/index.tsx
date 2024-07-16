@@ -22,7 +22,7 @@ import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
 export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
   contentLink,
-  data: { blogTitle: title, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle },
+  data: { blogTitle: title, blogReadingTime: time, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle },
 }) => {
 
   const { factory } = getServerContext()
@@ -35,6 +35,8 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
           <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto">
             <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2">
               <CmsEditable cmsFieldName="Heading" as="h1" className="mb-[24px] text-[48px]">{ title ?? "" }</CmsEditable>
+              <p>...</p>
+              <CmsEditable cmsFieldName="ReadingTime" as="p" className="text-people-eater my-[24px] text-[24px]">{ time ?? "" }</CmsEditable>
               <CmsEditable cmsFieldName="ArticleAuthor" as="p" className="text-people-eater my-[24px] text-[24px]">{ author ?? "" }</CmsEditable>
               <CmsEditable cmsFieldName="ArticleSubHeading" as="p" className="text-[30px] leading-[36px] mt-[24px] mb-20">{ subtitle ?? "" }</CmsEditable>
               <CmsEditable cmsFieldName="BlogPostBody" as={ RichText } text={ description?.json } factory={ factory } />
@@ -57,13 +59,13 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
           }}
         />
       </ContainerBlock>
-      <BlogListingBlock
+      {/* <BlogListingBlock
         contentLink={contentLink}
         data={{
           showFilters: false,
           selectedPageSize: 3,
         }}
-      ></BlogListingBlock>
+      ></BlogListingBlock> */}
     </>
   );
 };

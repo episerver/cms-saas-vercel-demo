@@ -83,6 +83,7 @@ export const ReferenceDataFragmentDoc = /*#__PURE__*/ gql`
 export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlogPostPageData on BlogPostPage {
   blogTitle: Heading
+  blogReadingTime: ReadingTime
   blogSubtitle: ArticleSubHeading
   blogImage: BlogPostPromoImage {
     ...ReferenceData

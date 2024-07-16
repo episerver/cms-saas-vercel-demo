@@ -1,5 +1,6 @@
 fragment BlogPostPageData on BlogPostPage {
     blogTitle: Heading
+    blogReadingTime: ReadingTime
     blogSubtitle: ArticleSubHeading
     blogImage: BlogPostPromoImage {
         ...ReferenceData

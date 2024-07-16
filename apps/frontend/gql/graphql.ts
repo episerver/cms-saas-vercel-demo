@@ -7184,7 +7184,7 @@ export type MenuCardItemFragment = { __typename: 'CardBlock', heading?: string |
       & { ' $fragmentRefs'?: { 'LinkDataFragment': LinkDataFragment } }
     ) | null } | null } & { ' $fragmentName'?: 'MenuCardItemFragment' };
 
-export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?: string | null, blogSubtitle?: string | null, blogAuthor?: string | null, blogImage?: (
+export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?: string | null,blogReadingTime?: string | null, blogSubtitle?: string | null, blogAuthor?: string | null, blogImage?: (
     { __typename?: 'ContentReference' }
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
   ) | null, blogBody?: { __typename?: 'RichText', json?: any | null } | null } & { ' $fragmentName'?: 'BlogPostPageDataFragment' };

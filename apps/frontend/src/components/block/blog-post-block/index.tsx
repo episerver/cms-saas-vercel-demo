@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 
 export type BlogPostProps = {
   title: string;
+  readingTime: string;
   description: string;
   author?: string;
   published?: string;
@@ -42,7 +43,7 @@ const formatDate = (dateString?: string | null): any => {
 };
 
 const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
-  const { title, description, author, published, category, url, image } =
+  const { title,readingTime, description, author, published, category, url, image } =
     blogPost;
   const [date, setDate] = useState<string>("");
   // Use blog posts fields to generate the fields needed.
@@ -81,6 +82,7 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
           </div>
         ) : null}
         {title ? <h3 className="my-0 mt-[16px]">{title}</h3> : null}
+        {readingTime ? <p>{readingTime}</p> : null}
         {description ? <p>{description}</p> : null}
       </article>
     </Link>
