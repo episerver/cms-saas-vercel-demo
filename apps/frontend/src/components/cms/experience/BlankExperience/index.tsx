@@ -1,8 +1,12 @@
 import { OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { BlankExperienceDataFragmentDoc, type BlankExperienceDataFragment } from "@/gql/graphql";
-import { type Maybe, type ICompositionNode, type ExperienceDataFragment } from "@/gql/graphql";
+import { type Maybe, type ICompositionNode, type ExperienceDataFragment, type Locales, type InputMaybe} from "@/gql/graphql";
 import { OptimizelyComposition, isNode, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/gql"
+
+import { getLinkData, linkDataToUrl } from "@/lib/urls";
+import { toValidOpenGraphType } from "@/lib/opengraph";
+import { type Metadata } from "next";
 
 /**
  * Blank Experience
@@ -18,8 +22,37 @@ BlankExperienceExperience.displayName = "Blank Experience (Experience/BlankExper
 BlankExperienceExperience.getDataFragment = () => ['BlankExperienceData', BlankExperienceDataFragmentDoc]
 BlankExperienceExperience.getMetaData = async (contentLink, locale, client) => {
     const sdk = getSdk(client);
-    // Add your metadata logic here
-    return {}
+    const data = await sdk.getBlankExperienceMetaData({
+        key: contentLink.key,
+        locale: locale as InputMaybe<Locales> | undefined
+    })
+    const pageData = data.page?.items?.at(0)
+    if (!pageData)
+        return {}
+
+        
+    const meta : Omit<Metadata, 'openGraph'> & { openGraph: NonNullable<Required<Metadata>['openGraph']>} = {
+        title: pageData.seo?.title || pageData.meta?.displayName,
+        description: pageData.seo?.description,
+        openGraph: {
+            title: pageData.seo?.title ?? pageData.meta?.displayName ?? undefined,
+            description: pageData.seo?.description ?? undefined,
+        }
+    }
+
+    const ogType = toValidOpenGraphType(pageData.seo?.type)
+    if (ogType) {
+        //@ts-expect-error The type is set by explicit subtypes
+        meta.openGraph.type = ogType
+    }
+
+    const pageImage = linkDataToUrl(getLinkData(pageData.seo?.image))
+    if (pageImage) {
+        meta.openGraph.images = [{
+            url: pageImage
+        }]
+    }
+    return meta
 }
 
 export default BlankExperienceExperience

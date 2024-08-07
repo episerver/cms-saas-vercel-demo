@@ -631,6 +631,26 @@ export const getArticleListElementItemsDocument = /*#__PURE__*/ gql`
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
+export const getBlankExperienceMetaDataDocument = /*#__PURE__*/ gql`
+    query getBlankExperienceMetaData($key: String!, $locale: [Locales]) {
+  page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {
+    items {
+      meta: _metadata {
+        displayName
+      }
+      seo: BlankExperienceSeoSettings {
+        title: MetaTitle
+        description: MetaDescription
+        image: SharingImage {
+          ...ReferenceData
+        }
+        type: GraphType
+      }
+    }
+  }
+}
+    ${ReferenceDataFragmentDoc}
+${LinkDataFragmentDoc}`;
 export const getFooterDocument = /*#__PURE__*/ gql`
     query getFooter($locale: [Locales] = en) {
   menuItems: StartPage(locale: $locale) {
@@ -850,6 +870,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getArticleListElementItems(variables?: Schema.getArticleListElementItemsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticleListElementItemsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticleListElementItemsQuery>(getArticleListElementItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticleListElementItems', 'query', variables);
+    },
+    getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);
     },
     getFooter(variables?: Schema.getFooterQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getFooterQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getFooterQuery>(getFooterDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getFooter', 'query', variables);
