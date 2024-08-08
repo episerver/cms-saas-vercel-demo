@@ -83,6 +83,9 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
       type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article'),
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.Heading ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
+    },
+    other: {
+      "idio:content-type": "Blog post"
     }
   }
   const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage)) ?? linkDataToUrl(getLinkData(cmsManagedData.BlogPostPromoImage))

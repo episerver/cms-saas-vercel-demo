@@ -37,6 +37,9 @@ BlankExperienceExperience.getMetaData = async (contentLink, locale, client) => {
         openGraph: {
             title: pageData.seo?.title ?? pageData.meta?.displayName ?? undefined,
             description: pageData.seo?.description ?? undefined,
+        },
+        other: {
+          "idio:content-type": "Blank experience"
         }
     }
 
