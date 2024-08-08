@@ -1,0 +1,4 @@
+fragment CTAElementData on CTAElement {
+  cta_text: Text
+  cta_link: Link { ...LinkData }
+}

@@ -67,7 +67,35 @@ const config: CodegenConfig = {
                         // Add from all blocks
                         into: "BlockData",
                         pathRegex: "src\/components\/block"
+                    },
+                    // Add Page/Experience GraphQL Files
+                    {
+                        into: "PageData",
+                        pathRegex: "src\/components\/.*\.page\.graphql"
+                    },
+                    {
+                        into: "PageData",
+                        pathRegex: "src\/components\/.*\.experience\.graphql"
+                    },
+                    // Add Block/Component/Section GraphQL Files
+                    {
+                        into: "BlockData",
+                        pathRegex: "src\/components\/.*\.block\.graphql"
+                    },
+                    {
+                        into: "BlockData",
+                        pathRegex: "src\/components\/.*\.component\.graphql"
+                    },
+                    {
+                        into: "BlockData",
+                        pathRegex: "src\/components\/.*\.section\.graphql"
+                    },
+                    // Add Element GraphQL Files
+                    {
+                        into: "ElementData",
+                        pathRegex: "src\/components\/.*\.element\.graphql"
                     }
+
                 ],
             } as OptimizelyGraphPresetOptions
         }

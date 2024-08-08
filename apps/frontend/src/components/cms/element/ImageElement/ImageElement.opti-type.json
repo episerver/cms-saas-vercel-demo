@@ -1,0 +1,49 @@
+{
+  "key": "ImageElement",
+  "displayName": "Image",
+  "description": "",
+  "baseType": "element",
+  "source": "",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:26.5978722+00:00",
+  "lastModified": "2024-06-27T14:20:26.5978722+00:00",
+  "lastModifiedBy": "cli-test",
+  "properties": {
+    "altText": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Description",
+      "description": "",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "imageLink": {
+      "type": "contentReference",
+      "displayName": "Image",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Image"
+      ],
+      "restrictedTypes": []
+    }
+  }
+}

@@ -1,0 +1,34 @@
+{
+  "key": "HeadingElement",
+  "displayName": "Heading",
+  "description": "",
+  "baseType": "element",
+  "source": "",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:27.1636813+00:00",
+  "lastModified": "2024-06-27T14:20:27.1636813+00:00",
+  "lastModifiedBy": "cli-test",
+  "properties": {
+    "headingText": {
+      "type": "string",
+      "displayName": "Heading text",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    }
+  }
+}

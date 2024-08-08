@@ -5,10 +5,5 @@
         "apps/**",
         ".vscode/**",
         ".yarn/**"
-    ],
-    "references": [
-        {
-            "path": "./packages/remkoj/optimizely-dxp-react",
-        }
     ]
 }

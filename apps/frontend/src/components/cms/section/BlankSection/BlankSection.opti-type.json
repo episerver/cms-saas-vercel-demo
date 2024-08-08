@@ -1,0 +1,23 @@
+{
+  "key": "BlankSection",
+  "displayName": "Blank Section",
+  "description": "A section without a predefined layout.",
+  "baseType": "section",
+  "source": "serverModel",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-05-08T08:10:58.26+00:00",
+  "lastModified": "2024-07-04T18:41:25.0100707+00:00",
+  "lastModifiedBy": "",
+  "properties": {}
+}

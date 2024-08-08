@@ -1,0 +1,108 @@
+{
+  "key": "CTAElementAnimatedStyles",
+  "displayName": "Animated / Fade-In",
+  "contentType": "CTAElement",
+  "isDefault": false,
+  "created": "2024-06-27T14:20:51.072651+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:01.8269345+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "duration": {
+      "displayName": "Animation duration",
+      "editor": "selectOne",
+      "sortOrder": 40,
+      "choices": {
+        "verylong": {
+          "displayName": "Very Long (2s)",
+          "sortOrder": 50
+        },
+        "long": {
+          "displayName": "Long (1.5s)",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium (1s)",
+          "sortOrder": 30
+        },
+        "short": {
+          "displayName": "Short (0.5s)",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "delay": {
+      "displayName": "Animation delay",
+      "editor": "selectOne",
+      "sortOrder": 30,
+      "choices": {
+        "verylong": {
+          "displayName": "Very Long (2s)",
+          "sortOrder": 50
+        },
+        "long": {
+          "displayName": "Long (1.5s)",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium (1s)",
+          "sortOrder": 30
+        },
+        "short": {
+          "displayName": "Short (0.5s)",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "buttonAlign": {
+      "displayName": "Align button",
+      "editor": "selectOne",
+      "sortOrder": 20,
+      "choices": {
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 40
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 30
+        },
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 20
+        },
+        "auto": {
+          "displayName": "Auto",
+          "sortOrder": 10
+        }
+      }
+    },
+    "buttonType": {
+      "displayName": "Button Type",
+      "editor": "selectOne",
+      "sortOrder": 10,
+      "choices": {
+        "link": {
+          "displayName": "Link",
+          "sortOrder": 30
+        },
+        "secondary": {
+          "displayName": "Secondary",
+          "sortOrder": 20
+        },
+        "primary": {
+          "displayName": "Primary",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "key": "DefaultParagraph",
+  "displayName": "Default",
+  "contentType": "ParagraphElement",
+  "isDefault": true,
+  "created": "2024-07-09T15:47:01.912451+00:00",
+  "createdBy": "postman",
+  "lastModified": "2024-07-09T15:47:01.912451+00:00",
+  "lastModifiedBy": "postman",
+  "settings": {
+    "placement": {
+      "displayName": "Placement",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 30
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 10
+        }
+      }
+    },
+    "transform": {
+      "displayName": "Width",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "full": {
+          "displayName": "Full width",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

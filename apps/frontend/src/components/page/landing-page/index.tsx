@@ -37,6 +37,9 @@ LandingPage.getMetaData = async (contentLink, locale, client) => {
     openGraph: {
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
+    },
+    other: {
+      "idio:content-type": "Landing Page"
     }
   }
   // Apply image if available

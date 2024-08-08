@@ -8,6 +8,7 @@
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "noImplicitAny": false,
     "module": "esnext",
     "moduleResolution": "Bundler",
@@ -27,6 +28,8 @@
       "@components/*": ["./src/components/*"],
       "@gql": ["./gql"],
       "@gql/*": ["./gql/*"],
+      "@/gql": ["./gql"],
+      "@/gql/*": ["./gql/*"],
       "@public/*": ["./public/*"],
       "@shared/*": ["./src/components/shared/*"],
     }

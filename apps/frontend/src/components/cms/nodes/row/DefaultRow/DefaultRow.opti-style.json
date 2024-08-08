@@ -1,0 +1,127 @@
+{
+  "key": "DefaultRow",
+  "displayName": "Default",
+  "nodeType": "row",
+  "isDefault": true,
+  "created": "2024-06-27T14:20:51.1425323+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:01.8473+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "verticalSpacing": {
+      "displayName": "Vertical Spacing",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "verylarge": {
+          "displayName": "Very large",
+          "sortOrder": 50
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "alignContent": {
+      "displayName": "Align content",
+      "editor": "",
+      "sortOrder": 30,
+      "choices": {
+        "end": {
+          "displayName": "End",
+          "sortOrder": 30
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "start": {
+          "displayName": "Start",
+          "sortOrder": 10
+        }
+      }
+    },
+    "justifyContent": {
+      "displayName": "Justify content",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "end": {
+          "displayName": "End",
+          "sortOrder": 30
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "start": {
+          "displayName": "Start",
+          "sortOrder": 10
+        }
+      }
+    },
+    "contentSpacing": {
+      "displayName": "Content Spacing",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "xxl": {
+          "displayName": "Extra Extra Large",
+          "sortOrder": 60
+        },
+        "xl": {
+          "displayName": "Extra Large",
+          "sortOrder": 50
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "showAsRowFrom": {
+      "displayName": "Show as row from (screen width)",
+      "editor": "",
+      "sortOrder": 5,
+      "choices": {
+        "xl": {
+          "displayName": "Extra large",
+          "sortOrder": 30
+        },
+        "lg": {
+          "displayName": "Large",
+          "sortOrder": 20
+        },
+        "md": {
+          "displayName": "Medium",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

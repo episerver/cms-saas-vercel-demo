@@ -39,6 +39,9 @@ StartPage.getMetaData = async (contentLink, locale, client) => {
       type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'website'),
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
+    },
+    other: {
+      "idio:content-type": "Start Page"
     }
   }
   const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage)) ?? linkDataToUrl(getLinkData(cmsManagedData.SiteImageLogo))

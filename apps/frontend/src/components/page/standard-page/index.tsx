@@ -78,6 +78,9 @@ StandardPage.getMetaData = async (contentLink, locale, client) => {
       type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article'),
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.StandardPageHeading ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
+    },
+    other: {
+      "idio:content-type": "Standard Page"
     }
   }
   const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage)) ?? linkDataToUrl(getLinkData(cmsManagedData.StandardPromoImage))

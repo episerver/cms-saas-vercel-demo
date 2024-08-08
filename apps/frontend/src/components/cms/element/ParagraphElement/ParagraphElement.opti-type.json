@@ -1,0 +1,35 @@
+{
+  "key": "ParagraphElement",
+  "displayName": "Paragraph",
+  "description": "",
+  "baseType": "element",
+  "source": "",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:26.5958949+00:00",
+  "lastModified": "2024-06-27T14:20:26.5958949+00:00",
+  "lastModifiedBy": "cli-test",
+  "properties": {
+    "text": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Text",
+      "description": "",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    }
+  }
+}

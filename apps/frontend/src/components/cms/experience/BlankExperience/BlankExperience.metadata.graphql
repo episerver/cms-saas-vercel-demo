@@ -1,0 +1,25 @@
+query getBlankExperienceMetaData ($key: String!, $locale: [Locales])
+{
+  page: BlankExperience (
+    where: {
+      _metadata: {
+        key: {
+          eq: $key
+        }
+      }
+    }
+    locale: $locale
+  ) {
+    items {
+      meta: _metadata {
+        displayName
+      }
+      seo: BlankExperienceSeoSettings {
+        title:MetaTitle
+        description:MetaDescription
+        image:SharingImage { ...ReferenceData }
+        type:GraphType
+      }
+    }
+  }
+}

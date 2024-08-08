@@ -1,0 +1,135 @@
+{
+  "key": "AnimatedHeadingStyles",
+  "displayName": "Animated",
+  "contentType": "HeadingElement",
+  "isDefault": false,
+  "created": "2024-06-27T14:20:51.2910051+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:01.781449+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "delay": {
+      "displayName": "Animation delay",
+      "editor": "selectOne",
+      "sortOrder": 130,
+      "choices": {
+        "verylong": {
+          "displayName": "Very Long (2s)",
+          "sortOrder": 50
+        },
+        "long": {
+          "displayName": "Long (1.5s)",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium (1s)",
+          "sortOrder": 30
+        },
+        "short": {
+          "displayName": "Short (0.5s)",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "transform": {
+      "displayName": "Text transform",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "capitalize": {
+          "displayName": "Capitalize",
+          "sortOrder": 40
+        },
+        "lowercase": {
+          "displayName": "Lowercase",
+          "sortOrder": 30
+        },
+        "uppercase": {
+          "displayName": "Uppercase",
+          "sortOrder": 20
+        },
+        "keep": {
+          "displayName": "As entered",
+          "sortOrder": 10
+        }
+      }
+    },
+    "showAs": {
+      "displayName": "Render as",
+      "editor": "",
+      "sortOrder": 30,
+      "choices": {
+        "element": {
+          "displayName": "Basic element",
+          "sortOrder": 20
+        },
+        "heading": {
+          "displayName": "Heading element",
+          "sortOrder": 10
+        }
+      }
+    },
+    "textAlign": {
+      "displayName": "Text align",
+      "editor": "selectOne",
+      "sortOrder": 20,
+      "choices": {
+        "justify": {
+          "displayName": "Justify",
+          "sortOrder": 40
+        },
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 30
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 10
+        }
+      }
+    },
+    "headingType": {
+      "displayName": "Heading Type",
+      "editor": "selectOne",
+      "sortOrder": 10,
+      "choices": {
+        "plain": {
+          "displayName": "Plain text",
+          "sortOrder": 250
+        },
+        "h6": {
+          "displayName": "Heading 6",
+          "sortOrder": 60
+        },
+        "h5": {
+          "displayName": "Heading 5",
+          "sortOrder": 50
+        },
+        "h4": {
+          "displayName": "Heading 4",
+          "sortOrder": 40
+        },
+        "h3": {
+          "displayName": "Heading 3",
+          "sortOrder": 30
+        },
+        "h2": {
+          "displayName": "Heading 2",
+          "sortOrder": 20
+        },
+        "h1": {
+          "displayName": "Heading 1",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

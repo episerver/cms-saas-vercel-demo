@@ -1,0 +1,36 @@
+{
+  "key": "ArticleListElement",
+  "displayName": "Article List",
+  "description": "Show an article listing",
+  "baseType": "element",
+  "source": "",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:26.0756113+00:00",
+  "lastModified": "2024-06-27T14:20:26.0756113+00:00",
+  "lastModifiedBy": "cli-test",
+  "properties": {
+    "articleListCount": {
+      "type": "integer",
+      "displayName": "Number of items",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "minimum": 1,
+      "maximum": 6
+    }
+  }
+}

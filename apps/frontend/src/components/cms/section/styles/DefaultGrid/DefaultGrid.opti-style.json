@@ -1,0 +1,66 @@
+{
+  "key": "DefaultGrid",
+  "displayName": "Default",
+  "baseType": "section",
+  "isDefault": true,
+  "settings": {
+    "vSpacing": {
+      "displayName": "Vertical spacing",
+      "sortOrder": 20,
+      "choices": {
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    },
+    "gridWidth": {
+      "displayName": "Width",
+      "sortOrder": 10,
+      "choices": {
+        "narrow": {
+          "displayName": "Narrow",
+          "sortOrder": 40
+        },
+        "wide": {
+          "displayName": "Wide",
+          "sortOrder": 30
+        },
+        "full": {
+          "displayName": "Full width",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    },
+    "sectionColor": {
+      "displayName": "Color",
+      "sortOrder": 30,
+      "choices": {
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        },
+        "black": {
+          "displayName": "Black",
+          "sortOrder": 20
+        },
+        "blue": {
+          "displayName": "Blue",
+          "sortOrder": 30
+        }
+      }
+    }
+  }
+}
