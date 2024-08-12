@@ -1,19 +1,17 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { ContentRecsBlockDataFragmentDoc, type ContentRecsBlockDataFragment } from "@/gql/graphql";
+import { ContentRecsDelivery } from '@remkoj/optimizely-one-nextjs/client'
+import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
+import ArticleTemplate from '../../../shared/article_card/recs-template'
 
 /**
  * Content Recommendations
  * Add a content recommendations
  */
-export const ContentRecsBlockComponent : CmsComponent<ContentRecsBlockDataFragment> = ({ data, children }) => {
-    const componentName = 'Content Recommendations'
-    const componentInfo = 'Add a content recommendations'
-    return <div className="w-full border-y border-y-solid border-y-slate-900 py-2 mb-4">
-        <div className="font-bold italic">{ componentName }</div>
-        <div>{ componentInfo }</div>
-        { Object.getOwnPropertyNames(data).length > 0 && <pre className="w-full overflow-x-hidden font-mono text-sm bg-slate-200 p-2 rounded-sm border border-solid border-slate-900 text-slate-900">{ JSON.stringify(data, undefined, 4) }</pre> }
-        { children && <div className="mt-4 mx-4 flex flex-col">{ children }</div>}
-    </div>
+export const ContentRecsBlockComponent : CmsComponent<ContentRecsBlockDataFragment> = ({ data, contentLink: { key } }) => {
+    return <CmsEditable as="section" cmsId={ key } className="outer-padding py-20 lg:py-40 w-full">
+            <ContentRecsDelivery template={ ArticleTemplate } count={ data.BlockRecommendationCount ?? 3 } apiKey={ data.BlockDeliveryApiKey ?? '' } className="container mx-auto grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12" />
+    </CmsEditable>
 }
 ContentRecsBlockComponent.displayName = "Content Recommendations (Component/ContentRecsBlock)"
 ContentRecsBlockComponent.getDataFragment = () => ['ContentRecsBlockData', ContentRecsBlockDataFragmentDoc]
