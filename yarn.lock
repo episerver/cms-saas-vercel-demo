@@ -2662,7 +2662,7 @@ __metadata:
 
 "@remkoj/optimizely-cms-nextjs@file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 2.0.1
-  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     deepmerge: "npm:^4.3.1"
   peerDependencies:
@@ -2672,7 +2672,7 @@ __metadata:
     graphql-request: ^6
     next: ^14
     react: ^18
-  checksum: 10/5eaf773145632240469e2109b6f598374b624554842ebe2220707d2be6815a9f6332cb616011dfc04fe4ecc111b204d2daa8d352d617192d606385915327de70
+  checksum: 10/daf154afb3c3d1f099f678f43d9ef1cd668abb4aaa6b1a21081eeaf1a7914569055e8bcac03a50d76333c7b42719ab1266e20c8a23fbab8dbdc93accbb58abed
   languageName: node
   linkType: hard
 

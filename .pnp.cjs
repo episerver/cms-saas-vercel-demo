@@ -4000,17 +4000,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-cms-nextjs", [\
-      ["file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-nextjs-file-c7a4aacaf2-5eaf773145.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
+      ["file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-nextjs-file-81abe0d132-daf154afb3.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-nextjs", "file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."]\
+          ["@remkoj/optimizely-cms-nextjs", "file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-nextjs-virtual-54b311aa22/0/cache/@remkoj-optimizely-cms-nextjs-file-c7a4aacaf2-5eaf773145.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-nextjs-virtual-78db705f89/0/cache/@remkoj-optimizely-cms-nextjs-file-81abe0d132-daf154afb3.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
+          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
           ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
           ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
           ["@types/graphql", "npm:14.5.0"],\
@@ -8404,7 +8404,7 @@ const RAW_RUNTIME_STATE =
           ["@react-hook/window-size", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.1.1"],\
           ["@remkoj/optimizely-cms-api", "npm:2.0.1"],\
           ["@remkoj/optimizely-cms-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
-          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
+          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=2b6a8b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
           ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
           ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
           ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.1"],\
