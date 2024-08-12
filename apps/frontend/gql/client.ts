@@ -68,6 +68,12 @@ export const CTAElementDataFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const ContentRecsElementDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ContentRecsElementData on ContentRecsElement {
+  ElementDeliveryApiKey
+  ElementRecommendationCount
+}
+    `;
 export const HeadingElementDataFragmentDoc = /*#__PURE__*/ gql`
     fragment HeadingElementData on HeadingElement {
   headingText
@@ -106,6 +112,7 @@ export const ElementDataFragmentDoc = /*#__PURE__*/ gql`
   ...IElementData
   ...ArticleListElementData
   ...CTAElementData
+  ...ContentRecsElementData
   ...HeadingElementData
   ...ImageElementData
   ...ParagraphElementData
@@ -304,6 +311,12 @@ export const TextBlockDataFragmentDoc = /*#__PURE__*/ gql`
   className: TextClassName
 }
     `;
+export const ContentRecsBlockDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment ContentRecsBlockData on ContentRecsBlock {
+  BlockDeliveryApiKey
+  BlockRecommendationCount
+}
+    `;
 export const BlankSectionDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlankSectionData on BlankSection {
   _metadata {
@@ -323,6 +336,7 @@ export const BlockDataFragmentDoc = /*#__PURE__*/ gql`
   ...OdpEmbedBlockData
   ...QuoteBlockData
   ...TextBlockData
+  ...ContentRecsBlockData
   ...BlankSectionData
 }
     `;
@@ -503,6 +517,7 @@ ${HeroBlockDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
 ${PageDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
@@ -513,6 +528,7 @@ ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
 ${ArticleListElementDataFragmentDoc}
 ${CTAElementDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
@@ -546,6 +562,7 @@ ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
 ${ArticleListElementDataFragmentDoc}
 ${CTAElementDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
@@ -563,6 +580,7 @@ ${HeroBlockDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;

@@ -1,6 +1,7 @@
 // Auto generated dictionary
 import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import ArticleListElementComponent from "./ArticleListElement";
+import ContentRecsElementComponent from "./ContentRecsElement";
 import CTAElementComponent from "./CTAElement";
 import HeadingElementComponent from "./HeadingElement";
 import ImageElementComponent from "./ImageElement";
@@ -12,6 +13,10 @@ export const elementDictionary : ComponentTypeDictionary = [
     { 
         type: "ArticleListElement", 
         component: ArticleListElementComponent 
+    },
+    { 
+        type: "ContentRecsElement", 
+        component: ContentRecsElementComponent 
     },
     { 
         type: "CTAElement", 

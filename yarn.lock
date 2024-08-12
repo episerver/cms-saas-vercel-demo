@@ -2660,9 +2660,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-nextjs@npm:2.0.1":
+"@remkoj/optimizely-cms-nextjs@file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 2.0.1
-  resolution: "@remkoj/optimizely-cms-nextjs@npm:2.0.1"
+  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=4f911a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     deepmerge: "npm:^4.3.1"
   peerDependencies:
@@ -2672,7 +2672,7 @@ __metadata:
     graphql-request: ^6
     next: ^14
     react: ^18
-  checksum: 10/8d1146ad50ef2a83164bf321b83297f184e247c825acddd60afe2ef4b485ec50ea091ad44b6fba7cde7e524b5acd941cad84987de2982a72b0d415eb981add4c
+  checksum: 10/5eaf773145632240469e2109b6f598374b624554842ebe2220707d2be6815a9f6332cb616011dfc04fe4ecc111b204d2daa8d352d617192d606385915327de70
   languageName: node
   linkType: hard
 
@@ -2702,7 +2702,7 @@ __metadata:
     eslint: "npm:8.57.0"
     source-map-support: "npm:^0.5.21"
     typescript: "npm:^5.5.4"
-    vercel: "npm:^35.2.3"
+    vercel: "npm:^35.2.4"
   languageName: unknown
   linkType: soft
 
@@ -2759,9 +2759,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-one-nextjs@npm:2.0.1":
+"@remkoj/optimizely-one-nextjs@file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 2.0.1
-  resolution: "@remkoj/optimizely-one-nextjs@npm:2.0.1"
+  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=bbb8f4&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   peerDependencies:
     "@headlessui/react": "*"
     "@heroicons/react": "*"
@@ -2771,7 +2771,7 @@ __metadata:
     react-dom: "*"
     swr: "*"
     uuid: "*"
-  checksum: 10/aa730ca00a4f61b35caa2aa3af487e5a535cbbfd5b4cdfeaa836573e0a7acebdfa1ba20b81a16d1aec8b382c0bec765ce70b9fbf73457a9d4786e78e34ca075d
+  checksum: 10/67ad1f54a4dceaf11b72936df06cfa5b1953173947d2304dc5901e30f8d78ccbda572dc408ff9174dc793013d4f5761429bd410879e9584007e9f2946798a2cc
   languageName: node
   linkType: hard
 
@@ -3056,12 +3056,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*, @types/node@npm:^22.1.0":
-  version: 22.1.0
-  resolution: "@types/node@npm:22.1.0"
+"@types/node@npm:*, @types/node@npm:^22.1.0, @types/node@npm:^22.2.0":
+  version: 22.2.0
+  resolution: "@types/node@npm:22.2.0"
   dependencies:
     undici-types: "npm:~6.13.0"
-  checksum: 10/c2ac1340509646b6c673b27fae2a46e501a97e540e7221be4dd2e0be7a0f61efefb5bf3be8bedf2dbce245fa49cfc49bba77bce73fa3c4296d0d19521ced3222
+  checksum: 10/2957c5c81f1a07a1210f28382adae65c11070c301e395fa819448516f1a2a710054b29e0ec7d8e28624afbcd90dae810403a497109545dea835b554fc76edf6c
   languageName: node
   linkType: hard
 
@@ -3401,15 +3401,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/remix-builder@npm:2.2.3":
-  version: 2.2.3
-  resolution: "@vercel/remix-builder@npm:2.2.3"
+"@vercel/remix-builder@npm:2.2.4":
+  version: 2.2.4
+  resolution: "@vercel/remix-builder@npm:2.2.4"
   dependencies:
     "@vercel/error-utils": "npm:2.0.2"
     "@vercel/nft": "npm:0.27.3"
     "@vercel/static-config": "npm:3.0.0"
     ts-morph: "npm:12.0.0"
-  checksum: 10/f0def2b94df9ffbcc3916c6ee941aff12a4e095e508fc8aac3394f49480826968bbebfc52f8a9545f76e9dc1f26ca766800d98ede8a3649422278b94045ac458
+  checksum: 10/781779a84fe366cd748035bcb288d4ac16d883cddd352715439bec87f66dcada0f651ff0c5f593198ffdec6989b70ccf674aa9005837072c8289b52478dc98b0
   languageName: node
   linkType: hard
 
@@ -4571,14 +4571,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cli-spinners@npm:^2.5.0":
-  version: 2.9.0
-  resolution: "cli-spinners@npm:2.9.0"
-  checksum: 10/457497ccef70eec3f1d0825e4a3396ba43f6833a4900c2047c0efe2beecb1c0df476949ea378bcb6595754f7508e28ae943eeb30bbda807f59f547b270ec334c
-  languageName: node
-  linkType: hard
-
-"cli-spinners@npm:^2.9.2":
+"cli-spinners@npm:^2.5.0, cli-spinners@npm:^2.9.2":
   version: 2.9.2
   resolution: "cli-spinners@npm:2.9.2"
   checksum: 10/a0a863f442df35ed7294424f5491fa1756bd8d2e4ff0c8736531d886cec0ece4d85e8663b77a5afaf1d296e3cbbebff92e2e99f52bbea89b667cbe789b994794
@@ -6247,7 +6240,7 @@ __metadata:
     "@types/deepmerge": "npm:^2.2.0"
     "@types/graphql": "npm:^14.5.0"
     "@types/negotiator": "npm:^0.6.3"
-    "@types/node": "npm:^22.1.0"
+    "@types/node": "npm:^22.2.0"
     "@types/react": "npm:18.3.3"
     "@types/react-dom": "npm:18.3.0"
     "@types/uuid": "npm:^10.0.0"
@@ -10793,9 +10786,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vercel@npm:^35.2.3":
-  version: 35.2.3
-  resolution: "vercel@npm:35.2.3"
+"vercel@npm:^35.2.4":
+  version: 35.2.4
+  resolution: "vercel@npm:35.2.4"
   dependencies:
     "@vercel/build-utils": "npm:8.3.6"
     "@vercel/fun": "npm:1.1.0"
@@ -10805,14 +10798,14 @@ __metadata:
     "@vercel/node": "npm:3.2.8"
     "@vercel/python": "npm:4.3.1"
     "@vercel/redwood": "npm:2.1.3"
-    "@vercel/remix-builder": "npm:2.2.3"
+    "@vercel/remix-builder": "npm:2.2.4"
     "@vercel/ruby": "npm:2.1.0"
     "@vercel/static-build": "npm:2.5.18"
     chokidar: "npm:3.3.1"
   bin:
     vc: dist/index.js
     vercel: dist/index.js
-  checksum: 10/111f602d0a261921e3a9bed8646239aff218324c8cb249ddc1c72dba94ec967d0030ce5f4300ff138abbb6bb2f9620b4e615ac2c66f9ab036a9aae039210ef51
+  checksum: 10/6d6fa2e8178c3e76b3e10eba0519e075e12ade95bf797c6fea652f18a5a35b2c96441e485044d307d5ed9af1c214a4756ac8b99aa093b0f6e80fab1909a51668
   languageName: node
   linkType: hard
 
