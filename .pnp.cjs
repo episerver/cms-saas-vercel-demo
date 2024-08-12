@@ -37,7 +37,7 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:8.57.0"],\
           ["source-map-support", "npm:0.5.21"],\
           ["typescript", "patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"],\
-          ["vercel", "npm:35.2.3"]\
+          ["vercel", "npm:35.2.4"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -3117,7 +3117,7 @@ const RAW_RUNTIME_STATE =
           ["@inquirer/figures", "npm:1.0.5"],\
           ["@inquirer/type", "npm:1.5.2"],\
           ["@types/mute-stream", "npm:0.0.4"],\
-          ["@types/node", "npm:22.1.0"],\
+          ["@types/node", "npm:22.2.0"],\
           ["@types/wrap-ansi", "npm:3.0.0"],\
           ["ansi-escapes", "npm:4.3.2"],\
           ["cli-spinners", "npm:2.9.2"],\
@@ -4096,7 +4096,7 @@ const RAW_RUNTIME_STATE =
           ["eslint", "npm:8.57.0"],\
           ["source-map-support", "npm:0.5.21"],\
           ["typescript", "patch:typescript@npm%3A5.5.4#optional!builtin<compat/typescript>::version=5.5.4&hash=379a07"],\
-          ["vercel", "npm:35.2.3"]\
+          ["vercel", "npm:35.2.4"]\
         ],\
         "linkType": "SOFT"\
       }]\
@@ -4536,7 +4536,7 @@ const RAW_RUNTIME_STATE =
           ["@types/cacheable-request", "npm:6.0.3"],\
           ["@types/http-cache-semantics", "npm:4.0.1"],\
           ["@types/keyv", "npm:3.1.4"],\
-          ["@types/node", "npm:22.1.0"],\
+          ["@types/node", "npm:22.2.0"],\
           ["@types/responselike", "npm:1.0.0"]\
         ],\
         "linkType": "HARD"\
@@ -4622,7 +4622,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-keyv-npm-3.1.4-a8082ea56b-e009a2bfb5.zip/node_modules/@types/keyv/",\
         "packageDependencies": [\
           ["@types/keyv", "npm:3.1.4"],\
-          ["@types/node", "npm:22.1.0"]\
+          ["@types/node", "npm:22.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4632,7 +4632,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-mute-stream-npm-0.0.4-3e79ac07f9-af8d83ad7b.zip/node_modules/@types/mute-stream/",\
         "packageDependencies": [\
           ["@types/mute-stream", "npm:0.0.4"],\
-          ["@types/node", "npm:22.1.0"]\
+          ["@types/node", "npm:22.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4654,10 +4654,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["npm:22.1.0", {\
-        "packageLocation": "./.yarn/cache/@types-node-npm-22.1.0-3ca0e36ca8-c2ac134050.zip/node_modules/@types/node/",\
+      ["npm:22.2.0", {\
+        "packageLocation": "./.yarn/cache/@types-node-npm-22.2.0-f59a1b32cb-2957c5c81f.zip/node_modules/@types/node/",\
         "packageDependencies": [\
-          ["@types/node", "npm:22.1.0"],\
+          ["@types/node", "npm:22.2.0"],\
           ["undici-types", "npm:6.13.0"]\
         ],\
         "linkType": "HARD"\
@@ -4722,7 +4722,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-responselike-npm-1.0.0-85dd08af42-e497238945.zip/node_modules/@types/responselike/",\
         "packageDependencies": [\
           ["@types/responselike", "npm:1.0.0"],\
-          ["@types/node", "npm:22.1.0"]\
+          ["@types/node", "npm:22.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -4778,7 +4778,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/@types-ws-npm-8.5.5-5f5e3bde2d-b2d7da5bd4.zip/node_modules/@types/ws/",\
         "packageDependencies": [\
           ["@types/ws", "npm:8.5.5"],\
-          ["@types/node", "npm:22.1.0"]\
+          ["@types/node", "npm:22.2.0"]\
         ],\
         "linkType": "HARD"\
       }]\
@@ -5060,10 +5060,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@vercel/remix-builder", [\
-      ["npm:2.2.3", {\
-        "packageLocation": "./.yarn/cache/@vercel-remix-builder-npm-2.2.3-9f0feddf08-f0def2b94d.zip/node_modules/@vercel/remix-builder/",\
+      ["npm:2.2.4", {\
+        "packageLocation": "./.yarn/cache/@vercel-remix-builder-npm-2.2.4-0a41fdd124-781779a84f.zip/node_modules/@vercel/remix-builder/",\
         "packageDependencies": [\
-          ["@vercel/remix-builder", "npm:2.2.3"],\
+          ["@vercel/remix-builder", "npm:2.2.4"],\
           ["@vercel/error-utils", "npm:2.0.2"],\
           ["@vercel/nft", "npm:0.27.3"],\
           ["@vercel/static-config", "npm:3.0.0"],\
@@ -6398,13 +6398,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["cli-spinners", [\
-      ["npm:2.9.0", {\
-        "packageLocation": "./.yarn/cache/cli-spinners-npm-2.9.0-227cd236ed-457497ccef.zip/node_modules/cli-spinners/",\
-        "packageDependencies": [\
-          ["cli-spinners", "npm:2.9.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:2.9.2", {\
         "packageLocation": "./.yarn/cache/cli-spinners-npm-2.9.2-be9c08efee-a0a863f442.zip/node_modules/cli-spinners/",\
         "packageDependencies": [\
@@ -8425,7 +8418,7 @@ const RAW_RUNTIME_STATE =
           ["@types/deepmerge", "npm:2.2.0"],\
           ["@types/graphql", "npm:14.5.0"],\
           ["@types/negotiator", "npm:0.6.3"],\
-          ["@types/node", "npm:22.1.0"],\
+          ["@types/node", "npm:22.2.0"],\
           ["@types/react", "npm:18.3.3"],\
           ["@types/react-dom", "npm:18.3.0"],\
           ["@types/uuid", "npm:10.0.0"],\
@@ -11089,7 +11082,7 @@ const RAW_RUNTIME_STATE =
           ["bl", "npm:4.1.0"],\
           ["chalk", "npm:4.1.2"],\
           ["cli-cursor", "npm:3.1.0"],\
-          ["cli-spinners", "npm:2.9.0"],\
+          ["cli-spinners", "npm:2.9.2"],\
           ["is-interactive", "npm:1.0.0"],\
           ["is-unicode-supported", "npm:0.1.0"],\
           ["log-symbols", "npm:4.1.0"],\
@@ -13574,10 +13567,10 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["vercel", [\
-      ["npm:35.2.3", {\
-        "packageLocation": "./.yarn/cache/vercel-npm-35.2.3-0406711623-111f602d0a.zip/node_modules/vercel/",\
+      ["npm:35.2.4", {\
+        "packageLocation": "./.yarn/cache/vercel-npm-35.2.4-79ee17121e-6d6fa2e817.zip/node_modules/vercel/",\
         "packageDependencies": [\
-          ["vercel", "npm:35.2.3"],\
+          ["vercel", "npm:35.2.4"],\
           ["@vercel/build-utils", "npm:8.3.6"],\
           ["@vercel/fun", "npm:1.1.0"],\
           ["@vercel/go", "npm:3.1.1"],\
@@ -13586,7 +13579,7 @@ const RAW_RUNTIME_STATE =
           ["@vercel/node", "npm:3.2.8"],\
           ["@vercel/python", "npm:4.3.1"],\
           ["@vercel/redwood", "npm:2.1.3"],\
-          ["@vercel/remix-builder", "npm:2.2.3"],\
+          ["@vercel/remix-builder", "npm:2.2.4"],\
           ["@vercel/ruby", "npm:2.1.0"],\
           ["@vercel/static-build", "npm:2.5.18"],\
           ["chokidar", "npm:3.3.1"]\
