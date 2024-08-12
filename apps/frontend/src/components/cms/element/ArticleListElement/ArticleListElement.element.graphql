@@ -1,0 +1,3 @@
+fragment ArticleListElementData on ArticleListElement {
+  articleListCount
+}

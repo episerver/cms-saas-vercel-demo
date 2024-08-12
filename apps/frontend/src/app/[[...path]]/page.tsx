@@ -2,6 +2,7 @@ import "server-only";
 import { CmsPage } from "@remkoj/optimizely-cms-nextjs";
 import { getContentByPath } from "@gql/functions";
 import getFactory from "@components/factory";
+import { createClient } from "@remkoj/optimizely-cms-nextjs";
 
 // Create the page components and functions
 const {
@@ -9,7 +10,14 @@ const {
     generateStaticParams,
     CmsPage: Page,
 } = CmsPage.createPage(getFactory(), {
-    getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod
+    getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
+    client: () => {
+        const pageClient = createClient()
+        pageClient.updateFlags({
+            queryCache: false, // Visual Builder requires recursive queries, which are disabled by default when the query cache is enabled
+        }, false)
+        return pageClient
+    }
 });
 
 // Configure the Next.JS route handling for the pages

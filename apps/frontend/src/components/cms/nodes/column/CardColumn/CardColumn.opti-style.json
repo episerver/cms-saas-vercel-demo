@@ -1,0 +1,62 @@
+{
+  "key": "CardColumn",
+  "displayName": "Card",
+  "nodeType": "column",
+  "isDefault": false,
+  "created": "2024-06-27T14:20:51.0752879+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:02.1059504+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "itemOrderOnSmallScreen": {
+      "displayName": "First item on small screen",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "last": {
+          "displayName": "Last",
+          "sortOrder": 20
+        },
+        "normal": {
+          "displayName": "Normal",
+          "sortOrder": 10
+        }
+      }
+    },
+    "colBackgroundColor": {
+      "displayName": "Background color",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "purple": {
+          "displayName": "Purple",
+          "sortOrder": 70
+        },
+        "red": {
+          "displayName": "Red",
+          "sortOrder": 60
+        },
+        "green": {
+          "displayName": "Green",
+          "sortOrder": 50
+        },
+        "orange": {
+          "displayName": "Orange",
+          "sortOrder": 40
+        },
+        "dark_blue": {
+          "displayName": "Dark blue",
+          "sortOrder": 30
+        },
+        "blue": {
+          "displayName": "Blue",
+          "sortOrder": 20
+        },
+        "white": {
+          "displayName": "White",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

@@ -1,6 +1,6 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.3.1",
+  "packageManager": "yarn@4.4.0",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
@@ -13,11 +13,11 @@
   },
   "devDependencies": {
     "@types/source-map-support": "^0.5.10",
-    "@yarnpkg/sdks": "^3.1.3",
-    "eslint": "^8.0.0",
+    "@yarnpkg/sdks": "^3.2.0",
+    "eslint": "8.57.0",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.5.3",
-    "vercel": "^34.3.0"
+    "typescript": "^5.5.4",
+    "vercel": "^35.2.3"
   },
   "exports": null,
   "scripts": {
@@ -25,10 +25,9 @@
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
     "lint": "yarn workspace frontend lint",
+    "graphql:watch": "yarn workspace frontend watch",
+    "graphql:codegen": "yarn workspace frontend compile",
     "type-check": "yarn workspace frontend tsc --pretty --noEmit",
-    "build-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run build",
-    "rebuild-pkgs": "yarn workspaces foreach -Wt --exclude frontend --exclude @remkoj/optimizely-frontend run rebuild",
-    "watch-pkgs": "yarn workspaces foreach -Apt --exclude frontend --exclude @remkoj/optimizely-frontend run watch",
     "update-sdks": "yarn sdks vscode",
     "update-deps": "yarn upgrade-interactive && yarn dedupe && yarn sdks vscode",
     "update-yarn": "yarn set version stable && yarn install && yarn sdks vscode"

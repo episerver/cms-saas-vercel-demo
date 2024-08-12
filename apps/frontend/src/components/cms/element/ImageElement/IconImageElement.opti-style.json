@@ -1,0 +1,54 @@
+{
+  "key": "IconImageElement",
+  "displayName": "Icon",
+  "contentType": "ImageElement",
+  "isDefault": false,
+  "created": "2024-06-27T14:20:51.0180859+00:00",
+  "createdBy": "cli-test",
+  "lastModified": "2024-06-27T14:21:02.1659116+00:00",
+  "lastModifiedBy": "cli-test",
+  "settings": {
+    "roundedCorners": {
+      "displayName": "Rounded corners",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "full": {
+          "displayName": "Full",
+          "sortOrder": 60
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "size": {
+      "displayName": "Size",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 30
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 20
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}
