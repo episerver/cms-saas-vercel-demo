@@ -1,5 +1,5 @@
 export const OuterColors = {
-    white: "bg-white dark:bg-vulcan-85 border-[2px] border-vulcan",
+    white: "bg-white dark:bg-vulcan-85 border-none",
     blue: "bg-azure dark:bg-transparent dark:border-azure dark:border-4",
     dark_blue: "bg-vulcan dark:bg-vulcan-85",
     orange: "bg-tangy dark:bg-transparent dark:border-tangy dark:border-4",

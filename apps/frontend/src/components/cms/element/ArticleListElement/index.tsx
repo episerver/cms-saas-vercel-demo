@@ -20,7 +20,7 @@ contentLink: {
     key,
     locale
 } }) => {
-    const { factory } = getServerContext()
+    //const { factory } = getServerContext()
     const sdk = getSdk()
     const articles = ((await sdk.getArticleListElementItems({ 
         count: articleListCount || 3,

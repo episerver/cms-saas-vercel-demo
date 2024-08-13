@@ -1,0 +1,4 @@
+fragment ContentRecsBlockData on ContentRecsBlock {
+  BlockDeliveryApiKey
+  BlockRecommendationCount
+}

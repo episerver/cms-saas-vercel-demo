@@ -17,7 +17,7 @@
     "eslint": "8.57.0",
     "source-map-support": "^0.5.21",
     "typescript": "^5.5.4",
-    "vercel": "^35.2.3"
+    "vercel": "^35.2.4"
   },
   "exports": null,
   "scripts": {
