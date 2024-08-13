@@ -4195,17 +4195,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-one-nextjs", [\
-      ["npm:2.0.2", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-one-nextjs-npm-2.0.2-140f6f8756-2d098c2ee9.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
+      ["file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-one-nextjs-file-a6b06313f4-e24897980f.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-one-nextjs", "npm:2.0.2"]\
+          ["@remkoj/optimizely-one-nextjs", "file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-one-nextjs-virtual-0e7a1cf37b/0/cache/@remkoj-optimizely-one-nextjs-npm-2.0.2-140f6f8756-2d098c2ee9.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-one-nextjs-virtual-0de3e466be/0/cache/@remkoj-optimizely-one-nextjs-file-a6b06313f4-e24897980f.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
+          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
           ["@headlessui/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.1.2"],\
           ["@heroicons/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.1.5"],\
           ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
@@ -8409,7 +8409,7 @@ const RAW_RUNTIME_STATE =
           ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
           ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
           ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
-          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.0.2"],\
+          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
           ["@tailwindcss/aspect-ratio", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.2"],\
           ["@tailwindcss/container-queries", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.1.1"],\
           ["@tailwindcss/forms", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.7"],\

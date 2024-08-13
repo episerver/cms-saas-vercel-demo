@@ -2759,9 +2759,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-one-nextjs@npm:2.0.2":
+"@remkoj/optimizely-one-nextjs@file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 2.0.2
-  resolution: "@remkoj/optimizely-one-nextjs@npm:2.0.2"
+  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/@remkoj-optimizely-one-nextjs-dev.tgz::hash=c1a465&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   peerDependencies:
     "@headlessui/react": "*"
     "@heroicons/react": "*"
@@ -2771,7 +2771,7 @@ __metadata:
     react-dom: "*"
     swr: "*"
     uuid: "*"
-  checksum: 10/2d098c2ee929b781d4be174419be47200e780580352136d15a2ee744262e1d1d58313c6bb8363827b5699714502b79de38ffd1361b4e76b53c22b1b2fcfa2615
+  checksum: 10/e24897980f763f9690e1953ebd25fc017731939db6e346147503e50b8029a909d0fa27f2eebddf3d96891dfc468571b1d6af325b8a1dbb88ec4925bbee5747f6
   languageName: node
   linkType: hard
 
