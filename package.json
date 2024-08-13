@@ -31,8 +31,5 @@
     "update-sdks": "yarn sdks vscode",
     "update-deps": "yarn upgrade-interactive && yarn dedupe && yarn sdks vscode",
     "update-yarn": "yarn set version stable && yarn install && yarn sdks vscode"
-  },
-  "resolutions": {
-    "@remkoj/optimizely-one-nextjs": "./packages/@remkoj-optimizely-one-nextjs-dev.tgz"
   }
 }
