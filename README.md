@@ -8,6 +8,8 @@
   - [2.1. Requirements](#21-requirements)
   - [2.2. Deploying \& Configuring](#22-deploying--configuring)
   - [2.3. Additional configuration options](#23-additional-configuration-options)
+  - [2.4. Product specific instructions](#24-product-specific-instructions)
+    - [2.4.1. Content Recommendations](#241-content-recommendations)
 - [3. Further documentation](#3-further-documentation)
 
 
@@ -48,6 +50,14 @@ When the deployment has succeeded, the following steps are needed to enable "On 
 Please refer to the [Supported environment variables](docs/env-vars.md) document for all supported configuration options for the frontend. The steps above only outine the mimimum required configuration to obtain a working demo site. Many of the included features require additional configuration to be enabled.
 
 ***Please note:** every configuration change to the environment variables requires a new deployment to become active.*
+
+### 2.4. Product specific instructions
+#### 2.4.1. Content Recommendations
+For Content Recommendations to work, the following steps are needed:
+1. Configure Content Recommendations using the environment variables of the [`Next.JS Optimizely One package`](https://www.npmjs.com/package/@remkoj/optimizely-one-nextjs#252-list-of-supported-environment-variables)
+2. Add the Content Recommendations widget using either the block (Page) or element (Experience), you will need to configure:
+   - The API Key of the delivery, which is shown as value of 'data-api-key=' in the example code within Content Recommendations
+   - The number of recommendations to show
 
 ## 3. Further documentation
 * [Local development](docs/dev-env.md)
