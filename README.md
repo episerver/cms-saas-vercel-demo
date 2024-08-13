@@ -3,20 +3,21 @@
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 
 ## Contents <!-- omit in toc -->
-- [Introduction](#introduction)
-- [Getting started](#getting-started)
-  - [Requirements](#requirements)
-  - [Deploying \& Configuring](#deploying--configuring)
-  - [Additional configuration options](#additional-configuration-options)
-- [Further documentation](#further-documentation)
-- [Included packages](#included-packages)
+- [1. Introduction](#1-introduction)
+- [2. Getting started](#2-getting-started)
+  - [2.1. Requirements](#21-requirements)
+  - [2.2. Deploying \& Configuring](#22-deploying--configuring)
+  - [2.3. Additional configuration options](#23-additional-configuration-options)
+- [3. Further documentation](#3-further-documentation)
 
 
-## Introduction
-This repository contains the packages and applications that form the Optimizely CMS Demo Site.
+## 1. Introduction
+This repository contains content and frontend that form the Optimizely SaaS CMS Demo Site. 
 
-## Getting started
-### Requirements
+If you're looking to build a new site from scratch, please use the [Create Next App Template](https://github.com/remkoj/optimizely-saas-starter) to create an empty frontend using the same structure and tooling as this demo site.
+
+## 2. Getting started
+### 2.1. Requirements
 Make sure you're good to go, by:
 - Requesting an Optimizely CMS instance using [Sign-up for the program](https://www.optimizely.com/saas-core-waitlist/)
 - Ensure you have a GitHub account
@@ -24,7 +25,7 @@ Make sure you're good to go, by:
 
 After signing up for the beta instance and provisioning of the instance, you'll get an e-mail with the keys and instructions to activate your account.
 
-### Deploying & Configuring
+### 2.2. Deploying & Configuring
 [Follow these instructions to configure the CMS](docs/cms-config.md)
 
 After you've completed the CMS configuration instructions and collected the needed information, click the "Deploy to vercel" button below, to deploy this site to your Vercel Account
@@ -42,26 +43,16 @@ When the deployment has succeeded, the following steps are needed to enable "On 
 
 [Enable on-page / in context editing](docs/editing.md)
 
-### Additional configuration options
+### 2.3. Additional configuration options
 
-Please refer to the [Supported environment variables](docs/env-vars.md) document for all supported configuration options for the frontend. The steps above only outine the mimimum required configuration to obtain a working demo site. ***Please note:** every configuration change to the environment variables requires a new deployment to become active.*
+Please refer to the [Supported environment variables](docs/env-vars.md) document for all supported configuration options for the frontend. The steps above only outine the mimimum required configuration to obtain a working demo site. Many of the included features require additional configuration to be enabled.
 
-## Further documentation
+***Please note:** every configuration change to the environment variables requires a new deployment to become active.*
+
+## 3. Further documentation
 * [Local development](docs/dev-env.md)
 * [CMS Configuration](docs/cms-config.md)
 * [Enable on-page / in context editing](docs/editing.md)
 * [Supported environment variables](docs/env-vars.md)
 * [Custom demo building](docs/demo-building.md)
 * [General solution description](docs/solution/index.md)
-
-## Included packages
-This project uses a mono-repository to hold both the main frontend application, as well as the supporting packages. The following packages are included in this repository:
-
-| Package import | Short description | Documentation |
-| - | - | - |
-| @remkoj/optimizely-dxp-cli | Command line utitilities to work with the Optimizely CMS - SaaS Core and Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-cli/README.md)
-| @remkoj/optimizely-dxp-nextjs | Extensions for Next.JS and standard implementation components for Optimizely CMS - SaaS Core  | [Available in the package README.md](packages/remkoj/optimizely-dxp-nextjs/README.md)
-| @remkoj/optimizely-dxp-react | React client components, with SSR support, to render content from Optimizely Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-react/README.md)
-| @remkoj/optimizely-dxp-react-server | React server components, to render content from Optimizely Content Graph | [Available in the package README.md](packages/remkoj/optimizely-dxp-react-server/README.md)
-| @remkoj/optimizely-graph-functions | GraphQL Codegen plugin to dynamically build functions that load the correct fields for each content item on a generic lookup. Used for the "getContentByPath" and "getContentById" methods of the sample site. | [Available in the package README.md](packages/remkoj/optimizely-graph-functions/README.md)
-| @remkoj/optimizely-one-nextjs | React components (both client & server) to integrate the browser-side products from Optimizely (Web Experimentation, Data Platform & Content Analytics / Recommendations) | [Available in the package README.md](packages/remkoj/optimizely-one-nextjs/README.md)
