@@ -1,3 +1,5 @@
+import { ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
+
 export type SiteSearchResponse = SiteSearchError | SiteSearchResult
 export type SiteSearchError = {
     error: {
@@ -24,6 +26,7 @@ export type ContentSearchResultItem = {
     changed?: string
     published?: string
     description?: string
+    id: ContentLinkWithLocale
 }
 export type ContentSearchResultFacet = {
     field: string

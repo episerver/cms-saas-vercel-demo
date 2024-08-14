@@ -4,7 +4,7 @@ import { useFragment } from '@gql'
 import { Utils } from '@remkoj/optimizely-cms-react'
 import getSdk from '@/sdk'
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
-import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
+import { SiteSearchResponse, ContentSearchResultItem, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
 
 async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchResponse>>
 {
@@ -26,7 +26,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
         locale: contentLocales?.length > 0 ? contentLocales as GraphQL.Locales[] : null,
         types: contentTypes?.length > 0 ? contentTypes : null
     })
-    const resultItems : ContentSearchResultItems = (rawResponse.Content?.items ?? []).filter(Utils.isNotNullOrUndefined).map(item => {
+    const resultItems : ContentSearchResultItems = (rawResponse.Content?.items ?? []).filter(Utils.isNotNullOrUndefined).map<ContentSearchResultItem>(item => {
         const iContent = useFragment(GraphQL.IContentDataFragmentDoc, item)
         const metaData = useFragment(GraphQL.IContentInfoFragmentDoc, iContent._metadata)
         const linkData = useFragment(GraphQL.LinkDataFragmentDoc, metaData?.url)
@@ -34,6 +34,11 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
         return {
             name: metaData?.displayName ?? "",
             url,
+            id: {
+                key: metaData?.key ?? url,
+                locale: metaData?.locale ?? undefined,
+                version: metaData?.version ?? undefined
+            },
             changed: undefined,
             published: item?._metadata?.published ?? undefined,
             type: metaData?.types?.filter(Utils.isNonEmptyString) ?? undefined,
@@ -90,3 +95,4 @@ export const runtime = 'nodejs' // 'nodejs' (default) | 'edge'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 export const fetchCache = 'default-no-store'
+export const revalidate = 0

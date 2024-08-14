@@ -6,7 +6,7 @@ query searchContent($term: String!, $topInterest: String, $locale: [String!], $t
         { _fulltext: { contains: $topInterest, boost: 2 } }
       ]
       _fulltext: { contains: $term }
-      _metadata: { types: { in: "Page" } }
+      _metadata: { types: { in: "_Page" } }
     }
     orderBy: { _ranking: SEMANTIC }
     limit: $pageSize

@@ -6,9 +6,7 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
 import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
-
-// Client side context
-import GlobalProviders from "@components/providers";
+import { OptimizelyOneProvider } from '@remkoj/optimizely-one-nextjs/client'
 
 // Client side trackers
 import { Scripts } from '@remkoj/optimizely-one-nextjs/server'
@@ -67,11 +65,11 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan dark:text-white overflow-x-hidden`}>
           <div className="flex min-h-screen flex-col justify-between">
-            <GlobalProviders>
+            <OptimizelyOneProvider value={{ debug: true }} >
               <Header />
-              <main className="grow">{children}</main>
+              <main className="grow">{ children }</main>
               <Footer />
-            </GlobalProviders>
+            </OptimizelyOneProvider>
             <Scripts.Footer />
             <GoogleAnalytics measurementId={ga_id} />
             <SpeedInsights />

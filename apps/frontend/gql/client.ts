@@ -587,7 +587,7 @@ ${StartPageDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`
     query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int) {
   Content: _Content(
-    where: {_or: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "Page"}}}
+    where: {_or: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "_Page"}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
   ) {

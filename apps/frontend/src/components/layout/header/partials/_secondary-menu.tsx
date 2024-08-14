@@ -2,7 +2,8 @@ import { forwardRef, useContext } from "react";
 import Button from "@/components/block/button-block";
 import { HeaderContext } from "../_header";
 import { ThemePicker } from "./_themepicker";
-import { useFragment, Schema } from '@gql'
+import { SiteSearch } from "./_site-search";
+import { Schema } from '@gql';
 
 const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
   const { utilityItems } = useContext(HeaderContext);
@@ -10,10 +11,8 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
   if (!utilityItems) return null;
 
   return (
-    <ul ref={ref} className="flex items-center justify-end">
-      <li className="md:mr-6 xl:mr-12">
-        <ThemePicker />
-      </li>
+    <ul ref={ref} className="flex items-center justify-end relative">
+      <li className="md:mr-6 xl:mr-12"><ThemePicker /></li>
       {utilityItems.filter(isButtonBlock).map(
         (item) => { 
           const btn = item.__typename == "ButtonBlock" ? item as Schema.MenuButtonFragment : undefined
@@ -27,6 +26,7 @@ const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
           </li>
         )}
       )}
+      <li><SiteSearch /></li>
     </ul>
   );
 });
