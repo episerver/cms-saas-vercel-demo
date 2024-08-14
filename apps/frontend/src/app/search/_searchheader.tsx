@@ -11,7 +11,10 @@ export type SearchHeaderProps = {
 export const SearchHeader : FunctionComponent<SearchHeaderProps> = ({ initialQuery }) => {
     const [ query ] = useUrlState('query', initialQuery ?? '', undefined, x=>x, x=>x)
     return <div className="search-header">
-        <h1 className="font-bold text-[4rem]">Search results for &ldquo;{ query }&rdquo;</h1>
+        { (query && query != '') ?
+            <h1 className="font-bold text-[4rem]">Search results for &ldquo;{ query }&rdquo;</h1> :
+            <h1 className="font-bold text-[4rem]">Search results</h1>
+        }
     </div>
 }
 
