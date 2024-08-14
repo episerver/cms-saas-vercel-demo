@@ -43,7 +43,7 @@ const MenuItem : FunctionComponent<MenuItemProps> = ({ menuList, ...props }) => 
         </div>
       );
     case 'CardBlock':
-      console.log("Card block", menuList);
+      //console.log("Card block", menuList);
       return (
         <div className="col-span-2 flex justify-end">
           <PromoItem {...menuList} />
@@ -126,7 +126,7 @@ function isMenuNavigationItem(toTest: any) : toTest is Schema.MenuNavigationItem
 const factory = new DefaultComponentFactory(DefaultComponents)
 
 function PromoItem({ heading, description, link, image }: Schema.MenuCardItemFragment) {
-  console.log("Promo Item!")
+  //console.log("Promo Item!")
   return (
     <article className="grid grid-cols-2 gap-12 max-w-[500px] bg-white rounded-[20px] p-12 dark:bg-vulcan-85">
       <div className="prose">
