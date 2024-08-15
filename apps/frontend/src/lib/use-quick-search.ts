@@ -1,6 +1,6 @@
 import { useState, useEffect, useMemo } from "react"
 import useSWR from "swr"
-import { type SiteSearchResult, type SiteSearchError } from "@/api-types"
+import { ContentSearchResults } from "./api/search"
 
 export function useQuickSearch(term: string = '', delayMs: number = 250, minTermLength: number = 3) 
 {
@@ -17,10 +17,10 @@ export function useQuickSearch(term: string = '', delayMs: number = 250, minTerm
     const searchPath = useMemo(() => {
         if (!searchTerm || searchTerm.length < minTermLength)
             return null
-        return `/api/content/search?term=${ encodeURIComponent(searchTerm) }&mode=quick&locales=en`
+        return `/api/content/search?query=${ encodeURIComponent(searchTerm) }&mode=quick&locales=en`
     }, [ searchTerm, minTermLength ])
 
-    return useSWR<SiteSearchResult, SiteSearchError, string | null>(searchPath, {
+    return useSWR<ContentSearchResults, any, string | null>(searchPath, {
         fetcher: (key) => fetch(key, {
             next: {
                 revalidate: 0

@@ -170,6 +170,22 @@ export const BlogPostPageDataFragmentDoc = /*#__PURE__*/ gql`
   blogAuthor: ArticleAuthor
 }
     `;
+export const BlogPostPageSearchResultFragmentDoc = /*#__PURE__*/ gql`
+    fragment BlogPostPageSearchResult on BlogPostPage {
+  title: Heading
+  image: BlogPostPromoImage {
+    ...ReferenceData
+  }
+  author: ArticleAuthor
+  seodata: SeoSettings {
+    MetaTitle
+    MetaDescription
+  }
+  _metadata {
+    published
+  }
+}
+    `;
 export const BlogListingBlockDataFragmentDoc = /*#__PURE__*/ gql`
     fragment BlogListingBlockData on BlogListingBlock {
   _metadata {
@@ -372,14 +388,27 @@ export const StartPageDataFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const StartPageSearchDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment StartPageSearchData on StartPage {
+  seodata: SeoSettings {
+    MetaTitle
+    MetaDescription
+    SharingImage {
+      ...ReferenceData
+    }
+  }
+}
+    `;
 export const PageDataFragmentDoc = /*#__PURE__*/ gql`
     fragment PageData on _IContent {
   ...IContentData
   ...BlankExperienceData
   ...BlogPostPageData
+  ...BlogPostPageSearchResult
   ...LandingPageData
   ...StandardPageData
   ...StartPageData
+  ...StartPageSearchData
 }
     `;
 export const HtmlBlockFragmentDoc = /*#__PURE__*/ gql`
@@ -474,6 +503,13 @@ export const MegaMenuItemFragmentDoc = /*#__PURE__*/ gql`
   }
 }
     `;
+export const SearchDataFragmentDoc = /*#__PURE__*/ gql`
+    fragment SearchData on _IContent {
+  ...IContentData
+  ...BlogPostPageSearchResult
+  ...StartPageSearchData
+}
+    `;
 export const getContentTypeDocument = /*#__PURE__*/ gql`
     query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
   content: _Content(
@@ -534,9 +570,11 @@ ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
+${BlogPostPageSearchResultFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
-${StartPageDataFragmentDoc}`;
+${StartPageDataFragmentDoc}
+${StartPageSearchDataFragmentDoc}`;
 export const getContentByPathDocument = /*#__PURE__*/ gql`
     query getContentByPath($path: String!, $version: String, $locale: [Locales!], $domain: String) {
   content: _Content(
@@ -568,6 +606,7 @@ ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
+${BlogPostPageSearchResultFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
@@ -583,41 +622,8 @@ ${TextBlockDataFragmentDoc}
 ${ContentRecsBlockDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
-${StartPageDataFragmentDoc}`;
-export const searchContentDocument = /*#__PURE__*/ gql`
-    query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int) {
-  Content: _Content(
-    where: {_or: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "_Page"}}}
-    orderBy: {_ranking: SEMANTIC}
-    limit: $pageSize
-  ) {
-    total
-    cursor
-    items {
-      _score
-      ...IContentData
-      _metadata {
-        published
-      }
-      _fulltext(highlight: {enabled: true, startToken: "<span>", endToken: "</span>"})
-    }
-    facets {
-      _metadata {
-        types(filters: $types) {
-          name
-          count
-        }
-        locale(filters: $locale) {
-          name
-          count
-        }
-      }
-    }
-  }
-}
-    ${IContentDataFragmentDoc}
-${IContentInfoFragmentDoc}
-${LinkDataFragmentDoc}`;
+${StartPageDataFragmentDoc}
+${StartPageSearchDataFragmentDoc}`;
 export const getArticleListElementItemsDocument = /*#__PURE__*/ gql`
     query getArticleListElementItems($count: Int, $locale: [Locales]) {
   BlogPostPage(
@@ -866,6 +872,46 @@ export const getArticlesDocument = /*#__PURE__*/ gql`
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
+export const searchContentDocument = /*#__PURE__*/ gql`
+    query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int, $start: Int) {
+  Content: _Content(
+    where: {_and: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "_Page"}}}
+    orderBy: {_ranking: SEMANTIC}
+    limit: $pageSize
+    skip: $start
+  ) {
+    total
+    items {
+      _score
+      ...SearchData
+      _metadata {
+        published
+      }
+      preview: _fulltext(
+        highlight: {enabled: true, startToken: "<span>", endToken: "</span>"}
+      )
+    }
+    facets {
+      _metadata {
+        types(filters: $types) {
+          name
+          count
+        }
+        locale(filters: $locale) {
+          name
+          count
+        }
+      }
+    }
+  }
+}
+    ${SearchDataFragmentDoc}
+${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}
+${BlogPostPageSearchResultFragmentDoc}
+${ReferenceDataFragmentDoc}
+${StartPageSearchDataFragmentDoc}`;
 
 export type SdkFunctionWrapper = <T>(action: (requestHeaders?:Record<string, string>) => Promise<T>, operationName: string, operationType?: string, variables?: any) => Promise<T>;
 
@@ -882,9 +928,6 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getContentByPath(variables: Schema.getContentByPathQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByPathQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByPathQuery>(getContentByPathDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentByPath', 'query', variables);
-    },
-    searchContent(variables: Schema.searchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.searchContentQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.searchContentQuery>(searchContentDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchContent', 'query', variables);
     },
     getArticleListElementItems(variables?: Schema.getArticleListElementItemsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticleListElementItemsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticleListElementItemsQuery>(getArticleListElementItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticleListElementItems', 'query', variables);
@@ -912,6 +955,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticlesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>(getArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticles', 'query', variables);
+    },
+    searchContent(variables: Schema.searchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.searchContentQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.searchContentQuery>(searchContentDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchContent', 'query', variables);
     }
   };
 }

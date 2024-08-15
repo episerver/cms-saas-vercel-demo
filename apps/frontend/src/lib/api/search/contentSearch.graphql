@@ -1,7 +1,7 @@
-query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int) {
+query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int, $start: Int) {
   Content: _Content (
     where: {
-      _or: [
+      _and: [
         { _fulltext: { contains: $term } }
         { _fulltext: { contains: $topInterest, boost: 2 } }
       ]
@@ -10,16 +10,16 @@ query searchContent($term: String!, $topInterest: String, $locale: [String!], $t
     }
     orderBy: { _ranking: SEMANTIC }
     limit: $pageSize
+    skip: $start
   ) {
     total
-    cursor
     items {
       _score
-      ...IContentData
+      ...SearchData
       _metadata {
         published
       }
-      _fulltext(
+      preview: _fulltext(
         highlight: { enabled: true, startToken: "<span>", endToken: "</span>" }
       )
     }
@@ -36,4 +36,8 @@ query searchContent($term: String!, $topInterest: String, $locale: [String!], $t
       }
     }
   }
+}
+
+fragment SearchData on _IContent {
+  ...IContentData
 }

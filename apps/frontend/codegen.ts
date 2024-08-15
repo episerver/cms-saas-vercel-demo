@@ -94,6 +94,11 @@ const config: CodegenConfig = {
                     {
                         into: "ElementData",
                         pathRegex: "src\/components\/.*\.element\.graphql"
+                    },
+                    // Implementation Specific: Add Search GraphQL Files
+                    {
+                        into: "SearchData",
+                        pathRegex: "src\/components\/.*\.search\.graphql"
                     }
 
                 ],
