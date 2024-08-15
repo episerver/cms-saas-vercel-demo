@@ -67,7 +67,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
           <div className="flex min-h-screen flex-col justify-between">
             <OptimizelyOneProvider value={{ debug: true }} >
               <Header />
-              <main className="grow">{ children }</main>
+                <main className="grow">{ children }</main>
               <Footer />
             </OptimizelyOneProvider>
             <Scripts.Footer />
