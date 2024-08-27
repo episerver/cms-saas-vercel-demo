@@ -1,17 +1,15 @@
 'use client'
 import { useEffect, useMemo, type FunctionComponent } from "react"
-import { type ContentSearchResults } from "@/lib/api/search"
-import { linkDataToHref } from "@remkoj/optimizely-cms-nextjs/components"
-import { RichText, DefaultComponents, Utils, type RichTextNode, StringNode, NodeInput } from "@remkoj/optimizely-cms-react/components"
-import { DefaultComponentFactory } from "@remkoj/optimizely-cms-react"
-import Link from 'next/link'
-import LocalTime from "@/components/shared/local-time"
+import { type ContentSearchResults, Filters } from "@/lib/api/search"
 import { useIntUrlState, useStringUrlState } from "@/lib/use-url-state"
 import useSWR from "swr"
 import { contentLinkToString } from "@remkoj/optimizely-graph-client"
 import { useOptimizelyOne } from "@remkoj/optimizely-one-nextjs"
+import dynamic from "next/dynamic"
 
-const richTextFactory = new DefaultComponentFactory(DefaultComponents)
+//Components only used within the results
+const DropDown = dynamic(() => import('@/components/shared/drop_down'), { ssr: false })
+const SearchResultItem = dynamic(() => import('./_search_item'), { ssr: false })
 
 export type SearchProps = {
     initialQuery?: string
@@ -24,6 +22,9 @@ export const Search : FunctionComponent<SearchProps> = ({ initialQuery, initialR
     const [query] = useStringUrlState('query', initialQuery ?? '')
     const [limit, setLimit] = useIntUrlState('limit', 12, x => x > 0)
     const [start, setStart] = useIntUrlState('start', 0, x => x >= 0)
+    const [locale, setLocale] = useStringUrlState('locale', '')
+    const [ctype, setCType] = useStringUrlState('ctype', '')
+
 
     const swrKey = useMemo(() => {
         if (!query || query.length < 3)
@@ -32,8 +33,13 @@ export const Search : FunctionComponent<SearchProps> = ({ initialQuery, initialR
         params.set('query', query)
         params.set('limit', limit.toString())
         params.set('start', start.toString())
+        const facets : Filters = {
+            locale,
+            ctype
+        }
+        params.set('facets', JSON.stringify(facets))
         return `/api/content/search?${ params.toString() }`
-    }, [ query, limit, start ])
+    }, [ query, limit, start, locale, ctype ])
 
     const { data: results, isLoading } = useSWR<ContentSearchResults, any, string | null>(swrKey, {
         fetcher: (key) => fetch(key).then(r => {
@@ -79,42 +85,27 @@ export const Search : FunctionComponent<SearchProps> = ({ initialQuery, initialR
         return <></>
 
     const resultCount = results?.total ?? 0
+    const cTypeFacet = results?.facets?.filter(x => x.key == 'ctype')?.at(0)
+    const cTypeFacetOptions = cTypeFacet?.options.filter(x => !x.key.startsWith('_')).map(o => { return { value: o.key, label: o.label || undefined }} ) || []
+    const localeFacet = results?.facets?.filter(x => x.key == 'locale')?.at(0)
+    const localeFacetOptions = localeFacet?.options.map(o => { return { value: o.key, label: o.label || undefined }} ) || []
+    cTypeFacetOptions.unshift({
+        label: "All page types",
+        value: ""
+    })
+    localeFacetOptions.unshift({
+        label: "All languages",
+        value: ""
+    })
     return <div className="search-results-container">
         <div className="text-[22px] mb-[40px] will-change-auto">Your search matched { resultCount } pages.</div>
-        <div className="search-results-list will-change-auto">
-        { results?.items?.map(item => {
-            return <Link key={ contentLinkToString(item.id) } href={ item.url ? linkDataToHref(item.url) : '#' } className='block py-[20px] flex flex-col gap-4'>
-                <div className="text-azure dark:text-verdansk text-[22px] font-bold">{ item.title }</div>
-                { item.author && <div className="flex flex-row justify-between">
-                    <div className="italic">Author: { item.author }</div>
-                    <div>Published: <LocalTime date={ item.published } mode="Date" /></div>
-                </div>}
-                { isNodeInput(item.abstract) ? <RichText text={ item.abstract } factory={ richTextFactory } /> : <div>{ isNonEmptyString(item.abstract) ? item.abstract : ''}</div> }
-            </Link>
-        })}
+        <div className="mb-[40px] flex flex-row gap-4 justify-start">
+            { cTypeFacet && <DropDown options={ cTypeFacetOptions } label="Type" value={ cTypeFacetOptions.filter(x => x.value == ctype).at(0) ?? cTypeFacetOptions.at(0) } onChange={ (d) => setCType(d.value) } />}
+            { localeFacet && <DropDown options={ localeFacetOptions } label="Language" value={ localeFacetOptions.filter(x => x.value == locale).at(0) ?? localeFacetOptions.at(0) } onChange={ (d) => setLocale(d.value) } />}
         </div>
+        <div className="search-results-list will-change-auto">{ results?.items?.map(item => <SearchResultItem key={ contentLinkToString(item.id) } item={ item } /> )}</div>
         { results?.isPersonalized && <div className="text-sm italic pt-[5px] pb-[10px]">Personalized by Optimizely Content Recommendations</div> }
     </div>
-}
-
-function isRichTextNode(toTest: any) : toTest is RichTextNode
-{
-    return Utils.isTypedNode(toTest) && toTest.type == 'richText'
-}
-
-function isStringNode(toTest: any) : toTest is StringNode
-{
-    return Utils.isTypedNode(toTest) && toTest.type == 'string'
-}
-
-function isNodeInput(toTest: any) : toTest is NodeInput
-{
-    return isRichTextNode(toTest) || isStringNode(toTest)
-}
-
-function isNonEmptyString(toTest: any) : toTest is string
-{
-    return typeof(toTest) == 'string' && toTest.length > 0
 }
 
 export default Search
