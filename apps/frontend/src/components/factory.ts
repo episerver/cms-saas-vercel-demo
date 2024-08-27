@@ -1,4 +1,4 @@
-import { DefaultComponentFactory, type ComponentFactory } from '@remkoj/optimizely-cms-react'
+import { type ComponentFactory, getFactory } from '@remkoj/optimizely-cms-react'
 import { DefaultComponents } from '@remkoj/optimizely-cms-react/components'
 import { cache } from 'react'
 import pageComponents from './page'
@@ -7,7 +7,7 @@ import cmsComponents from './cms'
 
 export const setupFactory = cache<() => ComponentFactory>(() => 
 {
-    const factory = new DefaultComponentFactory()
+    const factory = getFactory()
     factory.registerAll(DefaultComponents)
     factory.registerAll(pageComponents)
     factory.registerAll(blockComponents)

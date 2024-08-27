@@ -5,7 +5,9 @@ const handler = createPublishApi({
         '/',
         '/[[...path]]',
         '/[lang]',
-        '/[lang]/[[...path]]'
+        '/[lang]/[[...path]]',
+        '/api/content/search',
+        '/api/me/[[...path]]'
     ]
 })
 

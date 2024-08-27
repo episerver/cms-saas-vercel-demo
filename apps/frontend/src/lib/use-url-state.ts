@@ -58,3 +58,34 @@ export function useUrlState<T = any>(parameter: string, initialValue: T, validat
     return [ currentValue, updateRoute, hasStoreError ]
 
 }
+export function useStringUrlState(parameter: string, initialValue: string, validate?: (toValidate: string) => boolean)
+{
+    return useUrlState<string>(parameter, initialValue, validate, x=>x,x=>x)
+}
+export function useIntUrlState(parameter: string, initialValue: number, validate?: (toValidate: number) => boolean)
+{
+    return useUrlState<number>(parameter, initialValue, validate, x=>{
+        try {
+            return Number.parseInt(x)
+        } catch {
+            return initialValue
+        }
+    },x=>x.toString())
+}
+export function useFloatUrlState(parameter: string, initialValue: number, validate?: (toValidate: number) => boolean)
+{
+    return useUrlState<number>(parameter, initialValue, validate, x=>{
+        try {
+            return Number.parseFloat(x)
+        } catch {
+            return initialValue
+        }
+    },x=>x.toString())
+}
+export function useBooleanUrlState(parameter: string, initialValue: boolean, validate?: (toValidate: boolean) => boolean)
+{
+    return useUrlState<boolean>(parameter, initialValue, validate, x=>{
+        return x == '1' || x.toLowerCase() == 'true'
+    },x=>x ? '1' : '0')
+}
+export default useUrlState

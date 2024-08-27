@@ -1,0 +1,14 @@
+fragment BlogPostPageSearchResult on BlogPostPage {
+    title: Heading
+    image: BlogPostPromoImage {
+        ...ReferenceData
+    }
+    author: ArticleAuthor
+    seodata: SeoSettings {
+        MetaTitle
+        MetaDescription
+    }
+    _metadata {
+        published
+    }
+}

@@ -1,86 +1,34 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import * as GraphQL from '@gql/graphql'
-import { useFragment } from '@gql'
 import { Utils } from '@remkoj/optimizely-cms-react'
-import getSdk from '@/sdk'
-import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
-import { SiteSearchResponse, ContentSearchResultItems, ContentSearchResultFacets } from '@/api-types'
+import contentSearch, { type ContentSearchResults, type Filters } from '@/lib/api/search'
+import { Locales } from "@/gql/graphql"
+
+export type SiteSearchResponse = SiteSearchError | ContentSearchResults
+export type SiteSearchError = {
+    error: {
+        type: string
+        message: string
+    }
+}
 
 async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchResponse>>
 {
-    const client = getSdk()
-    const searchTerm = req.nextUrl.searchParams.get('term') ?? ''
-    const contentTypes = (req.nextUrl.searchParams.get('types') ?? '').split(',').map(Utils.trim).filter(Utils.isNonEmptyString)
-    const contentLocales = (req.nextUrl.searchParams.get('locales') ?? '').split(',').map(Utils.trim).filter(Utils.isNonEmptyString)
-    const interests = await ContentIntel.getTopTopics()
-    const topInterest = interests.shift()
+    const searchTerm = req.nextUrl.searchParams.get('query') ?? ''
+    const limit = tryParseInt(req.nextUrl.searchParams.get('limit'), 12)
+    const start = tryParseInt(req.nextUrl.searchParams.get('start'), 0)
+    const facets = tryParseJson<Filters>(req.nextUrl.searchParams.get('facets') ?? 'undefined')
 
     if (!searchTerm)
-        return NextResponse.json({ error: { type: "Bad Request", message: "The term parameter is required"} }, { status: 400 })
+        return NextResponse.json<SiteSearchError>({ error: { type: "Bad Request", message: "The term parameter is required"} }, { status: 400 })
 
-    const isPersonalized = topInterest ? true : false
-
-    const rawResponse = await client.searchContent({
-        term: searchTerm,
-        topInterest,
-        locale: contentLocales?.length > 0 ? contentLocales as GraphQL.Locales[] : null,
-        types: contentTypes?.length > 0 ? contentTypes : null
-    })
-    const resultItems : ContentSearchResultItems = (rawResponse.Content?.items ?? []).filter(Utils.isNotNullOrUndefined).map(item => {
-        const iContent = useFragment(GraphQL.IContentDataFragmentDoc, item)
-        const metaData = useFragment(GraphQL.IContentInfoFragmentDoc, iContent._metadata)
-        const linkData = useFragment(GraphQL.LinkDataFragmentDoc, metaData?.url)
-        const url = new URL(linkData?.default ?? '/', linkData?.base ?? 'https://example.com').href
-        return {
-            name: metaData?.displayName ?? "",
-            url,
-            changed: undefined,
-            published: item?._metadata?.published ?? undefined,
-            type: metaData?.types?.filter(Utils.isNonEmptyString) ?? undefined,
-            description: undefined
-        }
-    });
-
-    const resultFacets : ContentSearchResultFacets = []
-
-    // Process content type facets
-    const contentTypeFacetInfo = (rawResponse.Content?.facets?._metadata?.types ?? []).filter(Utils.isNotNullOrUndefined)
-    resultFacets.push({
-        field: "types",
-        options: contentTypeFacetInfo.filter(x => x.name != "Content" && x.name != "Page").map(x => {
-            return {
-                value: x.name ?? "",
-                count: x.count ?? 0
-            }
-        })
-    })
-
-    // Process content language facets
-    const languageFacetInfo = (rawResponse.Content?.facets?._metadata?.locale ?? []).filter(Utils.isNotNullOrUndefined)
-    resultFacets.push({
-        field: "locales",
-        options: languageFacetInfo.map(x => {
-            return {
-                value: x.name ?? "",
-                count: x.count ?? 0
-            }
-        })
+    const searchResults = await contentSearch(searchTerm, {
+        limit,
+        start,
+        locale: Locales.en,
+        personalize: true,
+        filters: facets
     })
     
-    const resultCount = rawResponse.Content?.total
-
-    const searchResults : SiteSearchResponse = {
-        query: searchTerm,
-        filters: [],
-        total: resultCount ?? 0,
-        items: resultItems,
-        facets: resultFacets,
-        isPersonalized
-    }
-    if (contentTypes.length > 0)
-        searchResults.filters.push({ field: "types", value: contentTypes })
-    if (contentLocales.length > 0)
-        searchResults.filters.push({ field: "locales", value: contentLocales })
 
     return NextResponse.json(searchResults)
 }
@@ -90,3 +38,34 @@ export const runtime = 'nodejs' // 'nodejs' (default) | 'edge'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 export const fetchCache = 'default-no-store'
+export const revalidate = 0
+
+function tryParseInt(value: string | undefined | null, defaultValue: number = 0, radix?: number) : number
+{
+    if (value == undefined || value == null)
+        return defaultValue
+    try {
+        return Number.parseInt(value, radix)
+    } catch {
+        return defaultValue
+    }
+}
+
+
+function tryParseJson<T = any>(value: string | undefined | null, defaultValue: T, validator?: (input: any) => input is T) : T
+function tryParseJson<T = any>(value: string | undefined | null, defaultValue: undefined, validator?: (input: any) => input is T) : T | undefined
+function tryParseJson<T = any>(value: string | undefined | null) : T | undefined
+function tryParseJson<T = any>(value: string | undefined | null, defaultValue?: T | undefined, validator?: (input: any) => input is T) : T | undefined
+{
+    if (value == undefined || value == null)
+        return defaultValue
+    try {
+        const parsed = JSON.parse(value)
+        if (validator)
+            return validator(parsed) ? parsed : defaultValue
+        else
+            return parsed as T
+    } catch {
+        return defaultValue
+    }
+}

@@ -12,8 +12,13 @@ import { cache } from 'react'
  */
 export const getSdk = cache<() => Sdk>(() => {
     const ctx = getServerContext()
-    if (!ctx.client)
-        ctx.setOptimizelyGraphClient(getServerClient())
+    if (!ctx.client) {
+        const client = getServerClient()
+        client.updateFlags({
+            queryCache: false
+        }, false)
+        ctx.setOptimizelyGraphClient(client)
+    }
     return getGeneratedSdk(ctx.client as IOptiGraphClient)
 })
 
