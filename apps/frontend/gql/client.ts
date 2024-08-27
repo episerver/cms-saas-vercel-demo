@@ -873,12 +873,13 @@ ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`
-    query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int, $start: Int) {
+    query searchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int, $start: Int) {
   Content: _Content(
     where: {_and: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 2}}], _fulltext: {contains: $term}, _metadata: {types: {in: "_Page"}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
     skip: $start
+    locale: $withinLocale
   ) {
     total
     items {

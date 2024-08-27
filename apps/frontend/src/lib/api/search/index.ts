@@ -5,18 +5,37 @@ import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligenc
 import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
 import { type TypedNode } from "@remkoj/optimizely-cms-react/components"
 
-export type Filters = Record<string, string>
+export type FacetFilters = {
+    "ctype": string
+    "locale": string
+}
 
-export type ContentSearchOptions<LocaleType = string> = {
+// Input filters
+export type Filters = {
+    [K in keyof FacetFilters]?: Array<FacetFilters[K]> | FacetFilters[K] | null
+}
+// Output filters
+export type FilterOutputOptions = {
+    [K in keyof FacetFilters]: {
+        key: K
+        label?: string | null
+        options: Array<{
+            key: FacetFilters[K]
+            label?: string | null
+            count?: number
+        }>
+    }
+}
+
+export type ContentSearchOptions = {
     facets?: Filters
     filters?: Filters
     limit?: number
     start?: number
     cursor?: string
-    locale?: LocaleType | Array<LocaleType>
+    locale?: Schema.InputMaybe<Schema.InputMaybe<Schema.Locales> | Array<Schema.InputMaybe<Schema.Locales>>>
     sdk?: Sdk
     personalize?: boolean
-    types?: string | Array<string>
 }
 
 
@@ -35,6 +54,7 @@ export type ContentSearchResultItem = {
     type?: string
     types?: Array<string>
 }
+export type ContentSearchFacet = FilterOutputOptions[keyof FilterOutputOptions]
 
 export type ContentSearchResults = {
     term: string
@@ -45,6 +65,7 @@ export type ContentSearchResults = {
         pages: number
     }
     items: Array<ContentSearchResultItem>
+    facets?: Array<ContentSearchFacet>
     isPersonalized: boolean
 }
 
@@ -56,7 +77,7 @@ export type ContentSearchResults = {
  * @param term 
  * @param param1 
  */
-export async function contentSearch<LocaleType extends string = string>(term: string, { facets, limit = 12, start = 0, locale, filters, types, sdk, personalize = true }: ContentSearchOptions<LocaleType> = {}) : Promise<ContentSearchResults>
+export async function contentSearch(term: string, { facets, limit = 12, start = 0, locale, filters, sdk, personalize = true }: ContentSearchOptions = {}) : Promise<ContentSearchResults>
 {
     const app = sdk || getSdk()
     const topInterest = personalize ? await getTopTopic() : undefined
@@ -66,8 +87,9 @@ export async function contentSearch<LocaleType extends string = string>(term: st
         topInterest,
         pageSize: limit,
         start,
-        locale,
-        types
+        withinLocale: locale,
+        locale: filters?.locale == "" ? undefined : filters?.locale,
+        types: filters?.ctype == "" ? undefined : filters?.ctype
     })
 
     return {
@@ -105,7 +127,27 @@ export async function contentSearch<LocaleType extends string = string>(term: st
                 types: iContentMetaData?.types?.filter(isNotNullOrUndefined)
             }
         }),
-        isPersonalized: topInterest != undefined
+        isPersonalized: topInterest != undefined,
+        facets: [
+            {
+                key: 'ctype',
+                options: (rawResults.Content?.facets?._metadata?.types || []).map(ctype => {
+                    return {
+                        key: ctype?.name ?? 'n/a',
+                        count: ctype?.count ?? 0
+                    }
+                })
+            },
+            {
+                key: "locale",
+                options: (rawResults.Content?.facets?._metadata?.locale || []).map(locale => {
+                    return {
+                        key: locale?.name ?? 'n/a',
+                        count: locale?.count ?? 0
+                    }
+                })
+            }
+        ]
     }
 }
 

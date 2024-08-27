@@ -1,11 +1,10 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.4.0",
+  "packageManager": "yarn@4.4.1",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
-    "apps/*",
-    "packages/remkoj/*"
+    "apps/*"
   ],
   "engines": {
     "node": ">=18.0.0 <21.0.0",
@@ -17,7 +16,7 @@
     "eslint": "8.57.0",
     "source-map-support": "^0.5.21",
     "typescript": "^5.5.4",
-    "vercel": "^37.0.0"
+    "vercel": "^37.1.2"
   },
   "exports": null,
   "scripts": {

@@ -1,4 +1,4 @@
-query searchContent($term: String!, $topInterest: String, $locale: [String!], $types: [String!], $pageSize: Int, $start: Int) {
+query searchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int, $start: Int) {
   Content: _Content (
     where: {
       _and: [
@@ -11,6 +11,7 @@ query searchContent($term: String!, $topInterest: String, $locale: [String!], $t
     orderBy: { _ranking: SEMANTIC }
     limit: $pageSize
     skip: $start
+    locale: $withinLocale
   ) {
     total
     items {
