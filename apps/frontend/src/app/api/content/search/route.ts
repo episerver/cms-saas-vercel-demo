@@ -1,5 +1,4 @@
 import { type NextRequest, NextResponse } from 'next/server'
-import { Utils } from '@remkoj/optimizely-cms-react'
 import contentSearch, { type ContentSearchResults, type Filters } from '@/lib/api/search'
 import { Locales } from "@/gql/graphql"
 

@@ -875,7 +875,7 @@ ${ReferenceDataFragmentDoc}`;
 export const searchContentDocument = /*#__PURE__*/ gql`
     query searchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int, $start: Int) {
   Content: _Content(
-    where: {_or: [{_fulltext: {contains: $term}}, {_fulltext: {contains: $topInterest, boost: 200}}], _fulltext: {contains: $term}, _metadata: {types: {in: "_Page"}}}
+    where: {_or: [{_fulltext: {match: $term}}, {_fulltext: {match: $topInterest, boost: 200}}], _metadata: {types: {in: "_Page"}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
     skip: $start

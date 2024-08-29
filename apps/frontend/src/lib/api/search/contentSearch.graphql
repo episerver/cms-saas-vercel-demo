@@ -2,10 +2,9 @@ query searchContent($term: String!, $topInterest: String, $locale: [String!], $w
   Content: _Content (
     where: {
       _or: [
-        { _fulltext: { contains: $term } }
-        { _fulltext: { contains: $topInterest, boost: 200 } }
+        { _fulltext: { match: $term } }
+        { _fulltext: { match: $topInterest, boost: 200 } }
       ]
-      _fulltext: { contains: $term }
       _metadata: { types: { in: "_Page" } }
     }
     orderBy: { _ranking: SEMANTIC }

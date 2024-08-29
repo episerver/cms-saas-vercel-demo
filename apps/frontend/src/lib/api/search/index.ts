@@ -154,7 +154,7 @@ export async function contentSearch(term: string, { facets, limit = 12, start = 
 async function getTopTopic() : Promise<string | undefined>
 {
     const interests = await ContentIntel.getTopTopics()
-    return interests.shift()
+    return interests.slice(0,3).join(',')
 }
 
 function isNotNullOrUndefined<T>(toTest?: T | null) : toTest is T
