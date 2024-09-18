@@ -3,7 +3,7 @@ import { ArticleListElementDataFragmentDoc, type ArticleListElementDataFragment 
 import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/sdk"
 import { type InputMaybe, type Locales } from "@/gql/graphql";
-import { CmsContentLink } from "@remkoj/optimizely-cms-nextjs/components";
+import { CmsContentLink, type CmsContentLinkProps } from "@remkoj/optimizely-cms-nextjs/components";
 import Card from "@/components/shared/card";
 import { RichText } from "@remkoj/optimizely-cms-react/components";
 import { CmsImage } from "@/components/shared/cms_image";
@@ -42,7 +42,7 @@ contentLink: {
             }
 
             return <div key={ article.articleMeta?.key } className="article-list-item w-full h-full relative">
-                <CmsContentLink href={article}>
+                <CmsContentLink href={article as CmsContentLinkProps['href']}>
                     {/*
                     <article className="prose max-w-none p-8 pb-16 bg-white rounded-[20px] w-full h-full before:content-[''] before:absolute before:top-[1px] before:left-[1px] before:w-[calc(100%-2px)] before:h-[calc(100%-2px)] before:z-[-1] before:rounded-[20px] before:bg-azure before:transition-transform before:ease-in-out before:duration-300 hover:before:translate-x-8 hover:before:translate-y-8 focus:before:translate-x-8 focus:before:translate-y-8 dark:bg-vulcan-85 dark:text-ghost-white">
                     */}

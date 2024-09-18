@@ -36,7 +36,7 @@ StartPage.getMetaData = async (contentLink, locale, client) => {
     title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName,
     description: cmsManagedData.SeoSettings?.MetaDescription,
     openGraph: {
-      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'website'),
+      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'website') ?? 'website',
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
     },

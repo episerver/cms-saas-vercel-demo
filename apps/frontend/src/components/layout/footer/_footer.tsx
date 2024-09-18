@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "@components/shared/cms_link";
 import { useRouter } from "next/navigation";
 import { useCallback } from "react";
-import type { FooterMenuNavigationItemFragment, HtmlBlockFragment, LinkItemDataFragment, LinkDataFragment } from '@gql/graphql'
+import type { FooterMenuNavigationItemFragment, HtmlBlockFragment, LinkDataFragment } from '@gql/graphql'
+import { type LinkItemData as LinkItemDataFragment } from "@/lib/urls";
 
 type FooterColumnData = (FooterMenuNavigationItemFragment & { content?: never } | (HtmlBlockFragment & { items?: never}))
 

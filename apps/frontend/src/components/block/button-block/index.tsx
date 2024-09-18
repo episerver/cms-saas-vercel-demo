@@ -1,5 +1,6 @@
 import type { ComponentProps } from "react";
-import type { Maybe, ButtonBlockProperty, LinkDataFragment } from "@gql/graphql";
+import type { Maybe, ButtonBlockProperty } from "@gql/graphql";
+import { type LinkData } from "@/lib/urls";
 import Link from "next/link";
 import { urlToRelative } from '@components/shared/cms_link'
 
@@ -10,7 +11,7 @@ export type ButtonBlockComponentType = Omit<ComponentProps<typeof Link>, 'href' 
     base?: Maybe<string>
     hierarchical?: Maybe<string>
     default?: Maybe<string>
-  } | LinkDataFragment
+  } | LinkData
   buttonType?: ButtonBlockType["ButtonType"]
   buttonVariant?: ButtonBlockType["ButtonVariant"]
 }

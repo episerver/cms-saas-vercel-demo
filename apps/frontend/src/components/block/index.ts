@@ -3,7 +3,6 @@ import HomeHero from './hero-home'
 import HeroBlock from './hero'
 import TextBlock from './text-block'
 import Carousel from './carousel-block'
-import ContainerBlock from './container-block'
 import CardBlock from './card-block'
 import QuoteBlock from './quote-block'
 import BlogListingBlock from './blog-listing-block'
@@ -25,10 +24,6 @@ export const Blocks : ComponentTypeDictionary = [
     {
         type: ['Component', 'CarouselBlock'],
         component: Carousel
-    },
-    {
-        type: ['Component', 'LayoutContainerBlock'],
-        component: ContainerBlock
     },
     {
         type: ["Component", "OdpEmbedBlock" ],

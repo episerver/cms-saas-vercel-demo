@@ -1,4 +1,4 @@
-query getArticleListElementItems($count: Int, $locale: [Locales]) {
+query getArticleListElementItems($count: Int!, $locale: [Locales]) {
   BlogPostPage (
     orderBy: { _metadata: { published: DESC } }
     limit: $count

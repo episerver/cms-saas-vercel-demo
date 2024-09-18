@@ -1,7 +1,7 @@
 import { useMemo } from 'react'
 import Image from "next/image";
 import ButtonBlock from "../button-block";
-import { useFragment } from "@gql";
+import { getFragmentData } from "@gql";
 import { HeroBlockDataFragmentDoc, ReferenceDataFragmentDoc, LinkDataFragmentDoc, type HeroBlockDataFragment} from '@gql/graphql'
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
@@ -17,8 +17,8 @@ const HeroBlock: CmsComponent<HeroBlockDataFragment> = ({
   }
 }) => {
   const { inEditMode } = getServerContext()
-  const heroImage = useFragment(ReferenceDataFragmentDoc, image)
-  const heroImageLink = useFragment(LinkDataFragmentDoc, heroImage?.url)
+  const heroImage = getFragmentData(ReferenceDataFragmentDoc, image)
+  const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url)
   const heroImageSrc = new URL(heroImageLink?.default ?? '/', heroImageLink?.base ?? 'https://example.com').href
   const hasImage = heroImageLink != null && heroImageLink != undefined
 

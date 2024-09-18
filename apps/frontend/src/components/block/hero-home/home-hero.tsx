@@ -1,6 +1,6 @@
 "use client";
 
-import { Schema, useFragment } from '@gql'
+import { Schema, getFragmentData } from '@gql'
 import { type FunctionComponent } from "react";
 import Button from "../button-block";
 import Image from "next/image";
@@ -13,8 +13,8 @@ type HomeHeroBlockComponentType = FunctionComponent<{
 }>
 
 const HomeHero: HomeHeroBlockComponentType = ({ data: { homeHeroHeading: heading = "", homeHeroSubheading: subheading = "", homeHeroButton: button, leftImage, rightImage }, inEditMode }) => {
-  const leftImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, leftImage)?.url)
-  const rightImageUrlData = useFragment(Schema.LinkDataFragmentDoc, useFragment(Schema.ReferenceDataFragmentDoc, rightImage)?.url)
+  const leftImageUrlData = getFragmentData(Schema.LinkDataFragmentDoc, getFragmentData(Schema.ReferenceDataFragmentDoc, leftImage)?.url)
+  const rightImageUrlData = getFragmentData(Schema.LinkDataFragmentDoc, getFragmentData(Schema.ReferenceDataFragmentDoc, rightImage)?.url)
   const leftImageUrl = leftImageUrlData ? new URL(leftImageUrlData.default ?? '/', leftImageUrlData.base ?? 'https://example.com').href : undefined
   const rightImageUrl = rightImageUrlData ? new URL(rightImageUrlData.default ?? '/', rightImageUrlData.base ?? 'https://example.com').href : undefined
 

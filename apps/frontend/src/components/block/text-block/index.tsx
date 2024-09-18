@@ -2,7 +2,7 @@ import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 
-const TextBlock: CmsComponent<GraphQL.TextBlockDataFragment> = ({
+const TextBlock: CmsComponent<Partial<GraphQL.TextBlockDataFragment>> = ({
   data,
   inEditMode,
 }) => {

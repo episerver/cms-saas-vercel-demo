@@ -1,10 +1,10 @@
 import { type ComponentProps, type FunctionComponent } from 'react'
-import { type LinkDataFragment, type ReferenceDataFragment } from '@gql/graphql'
+import { type LinkData, type ReferenceData } from "@/lib/urls"
 import Image from 'next/image'
 import { linkDataToUrl, getLinkData } from '@/lib/urls'
 
 type CmsImageProps = Readonly<{
-    src?: LinkDataFragment | ReferenceDataFragment | null,
+    src?: LinkData | ReferenceData | null,
     fallbackSrc?: string
 } & Omit<ComponentProps<typeof Image>, 'src'>>
 

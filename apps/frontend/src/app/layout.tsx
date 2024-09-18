@@ -56,11 +56,12 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const ga_id = EnvTools.readValue("GA_TRACKING_ID");
+  const forceDisableOverride = EnvTools.readValue("DISABLE_WX_SWITCHER", "0") == '1'
   
   return (
     <html>
       <head>
-        <Scripts.Header />
+        <Scripts.Header experimentationAllowOverride={ !forceDisableOverride } />
       </head>
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan dark:text-white overflow-x-hidden`}>

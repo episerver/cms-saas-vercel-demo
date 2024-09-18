@@ -7,6 +7,7 @@
 
 # testing
 /coverage
+/codegen-*.json
 
 # next.js
 /.next/

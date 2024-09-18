@@ -3,7 +3,7 @@ import * as GraphQL from '@gql/graphql'
 import { getSdk } from "@/sdk";
 import { Utils } from '@remkoj/optimizely-cms-react'
 import 'server-only'
-import { useFragment } from '@gql';
+import { getFragmentData } from '@gql';
 
 export async function getArticles(locale: string, paging?: Types.PagingData, filters?: Types.Filters) : Promise<Types.GetArticlesResult>
 {
@@ -39,11 +39,11 @@ export async function getArticles(locale: string, paging?: Types.PagingData, fil
             published: (articleResponse.facets?._metadata?.published ?? []).filter(Utils.isNotNullOrUndefined).map(x => { return { date: x.name ?? "", count: x.count ?? 0}})
         },
         items: (articleResponse.items ?? []).filter(Utils.isNotNullOrUndefined).map(item => {
-            const iContentData = useFragment(GraphQL.IContentDataFragmentDoc, item)
-            const metadata = useFragment(GraphQL.IContentInfoFragmentDoc, iContentData._metadata)
-            const imageUrlData = useFragment(GraphQL.LinkDataFragmentDoc, useFragment(GraphQL.ReferenceDataFragmentDoc, item.image)?.url)
+            const iContentData = getFragmentData(GraphQL.IContentDataFragmentDoc, item)
+            const metadata = getFragmentData(GraphQL.IContentInfoFragmentDoc, iContentData._metadata)
+            const imageUrlData = getFragmentData(GraphQL.LinkDataFragmentDoc, getFragmentData(GraphQL.ReferenceDataFragmentDoc, item.image)?.url)
             const imageUrl = imageUrlData ? new URL(imageUrlData?.default ?? '/', imageUrlData?.base ?? 'https://example.com').href : undefined
-            const itemUrlData = useFragment(GraphQL.LinkDataFragmentDoc, metadata?.url)
+            const itemUrlData = getFragmentData(GraphQL.LinkDataFragmentDoc, metadata?.url)
             const itemUrl = itemUrlData ? new URL(itemUrlData?.default ?? '/', itemUrlData?.base ?? 'https://example.com') : undefined
             return {
                 id: metadata?.key ?? "",

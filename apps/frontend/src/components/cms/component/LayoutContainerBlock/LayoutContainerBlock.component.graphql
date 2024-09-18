@@ -1,0 +1,11 @@
+fragment LayoutContainerBlockData on LayoutContainerBlock {
+  columns: ColumnsCount
+  gap: GapSize
+  LayoutContentArea { ...BlockData }
+  containerColor: ContainerBackgroundColor
+  backgroundImage: ContainerBackgroundImage { ...ReferenceData }
+  marginTop: ContainerMarginTop
+  marginBottom: ContainerMarginBottom
+  paddingBottom: ContainerPaddingBottom
+  paddingTop: ContainerPaddingTop
+}
