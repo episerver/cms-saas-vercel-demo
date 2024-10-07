@@ -33,3 +33,23 @@ export type RowComponentProps<DT extends Record<string, any> = Record<string, an
 } & JSX.IntrinsicElements['div']
 
 export type RowComponent<DT extends Record<string, any> = Record<string, any>, LP extends RowLayoutProps = RowLayoutProps> = (props: RowComponentProps<DT,LP>) => ReactNode
+
+export function isDefaultProps(props?: RowLayoutProps | null) : props is DefaultRowProps
+{
+    return props?.template == "DefaultRow"
+}
+
+export function isCardRowProps(props?: RowLayoutProps | null) : props is CardRowProps
+{
+    return props?.template == "CardRow"
+}
+
+export function isCarouselRowProps(props?: RowLayoutProps | null) : props is CarouselRowProps
+{
+    return props?.template == "CarouselRow"
+}
+
+export function isDefaultRowProps(props?: RowLayoutProps | null) : props is DefaultRowProps
+{
+    return props?.template == "DefaultRow"
+}

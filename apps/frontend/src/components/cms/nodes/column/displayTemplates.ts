@@ -25,3 +25,18 @@ export type ColumnComponentProps<DT extends Record<string, any> = Record<string,
 } & JSX.IntrinsicElements['div']
 
 export type ColumnComponent<DT extends Record<string, any> = Record<string, any>, LP extends ColumnLayoutProps = ColumnLayoutProps> = (props: ColumnComponentProps<DT,LP>) => ReactNode
+
+export function isDefaultProps(props?: ColumnLayoutProps | null) : props is DefaultColumnProps
+{
+    return props?.template == "DefaultColumn"
+}
+
+export function isCardColumnProps(props?: ColumnLayoutProps | null) : props is CardColumnProps
+{
+    return props?.template == "CardColumn"
+}
+
+export function isDefaultColumnProps(props?: ColumnLayoutProps | null) : props is DefaultColumnProps
+{
+    return props?.template == "DefaultColumn"
+}

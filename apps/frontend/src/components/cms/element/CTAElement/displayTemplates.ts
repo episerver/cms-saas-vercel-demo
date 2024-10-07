@@ -26,12 +26,17 @@ export type CTAElementComponentProps<DT extends Record<string, any> = Record<str
 
 export type CTAElementComponent<DT extends Record<string, any> = Record<string, any>, LP extends CTAElementLayoutProps = CTAElementLayoutProps> = (props: CTAElementComponentProps<DT,LP>) => ReactNode
 
-export function isAnimatedTemplate(props?: CTAElementLayoutProps | null) : props is CTAElementAnimatedStylesProps
+export function isDefaultProps(props?: CTAElementLayoutProps | null) : props is CTAElementDefaultStylesProps
+{
+    return props?.template == "CTAElementDefaultStyles"
+}
+
+export function isCTAElementAnimatedStylesProps(props?: CTAElementLayoutProps | null) : props is CTAElementAnimatedStylesProps
 {
     return props?.template == "CTAElementAnimatedStyles"
 }
 
-export function isDefaultTemplate(props?: CTAElementLayoutProps | null) : props is CTAElementDefaultStylesProps
+export function isCTAElementDefaultStylesProps(props?: CTAElementLayoutProps | null) : props is CTAElementDefaultStylesProps
 {
-    return props?.template == "CTAElementDefaultStyles" || props?.template == null
+    return props?.template == "CTAElementDefaultStyles"
 }

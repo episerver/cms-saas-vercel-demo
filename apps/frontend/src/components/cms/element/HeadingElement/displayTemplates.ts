@@ -26,12 +26,17 @@ export type HeadingElementComponentProps<DT extends Record<string, any> = Record
 
 export type HeadingElementComponent<DT extends Record<string, any> = Record<string, any>, LP extends HeadingElementLayoutProps = HeadingElementLayoutProps> = (props: HeadingElementComponentProps<DT,LP>) => ReactNode
 
-export function isDefaultTemplate(props?: HeadingElementLayoutProps | null) : props is HeadingStylesProps
+export function isDefaultProps(props?: HeadingElementLayoutProps | null) : props is HeadingStylesProps
 {
     return props?.template == "HeadingStyles"
 }
 
-export function isAnimatedTemplate(props?: HeadingElementLayoutProps | null) : props is AnimatedHeadingStylesProps
+export function isAnimatedHeadingStylesProps(props?: HeadingElementLayoutProps | null) : props is AnimatedHeadingStylesProps
 {
     return props?.template == "AnimatedHeadingStyles"
+}
+
+export function isHeadingStylesProps(props?: HeadingElementLayoutProps | null) : props is HeadingStylesProps
+{
+    return props?.template == "HeadingStyles"
 }

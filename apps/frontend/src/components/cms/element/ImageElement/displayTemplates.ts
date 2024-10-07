@@ -25,3 +25,18 @@ export type ImageElementComponentProps<DT extends Record<string, any> = Record<s
 } & JSX.IntrinsicElements['div']
 
 export type ImageElementComponent<DT extends Record<string, any> = Record<string, any>, LP extends ImageElementLayoutProps = ImageElementLayoutProps> = (props: ImageElementComponentProps<DT,LP>) => ReactNode
+
+export function isDefaultProps(props?: ImageElementLayoutProps | null) : props is DefaultImageElementProps
+{
+    return props?.template == "DefaultImageElement"
+}
+
+export function isDefaultImageElementProps(props?: ImageElementLayoutProps | null) : props is DefaultImageElementProps
+{
+    return props?.template == "DefaultImageElement"
+}
+
+export function isIconImageElementProps(props?: ImageElementLayoutProps | null) : props is IconImageElementProps
+{
+    return props?.template == "IconImageElement"
+}

@@ -35,7 +35,7 @@ const config: CodegenConfig = {
     ],
     generates: {
         './gql/': {
-            //documents: ['opti-cms:/queries/12', 'opti-cms:/fragments/12'],
+            //documents: ['opti-cms:/queries/13', 'opti-cms:/fragments/13'],
             preset: OptimizelyGraphPreset,
             presetConfig: {
                 // By default the preset will generate recursive queries

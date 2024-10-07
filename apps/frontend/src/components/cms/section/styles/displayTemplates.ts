@@ -17,3 +17,13 @@ export type SectionComponentProps<DT extends Record<string, any> = Record<string
 } & JSX.IntrinsicElements['div']
 
 export type SectionComponent<DT extends Record<string, any> = Record<string, any>, LP extends SectionLayoutProps = SectionLayoutProps> = (props: SectionComponentProps<DT,LP>) => ReactNode
+
+export function isDefaultProps(props?: SectionLayoutProps | null) : props is DefaultGridProps
+{
+    return props?.template == "DefaultGrid"
+}
+
+export function isDefaultGridProps(props?: SectionLayoutProps | null) : props is DefaultGridProps
+{
+    return props?.template == "DefaultGrid"
+}
