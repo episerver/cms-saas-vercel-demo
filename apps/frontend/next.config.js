@@ -1,12 +1,17 @@
+const isNonProduction = process.env.NODE_ENV != 'production'
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    compiler: {
+        removeConsole: !isNonProduction
+    },
     basePath: "",
     cleanDistDir: true,
     images: {
         loader: 'custom',
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
         remotePatterns: []
-    }
+    },
 }
 
 // Add the configured Optimizely DXP URL to the image domains
@@ -21,10 +26,5 @@ if (optimizelyDxpUrl) {
         pathname: (optimizelyDxpHost.pathname || '/') + '**'
     })
 }
-
-/*if (process.env.NODE_ENV != 'production') {
-    console.log("Frontend domain:", process.env.SITE_DOMAIN)
-    console.log("Next.JS Config:", JSON.stringify(nextConfig, undefined, 2))
-}*/
 
 module.exports = nextConfig

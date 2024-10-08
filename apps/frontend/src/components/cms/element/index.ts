@@ -7,6 +7,7 @@ import HeadingElementComponent from "./HeadingElement";
 import ImageElementComponent from "./ImageElement";
 import ParagraphElementComponent from "./ParagraphElement";
 import TestimonialElementComponent from "./TestimonialElement";
+import VideoElementComponent from "./VideoElement";
 
 // Build dictionary
 export const elementDictionary : ComponentTypeDictionary = [
@@ -37,6 +38,10 @@ export const elementDictionary : ComponentTypeDictionary = [
     { 
         type: "TestimonialElement", 
         component: TestimonialElementComponent 
+    },
+    { 
+        type: "VideoElement",
+        component: VideoElementComponent 
     }
 ];
 

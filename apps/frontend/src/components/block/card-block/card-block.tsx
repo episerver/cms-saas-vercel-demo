@@ -4,7 +4,7 @@ import { type Schema } from "@gql";
 import { type InlineContentLinkWithLocale, type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import ButtonBlock from "../button-block";
+import ButtonBlock from "@cms/component/ButtonBlock";
 import { refToURL } from '@/lib/conversions'
 
 type CardProps = {

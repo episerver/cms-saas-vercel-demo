@@ -1,0 +1,102 @@
+{
+  "key": "ButtonBlock",
+  "displayName": "Button",
+  "description": "Represents an instance of a button",
+  "baseType": "component",
+  "source": "",
+  "sortOrder": 100,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-30T00:02:44.2566667+00:00",
+  "lastModified": "2024-01-30T00:02:44.2566667+00:00",
+  "lastModifiedBy": "joshua.folkerts@episerver.com",
+  "properties": {
+    "ButtonText": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Text",
+      "description": "The text of the button",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "ButtonUrl": {
+      "type": "url",
+      "displayName": "Link",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 15,
+      "editorSettings": {}
+    },
+    "ButtonClass": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Class name",
+      "description": "The css class for adding custom styles too",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "ButtonType": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Button type",
+      "description": "The type of button to display",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Primary",
+            "value": "primary"
+          },
+          {
+            "displayName": "Secondary",
+            "value": "secondary"
+          }
+        ]
+      }
+    },
+    "ButtonVariant": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Variant",
+      "description": "The type of button to display",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Default",
+            "value": "default"
+          },
+          {
+            "displayName": "CTA",
+            "value": "cta"
+          }
+        ]
+      }
+    }
+  }
+}

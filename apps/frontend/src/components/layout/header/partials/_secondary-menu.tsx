@@ -1,5 +1,5 @@
 import { forwardRef, useContext } from "react";
-import Button from "@/components/block/button-block";
+import Button from "@cms/component/ButtonBlock";
 import { HeaderContext } from "../_header";
 import { ThemePicker } from "./_themepicker";
 import { SiteSearch } from "./_site-search";

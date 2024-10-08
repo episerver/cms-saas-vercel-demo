@@ -11,17 +11,20 @@ import { TypedDocumentNode as DocumentNode } from '@graphql-typed-document-node/
  * 3. It does not support dead code elimination, so it will add unused operations.
  *
  * Therefore it is highly recommended to use the babel or swc plugin for production.
+ * Learn more about it here: https://the-guild.dev/graphql/codegen/plugins/presets/preset-client#reducing-bundle-size
  */
 const documents = {
     "fragment BlogListingBlockData on BlogListingBlock {\n  _metadata {\n    name: displayName\n  }\n  showFilters: BlogListingShowFilters\n  selectedPageSize: BlogListingItemCount\n}": types.BlogListingBlockDataFragmentDoc,
     "\nfragment CardBlockData on CardBlock {\n  cardButton: CardButton {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  cardColor: CardColor\n  cardDescription: CardDescription {\n    json\n    html\n  }\n  cardHeading: CardHeading\n  cardIcon: CardIcon {\n    ...ReferenceData\n  }\n  cardImage: CardImage {\n    ...ReferenceData\n  }\n  cardSubheading: CardSubHeading\n  cardImageLayout: ImageLayout\n}\n": types.CardBlockDataFragmentDoc,
     "fragment CarouselBlockData on CarouselBlock {\n    CarouselItemsContentArea {\n        ...IContentListItem\n    }\n}": types.CarouselBlockDataFragmentDoc,
-    "fragment HomeHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  homeHeroButton: HomeHeroButtonBlock {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n}": types.HomeHeroBlockDataFragmentDoc,
-    "fragment HeroBlockData on HeroBlock {\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroButton: HeroButton {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  heroColor: HeroColor\n  heroDescription: Description {\n    html\n    json\n  }\n  eyebrow: Eyebrow\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n}": types.HeroBlockDataFragmentDoc,
     "\n  fragment OdpEmbedBlockData on OdpEmbedBlock {\n    ContentId\n  }\n": types.OdpEmbedBlockDataFragmentDoc,
     "\n    fragment QuoteBlockData on QuoteBlock {\n      quote: QuoteText\n      color: QuoteColor\n      active: QuoteActive\n      name: QuoteProfileName\n      profilePicture: QuoteProfilePicture {\n        ...ReferenceData\n      }\n      location: QuoteProfileLocation\n    }\n  ": types.QuoteBlockDataFragmentDoc,
     "\n    fragment TextBlockData on TextBlock {\n      overline: TextBlockOverline\n      headingSize: TextBlockHeadingSize\n      heading: TextBlockHeading\n      description: TextBlockDescription {\n        json\n        html\n      }\n      center: TextCenter\n      width: TextBlockWidth\n      className: TextClassName\n    }\n  ": types.TextBlockDataFragmentDoc,
+    "fragment ButtonBlockData on ButtonBlock {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}": types.ButtonBlockDataFragmentDoc,
+    "fragment ButtonBlockPropertyData on ButtonBlockProperty {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}": types.ButtonBlockPropertyDataFragmentDoc,
     "fragment ContentRecsBlockData on ContentRecsBlock {\n  BlockDeliveryApiKey\n  BlockRecommendationCount\n}": types.ContentRecsBlockDataFragmentDoc,
+    "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}": types.HeroBlockDataFragmentDoc,
+    "fragment HomePageHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n  homeHeroButton: HomeHeroButtonBlock {\n    ...ButtonBlockPropertyData\n  }\n}": types.HomePageHeroBlockDataFragmentDoc,
     "fragment LayoutContainerBlockData on LayoutContainerBlock {\n  columns: ColumnsCount\n  gap: GapSize\n  LayoutContentArea {\n    ...BlockData\n  }\n  containerColor: ContainerBackgroundColor\n  backgroundImage: ContainerBackgroundImage {\n    ...ReferenceData\n  }\n  marginTop: ContainerMarginTop\n  marginBottom: ContainerMarginBottom\n  paddingBottom: ContainerPaddingBottom\n  paddingTop: ContainerPaddingTop\n}": types.LayoutContainerBlockDataFragmentDoc,
     "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsPropertyDataFragmentDoc,
     "fragment ArticleListElementData on ArticleListElement {\n  articleListCount\n}": types.ArticleListElementDataFragmentDoc,
@@ -32,6 +35,7 @@ const documents = {
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
     "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}": types.TestimonialElementDataFragmentDoc,
+    "fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}": types.VideoElementDataFragmentDoc,
     "fragment BlankExperienceData on BlankExperience {\n  BlankExperienceSeoSettings {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}": types.BlankExperienceDataFragmentDoc,
     "query getBlankExperienceMetaData($key: String!, $locale: [Locales]) {\n  page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {\n    items {\n      meta: _metadata {\n        displayName\n      }\n      seo: BlankExperienceSeoSettings {\n        title: MetaTitle\n        description: MetaDescription\n        image: SharingImage {\n          ...ReferenceData\n        }\n        type: GraphType\n      }\n    }\n  }\n}": types.getBlankExperienceMetaDataDocument,
     "query getStartPageMetaData($key: String!, $version: String, $locale: [Locales]) {\n  StartPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      _metadata {\n        displayName\n        key\n        version\n        locale\n      }\n      SiteImageLogo {\n        ...ReferenceData\n      }\n      SeoSettings {\n        MetaTitle\n        MetaDescription\n        SharingImage {\n          ...ReferenceData\n        }\n        GraphType\n      }\n    }\n  }\n}": types.getStartPageMetaDataDocument,
@@ -82,14 +86,6 @@ export function gql(source: "fragment CarouselBlockData on CarouselBlock {\n    
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment HomeHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  homeHeroButton: HomeHeroButtonBlock {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n}"): (typeof documents)["fragment HomeHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  homeHeroButton: HomeHeroButtonBlock {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
-export function gql(source: "fragment HeroBlockData on HeroBlock {\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroButton: HeroButton {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  heroColor: HeroColor\n  heroDescription: Description {\n    html\n    json\n  }\n  eyebrow: Eyebrow\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n}"): (typeof documents)["fragment HeroBlockData on HeroBlock {\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroButton: HeroButton {\n    className: ButtonClass\n    children: ButtonText\n    buttonType: ButtonType\n    url: ButtonUrl {\n      ...LinkData\n    }\n    buttonVariant: ButtonVariant\n  }\n  heroColor: HeroColor\n  heroDescription: Description {\n    html\n    json\n  }\n  eyebrow: Eyebrow\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n}"];
-/**
- * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
- */
 export function gql(source: "\n  fragment OdpEmbedBlockData on OdpEmbedBlock {\n    ContentId\n  }\n"): (typeof documents)["\n  fragment OdpEmbedBlockData on OdpEmbedBlock {\n    ContentId\n  }\n"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -102,7 +98,23 @@ export function gql(source: "\n    fragment TextBlockData on TextBlock {\n      
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "fragment ButtonBlockData on ButtonBlock {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}"): (typeof documents)["fragment ButtonBlockData on ButtonBlock {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment ButtonBlockPropertyData on ButtonBlockProperty {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}"): (typeof documents)["fragment ButtonBlockPropertyData on ButtonBlockProperty {\n  children: ButtonText\n  url: ButtonUrl {\n    ...LinkData\n  }\n  className: ButtonClass\n  buttonType: ButtonType\n  buttonVariant: ButtonVariant\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "fragment ContentRecsBlockData on ContentRecsBlock {\n  BlockDeliveryApiKey\n  BlockRecommendationCount\n}"): (typeof documents)["fragment ContentRecsBlockData on ContentRecsBlock {\n  BlockDeliveryApiKey\n  BlockRecommendationCount\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}"): (typeof documents)["fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment HomePageHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n  homeHeroButton: HomeHeroButtonBlock {\n    ...ButtonBlockPropertyData\n  }\n}"): (typeof documents)["fragment HomePageHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n  homeHeroButton: HomeHeroButtonBlock {\n    ...ButtonBlockPropertyData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -143,6 +155,10 @@ export function gql(source: "fragment ParagraphElementData on ParagraphElement {
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"): (typeof documents)["fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}"): (typeof documents)["fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

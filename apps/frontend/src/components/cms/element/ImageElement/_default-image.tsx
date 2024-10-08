@@ -1,11 +1,10 @@
 import 'server-only'
 import { type ImageElementDataFragment } from "@/gql/graphql"
-//import Image from 'next/image'
+import { type FunctionComponent, type ComponentProps } from 'react'
 import { extractSettings } from '@remkoj/optimizely-cms-react/components'
 import Animation from '@/components/shared/animation'
 import { type MotionProps } from 'framer-motion'
-// To be moved to library
-import Image from '@/components/shared/cms_image'
+import Image from '@/components/shared/cms_image' // To be moved to library
 import { DefaultImageElementComponent } from './displayTemplates'
 
 enum portraitAspectRatioClasses {
@@ -43,7 +42,11 @@ enum delayClasses {
     verylong = 2,
 }
 
-export const ImageElement : DefaultImageElementComponent<ImageElementDataFragment> = ({ data: { altText, imageLink }, layoutProps, children, ...props }) => {
+type ImageElementProps = ComponentProps<DefaultImageElementComponent<ImageElementDataFragment>> & {
+    withReducedMotion?: boolean
+}
+
+export const ImageElement : FunctionComponent<ImageElementProps>  = ({ data: { altText, imageLink }, layoutProps, children, withReducedMotion = false, ...props }) => {
     const { 
         roundedCorners="none", 
         appear="none", 
@@ -61,7 +64,7 @@ export const ImageElement : DefaultImageElementComponent<ImageElementDataFragmen
     cssClasses.push((isPortrait ? portraitAspectRatioClasses[aspectRatio] : landscapeAspectRatioClasses[aspectRatio]) ?? '') //Add aspect ratio
     cssClasses.push(roundedCornersClasses[roundedCorners] ?? '') // Add rounded corners
 
-    if (useFadeIn) {
+    if (useFadeIn && !withReducedMotion) {
         const fadeInDuration : number = durationClasses[duration] ?? 0
         const fadeInDelay : number = delayClasses[delay] ?? 0
         const initialClip = direction == 'rtl' ? "circle(0% at 100%)" : "circle(0% at 0%)"
