@@ -1,6 +1,6 @@
 "use server"
 import getSdk from "@/sdk"
-import { type Sdk, useFragment, Schema } from "@gql"
+import { type Sdk, getFragmentData, Schema } from "@gql"
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
 import { type TypedNode } from "@remkoj/optimizely-cms-react/components"
@@ -102,10 +102,10 @@ export async function contentSearch(term: string, { facets, limit = 12, start = 
         },
         items: (rawResults.Content?.items?.filter(isNotNullOrUndefined) || []).map(item => {
             // Read fragments
-            const searchItemData = useFragment(Schema.SearchDataFragmentDoc, item)
-            const iContentData = useFragment(Schema.IContentDataFragmentDoc, searchItemData)
-            const iContentMetaData = useFragment(Schema.IContentInfoFragmentDoc, iContentData?._metadata)
-            const iContentUrlData = useFragment(Schema.LinkDataFragmentDoc, iContentMetaData?.url)
+            const searchItemData = getFragmentData(Schema.SearchDataFragmentDoc, item)
+            const iContentData = getFragmentData(Schema.IContentDataFragmentDoc, searchItemData)
+            const iContentMetaData = getFragmentData(Schema.IContentInfoFragmentDoc, iContentData?._metadata)
+            const iContentUrlData = getFragmentData(Schema.LinkDataFragmentDoc, iContentMetaData?.url)
 
             // Build ID
             const contentLink : ContentLinkWithLocale = {

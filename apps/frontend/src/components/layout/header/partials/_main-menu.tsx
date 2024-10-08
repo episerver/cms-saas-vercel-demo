@@ -2,16 +2,17 @@
 
 import Link from "@components/shared/cms_link";
 import Image from "@components/shared/cms_image";
-import { useContext, useEffect, useRef, useState, useMemo, type FunctionComponent } from "react";
+import { useContext, useEffect, useRef, useMemo, type FunctionComponent } from "react";
 import { HeaderContext } from "../_header";
 import { type Schema } from "@gql";
 import { MenuItemFragment } from "@gql/graphql";
 import { RichText, DefaultComponents } from '@remkoj/optimizely-cms-react/components'
-import { DefaultComponentFactory, type ComponentFactory } from "@remkoj/optimizely-cms-react";
+import { DefaultComponentFactory } from "@remkoj/optimizely-cms-react";
+import { type LinkItemData } from "@/lib/urls";
 
-function isLinkItemData(item?: any): item is Schema.LinkItemDataFragment
+function isLinkItemData(item?: any): item is NonNullable<LinkItemData>
 {
-  if (typeof(item) != 'object' || item == null)
+  if (!item || typeof(item) != 'object' || item == null)
     return false
   return item.text != undefined && typeof(item.url) == 'object' && item.url != null && item.url.default != undefined
 }
@@ -31,7 +32,7 @@ const MenuItem : FunctionComponent<MenuItemProps> = ({ menuList, ...props }) => 
           {menuList.items && (
             <ul className="grid gap-5">
               {menuList.items?.filter(isLinkItemData)?.map((menuItem) => (
-                <li key={menuItem.text}>
+                menuItem && <li key={menuItem.text}>
                   <Link
                     className="hover:text-azure focus:text-azure dark:hover:text-verdansk"
                     href={menuItem}
@@ -106,6 +107,7 @@ function DropdownMenu({ menuName, menuData = [], ...props }: Schema.MegaMenuItem
         <section className="outer-padding absolute pt-10 pb-20 z-50 top-[88px] left-0 bg-ghost-white w-full shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)] dark:bg-vulcan dark:text-white" data-menu-item={menuName}>
           <div className={`container mx-auto grid ${gridColumnClass.current}`}>
             {menuData.filter(isMenuNavigationItem).map((menuList, index) => {
+              if (!menuList) return undefined
               const keyPrefix = (menuList.__typename == "MenuNavigationBlock" ? menuList.title : menuList.heading) ?? ''
               return (
                 <MenuItem key={keyPrefix + index} menuList={menuList} />

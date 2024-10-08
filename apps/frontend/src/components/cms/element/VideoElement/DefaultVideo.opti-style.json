@@ -1,0 +1,134 @@
+{
+  "key": "DefaultVideo",
+  "displayName": "Default Video Player",
+  "contentType": "VideoElement",
+  "isDefault": true,
+  "created": "2024-10-08T11:11:00.7498593+00:00",
+  "createdBy": "remko.jantzen@optimizely.com",
+  "lastModified": "2024-10-08T12:58:07.5872432+00:00",
+  "lastModifiedBy": "remko.jantzen@optimizely.com",
+  "settings": {
+    "roundedCorners": {
+      "displayName": "Rounded corners",
+      "editor": "",
+      "sortOrder": 60,
+      "choices": {
+        "full": {
+          "displayName": "Full",
+          "sortOrder": 60
+        },
+        "huge": {
+          "displayName": "Huge",
+          "sortOrder": 50
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        }
+      }
+    },
+    "muted": {
+      "displayName": "Mute audio",
+      "editor": "",
+      "sortOrder": 50,
+      "choices": {
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        },
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
+        }
+      }
+    },
+    "loop": {
+      "displayName": "Loop video",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        },
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
+        }
+      }
+    },
+    "autoPlay": {
+      "displayName": "Start playback automatically",
+      "editor": "",
+      "sortOrder": 30,
+      "choices": {
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        },
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
+        }
+      }
+    },
+    "showControls": {
+      "displayName": "Show player controls",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        },
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
+        }
+      }
+    },
+    "aspectRatio": {
+      "displayName": "Aspect Ratio",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "ratio_9_16": {
+          "displayName": "9:16",
+          "sortOrder": 60
+        },
+        "ratio_3_4": {
+          "displayName": "3:4",
+          "sortOrder": 50
+        },
+        "ratio_1_1": {
+          "displayName": "1:1",
+          "sortOrder": 40
+        },
+        "ratio_4_3": {
+          "displayName": "4:3",
+          "sortOrder": 30
+        },
+        "ratio_16_9": {
+          "displayName": "16:9",
+          "sortOrder": 20
+        },
+        "auto": {
+          "displayName": "Original",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

@@ -3,7 +3,7 @@ import type * as GraphQL from "@gql/graphql";
 import { gql } from "@gql/gql";
 import dynamic from "next/dynamic";
 import "server-only";
-import ContainerBlock from "../container-block";
+import ContainerBlock from "../../cms/component/LayoutContainerBlock";
 import getArticles from "@/lib/api/articles";
 
 export type BlogListingComponentType =
@@ -15,7 +15,7 @@ const BlogListingBlockComponent = dynamic(
 );
 
 export const BlogListingBlock: CmsComponent<
-  GraphQL.BlogListingBlockDataFragment
+  Partial<GraphQL.BlogListingBlockDataFragment>
 > = async ({ data: { selectedPageSize, showFilters }, contentLink }) => {
   const locale = contentLink.locale ?? 'en';
   const articles = await getArticles(locale, {
@@ -27,7 +27,7 @@ export const BlogListingBlock: CmsComponent<
     <>
       <ContainerBlock
         contentLink={contentLink}
-        data={{ columns: 1 }}
+        data={{ columns: 1, backgroundImage: null, containerColor: null, gap: null, LayoutContentArea: null, marginBottom: null, marginTop: null, paddingBottom: null, paddingTop: null }}
       >
         {articles && (
           <BlogListingBlockComponent

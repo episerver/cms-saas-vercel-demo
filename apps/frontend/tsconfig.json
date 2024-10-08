@@ -26,6 +26,8 @@
       "@app/*": ["./src/app/*"],
       "@components": ["./src/components"],
       "@components/*": ["./src/components/*"],
+      "@cms": ["./src/components/cms/"],
+      "@cms/*": ["./src/components/cms/*"],
       "@gql": ["./gql"],
       "@gql/*": ["./gql/*"],
       "@/gql": ["./gql"],

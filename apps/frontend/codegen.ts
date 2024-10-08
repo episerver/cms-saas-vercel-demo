@@ -35,13 +35,14 @@ const config: CodegenConfig = {
     ],
     generates: {
         './gql/': {
+            //documents: ['opti-cms:/queries/13', 'opti-cms:/fragments/13'],
             preset: OptimizelyGraphPreset,
             presetConfig: {
                 // By default the preset will generate recursive queries
                 // untill multiple recursions are supported, this needs to
                 // be disabled when there's more then one component that
                 // will use recursion
-                recursion: false,
+                recursion: true,
 
                 // The GQL tag to be used to identify inline GraphQL queries
                 gqlTagName: 'gql',
@@ -101,7 +102,7 @@ const config: CodegenConfig = {
                         pathRegex: "src\/components\/.*\.search\.graphql"
                     }
 
-                ],
+                ]
             } as OptimizelyGraphPresetOptions
         }
     },

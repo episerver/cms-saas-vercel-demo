@@ -1,0 +1,141 @@
+{
+  "key": "HeroBlock",
+  "displayName": "Hero",
+  "description": "Hero",
+  "baseType": "component",
+  "source": "",
+  "sortOrder": 100,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-29T22:51:53.14+00:00",
+  "lastModified": "2024-01-29T22:51:53.14+00:00",
+  "lastModifiedBy": "joshua.folkerts@episerver.com",
+  "properties": {
+    "HeroImage": {
+      "type": "contentReference",
+      "displayName": "Hero Image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "Icon": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Icon",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "Eyebrow": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Eyebrow",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "Heading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {}
+    },
+    "SubHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Sub heading",
+      "description": "The subheading for this block",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {}
+    },
+    "Description": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Description",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 50,
+      "editorSettings": {}
+    },
+    "HeroColor": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Color",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 60,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Blue",
+            "value": "blue"
+          },
+          {
+            "displayName": "Orange",
+            "value": "orange"
+          },
+          {
+            "displayName": "Green",
+            "value": "green"
+          },
+          {
+            "displayName": "Red",
+            "value": "red"
+          },
+          {
+            "displayName": "Purple",
+            "value": "purple"
+          },
+          {
+            "displayName": "Dark Blue",
+            "value": "dark-blue"
+          }
+        ]
+      }
+    },
+    "HeroButton": {
+      "type": "component",
+      "contentType": "ButtonBlock",
+      "displayName": "Button",
+      "description": "The cta or normal navigation button for the hero",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 70,
+      "editorSettings": {}
+    }
+  }
+}

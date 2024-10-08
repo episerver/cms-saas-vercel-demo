@@ -1,0 +1,9 @@
+fragment HeroBlockData on HeroBlock {
+  heroImage: HeroImage { ...ReferenceData }
+  eyebrow: Eyebrow
+  heroHeading: Heading
+  heroSubheading: SubHeading
+  heroDescription: Description { json, html }
+  heroColor: HeroColor
+  heroButton: HeroButton { ...ButtonBlockPropertyData }
+}

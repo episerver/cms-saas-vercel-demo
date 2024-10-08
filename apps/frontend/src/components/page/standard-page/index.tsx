@@ -13,7 +13,7 @@ import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
 // Implementation Components
 import Image from "@components/shared/cms_image";
-import ContainerBlock from "@/components/block/container-block";
+import ContainerBlock from "@/components/cms/component/LayoutContainerBlock";
 import TextBlock from "@/components/block/text-block";
 import BlogListingBlock from "@/components/block/blog-listing-block";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
@@ -75,7 +75,7 @@ StandardPage.getMetaData = async (contentLink, locale, client) => {
     title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.StandardPageHeading ?? cmsManagedData._metadata?.displayName,
     description: cmsManagedData.SeoSettings?.MetaDescription,
     openGraph: {
-      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article'),
+      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article') ?? 'article',
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.StandardPageHeading ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
     },

@@ -46,19 +46,23 @@ export function linkToUrl(item: LinkItemDataFragment)  : URL | undefined
 
 export function urlToRelative(url?: URL | undefined) : string
 {
+    if (url)
+        return isPrimaryHost(url.host) ? url.pathname + url.search + url.hash : url.href
+    return '#'
+    /*
     const primaryHost = getPrimaryHost();
     if (url && url.host == primaryHost) {
         const linkHref = `${ url?.pathname || '/'}${ url?.search ? '?'+url.search : ''}${url?.hash ? '#'+url.hash: ''}`
         return linkHref
     }
-    return url?.href || '#'
+    return url?.href || '#'*/
 }
 
-function getPrimaryHost() : string | undefined 
+function isPrimaryHost(host: string) : boolean
 {
     try {
-        return process.env.SITE_PRIMARY || process.env.NEXT_PUBLIC_SITE_PRIMARY
+        return host == process.env.SITE_PRIMARY || host == process.env.NEXT_PUBLIC_SITE_PRIMARY || host.startsWith('localhost')
     } catch {
-        return undefined
+        return false
     }
 }

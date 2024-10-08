@@ -1,10 +1,10 @@
 import { type ComponentProps } from "react"
 import Button from "@/components/shared/button"
 import Link from 'next/link'
-import { type LinkDataFragment } from "@/gql/graphql"
+import { type LinkData } from "@/lib/urls"
 
 export type BaseCTAProps = { 
-    href?: LinkDataFragment | null,
+    href?: LinkData | null,
     text?: string | null,
     buttonType?: ComponentProps<typeof Button>['buttonType'] | "link"
     buttonColor?: ComponentProps<typeof Button>['buttonColor']

@@ -1,0 +1,5 @@
+fragment VideoElementData on VideoElement {
+  title
+  video { ...ReferenceData }
+  placeholder { ...ReferenceData }
+}

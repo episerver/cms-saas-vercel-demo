@@ -1,0 +1,81 @@
+{
+  "key": "HomePageHeroBlock",
+  "displayName": "Home hero",
+  "description": "Hero displayed on the home page",
+  "baseType": "component",
+  "source": "",
+  "sortOrder": 100,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-30T03:18:30.09+00:00",
+  "lastModified": "2024-01-30T03:18:30.09+00:00",
+  "lastModifiedBy": "joshua.folkerts@episerver.com",
+  "properties": {
+    "HomeHeroBlockHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "HomeHeroBlockSubHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Sub-heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "HomeHeroLeftImage": {
+      "type": "contentReference",
+      "displayName": "Left image",
+      "description": "The image displayed on the left side of the hero",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "HomeHeroRightImage": {
+      "type": "contentReference",
+      "displayName": "Right image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "HomeHeroButtonBlock": {
+      "type": "component",
+      "contentType": "ButtonBlock",
+      "displayName": "Button",
+      "description": "The button for this hero",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 50,
+      "editorSettings": {}
+    }
+  }
+}

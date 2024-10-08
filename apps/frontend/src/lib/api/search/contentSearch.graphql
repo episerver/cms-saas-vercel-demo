@@ -1,4 +1,4 @@
-query searchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int, $start: Int) {
+query searchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int! = 25, $start: Int! = 0) {
   Content: _Content (
     where: {
       _or: [

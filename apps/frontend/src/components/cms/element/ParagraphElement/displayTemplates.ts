@@ -17,3 +17,13 @@ export type ParagraphElementComponentProps<DT extends Record<string, any> = Reco
 } & JSX.IntrinsicElements['div']
 
 export type ParagraphElementComponent<DT extends Record<string, any> = Record<string, any>, LP extends ParagraphElementLayoutProps = ParagraphElementLayoutProps> = (props: ParagraphElementComponentProps<DT,LP>) => ReactNode
+
+export function isDefaultProps(props?: ParagraphElementLayoutProps | null) : props is DefaultParagraphProps
+{
+    return props?.template == "DefaultParagraph"
+}
+
+export function isDefaultParagraphProps(props?: ParagraphElementLayoutProps | null) : props is DefaultParagraphProps
+{
+    return props?.template == "DefaultParagraph"
+}

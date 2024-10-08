@@ -1,9 +1,14 @@
-import type { AnimatedHeadingStylesComponent } from './displayTemplates'
+import { type FunctionComponent, type ComponentProps } from 'react'
+import { type AnimatedHeadingStylesComponent } from './displayTemplates'
 import { type HeadingElementDataFragment } from "@/gql/graphql"
 import AnimatedText from "@/components/shared/animated_text"
 import { extractSettings } from "@remkoj/optimizely-cms-react/components"
 
-export const AnimatedHeadingElement : AnimatedHeadingStylesComponent<HeadingElementDataFragment> = ({ data: { headingText }, layoutProps, className, ...containerProps }) => {
+type AnimatedHeadingElementProps = ComponentProps<AnimatedHeadingStylesComponent<HeadingElementDataFragment>> & {
+    withReducedMotion?: boolean
+}
+
+export const AnimatedHeadingElement : FunctionComponent<AnimatedHeadingElementProps> = ({ data: { headingText }, layoutProps, className, withReducedMotion, ...containerProps }) => {
     const cssClasses : string[] = []
     const { textAlign, headingType, delay: delayValue } = extractSettings(layoutProps)
     
@@ -45,6 +50,6 @@ export const AnimatedHeadingElement : AnimatedHeadingStylesComponent<HeadingElem
     }
 
     return <div className={ (`${ className } prose prose-h1:text-[72px] prose-p:text-[24px] prose-p:leading-tight ` + cssClasses.join(' ')).trim() } { ...containerProps }>
-        <AnimatedText el={ Component } text={ headingText ?? "" } delay={ delay } />
+        { withReducedMotion ? <Component>{ headingText ?? "" }</Component> : <AnimatedText el={ Component } text={ headingText ?? "" } delay={ delay } /> }
     </div>
 }

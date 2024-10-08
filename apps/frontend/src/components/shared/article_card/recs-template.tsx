@@ -4,11 +4,19 @@ import { ArticleCard, ArticleCardData } from '@/components/shared/article_card'
 
 export const ArticleTemplate : ContentRecsDeliveryProps['template'] = ({ data }) =>
 {
+    let linkUrl = data.link_url
+    try {
+        const ld = new URL(data.link_url)
+        linkUrl = ld.pathname + (ld.search ?? "")
+    } catch {
+        // Ignore...
+    }
+
     const article : ArticleCardData = {
         key: data.id,
         authors: data.author ?? '',
         title: data.title,
-        link: data.link_url,
+        link: linkUrl,
         published: data.published ?? undefined,
         image: {
             src: data.main_image_url,

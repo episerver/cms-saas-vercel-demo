@@ -1,0 +1,38 @@
+{
+  "key": "VideoElement",
+  "displayName": "Video",
+  "description": "Add a video to an experience",
+  "baseType": "element",
+  "source": "",
+  "sortOrder": 0,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-10-08T10:59:46.1223548+00:00",
+  "lastModified": "2024-10-08T12:44:54.1579652+00:00",
+  "lastModifiedBy": "remko.jantzen@optimizely.com",
+  "properties": {
+    "video": {
+      "type": "contentReference",
+      "displayName": "Video",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Video"
+      ],
+      "restrictedTypes": []
+    }
+  }
+}

@@ -1,0 +1,7 @@
+fragment ButtonBlockPropertyData on ButtonBlockProperty {
+  children: ButtonText
+  url: ButtonUrl { ...LinkData }
+  className: ButtonClass
+  buttonType: ButtonType
+  buttonVariant: ButtonVariant
+}
