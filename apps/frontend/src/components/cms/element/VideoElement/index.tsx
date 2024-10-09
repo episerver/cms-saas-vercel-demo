@@ -2,6 +2,7 @@ import { type CmsComponent } from "@remkoj/optimizely-cms-react"
 import { extractSettings } from "@remkoj/optimizely-cms-react/components"
 import { VideoElementDataFragmentDoc, type VideoElementDataFragment } from "@/gql/graphql"
 import { type VideoElementLayoutProps, type DefaultVideoProps, isDefaultVideoProps } from "./displayTemplates"
+import { CmsEditable } from '@remkoj/optimizely-cms-react/rsc'
 
 import Video from './_video'
 
@@ -29,7 +30,11 @@ const RoundedCornersClasses : { [K in Required<ReturnType<typeof extractSettings
  * Video
  * Add a video to an experience
  */
-export const VideoElementElement : CmsComponent<VideoElementDataFragment, VideoElementLayoutProps> = ({ data, layoutProps }) => {
+export const VideoElementElement : CmsComponent<VideoElementDataFragment, VideoElementLayoutProps> = ({ data: {
+    video: videoSrc,
+    placeholder,
+    title: altText
+}, contentLink, layoutProps }) => {
     const {
         aspectRatio = "auto",
         autoPlay = "false",
@@ -39,7 +44,7 @@ export const VideoElementElement : CmsComponent<VideoElementDataFragment, VideoE
         roundedCorners = "none"
     } = isDefaultVideoProps(layoutProps) ? extractSettings(layoutProps) : {}
     const cssClasses : string[] = [VideoClasses[aspectRatio], RoundedCornersClasses[roundedCorners]]
-    return <Video src={ data.video } controls={ showControls == "true" } autoPlay={ autoPlay == "true" } muted={ muted == "true" || autoPlay == "true" } loop={ loop == "true" } className={ cssClasses.join(' ') } />
+    return <CmsEditable as={ Video } cmsId={ contentLink.key } src={ videoSrc } controls={ showControls == "true" } autoPlay={ autoPlay == "true" } muted={ muted == "true" || autoPlay == "true" } loop={ loop == "true" } className={ cssClasses.join(' ') } altText={ altText } placeholder={ placeholder } />
 }
 VideoElementElement.displayName = "Video (Element/VideoElement)"
 VideoElementElement.getDataFragment = () => ['VideoElementData', VideoElementDataFragmentDoc]
