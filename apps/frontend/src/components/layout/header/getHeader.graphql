@@ -1,6 +1,9 @@
 query getHeader($locale: [Locales]) {
   menuItems: StartPage(locale: $locale) {
     items {
+      logo: SiteImageLogo {
+        ...ReferenceData
+      }
       headerNavigation: MainNavigationContentArea {
         ...MegaMenuItem
       }

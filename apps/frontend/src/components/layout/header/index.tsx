@@ -19,10 +19,9 @@ export default async function SiteHeader({ locale }: HeaderWrapperProps) {
     locale: localeToGraphLocale(headerLocale) as Locales
   });
 
-  const menuItems = ((config.menuItems?.items ?? [])[0]?.headerNavigation ?? []).filter(Utils.isNotNullOrUndefined) as Array<MegaMenuItemFragment>;
-  const utilityItems = ((config.menuItems?.items ?? [])[0]?.UtilityNavigationContentArea ?? []).filter(Utils.isNotNullOrUndefined) as Array<MenuItemFragment>;
+  const menuItems = config.menuItems?.items?.at(0)?.headerNavigation?.filter(Utils.isNotNullOrUndefined) as Array<MegaMenuItemFragment> | undefined;
+  const utilityItems = config.menuItems?.items?.at(0)?.UtilityNavigationContentArea?.filter(Utils.isNotNullOrUndefined) as Array<MenuItemFragment> | undefined;
+  const logo = config.menuItems?.items?.at(0)?.logo ?? undefined;
 
-  return (
-    <Header menuItems={menuItems} utilityItems={utilityItems} />
-  );
+  return <Header menuItems={ menuItems ?? [] } utilityItems={ utilityItems ?? [] } logo={ logo } />;
 }

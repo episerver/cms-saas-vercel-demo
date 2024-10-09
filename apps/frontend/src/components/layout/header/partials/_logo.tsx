@@ -1,19 +1,25 @@
 import Image from "next/image";
 import Link from "next/link";
 import { forwardRef } from "react";
+import { type ReferenceDataFragment } from "@gql/graphql"
+import { linkDataToUrl, getLinkData } from '@/lib/urls'
 
-const Logo = forwardRef<HTMLDivElement>((props, ref) => {
+type LogoProps = JSX.IntrinsicElements["div"] & {
+  logo?: ReferenceDataFragment
+}
+
+const Logo = forwardRef<HTMLDivElement, LogoProps>(({ logo, ...divProps }, ref) => {
+  const logoUrl = linkDataToUrl(getLinkData(logo))?.href
   return (
-    <div className="flex align-middle" ref={ref}>
+    <div className="flex align-middle" ref={ref} {...divProps }>
       <Link href="/" className="mr-[28px]">
         <Image
-          src="/assets/moseybank-logo.svg"
+          src={ logoUrl ?? "/assets/moseybank-logo.svg"}
           alt="Mosey Bank Logo"
-          width={200}
-          height={36}
+          fill
           unoptimized
           priority
-          className="dark:brightness-0	dark:invert"
+          className="dark:brightness-0	dark:invert !w-[200px] !h-auto !relative"
         />
       </Link>
     </div>
