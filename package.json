@@ -7,8 +7,7 @@
     "apps/*"
   ],
   "engines": {
-    "node": ">=18.0.0 <21.0.0",
-    "vscode": "^1.22.0"
+    "node": ">=20.0.0 <21.0.0"
   },
   "devDependencies": {
     "@types/source-map-support": "^0.5.10",
