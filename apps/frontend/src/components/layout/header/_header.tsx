@@ -19,6 +19,7 @@ export const HeaderContext = createContext<HeaderContextType>({
 type ClientHeaderProps = {
   menuItems: Array<GraphQL.MegaMenuItemFragment>
   utilityItems: Array<GraphQL.MenuItemFragment>
+  logo?: GraphQL.ReferenceDataFragment
 }
 
 /**
@@ -27,7 +28,7 @@ type ClientHeaderProps = {
  * @param {any} locale - the locale to render the header with
  * @return {JSX.Element} the rendered Header component
  */
-export const Header : FunctionComponent<ClientHeaderProps> = ({ menuItems, utilityItems }) => {
+export const Header : FunctionComponent<ClientHeaderProps> = ({ menuItems, utilityItems, logo }) => {
   const logoRef = useRef<HTMLDivElement>(null);
   const secondaryMenuRef = useRef<HTMLUListElement>(null);
   const [currentMenu, setCurrentMenu] = useState("");
@@ -74,7 +75,7 @@ export const Header : FunctionComponent<ClientHeaderProps> = ({ menuItems, utili
         onBlur={handleFocusLeave}
       >
         <div className="py-8 container mx-auto flex items-center w-full justify-between lg:justify-normal">
-          <Logo ref={logoRef} />
+          <Logo ref={logoRef} logo={ logo } />
 
           <div className="lg:hidden">
             

@@ -676,6 +676,9 @@ export const getHeaderDocument = gql`
     query getHeader($locale: [Locales]) {
   menuItems: StartPage(locale: $locale) {
     items {
+      logo: SiteImageLogo {
+        ...ReferenceData
+      }
       headerNavigation: MainNavigationContentArea {
         ...MegaMenuItem
       }
@@ -685,11 +688,12 @@ export const getHeaderDocument = gql`
     }
   }
 }
-    ${MegaMenuItemFragmentDoc}
+    ${ReferenceDataFragmentDoc}
+${LinkDataFragmentDoc}
+${MegaMenuItemFragmentDoc}
 ${MenuItemFragmentDoc}
 ${MenuNavigationItemFragmentDoc}
 ${LinkItemDataFragmentDoc}
-${LinkDataFragmentDoc}
 ${MenuCardItemFragmentDoc}
 ${MenuButtonFragmentDoc}`;
 export const getBlogPostPageMetaDataDocument = gql`
