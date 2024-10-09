@@ -10244,13 +10244,6 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["lru-cache", [\
-      ["npm:10.2.0", {\
-        "packageLocation": "./.yarn/cache/lru-cache-npm-10.2.0-b9f6b44740-502ec42c33.zip/node_modules/lru-cache/",\
-        "packageDependencies": [\
-          ["lru-cache", "npm:10.2.0"]\
-        ],\
-        "linkType": "HARD"\
-      }],\
       ["npm:11.0.0", {\
         "packageLocation": "./.yarn/cache/lru-cache-npm-11.0.0-92d560d9d6-41f36fbff8.zip/node_modules/lru-cache/",\
         "packageDependencies": [\
@@ -11373,7 +11366,7 @@ const RAW_RUNTIME_STATE =
         "packageLocation": "./.yarn/cache/path-scurry-npm-1.11.1-aaf8c339af-5e8845c159.zip/node_modules/path-scurry/",\
         "packageDependencies": [\
           ["path-scurry", "npm:1.11.1"],\
-          ["lru-cache", "npm:10.2.0"],\
+          ["lru-cache", "npm:11.0.0"],\
           ["minipass", "npm:7.1.2"]\
         ],\
         "linkType": "HARD"\
