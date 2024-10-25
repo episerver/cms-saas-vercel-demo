@@ -1,0 +1,12 @@
+fragment TextBlockData on TextBlock {
+  overline: TextBlockOverline
+  headingSize: TextBlockHeadingSize
+  heading: TextBlockHeading
+  description: TextBlockDescription {
+    json
+    html
+  }
+  center: TextCenter
+  width: TextBlockWidth
+  className: TextClassName
+}

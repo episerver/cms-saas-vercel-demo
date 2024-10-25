@@ -1,13 +1,13 @@
 import { Fragment } from "react";
 import { type CmsComponent } from "@remkoj/optimizely-cms-react";
-import { gql, type Schema as GraphQL } from "@gql";
+import { type CarouselBlockDataFragment, CarouselBlockDataFragmentDoc } from "@gql/graphql"
 import dynamic from "next/dynamic";
 import "server-only";
 import { CmsContentArea, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
 const CarouselBlockComponent = dynamic(() => import("./carousel-block"), { ssr: true });
 
-export const CarouselBlock: CmsComponent<GraphQL.CarouselBlockDataFragment> = async ({ data, contentLink }) => {
+export const CarouselBlock: CmsComponent<CarouselBlockDataFragment> = async ({ data, contentLink }) => {
   const { inEditMode } = getServerContext()
   const items = data?.CarouselItemsContentArea || [];
 
@@ -36,11 +36,5 @@ export const CarouselBlock: CmsComponent<GraphQL.CarouselBlockDataFragment> = as
 };
 
 CarouselBlock.displayName = "Carousel Block";
-CarouselBlock.getDataFragment = () => ["CarouselBlockData", CarouselBlockData];
+CarouselBlock.getDataFragment = () => ["CarouselBlockData", CarouselBlockDataFragmentDoc];
 export default CarouselBlock;
-
-const CarouselBlockData = gql(`fragment CarouselBlockData on CarouselBlock {
-    CarouselItemsContentArea {
-        ...IContentListItem
-    }
-}`);

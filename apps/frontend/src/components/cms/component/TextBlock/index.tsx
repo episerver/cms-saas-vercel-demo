@@ -1,8 +1,7 @@
-import type * as GraphQL from "@gql/graphql";
-import { gql } from "@gql/gql";
+import { type TextBlockDataFragment, TextBlockDataFragmentDoc } from "@gql/graphql";
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 
-const TextBlock: CmsComponent<Partial<GraphQL.TextBlockDataFragment>> = ({
+const TextBlock: CmsComponent<Partial<TextBlockDataFragment>> = ({
   data,
   inEditMode,
 }) => {
@@ -91,20 +90,5 @@ const TextBlock: CmsComponent<Partial<GraphQL.TextBlockDataFragment>> = ({
 };
 
 TextBlock.displayName = "Text Block";
-TextBlock.getDataFragment = () => ["TextBlockData", TextBlockData];
+TextBlock.getDataFragment = () => ["TextBlockData", TextBlockDataFragmentDoc];
 export default TextBlock;
-
-const TextBlockData = gql(`
-    fragment TextBlockData on TextBlock {
-      overline: TextBlockOverline
-      headingSize: TextBlockHeadingSize
-      heading: TextBlockHeading
-      description: TextBlockDescription {
-        json
-        html
-      }
-      center: TextCenter
-      width: TextBlockWidth
-      className: TextClassName
-    }
-  `);

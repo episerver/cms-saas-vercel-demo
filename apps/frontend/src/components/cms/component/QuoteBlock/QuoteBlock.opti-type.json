@@ -1,0 +1,113 @@
+{
+  "key": "QuoteBlock",
+  "displayName": "Quote",
+  "description": "A block used to display a quote.",
+  "baseType": "component",
+  "source": "",
+  "sortOrder": 100,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-30T03:00:30.2166667+00:00",
+  "lastModified": "2024-01-30T03:00:30.2166667+00:00",
+  "lastModifiedBy": "joshua.folkerts@episerver.com",
+  "properties": {
+    "QuoteText": {
+      "type": "string",
+      "displayName": "Quote",
+      "description": "Represents user's quote",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "QuoteColor": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Color",
+      "description": "The color for this quote",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Blue",
+            "value": "blue"
+          },
+          {
+            "displayName": "Orange",
+            "value": "orange"
+          },
+          {
+            "displayName": "Green",
+            "value": "green"
+          },
+          {
+            "displayName": "Red",
+            "value": "red"
+          },
+          {
+            "displayName": "White",
+            "value": "white"
+          }
+        ]
+      }
+    },
+    "QuoteProfilePicture": {
+      "type": "contentReference",
+      "displayName": "Profile Photo",
+      "description": "The profile photo for the author of this quote",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "QuoteProfileName": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Profile name",
+      "description": "The name of this author",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {}
+    },
+    "QuoteProfileLocation": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Profile Location",
+      "description": "The location / company of the author",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 60,
+      "editorSettings": {}
+    },
+    "QuoteActive": {
+      "type": "boolean",
+      "displayName": "Active?",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 70,
+      "editorSettings": {}
+    }
+  }
+}

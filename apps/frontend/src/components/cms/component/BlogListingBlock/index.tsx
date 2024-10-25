@@ -1,13 +1,12 @@
 import type { CmsComponent } from "@remkoj/optimizely-cms-react";
-import type * as GraphQL from "@gql/graphql";
-import { gql } from "@gql/gql";
+import { type BlogListingBlockDataFragment, BlogListingBlockDataFragmentDoc } from "@gql/graphql";
 import dynamic from "next/dynamic";
 import "server-only";
-import ContainerBlock from "../../cms/component/LayoutContainerBlock";
+import ContainerBlock from "../../component/LayoutContainerBlock";
 import getArticles from "@/lib/api/articles";
 
 export type BlogListingComponentType =
-  CmsComponent<GraphQL.BlogListingBlockDataFragment>;
+  CmsComponent<BlogListingBlockDataFragment>;
 
 const BlogListingBlockComponent = dynamic(
   () => import("./blog-listing-block"),
@@ -15,7 +14,7 @@ const BlogListingBlockComponent = dynamic(
 );
 
 export const BlogListingBlock: CmsComponent<
-  Partial<GraphQL.BlogListingBlockDataFragment>
+  Partial<BlogListingBlockDataFragment>
 > = async ({ data: { selectedPageSize, showFilters }, contentLink }) => {
   const locale = contentLink.locale ?? 'en';
   const articles = await getArticles(locale, {
@@ -43,17 +42,5 @@ export const BlogListingBlock: CmsComponent<
 };
 
 BlogListingBlock.displayName = "Blog Listing Block";
-BlogListingBlock.getDataFragment = () => [
-  "BlogListingBlockData",
-  BlogListingBlockData,
-];
+BlogListingBlock.getDataFragment = () => [ "BlogListingBlockData", BlogListingBlockDataFragmentDoc,];
 export default BlogListingBlock;
-
-const BlogListingBlockData =
-  gql(`fragment BlogListingBlockData on BlogListingBlock {
-  _metadata {
-    name: displayName
-  }
-  showFilters: BlogListingShowFilters
-  selectedPageSize: BlogListingItemCount
-}`);

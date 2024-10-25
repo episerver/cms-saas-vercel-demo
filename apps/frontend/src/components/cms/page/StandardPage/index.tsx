@@ -14,8 +14,8 @@ import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 // Implementation Components
 import Image from "@components/shared/cms_image";
 import ContainerBlock from "@/components/cms/component/LayoutContainerBlock";
-import TextBlock from "@/components/block/text-block";
-import BlogListingBlock from "@/components/block/blog-listing-block";
+import TextBlock from "@/components/cms/component/TextBlock";
+import BlogListingBlock from "@/components/cms/component/BlogListingBlock";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 

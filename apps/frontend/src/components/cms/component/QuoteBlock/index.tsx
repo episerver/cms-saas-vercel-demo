@@ -1,5 +1,5 @@
 import React from "react";
-import type * as GraphQL from "@gql/graphql";
+import { type QuoteBlockDataFragment, QuoteBlockDataFragmentDoc} from "@gql/graphql";
 import Image from "next/image";
 import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
@@ -14,7 +14,7 @@ import { refToURL } from "@/lib/conversions"
  * @param {boolean} active - whether the block is active or not
  * @return {JSX.Element} the rendered quote block component
  */
-const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
+const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
   data,
   inEditMode,
 }): JSX.Element => {
@@ -96,18 +96,5 @@ const QuoteBlock: CmsComponent<GraphQL.QuoteBlockDataFragment> = ({
 };
 
 QuoteBlock.displayName = "Quote Block";
-QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockData];
+QuoteBlock.getDataFragment = () => ["QuoteBlockData", QuoteBlockDataFragmentDoc];
 export default QuoteBlock;
-
-const QuoteBlockData = gql(`
-    fragment QuoteBlockData on QuoteBlock {
-      quote: QuoteText
-      color: QuoteColor
-      active: QuoteActive
-      name: QuoteProfileName
-      profilePicture: QuoteProfilePicture {
-        ...ReferenceData
-      }
-      location: QuoteProfileLocation
-    }
-  `);

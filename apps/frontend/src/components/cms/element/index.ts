@@ -40,7 +40,7 @@ export const elementDictionary : ComponentTypeDictionary = [
         component: TestimonialElementComponent 
     },
     { 
-        type: "VideoElement",
+        type: "VideoElement", 
         component: VideoElementComponent 
     }
 ];

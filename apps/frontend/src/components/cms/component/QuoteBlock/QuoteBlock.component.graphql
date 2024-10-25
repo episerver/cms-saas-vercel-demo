@@ -1,0 +1,10 @@
+fragment QuoteBlockData on QuoteBlock {
+  quote: QuoteText
+  color: QuoteColor
+  active: QuoteActive
+  name: QuoteProfileName
+  profilePicture: QuoteProfilePicture {
+    ...ReferenceData
+  }
+  location: QuoteProfileLocation
+}

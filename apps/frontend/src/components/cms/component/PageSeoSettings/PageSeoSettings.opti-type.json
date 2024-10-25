@@ -1,0 +1,80 @@
+{
+  "key": "PageSeoSettings",
+  "displayName": "Page SEO Settings",
+  "description": "",
+  "baseType": "component",
+  "source": "",
+  "sortOrder": 100,
+  "features": [
+    "localization",
+    "versioning",
+    "publishPeriod"
+  ],
+  "usage": [
+    "property",
+    "instance"
+  ],
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-02-05T04:46:19.5266667+00:00",
+  "lastModified": "2024-02-05T04:46:19.5266667+00:00",
+  "lastModifiedBy": "jonathan.davis@optimizely.com",
+  "properties": {
+    "MetaTitle": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Meta title",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "MetaDescription": {
+      "type": "string",
+      "displayName": "Meta description",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "SharingImage": {
+      "type": "contentReference",
+      "displayName": "Sharing image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "GraphType": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "OpenGraph Type",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 200,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Undefined",
+            "value": "-"
+          },
+          {
+            "displayName": "Article",
+            "value": "article"
+          }
+        ]
+      }
+    }
+  }
+}

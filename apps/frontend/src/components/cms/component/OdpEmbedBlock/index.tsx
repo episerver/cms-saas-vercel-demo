@@ -1,11 +1,8 @@
 import type { CmsComponent } from "@remkoj/optimizely-cms-react";
-import type * as GraphQL from "@gql/graphql";
-import { gql } from "@gql/index";
+import { OdpEmbedBlockDataFragment, OdpEmbedBlockDataFragmentDoc } from "@gql/graphql";
 import ClientSide from "./client";
 
-export type OdpEmbedBlockType = CmsComponent<GraphQL.OdpEmbedBlockDataFragment>;
-
-export const OdpEmbedBlock: OdpEmbedBlockType = ({ data, inEditMode }) => {
+export const OdpEmbedBlock: CmsComponent<OdpEmbedBlockDataFragment> = ({ data, inEditMode }) => {
   const contentId = data.ContentId || undefined;
 
   if (!contentId)
@@ -22,13 +19,7 @@ export const OdpEmbedBlock: OdpEmbedBlockType = ({ data, inEditMode }) => {
     />
   );
 };
-OdpEmbedBlock.getDataFragment = () => ["OdpEmbedBlockData", OdpEmbedBlockData];
+OdpEmbedBlock.getDataFragment = () => ["OdpEmbedBlockData", OdpEmbedBlockDataFragmentDoc];
 OdpEmbedBlock.displayName = "Optimizely Data Platform Embed";
 
 export default OdpEmbedBlock;
-
-const OdpEmbedBlockData = gql(/* GraphQL */ `
-  fragment OdpEmbedBlockData on OdpEmbedBlock {
-    ContentId
-  }
-`);
