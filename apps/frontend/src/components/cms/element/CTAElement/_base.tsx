@@ -2,6 +2,7 @@ import { type ComponentProps } from "react"
 import Button from "@/components/shared/button"
 import Link from 'next/link'
 import { type LinkData } from "@/lib/urls"
+import { urlToRelative } from "@/components/shared/cms_link"
 
 export type BaseCTAProps = { 
     href?: LinkData | null,
@@ -20,8 +21,8 @@ export function BaseCTA({ href, text = 'Call-to-action', buttonType = "primary",
 
     return <div className="cta w-full" { ...additionalProps }>
         { buttonType == "link" ? 
-            <Link href={ hrefUrl } className={ className }>{ text }</Link> : 
-            <Button url={ hrefUrl } buttonType={ buttonType } buttonVariant="cta" className={ className } buttonColor={ buttonColor }>{ text }</Button> 
+            <Link href={ urlToRelative(hrefUrl) } className={ className }>{ text }</Link> : 
+            <Button url={ urlToRelative(hrefUrl) } buttonType={ buttonType } buttonVariant="cta" className={ className } buttonColor={ buttonColor }>{ text }</Button> 
         }
     </div>
 }

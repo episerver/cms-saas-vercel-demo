@@ -21,7 +21,7 @@ const {
 });
 
 // Configure the Next.JS route handling for the pages
-export const dynamic = "force-static"; // Make sure we cache pages
+export const dynamic = "auto"; // Cache by default, but allow Suspense to be used to make parts dynamic
 export const dynamicParams = true; // Allow new pages to be resolved without rebuilding the site
 export const revalidate = false; // Keep the cache untill manually revalidated using the Webhook
 export const fetchCache = "default-cache"; // Cache fetch results by default
