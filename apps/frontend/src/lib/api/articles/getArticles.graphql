@@ -4,7 +4,10 @@ query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $a
       _and: [
         { _metadata: { published: { gte: $published } } }
         { _metadata: { published: { lte: $publishedEnd } } }
-      ]
+      ],
+      _metadata: {
+        status: { eq: "Published" }
+      }
     }
     locale: $locale
     limit: $pageSize
@@ -15,6 +18,7 @@ query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $a
     items {
       ...IContentData
       _metadata {
+        status
         published
       }
       title: Heading

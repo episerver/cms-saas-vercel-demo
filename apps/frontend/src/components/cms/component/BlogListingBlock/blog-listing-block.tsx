@@ -174,7 +174,7 @@ const BlogListingBlock: React.FC<BlogListingComponent> = ({
 
   return (
     <BlogListingContext.Provider value={blogListingContext}>
-      <div className={`w-full ${showFilters ? "mt-32" : ""}`}>
+      <div className={`w-full ${showFilters ? "mt-32 mb-32" : ""}`}>
         {showFilters && <ListingFilters />}
         <BlogListing />
       </div>

@@ -68,8 +68,12 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     const linkHref = !url ? href : urlToRelative(typeof(url) == 'string' ? new URL(url) : new URL(url.default ?? '/', url.base ?? 'https://example.com'))
     const className = `${ providedClassName ?? '' } ${ configuredClassName ?? ''}`.trim()
 
+    // If there's no content, don't render
+    if (!text && (!children || (Array.isArray(children) && children.length == 0)))
+        return null
+
     return <Link
-        href={ linkHref }
+        href={ linkHref || '#' }
         className={`${buttonTypes[buttonType ?? "primary"]} ${ buttonVariants[buttonVariant ?? "default"] } ${className}`.trim()}
         {...props}
     >
