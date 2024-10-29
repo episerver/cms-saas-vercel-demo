@@ -29,9 +29,6 @@ const config: CodegenConfig = {
     documents: [
         // Add local GraphQL files
         'src/**/*.graphql',
-
-        // Add Definitions from components
-        'src/**/!(*.d).{ts,tsx}'
     ],
     generates: {
         './gql/': {
@@ -54,52 +51,40 @@ const config: CodegenConfig = {
                 // - BlockData => For everyting that can be rendered as individual component
                 // - ElementData => For all element types that are useable within Visual Builder
                 injections: [
-                    {
-                        // Add from all pages, except colocated blocks
-                        into: "PageData",
-                        pathRegex: "src\/components\/page.*(?<!block\.tsx)$"
-                    },
-                    {
-                        // Add from all blocks, included blocks colocated with pages
-                        into: "BlockData",
-                        pathRegex: "src\/components\/(block.*|page.*block.[tj]s[x]{0,1})$"
-                    },
-                    {
-                        // Add from all blocks
-                        into: "BlockData",
-                        pathRegex: "src\/components\/block"
-                    },
                     // Add Page/Experience GraphQL Files
                     {
                         into: "PageData",
-                        pathRegex: "src\/components\/.*\.page\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.page\.graphql"
                     },
                     {
                         into: "PageData",
-                        pathRegex: "src\/components\/.*\.experience\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.experience\.graphql"
                     },
+
                     // Add Block/Component/Section GraphQL Files
                     {
                         into: "BlockData",
-                        pathRegex: "src\/components\/.*\.block\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.block\.graphql"
                     },
                     {
                         into: "BlockData",
-                        pathRegex: "src\/components\/.*\.component\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.component\.graphql"
                     },
                     {
                         into: "BlockData",
-                        pathRegex: "src\/components\/.*\.section\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.section\.graphql"
                     },
+
                     // Add Element GraphQL Files
                     {
                         into: "ElementData",
-                        pathRegex: "src\/components\/.*\.element\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.element\.graphql"
                     },
+
                     // Implementation Specific: Add Search GraphQL Files
                     {
                         into: "SearchData",
-                        pathRegex: "src\/components\/.*\.search\.graphql"
+                        pathRegex: "src\/components\/cms\/.*\.search\.graphql"
                     }
 
                 ]
