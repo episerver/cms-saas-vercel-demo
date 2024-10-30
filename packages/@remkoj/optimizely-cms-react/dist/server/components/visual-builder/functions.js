@@ -1,11 +1,11 @@
 import { isContentLink, isInlineContentLink } from '@remkoj/optimizely-graph-client';
 export function isElementNode(node) {
-    return node.layoutType == "element";
+    return node.layoutType == "component";
 }
 export function isElementNodeOfType(node, test) {
     if (!isElementNode(node))
         return false;
-    return test(node.element);
+    return test(node.component);
 }
 export function isStructureNode(node) {
     return !isElementNode(node);
@@ -13,7 +13,7 @@ export function isStructureNode(node) {
 export function isNode(toTest) {
     if (typeof (toTest) != 'object' || toTest == null)
         return false;
-    const nodeTypes = ["experience", "section", "row", "column", "element"];
+    const nodeTypes = ["experience", "section", "row", "column", "component"];
     const hasValidName = (typeof toTest.name == 'string' && (toTest.name?.length ?? 0) > 0) || toTest.name == null;
     const hasValidType = typeof toTest.layoutType == 'string' && nodeTypes.includes(toTest.layoutType);
     return hasValidName && hasValidType;
@@ -22,13 +22,13 @@ export function isContentType(toTest) {
     return Array.isArray(toTest) && toTest.every(x => typeof (x) == 'string' && x.length > 0);
 }
 export const defaultPropsFactory = (node) => {
-    const contentType = node.element?._metadata?.types;
+    const contentType = node.component?._metadata?.types;
     if (!isContentType(contentType))
         throw new Error("Invalid content type: " + JSON.stringify(contentType));
     const contentLink = {
-        key: node.element?._metadata?.key || node.key || undefined,
-        version: node.element?._metadata?.version,
-        locale: node.element?._metadata?.locale
+        key: node.component?._metadata?.key || node.key || undefined,
+        version: node.component?._metadata?.version,
+        locale: node.component?._metadata?.locale
     };
     if (!(isContentLink(contentLink) || isInlineContentLink(contentLink)))
         throw new Error("Invalid content link: " + JSON.stringify(contentLink));
@@ -38,7 +38,7 @@ export const defaultPropsFactory = (node) => {
         template: node.template,
         settings: node.settings
     };
-    return [contentLink, contentType, node.element, layoutData];
+    return [contentLink, contentType, node.component, layoutData];
 };
 export const defaultNodePropsFactory = (node) => {
     const componentTypes = [

@@ -23,19 +23,19 @@ exports.default = [
                 name: displayName
             }
         }
-        ... on ICompositionElementNode {
-            element {
+        ... on ICompositionComponentNode {
+            component {
                 ...ElementData
             }
         }
     }`,
-    `fragment IElementData on _IElement {
+    `fragment IElementData on _IComponent {
         _metadata {
             ...IContentInfo
         }
         _type: __typename
     }`,
-    `fragment ElementData on _IElement {
+    `fragment ElementData on _IComponent {
         ...IElementData
     }`,
     `fragment BlockData on _IContent {
