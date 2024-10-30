@@ -2616,9 +2616,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-react@npm:2.1.0":
+"@remkoj/optimizely-cms-react@file:./../../packages/@remkoj/optimizely-cms-react::locator=frontend%40workspace%3Aapps%2Ffrontend":
   version: 2.1.0
-  resolution: "@remkoj/optimizely-cms-react@npm:2.1.0"
+  resolution: "@remkoj/optimizely-cms-react@file:./../../packages/@remkoj/optimizely-cms-react#./../../packages/@remkoj/optimizely-cms-react::hash=47404a&locator=frontend%40workspace%3Aapps%2Ffrontend"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2629,7 +2629,7 @@ __metadata:
     graphql-request: ^6.1.0
     react: "*"
     react-dom: "*"
-  checksum: 10/0dba59a33f8410723fffa46a531483e888931836a3a7acc8dbfcaed94ee60bf7ac2f86fd13b3ab07f4c8d367fa4725e7bb9b568e289d9fd489ef04f4b448db12
+  checksum: 10/20da78f1afd43f95067cc9d5a2906dbcccf661df914842434ed3921f064f9cff0e700a79e25db5201c46236cdc65395d66cec30af1e5f4225323f3b10c7f9b37
   languageName: node
   linkType: hard
 
@@ -2675,9 +2675,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-graph-functions@npm:2.1.0":
+"@remkoj/optimizely-graph-functions@file:./../../packages/@remkoj/optimizely-graph-functions::locator=frontend%40workspace%3Aapps%2Ffrontend":
   version: 2.1.0
-  resolution: "@remkoj/optimizely-graph-functions@npm:2.1.0"
+  resolution: "@remkoj/optimizely-graph-functions@file:./../../packages/@remkoj/optimizely-graph-functions#./../../packages/@remkoj/optimizely-graph-functions::hash=e94e3e&locator=frontend%40workspace%3Aapps%2Ffrontend"
   dependencies:
     "@graphql-codegen/add": "npm:^5.0.3"
     "@graphql-codegen/client-preset": "npm:^4.3.3"
@@ -2692,7 +2692,7 @@ __metadata:
     graphql: "*"
     graphql-request: ^6.1.0
     graphql-tag: "*"
-  checksum: 10/a2d0725159e4d8ecbd68f302674e7ee0f4b74c107230121e40d8e4b0912037a9b0694bc9483481242ba26f3edb9dbde9e4d758091f37113006b85dfa23ae93ec
+  checksum: 10/d7e8b06cdb85b84fbcd5e4dab1347bb571b22f556022a7940b16a1576dfa401161031ae935aee6458122e7363075192710b3bf26177b809691e103b288394e07
   languageName: node
   linkType: hard
 
@@ -6209,10 +6209,10 @@ __metadata:
     "@remkoj/optimizely-cms-api": "npm:2.1.0"
     "@remkoj/optimizely-cms-cli": "npm:2.1.0"
     "@remkoj/optimizely-cms-nextjs": "npm:2.1.0"
-    "@remkoj/optimizely-cms-react": "npm:2.1.0"
+    "@remkoj/optimizely-cms-react": ./../../packages/@remkoj/optimizely-cms-react
     "@remkoj/optimizely-graph-cli": "npm:2.1.0"
     "@remkoj/optimizely-graph-client": "npm:2.1.0"
-    "@remkoj/optimizely-graph-functions": "npm:2.1.0"
+    "@remkoj/optimizely-graph-functions": ./../../packages/@remkoj/optimizely-graph-functions
     "@remkoj/optimizely-one-nextjs": "npm:2.1.0"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/container-queries": "npm:^0.1.1"
