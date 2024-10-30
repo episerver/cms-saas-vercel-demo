@@ -40,7 +40,7 @@ export const IContentInfoFragmentDoc = gql`
 }
     `;
 export const IElementDataFragmentDoc = gql`
-    fragment IElementData on _IElement {
+    fragment IElementData on _IComponent {
   _metadata {
     ...IContentInfo
   }
@@ -48,7 +48,7 @@ export const IElementDataFragmentDoc = gql`
 }
     `;
 export const ElementDataFragmentDoc = gql`
-    fragment ElementData on _IElement {
+    fragment ElementData on _IComponent {
   ...IElementData
 }
     `;
@@ -131,8 +131,8 @@ export const CompositionDataFragmentDoc = gql`
       name: displayName
     }
   }
-  ... on ICompositionElementNode {
-    element {
+  ... on ICompositionComponentNode {
+    component {
       ...ElementData
       ...ArticleListElementData
       ...CTAElementData
