@@ -52,12 +52,12 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
     setDate(formatDate(published));
   }, [published]);
 
-  return (
-    <Link href={ urlToRelative(url) } className="relative w-full">
+  const relativeUrl = urlToRelative(url)
+  const article = (
       <article className="prose max-w-none p-8 pb-16 bg-white rounded-[20px] w-full h-full before:content-[''] before:absolute before:top-[1px] before:left-[1px] before:w-[calc(100%-2px)] before:h-[calc(100%-2px)] before:z-[-1] before:rounded-[20px] before:bg-azure before:transition-transform before:ease-in-out before:duration-300 hover:before:translate-x-8 hover:before:translate-y-8 focus:before:translate-x-8 focus:before:translate-y-8 dark:bg-vulcan-85 dark:text-ghost-white">
         {image && image.src ? (
           <Image
-            className="w-full rounded-[20px]"
+            className="w-full rounded-[20px] aspect-video object-cover"
             src={image.src}
             alt={image.alt ?? ""}
             width={620}
@@ -84,8 +84,8 @@ const BlogPostCard: React.FC<BlogPostCardProps> = ({ blogPost }) => {
         {title ? <h3 className="my-0 mt-[16px]">{title}</h3> : null}
         {description ? <p>{description}</p> : null}
       </article>
-    </Link>
   );
+  return relativeUrl ? <Link href={ relativeUrl } className="relative w-full">{article}</Link> : <span className="relative w-full">{article}</span>
 };
 
 export default BlogPostCard;

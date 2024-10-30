@@ -2,7 +2,7 @@ import type { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { type BlogListingBlockDataFragment, BlogListingBlockDataFragmentDoc } from "@gql/graphql";
 import dynamic from "next/dynamic";
 import "server-only";
-import ContainerBlock from "../../component/LayoutContainerBlock";
+import ContainerBlock from "../LayoutContainerBlock";
 import getArticles from "@/lib/api/articles";
 
 export type BlogListingComponentType =

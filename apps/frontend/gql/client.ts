@@ -785,7 +785,7 @@ ${MenuButtonFragmentDoc}`;
 export const getArticlesDocument = gql`
     query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
   getArticles: BlogPostPage(
-    where: {_and: [{_metadata: {published: {gte: $published}}}, {_metadata: {published: {lte: $publishedEnd}}}]}
+    where: {_and: [{_metadata: {published: {gte: $published}}}, {_metadata: {published: {lte: $publishedEnd}}}], _metadata: {status: {eq: "Published"}}}
     locale: $locale
     limit: $pageSize
     skip: $start
@@ -795,6 +795,7 @@ export const getArticlesDocument = gql`
     items {
       ...IContentData
       _metadata {
+        status
         published
       }
       title: Heading
