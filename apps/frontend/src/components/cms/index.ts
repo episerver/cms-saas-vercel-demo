@@ -10,7 +10,6 @@ import nodeComponent from "./node";
 
 // Prefix entries - if needed
 prefixDictionaryEntries(componentDictionary, "Component");
-prefixDictionaryEntries(elementDictionary, "Element");
 prefixDictionaryEntries(elementDictionary, "Component");
 prefixDictionaryEntries(experienceDictionary, "Experience");
 prefixDictionaryEntries(experienceDictionary, "Page");
