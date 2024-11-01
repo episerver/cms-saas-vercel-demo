@@ -3,10 +3,8 @@
   "displayName": "Default",
   "nodeType": "column",
   "isDefault": true,
-  "created": "2024-06-27T14:20:51.2916067+00:00",
-  "createdBy": "cli-test",
-  "lastModified": "2024-06-27T14:21:01.8034286+00:00",
-  "lastModifiedBy": "cli-test",
+  "created": "2024-09-25T10:11:01.5492067+00:00",
+  "lastModified": "2024-09-25T10:11:01.5492067+00:00",
   "settings": {
     "overflow": {
       "displayName": "Overflow (if available width is less then minimal)",

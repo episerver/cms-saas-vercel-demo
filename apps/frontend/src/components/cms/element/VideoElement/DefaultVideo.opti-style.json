@@ -3,10 +3,8 @@
   "displayName": "Default Video Player",
   "contentType": "VideoElement",
   "isDefault": true,
-  "created": "2024-10-08T11:11:00.7498593+00:00",
-  "createdBy": "remko.jantzen@optimizely.com",
-  "lastModified": "2024-10-08T12:58:07.5872432+00:00",
-  "lastModifiedBy": "remko.jantzen@optimizely.com",
+  "created": "2024-10-08T15:01:26.3539874+00:00",
+  "lastModified": "2024-10-08T15:15:21.1930277+00:00",
   "settings": {
     "roundedCorners": {
       "displayName": "Rounded corners",

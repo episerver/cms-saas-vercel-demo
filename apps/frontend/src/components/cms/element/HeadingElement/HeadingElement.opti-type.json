@@ -1,0 +1,23 @@
+{
+  "key": "HeadingElement",
+  "displayName": "Heading",
+  "description": "",
+  "baseType": "element",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:27.1636813+00:00",
+  "lastModified": "2024-10-30T18:42:04.2776049+00:00",
+  "properties": {
+    "headingText": {
+      "type": "string",
+      "displayName": "Heading text",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    }
+  }
+}

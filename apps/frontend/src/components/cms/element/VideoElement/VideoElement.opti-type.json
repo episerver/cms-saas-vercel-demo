@@ -1,0 +1,52 @@
+{
+  "key": "VideoElement",
+  "displayName": "Video",
+  "description": "Add a video to an experience",
+  "baseType": "element",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-10-08T10:59:46.1223548+00:00",
+  "lastModified": "2024-10-30T18:42:04.3767582+00:00",
+  "properties": {
+    "video": {
+      "type": "contentReference",
+      "displayName": "Video",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Video"
+      ],
+      "restrictedTypes": []
+    },
+    "title": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Title",
+      "description": "Alternative text when video is unavailable",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "placeholder": {
+      "type": "contentReference",
+      "displayName": "Placeholder",
+      "description": "Placeholder to show before video is started",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Image"
+      ],
+      "restrictedTypes": []
+    }
+  }
+}

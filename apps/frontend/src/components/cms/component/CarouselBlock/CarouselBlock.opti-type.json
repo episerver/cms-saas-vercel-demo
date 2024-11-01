@@ -1,0 +1,32 @@
+{
+  "key": "CarouselBlock",
+  "displayName": "Carousel",
+  "description": "",
+  "baseType": "component",
+  "sortOrder": 100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-30T03:15:35.82+00:00",
+  "lastModified": "2024-01-30T03:15:35.82+00:00",
+  "properties": {
+    "CarouselItemsContentArea": {
+      "type": "array",
+      "displayName": "Carousel items",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "minItems": 1,
+      "maxItems": 10,
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "component"
+        ],
+        "restrictedTypes": []
+      }
+    }
+  }
+}
