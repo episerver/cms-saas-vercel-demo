@@ -1,0 +1,69 @@
+{
+  "key": "TestimonialElement",
+  "displayName": "Testimonial",
+  "description": "A customer testimonial",
+  "baseType": "element",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-06-27T14:20:27.0000657+00:00",
+  "lastModified": "2024-10-30T18:42:04.3233192+00:00",
+  "properties": {
+    "customerName": {
+      "type": "string",
+      "displayName": "Customer Name",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "customerLocation": {
+      "type": "string",
+      "displayName": "Customer Location",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "customerImage": {
+      "type": "contentReference",
+      "displayName": "Customer Photo",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Image"
+      ],
+      "restrictedTypes": []
+    },
+    "referenceTitle": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Reference title",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {}
+    },
+    "referenceText": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Reference text",
+      "description": "",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 50,
+      "editorSettings": {}
+    }
+  }
+}

@@ -1,0 +1,123 @@
+{
+  "key": "BlogPostPage",
+  "displayName": "Blog post",
+  "description": "Represents a single blog post",
+  "baseType": "page",
+  "sortOrder": 100,
+  "mayContainTypes": [
+    "*"
+  ],
+  "mediaFileExtensions": [],
+  "created": "2024-01-30T00:10:49.5533333+00:00",
+  "lastModified": "2024-10-15T16:48:57.6377944+00:00",
+  "properties": {
+    "Heading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "The heading for this blog post",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": -100,
+      "editorSettings": {}
+    },
+    "ArticleSubHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Sub Heading Text",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "Topic": {
+      "type": "array",
+      "format": "selectMany",
+      "displayName": "Topic",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Categories",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "items": {
+        "type": "string",
+        "enum": {
+          "values": [
+            {
+              "displayName": "Savings",
+              "value": "Savings"
+            },
+            {
+              "displayName": "Credit",
+              "value": "Credit"
+            },
+            {
+              "displayName": "Mortgage",
+              "value": "Mortgage"
+            },
+            {
+              "displayName": "Retirement",
+              "value": "Retirement"
+            },
+            {
+              "displayName": "Investment",
+              "value": "Investment"
+            }
+          ]
+        }
+      }
+    },
+    "BlogPostBody": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Body",
+      "description": "The main body for this blog post",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "ArticleAuthor": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Author",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 20,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    },
+    "BlogPostPromoImage": {
+      "type": "contentReference",
+      "displayName": "Promo image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Media"
+      ],
+      "restrictedTypes": []
+    },
+    "SeoSettings": {
+      "type": "component",
+      "contentType": "PageSeoSettings",
+      "displayName": "SEO Settings",
+      "description": "Configure the common properties to improve the indexing of the page by search engines",
+      "localized": false,
+      "required": false,
+      "group": "SeoSettings",
+      "sortOrder": 200,
+      "editorSettings": {}
+    }
+  }
+}

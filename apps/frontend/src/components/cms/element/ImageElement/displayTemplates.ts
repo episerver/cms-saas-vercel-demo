@@ -1,4 +1,4 @@
-import type { LayoutProps } from "@remkoj/optimizely-cms-react/components"
+import type { LayoutProps } from "@remkoj/optimizely-cms-react"
 import type { ReactNode } from "react"
 import type IconImageElementStyles from "./IconImageElement.opti-style.json"
 import type DefaultImageElementStyles from "./DefaultImageElement.opti-style.json"

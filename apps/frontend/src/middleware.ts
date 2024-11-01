@@ -1,10 +1,11 @@
 import { NextResponse, type NextRequest } from "next/server"
 import { Session } from '@remkoj/optimizely-one-nextjs/api'
+import { withEditFallback } from '@remkoj/optimizely-cms-nextjs/preview'
 
 /**
  * Demo site middleware
  */
-export const middleware = (request: NextRequest) =>
+export const middleware = withEditFallback((request: NextRequest) =>
 {
     // Make sure we have a known Visitor ID
     const visitorId = Session.getOrCreateVisitorId(request)
@@ -18,7 +19,7 @@ export const middleware = (request: NextRequest) =>
     })
     Session.addVisitorId(response, visitorId)
     return response
-}
+})
 
 export const config = {
     matcher: [

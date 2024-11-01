@@ -1,4 +1,4 @@
-import type { LayoutProps } from "@remkoj/optimizely-cms-react/components"
+import type { LayoutProps } from "@remkoj/optimizely-cms-react"
 import type { ReactNode } from "react"
 import type DefaultGridStyles from "./DefaultGrid/DefaultGrid.opti-style.json"
 
