@@ -7,8 +7,8 @@
   "lastModified": "2024-09-25T10:11:01.5492067+00:00",
   "settings": {
     "overflow": {
-      "displayName": "Overflow (if available width is less then minimal)",
-      "editor": "",
+      "displayName": "Overflow (if available width is less then minimum)",
+      "description":"Configure the handling of content that is wider then the column",
       "sortOrder": 60,
       "choices": {
         "right": {
@@ -30,8 +30,7 @@
       }
     },
     "minWidth": {
-      "displayName": "Minimal width",
-      "editor": "",
+      "displayName": "Minimum width",
       "sortOrder": 50,
       "choices": {
         "large": {
@@ -54,7 +53,6 @@
     },
     "showFrom": {
       "displayName": "Show on",
-      "editor": "",
       "sortOrder": 40,
       "choices": {
         "fromLarge": {
@@ -77,7 +75,6 @@
     },
     "alignContent": {
       "displayName": "Align content",
-      "editor": "",
       "sortOrder": 30,
       "choices": {
         "end": {
@@ -96,7 +93,6 @@
     },
     "justifyContent": {
       "displayName": "Justify content",
-      "editor": "",
       "sortOrder": 20,
       "choices": {
         "end": {
@@ -115,7 +111,6 @@
     },
     "contentSpacing": {
       "displayName": "Content Spacing",
-      "editor": "",
       "sortOrder": 10,
       "choices": {
         "xxl": {
