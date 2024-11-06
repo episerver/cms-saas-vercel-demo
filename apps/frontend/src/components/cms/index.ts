@@ -1,5 +1,5 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import componentDictionary from "./component";
 import elementDictionary from "./element";
 import experienceDictionary from "./experience";

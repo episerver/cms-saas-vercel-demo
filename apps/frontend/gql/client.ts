@@ -312,6 +312,43 @@ export const HomePageHeroBlockDataFragmentDoc = gql`
   }
 }
     `;
+export const LinkItemDataFragmentDoc = gql`
+    fragment LinkItemData on Link {
+  title
+  text
+  target
+  url {
+    ...LinkData
+  }
+}
+    `;
+export const MenuNavigationBlockDataFragmentDoc = gql`
+    fragment MenuNavigationBlockData on MenuNavigationBlock {
+  _metadata {
+    displayName
+  }
+  MenuNavigationHeading
+  NavigationLinks {
+    ...LinkItemData
+  }
+}
+    `;
+export const MegaMenuGroupBlockDataFragmentDoc = gql`
+    fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
+  _metadata {
+    displayName
+  }
+  MenuMenuHeading
+  MegaMenuUrl {
+    ...LinkData
+  }
+  MegaMenuContentArea {
+    ...IContentData
+    ...MenuNavigationBlockData
+    ...CardBlockData
+  }
+}
+    `;
 export const OdpEmbedBlockDataFragmentDoc = gql`
     fragment OdpEmbedBlockData on OdpEmbedBlock {
   ContentId
@@ -364,6 +401,8 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
     ...QuoteBlockData
     ...TextBlockData
@@ -391,6 +430,8 @@ export const LandingPageDataFragmentDoc = gql`
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
     ...QuoteBlockData
     ...TextBlockData
@@ -406,6 +447,8 @@ export const LandingPageDataFragmentDoc = gql`
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
     ...QuoteBlockData
     ...TextBlockData
@@ -437,6 +480,8 @@ export const StartPageDataFragmentDoc = gql`
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
     ...QuoteBlockData
     ...TextBlockData
@@ -452,6 +497,8 @@ export const StartPageDataFragmentDoc = gql`
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
     ...QuoteBlockData
     ...TextBlockData
@@ -492,16 +539,6 @@ export const FooterMenuNavigationItemFragmentDoc = gql`
     text
   }
   __typename
-}
-    `;
-export const LinkItemDataFragmentDoc = gql`
-    fragment LinkItemData on Link {
-  title
-  text
-  target
-  url {
-    ...LinkData
-  }
 }
     `;
 export const MenuNavigationItemFragmentDoc = gql`
@@ -782,6 +819,38 @@ ${MenuNavigationItemFragmentDoc}
 ${LinkItemDataFragmentDoc}
 ${MenuCardItemFragmentDoc}
 ${MenuButtonFragmentDoc}`;
+export const getHeaderDataDocument = gql`
+    query getHeaderData($domain: String, $locale: [Locales!]) {
+  appLayout: LayoutSettingsBlock(
+    where: {_or: [{appIdentifiers: {exist: false}}, {_and: [{appIdentifiers: {exist: true}}, {appIdentifiers: {eq: $domain}}]}]}
+    locale: $locale
+  ) {
+    items {
+      _metadata {
+        key
+        displayName
+      }
+      appIdentifiers
+      mainMenu {
+        ...IContentData
+        ...MegaMenuGroupBlockData
+      }
+      serviceButtons {
+        ...IContentData
+        ...ButtonBlockData
+      }
+    }
+  }
+}
+    ${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${ReferenceDataFragmentDoc}
+${ButtonBlockDataFragmentDoc}`;
 export const getArticlesDocument = gql`
     query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
   getArticles: BlogPostPage(
@@ -886,6 +955,8 @@ export const getContentByIdDocument = gql`
       ...HeroBlockData
       ...HomePageHeroBlockData
       ...LayoutContainerBlockData
+      ...MegaMenuGroupBlockData
+      ...MenuNavigationBlockData
       ...OdpEmbedBlockData
       ...QuoteBlockData
       ...TextBlockData
@@ -914,6 +985,9 @@ ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}
 ${LayoutContainerBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
@@ -985,6 +1059,9 @@ ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}
 ${LayoutContainerBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
@@ -1037,6 +1114,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getHeader(variables?: Schema.getHeaderQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getHeaderQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderQuery>(getHeaderDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHeader', 'query', variables);
+    },
+    getHeaderData(variables?: Schema.getHeaderDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getHeaderDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderDataQuery>(getHeaderDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHeaderData', 'query', variables);
     },
     getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticlesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>(getArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticles', 'query', variables);

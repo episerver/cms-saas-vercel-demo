@@ -9,10 +9,10 @@ export const columnClassMap: { [key: string]: string } = {
   
 export const gapSizeClassMap: { [key: string]: string } = {
     none: "",
-    small: "gap-4",
-    medium: "gap-8",
-    large: "gap-12",
-    extraLarge: "gap-24",
+    small: "gap-2",
+    medium: "gap-4",
+    large: "gap-6",
+    extraLarge: "gap-12",
 };
 
 export const colorMap : Record<string,string> = {
@@ -25,29 +25,29 @@ export const colorMap : Record<string,string> = {
 }
 
 export const paddingTopMap : Record<string,string> = {
-    "small": "pt-8",
-    "medium": "pt-16",
-    "large": "pt-24",
-    "extraLarge": "pt-64",
+    "small": "pt-4",
+    "medium": "pt-8",
+    "large": "pt-16",
+    "extraLarge": "pt-40",
 }
 
 export const paddingBottomMap : Record<string,string> = {
-    "small": "pb-8",
-    "medium": "pb-16",
-    "large": "pb-24",
-    "extraLarge": "pb-64",
+    "small": "pb-4",
+    "medium": "pb-8",
+    "large": "pb-12",
+    "extraLarge": "pb-32",
 }
 
 export const marginTopMap : Record<string,string> = {
-    "small": "mt-8",
-    "medium": "mt-16",
-    "large": "mt-24",
-    "extraLarge": "mt-64",
+    "small": "mt-4",
+    "medium": "mt-8",
+    "large": "mt-12",
+    "extraLarge": "mt-32",
 }
 
 export const marginBottomMap : Record<string,string> = {
-    "small": "mb-8",
-    "medium": "mb-16",
-    "large": "mb-24",
-    "extraLarge": "mb-64",
+    "small": "mb-4",
+    "medium": "mb-8",
+    "large": "mb-12",
+    "extraLarge": "mb-32",
 }

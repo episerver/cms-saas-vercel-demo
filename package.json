@@ -23,6 +23,8 @@
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
     "lint": "yarn workspace frontend lint",
+    "compile": "yarn workspace frontend compile",
+    "opti-cms": "yarn workspace frontend opti-cms",
     "graphql:watch": "yarn workspace frontend watch",
     "graphql:codegen": "yarn workspace frontend compile",
     "type-check": "yarn workspace frontend tsc --pretty --noEmit",
@@ -31,6 +33,7 @@
     "update-yarn": "yarn set version stable && yarn install && yarn sdks vscode"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz",
+    "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz"
   }
 }

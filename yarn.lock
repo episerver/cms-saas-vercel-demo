@@ -2639,9 +2639,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-react@npm:3.0.0":
+"@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 3.0.0
-  resolution: "@remkoj/optimizely-cms-react@npm:3.0.0"
+  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=b0d311&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2652,7 +2652,7 @@ __metadata:
     graphql-request: ^6.1.0
     react: "*"
     react-dom: "*"
-  checksum: 10/5e2e35155d87c87054ee5873b2e6f40979937dfdbc9710bb7e85d7b0a6aa7d564f678dffb5f8ffad2a34e572a4acbd8695cfa096eae232d8bf66f4790fefde53
+  checksum: 10/571aa260e5bc552dde0defd750f4d815ad8a8b699785495aa6357a3fdac9e00566043ac33f7f706469146f685a014dc2bc194dbd832ab8ddb74d761d31ecdd51
   languageName: node
   linkType: hard
 

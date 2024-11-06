@@ -1,5 +1,5 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import CardRowComponent from "./CardRow";
 import CarouselRowComponent from "./CarouselRow";
 import DefaultRowComponent from "./DefaultRow";

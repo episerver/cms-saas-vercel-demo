@@ -30,7 +30,6 @@ const config: Config = {
       typography: {
         DEFAULT: {
           css: {
-            fontSize: '1.6rem',
             color: 'inherit',
             'h1': { color: 'inherit' },
             'h2': { color: 'inherit' },
@@ -65,12 +64,6 @@ const config: Config = {
   plugins: [
     require('@tailwindcss/typography'),
     require('@tailwindcss/container-queries'),
-    function({ addBase }: { addBase: any }) {
-     addBase({
-        'html': { fontSize: "10px" },
-        'body': {fontSize: "1.6rem"}
-      })
-    },
     function ({ addBase, theme }: { addBase: any; theme: any }) {
       function extractColorVars(colorObj: Record<string, string>, colorGroup = ''): Record<string, string> {
         return Object.keys(colorObj).reduce((vars, colorKey) => {

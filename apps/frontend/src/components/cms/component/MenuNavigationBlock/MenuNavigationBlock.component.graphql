@@ -1,0 +1,7 @@
+fragment MenuNavigationBlockData on MenuNavigationBlock {
+  _metadata {
+    displayName
+  }
+  MenuNavigationHeading
+  NavigationLinks { ...LinkItemData }
+}

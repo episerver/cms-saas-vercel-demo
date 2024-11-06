@@ -3,7 +3,7 @@ import { type CardBlockDataFragment, CardBlockDataFragmentDoc} from "@gql/graphq
 import dynamic from "next/dynamic";
 import "server-only";
 
-const CardBlockComponent = dynamic(() => import("./card-block"), { ssr: true });
+const CardBlockComponent = dynamic(() => import("./_card-block"), { ssr: true });
 
 export const CardBlock: CmsComponent<CardBlockDataFragment> = async ({
   data,

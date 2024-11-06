@@ -1,0 +1,53 @@
+{
+  "key": "MegaMenuGroupBlock",
+  "displayName": "Header menu item",
+  "description": "A menu item for the Header Menu",
+  "baseType": "component",
+  "sortOrder": 15100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "created": "2024-01-31T16:53:12.0266667+00:00",
+  "lastModified": "2024-11-05T14:48:08.9240028+00:00",
+  "properties": {
+    "MenuMenuHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "MegaMenuUrl": {
+      "type": "url",
+      "displayName": "Menu item link",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "MegaMenuContentArea": {
+      "type": "array",
+      "displayName": "Navigation content",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "CardBlock",
+          "MenuNavigationBlock",
+          "BlogPostPage"
+        ],
+        "restrictedTypes": []
+      }
+    }
+  }
+}

@@ -29,14 +29,14 @@ const HomeHero: HomeHeroBlockComponentType = ({
   const rightImageUrl = rightImageUrlData ? new URL(rightImageUrlData.default ?? '/', rightImageUrlData.base ?? 'https://example.com').href : undefined
 
   return (
-    <section className="py-20 lg:py-40 w-full overflow-hidden relative outer-padding">
-      <div className="container mx-auto text-center flex flex-col items-center max-w-[580px] relative z-10 pt-[40px]">
+    <section className="py-10 lg:py-20 w-full overflow-hidden relative outer-padding">
+      <div className="container mx-auto text-center flex flex-col items-center max-w-xl relative z-10 pt-8">
         {leftImageUrl && (
           <motion.div
             initial={{ opacity: 0, clipPath: "circle(0% at 100%)" }}
             animate={{ opacity: 1, clipPath: "circle(120% at 100%)" }}
             transition={{ duration: 1, delay: 1.25 }}
-            className="absolute left-[-80%] top-[100px] rounded-[40px] overflow-hidden hidden lg:block"
+            className="absolute left-[-80%] top-20 rounded-[2rem] overflow-hidden hidden lg:block"
           >
             <Image
               data-epi-edit={inEditMode ? "HomeHeroLeftImage" : undefined}
@@ -47,7 +47,7 @@ const HomeHero: HomeHeroBlockComponentType = ({
             />
           </motion.div>
         )}
-        <div className="mb-24 prose prose-h1:text-[72px] prose-p:text-[24px] prose-h1:mb-10 prose-p:leading-tight dark:!text-white">
+        <div className="mb-16 prose prose-h1:text-7xl prose-p:text-2xl prose-h1:mb-10 prose-p:leading-tight dark:!text-white">
           {inEditMode ? (
             <h1 data-epi-edit={"HomeHeroBlockHeading"}>{heading}</h1>
           ) : (
@@ -86,7 +86,7 @@ const HomeHero: HomeHeroBlockComponentType = ({
             initial={{ opacity: 0, clipPath: "circle(0% at 0%)" }}
             animate={{ opacity: 1, clipPath: "circle(120% at 0%)" }}
             transition={{ duration: 1, delay: 1.45 }}
-            className="absolute right-[-80%] top-[100px] rounded-[40px] overflow-hidden hidden lg:block"
+            className="absolute right-[-80%] top-20 rounded-[2rem] overflow-hidden hidden lg:block"
           >
             <Image
               data-epi-edit={inEditMode ? "HomeHeroRightImage" : undefined}

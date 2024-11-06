@@ -1,5 +1,5 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import BlogPostPageComponent from "./BlogPostPage";
 import LandingPageComponent from "./LandingPage";
 import StandardPageComponent from "./StandardPage";

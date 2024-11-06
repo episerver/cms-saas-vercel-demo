@@ -56,9 +56,10 @@ export const LayoutContainerBlockComponent : CmsComponent<Partial<LayoutContaine
     }
 
     return <section className={`outer-padding w-full ${additionalClasses.join(" ")}`} style={{ ...backgroundStyle }} data-epi-edit={inEditMode ? "LayoutContentArea" : undefined} >
-        <div className={`container mx-auto place-items-center grid ${innerClasses.join(" ")}`}>
-            { children ? children : items && <CmsContentArea className={""} fieldName="LayoutContentArea" items={items} /> }
-        </div>
+        { children && <div className={`container mx-auto place-items-center grid ${innerClasses.join(" ")}`}>{children}</div>}
+        { items && <CmsContentArea className={`container mx-auto place-items-center grid ${innerClasses.join(" ")}`} fieldName="LayoutContentArea" items={items} itemWrapper={{
+            className: "w-full"
+        }} /> }
     </section>      
 }
 LayoutContainerBlockComponent.displayName = "Layout (Component/LayoutContainerBlock)"

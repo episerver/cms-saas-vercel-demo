@@ -57,18 +57,19 @@ export type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   const ga_id = EnvTools.readValue("GA_TRACKING_ID");
   const forceDisableOverride = EnvTools.readValue("DISABLE_WX_SWITCHER", "0") == '1'
-  
+
   return (
     <html>
       <head>
         <Scripts.Header experimentationAllowOverride={ !forceDisableOverride } />
+        <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link>
       </head>
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan dark:text-white overflow-x-hidden`}>
           <div className="flex min-h-screen flex-col justify-between">
-            <OptimizelyOneProvider value={{ debug: true }} >
+            <OptimizelyOneProvider value={{ debug: false }} >
               <Header />
-                <main className="grow">{ children }</main>
+              <main className="grow">{ children }</main>
               <Footer />
             </OptimizelyOneProvider>
             <Scripts.Footer />

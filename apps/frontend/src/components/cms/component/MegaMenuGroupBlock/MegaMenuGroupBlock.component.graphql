@@ -1,0 +1,12 @@
+fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
+  _metadata {
+    displayName
+  }
+  MenuMenuHeading
+  MegaMenuUrl { ...LinkData }
+  MegaMenuContentArea { 
+    ...IContentData
+    ...MenuNavigationBlockData
+    ...CardBlockData
+  }
+}

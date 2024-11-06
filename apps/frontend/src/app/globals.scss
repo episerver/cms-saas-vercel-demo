@@ -6,12 +6,6 @@
   .outer-padding {
     @apply lg:px-32 md:px-16 px-8;
   }
-  .container > {
-    .opti-content-area,
-    .opti-content-area .opti-content-area-item {
-      display: contents;
-    }
-  }
 }
 
 @layer components {
