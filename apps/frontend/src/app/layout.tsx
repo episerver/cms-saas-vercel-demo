@@ -13,6 +13,8 @@ import { Scripts } from '@remkoj/optimizely-one-nextjs/server'
 import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
+/* eslint-disable @next/next/no-css-tags */
+
 const figtree = Figtree({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {

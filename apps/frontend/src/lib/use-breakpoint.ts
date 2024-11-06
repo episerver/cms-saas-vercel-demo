@@ -19,7 +19,7 @@ export function useBreakpoint()
     const [ breakPoint, setBreakPoint ] = useState<BreakPoints>('xs')
     useLayoutEffect(() => {
         setInnerWidth(window.innerWidth)
-    })
+    }, [])
     useEffect(() => {
         const onResize = () => {
             setInnerWidth(window.innerWidth)
