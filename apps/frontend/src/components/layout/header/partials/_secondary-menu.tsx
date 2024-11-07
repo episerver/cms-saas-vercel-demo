@@ -10,7 +10,7 @@ export type SecondaryMenuProps = {
 
 export const SecondaryMenu : FunctionComponent<SecondaryMenuProps> = ({ utilityItems, className = "" }) => {
   return (
-    <ul className={`${className} hidden lg:flex py-2 items-center justify-end relative gap-2 xl:gap-4`}>
+    <ul className={`${className} hidden lg:flex py-2 items-stretch justify-end relative gap-2 xl:gap-4`}>
       <li><ThemePicker /></li>
       <CmsContentArea items={ utilityItems } noWrapper itemWrapper={{ as: "li" }} />
       <li><SiteSearch /></li>

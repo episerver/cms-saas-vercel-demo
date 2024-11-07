@@ -24,11 +24,11 @@ export const ThemePicker :  FunctionComponent = () =>
             break;
     }
 
-    return <button onClick={ toggleTheme } className={`theme-switcher inline-block align-middle`} title={ title + ", click to switch mode" }>
-        <div className={`btn__content min-w-[80px] ${ effectiveTheme == 'light'? 'bg-white' : 'bg-vulcan-85'} h-[48px]`}>
-            { theme == 'dark' && <MoonIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-[44px] h-[44px] p-[10px] mr-auto -ml-[16px] -my-[10px]`} /> }
-            { theme == 'light' && <SunIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-[44px] h-[44px] p-[10px] mx-auto -my-[10px]`} /> }
-            { theme == 'system' && <ComputerDesktopIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-[44px] h-[44px] p-[10px] ml-auto -mr-[16px] -my-[10px]`} /> }
+    return <button onClick={ toggleTheme } className={`theme-switcher block h-full aspect-[3/2]`} title={ title + ", click to switch mode" }>
+        <div className={`rounded-full border-2 border-solid ${ effectiveTheme == 'light'? 'bg-white dark:border-vulcan-85' : 'bg-vulcan-85 dark:border-ghost-white'} w-full h-full min-h-12 shadow-inner`}>
+            { theme == 'dark' && <MoonIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 mr-auto`} /> }
+            { theme == 'light' && <SunIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 mx-auto`} /> }
+            { theme == 'system' && <ComputerDesktopIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 ml-auto`} /> }
         </div>
     </button>
 }

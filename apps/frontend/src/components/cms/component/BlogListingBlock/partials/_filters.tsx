@@ -2,10 +2,10 @@
 import clsx from "clsx";
 import { useContext } from "react";
 import { Props as SelectProps, components } from "react-select";
-import { BlogListingContext } from "../blog-listing-block";
+import { BlogListingContext } from "../_blog-listing-block";
 import LocalTime from "@/components/shared/local-time";
 import Select from "react-select";
-import { ALL_DATES, ALL_AUTHORS } from "../blog-listing-block";
+import { ALL_DATES, ALL_AUTHORS } from "../_blog-listing-block";
 
 type CustomControlProps = {
   children?: React.ReactNode;

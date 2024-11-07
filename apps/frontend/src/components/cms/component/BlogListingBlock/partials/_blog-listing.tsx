@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import BlogPostCard from "@/components/shared/blog_post_card";
-import { BlogListingContext } from "../blog-listing-block";
+import { BlogListingContext } from "../_blog-listing-block";
 import { motion } from "framer-motion";
 import ContentLoader from "react-content-loader";
 

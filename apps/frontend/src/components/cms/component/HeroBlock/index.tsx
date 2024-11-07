@@ -84,19 +84,19 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
 
   return (
     <section
-      className={`outer-padding py-32 lg:py-64 ${additionalClasses.join(" ")}`}
+      className={`outer-padding py-16 lg:py-32 ${additionalClasses.join(" ")}`}
     >
       <div className={`w-full @container/card container mx-auto`}>
         <div
           className={`w-full h-full grid items-center grid-cols-1 ${
             hasImage
-              ? "gap-16 @[80rem]/card:grid-cols-12 @[80rem]/card:gap-32"
+              ? "gap-16 @[40rem]/card:grid-cols-12 @[40rem]/card:gap-32"
               : ""
           }`}
         >
           <div
-            className={`prose lg:prose-h1:text-[72px] lg:prose-h1:my-[48px] prose-h1:font-bold prose-p:text-[24px] prose-p:leading-[30px] prose-img:my-4 ${
-              hasImage ? "@[80rem]/card:col-span-6" : "max-w-[900px] mx-auto"
+            className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${
+              hasImage ? "@[40rem]/card:col-span-6" : "max-w-[900px] mx-auto"
             } ${innerClasses.join(" ")}`}
           >
             {eyebrow ? (
@@ -106,7 +106,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
                 dangerouslySetInnerHTML={{ __html: eyebrow }}
               ></p>
             ) : inEditMode && !eyebrow ? (
-              <div className="mt-16 flex justify-end">
+              <div className="mt-8 flex justify-end">
                 <div data-epi-edit={inEditMode ? "Eyebrow" : undefined}>
                   + Add Eyebrow
                 </div>
@@ -118,7 +118,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
                 dangerouslySetInnerHTML={{ __html: heading }}
               ></h1>
             ) : inEditMode && !heading ? (
-              <div className="mt-16 flex justify-end">
+              <div className="mt-8 flex justify-end">
                 <div data-epi-edit={inEditMode ? "Heading" : undefined}>
                   + Add Heading
                 </div>
@@ -130,7 +130,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
                 dangerouslySetInnerHTML={{ __html: description?.html ?? "" }}
               ></div>
             ) : inEditMode && !description?.html ? (
-              <div className="mt-16 flex justify-end">
+              <div className="mt-8 flex justify-end">
                 <div data-epi-edit={inEditMode ? "Description" : undefined}>
                   + Add Description
                 </div>
@@ -143,7 +143,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
                 className={buttonClassName}
               ></ButtonBlock>
             ) : inEditMode && !(button && button.children) ? (
-              <div className="mt-16 flex justify-end">
+              <div className="mt-8 flex justify-end">
                 <ButtonBlock
                   buttonType={"secondary"}
                   buttonVariant={"cta"}
@@ -156,11 +156,11 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
           </div>
           {hasImage ? (
             <div
-              className={`@[80rem]/card:col-span-6 order-first lg:order-last`}
+              className={`@[40rem]/card:col-span-3 order-first lg:order-last`}
             >
               <Image
                 data-epi-edit={inEditMode ? "HeroImage" : undefined}
-                className="rounded-[40px] w-full"
+                className="rounded-[2rem] w-full"
                 src={ heroImageSrc }
                 alt={""}
                 width={600}
@@ -168,7 +168,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
               />
             </div>
           ) : inEditMode && !( hasImage ) ? (
-            <div className="mt-16 flex justify-end">
+            <div className="mt-8 flex justify-end">
               <ButtonBlock
                 buttonType={"primary"}
                 buttonVariant={"cta"}
