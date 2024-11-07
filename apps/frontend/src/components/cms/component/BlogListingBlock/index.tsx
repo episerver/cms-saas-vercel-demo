@@ -9,7 +9,7 @@ export type BlogListingComponentType =
   CmsComponent<BlogListingBlockDataFragment>;
 
 const BlogListingBlockComponent = dynamic(
-  () => import("./blog-listing-block"),
+  () => import("./_blog-listing-block"),
   { ssr: true }
 );
 

@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import "server-only";
 import { CmsContentArea, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
-const CarouselBlockComponent = dynamic(() => import("./carousel-block"), { ssr: true });
+const CarouselBlockComponent = dynamic(() => import("./_carousel-block"), { ssr: true });
 
 export const CarouselBlock: CmsComponent<CarouselBlockDataFragment> = async ({ data, contentLink }) => {
   const { inEditMode } = getServerContext()

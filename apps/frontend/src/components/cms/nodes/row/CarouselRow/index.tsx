@@ -3,7 +3,7 @@ import { extractSettings } from "@remkoj/optimizely-cms-react/components";
 import { CarouselRowProps } from "../displayTemplates";
 import dynamic from 'next/dynamic';
 
-const Carousel = dynamic(() => import("./carousel"), { ssr: true });
+const Carousel = dynamic(() => import("./_carousel"), { ssr: true });
 
 export const CarouselRow : CmsLayoutComponent<CarouselRowProps> = ({ contentLink, layoutProps, children }) => {
     /*const layout = extractSettings(layoutProps);

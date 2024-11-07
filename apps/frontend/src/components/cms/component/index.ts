@@ -1,84 +1,90 @@
 // Auto generated dictionary
+// @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
 import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
-import BlogListingBlockComponent from "./BlogListingBlock";
-import ButtonBlockComponent from "./ButtonBlock";
-import CardBlockComponent from "./CardBlock";
-import CardBlockMenuComponent from "./CardBlock/menu";
-import CarouselBlockComponent from "./CarouselBlock";
-import ContentRecsBlockComponent from "./ContentRecsBlock";
-import HeroBlockComponent from "./HeroBlock";
-import HomePageHeroBlockComponent from "./HomePageHeroBlock";
-import LayoutContainerBlockComponent from "./LayoutContainerBlock";
-import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
-import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
-import MenuNavigationBlockComponent from "./MenuNavigationBlock";
-import OdpEmbedBlockComponent from "./OdpEmbedBlock";
-import QuoteBlockComponent from "./QuoteBlock";
 import TextBlockComponent from "./TextBlock";
+import QuoteBlockComponent from "./QuoteBlock";
+import OdpEmbedBlockComponent from "./OdpEmbedBlock";
+import OdpEmbedBlockClientComponent from "./OdpEmbedBlock/client";
+import MenuNavigationBlockComponent from "./MenuNavigationBlock";
+import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
+import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
+import LayoutContainerBlockComponent from "./LayoutContainerBlock";
+import HomePageHeroBlockComponent from "./HomePageHeroBlock";
+import HeroBlockComponent from "./HeroBlock";
+import ContentRecsBlockComponent from "./ContentRecsBlock";
+import CarouselBlockComponent from "./CarouselBlock";
+import CardBlockMenuComponent from "./CardBlock/menu";
+import CardBlockComponent from "./CardBlock";
+import ButtonBlockComponent from "./ButtonBlock";
+import BlogListingBlockComponent from "./BlogListingBlock";
 
 // Build dictionary
-export const componentDictionary : ComponentTypeDictionary = [
+export const ComponentFactory : ComponentTypeDictionary = [
     { 
-        type: "BlogListingBlock", 
-        component: BlogListingBlockComponent 
-    },
-    { 
-        type: "ButtonBlock", 
-        component: ButtonBlockComponent 
-    },
-    { 
-        type: "CardBlock", 
-        component: CardBlockComponent 
-    },
-    { 
-        type: "CardBlock/menu", 
-        component: CardBlockMenuComponent 
-    },
-    { 
-        type: "CarouselBlock", 
-        component: CarouselBlockComponent 
-    },
-    { 
-        type: "ContentRecsBlock", 
-        component: ContentRecsBlockComponent 
-    },
-    { 
-        type: "HeroBlock", 
-        component: HeroBlockComponent 
-    },
-    { 
-        type: "HomePageHeroBlock", 
-        component: HomePageHeroBlockComponent 
-    },
-    { 
-        type: "LayoutContainerBlock", 
-        component: LayoutContainerBlockComponent 
-    },
-    { 
-        type: "MegaMenuGroupBlock", 
-        component: MegaMenuGroupBlockComponent 
-    },
-    { 
-        type: "MegaMenuGroupBlock/mobile", 
-        component: MegaMenuGroupBlockMobileComponent 
-    },
-    { 
-        type: "MenuNavigationBlock", 
-        component: MenuNavigationBlockComponent 
-    },
-    { 
-        type: "OdpEmbedBlock", 
-        component: OdpEmbedBlockComponent 
+        type: "TextBlock", 
+        component: TextBlockComponent 
     },
     { 
         type: "QuoteBlock", 
         component: QuoteBlockComponent 
     },
     { 
-        type: "TextBlock", 
-        component: TextBlockComponent 
+        type: "OdpEmbedBlock", 
+        component: OdpEmbedBlockComponent 
+    },
+    { 
+        type: "OdpEmbedBlock/client", 
+        component: OdpEmbedBlockClientComponent 
+    },
+    { 
+        type: "MenuNavigationBlock", 
+        component: MenuNavigationBlockComponent 
+    },
+    { 
+        type: "MegaMenuGroupBlock/mobile", 
+        component: MegaMenuGroupBlockMobileComponent 
+    },
+    { 
+        type: "MegaMenuGroupBlock", 
+        component: MegaMenuGroupBlockComponent 
+    },
+    { 
+        type: "LayoutContainerBlock", 
+        component: LayoutContainerBlockComponent 
+    },
+    { 
+        type: "HomePageHeroBlock", 
+        component: HomePageHeroBlockComponent 
+    },
+    { 
+        type: "HeroBlock", 
+        component: HeroBlockComponent 
+    },
+    { 
+        type: "ContentRecsBlock", 
+        component: ContentRecsBlockComponent 
+    },
+    { 
+        type: "CarouselBlock", 
+        component: CarouselBlockComponent 
+    },
+    { 
+        type: "CardBlock/menu", 
+        component: CardBlockMenuComponent 
+    },
+    { 
+        type: "CardBlock", 
+        component: CardBlockComponent 
+    },
+    { 
+        type: "ButtonBlock", 
+        component: ButtonBlockComponent 
+    },
+    { 
+        type: "BlogListingBlock", 
+        component: BlogListingBlockComponent 
     }
 ];
 
 // Export dictionary
-export default componentDictionary;
+export default ComponentFactory;

@@ -14,6 +14,7 @@ const Logo : FunctionComponent<LogoProps> = ({ logo, ...divProps }) => {
           src={ logoUrl ?? "/assets/moseybank-logo.svg"}
           alt="Mosey Bank Logo"
           fill
+          unoptimized
           priority
           className="dark:brightness-0	dark:invert !w-auto !h-12 !relative"
         />

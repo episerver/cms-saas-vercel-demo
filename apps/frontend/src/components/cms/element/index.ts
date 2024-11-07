@@ -1,49 +1,50 @@
 // Auto generated dictionary
+// @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
 import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
-import ArticleListElementComponent from "./ArticleListElement";
-import ContentRecsElementComponent from "./ContentRecsElement";
-import CTAElementComponent from "./CTAElement";
-import HeadingElementComponent from "./HeadingElement";
-import ImageElementComponent from "./ImageElement";
-import ParagraphElementComponent from "./ParagraphElement";
-import TestimonialElementComponent from "./TestimonialElement";
 import VideoElementComponent from "./VideoElement";
+import TestimonialElementComponent from "./TestimonialElement";
+import ParagraphElementComponent from "./ParagraphElement";
+import ImageElementComponent from "./ImageElement";
+import HeadingElementComponent from "./HeadingElement";
+import CTAElementComponent from "./CTAElement";
+import ContentRecsElementComponent from "./ContentRecsElement";
+import ArticleListElementComponent from "./ArticleListElement";
 
 // Build dictionary
-export const elementDictionary : ComponentTypeDictionary = [
+export const ElementFactory : ComponentTypeDictionary = [
     { 
-        type: "ArticleListElement", 
-        component: ArticleListElementComponent 
-    },
-    { 
-        type: "ContentRecsElement", 
-        component: ContentRecsElementComponent 
-    },
-    { 
-        type: "CTAElement", 
-        component: CTAElementComponent 
-    },
-    { 
-        type: "HeadingElement", 
-        component: HeadingElementComponent 
-    },
-    { 
-        type: "ImageElement", 
-        component: ImageElementComponent 
-    },
-    { 
-        type: "ParagraphElement", 
-        component: ParagraphElementComponent 
+        type: "VideoElement", 
+        component: VideoElementComponent 
     },
     { 
         type: "TestimonialElement", 
         component: TestimonialElementComponent 
     },
     { 
-        type: "VideoElement", 
-        component: VideoElementComponent 
+        type: "ParagraphElement", 
+        component: ParagraphElementComponent 
+    },
+    { 
+        type: "ImageElement", 
+        component: ImageElementComponent 
+    },
+    { 
+        type: "HeadingElement", 
+        component: HeadingElementComponent 
+    },
+    { 
+        type: "CTAElement", 
+        component: CTAElementComponent 
+    },
+    { 
+        type: "ContentRecsElement", 
+        component: ContentRecsElementComponent 
+    },
+    { 
+        type: "ArticleListElement", 
+        component: ArticleListElementComponent 
     }
 ];
 
 // Export dictionary
-export default elementDictionary;
+export default ElementFactory;
