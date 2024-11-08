@@ -41,6 +41,6 @@ export default async function SiteHeader({ locale }: HeaderProps)
 
 async function LogoWrapper() 
 {
-    const config = (await layout_configuration()).variables
+    const config = (await layout_configuration())
     return <Logo logo={ config.logo } />
 }

@@ -20,35 +20,24 @@ export const PullCommand : CliModule = {
             const variationCodes = variations.items.map(variation => {
             return `{
             label: "${ variation.name }",
-            value: {
-                flagKey: "${ flag.key }",
-                enabled: ${ variation.key == "off" ? "false" : "true" },
-                ruleKey: null,
-                variationKey: "${ variation.key }",
-                reasons: ["Vercel Toolbar Override"],
-                variables: ${ defintionsToDefault(variation.variables, 'value') }
-            }                
+            value: ${ defintionsToDefault(variation.variables, 'value', variation.enabled) }
         }`
         })
 
-        let flagCode = `export const ${ flagVariable } = flag<TypedOptimizelyDecision<${ defintionsToType(flag.variable_definitions) }>>({
+        let flagCode = `export const ${ flagVariable } = flag<OptimizelyFlag<${ defintionsToType(flag.variable_definitions) }>>({
     key: '${ flag.key }',
     origin: 'https://app.optimizely.com/v2/projects/${ project }/flags/manage/${ flag.key }',
     description: '${ flag.description }',
-    defaultValue: {
-        flagKey: "${ flag.key }",
-        enabled: false,
-        ruleKey: null,
-        variationKey: null,
-        reasons: ["Vercel Flags Fallback Value"],
-        variables: ${ defintionsToDefault(flag.variable_definitions) }
-    },
+    defaultValue: ${ defintionsToDefault(flag.variable_definitions, 'default_value', false) },
     async decide() {
         const ctx = await getUserContext()
-        const decision = ctx?.decide('${ flag.key }') as TypedOptimizelyDecision<${ defintionsToType(flag.variable_definitions) }> | undefined
+        const decision = ctx?.decide('${ flag.key }') as TypedOptimizelyDecision<${ defintionsToType(flag.variable_definitions) }>
         if (!decision)
             throw new Error("No decision made by Optimizely Feature Experimentation")
-        return decision
+        return {
+            _enabled: decision.enabled,
+            ...decision.variables
+        }
     },
     options: [
         ${ variationCodes.join(",\n        ")}
@@ -75,8 +64,10 @@ export const PullCommand : CliModule = {
 export default PullCommand
 
 
-function defintionsToDefault(obj, fieldName = "default_value") {
-    const newObj = {}
+function defintionsToDefault(obj, fieldName = "default_value", enabled = true ) {
+    const newObj = {
+        _enabled: enabled
+    }
 
     for (var entry of Object.getOwnPropertyNames(obj)) {
         switch (obj[entry].type) {
@@ -116,7 +107,11 @@ import { unstable_flag as flag } from '@vercel/flags/next';
 import { type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite';
 import { getUserContext } from './${ path.basename(sdkFile, '.ts') }';
 
-type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omit<OptimizelyDecision, 'variables' | 'userContext'> & {
+type OptimizelyFlag<T extends { [variableKey: string]: unknown }> = {
+  _enabled: boolean
+} & T
+
+type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omit<OptimizelyDecision, 'variables'> & {
   variables: T
 }
 
