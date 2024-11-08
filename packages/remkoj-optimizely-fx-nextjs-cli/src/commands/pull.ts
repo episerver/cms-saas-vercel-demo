@@ -26,7 +26,7 @@ export const PullCommand : CliModule = {
 
         let flagCode = `export const ${ flagVariable } = flag<OptimizelyFlag<${ defintionsToType(flag.variable_definitions) }>>({
     key: '${ flag.key }',
-    origin: 'https://app.optimizely.com/v2/projects/${ project }/flags/manage/${ flag.key }',
+    origin: 'https://app.optimizely.com/v2/projects/${ project }/flags/manage/${ flag.key }/variations',
     description: '${ flag.description }',
     defaultValue: ${ defintionsToDefault(flag.variable_definitions, 'default_value', false) },
     async decide() {
