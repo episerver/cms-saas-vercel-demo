@@ -11,11 +11,38 @@ type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omi
   variables: T
 }
 
+export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, show_recent_searches: boolean, topic_weight: number, use_personalization: boolean }>>({
+    key: 'site_search',
+    origin: 'https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/site_search/variations',
+    description: 'Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations',
+    defaultValue: {"_enabled":false,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false},
+    async decide() {
+        const ctx = await getUserContext()
+        const decision = ctx?.decide('site_search') as TypedOptimizelyDecision<{ recent_search_count: number, show_recent_searches: boolean, topic_weight: number, use_personalization: boolean }>
+        if (!decision)
+            throw new Error("No decision made by Optimizely Feature Experimentation")
+        return {
+            _enabled: decision.enabled,
+            ...decision.variables
+        }
+    },
+    options: [
+        {
+            label: "On",
+            value: {"_enabled":true,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false}
+        },
+        {
+            label: "Off",
+            value: {"_enabled":false,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false}
+        }
+    ]
+})
+
 export const layout_configuration = flag<OptimizelyFlag<{ logo: string, theme_switcher: boolean }>>({
     key: 'layout_configuration',
-    origin: 'https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/layout_configuration',
+    origin: 'https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/layout_configuration/variations',
     description: 'Test various layout configurations to determine the best possible layout',
-    defaultValue: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true},
+    defaultValue: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":false},
     async decide() {
         const ctx = await getUserContext()
         const decision = ctx?.decide('layout_configuration') as TypedOptimizelyDecision<{ logo: string, theme_switcher: boolean }>
@@ -27,6 +54,10 @@ export const layout_configuration = flag<OptimizelyFlag<{ logo: string, theme_sw
         }
     },
     options: [
+        {
+            label: "Optimizely Logo",
+            value: {"_enabled":true,"logo":"https://support.optimizely.com/hc/theming_assets/01HZH1Q8HQF8VFTSNFVAGVB65K","theme_switcher":true}
+        },
         {
             label: "No theme picker",
             value: {"_enabled":true,"theme_switcher":false,"logo":"/assets/moseybank-logo.svg"}

@@ -14,9 +14,18 @@ export type SiteSearchProps = {
     className?: string
 }
 
-export const SiteSearch : FunctionComponent<SiteSearchProps> = ({
+export type ConfiguredSiteSearchProps = SiteSearchProps & Partial<{
+    recent_search_count: number
+    show_recent_searches: boolean
+    topic_weight: number
+    use_personalization: boolean
+}>
+
+export const SiteSearch : FunctionComponent<ConfiguredSiteSearchProps> = ({
     asSearchBox = false,
-    className = ""
+    className = "",
+    recent_search_count = 5,
+    show_recent_searches = false
 }) => {
     const opti = useOptimizelyOne()
     const router = useRouter()
@@ -25,7 +34,7 @@ export const SiteSearch : FunctionComponent<SiteSearchProps> = ({
     const { isLoading, data } = useQuickSearch(quickSearchTerm)
     const container = useRef<HTMLDivElement | null>(null)
     const resultTerm = data?.term
-    const { data: lastTerms } = useLastTerms()
+    const { data: lastTerms } = useLastTerms(show_recent_searches ? recent_search_count : 0)
 
     // Close search on click outside of search box
     useEffect(() => {
@@ -95,7 +104,7 @@ export const SiteSearch : FunctionComponent<SiteSearchProps> = ({
             { (data && data?.isPersonalized) && <div className="px-[10px] pb-[10px] text-sm italic text-vulcan dark:text-ghost-white">Personalized with Optimizely Content Recommendations</div>}
             { data && data.total == 0 && <div className="p-[10px] text-paleruby">No results for: <span className="font-bold">&ldquo;{ data.term }&rdquo;</span></div> }
         </div> }
-        { searchBoxOpen && (!(isLoading || data )) && lastTerms && <div className="quick-search-results border-solid border-[2px] border-azure dark:border-verdansk rounded-[20px] bg-ghost-white dark:bg-vulcan z-[999] absolute w-full min-h-[20px] top-[64px] right-0">
+        { show_recent_searches && searchBoxOpen && (!(isLoading || data )) && lastTerms && <div className="quick-search-results border-solid border-[2px] border-azure dark:border-verdansk rounded-[20px] bg-ghost-white dark:bg-vulcan z-[999] absolute w-full min-h-[20px] top-[64px] right-0">
             <ul className="p-[10px]">{lastTerms?.map(item => {
                 return <li key={ "lt-"+item } onClick={() => {
                     router.push("/search?query=" + encodeURIComponent(item))

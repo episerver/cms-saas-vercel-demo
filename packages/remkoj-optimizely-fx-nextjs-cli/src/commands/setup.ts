@@ -3,7 +3,7 @@ import fs from 'node:fs'
 import path from 'node:path'
 import crypto from 'node:crypto'
 
-import { wellknownRoute, routeFile, flagsFile, optiFlags, sdkFile } from './_convention.js'
+import { wellknownRoute, routeFile, flagsFile, optiFlags, sdkFile, optiDataFileConfigKey, dataFileHandler } from './_convention.js'
 
 export const SetupCommand : CliModule = {
     command: "setup",
@@ -24,6 +24,14 @@ export const SetupCommand : CliModule = {
             const dirname = path.dirname(wellKnownApi)
             fs.mkdirSync(dirname, { recursive: true })
             fs.writeFileSync(wellKnownApi, routeHandlerTpl)
+        }
+        
+        const datafileApi = path.resolve(path.join(cwd, nosrc ? '.' : 'src', dataFileHandler, routeFile))
+        if (!fs.existsSync(datafileApi)) {
+            process.stdout.write("Creating Optimizely Datafile webhook handler\n")
+            const dirname = path.dirname(datafileApi)
+            fs.mkdirSync(dirname, { recursive: true })
+            fs.writeFileSync(datafileApi, datafileApiTpl)
         }
 
         const flagsProvider = path.resolve(path.join(cwd, nosrc ? '.' : 'src', flagsFile))
@@ -72,8 +80,7 @@ export const SetupCommand : CliModule = {
         process.stdout.write(`Updating ${ envfile }\n`)
         fs.writeFileSync(path.join(cwd, envfile), envConfig)
 
-        process.stdout.write(`\n🚀 Done!\n`)
-
+        process.stdout.write(`\n🚀 Done! You can now add flags by:\n-Using 'yarn opti-fx pull' to download your feature configuration`)
     }
 }
 
@@ -92,9 +99,9 @@ export async function GET(request: NextRequest) {
     const provider = getProviderData(flags)
 
     // Update the options from Feature Experimentation
-    // @ts-expect-error: Node-Types isn't loaded
+    // @ts-ignore: Node-Types may or may not be available
     const accessToken = process.env.OPTIMIZELY_FX_PAT
-    // @ts-expect-error: Node-Types isn't loaded
+    // @ts-ignore: Node-Types may or may not be available
     const projectId = process.env.OPTIMIZELY_FX_PROJECT
     if (accessToken && projectId) {
         console.log(\`Credentials present, loading current flag variations from project \${ projectId }\`)
@@ -171,3 +178,65 @@ export async function getUserContext()
 
 export default getUserContext
 `
+
+const datafileApiTpl = `import { type NextRequest, NextResponse } from "next/server"
+
+async function handler(req: NextRequest)
+{
+    const {edgeConfigId, vercelTeam, vercelToken, token, sdkkey} = readEnv()
+
+    const reqToken = req.nextUrl.searchParams.get('token')
+    if (!token || token != reqToken)
+        return new NextResponse("Not authorized", { status: 401 })
+
+    if (!edgeConfigId || !vercelTeam || !vercelToken || !sdkkey)
+        return new NextResponse("Incorrect configuration", { status: 401 })
+
+    const datafile = await fetch(\`https://cdn.optimizely.com/datafiles/\${ sdkkey }.json\`).then(result => result.json())
+
+    const storeResult = await fetch(\`https://api.vercel.com/v1/edge-config/\${ edgeConfigId }/items?slug=\${ vercelTeam }\`, {
+        "body": JSON.stringify({
+            items: [{
+                description: "Optimizely FX Datafile",
+                key: "${ optiDataFileConfigKey }",
+                operation: "upsert",
+                value: datafile
+            },{
+                description: "Optimizely FX Datafile",
+                key: "optimizely-fx-enabled",
+                operation: "upsert",
+                value: true
+            }]
+        }),
+        "headers": {
+          "Authorization": \`Bearer \${ vercelToken }\`,
+          "Content-Type": "application/json"
+        },
+        "method": "PATCH"
+    }).then(result => result.json())
+
+    if (storeResult.status != 'ok')
+        return NextResponse.json(storeResult, { status: 500 })
+
+    return NextResponse.json(storeResult)
+}
+
+export const POST = handler
+export const GET = handler
+export const runtime = 'edge'
+
+function readEnv() 
+{
+    // @ts-ignore: Node-Types may or may not be available
+    const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
+    // @ts-ignore: Node-Types may or may not be available
+    const vercelTeam = process.env.VERCEL_TEAM
+    // @ts-ignore: Node-Types may or may not be available
+    const vercelToken = process.env.VERCEL_TOKEN
+    // @ts-ignore: Node-Types may or may not be available
+    const token = process.env.OPTIMIZELY_PUBLISH_TOKEN
+    // @ts-ignore: Node-Types may or may not be available
+    const sdkkey = process.env.OPTIMIZELY_FX_SDKKEY
+
+    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey }
+}`

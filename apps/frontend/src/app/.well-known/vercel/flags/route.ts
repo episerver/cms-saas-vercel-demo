@@ -11,9 +11,9 @@ export async function GET(request: NextRequest) {
     const provider = getProviderData(flags)
 
     // Update the options from Feature Experimentation
-    // @ts-expect-error: Node-Types isn't loaded
+    // @ts-ignore: Node-Types may or may not be available
     const accessToken = process.env.OPTIMIZELY_FX_PAT
-    // @ts-expect-error: Node-Types isn't loaded
+    // @ts-ignore: Node-Types may or may not be available
     const projectId = process.env.OPTIMIZELY_FX_PROJECT
     if (accessToken && projectId) {
         console.log(`Credentials present, loading current flag variations from project ${ projectId }`)
