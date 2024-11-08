@@ -1,7 +1,7 @@
 import { type FunctionComponent, type ComponentProps, Suspense } from "react";
 import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
-import { ThemePicker } from "./_themepicker";
-import { SiteSearch } from "./_site-search";
+import ThemePicker from "./_themepicker";
+import SiteSearch from "./_site-search-server";
 import { layout_configuration } from "@/flags";
 
 export type SecondaryMenuProps = {

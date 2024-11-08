@@ -28,6 +28,10 @@ export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, sh
     },
     options: [
         {
+            label: "Long history",
+            value: {"_enabled":true,"show_recent_searches":true,"recent_search_count":10,"topic_weight":50.5,"use_personalization":false}
+        },
+        {
             label: "On",
             value: {"_enabled":true,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false}
         },

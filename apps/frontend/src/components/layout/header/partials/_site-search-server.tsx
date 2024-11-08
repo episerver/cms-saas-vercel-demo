@@ -9,6 +9,8 @@ export function SiteSearch(props: SiteSearchProps)
     </Suspense>
 }
 
+export default SiteSearch
+
 export async function ConfiguredSiteSearch(props: SiteSearchProps)
 {
     const config = await getSearchConfig()

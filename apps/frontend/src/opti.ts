@@ -15,7 +15,10 @@ export async function getUserContext()
     if (!fx) {
         throw new Error("Optimizely Feature Experimentation initialization failed")
     }
-    const fx_ctx = fx?.createUserContext(visitorId, {})
+    const fx_ctx = fx?.createUserContext(visitorId, {
+
+    })
+    await fx_ctx?.fetchQualifiedSegments()
     return fx_ctx
 }
 
