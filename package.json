@@ -4,7 +4,8 @@
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "engines": {
     "node": ">=20.0.0 <21.0.0"
