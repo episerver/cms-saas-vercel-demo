@@ -1,28 +1,10 @@
 // Auto generated flags.ts from Optimizely Feature Experimentation
 import { unstable_flag as flag } from '@vercel/flags/next';
-import { get } from '@vercel/edge-config'
-import { headers } from 'next/headers'
-import { createInstance, type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite'
+import { type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite';
+import { getUserContext } from './opti';
 
 type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omit<OptimizelyDecision, 'variables' | 'userContext'> & {
   variables: T
-}
-
-async function getDecisionContext()
-{
-    const config = await get<string>('optimizely-fx-data-file')
-    const headerData = await headers()
-    const visitorId = headerData.get('x-visitorid')
-    if (!visitorId)
-        throw new Error("No visitor identifier provided by your middleware")
-    const fx = createInstance({
-        datafile: config
-    })
-    if (!fx) {
-        throw new Error("Optimizely Feature Experimentation initialization failed")
-    }
-    const fx_ctx = fx?.createUserContext(visitorId, {})
-    return fx_ctx
 }
 
 export const layout_configuration = flag<TypedOptimizelyDecision<{ logo: string, theme_switcher: boolean }>>({
@@ -38,8 +20,8 @@ export const layout_configuration = flag<TypedOptimizelyDecision<{ logo: string,
         variables: {"logo":"/assets/moseybank-logo.svg","theme_switcher":true}
     },
     async decide() {
-        const ctx = await getDecisionContext()
-        const decision = ctx?.decide('layout_configuration') as unknown as TypedOptimizelyDecision<{ logo: string, theme_switcher: boolean }> | undefined
+        const ctx = await getUserContext()
+        const decision = ctx?.decide('layout_configuration') as TypedOptimizelyDecision<{ logo: string, theme_switcher: boolean }> | undefined
         if (!decision)
             throw new Error("No decision made by Optimizely Feature Experimentation")
         return decision

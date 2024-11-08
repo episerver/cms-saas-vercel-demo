@@ -2,7 +2,7 @@ import { type CliModule } from '../types.js'
 import fs from 'node:fs'
 import path from 'node:path'
 
-import { wellknownRoute, routeFile, flagsFile, optiFlags, optiDataFileConfigKey } from './_convention.js'
+import { wellknownRoute, routeFile, flagsFile, optiFlags, optiDataFileConfigKey, sdkFile } from './_convention.js'
 
 export const PullCommand : CliModule = {
     command: "pull",
@@ -44,8 +44,8 @@ export const PullCommand : CliModule = {
         variables: ${ defintionsToDefault(flag.variable_definitions) }
     },
     async decide() {
-        const ctx = await getDecisionContext()
-        const decision = ctx?.decide('${ flag.key }') as unknown as TypedOptimizelyDecision<${ defintionsToType(flag.variable_definitions) }> | undefined
+        const ctx = await getUserContext()
+        const decision = ctx?.decide('${ flag.key }') as TypedOptimizelyDecision<${ defintionsToType(flag.variable_definitions) }> | undefined
         if (!decision)
             throw new Error("No decision made by Optimizely Feature Experimentation")
         return decision
@@ -113,29 +113,11 @@ async function getAllVariations(projectId: string, flagKey: string, accessToken:
 
 const intro = `// Auto generated flags.ts from Optimizely Feature Experimentation
 import { unstable_flag as flag } from '@vercel/flags/next';
-import { get } from '@vercel/edge-config'
-import { headers } from 'next/headers'
-import { createInstance, type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite'
+import { type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite';
+import { getUserContext } from './${ path.basename(sdkFile, '.ts') }';
 
 type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omit<OptimizelyDecision, 'variables' | 'userContext'> & {
   variables: T
-}
-
-async function getDecisionContext()
-{
-    const config = await get<string>('${ optiDataFileConfigKey }')
-    const headerData = await headers()
-    const visitorId = headerData.get('x-visitorid')
-    if (!visitorId)
-        throw new Error("No visitor identifier provided by your middleware")
-    const fx = createInstance({
-        datafile: config
-    })
-    if (!fx) {
-        throw new Error("Optimizely Feature Experimentation initialization failed")
-    }
-    const fx_ctx = fx?.createUserContext(visitorId, {})
-    return fx_ctx
 }
 
 `
