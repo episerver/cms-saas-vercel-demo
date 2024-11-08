@@ -4,13 +4,33 @@
   "baseType": "section",
   "isDefault": true,
   "created": "2024-09-25T10:11:01.3541373+00:00",
-  "lastModified": "2024-11-01T16:04:39.8834073+00:00",
+  "lastModified": "2024-11-07T16:04:39.8834073+00:00",
   "settings": {
     "sectionColor": {
       "displayName": "Color",
       "editor": "",
       "sortOrder": 30,
       "choices": {
+        "lightgrey": {
+          "displayName": "Light Grey",
+          "sortOrder": 80
+        },
+        "lightred": {
+          "displayName": "Light Red",
+          "sortOrder": 70
+        },
+        "purple": {
+          "displayName": "Purple",
+          "sortOrder": 60
+        },
+        "orange": {
+          "displayName": "Orange",
+          "sortOrder": 50
+        },
+        "green": {
+          "displayName": "Green",
+          "sortOrder": 40
+        },
         "blue": {
           "displayName": "Blue",
           "sortOrder": 30
