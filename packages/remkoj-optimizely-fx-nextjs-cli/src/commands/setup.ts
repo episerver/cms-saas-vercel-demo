@@ -133,17 +133,31 @@ function buildVariantValues(variation: any, fieldName = "value") {
     }
 
     for (var entry of Object.getOwnPropertyNames(variation.variables)) {
-        switch (variation.variables[entry].type) {
-            case 'boolean':
-                variantValues[entry] = variation.variables[entry][fieldName] == 'true'
-                break;
-            default:
-                variantValues[entry] = variation.variables[entry][fieldName]
-                break;
-        }
+        variantValues[entry] = parseValue(variation.variables[entry].type, variation.variables[entry][fieldName])
     }
 
     return variantValues
+}
+
+/**
+ * Process a value reported from the Optimizely FX API
+ * 
+ * @param       type    The value type reported
+ * @param       value   The string encoded version of the value
+ * @returns     The parsed value
+ */
+function parseValue(type: string, value: string) : string | boolean | number | object
+{
+    switch (type) {
+        case 'boolean':
+            return value == 'true'
+        case 'integer':
+            return Number.parseInt(value)
+        case 'double':
+            return Number.parseFloat(value)
+        default:
+            return value
+    }
 }`
 
 const flagsProviderTpl = `// Auto generated flags.ts from Optimizely Feature Experimentation
