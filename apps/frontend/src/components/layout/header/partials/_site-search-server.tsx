@@ -14,5 +14,5 @@ export default SiteSearch
 export async function ConfiguredSiteSearch(props: SiteSearchProps)
 {
     const config = await getSearchConfig()
-    return <SiteSearchClient {...props} {...config} />
+    return <SiteSearchClient {...props} { ...config } />
 }

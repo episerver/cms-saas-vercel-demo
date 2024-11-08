@@ -25,7 +25,7 @@ export const ThemePicker :  FunctionComponent = () =>
     }
 
     return <button onClick={ toggleTheme } className={`theme-switcher block h-full aspect-[3/2]`} title={ title + ", click to switch mode" }>
-        <div className={`rounded-full border-2 border-solid ${ effectiveTheme == 'light'? 'bg-white dark:border-vulcan-85' : 'bg-vulcan-85 dark:border-ghost-white'} w-full h-full min-h-12 shadow-inner`}>
+        <div className={`rounded-full border-2 border-solid ${ effectiveTheme == 'light'? 'bg-white dark:border-vulcan-85' : 'bg-vulcan-85 dark:border-ghost-white'} w-full h-full min-h-11 shadow-inner`}>
             { theme == 'dark' && <MoonIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 mr-auto`} /> }
             { theme == 'light' && <SunIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 mx-auto`} /> }
             { theme == 'system' && <ComputerDesktopIcon className={`block ${ effectiveTheme == 'light'? 'text-vulcan bg-ghost-white shadow-sm' : 'text-white bg-vulcan'} rounded-full w-auto h-full p-2 ml-auto`} /> }

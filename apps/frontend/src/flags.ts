@@ -11,14 +11,14 @@ type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omi
   variables: T
 }
 
-export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, show_recent_searches: boolean, topic_weight: number, use_personalization: boolean }>>({
+export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, show_recent_searches: boolean, use_personalization: boolean, interest_boost: number }>>({
     key: 'site_search',
     origin: 'https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/site_search/variations',
     description: 'Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations',
-    defaultValue: {"_enabled":false,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false},
+    defaultValue: {"_enabled":false,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false,"interest_boost":200},
     async decide() {
         const ctx = await getUserContext()
-        const decision = ctx?.decide('site_search') as TypedOptimizelyDecision<{ recent_search_count: number, show_recent_searches: boolean, topic_weight: number, use_personalization: boolean }>
+        const decision = ctx?.decide('site_search') as TypedOptimizelyDecision<{ recent_search_count: number, show_recent_searches: boolean, use_personalization: boolean, interest_boost: number }>
         if (!decision)
             throw new Error("No decision made by Optimizely Feature Experimentation")
         return {
@@ -29,15 +29,15 @@ export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, sh
     options: [
         {
             label: "Long history",
-            value: {"_enabled":true,"show_recent_searches":true,"recent_search_count":10,"topic_weight":50.5,"use_personalization":false}
+            value: {"_enabled":true,"show_recent_searches":true,"recent_search_count":10,"interest_boost":200,"use_personalization":false}
         },
         {
             label: "On",
-            value: {"_enabled":true,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false}
+            value: {"_enabled":true,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
         },
         {
             label: "Off",
-            value: {"_enabled":false,"recent_search_count":5,"show_recent_searches":false,"topic_weight":50.5,"use_personalization":false}
+            value: {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
         }
     ]
 })

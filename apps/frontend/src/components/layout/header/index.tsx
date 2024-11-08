@@ -27,12 +27,14 @@ export default async function SiteHeader({ locale }: HeaderProps)
         domain: currentDomain
     }).then(x => x.appLayout?.items?.at(0))
 
+    console.log(headerData?.mainMenu)
+
     return <header>
         <div className="container mx-auto px-4 lg:px-6 py-4 gap-2 flex flex-row justify-between items-stretch lg:flex-wrap 2xl:flex-nowrap">
             <Suspense>
                 <LogoWrapper />
             </Suspense>
-            <CmsContentArea as={ PopoverGroup } className="hidden 2xl:grow lg:order-last lg:basis-full 2xl:order-none 2xl:basis-auto lg:flex flex-row items-stretch" items={ headerData?.mainMenu } itemWrapper={{ noWrapper: true }} />
+            <CmsContentArea as={ PopoverGroup } className="main-menu hidden 2xl:grow lg:order-last lg:basis-full 2xl:order-none 2xl:basis-auto lg:flex flex-row items-stretch" items={ headerData?.mainMenu } itemWrapper={{ noWrapper: true }} />
             <SecondaryMenu className='grow-0 shrink-0' utilityItems={ headerData?.serviceButtons } />
             <MobileMenu menuItems={ headerData?.mainMenu } serviceItems={ headerData?.serviceButtons } />
         </div>

@@ -12,15 +12,15 @@
         "type": "boolean",
         "default": false
       },
-      "topic_weight": {
-        "description": "The weight to be applied to the topics retrieved from Optimizely Content Recommendations for a personalized search result",
-        "type": "double",
-        "default": 50.5
-      },
       "use_personalization": {
         "description": "Use the top topic from Optimizely Content Recommendations to personalize the search results",
         "type": "boolean",
         "default": false
+      },
+      "interest_boost": {
+        "description": "The weight to be applied to the topics retrieved from Optimizely Content Recommendations for a personalized search result",
+        "type": "integer",
+        "default": 200
       }
     }
   },
