@@ -517,30 +517,6 @@ export const StartPageSearchDataFragmentDoc = gql`
   }
 }
     `;
-export const HtmlBlockFragmentDoc = gql`
-    fragment HtmlBlock on HtmlBlock {
-  title: HtmlBlockHeading
-  content: HtmlContent {
-    json
-    html
-  }
-  __typename
-}
-    `;
-export const FooterMenuNavigationItemFragmentDoc = gql`
-    fragment FooterMenuNavigationItem on MenuNavigationBlock {
-  title: MenuNavigationHeading
-  items: NavigationLinks {
-    url {
-      ...LinkData
-    }
-    title
-    target
-    text
-  }
-  __typename
-}
-    `;
 export const SearchDataFragmentDoc = gql`
     fragment SearchData on _IContent {
   ...IContentData
@@ -717,26 +693,37 @@ export const getStartPageMetaDataDocument = gql`
 }
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
-export const getFooterDocument = gql`
-    query getFooter($locale: [Locales] = en) {
-  menuItems: StartPage(locale: $locale) {
+export const getFooterDataDocument = gql`
+    query getFooterData($domain: String, $locale: [Locales!]) {
+  appLayout: LayoutSettingsBlock(
+    where: {_or: [{appIdentifiers: {exist: false}}, {_and: [{appIdentifiers: {exist: true}}, {appIdentifiers: {eq: $domain}}]}]}
+    locale: $locale
+  ) {
     items {
-      footerSubLinks: FooterNavigationSubLinks {
+      _metadata {
+        key
+        displayName
+      }
+      copyright
+      footerMenus {
+        ...IContentData
+        ...MenuNavigationBlockData
+      }
+      legalLinks {
         ...LinkItemData
       }
-      footerCopyright: FooterNavigationCopyrightText
-      footerNavigation: FooterNavigationContentArea {
-        __typename
-        ...FooterMenuNavigationItem
-        ...HtmlBlock
+      contactInfoHeading
+      contactInfo {
+        json
       }
     }
   }
 }
-    ${LinkItemDataFragmentDoc}
+    ${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
-${FooterMenuNavigationItemFragmentDoc}
-${HtmlBlockFragmentDoc}`;
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}`;
 export const getHeaderDataDocument = gql`
     query getHeaderData($domain: String, $locale: [Locales!]) {
   appLayout: LayoutSettingsBlock(
@@ -769,6 +756,19 @@ ${LinkItemDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${ButtonBlockDataFragmentDoc}`;
+export const getLocalesDocument = gql`
+    query getLocales {
+  schema: __schema {
+    types {
+      kind
+      name
+      enumValues {
+        name
+      }
+    }
+  }
+}
+    `;
 export const getArticlesDocument = gql`
     query getArticles($pageSize: Int! = 10, $start: Int! = 0, $locale: [Locales], $author: [String!], $published: Date, $publishedEnd: Date) {
   getArticles: BlogPostPage(
@@ -1070,11 +1070,14 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     getStartPageMetaData(variables: Schema.getStartPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getStartPageMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getStartPageMetaDataQuery>(getStartPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getStartPageMetaData', 'query', variables);
     },
-    getFooter(variables?: Schema.getFooterQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getFooterQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getFooterQuery>(getFooterDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getFooter', 'query', variables);
+    getFooterData(variables?: Schema.getFooterDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getFooterDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getFooterDataQuery>(getFooterDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getFooterData', 'query', variables);
     },
     getHeaderData(variables?: Schema.getHeaderDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getHeaderDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderDataQuery>(getHeaderDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHeaderData', 'query', variables);
+    },
+    getLocales(variables?: Schema.getLocalesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getLocalesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLocalesQuery>(getLocalesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLocales', 'query', variables);
     },
     getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticlesQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>(getArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticles', 'query', variables);

@@ -27,8 +27,6 @@ export default async function SiteHeader({ locale }: HeaderProps)
         domain: currentDomain
     }).then(x => x.appLayout?.items?.at(0))
 
-    console.log(headerData?.mainMenu)
-
     return <header>
         <div className="container mx-auto px-4 lg:px-6 py-4 gap-2 flex flex-row justify-between items-stretch lg:flex-wrap 2xl:flex-nowrap">
             <Suspense>
