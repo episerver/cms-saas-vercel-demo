@@ -22,9 +22,9 @@ export const justifyContentClasses : DefaultColumnLayoutDict<'justifyContent', s
 }
 
 export const alignContentClasses : DefaultColumnLayoutDict<'alignContent', string> = {
-    start: 'content-start',
-    center: 'content-center',
-    end: 'content-end',
+    start: 'content-start items-start',
+    center: 'content-center items-center',
+    end: 'content-end items-end',
 }
 
 export const showFromClasses : DefaultColumnLayoutDict<'showFrom', string> = {
