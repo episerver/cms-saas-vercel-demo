@@ -36,13 +36,13 @@ export const styleDictionary : StyleDictionary = {
         keep: ''
     },
     headingType: {
-        h1: 'font-bold my-0 text-[4.8rem] lg:text-[6.4rem] xl:text-[7.2rem]',
-        h2: 'font-bold my-0 text-[4.2rem] lg:text-[4.8rem] xl:text-[6.4rem]',
-        h3: 'font-bold my-0 text-[3.6rem] lg:text-[4.2rem] xl:text-[4.8rem]',
-        h4: 'font-bold my-0 text-[3.0rem] lg:text-[3.6rem] xl:text-[4.2rem]',
-        h5: 'font-bold my-0 text-[2.4rem] lg:text-[3.0rem] xl:text-[3.6rem]',
-        h6: 'font-bold my-0',
-        plain: 'my-0',
+        h1: 'font-bold my-0 text-6xl lg:text-7xl xl:text-8xl',
+        h2: 'font-bold my-0 text-5xl lg:text-6xl xl:text-7xl',
+        h3: 'font-bold my-0 text-4xl lg:text-5xl xl:text-6xl',
+        h4: 'font-bold my-0 text-3xl lg:text-4xl xl:text-5xl',
+        h5: 'font-bold my-0 text-2xl lg:text-3xl xl:text-4xl',
+        h6: 'font-bold my-0 text-base',
+        plain: 'my-0 text-base',
     },
     delay: {
         short: 500,
