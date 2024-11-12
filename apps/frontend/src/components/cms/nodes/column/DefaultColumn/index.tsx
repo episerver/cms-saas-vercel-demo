@@ -37,7 +37,7 @@ export const DefaultColumn : CmsLayoutComponent<DefaultColumnProps> = ({ layoutP
 
     // Output container
     return useChildContainer ? <div className={ baseClasses.join(' ')+' relative' }>
-        <div className={ 'relative top-0' + cssClasses.join(' ') }>
+        <div className={ 'relative top-0 ' + cssClasses.join(' ') }>
             { children }
         </div>
     </div> : <div className={ [...baseClasses, 'relative top-0', ...cssClasses].join(' ') }>{ children }</div>
