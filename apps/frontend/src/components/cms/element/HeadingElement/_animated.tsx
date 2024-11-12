@@ -10,7 +10,7 @@ type AnimatedHeadingElementProps = ComponentProps<AnimatedHeadingStylesComponent
 }
 
 export const AnimatedHeadingElement : FunctionComponent<AnimatedHeadingElementProps> = ({ data: { headingText }, layoutProps, className, withReducedMotion, ...containerProps }) => {
-    const cssClasses : string[] = [className ?? '', 'prose prose-h1:text-[72px] prose-p:text-[24px] prose-p:leading-tight']
+    const cssClasses : string[] = [className ?? '']
     const { 
         textAlign = styleDefaults.textAlign, 
         headingType = styleDefaults.headingType, 
