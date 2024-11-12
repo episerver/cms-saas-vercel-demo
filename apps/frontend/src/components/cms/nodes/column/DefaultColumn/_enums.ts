@@ -16,9 +16,9 @@ export const contentSpacingClasses : DefaultColumnLayoutDict<'contentSpacing', s
 }
 
 export const justifyContentClasses : DefaultColumnLayoutDict<'justifyContent', string> = {
-    start: 'justify-start',
-    center: 'justify-center',
-    end: 'justify-end',
+    start: 'justify-start justify-items-start',
+    center: 'justify-center justify-items-center',
+    end: 'justify-end justify-items-end',
 }
 
 export const alignContentClasses : DefaultColumnLayoutDict<'alignContent', string> = {
