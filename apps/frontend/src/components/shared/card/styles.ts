@@ -20,21 +20,21 @@ export const InnerColors : { [ key in keyof typeof OuterColors ]: string } = {
 
 export const ContentDirections = {
     none: "",
-    row: "flex flex-col @[75rem]/card:flex-row flex-nowrap justify-stretch",
-    row_small_reversed: "flex flex-col-reverse @[75rem]/card:flex-row flex-nowrap justify-stretch",
-    row_reversed: "flex flex-col-reverse @[75rem]/card:flex-row-reverse flex-nowrap justify-stretch",
+    row: "flex flex-col @[37rem]/card:flex-row flex-nowrap justify-stretch",
+    row_small_reversed: "flex flex-col-reverse @[37rem]/card:flex-row flex-nowrap justify-stretch",
+    row_reversed: "flex flex-col-reverse @[37rem]/card:flex-row-reverse flex-nowrap justify-stretch",
     col: "flex flex-col justify-stretch",
     col_reversed: "flex flex-col-reverse justify-stretch"
 }
 
 export const CornerOptions = {
     none: "",
-    small: "rounded-[20px] before:rounded-[20px]",
-    large: "rounded-[40px] before:rounded-[40px]"
+    small: "rounded-[1rem] before:rounded-[1rem]",
+    large: "rounded-[2rem] before:rounded-[2rem]"
 }
 
 export const InnerCornerOptions : { [key in keyof typeof CornerOptions]: string} = {
     none: "",
-    small: "rounded-[20px]",
-    large: "rounded-[40px]"
+    small: "rounded-[1rem]",
+    large: "rounded-[2rem]"
 }

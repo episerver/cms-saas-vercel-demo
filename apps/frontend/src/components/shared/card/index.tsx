@@ -29,8 +29,8 @@ export const Card = <E extends AllowedElements>({
     const outerClasses : string = OuterColors[cardColor] + (withHover ? " before:content-[''] before:absolute before:top-[1px] before:left-[1px] before:w-[calc(100%-2px)] before:h-[calc(100%-2px)] before:z-[-1] before:bg-azure before:transition-transform before:ease-in-out before:duration-300 hover:before:translate-x-8 hover:before:translate-y-8 focus:before:translate-x-8 focus:before:translate-y-8" : '');
     const innerClasses : string = InnerColors[cardColor] + ""
     const directonClasses : string = ContentDirections[direction]
-    const baseContainerClasses : string = "p-12 lg:p-24"
-    const baseInnerClasses : string = "prose prose-p:text-[2rem] prose-span:text-[2rem] max-w-none gap-4 lg:gap-8"
+    const baseContainerClasses : string = "p-6 lg:p-12"
+    const baseInnerClasses : string = "prose max-w-none gap-2 lg:gap-4"
     const cornerClasses : string = CornerOptions[roundedCorners]
     const innerCornerClasses : string = InnerCornerOptions[roundedCorners]
 
