@@ -30,7 +30,7 @@
       }
     },
     "buttonType": {
-      "displayName": "Button Type",
+      "displayName": "Button type",
       "editor": "",
       "sortOrder": 10,
       "choices": {

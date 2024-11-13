@@ -19,14 +19,15 @@ export const IconImageElement : IconImageElementComponent<ImageElementDataFragme
             cssClasses.push('rounded')
             break;
         case 'medium':
-            cssClasses.push('rounded-md')
+            cssClasses.push('rounded-lg')
             break;
         case 'full':
             cssClasses.push('rounded-full')
             break;
-        default:
-            // No rounded classes
+        case 'none':
+            cssClasses.push('rounded-none')
             break;
+            
     }
 
     switch (size) {
@@ -38,9 +39,6 @@ export const IconImageElement : IconImageElementComponent<ImageElementDataFragme
             break
         case 'large':
             cssClasses.push('w-20 h-20')
-            break
-        default:
-            cssClasses.push('w-8 h-8')
             break
     }
 

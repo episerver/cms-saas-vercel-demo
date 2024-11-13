@@ -20,13 +20,15 @@ enum ContentSpacingClasses {
 enum JustifyContentClasses {
     center = 'justify-center justify-items-center',
     end = 'justify-end justify-items-end',
-    start = 'justify-start justify-items-start'
+    start = 'justify-start justify-items-start',
+    stretch = 'justify-stretch justify-items-stretch'
 }
 
 enum AlignContentClasses {
     center = 'content-center items-center',
     end = 'content-end items-end',
-    start = 'content-start items-start'
+    start = 'content-start items-start',
+    stretch = 'content-stretch items-stretch'
 }
 
 enum VerticalSpacingClasses {

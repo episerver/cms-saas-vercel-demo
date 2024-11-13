@@ -12,7 +12,7 @@
       "sortOrder": 40,
       "choices": {
         "verylong": {
-          "displayName": "Very Long (2s)",
+          "displayName": "Very long (2s)",
           "sortOrder": 50
         },
         "long": {
@@ -39,7 +39,7 @@
       "sortOrder": 30,
       "choices": {
         "verylong": {
-          "displayName": "Very Long (2s)",
+          "displayName": "Very long (2s)",
           "sortOrder": 50
         },
         "long": {
@@ -84,7 +84,7 @@
       }
     },
     "buttonType": {
-      "displayName": "Button Type",
+      "displayName": "Button type",
       "editor": "selectOne",
       "sortOrder": 10,
       "choices": {

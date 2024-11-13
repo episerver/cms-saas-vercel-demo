@@ -22,12 +22,12 @@ enum landscapeAspectRatioClasses {
     widescreen = 'aspect-[16/9]'
 }
 enum roundedCornersClasses {
-    small = 'rounded',
-    medium = 'rounded-md',
-    large = 'rounded-lg',
-    huge = 'rounded-[40px]',
-    full = 'rounded-full',
-    none = ''
+    small = 'rounded',          // 0.25rem
+    medium = 'rounded-lg',      // 0.5rem
+    large = 'rounded-2xl',      // 1rem
+    huge = 'rounded-[2rem]',    // 2rem
+    full = 'rounded-full',      // full
+    none = 'rounded-none'       // 0px
 }
 enum durationClasses {
     short = 0.5,

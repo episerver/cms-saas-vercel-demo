@@ -1,4 +1,5 @@
 import { type NextRequest, NextResponse } from "next/server"
+import { readConfigFromEnv as readEnv } from "../../../../opti"
 
 async function handler(req: NextRequest)
 {
@@ -43,19 +44,3 @@ async function handler(req: NextRequest)
 export const POST = handler
 export const GET = handler
 export const runtime = 'edge'
-
-function readEnv() 
-{
-    // @ts-ignore: Node-Types may or may not be available
-    const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
-    // @ts-ignore: Node-Types may or may not be available
-    const vercelTeam = process.env.VERCEL_TEAM
-    // @ts-ignore: Node-Types may or may not be available
-    const vercelToken = process.env.VERCEL_TOKEN
-    // @ts-ignore: Node-Types may or may not be available
-    const token = process.env.OPTIMIZELY_PUBLISH_TOKEN
-    // @ts-ignore: Node-Types may or may not be available
-    const sdkkey = process.env.OPTIMIZELY_FX_SDKKEY
-
-    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey }
-}

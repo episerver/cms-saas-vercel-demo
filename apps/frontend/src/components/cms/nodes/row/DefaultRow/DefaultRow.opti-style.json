@@ -7,7 +7,7 @@
   "lastModified": "2024-09-25T10:11:01.4499114+00:00",
   "settings": {
     "verticalSpacing": {
-      "displayName": "Vertical Spacing",
+      "displayName": "Vertical spacing",
       "editor": "",
       "sortOrder": 40,
       "choices": {
@@ -34,7 +34,7 @@
       }
     },
     "alignContent": {
-      "displayName": "Align content",
+      "displayName": "Vertical alignment",
       "editor": "",
       "sortOrder": 30,
       "choices": {
@@ -49,11 +49,15 @@
         "start": {
           "displayName": "Start",
           "sortOrder": 10
+        },
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
         }
       }
     },
     "justifyContent": {
-      "displayName": "Justify content",
+      "displayName": "Horizontal alignment",
       "editor": "",
       "sortOrder": 20,
       "choices": {
@@ -68,20 +72,24 @@
         "start": {
           "displayName": "Start",
           "sortOrder": 10
+        },
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
         }
       }
     },
     "contentSpacing": {
-      "displayName": "Content Spacing",
+      "displayName": "Content spacing",
       "editor": "",
       "sortOrder": 10,
       "choices": {
         "xxl": {
-          "displayName": "Extra Extra Large",
+          "displayName": "Extra extra large",
           "sortOrder": 60
         },
         "xl": {
-          "displayName": "Extra Large",
+          "displayName": "Extra large",
           "sortOrder": 50
         },
         "large": {

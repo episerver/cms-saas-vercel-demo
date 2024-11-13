@@ -23,8 +23,8 @@ export const ContentDirections = {
     row: "flex flex-col @[37rem]/card:flex-row flex-nowrap justify-stretch",
     row_small_reversed: "flex flex-col-reverse @[37rem]/card:flex-row flex-nowrap justify-stretch",
     row_reversed: "flex flex-col-reverse @[37rem]/card:flex-row-reverse flex-nowrap justify-stretch",
-    col: "flex flex-col justify-stretch",
-    col_reversed: "flex flex-col-reverse justify-stretch"
+    col: "flex flex-col h-full justify-between",
+    col_reversed: "flex flex-col-reverse h-full justify-between"
 }
 
 export const CornerOptions = {
