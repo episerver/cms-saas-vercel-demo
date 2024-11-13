@@ -1925,39 +1925,39 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@inquirer/checkbox@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/checkbox@npm:4.0.1"
+"@inquirer/checkbox@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/checkbox@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/figures": "npm:^1.0.7"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/figures": "npm:^1.0.8"
+    "@inquirer/type": "npm:^3.0.1"
     ansi-escapes: "npm:^4.3.2"
     yoctocolors-cjs: "npm:^2.1.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/a22b3c9330ee58a40d7a49f38949d1c8111fec21dd1dffae8c025f1cb1414d7d6beb06254c0de8442ab09c686a0a7059f9ff15986e94f1b62e7828f91362f6b6
+  checksum: 10/1d3e7133a428312610fab7f6462c85c8e38c04dd6ef2360e66d9606017e79664b43b18920a459d23bfcde834741ea34963b0279a3ba44ebc3906e06f9d508275
   languageName: node
   linkType: hard
 
-"@inquirer/confirm@npm:^5.0.1":
-  version: 5.0.1
-  resolution: "@inquirer/confirm@npm:5.0.1"
+"@inquirer/confirm@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "@inquirer/confirm@npm:5.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/da640d36ce32350e9982bbaa5a19efac4a879bc1192f93e0ec284031e6dd82e9cf26c6e0caf777c051e200581aa4bcf0a6ece4118fd05352c5d5e2f1d7160c72
+  checksum: 10/4e775b80b689adeb0b2852ed79b368ef23a82fe3d5f580a562f4af7cdf002a19e0ec1b3b95acc6d49427a72c0fcb5b6548e0cdcafe2f0d3f3d6a923e04aabd0c
   languageName: node
   linkType: hard
 
-"@inquirer/core@npm:^10.0.1":
-  version: 10.0.1
-  resolution: "@inquirer/core@npm:10.0.1"
+"@inquirer/core@npm:^10.1.0":
+  version: 10.1.0
+  resolution: "@inquirer/core@npm:10.1.0"
   dependencies:
-    "@inquirer/figures": "npm:^1.0.7"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/figures": "npm:^1.0.8"
+    "@inquirer/type": "npm:^3.0.1"
     ansi-escapes: "npm:^4.3.2"
     cli-width: "npm:^4.1.0"
     mute-stream: "npm:^2.0.0"
@@ -1965,148 +1965,148 @@ __metadata:
     strip-ansi: "npm:^6.0.1"
     wrap-ansi: "npm:^6.2.0"
     yoctocolors-cjs: "npm:^2.1.2"
-  checksum: 10/368f78110e3b9f1370a45047a24b5cc4ef41fe2b7f2d82080de15d9bfb7ee3ff90494e0c138d1cca1b480c2cfb21914da8e9706b09620ea2e314860f98938393
+  checksum: 10/5d097d0484c1b758f788b792d29395199bdc84af3e8cd4d9273e31de2c5202839b6edf299056956044ba7fb097c4cee7b5c0288e094a380c045082b044f9946e
   languageName: node
   linkType: hard
 
-"@inquirer/editor@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/editor@npm:4.0.1"
+"@inquirer/editor@npm:^4.1.0":
+  version: 4.1.0
+  resolution: "@inquirer/editor@npm:4.1.0"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
     external-editor: "npm:^3.1.0"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/c25083ffe6f3be1cf7a83e7f2ed7a9bdbdefd187589226acd0ae1e76038a5b5157567e2fb3449bd205e0f2ed7630a381c5a6a3da4e2ea00b07b9a463d848c2f3
+  checksum: 10/926de508799a9a76003eb95d8877168d51ae40b1bebccb0dceaad47f97f965f2c24b54f0b083d8ceb85f33643b24bd967f40c7ad9e15aa1f6b07417f106caedf
   languageName: node
   linkType: hard
 
-"@inquirer/expand@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/expand@npm:4.0.1"
+"@inquirer/expand@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/expand@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
     yoctocolors-cjs: "npm:^2.1.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/cc5ca752ce0d37118aab0937a2eb58c8caff6c94f11272bb11ff88101fc87df37b853e1725faf76d9faea0fec670813d54d82487fb688d0f04b10b1f6e1ee8f4
+  checksum: 10/9c5f2e01bf12684bddb4ce88c6afbf41bf8b9057ac17565173b2225d691aad0e044be204e21ecedd5cc76907af76ab34678a2d519c890cf0ea3a1a83473faa12
   languageName: node
   linkType: hard
 
-"@inquirer/figures@npm:^1.0.7":
-  version: 1.0.7
-  resolution: "@inquirer/figures@npm:1.0.7"
-  checksum: 10/ce896860de9d822a7c2a212667bcfd0f04cf2ce86d9a2411cc9c077bb59cd61732cb5f72ac66e88d52912466eec433f005bf8a25efa658f41e1a32f3977080bd
+"@inquirer/figures@npm:^1.0.8":
+  version: 1.0.8
+  resolution: "@inquirer/figures@npm:1.0.8"
+  checksum: 10/0e5e4fbb15e799e818c598fcc3558ef076daf78662149711b046723fd6316381e95f7d5573d6ef0062095ad22c6ac98833033f0948df5c722932107a567fd9c3
   languageName: node
   linkType: hard
 
-"@inquirer/input@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/input@npm:4.0.1"
+"@inquirer/input@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/input@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/120051d9b18a09d2c820f520896a0f58a1685f85f230f1a8649dc2f836f4fa477c50603af437c3ddc5d8837c77edafe4d3f7a254c105dbbdb919cd0ff6cedce1
+  checksum: 10/06ec535b90ebfc230b616df6f5058fdea9fdd00c9b965448c5d569fea7d76b67e8ad6427e0aa16d2b31c107f0e9a5ef93ac3224da59ff2e11b5fecfa2987e10e
   languageName: node
   linkType: hard
 
-"@inquirer/number@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@inquirer/number@npm:3.0.1"
+"@inquirer/number@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@inquirer/number@npm:3.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/b8fd76284a362302d3f658183f48585603d02df1aaf869f4179ed11d4cc9d2f3324b66264178d936d52a967187d276cab91dabbfbf6f1cfcac01a4ad013c5ad4
+  checksum: 10/88b85a3510fe7ab83f34d7338593ae2747ab805faacfcd116c34b50e03467b46ff0535b64191574ab08d1822b44d8ab758ee9fddf51f15ef5fb7fb8e9326bf8a
   languageName: node
   linkType: hard
 
-"@inquirer/password@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/password@npm:4.0.1"
+"@inquirer/password@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/password@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
     ansi-escapes: "npm:^4.3.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/a8f5e22a93892109e9ccc576024f0ebca105263078a3c3512af8409207d224a12db53d9a2dbcdffd99fe08007c17089919a229fb9de365ac5d898f5b6dbe0856
+  checksum: 10/9fc602e2bcb03bed180e15dd3c1bf8a78dbb99d91ac2f1dc01402a105522c847b4530a25fbec64865a058999f9b5bd6b6693776c9ef7277da0e605f15b1114fb
   languageName: node
   linkType: hard
 
-"@inquirer/prompts@npm:^7.0.1":
-  version: 7.0.1
-  resolution: "@inquirer/prompts@npm:7.0.1"
+"@inquirer/prompts@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "@inquirer/prompts@npm:7.1.0"
   dependencies:
-    "@inquirer/checkbox": "npm:^4.0.1"
-    "@inquirer/confirm": "npm:^5.0.1"
-    "@inquirer/editor": "npm:^4.0.1"
-    "@inquirer/expand": "npm:^4.0.1"
-    "@inquirer/input": "npm:^4.0.1"
-    "@inquirer/number": "npm:^3.0.1"
-    "@inquirer/password": "npm:^4.0.1"
-    "@inquirer/rawlist": "npm:^4.0.1"
-    "@inquirer/search": "npm:^3.0.1"
-    "@inquirer/select": "npm:^4.0.1"
+    "@inquirer/checkbox": "npm:^4.0.2"
+    "@inquirer/confirm": "npm:^5.0.2"
+    "@inquirer/editor": "npm:^4.1.0"
+    "@inquirer/expand": "npm:^4.0.2"
+    "@inquirer/input": "npm:^4.0.2"
+    "@inquirer/number": "npm:^3.0.2"
+    "@inquirer/password": "npm:^4.0.2"
+    "@inquirer/rawlist": "npm:^4.0.2"
+    "@inquirer/search": "npm:^3.0.2"
+    "@inquirer/select": "npm:^4.0.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/56feca4e00396817caf3b718b0688f2118bce13b5e97897294540aaf560274be1862bd3d14c6c628928459da126b4e6cc8146a3b0b9f680e99d7dfb4d08a1b33
+  checksum: 10/a5f9c08936a2ba245d80f90e681fd8a4f3cef7123257c029ae597649a4b623c388ecb52c394d0b8b14a3eda43ec413bf57a0da7e9ba484d59beabd7d0bdfe767
   languageName: node
   linkType: hard
 
-"@inquirer/rawlist@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/rawlist@npm:4.0.1"
+"@inquirer/rawlist@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/rawlist@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/type": "npm:^3.0.1"
     yoctocolors-cjs: "npm:^2.1.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/a8c3f61d7999727a52521a61988786402810db3d96a1f39ad56961e84913b9535d35997796361246e9558525d725920f13ee5035a2eda1e2fe97ad64190408db
+  checksum: 10/942cd87d217659ecb304c266a8ec186e7de03a523ed2eaac5fe8458ab7b48ac884f1383e41c83231af1b68c1a2e448448234495ab06477ce0900421723c15d1d
   languageName: node
   linkType: hard
 
-"@inquirer/search@npm:^3.0.1":
-  version: 3.0.1
-  resolution: "@inquirer/search@npm:3.0.1"
+"@inquirer/search@npm:^3.0.2":
+  version: 3.0.2
+  resolution: "@inquirer/search@npm:3.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/figures": "npm:^1.0.7"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/figures": "npm:^1.0.8"
+    "@inquirer/type": "npm:^3.0.1"
     yoctocolors-cjs: "npm:^2.1.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/bdea5b2659ccd91b9c91ee355d32d92061127b5f871837c91e709e8b8dfbd531b3dac312d4d0fe7454594ff6d9fbda4194edce6e52ba6bb4b91a65850e0948bb
+  checksum: 10/45b27c6cb311ce990443516f37a5a102974aae0ac7936321a9311a09b3cda2c4d59035398584193cee5b5aab5b5b8b3903404498223a577b2bf170049797331b
   languageName: node
   linkType: hard
 
-"@inquirer/select@npm:^4.0.1":
-  version: 4.0.1
-  resolution: "@inquirer/select@npm:4.0.1"
+"@inquirer/select@npm:^4.0.2":
+  version: 4.0.2
+  resolution: "@inquirer/select@npm:4.0.2"
   dependencies:
-    "@inquirer/core": "npm:^10.0.1"
-    "@inquirer/figures": "npm:^1.0.7"
-    "@inquirer/type": "npm:^3.0.0"
+    "@inquirer/core": "npm:^10.1.0"
+    "@inquirer/figures": "npm:^1.0.8"
+    "@inquirer/type": "npm:^3.0.1"
     ansi-escapes: "npm:^4.3.2"
     yoctocolors-cjs: "npm:^2.1.2"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/5ceadb983c66caa365b38fc6abeea63c9d45bc0443a3bba565e76681a6c94065d185729e5f253e995e001f864dd6a443db58e53b85d695b8bdb64c2a322ead53
+  checksum: 10/d8dfa5217d8baca958a80cfbad14eb51ee53606c47b228318934744284317cd11c36579be8cacced2ba77782c2878fb9b13936ac1a05af25598f2f3063baa318
   languageName: node
   linkType: hard
 
-"@inquirer/type@npm:^3.0.0":
-  version: 3.0.0
-  resolution: "@inquirer/type@npm:3.0.0"
+"@inquirer/type@npm:^3.0.1":
+  version: 3.0.1
+  resolution: "@inquirer/type@npm:3.0.1"
   peerDependencies:
     "@types/node": ">=18"
-  checksum: 10/fd4c265f0ed03e8da7ae2972c4e6b81932f535d9dd1e039e9e52b027cb8b72ae3c3309a3383ba513a8d3ae626de7dd3634387775cbdcbd100155ecbcaa65a657
+  checksum: 10/af412f1e7541d43554b02199ae71a2039a1bff5dc51ceefd87de9ece55b199682733b28810fb4b6cb3ed4a159af4cc4a26d4bb29c58dd127e7d9dbda0797d8e7
   languageName: node
   linkType: hard
 
@@ -2640,18 +2640,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-api@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-cms-api@npm:3.1.0"
-  checksum: 10/20d3a42102e028524d2dbf4d715a7d65e89d6c4cec995bb80d62b7d88138d41bd761ab7117ac8b1df10678e078ad3109751397467630c3b88c48f1c74cbe4692
+"@remkoj/optimizely-cms-api@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-cms-api@npm:3.1.1"
+  checksum: 10/898b5d63e58eaa399a15e3d13feafec646f25813b712581148e07adfee6a79e1db3f07a1d55bc16bf0c0bb3623cbe1105b195b9e2dff9b57922b1259614d1be6
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-cli@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-cms-cli@npm:3.1.0"
+"@remkoj/optimizely-cms-cli@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-cms-cli@npm:3.1.1"
   dependencies:
-    "@inquirer/prompts": "npm:^7.0.1"
+    "@inquirer/prompts": "npm:^7.1.0"
     chalk: "npm:^5.3.0"
     cli-table3: "npm:^0.6.5"
     dotenv: "npm:^16.4.5"
@@ -2660,17 +2660,17 @@ __metadata:
     glob: "npm:^11.0.0"
     yargs: "npm:^17.7.2"
   peerDependencies:
-    "@remkoj/optimizely-cms-api": ^3.1.0
+    "@remkoj/optimizely-cms-api": ^3.1.1
     "@types/node": "*"
   bin:
     opti-cms: ./dist/index.js
-  checksum: 10/9326b8b71db54ac7996fa09ed0927f3bc82b1433a0946bb6c91103a684f91d54f55f19a4840b771ba41b0d834d24ba77b979b7a8230668a324d69042793d5978
+  checksum: 10/dcff21faa5c678592a0c5d14240a708b1dab3a4f79f44794581580e44de99248d4fbf83d236e477409c15f91c608dfad6f7776c522fa6ed71b5352bee1cdf031
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-nextjs@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-cms-nextjs@npm:3.1.0"
+"@remkoj/optimizely-cms-nextjs@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-cms-nextjs@npm:3.1.1"
   dependencies:
     deepmerge: "npm:^4.3.1"
   peerDependencies:
@@ -2680,13 +2680,13 @@ __metadata:
     graphql-request: ^6
     next: ^14
     react: ^18
-  checksum: 10/501221a77edd3baa0bdd9d4277588d09da614ec484d520798d48ab2bb587719c243f2b963895ba1f803111589c17639eddcf934a75a2196ae7a1cc0d7ed55c00
+  checksum: 10/c08a384a61bae32a33930e278dd056a5936184aa0a4e3b37712fa6ec2c227eff25855386e09d7f49b802cbb1609f65b5f311b0de949782e5890e6d4d305abfdc
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-react@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-cms-react@npm:3.1.0"
+"@remkoj/optimizely-cms-react@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-cms-react@npm:3.1.1"
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2697,7 +2697,7 @@ __metadata:
     graphql-request: ^6.1.0
     react: "*"
     react-dom: "*"
-  checksum: 10/b89a736851005885f59432176e4e505dcebc1d9941d33a071dc8db1e4be80853f3322bb577a0d4544e545bd2f170efb21d01015ca5a25da83139bf3b88119c24
+  checksum: 10/82c9fa460bfce29276d74ca0443eae7bc0da0b9ad0392ca28b1cd3bbbf6051bd3c0d4b05c3b79f749910ce5569f5d97d28baf8353684ce524914939d708ded9e
   languageName: node
   linkType: hard
 
@@ -2710,7 +2710,7 @@ __metadata:
     eslint: "npm:8.57.1"
     source-map-support: "npm:^0.5.21"
     typescript: "npm:^5.6.3"
-    vercel: "npm:^37.14.0"
+    vercel: "npm:^38.0.0"
   languageName: unknown
   linkType: soft
 
@@ -2723,7 +2723,7 @@ __metadata:
     "@rollup/plugin-typescript": "npm:^12.1.1"
     "@types/node": "npm:^22.9.0"
     "@types/yargs": "npm:^17.0.33"
-    rollup: "npm:^4.25.0"
+    rollup: "npm:^4.26.0"
     tslib: "npm:^2.8.1"
     typescript: "npm:^5.6.3"
     yargs: "npm:^17.7.2"
@@ -2734,9 +2734,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@remkoj/optimizely-graph-cli@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-graph-cli@npm:3.1.0"
+"@remkoj/optimizely-graph-cli@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-graph-cli@npm:3.1.1"
   dependencies:
     chalk: "npm:^5.3.0"
     cli-table3: "npm:^0.6.5"
@@ -2748,24 +2748,24 @@ __metadata:
     "@remkoj/optimizely-graph-client": "*"
   bin:
     opti-graph: bin/index.js
-  checksum: 10/d9de574f6acc2ca17bb55061b08bd3cb54e47256baf174276e607339857a444cb39caf9bdc6bf579dbf061f0b6c34fae730e7af8e2f1f7a6d416112cd0f5bfb0
+  checksum: 10/12364e99ccacd18cb11efe92ec20a3e71517a04498e93717fd351b97f7c7148cc22b0cda883af70ce1c17b5de48494299a2992ec9e6971e034ba045937a5ba45
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-graph-client@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-graph-client@npm:3.1.0"
+"@remkoj/optimizely-graph-client@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-graph-client@npm:3.1.1"
   dependencies:
     crypto-js: "npm:^4.2.0"
   peerDependencies:
     graphql-request: ^6.1.0
-  checksum: 10/821a58d61010f1d2e596249cd13febc3ba8b191691ed6d80b48eda0ff5b15458ebd54c239e420391cc8d2e8c21c77aafe522420cb2d185306bb731c248f740a5
+  checksum: 10/3ee55596e2c5101f860b1da043e4cfcdc62b794f6ba0d507847ed15c27a966ca0eb0c23792cfb0f15e49e4644f5ed1d2f5cf4d2c0be9a1d40eb504c929bf8297
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-graph-functions@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-graph-functions@npm:3.1.0"
+"@remkoj/optimizely-graph-functions@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-graph-functions@npm:3.1.1"
   dependencies:
     "@graphql-codegen/add": "npm:^5.0.3"
     "@graphql-codegen/client-preset": "npm:^4.5.0"
@@ -2776,27 +2776,27 @@ __metadata:
     tslib: "npm:^2.8.1"
   peerDependencies:
     "@graphql-typed-document-node/core": "*"
-    "@remkoj/optimizely-graph-client": 3.1.0
+    "@remkoj/optimizely-graph-client": 3.1.1
     graphql: "*"
     graphql-request: ^6.1.0
     graphql-tag: "*"
-  checksum: 10/dbe560af73118171aed49a2957995a12f2406062284792affabef36027b7851da283a40422aec8c7ab46249ca67021b8fd4cdfd029315c120f9c5048c5ace6a7
+  checksum: 10/b7d282f5d29f9798810594a95b1e3069f5c27ed8fe70a8269c1a518ac7fe977f8d9fc1fa0e033ff4d49576170de71a795cf473f044a8e06e34704f3d0f709ec8
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-one-nextjs@npm:3.1.0":
-  version: 3.1.0
-  resolution: "@remkoj/optimizely-one-nextjs@npm:3.1.0"
+"@remkoj/optimizely-one-nextjs@npm:3.1.1":
+  version: 3.1.1
+  resolution: "@remkoj/optimizely-one-nextjs@npm:3.1.1"
   peerDependencies:
     "@headlessui/react": "*"
     "@heroicons/react": "*"
-    "@remkoj/optimizely-graph-client": ^3.1.0
+    "@remkoj/optimizely-graph-client": ^3.1.1
     next: "*"
     react: "*"
     react-dom: "*"
     swr: "*"
     uuid: "*"
-  checksum: 10/b5d4a34dee474144b60d787f88019b104616df0ccf2cbb4b5a364a638b56ce6593641505c1b6678901c17c596c81f14f819d5ef9b8b30ad7a0574f42381cc5a8
+  checksum: 10/809fc832f54a57983951841e1f506996ad75d835cc985cae1f99b195f97fb0c247bbcd4a386ac888e5c644296594699639273f967a5f14f878c43ab41a59178b
   languageName: node
   linkType: hard
 
@@ -2866,128 +2866,128 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@rollup/rollup-android-arm-eabi@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-android-arm-eabi@npm:4.25.0"
+"@rollup/rollup-android-arm-eabi@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-android-arm-eabi@npm:4.26.0"
   conditions: os=android & cpu=arm
   languageName: node
   linkType: hard
 
-"@rollup/rollup-android-arm64@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-android-arm64@npm:4.25.0"
+"@rollup/rollup-android-arm64@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-android-arm64@npm:4.26.0"
   conditions: os=android & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-darwin-arm64@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-darwin-arm64@npm:4.25.0"
+"@rollup/rollup-darwin-arm64@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-darwin-arm64@npm:4.26.0"
   conditions: os=darwin & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-darwin-x64@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-darwin-x64@npm:4.25.0"
+"@rollup/rollup-darwin-x64@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-darwin-x64@npm:4.26.0"
   conditions: os=darwin & cpu=x64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-freebsd-arm64@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-freebsd-arm64@npm:4.25.0"
+"@rollup/rollup-freebsd-arm64@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-freebsd-arm64@npm:4.26.0"
   conditions: os=freebsd & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-freebsd-x64@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-freebsd-x64@npm:4.25.0"
+"@rollup/rollup-freebsd-x64@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-freebsd-x64@npm:4.26.0"
   conditions: os=freebsd & cpu=x64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm-gnueabihf@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.25.0"
+"@rollup/rollup-linux-arm-gnueabihf@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-arm-gnueabihf@npm:4.26.0"
   conditions: os=linux & cpu=arm & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm-musleabihf@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-arm-musleabihf@npm:4.25.0"
+"@rollup/rollup-linux-arm-musleabihf@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-arm-musleabihf@npm:4.26.0"
   conditions: os=linux & cpu=arm & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm64-gnu@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-arm64-gnu@npm:4.25.0"
+"@rollup/rollup-linux-arm64-gnu@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-arm64-gnu@npm:4.26.0"
   conditions: os=linux & cpu=arm64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-arm64-musl@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-arm64-musl@npm:4.25.0"
+"@rollup/rollup-linux-arm64-musl@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-arm64-musl@npm:4.26.0"
   conditions: os=linux & cpu=arm64 & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-powerpc64le-gnu@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-powerpc64le-gnu@npm:4.25.0"
+"@rollup/rollup-linux-powerpc64le-gnu@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-powerpc64le-gnu@npm:4.26.0"
   conditions: os=linux & cpu=ppc64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-riscv64-gnu@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-riscv64-gnu@npm:4.25.0"
+"@rollup/rollup-linux-riscv64-gnu@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-riscv64-gnu@npm:4.26.0"
   conditions: os=linux & cpu=riscv64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-s390x-gnu@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-s390x-gnu@npm:4.25.0"
+"@rollup/rollup-linux-s390x-gnu@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-s390x-gnu@npm:4.26.0"
   conditions: os=linux & cpu=s390x & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-x64-gnu@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.25.0"
+"@rollup/rollup-linux-x64-gnu@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-x64-gnu@npm:4.26.0"
   conditions: os=linux & cpu=x64 & libc=glibc
   languageName: node
   linkType: hard
 
-"@rollup/rollup-linux-x64-musl@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-linux-x64-musl@npm:4.25.0"
+"@rollup/rollup-linux-x64-musl@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-linux-x64-musl@npm:4.26.0"
   conditions: os=linux & cpu=x64 & libc=musl
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-arm64-msvc@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.25.0"
+"@rollup/rollup-win32-arm64-msvc@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-win32-arm64-msvc@npm:4.26.0"
   conditions: os=win32 & cpu=arm64
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-ia32-msvc@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-win32-ia32-msvc@npm:4.25.0"
+"@rollup/rollup-win32-ia32-msvc@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-win32-ia32-msvc@npm:4.26.0"
   conditions: os=win32 & cpu=ia32
   languageName: node
   linkType: hard
 
-"@rollup/rollup-win32-x64-msvc@npm:4.25.0":
-  version: 4.25.0
-  resolution: "@rollup/rollup-win32-x64-msvc@npm:4.25.0"
+"@rollup/rollup-win32-x64-msvc@npm:4.26.0":
+  version: 4.26.0
+  resolution: "@rollup/rollup-win32-x64-msvc@npm:4.26.0"
   conditions: os=win32 & cpu=x64
   languageName: node
   linkType: hard
@@ -3625,12 +3625,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/next@npm:4.3.18":
-  version: 4.3.18
-  resolution: "@vercel/next@npm:4.3.18"
+"@vercel/next@npm:4.3.19":
+  version: 4.3.19
+  resolution: "@vercel/next@npm:4.3.19"
   dependencies:
     "@vercel/nft": "npm:0.27.3"
-  checksum: 10/3831faf2a32df6bbf5ce89e8933339316571ca1105ccdbe68e8a7bd553eb69c2b7715d672df9916f5b2e5000056cafdc47587eac02115f7a5a86529731ed3f58
+  checksum: 10/d655a2ef878322a398a895bb98ff1fd6fa8f60dce96086994b4745b52eea98997142523331dc1185faad76e126dee391e24883db353c6b26987a3b666916414e
   languageName: node
   linkType: hard
 
@@ -3684,10 +3684,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@vercel/python@npm:4.3.1":
-  version: 4.3.1
-  resolution: "@vercel/python@npm:4.3.1"
-  checksum: 10/bd5c884a6709f3ef5214c6642f73a49902a79a25d40b8ec3d123c2a42b46f3de7850fb811bba2305a06338732e9f76ac32f7ecdb45d80ce5daa075d16e49df8e
+"@vercel/python@npm:4.4.0":
+  version: 4.4.0
+  resolution: "@vercel/python@npm:4.4.0"
+  checksum: 10/79b4db8f73c2946bc955f1569bf2a309c6b30227bcde277e9ce792b4d41f8f6fdafb26a3bae8035242fab74988ad869dce0aff8e04f5903fafd5937cbb211ee5
   languageName: node
   linkType: hard
 
@@ -6507,9 +6507,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"framer-motion@npm:^11.11.11":
-  version: 11.11.11
-  resolution: "framer-motion@npm:11.11.11"
+"framer-motion@npm:^11.11.15":
+  version: 11.11.15
+  resolution: "framer-motion@npm:11.11.15"
   dependencies:
     tslib: "npm:^2.4.0"
   peerDependencies:
@@ -6523,7 +6523,7 @@ __metadata:
       optional: true
     react-dom:
       optional: true
-  checksum: 10/2fd6142861ed29cf2ef1d33a0ba9360fc551fd2e2d986b5303d578c93be7707c2058b08430e6c4b03d88a386d1b44bb842b06fb05f69ca4f961f907dd4399e8e
+  checksum: 10/d29b9bcb9578b9609410cd4a66136dc4e952821512ea38d80e1f68c6fafab72a7e70601430526ee01e6d5f070a7162b8b176e7638c509c698bb966eaf28da1ac
   languageName: node
   linkType: hard
 
@@ -6548,15 +6548,15 @@ __metadata:
     "@optimizely/optimizely-sdk": "npm:^5.3.4"
     "@parcel/watcher": "npm:^2.5.0"
     "@react-hook/window-size": "npm:^3.1.1"
-    "@remkoj/optimizely-cms-api": "npm:3.1.0"
-    "@remkoj/optimizely-cms-cli": "npm:3.1.0"
-    "@remkoj/optimizely-cms-nextjs": "npm:3.1.0"
-    "@remkoj/optimizely-cms-react": "npm:3.1.0"
+    "@remkoj/optimizely-cms-api": "npm:3.1.1"
+    "@remkoj/optimizely-cms-cli": "npm:3.1.1"
+    "@remkoj/optimizely-cms-nextjs": "npm:3.1.1"
+    "@remkoj/optimizely-cms-react": "npm:3.1.1"
     "@remkoj/optimizely-fx-nextjs-cli": "workspace:^"
-    "@remkoj/optimizely-graph-cli": "npm:3.1.0"
-    "@remkoj/optimizely-graph-client": "npm:3.1.0"
-    "@remkoj/optimizely-graph-functions": "npm:3.1.0"
-    "@remkoj/optimizely-one-nextjs": "npm:3.1.0"
+    "@remkoj/optimizely-graph-cli": "npm:3.1.1"
+    "@remkoj/optimizely-graph-client": "npm:3.1.1"
+    "@remkoj/optimizely-graph-functions": "npm:3.1.1"
+    "@remkoj/optimizely-one-nextjs": "npm:3.1.1"
     "@tailwindcss/aspect-ratio": "npm:^0.4.2"
     "@tailwindcss/container-queries": "npm:^0.1.1"
     "@tailwindcss/forms": "npm:^0.5.9"
@@ -6585,7 +6585,7 @@ __metadata:
     eslint: "npm:8.57.1"
     eslint-config-next: "npm:14.2.17"
     figures: "npm:^6.1.0"
-    framer-motion: "npm:^11.11.11"
+    framer-motion: "npm:^11.11.15"
     graphql: "npm:^16.9.0"
     graphql-config: "npm:^5.1.3"
     graphql-request: "npm:^6.1.0"
@@ -6598,7 +6598,7 @@ __metadata:
     react-content-loader: "npm:^7.0.2"
     react-dom: "npm:18.3.1"
     react-select: "npm:^5.8.3"
-    sass: "npm:^1.80.6"
+    sass: "npm:^1.80.7"
     scheduler: "npm:^0.23.2"
     sharp: "npm:^0.33.5"
     swr: "npm:^2.2.5"
@@ -7280,10 +7280,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immutable@npm:^4.0.0":
-  version: 4.3.5
-  resolution: "immutable@npm:4.3.5"
-  checksum: 10/dbc1b8c808b9aa18bfce2e0c7bc23714a47267bc311f082145cc9220b2005e9b9cd2ae78330f164a19266a2b0f78846c60f4f74893853ac16fd68b5ae57092d2
+"immutable@npm:^5.0.2":
+  version: 5.0.2
+  resolution: "immutable@npm:5.0.2"
+  checksum: 10/89b1117c610024b7a9214eade8b9f1ed38b00c82235f119515cfa5eaf26270eccbc803296d4c3c12f53e50802f042f84d811998910b866363913720da768472e
   languageName: node
   linkType: hard
 
@@ -9849,28 +9849,28 @@ __metadata:
   languageName: node
   linkType: hard
 
-"rollup@npm:^4.25.0":
-  version: 4.25.0
-  resolution: "rollup@npm:4.25.0"
+"rollup@npm:^4.26.0":
+  version: 4.26.0
+  resolution: "rollup@npm:4.26.0"
   dependencies:
-    "@rollup/rollup-android-arm-eabi": "npm:4.25.0"
-    "@rollup/rollup-android-arm64": "npm:4.25.0"
-    "@rollup/rollup-darwin-arm64": "npm:4.25.0"
-    "@rollup/rollup-darwin-x64": "npm:4.25.0"
-    "@rollup/rollup-freebsd-arm64": "npm:4.25.0"
-    "@rollup/rollup-freebsd-x64": "npm:4.25.0"
-    "@rollup/rollup-linux-arm-gnueabihf": "npm:4.25.0"
-    "@rollup/rollup-linux-arm-musleabihf": "npm:4.25.0"
-    "@rollup/rollup-linux-arm64-gnu": "npm:4.25.0"
-    "@rollup/rollup-linux-arm64-musl": "npm:4.25.0"
-    "@rollup/rollup-linux-powerpc64le-gnu": "npm:4.25.0"
-    "@rollup/rollup-linux-riscv64-gnu": "npm:4.25.0"
-    "@rollup/rollup-linux-s390x-gnu": "npm:4.25.0"
-    "@rollup/rollup-linux-x64-gnu": "npm:4.25.0"
-    "@rollup/rollup-linux-x64-musl": "npm:4.25.0"
-    "@rollup/rollup-win32-arm64-msvc": "npm:4.25.0"
-    "@rollup/rollup-win32-ia32-msvc": "npm:4.25.0"
-    "@rollup/rollup-win32-x64-msvc": "npm:4.25.0"
+    "@rollup/rollup-android-arm-eabi": "npm:4.26.0"
+    "@rollup/rollup-android-arm64": "npm:4.26.0"
+    "@rollup/rollup-darwin-arm64": "npm:4.26.0"
+    "@rollup/rollup-darwin-x64": "npm:4.26.0"
+    "@rollup/rollup-freebsd-arm64": "npm:4.26.0"
+    "@rollup/rollup-freebsd-x64": "npm:4.26.0"
+    "@rollup/rollup-linux-arm-gnueabihf": "npm:4.26.0"
+    "@rollup/rollup-linux-arm-musleabihf": "npm:4.26.0"
+    "@rollup/rollup-linux-arm64-gnu": "npm:4.26.0"
+    "@rollup/rollup-linux-arm64-musl": "npm:4.26.0"
+    "@rollup/rollup-linux-powerpc64le-gnu": "npm:4.26.0"
+    "@rollup/rollup-linux-riscv64-gnu": "npm:4.26.0"
+    "@rollup/rollup-linux-s390x-gnu": "npm:4.26.0"
+    "@rollup/rollup-linux-x64-gnu": "npm:4.26.0"
+    "@rollup/rollup-linux-x64-musl": "npm:4.26.0"
+    "@rollup/rollup-win32-arm64-msvc": "npm:4.26.0"
+    "@rollup/rollup-win32-ia32-msvc": "npm:4.26.0"
+    "@rollup/rollup-win32-x64-msvc": "npm:4.26.0"
     "@types/estree": "npm:1.0.6"
     fsevents: "npm:~2.3.2"
   dependenciesMeta:
@@ -9914,7 +9914,7 @@ __metadata:
       optional: true
   bin:
     rollup: dist/bin/rollup
-  checksum: 10/747347035ea728a4905f4beb2e6c8eafd8f39c9015a3514bf8893bddebb5de71fcb4d5bb98064d3402d5915539135c0d1f41e66086e601de0a4e62839cbddf3c
+  checksum: 10/aec4d876617298400c0c03d35fed67e5193addc82a76f2b2a2f4c2b000cafbca84a33cf2e686dea1d1caa06fe4028dd94b8e6cd1f5bc3bbd19026a188bb2ec55
   languageName: node
   linkType: hard
 
@@ -9980,20 +9980,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"sass@npm:^1.80.6":
-  version: 1.80.6
-  resolution: "sass@npm:1.80.6"
+"sass@npm:^1.80.7":
+  version: 1.80.7
+  resolution: "sass@npm:1.80.7"
   dependencies:
     "@parcel/watcher": "npm:^2.4.1"
     chokidar: "npm:^4.0.0"
-    immutable: "npm:^4.0.0"
+    immutable: "npm:^5.0.2"
     source-map-js: "npm:>=0.6.2 <2.0.0"
   dependenciesMeta:
     "@parcel/watcher":
       optional: true
   bin:
     sass: sass.js
-  checksum: 10/a01996fa06bb9249cdae623b9b86930cebfe98fd39bba8700bb76b022e436b83085ef84c22310d44ee6ea5992e13ea86d6422c4b687323bb17ad88597cb39e81
+  checksum: 10/617966d361968d6354bc17c0e2a66c6e0d822684b3694590441035e4966418304bbd4912ff4ee55e7a5751f94624057cd99ebc27964b102619e4e755b1f94f0e
   languageName: node
   linkType: hard
 
@@ -11209,17 +11209,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vercel@npm:^37.14.0":
-  version: 37.14.0
-  resolution: "vercel@npm:37.14.0"
+"vercel@npm:^38.0.0":
+  version: 38.0.0
+  resolution: "vercel@npm:38.0.0"
   dependencies:
     "@vercel/build-utils": "npm:8.4.12"
     "@vercel/fun": "npm:1.1.0"
     "@vercel/go": "npm:3.2.0"
     "@vercel/hydrogen": "npm:1.0.9"
-    "@vercel/next": "npm:4.3.18"
+    "@vercel/next": "npm:4.3.19"
     "@vercel/node": "npm:3.2.24"
-    "@vercel/python": "npm:4.3.1"
+    "@vercel/python": "npm:4.4.0"
     "@vercel/redwood": "npm:2.1.8"
     "@vercel/remix-builder": "npm:2.2.13"
     "@vercel/ruby": "npm:2.1.0"
@@ -11228,7 +11228,7 @@ __metadata:
   bin:
     vc: dist/index.js
     vercel: dist/index.js
-  checksum: 10/7235d93266217f924135ce6a3cf23c62681182bf65f6aa7685b77bd215026fe6fed303e16fa6f3b06ab7bd66d7d4a0b188662bbe3770c9967d21b35eb8e285e1
+  checksum: 10/2ebba2c122faf2e008be9e36cdc3473d6f4fb70b24157a05ca281ddddd07459eecd78e7662ad64693c925d89c9a64e6c354a6af35211040f3ac38edbfe2d30a2
   languageName: node
   linkType: hard
 

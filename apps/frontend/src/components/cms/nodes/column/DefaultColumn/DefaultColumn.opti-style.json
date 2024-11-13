@@ -74,8 +74,8 @@
       }
     },
     "alignContent": {
-      "displayName": "Align content",
-      "sortOrder": 30,
+      "displayName": "Horizontal content alignment",
+      "sortOrder": 20,
       "choices": {
         "end": {
           "displayName": "End",
@@ -92,8 +92,8 @@
       }
     },
     "justifyContent": {
-      "displayName": "Justify content",
-      "sortOrder": 20,
+      "displayName": "Vertical content alignment",
+      "sortOrder": 30,
       "choices": {
         "end": {
           "displayName": "End",
