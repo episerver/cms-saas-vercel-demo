@@ -29,7 +29,7 @@ contentLink: {
     const byLabel = await getLabel('By', { locale, fallback: 'By'})
     const andLabel = await getLabel('and', { locale, fallback: 'and'})
     
-    return <CmsEditable as="div" cmsId={ key } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12">
+    return <CmsEditable as="div" cmsId={ key } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12 w-full">
         { articles.map(article => {
             let authors : string | undefined = undefined
             const authorList : Array<string> = [ article.blogAuthor ].filter(isNotNullOrUndefined)
