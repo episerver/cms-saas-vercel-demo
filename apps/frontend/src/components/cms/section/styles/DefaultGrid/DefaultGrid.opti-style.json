@@ -50,19 +50,19 @@
       "sortOrder": 10,
       "choices": {
         "narrow": {
-          "displayName": "Narrow",
+          "displayName": "Narrow (Maximum available width, but not wider then 48rem)",
           "sortOrder": 40
         },
         "wide": {
-          "displayName": "Wide",
+          "displayName": "Wide (Maximum available width, but not wider then 80rem)",
           "sortOrder": 30
         },
         "full": {
-          "displayName": "Full width",
+          "displayName": "Full width (Maximum available width)",
           "sortOrder": 20
         },
         "default": {
-          "displayName": "Default",
+          "displayName": "Default (Auto-adjusts width based upon screen size)",
           "sortOrder": 10
         }
       }
