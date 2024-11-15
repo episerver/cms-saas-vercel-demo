@@ -5,7 +5,7 @@ import { type PropsWithChildren } from "react";
 import { OnPageEdit, createAuthorizedClient } from "@remkoj/optimizely-cms-nextjs";
 
 // Import libraries & GraphQL
-import { getContentById } from "@gql";
+import { getContentById } from "@gql/functions";
 
 // Import components & factory
 import { setupFactory } from "@components/factory";
@@ -19,7 +19,7 @@ export default OnPageEdit.createEditPageComponent(setupFactory(), {
     layout: PageLayout,
 
     // Casting is needed due to the locale being an enum in the generated types and a string in the generic query used by the loader
-    loader: getContentById as OnPageEdit.Types.GetContentByIdMethod,
+    loader: getContentById,
     clientFactory: (token) => {
         const previewClient = createAuthorizedClient(token)
         previewClient.updateFlags({
@@ -31,3 +31,4 @@ export default OnPageEdit.createEditPageComponent(setupFactory(), {
 
 export const fetchCache = "force-no-store";
 export const revalidate = 0;
+export const runtime = "nodejs"

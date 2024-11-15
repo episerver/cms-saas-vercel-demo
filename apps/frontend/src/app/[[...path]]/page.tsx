@@ -10,7 +10,7 @@ const {
     generateStaticParams,
     CmsPage: Page,
 } = CmsPage.createPage(getFactory(), {
-    getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
+    getContentByPath: getContentByPath,
     client: () => {
         const pageClient = createClient()
         pageClient.updateFlags({
