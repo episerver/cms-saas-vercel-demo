@@ -12,6 +12,9 @@ export const middleware = withEditFallback((request: NextRequest) =>
     const requestHeaders = new Headers(request.headers)
     requestHeaders.set('x-visitorid', visitorId)
 
+    // Expose the search params
+    requestHeaders.set('x-search', request.nextUrl.search)
+
     const response = NextResponse.next({
         request: {
             headers: requestHeaders

@@ -2,6 +2,7 @@
 import { useId, useState, useMemo, useEffect, type FunctionComponent, type DetailedHTMLProps, type HTMLAttributes } from "react"
 import { Field, Label, Listbox, ListboxButton, ListboxOption, ListboxOptions } from "@headlessui/react"
 import { ChevronDownIcon } from "@heroicons/react/24/solid"
+import { useRouter, useSearchParams } from "next/navigation"
 
 export type DropDownOption = {
     value: string
@@ -49,7 +50,7 @@ export const DropDown : FunctionComponent<DropDownParameters> = ({
             
         </ListboxButton>
     ) : (
-        <ListboxButton className="border-azure border-solid border-2 outline-none focus:outline-dashed focus:outline-offset-2 focus:outline-2 focus:outline-azure focus:dark:outline-verdansk rounded-xl min-w-96 flex flex-row justify-between items-stretch dark:border-verdansk overflow-hidden">
+        <ListboxButton className="border-azure border-solid border-2 outline-none focus:outline-dashed focus:outline-offset-2 focus:outline-2 focus:outline-azure focus:dark:outline-verdansk rounded-xl min-w-48 flex flex-row justify-between items-stretch dark:border-verdansk overflow-hidden">
             <div className="flex flex-col justify-between gap-2 m-2 flex-auto">
                 <Label className="text-start italic">{ label }</Label>
                 <span className="text-start">{ valueLabel }</span>
@@ -72,6 +73,33 @@ export const DropDown : FunctionComponent<DropDownParameters> = ({
             </ListboxOptions>
         </Listbox>
     </Field>
+}
+
+export const UrlParamDropdown : FunctionComponent<Omit<DropDownParameters, 'onChange' | 'value'> & { urlSearchParam: string, defaultValue?: DropDownOption['value'] }> = ({ 
+    options = [],
+    urlSearchParam,
+    defaultValue,
+    ...props 
+}) => {
+    const router = useRouter()
+    const currentParams = useSearchParams()
+    const [currentValue,setCurrentValue] = useState<DropDownOption>()
+
+    useEffect(() => {
+        const qv = currentParams.get(urlSearchParam) || defaultValue;
+        if (qv) 
+            setCurrentValue((options ?? []).filter(x => x.value == qv).at(0));
+    }, [ options, currentParams, urlSearchParam, defaultValue ])
+
+    function updateValue(value: DropDownOption)
+    {
+        const url = new URL(window.location.href)
+        url.searchParams.set(urlSearchParam, value.value)
+        const newPath = url.pathname + url.search + url.hash
+        router.push(newPath)
+    }
+
+    return <DropDown options={ options } { ...props } onChange={ nv => updateValue(nv) } value={ currentValue } />
 }
 
 export default DropDown

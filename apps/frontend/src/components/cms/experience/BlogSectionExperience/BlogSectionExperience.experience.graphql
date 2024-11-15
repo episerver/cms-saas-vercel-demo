@@ -1,0 +1,4 @@
+fragment BlogSectionExperienceData on BlogSectionExperience {
+  seo_data { ...PageSeoSettingsPropertyData }
+  ...ExperienceData
+}

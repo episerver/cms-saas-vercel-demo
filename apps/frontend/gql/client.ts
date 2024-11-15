@@ -161,6 +161,14 @@ export const BlankExperienceDataFragmentDoc = gql`
   ...ExperienceData
 }
     `;
+export const BlogSectionExperienceDataFragmentDoc = gql`
+    fragment BlogSectionExperienceData on BlogSectionExperience {
+  seo_data {
+    ...PageSeoSettingsPropertyData
+  }
+  ...ExperienceData
+}
+    `;
 export const BlogPostPageDataFragmentDoc = gql`
     fragment BlogPostPageData on BlogPostPage {
   blogTitle: Heading
@@ -578,6 +586,62 @@ export const getBlankExperienceMetaDataDocument = gql`
 }
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
+export const getChildBlogPostsDocument = gql`
+    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 12, $skip: Int! = 0) {
+  result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {
+    items {
+      container: _metadata {
+        key
+        displayName
+      }
+      items: _link(type: ITEMS) {
+        posts: BlogPostPage(skip: $skip, limit: $limit) {
+          total
+          items {
+            ...IContentData
+            metadata: _metadata {
+              key
+              url {
+                base
+                default
+              }
+              published
+            }
+            heading: Heading
+            subheading: ArticleSubHeading
+            author: ArticleAuthor
+            topic: Topic
+            image: BlogPostPromoImage {
+              src: url {
+                base
+                default
+              }
+            }
+          }
+          facets {
+            author: ArticleAuthor(filters: [$author]) {
+              name
+              count
+            }
+            topic: Topic(orderBy: ASC, filters: [$topic]) {
+              name
+              count
+            }
+            metadata: _metadata {
+              published(unit: DAY) {
+                name
+                count
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+    ${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}`;
 export const getBlogPostPageMetaDataDocument = gql`
     query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {
   BlogPostPage(
@@ -923,6 +987,7 @@ export const getContentByIdDocument = gql`
       ...TextBlockData
       ...BlankSectionData
       ...BlankExperienceData
+      ...BlogSectionExperienceData
       ...BlogPostPageData
       ...LandingPageData
       ...StandardPageData
@@ -967,6 +1032,7 @@ ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
+${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
@@ -982,6 +1048,7 @@ export const getContentByPathDocument = gql`
       ...IContentData
       ...PageData
       ...BlankExperienceData
+      ...BlogSectionExperienceData
       ...BlogPostPageData
       ...LandingPageData
       ...StandardPageData
@@ -1008,6 +1075,7 @@ ${ImageElementDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
+${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${BlockDataFragmentDoc}
@@ -1058,6 +1126,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);
+    },
+    getChildBlogPosts(variables: Schema.getChildBlogPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getChildBlogPostsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getChildBlogPostsQuery>(getChildBlogPostsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getChildBlogPosts', 'query', variables);
     },
     getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogPostPageMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>(getBlogPostPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogPostPageMetaData', 'query', variables);
