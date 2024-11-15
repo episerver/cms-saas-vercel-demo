@@ -16,7 +16,7 @@
     "eslint": "8.57.1",
     "source-map-support": "^0.5.21",
     "typescript": "^5.6.3",
-    "vercel": "^38.0.0"
+    "vercel": "^39.0.2"
   },
   "exports": null,
   "scripts": {
@@ -34,9 +34,6 @@
     "update-yarn": "yarn set version stable && yarn install && yarn sdks vscode"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz",
-    "@remkoj/optimizely-cms-nextjs": "file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz",
-    "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz",
-    "@remkoj/optimizely-graph-functions": "file:./packages/dist/@remkoj-optimizely-graph-functions-dev.tgz"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz"
   }
 }

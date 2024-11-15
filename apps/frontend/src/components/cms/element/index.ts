@@ -9,6 +9,7 @@ import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
 import ContentRecsElementComponent from "./ContentRecsElement";
 import ArticleListElementComponent from "./ArticleListElement";
+import ArticleListElementLoader from "./ArticleListElement/loading";
 
 // Build dictionary
 export const ElementFactory : ComponentTypeDictionary = [
@@ -42,7 +43,9 @@ export const ElementFactory : ComponentTypeDictionary = [
     },
     { 
         type: "ArticleListElement", 
-        component: ArticleListElementComponent 
+        component: ArticleListElementComponent,
+        useSuspense: true,
+        loader: ArticleListElementLoader
     }
 ];
 
