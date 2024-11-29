@@ -6,7 +6,7 @@ async function handler(req: NextRequest)
     const token = req.nextUrl.searchParams.get('token')
     const updateResult = await updateDatafile(token)
     if (updateResult.status == "ok")
-        return NextResponse.json(updateResult.data ?? "ok")
+        return NextResponse.json({ message: "ok", data: updateResult.data })
     return NextResponse.json({ message: updateResult.message, data: updateResult.data }, { status: updateResult.code })
 }
 

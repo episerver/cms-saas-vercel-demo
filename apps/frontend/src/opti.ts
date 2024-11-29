@@ -3,29 +3,6 @@ import { headers } from 'next/headers'
 import { createInstance, type Client, type OptimizelyUserContext, type UserAttributes  } from '@optimizely/optimizely-sdk/lite'
 
 /**
- * Read the Optimizely Feature Experimenation and Vercel Edge Config
- * configuration from the Environment, for the default Vercel 
- * implementation of Optimizely Feature Experimentation
- * 
- * @returns     Configuration data
- */
-export function readConfigFromEnv() 
-{
-    // @ts-ignore: Node-Types may or may not be available
-    const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
-    // @ts-ignore: Node-Types may or may not be available
-    const vercelTeam = process.env.VERCEL_TEAM
-    // @ts-ignore: Node-Types may or may not be available
-    const vercelToken = process.env.VERCEL_TOKEN
-    // @ts-ignore: Node-Types may or may not be available
-    const token = process.env.OPTIMIZELY_PUBLISH_TOKEN
-    // @ts-ignore: Node-Types may or may not be available
-    const sdkkey = process.env.OPTIMIZELY_FX_SDKKEY || process.env.OPTIMIZELY_FX_SDK_KEY || process.env.OPTIMIZELY_SDK_KEY
-
-    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey }
-}
-
-/**
  * Retrieve an instance of the Optimizely FX client
  * 
  * @returns The the Optimizely FX client ready to use
@@ -70,7 +47,7 @@ export async function getUserContext(attributes: UserAttributes = {}) : Promise<
         "platform": headerData.get('sec-ch-ua-platform'),
         "geo-continent": headerData.get('x-vercel-ip-continent'),
         "geo-country": headerData.get('x-vercel-ip-country'),
-        "geo-country-region": headerData.get('x-vercel-ip-country-region'),
+        "geo-region": headerData.get('x-vercel-ip-country-region'),
         "geo-city": headerData.get('x-vercel-ip-city'),
         "geo-timezone": headerData.get('x-vercel-ip-timezone'),
         ...attributes
@@ -82,6 +59,13 @@ export async function getUserContext(attributes: UserAttributes = {}) : Promise<
     return fx_ctx
 }
 
+/**
+ * Update the Optimizely FX Datafile within the Vercel Edge Config, allowing
+ * it to be read from there, instead of the Optimizely CDN.
+ * 
+ * @param       authToken       The token for the request
+ * @returns     Status information
+ */
 export async function updateDatafile(authToken?: string | null) : Promise<{ status: "ok", data?: any }|{ status: "error", code: number, message: string, data?: any}>
 {
     const {edgeConfigId, vercelTeam, vercelToken, token, sdkkey} = readConfigFromEnv()
@@ -118,18 +102,89 @@ export async function updateDatafile(authToken?: string | null) : Promise<{ stat
     return { status: "ok", data: storeResult }
 }
 
+export async function getFlagVariants(flagKey: string) : Promise<false | null | Array<{ label: string, value: VariantValues }>>
+{
+    const { accessToken, projectId } = readConfigFromEnv()
+    if (!projectId || !accessToken)
+        return false
+
+    const variations = await fetch(`https://api.optimizely.com/flags/v1/projects/${ projectId }/flags/${ flagKey }/variations?archived=false&per_page=100`, { headers: { Authorization: `Bearer ${ accessToken }`}}).then(r => r.json() as Record<string,any>).catch(() => undefined)
+    if (!Array.isArray(variations?.items))
+        return null
+
+    return variations.items.map(item => 
+    { 
+        return {
+            label: item.name,
+            value: buildVariantValues(item)
+        }
+    })
+}
+
 export default getUserContext
 
+//#region Internal functions
 async function readDataFileFromEdgeConfig(sdkkey: string) : Promise<string | undefined>
 {
-    console.log("Loading edge config sdkKey",sdkkey)
     return get<string>("optimizely-fx-"+sdkkey).catch(() => undefined)
 }
 
 async function readDataFileFromCDN(sdkkey: string) : Promise<string | undefined>
 {
-    console.log("Loading cdn sdkKey",sdkkey)
     const response = await fetch(`https://cdn.optimizely.com/datafiles/${ sdkkey }.json`)
     if (!response.ok) return undefined
     return response.text().catch(() => undefined)
 }
+
+function readConfigFromEnv()
+{
+    // @ts-ignore: Node-Types may or may not be available
+    const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
+    // @ts-ignore: Node-Types may or may not be available
+    const vercelTeam = process.env.VERCEL_TEAM
+    // @ts-ignore: Node-Types may or may not be available
+    const vercelToken = process.env.VERCEL_TOKEN
+    // @ts-ignore: Node-Types may or may not be available
+    const token = process.env.OPTIMIZELY_PUBLISH_TOKEN
+    // @ts-ignore: Node-Types may or may not be available
+    const sdkkey = process.env.OPTIMIZELY_FX_SDKKEY || process.env.OPTIMIZELY_FX_SDK_KEY || process.env.OPTIMIZELY_SDK_KEY
+    // @ts-ignore: Node-Types may or may not be available
+    const accessToken = process.env.OPTIMIZELY_FX_PAT
+    // @ts-ignore: Node-Types may or may not be available
+    const projectId = process.env.OPTIMIZELY_FX_PROJECT
+
+    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey, accessToken, projectId }
+}
+
+function buildVariantValues(variation: any, fieldName = "value") : VariantValues {
+    const variantValues = {
+        _enabled: variation.enabled
+    }
+
+    for (var entry of Object.getOwnPropertyNames(variation.variables)) {
+        variantValues[entry] = parseValue(variation.variables[entry].type, variation.variables[entry][fieldName])
+    }
+
+    return variantValues
+}
+
+function parseValue(type: string, value: string) : string | boolean | number | object
+{
+    switch (type) {
+        case 'boolean':
+            return value == 'true'
+        case 'integer':
+            return Number.parseInt(value)
+        case 'double':
+            return Number.parseFloat(value)
+        default:
+            return value
+    }
+}
+type VariantValues = {
+    _enabled: boolean
+} & VariantData
+type VariantData = boolean | number | string | null | VariantObjectData | VariantArrayData
+type VariantArrayData = ReadonlyArray<VariantData>
+type VariantObjectData = { [fieldName:string]: VariantData }
+//#endregion

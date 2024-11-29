@@ -5,6 +5,7 @@ import getSdk from "@/sdk"
 import { searchParams } from "@/search"
 import { UrlParamDropdown as DropDown, type DropDownOption } from "@/components/shared/drop_down"
 import BlogPostCard from "@/components/shared/blog_post_card"
+import { Paging } from "./paging"
 
 export type BlogPostsSectionProps = {
     parentKey: string
@@ -17,7 +18,7 @@ export default async function BlogPostsSection({ parentKey, locale }: BlogPostsS
     const search = await searchParams()
 
     // Handle items per page
-    const itemsPerPageOptions : Array<DropDownOption> = [{ value: "9" },{ value: "12" }]
+    const itemsPerPageOptions : Array<DropDownOption> = [{value: "6"},{ value: "9" },{ value: "12" },{ value: "24" }]
     const itemsPerPageValue = itemsPerPageOptions.filter(x => x.value == search.get("pageSize")).at(0) ?? itemsPerPageOptions[1]
     const limit = tryParseNumber(itemsPerPageValue.value) ?? 12;
     const skip = tryParseNumber(search.get('skip') ?? '0') ?? 0;
@@ -59,12 +60,12 @@ export default async function BlogPostsSection({ parentKey, locale }: BlogPostsS
             <DropDown label="Author" options={ authorOptions } urlSearchParam="author" unselectedLabel="Filter by author" />
             <DropDown label="Items per page" options={ itemsPerPageOptions } defaultValue={ itemsPerPageValue.value } urlSearchParam="pageSize" unselectedLabel="Set page size" />
         </div>
-        <div className="columns-1 lg:columns-2 xl:columns-3 gap-2 lg:gap-4 xl:gap-8">
+        <div className="columns-1 lg:columns-2 xl:columns-3 gap-2 lg:gap-4 xl:gap-8 pb-8">
             { (items || []).filter(Utils.isNotNullOrUndefined).map(item => {
                 const key = item.metadata?.key
                 if (!key)
                     return null
-                return <div key={key} className="w-full mb-2 lg:mb-4 xl:mb-8">
+                return <div key={key} className="w-full mb-2 lg:mb-4 xl:mb-8 break-inside-avoid">
                     <BlogPostCard blogPost={{ 
                         category: Array.isArray(item.topic) ? item.topic.join(", ") : item.topic ?? '',
                         id: item.metadata?.key ?? "", 
@@ -83,10 +84,7 @@ export default async function BlogPostsSection({ parentKey, locale }: BlogPostsS
                 </div>
             })}
         </div>
-
-        <pre>{ JSON.stringify({
-            total, skip, limit, count, page
-        }, undefined, 2)}</pre>
+        <Paging total={total ?? 0} skip={skip} limit={limit} count={count} page={page} />
     </>
 }
 

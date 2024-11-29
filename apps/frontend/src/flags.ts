@@ -28,6 +28,10 @@ export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, sh
     },
     options: [
         {
+            label: "Optimizely One",
+            value: {"_enabled":true,"show_recent_searches":true,"use_personalization":true,"interest_boost":100,"recent_search_count":5}
+        },
+        {
             label: "Long history",
             value: {"_enabled":true,"show_recent_searches":true,"recent_search_count":10,"interest_boost":200,"use_personalization":false}
         },
@@ -58,6 +62,14 @@ export const layout_configuration = flag<OptimizelyFlag<{ logo: string, theme_sw
         }
     },
     options: [
+        {
+            label: "Hero Banking - Geen Dark-Mode",
+            value: {"_enabled":true,"logo":"https://optly-comm-demo.vercel.app/hero-logo-horizontal.png","theme_switcher":false}
+        },
+        {
+            label: "Hero Banking",
+            value: {"_enabled":true,"logo":"https://optly-comm-demo.vercel.app/hero-logo-horizontal.png","theme_switcher":true}
+        },
         {
             label: "Optimizely Logo",
             value: {"_enabled":true,"logo":"https://support.optimizely.com/hc/theming_assets/01HZH1Q8HQF8VFTSNFVAGVB65K","theme_switcher":true}

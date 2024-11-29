@@ -4,6 +4,7 @@ import path from 'node:path'
 import crypto from 'node:crypto'
 
 import { wellknownRoute, routeFile, flagsFile, optiFlags, sdkFile, optiDataFileConfigKey, dataFileHandler } from './_convention.js'
+import { upsertAttributes } from '../operations/index.js'
 
 export const SetupCommand : CliModule = {
     command: "setup",
@@ -80,7 +81,34 @@ export const SetupCommand : CliModule = {
         process.stdout.write(`Updating ${ envfile }\n`)
         fs.writeFileSync(path.join(cwd, envfile), envConfig)
 
-        process.stdout.write(`\n🚀 Done! You can now add flags by:\n-Using 'yarn opti-fx pull' to download your feature configuration`)
+        process.stdout.write(`Registering default attributes in Feature Experimentation\n`)
+        await upsertAttributes([
+            {
+                key: "user-agent",
+                description: "Browser"
+            },{
+                key: "platform",
+                description: "Operating system"
+            },{
+                key: "geo-continent",
+                description: "GeoIP: Continent"
+            },{
+                key: "geo-country",
+                description: "GeoIP: Country"
+            },{
+                key: "geo-region",
+                description: "GeoIP: Region"
+            },{
+                key: "geo-city",
+                description: "GeoIP: City"
+            },{
+                key: "geo-timezone",
+                description: "GeoIP: Timezone"
+            }
+        ], { accessToken: token, projectId: project })
+
+        process.stdout.write(`\n🚀 Done! You can now add flags by:
+   - Using 'yarn opti-fx pull' to download your feature configuration`)
     }
 }
 
@@ -89,7 +117,8 @@ export default SetupCommand
 const routeHandlerTpl = `import { NextResponse, type NextRequest } from 'next/server';
 import { verifyAccess, type ApiData } from '@vercel/flags';
 import { unstable_getProviderData as getProviderData } from "@vercel/flags/next";
-import * as flags from '../../../../flags'; 
+import * as flags from '../../../../flags';
+import { getFlagVariants } from '../../../../opti';
 
 export async function GET(request: NextRequest) {
     const access = await verifyAccess(request.headers.get('Authorization'));
@@ -97,67 +126,24 @@ export async function GET(request: NextRequest) {
 
     //Retrieve the flags from the definitions file
     const provider = getProviderData(flags)
+    const hints = new Map<string,string>()
 
-    // Update the options from Feature Experimentation
-    // @ts-ignore: Node-Types may or may not be available
-    const accessToken = process.env.OPTIMIZELY_FX_PAT
-    // @ts-ignore: Node-Types may or may not be available
-    const projectId = process.env.OPTIMIZELY_FX_PROJECT
-    if (accessToken && projectId) {
-        console.log(\`Credentials present, loading current flag variations from project \${ projectId }\`)
-        provider.hints.push({key: "updated_opti_variants", text: "Using current Optimizely Feature Variations"})
-        for(const flagKey of Object.getOwnPropertyNames(provider.definitions))
-        {
-            console.log(\`Updating for flag \${ flagKey }\`)
-            const variations = await fetch(\`https://api.optimizely.com/flags/v1/projects/\${ projectId }/flags/\${flagKey}/variations?archived=false&per_page=100\`, { headers: { Authorization: \`Bearer \${ accessToken }\`}}).then(r => r.json())
-
-            const newOptions = variations.items.map(item => 
-            { 
-                return {
-                    label: item.name,
-                    value: buildVariantValues(item)
-                }
-            })
+    // Try loading the actual flag options
+    for(const flagKey of Object.getOwnPropertyNames(provider.definitions))
+    {
+        const newOptions = await getFlagVariants(flagKey)
+        if (Array.isArray(newOptions))
             provider.definitions[flagKey].options = newOptions
-        }
-    } else {
-        provider.hints.push({key: "opti_keys_missing", text: "Configure your Optimizely project id and a personal access token to see up-to-date feature options"})
+        else if (newOptions == false)
+            hints.set("optly-fx-not-authorized","Using build time Optimizely Feature options")
+        else if (newOptions == null)
+            hints.set("optly-fx-fetch-error-"+flagKey,"Unable to fetch real time Optimizely Feature options for "+flagKey)
     }
 
+    hints.forEach((text, key) => provider.hints.push({ key, text }))
+
+    // Return the flag options
     return NextResponse.json<ApiData>(provider);
-}
-
-function buildVariantValues(variation: any, fieldName = "value") {
-    const variantValues = {
-        _enabled: variation.enabled
-    }
-
-    for (var entry of Object.getOwnPropertyNames(variation.variables)) {
-        variantValues[entry] = parseValue(variation.variables[entry].type, variation.variables[entry][fieldName])
-    }
-
-    return variantValues
-}
-
-/**
- * Process a value reported from the Optimizely FX API
- * 
- * @param       type    The value type reported
- * @param       value   The string encoded version of the value
- * @returns     The parsed value
- */
-function parseValue(type: string, value: string) : string | boolean | number | object
-{
-    switch (type) {
-        case 'boolean':
-            return value == 'true'
-        case 'integer':
-            return Number.parseInt(value)
-        case 'double':
-            return Number.parseFloat(value)
-        default:
-            return value
-    }
 }`
 
 const flagsProviderTpl = `// Auto generated flags.ts from Optimizely Feature Experimentation
@@ -171,9 +157,143 @@ type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omi
 
 const userContextProviderTpl = `import { get } from '@vercel/edge-config'
 import { headers } from 'next/headers'
-import { createInstance, type Client  } from '@optimizely/optimizely-sdk/lite'
+import { createInstance, type Client, type OptimizelyUserContext, type UserAttributes  } from '@optimizely/optimizely-sdk/lite'
 
-export function readConfigFromEnv() 
+/**
+ * Retrieve an instance of the Optimizely FX client
+ * 
+ * @returns The the Optimizely FX client ready to use
+ */
+export async function getInstance() : Promise<Client>
+{
+    const { sdkkey } = readConfigFromEnv()
+    if (!sdkkey)
+        throw new Error("Optimizely Feature Experimentation key not present")
+
+    let datafile = (await readDataFileFromEdgeConfig(sdkkey)) ?? (await readDataFileFromCDN(sdkkey))
+    if (!datafile)
+        throw new Error("Unable to load datafile, check your sdkKey")
+    const fx = createInstance({
+        datafile
+    })
+    if (!fx)
+        throw new Error("Optimizely Feature Experimentation not created")
+    
+    const { success, reason } = await fx.onReady()
+    if (!success)
+        throw new Error("Optimizely Feature Experimentation initialization failed: " + (reason??""))
+    return fx
+}
+
+/**
+ * Generic method to retrieve the user context for the current request
+ * 
+ * @param       attributes      Any additional attributes to be added
+ * @returns     The User Context for Optimizely Feature Experimentation
+ */
+export async function getUserContext(attributes: UserAttributes = {}) : Promise<OptimizelyUserContext | null>
+{
+    const fx = await getInstance()
+    const headerData = await headers()
+    const visitorId = headerData.get('x-visitorid')
+    if (!visitorId)
+        throw new Error("No visitor identifier provided by your middleware")
+
+    const fullAttributes = {
+        "user-agent": headerData.get('user-agent'),
+        "platform": headerData.get('sec-ch-ua-platform'),
+        "geo-continent": headerData.get('x-vercel-ip-continent'),
+        "geo-country": headerData.get('x-vercel-ip-country'),
+        "geo-country-region": headerData.get('x-vercel-ip-country-region'),
+        "geo-city": headerData.get('x-vercel-ip-city'),
+        "geo-timezone": headerData.get('x-vercel-ip-timezone'),
+        ...attributes
+    }  
+
+    const fx_ctx = fx.createUserContext(visitorId, fullAttributes)
+    fx_ctx?.fetchQualifiedSegments
+    //await fx_ctx?.fetchQualifiedSegments()
+    return fx_ctx
+}
+
+/**
+ * Update the Optimizely FX Datafile within the Vercel Edge Config, allowing
+ * it to be read from there, instead of the Optimizely CDN.
+ * 
+ * @param       authToken       The token for the request
+ * @returns     Status information
+ */
+export async function updateDatafile(authToken?: string | null) : Promise<{ status: "ok", data?: any }|{ status: "error", code: number, message: string, data?: any}>
+{
+    const {edgeConfigId, vercelTeam, vercelToken, token, sdkkey} = readConfigFromEnv()
+
+    if (!token || token != authToken)
+        return { status: "error", code: 401, message: "Not authorized"}
+
+    if (!edgeConfigId || !vercelTeam || !vercelToken || !sdkkey)
+        return { status: "error", message: "Incorrect configuration", code: 401 }
+
+    const datafile = await fetch(\`https://cdn.optimizely.com/datafiles/\${ sdkkey }.json\`).then(result => result.ok ? result.json() as object : undefined).catch(() => undefined)
+    if (!datafile)
+        return { status: "error", message: "Error reading datafile", code: 500 }
+
+    const storeResult = await fetch(\`https://api.vercel.com/v1/edge-config/\${ edgeConfigId }/items?slug=\${ vercelTeam }\`, {
+        "body": JSON.stringify({
+            items: [{
+                description: "Optimizely FX Datafile",
+                key: "${ optiDataFileConfigKey }-"+sdkkey,
+                operation: "upsert",
+                value: datafile
+            }]
+        }),
+        "headers": {
+          "Authorization": \`Bearer \${ vercelToken }\`,
+          "Content-Type": "application/json"
+        },
+        "method": "PATCH"
+    }).then(result => result.json() as Record<string,any>).catch(() => undefined)
+
+    if (storeResult?.status != 'ok')
+        return {status: "error", message: "Error storing datafile", data: storeResult, code: 500 }
+    
+    return { status: "ok", data: storeResult }
+}
+
+export async function getFlagVariants(flagKey: string) : Promise<false | null | Array<{ label: string, value: VariantValues }>>
+{
+    const { accessToken, projectId } = readConfigFromEnv()
+    if (!projectId || !accessToken)
+        return false
+
+    const variations = await fetch(\`https://api.optimizely.com/flags/v1/projects/\${ projectId }/flags/\${ flagKey }/variations?archived=false&per_page=100\`, { headers: { Authorization: \`Bearer \${ accessToken }\`}}).then(r => r.json() as Record<string,any>).catch(() => undefined)
+    if (!Array.isArray(variations?.items))
+        return null
+
+    return variations.items.map(item => 
+    { 
+        return {
+            label: item.name,
+            value: buildVariantValues(item)
+        }
+    })
+}
+
+export default getUserContext
+
+//#region Internal functions
+async function readDataFileFromEdgeConfig(sdkkey: string) : Promise<string | undefined>
+{
+    return get<string>("${ optiDataFileConfigKey }-"+sdkkey).catch(() => undefined)
+}
+
+async function readDataFileFromCDN(sdkkey: string) : Promise<string | undefined>
+{
+    const response = await fetch(\`https://cdn.optimizely.com/datafiles/\${ sdkkey }.json\`)
+    if (!response.ok) return undefined
+    return response.text().catch(() => undefined)
+}
+
+function readConfigFromEnv()
 {
     // @ts-ignore: Node-Types may or may not be available
     const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
@@ -185,105 +305,58 @@ export function readConfigFromEnv()
     const token = process.env.OPTIMIZELY_PUBLISH_TOKEN
     // @ts-ignore: Node-Types may or may not be available
     const sdkkey = process.env.OPTIMIZELY_FX_SDKKEY || process.env.OPTIMIZELY_FX_SDK_KEY || process.env.OPTIMIZELY_SDK_KEY
+    // @ts-ignore: Node-Types may or may not be available
+    const accessToken = process.env.OPTIMIZELY_FX_PAT
+    // @ts-ignore: Node-Types may or may not be available
+    const projectId = process.env.OPTIMIZELY_FX_PROJECT
 
-    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey }
+    return { edgeConfigId, vercelTeam, vercelToken, token, sdkkey, accessToken, projectId }
 }
 
-/**
- * Retrieve an instance of the Optimizely FX client
- * 
- * @returns The the Optimizely FX client ready to use
- */
-export async function getInstance() : Promise<Client>
-{
-    let config = (await readDataFileFromEdgeConfig()) ?? (await readDataFileFromCDN())
-    const fx = createInstance({
-        datafile: config,
-    })
-    if (!fx)
-        throw new Error("Optimizely Feature Experimentation initialization failed")
-    
-    await fx.onReady()
-    return fx
+function buildVariantValues(variation: any, fieldName = "value") : VariantValues {
+    const variantValues = {
+        _enabled: variation.enabled
+    }
+
+    for (var entry of Object.getOwnPropertyNames(variation.variables)) {
+        variantValues[entry] = parseValue(variation.variables[entry].type, variation.variables[entry][fieldName])
+    }
+
+    return variantValues
 }
 
-export async function getUserContext()
+function parseValue(type: string, value: string) : string | boolean | number | object
 {
-    const fx = await getInstance()
-    const headerData = await headers()
-    const visitorId = headerData.get('x-visitorid')
-    if (!visitorId)
-        throw new Error("No visitor identifier provided by your middleware")
-    
-    const fx_ctx = fx.createUserContext(visitorId, {
-
-    })
-    //await fx_ctx?.fetchQualifiedSegments()
-    return fx_ctx
-}
-
-export default getUserContext
-
-function readDataFileFromEdgeConfig() : Promise<string | undefined>
-{
-    return get<string>('optimizely-fx-data-file').catch(() => undefined)
-}
-
-async function readDataFileFromCDN() : Promise<string | undefined>
-{
-    const { sdkkey } = readConfigFromEnv()
-    const response = await fetch(\`https://cdn.optimizely.com/datafiles/\${ sdkkey }.json\`)
-    if (!response.ok)
-        return undefined
-    try {
-        return response.text()
-    } catch {
-        return undefined
+    switch (type) {
+        case 'boolean':
+            return value == 'true'
+        case 'integer':
+            return Number.parseInt(value)
+        case 'double':
+            return Number.parseFloat(value)
+        default:
+            return value
     }
 }
+type VariantValues = {
+    _enabled: boolean
+} & VariantData
+type VariantData = boolean | number | string | null | VariantObjectData | VariantArrayData
+type VariantArrayData = ReadonlyArray<VariantData>
+type VariantObjectData = { [fieldName:string]: VariantData }
+//#endregion
 `
 
 const datafileApiTpl = `import { type NextRequest, NextResponse } from "next/server"
-import { readConfigFromEnv as readEnv } from "../../../../opti"
+import { updateDatafile } from "../../../../opti"
 
 async function handler(req: NextRequest)
 {
-    const {edgeConfigId, vercelTeam, vercelToken, token, sdkkey} = readEnv()
-
-    const reqToken = req.nextUrl.searchParams.get('token')
-    if (!token || token != reqToken)
-        return new NextResponse("Not authorized", { status: 401 })
-
-    if (!edgeConfigId || !vercelTeam || !vercelToken || !sdkkey)
-        return new NextResponse("Incorrect configuration", { status: 401 })
-
-    const datafile = await fetch(\`https://cdn.optimizely.com/datafiles/\${ sdkkey }.json\`).then(result => result.json())
-
-    const storeResult = await fetch(\`https://api.vercel.com/v1/edge-config/\${ edgeConfigId }/items?slug=\${ vercelTeam }\`, {
-        "body": JSON.stringify({
-            items: [{
-                description: "Optimizely FX Datafile",
-                key: "optimizely-fx-data-file",
-                operation: "upsert",
-                value: datafile
-            },{
-                description: "Optimizely FX Datafile",
-                key: "optimizely-fx-enabled",
-                operation: "upsert",
-                value: true
-            }]
-        }),
-        "headers": {
-          "Authorization": \`Bearer \${ vercelToken }\`,
-          "Content-Type": "application/json"
-        },
-        "method": "PATCH"
-    }).then(result => result.json())
-
-    if (storeResult.status != 'ok')
-        return NextResponse.json(storeResult, { status: 500 })
-
-    return NextResponse.json(storeResult)
+    const token = req.nextUrl.searchParams.get('token')
+    const updateResult = await updateDatafile(token)
+    if (updateResult.status == "ok")
+        return NextResponse.json({ message: "ok", data: updateResult.data })
+    return NextResponse.json({ message: updateResult.message, data: updateResult.data }, { status: updateResult.code })
 }
 
 export const POST = handler

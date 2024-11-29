@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import { type CmsComponent } from "@remkoj/optimizely-cms-react";
 import { type CarouselBlockDataFragment, CarouselBlockDataFragmentDoc } from "@gql/graphql"
 import dynamic from "next/dynamic";
@@ -18,9 +17,10 @@ export const CarouselBlock: CmsComponent<CarouselBlockDataFragment> = async ({ d
       contentLink={contentLink}
     >
       <CmsContentArea
-        as={ Fragment }
+        noWrapper
         itemWrapper={{ 
           as: "div",
+          //@ts-ignore
           style: {
             flex: `0 0 var(--item-width)`,
             width: `var(--item-width)`,
