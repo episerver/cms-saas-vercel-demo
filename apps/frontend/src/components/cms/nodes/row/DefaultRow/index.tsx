@@ -39,13 +39,19 @@ enum VerticalSpacingClasses {
     none = "my-0"
 }
 
+enum WidthClasses {
+    full = "",
+    container = "container mx-auto"
+}
+
 export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, layoutProps, children }) => {
     const { 
         contentSpacing = "none", 
         justifyContent = "start", 
         alignContent = "start", 
         verticalSpacing = "small",
-        showAsRowFrom = "lg"
+        showAsRowFrom = "lg",
+        maxWidth = "full"
     } = extractSettings(layoutProps)
 
     const spacing = ContentSpacingClasses[contentSpacing] ?? ''
@@ -53,8 +59,9 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
     const align = AlignContentClasses[alignContent] ?? ''
     const vertical = VerticalSpacingClasses[verticalSpacing] ?? ''
     const rowFrom = RowFromClasses[showAsRowFrom] ?? ''
+    const width = WidthClasses[maxWidth] ?? ''
 
-    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing }`}>{ children }</div>);
+    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width }`}>{ children }</div>);
 }
 
 export default DefaultRow;

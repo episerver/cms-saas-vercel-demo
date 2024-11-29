@@ -3,6 +3,7 @@
 import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import VideoElementComponent from "./VideoElement";
 import TestimonialElementComponent from "./TestimonialElement";
+import RichTextElementComponent from "./RichTextElement";
 import ParagraphElementComponent from "./ParagraphElement";
 import ImageElementComponent from "./ImageElement";
 import HeadingElementComponent from "./HeadingElement";
@@ -20,6 +21,10 @@ export const ElementFactory : ComponentTypeDictionary = [
     { 
         type: "TestimonialElement", 
         component: TestimonialElementComponent 
+    },
+    { 
+        type: "RichTextElement", 
+        component: RichTextElementComponent 
     },
     { 
         type: "ParagraphElement", 

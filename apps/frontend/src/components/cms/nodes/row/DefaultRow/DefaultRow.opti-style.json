@@ -3,8 +3,8 @@
   "displayName": "Default",
   "nodeType": "row",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.4499114+00:00",
-  "lastModified": "2024-09-25T10:11:01.4499114+00:00",
+  "created": "2024-11-04T12:00:19.2831927+00:00",
+  "lastModified": "2024-11-13T13:46:20.9900232+00:00",
   "settings": {
     "verticalSpacing": {
       "displayName": "Vertical spacing",
@@ -38,6 +38,10 @@
       "editor": "",
       "sortOrder": 30,
       "choices": {
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        },
         "end": {
           "displayName": "End",
           "sortOrder": 30
@@ -49,10 +53,6 @@
         "start": {
           "displayName": "Start",
           "sortOrder": 10
-        },
-        "stretch": {
-          "displayName": "Stretch",
-          "sortOrder": 40
         }
       }
     },
@@ -61,6 +61,10 @@
       "editor": "",
       "sortOrder": 20,
       "choices": {
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        },
         "end": {
           "displayName": "End",
           "sortOrder": 30
@@ -72,10 +76,6 @@
         "start": {
           "displayName": "Start",
           "sortOrder": 10
-        },
-        "stretch": {
-          "displayName": "Stretch",
-          "sortOrder": 40
         }
       }
     },
@@ -126,6 +126,20 @@
         "md": {
           "displayName": "Medium",
           "sortOrder": 10
+        }
+      }
+    },
+    "maxWidth": {
+      "displayName": "Maximum width",
+      "sortOrder": 50,
+      "choices": {
+        "full": {
+          "displayName": "None (Section width)",
+          "sortOrder": 10
+        },
+        "container": {
+          "displayName": "Container (Fixed breakpoints based on window width)",
+          "sortOrder": 20
         }
       }
     }

@@ -1,4 +1,4 @@
-fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {
+fragment PageSeoSettingsData on PageSeoSettings {
   MetaTitle
   MetaDescription
   MetaKeywords

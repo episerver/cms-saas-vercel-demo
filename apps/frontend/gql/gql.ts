@@ -22,11 +22,14 @@ const documents = {
     "fragment ContentRecsBlockData on ContentRecsBlock {\n  BlockDeliveryApiKey\n  BlockRecommendationCount\n}": types.ContentRecsBlockDataFragmentDoc,
     "fragment HeroBlockData on HeroBlock {\n  heroImage: HeroImage {\n    ...ReferenceData\n  }\n  eyebrow: Eyebrow\n  heroHeading: Heading\n  heroSubheading: SubHeading\n  heroDescription: Description {\n    json\n    html\n  }\n  heroColor: HeroColor\n  heroButton: HeroButton {\n    ...ButtonBlockPropertyData\n  }\n}": types.HeroBlockDataFragmentDoc,
     "fragment HomePageHeroBlockData on HomePageHeroBlock {\n  homeHeroHeading: HomeHeroBlockHeading\n  homeHeroSubheading: HomeHeroBlockSubHeading\n  leftImage: HomeHeroLeftImage {\n    ...ReferenceData\n  }\n  rightImage: HomeHeroRightImage {\n    ...ReferenceData\n  }\n  homeHeroButton: HomeHeroButtonBlock {\n    ...ButtonBlockPropertyData\n  }\n}": types.HomePageHeroBlockDataFragmentDoc,
+    "fragment HtmlBlockData on HtmlBlock {\n  HtmlBlockHeading\n  HtmlContent {\n    json\n    html\n  }\n}": types.HtmlBlockDataFragmentDoc,
     "fragment LayoutContainerBlockData on LayoutContainerBlock {\n  columns: ColumnsCount\n  gap: GapSize\n  LayoutContentArea {\n    ...BlockData\n  }\n  containerColor: ContainerBackgroundColor\n  backgroundImage: ContainerBackgroundImage {\n    ...ReferenceData\n  }\n  marginTop: ContainerMarginTop\n  marginBottom: ContainerMarginBottom\n  paddingBottom: ContainerPaddingBottom\n  paddingTop: ContainerPaddingTop\n}": types.LayoutContainerBlockDataFragmentDoc,
+    "fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}": types.LayoutSettingsBlockDataFragmentDoc,
     "fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n  }\n}": types.MegaMenuGroupBlockDataFragmentDoc,
     "fragment MenuNavigationBlockData on MenuNavigationBlock {\n  _metadata {\n    displayName\n  }\n  MenuNavigationHeading\n  NavigationLinks {\n    ...LinkItemData\n  }\n}": types.MenuNavigationBlockDataFragmentDoc,
     "fragment OdpEmbedBlockData on OdpEmbedBlock {\n  ContentId\n}": types.OdpEmbedBlockDataFragmentDoc,
-    "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsPropertyDataFragmentDoc,
+    "fragment PageSeoSettingsData on PageSeoSettings {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsDataFragmentDoc,
+    "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsPropertyDataFragmentDoc,
     "fragment QuoteBlockData on QuoteBlock {\n  quote: QuoteText\n  color: QuoteColor\n  active: QuoteActive\n  name: QuoteProfileName\n  profilePicture: QuoteProfilePicture {\n    ...ReferenceData\n  }\n  location: QuoteProfileLocation\n}": types.QuoteBlockDataFragmentDoc,
     "fragment TextBlockData on TextBlock {\n  overline: TextBlockOverline\n  headingSize: TextBlockHeadingSize\n  heading: TextBlockHeading\n  description: TextBlockDescription {\n    json\n    html\n  }\n  center: TextCenter\n  width: TextBlockWidth\n  className: TextClassName\n}": types.TextBlockDataFragmentDoc,
     "fragment ArticleListElementData on ArticleListElement {\n  articleListCount\n}": types.ArticleListElementDataFragmentDoc,
@@ -36,11 +39,13 @@ const documents = {
     "fragment HeadingElementData on HeadingElement {\n  headingText\n}": types.HeadingElementDataFragmentDoc,
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
+    "fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}": types.RichTextElementDataFragmentDoc,
     "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}": types.TestimonialElementDataFragmentDoc,
     "fragment VideoElementData on VideoElement {\n  title\n  video {\n    ...ReferenceData\n  }\n  placeholder {\n    ...ReferenceData\n  }\n}": types.VideoElementDataFragmentDoc,
     "fragment BlankExperienceData on BlankExperience {\n  BlankExperienceSeoSettings {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}": types.BlankExperienceDataFragmentDoc,
     "query getBlankExperienceMetaData($key: String!, $locale: [Locales]) {\n  page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {\n    items {\n      meta: _metadata {\n        displayName\n      }\n      seo: BlankExperienceSeoSettings {\n        title: MetaTitle\n        description: MetaDescription\n        image: SharingImage {\n          ...ReferenceData\n        }\n        type: GraphType\n      }\n    }\n  }\n}": types.getBlankExperienceMetaDataDocument,
-    "fragment BlogSectionExperienceData on BlogSectionExperience {\n  seo_data {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}": types.BlogSectionExperienceDataFragmentDoc,
+    "fragment BlogSectionExperienceData on BlogSectionExperience {\n  ...ExperienceData\n}": types.BlogSectionExperienceDataFragmentDoc,
+    "query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {\n  page: BlogSectionExperience(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    items {\n      _metadata {\n        displayName\n        published\n        url {\n          base\n          default\n        }\n      }\n      seo_data {\n        ...PageSeoSettingsPropertyData\n      }\n    }\n  }\n}": types.getBlogSectionExperienceMetaDataDocument,
     "query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = \"\", $topic: String! = \"\", $limit: Int! = 12, $skip: Int! = 0) {\n  result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {\n    items {\n      container: _metadata {\n        key\n        displayName\n      }\n      items: _link(type: ITEMS) {\n        posts: BlogPostPage(skip: $skip, limit: $limit) {\n          total\n          items {\n            ...IContentData\n            metadata: _metadata {\n              key\n              url {\n                base\n                default\n              }\n              published\n            }\n            heading: Heading\n            subheading: ArticleSubHeading\n            author: ArticleAuthor\n            topic: Topic\n            image: BlogPostPromoImage {\n              src: url {\n                base\n                default\n              }\n            }\n          }\n          facets {\n            author: ArticleAuthor(filters: [$author]) {\n              name\n              count\n            }\n            topic: Topic(orderBy: ASC, filters: [$topic]) {\n              name\n              count\n            }\n            metadata: _metadata {\n              published(unit: DAY) {\n                name\n                count\n              }\n            }\n          }\n        }\n      }\n    }\n  }\n}": types.getChildBlogPostsDocument,
     "query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {\n  BlogPostPage(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    pages: items {\n      _metadata {\n        displayName\n        key\n        version\n        locale\n      }\n      Heading\n      BlogPostPromoImage {\n        ...ReferenceData\n      }\n      SeoSettings {\n        MetaTitle\n        MetaDescription\n        SharingImage {\n          ...ReferenceData\n        }\n        GraphType\n      }\n    }\n  }\n}": types.getBlogPostPageMetaDataDocument,
     "fragment BlogPostPageData on BlogPostPage {\n  blogTitle: Heading\n  blogSubtitle: ArticleSubHeading\n  blogImage: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  blogBody: BlogPostBody {\n    json\n  }\n  blogAuthor: ArticleAuthor\n}": types.BlogPostPageDataFragmentDoc,
@@ -112,7 +117,15 @@ export function gql(source: "fragment HomePageHeroBlockData on HomePageHeroBlock
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "fragment HtmlBlockData on HtmlBlock {\n  HtmlBlockHeading\n  HtmlContent {\n    json\n    html\n  }\n}"): (typeof documents)["fragment HtmlBlockData on HtmlBlock {\n  HtmlBlockHeading\n  HtmlContent {\n    json\n    html\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "fragment LayoutContainerBlockData on LayoutContainerBlock {\n  columns: ColumnsCount\n  gap: GapSize\n  LayoutContentArea {\n    ...BlockData\n  }\n  containerColor: ContainerBackgroundColor\n  backgroundImage: ContainerBackgroundImage {\n    ...ReferenceData\n  }\n  marginTop: ContainerMarginTop\n  marginBottom: ContainerMarginBottom\n  paddingBottom: ContainerPaddingBottom\n  paddingTop: ContainerPaddingTop\n}"): (typeof documents)["fragment LayoutContainerBlockData on LayoutContainerBlock {\n  columns: ColumnsCount\n  gap: GapSize\n  LayoutContentArea {\n    ...BlockData\n  }\n  containerColor: ContainerBackgroundColor\n  backgroundImage: ContainerBackgroundImage {\n    ...ReferenceData\n  }\n  marginTop: ContainerMarginTop\n  marginBottom: ContainerMarginBottom\n  paddingBottom: ContainerPaddingBottom\n  paddingTop: ContainerPaddingTop\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}"): (typeof documents)["fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -128,7 +141,11 @@ export function gql(source: "fragment OdpEmbedBlockData on OdpEmbedBlock {\n  Co
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"): (typeof documents)["fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"];
+export function gql(source: "fragment PageSeoSettingsData on PageSeoSettings {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"): (typeof documents)["fragment PageSeoSettingsData on PageSeoSettings {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"): (typeof documents)["fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -168,6 +185,10 @@ export function gql(source: "fragment ParagraphElementData on ParagraphElement {
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
+export function gql(source: "fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}"): (typeof documents)["fragment RichTextElementData on RichTextElement {\n  text {\n    json\n    html\n  }\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
 export function gql(source: "fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"): (typeof documents)["fragment TestimonialElementData on TestimonialElement {\n  customerName\n  customerLocation\n  customerImage {\n    ...ReferenceData\n  }\n  referenceTitle\n  referenceText {\n    json\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
@@ -184,7 +205,11 @@ export function gql(source: "query getBlankExperienceMetaData($key: String!, $lo
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment BlogSectionExperienceData on BlogSectionExperience {\n  seo_data {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}"): (typeof documents)["fragment BlogSectionExperienceData on BlogSectionExperience {\n  seo_data {\n    ...PageSeoSettingsPropertyData\n  }\n  ...ExperienceData\n}"];
+export function gql(source: "fragment BlogSectionExperienceData on BlogSectionExperience {\n  ...ExperienceData\n}"): (typeof documents)["fragment BlogSectionExperienceData on BlogSectionExperience {\n  ...ExperienceData\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {\n  page: BlogSectionExperience(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    items {\n      _metadata {\n        displayName\n        published\n        url {\n          base\n          default\n        }\n      }\n      seo_data {\n        ...PageSeoSettingsPropertyData\n      }\n    }\n  }\n}"): (typeof documents)["query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {\n  page: BlogSectionExperience(\n    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}\n    locale: $locale\n  ) {\n    items {\n      _metadata {\n        displayName\n        published\n        url {\n          base\n          default\n        }\n      }\n      seo_data {\n        ...PageSeoSettingsPropertyData\n      }\n    }\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

@@ -27,7 +27,7 @@ export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children
 
     // Standard (no-color section)
     if (sectionColor == 'default') {
-        const cssClasses = ["vb:section vb:section:DefaultGrid"]
+        const cssClasses = ["vb:section vb:section:DefaultGrid relative"]
         cssClasses.push(GridWidths[gridWidth] ?? '')
         cssClasses.push("flex flex-col")
         cssClasses.push(VSpacings[vSpacing] ?? '')

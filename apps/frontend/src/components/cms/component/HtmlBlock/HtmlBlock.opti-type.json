@@ -1,15 +1,15 @@
 {
-  "key": "MenuNavigationBlock",
-  "displayName": "Menu navigation",
+  "key": "HtmlBlock",
+  "displayName": "Html",
   "description": "",
   "baseType": "component",
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
-  "created": "2024-01-31T14:32:20.69+00:00",
-  "lastModified": "2024-11-29T14:49:21.2679999+00:00",
+  "created": "2024-02-01T20:41:45.9633333+00:00",
+  "lastModified": "2024-02-01T20:41:45.9633333+00:00",
   "properties": {
-    "MenuNavigationHeading": {
+    "HtmlBlockHeading": {
       "type": "string",
       "format": "shortString",
       "displayName": "Heading",
@@ -20,20 +20,16 @@
       "sortOrder": 10,
       "editorSettings": {}
     },
-    "NavigationLinks": {
-      "type": "array",
-      "format": "LinkCollection",
-      "displayName": "Links",
+    "HtmlContent": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Content",
       "description": "",
-      "localized": false,
+      "localized": true,
       "required": false,
       "group": "Information",
       "sortOrder": 20,
-      "editorSettings": {},
-      "items": {
-        "type": "component",
-        "contentType": "link"
-      }
+      "editorSettings": {}
     }
   }
 }

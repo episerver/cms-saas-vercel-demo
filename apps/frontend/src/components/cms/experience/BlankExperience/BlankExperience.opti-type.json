@@ -8,13 +8,14 @@
     "*"
   ],
   "mediaFileExtensions": [],
-  "created": "2024-09-23T09:16:47.6949945+00:00",
-  "lastModified": "2024-10-30T18:42:04.1156661+00:00",
+  "created": "2024-09-23T09:14:16.5200786+00:00",
+  "lastModified": "2024-11-27T15:51:04.1927587+00:00",
+  "lastModifiedBy": "",
   "properties": {
     "BlankExperienceSeoSettings": {
       "type": "component",
       "contentType": "PageSeoSettings",
-      "displayName": "SEO Settings",
+      "displayName": "SEO settings",
       "description": "",
       "localized": false,
       "required": false,

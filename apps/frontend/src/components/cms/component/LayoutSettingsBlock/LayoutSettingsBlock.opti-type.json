@@ -7,7 +7,7 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "created": "2024-11-04T13:50:45.8044255+00:00",
-  "lastModified": "2024-11-05T14:51:38.1729293+00:00",
+  "lastModified": "2024-11-11T11:35:50.7644921+00:00",
   "properties": {
     "mainMenu": {
       "type": "array",
@@ -27,6 +27,17 @@
         "restrictedTypes": []
       }
     },
+    "contactInfoHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Contact info heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
     "serviceButtons": {
       "type": "array",
       "displayName": "Service Buttons",
@@ -42,6 +53,63 @@
           "ButtonBlock"
         ],
         "restrictedTypes": []
+      }
+    },
+    "contactInfo": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Contact info",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "footerMenus": {
+      "type": "array",
+      "displayName": "Footer link lists",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "MenuNavigationBlock"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "copyright": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Copyright Owner",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 105,
+      "editorSettings": {}
+    },
+    "legalLinks": {
+      "type": "array",
+      "displayName": "Legal links",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 110,
+      "editorSettings": {},
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "component",
+        "contentType": "link"
       }
     },
     "appIdentifiers": {

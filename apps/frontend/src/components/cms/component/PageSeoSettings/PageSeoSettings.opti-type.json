@@ -7,7 +7,7 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "created": "2024-02-05T04:46:19.5266667+00:00",
-  "lastModified": "2024-10-30T18:42:04.4706696+00:00",
+  "lastModified": "2024-11-29T15:43:56.4399748+00:00",
   "properties": {
     "MetaTitle": {
       "type": "string",
@@ -16,6 +16,7 @@
       "description": "",
       "localized": true,
       "required": false,
+      "indexingType": "searchable",
       "group": "Information",
       "sortOrder": 0,
       "editorSettings": {}
@@ -26,9 +27,25 @@
       "description": "",
       "localized": false,
       "required": false,
+      "indexingType": "searchable",
       "group": "Information",
       "sortOrder": 0,
       "editorSettings": {}
+    },
+    "MetaKeywords": {
+      "type": "array",
+      "displayName": "Meta Keywords",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 25,
+      "indexingType": "searchable",
+      "editorSettings": {},
+      "items": {
+        "type": "string",
+        "format": "shortString"
+      }
     },
     "SharingImage": {
       "type": "contentReference",

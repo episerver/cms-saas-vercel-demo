@@ -9,7 +9,7 @@
   ],
   "mediaFileExtensions": [],
   "created": "2024-01-30T00:10:49.5533333+00:00",
-  "lastModified": "2024-10-15T16:48:57.6377944+00:00",
+  "lastModified": "2024-11-15T15:25:47.8477492+00:00",
   "properties": {
     "Heading": {
       "type": "string",
@@ -25,7 +25,7 @@
     "ArticleSubHeading": {
       "type": "string",
       "format": "shortString",
-      "displayName": "Sub Heading Text",
+      "displayName": "Subhead",
       "description": "",
       "localized": true,
       "required": false,
@@ -42,6 +42,7 @@
       "required": false,
       "group": "Categories",
       "sortOrder": 0,
+      "indexingType": "searchable",
       "editorSettings": {},
       "items": {
         "type": "string",
@@ -111,7 +112,7 @@
     "SeoSettings": {
       "type": "component",
       "contentType": "PageSeoSettings",
-      "displayName": "SEO Settings",
+      "displayName": "SEO settings",
       "description": "Configure the common properties to improve the indexing of the page by search engines",
       "localized": false,
       "required": false,

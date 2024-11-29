@@ -1,7 +1,7 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { getFragmentData } from "@/gql/fragment-masking";
-import { ExperienceDataFragmentDoc, CompositionDataFragmentDoc, BlogSectionExperienceDataFragmentDoc, type BlogSectionExperienceDataFragment } from "@/gql/graphql";
-import { OptimizelyComposition, isNode, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
+import { ExperienceDataFragmentDoc, CompositionDataFragmentDoc, BlogSectionExperienceDataFragmentDoc, type BlogSectionExperienceDataFragment, PageSeoSettingsPropertyDataFragmentDoc, type Locales, ReferenceDataFragmentDoc, LinkDataFragmentDoc } from "@/gql/graphql";
+import { OptimizelyComposition, isNode, CmsEditable, Utils } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/gql"
 import { Suspense } from "react";
 import BlogPostsSection from "./partials/blogposts";
@@ -28,8 +28,45 @@ BlogSectionExperienceExperience.displayName = "Blog/News Section (Experience/Blo
 BlogSectionExperienceExperience.getDataFragment = () => ['BlogSectionExperienceData', BlogSectionExperienceDataFragmentDoc]
 BlogSectionExperienceExperience.getMetaData = async (contentLink, locale, client) => {
     const sdk = getSdk(client);
-    // Add your metadata logic here
-    return {}
+    const data = await sdk.getBlogSectionExperienceMetaData({ 
+        key: contentLink.key, 
+        locale: locale as Locales,
+        version: contentLink.version
+    })
+
+    const metaData = data?.page?.items?.at(0)
+    if (!metaData)
+        return {}
+
+    const pageName = metaData._metadata?.displayName ?? undefined
+    const published = metaData._metadata?.published ?? undefined
+    const seoData = getFragmentData(PageSeoSettingsPropertyDataFragmentDoc, metaData.seo_data) ?? undefined
+    const graphType = seoData?.GraphType ?? 'website'
+    const imageData = getFragmentData(LinkDataFragmentDoc, getFragmentData(ReferenceDataFragmentDoc, seoData?.SharingImage)?.url)
+    const imageUrl = imageData?.default ?? undefined
+    const canonicalUrl = new URL(metaData?._metadata?.url?.default ?? '/', metaData?._metadata?.url?.base ?? 'http://localhost:3000')
+
+    return {
+        title: seoData?.MetaTitle ?? pageName,
+        description: seoData?.MetaDescription,
+        keywords: seoData?.MetaKeywords?.filter(Utils.isNonEmptyString),
+        openGraph: {
+            title: seoData?.MetaTitle ?? pageName,
+            description: seoData?.MetaDescription ?? undefined,
+            publishedTime: published,
+            type: graphType == "-" ? 'website' : graphType,
+            images: imageUrl ? {
+                url: imageUrl,
+             } : undefined,
+            url: canonicalUrl.href,
+        },
+        alternates: {
+            canonical: canonicalUrl.href
+        },
+        other: {
+          "idio:content-type": "Blog Section (Experience)"
+        }
+    }
 }
 
 export default BlogSectionExperienceExperience

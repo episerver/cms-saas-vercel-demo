@@ -1,13 +1,13 @@
 {
-  "key": "ParagraphElement",
-  "displayName": "Paragraph",
-  "description": "",
+  "key": "RichTextElement",
+  "displayName": "Rich Text",
+  "description": "Add a text to your experience",
   "baseType": "element",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
-  "created": "2024-06-27T14:20:26.5958949+00:00",
-  "lastModified": "2024-11-29T14:49:21.2641887+00:00",
+  "created": "2024-11-29T14:49:21.1953289+00:00",
+  "lastModified": "2024-11-29T15:07:34.6786193+00:00",
   "properties": {
     "text": {
       "type": "string",
@@ -18,6 +18,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": 10,
+      "indexingType": "searchable",
       "editorSettings": {}
     }
   }
