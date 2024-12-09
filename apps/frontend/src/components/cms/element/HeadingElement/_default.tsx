@@ -1,6 +1,6 @@
 import type { HeadingStylesComponent } from './displayTemplates'
 import { type HeadingElementDataFragment } from "@/gql/graphql"
-import { extractSettings } from "@remkoj/optimizely-cms-react/components"
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import { styleDictionary, styleDefaults } from './_styles'
 
 export const DefaultHeadingElement : HeadingStylesComponent<HeadingElementDataFragment> = ({ data: { headingText }, layoutProps, className, ...containerProps }) => {

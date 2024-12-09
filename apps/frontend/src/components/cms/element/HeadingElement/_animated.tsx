@@ -2,7 +2,7 @@ import { type FunctionComponent, type ComponentProps } from 'react'
 import { type AnimatedHeadingStylesComponent } from './displayTemplates'
 import { type HeadingElementDataFragment } from "@/gql/graphql"
 import AnimatedText from "@/components/shared/animated_text"
-import { extractSettings } from "@remkoj/optimizely-cms-react/components"
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import { styleDictionary, styleDefaults } from './_styles'
 
 type AnimatedHeadingElementProps = ComponentProps<AnimatedHeadingStylesComponent<HeadingElementDataFragment>> & {

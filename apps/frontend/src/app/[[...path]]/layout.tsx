@@ -1,14 +1,13 @@
 'use server'
-import { Suspense, type PropsWithChildren } from "react"
+import { type PropsWithChildren } from "react"
 export type PageLayoutProps = PropsWithChildren<{}>
-import { PageActivator, OptimizelyOneGadget } from '@remkoj/optimizely-one-nextjs/client'
+import { PageActivator } from '@remkoj/optimizely-one-nextjs/client'
+import { OptimizelyOneGadget } from '@remkoj/optimizely-one-nextjs/server'
 
 export default async function PageLayout({ children }: PageLayoutProps) {
     return <>
         <PageActivator />
         { children }
-        <Suspense>
-            <OptimizelyOneGadget servicePrefix='/api/me' refreshInterval={ 2000 } />
-        </Suspense>
+        <OptimizelyOneGadget servicePrefix='/api/me' refreshInterval={ 0 } />
     </>
 }

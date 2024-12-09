@@ -1,5 +1,5 @@
 import { type CmsLayoutComponent } from "@remkoj/optimizely-cms-react";
-import { extractSettings } from "@remkoj/optimizely-cms-react/components";
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc";
 import { CarouselRowProps } from "../displayTemplates";
 import dynamic from 'next/dynamic';
 

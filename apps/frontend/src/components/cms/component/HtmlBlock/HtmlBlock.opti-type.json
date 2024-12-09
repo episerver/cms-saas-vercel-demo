@@ -7,7 +7,7 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "created": "2024-02-01T20:41:45.9633333+00:00",
-  "lastModified": "2024-02-01T20:41:45.9633333+00:00",
+  "lastModified": "2024-12-03T10:20:05.7195611+00:00",
   "properties": {
     "HtmlBlockHeading": {
       "type": "string",
@@ -29,6 +29,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 20,
+      "indexingType": "searchable",
       "editorSettings": {}
     }
   }

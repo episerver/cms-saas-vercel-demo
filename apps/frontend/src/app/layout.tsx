@@ -5,11 +5,11 @@ import { Body, ThemeProvider } from "@/components/theme"
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
-import { EnvTools } from "@remkoj/optimizely-one-nextjs/server";
-import { OptimizelyOneProvider } from '@remkoj/optimizely-one-nextjs/client'
+// Server side components
+import { EnvTools, Scripts } from "@remkoj/optimizely-one-nextjs/server";
 
 // Client side trackers
-import { Scripts } from '@remkoj/optimizely-one-nextjs/server'
+import { OptimizelyOneProvider } from "@remkoj/optimizely-one-nextjs/client";
 import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 

@@ -732,29 +732,33 @@ export const getChildBlogPostsDocument = gql`
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}`;
 export const getBlogPostPageMetaDataDocument = gql`
-    query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {
+    query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales!]) {
   BlogPostPage(
     where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}
     locale: $locale
   ) {
     pages: items {
-      _metadata {
-        displayName
-        key
-        version
-        locale
+      cms: _metadata {
+        title: displayName
+        published
+        url {
+          base
+          default
+        }
       }
-      Heading
-      BlogPostPromoImage {
+      title: Heading
+      author: ArticleAuthor
+      image: BlogPostPromoImage {
         ...ReferenceData
       }
-      SeoSettings {
-        MetaTitle
-        MetaDescription
-        SharingImage {
+      seo: SeoSettings {
+        title: MetaTitle
+        description: MetaDescription
+        keywords: MetaKeywords
+        image: SharingImage {
           ...ReferenceData
         }
-        GraphType
+        type: GraphType
       }
     }
   }

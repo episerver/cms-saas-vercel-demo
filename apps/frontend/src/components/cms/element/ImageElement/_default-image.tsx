@@ -1,7 +1,7 @@
 import 'server-only'
 import { type ImageElementDataFragment } from "@/gql/graphql"
 import { type FunctionComponent, type ComponentProps } from 'react'
-import { extractSettings } from '@remkoj/optimizely-cms-react/components'
+import { extractSettings } from '@remkoj/optimizely-cms-react/rsc'
 import Animation from '@/components/shared/animation'
 import { type MotionProps } from 'framer-motion'
 import Image from '@/components/shared/cms_image' // To be moved to library

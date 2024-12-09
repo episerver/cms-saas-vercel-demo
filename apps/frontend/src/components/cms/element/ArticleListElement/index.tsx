@@ -1,11 +1,10 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { ArticleListElementDataFragmentDoc, type ArticleListElementDataFragment } from "@/gql/graphql";
-import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/sdk"
 import { type InputMaybe, type Locales } from "@/gql/graphql";
 import { CmsContentLink, type CmsContentLinkProps } from "@remkoj/optimizely-cms-nextjs/components";
 import Card from "@/components/shared/card";
-import { RichText } from "@remkoj/optimizely-cms-react/components";
 import { CmsImage } from "@/components/shared/cms_image";
 import { DateDisplay } from "@/components/shared/date";
 

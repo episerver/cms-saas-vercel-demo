@@ -7,7 +7,7 @@ import { type Locales, type StandardPageDataFragment, StandardPageDataFragmentDo
 
 // Optimizely SaaS CMS SDK
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
-import { RichText } from "@remkoj/optimizely-cms-react/components";
+import { RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 

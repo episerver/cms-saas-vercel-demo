@@ -1,7 +1,7 @@
 import 'server-only'
 import { type ImageElementDataFragment } from "@/gql/graphql"
 //import Image from 'next/image'
-import { extractSettings } from '@remkoj/optimizely-cms-react/components'
+import { extractSettings } from '@remkoj/optimizely-cms-react/rsc'
 
 // To be moved to library
 import Image from '@/components/shared/cms_image'

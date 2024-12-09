@@ -3,7 +3,7 @@ import getSdk from "@/sdk"
 import { type Sdk, getFragmentData, Schema } from "@gql"
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
-import { type TypedNode } from "@remkoj/optimizely-cms-react/components"
+import type { NodeInput } from "@remkoj/optimizely-cms-react"
 import { site_search as getSearchConfig } from "@/flags"
 
 export type FacetFilters = {
@@ -49,7 +49,7 @@ export type ContentSearchResultItem = {
         default?: string | null;
     } | null
     title: string
-    abstract?: TypedNode | string | null
+    abstract?: NodeInput | null
     published?: string
     author?: string
     type?: string
@@ -137,7 +137,7 @@ export async function contentSearch(term: string, { facets, limit = 12, start = 
                 id: contentLink,
                 url: iContentUrlData,
                 title: tryReadStringProp(item, 'title') ?? iContentMetaData?.displayName ?? '',
-                abstract: tryReadObjectProp(item, 'abstract.json') as TypedNode | undefined ?? tryReadStringProp(item, 'seodata.MetaDescription') as string | undefined,
+                abstract: tryReadObjectProp(item, 'abstract.json') as NodeInput | null | undefined ?? tryReadStringProp(item, 'seodata.MetaDescription') as string | undefined,
                 published: tryReadStringProp(item, '_metadata.published'),
                 author: tryReadStringProp(item, 'author'),
                 image: tryReadObjectProp(item, 'image') ?? tryReadObjectProp(item, 'seodata.SharingImage'),
