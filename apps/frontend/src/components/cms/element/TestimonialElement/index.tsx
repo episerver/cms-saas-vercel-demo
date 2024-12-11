@@ -1,7 +1,7 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { TestimonialElementDataFragmentDoc, type TestimonialElementDataFragment } from "@/gql/graphql";
 import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
-import { RichText } from "@remkoj/optimizely-cms-react/components";
+import { RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { CmsImage } from "@/components/shared/cms_image"
 
 /**

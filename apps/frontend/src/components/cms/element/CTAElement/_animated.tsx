@@ -1,6 +1,6 @@
 import type { CTAElementAnimatedStylesComponent } from './displayTemplates'
 import { type CTAElementDataFragment } from "@/gql/graphql"
-import { extractSettings } from "@remkoj/optimizely-cms-react/components"
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import Animate from '@/components/shared/animation'
 import Button from './_base'
 

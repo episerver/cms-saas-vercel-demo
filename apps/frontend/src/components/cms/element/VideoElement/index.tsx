@@ -1,5 +1,5 @@
 import { type CmsComponent } from "@remkoj/optimizely-cms-react"
-import { extractSettings } from "@remkoj/optimizely-cms-react/components"
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import { VideoElementDataFragmentDoc, type VideoElementDataFragment } from "@/gql/graphql"
 import { type VideoElementLayoutProps, type DefaultVideoProps, isDefaultVideoProps } from "./displayTemplates"
 import { CmsEditable } from '@remkoj/optimizely-cms-react/rsc'

@@ -1,6 +1,6 @@
 import type { CTAElementDefaultStylesComponent } from './displayTemplates'
 import { type CTAElementDataFragment } from "@/gql/graphql"
-import { extractSettings } from "@remkoj/optimizely-cms-react/components"
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import Button from './_base'
 
 export const DefaultCTAElement : CTAElementDefaultStylesComponent<CTAElementDataFragment> = ({ data: { cta_link: link, cta_text: text }, layoutProps, className, ...containerProps }) => {

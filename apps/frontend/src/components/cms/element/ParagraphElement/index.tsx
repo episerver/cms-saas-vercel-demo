@@ -1,7 +1,7 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { ParagraphElementDataFragmentDoc, type ParagraphElementDataFragment } from "@/gql/graphql";
 import { getServerContext, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
-import { RichText, extractSettings } from "@remkoj/optimizely-cms-react/components";
+import { RichText, extractSettings } from "@remkoj/optimizely-cms-react/rsc";
 import getFactory from "@/components/factory";
 import { DefaultParagraphProps } from "./displayTemplates";
 

@@ -6,8 +6,7 @@ import { useContext, useEffect, useRef, useMemo, type FunctionComponent } from "
 import { HeaderContext } from "../_header";
 import { type Schema } from "@gql";
 import { MenuItemFragment } from "@gql/graphql";
-import { RichText, DefaultComponents } from '@remkoj/optimizely-cms-react/components'
-import { DefaultComponentFactory } from "@remkoj/optimizely-cms-react";
+import { RichText, RichTextComponentDictionary as DefaultComponents, DefaultComponentFactory } from '@remkoj/optimizely-cms-react'
 import { type LinkItemData } from "@/lib/urls";
 
 function isLinkItemData(item?: any): item is NonNullable<LinkItemData>
