@@ -2685,8 +2685,8 @@ __metadata:
   linkType: hard
 
 "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
-  version: 3.2.2
-  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=a928ac&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  version: 3.2.3
+  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=79264d&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2697,7 +2697,7 @@ __metadata:
     graphql-request: ^6.1.0
     react: "*"
     react-dom: "*"
-  checksum: 10/32da41c47f010e0ed12aa900eb3cfa3280bc2cece9479bf8b1c7d861557cb955d849e61b3b1bc94c78923abf9ec3d540cf85a1edda714304245fc83cc4fb9d87
+  checksum: 10/fc7e520278c32e9fb012e821087370921d471728ae84351299ad56f3c73bca88c6e4650585954cfb2325908da62ac58a716a71bc3a0d123f2cefe3486381b777
   languageName: node
   linkType: hard
 
@@ -2787,7 +2787,7 @@ __metadata:
 
 "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 3.2.3
-  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::hash=349558&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::hash=2b725b&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   peerDependencies:
     "@headlessui/react": "*"
     "@heroicons/react": "*"
@@ -2797,7 +2797,7 @@ __metadata:
     react-dom: "*"
     swr: "*"
     uuid: "*"
-  checksum: 10/b4dec51932b9c5cd03c9783f786c5f74e082675c3003881cca62552897545dee41a1b092c814cf6b21c9bf7f3759827adc931421c58ecd0d06e9783fe46a170e
+  checksum: 10/bd084c10ce5f614996ad5c9745f3962a68aedc7e45be6153e314f64f343fa3f56809f462ed2c6283babf3dd7fa783ac18dcaac54ec72a328986398413764d79c
   languageName: node
   linkType: hard
 

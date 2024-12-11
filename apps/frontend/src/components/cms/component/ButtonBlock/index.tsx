@@ -4,32 +4,11 @@ import { ButtonBlockDataFragmentDoc, type ButtonBlockDataFragment, LinkDataFragm
 import { getFragmentData } from "@gql/fragment-masking"
 import Link from 'next/link'
 import { urlToRelative } from '@components/shared/cms_link'
+import { Button } from "@components/shared/button"
 
 type ButtonBlockProps = ComponentProps<CmsComponent<ButtonBlockDataFragment>>
 type ButtonBlockComponent = CmsComponent<ButtonBlockDataFragment> extends WithGqlFragment<any, ButtonBlockDataFragment> ? 
     WithGqlFragment<FunctionComponent<ButtonBlockProps & Omit<ComponentProps<typeof Link>, 'className'> & Omit<ButtonBlockDataFragment, 'children' | '__typename'>>, ButtonBlockDataFragment> : never
-
-type ButtonTypes = {
-    primary: string;
-    secondary: string;
-    [key: string]: string;
-};
-    
-type ButtonVariants = {
-    default: string;
-    cta: string;
-    [key: string]: string;
-};
-
-const buttonTypes: ButtonTypes = {
-    primary: "btn--primary",
-    secondary: "btn--secondary [&>*]:dark:!bg-vulcan [&>*]:dark:!text-ghost-white",
-};
-
-const buttonVariants: ButtonVariants = {
-    default: "btn--default",
-    cta: "btn--cta",
-};
 
 /**
  * Button
@@ -62,23 +41,13 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
 
     // Unmask fragment
     const url = getFragmentData(LinkDataFragmentDoc, configuredUrlFragment || providedUrlFragment)
-    const buttonType = configuredButtonType || providedButtonType
-    const buttonVariant = configuredButtonVariant || providedButtonVariant
+    const buttonType = (configuredButtonType || providedButtonType || undefined) as 'primary' | 'secondary' | undefined
+    const buttonVariant = (configuredButtonVariant || providedButtonVariant || undefined) as 'default' | 'cta' | undefined
 
-    const linkHref = !url ? href : urlToRelative(typeof(url) == 'string' ? new URL(url) : new URL(url.default ?? '/', url.base ?? 'https://example.com'))
+    const linkHref = (!url ? href : urlToRelative(typeof(url) == 'string' ? new URL(url) : new URL(url.default ?? '/', url.base ?? 'https://example.com'))) as string | URL
     const className = `${ providedClassName ?? '' } ${ configuredClassName ?? ''}`.trim()
 
-    // If there's no content, don't render
-    if (!text && (!children || (Array.isArray(children) && children.length == 0)))
-        return null
-
-    return <Link
-        href={ linkHref || '#' }
-        className={`${buttonTypes[buttonType ?? "primary"]} ${ buttonVariants[buttonVariant ?? "default"] } ${className}`.trim()}
-        {...props}
-    >
-        <div className="btn__content dark:!bg-ghost-white dark:!border-ghost-white dark:!text-ghost-white dark:!text-vulcan">{ text ?? children }</div>
-    </Link>
+    return <Button { ...props } url={ linkHref || "#"} buttonColor="default" buttonType={buttonType} buttonVariant={ buttonVariant } className={ className }>{ text ?? children }</Button>
 }
 ButtonBlockComponent.displayName = "Button (Component/ButtonBlock)"
 ButtonBlockComponent.getDataFragment = () => ['ButtonBlockData', ButtonBlockDataFragmentDoc]

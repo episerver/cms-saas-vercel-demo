@@ -1,3 +1,4 @@
+import 'server-only'
 import type { Metadata } from "next";
 import { Figtree } from "next/font/google";
 import "./globals.scss";
@@ -67,7 +68,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
         <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link>
       </head>
       <ThemeProvider value={{ theme: "system" }}>
-        <Body className={`${figtree.className} bg-ghost-white dark:bg-vulcan dark:text-white overflow-x-hidden`}>
+        <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
           <div className="flex min-h-screen flex-col justify-between">
             <OptimizelyOneProvider value={{ debug: false }} >
               <Header />
