@@ -2,10 +2,13 @@
   "key": "ArticleListElement",
   "displayName": "Article List",
   "description": "Show an article listing",
-  "baseType": "element",
+  "baseType": "component",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-06-27T14:20:26.0756113+00:00",
   "lastModified": "2024-06-27T14:20:26.0756113+00:00",
   "properties": {

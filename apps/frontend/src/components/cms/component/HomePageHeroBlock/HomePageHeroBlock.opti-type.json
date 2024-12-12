@@ -6,8 +6,11 @@
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "sectionEnabled"
+  ],
   "created": "2024-01-30T03:18:30.09+00:00",
-  "lastModified": "2024-01-30T03:18:30.09+00:00",
+  "lastModified": "2024-12-11T21:15:20.5655299+00:00",
   "properties": {
     "HomeHeroBlockHeading": {
       "type": "string",

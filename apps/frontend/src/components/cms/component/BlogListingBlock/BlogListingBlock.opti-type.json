@@ -6,8 +6,12 @@
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "sectionEnabled",
+    "elementEnabled"
+  ],
   "created": "2024-02-05T00:07:00.7766667+00:00",
-  "lastModified": "2024-02-05T00:17:48.68+00:00",
+  "lastModified": "2024-12-11T21:16:31.4633193+00:00",
   "properties": {
     "BlogListingShowFilters": {
       "type": "boolean",
