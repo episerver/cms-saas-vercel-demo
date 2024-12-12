@@ -60,7 +60,7 @@ export const Paging : FunctionComponent<PagingProps> = ({total,skip,limit,count,
         <div className="flex flex-row justify-center mt-12 mb-12 gap-2">
             { showFirst && <Link href={ path + first } title="First" aria-label="First"><ChevronDoubleLeftIcon className="w-6" /></Link> }
             { showPrev && <Link href={ path + prev } title="Previous" aria-label="Previous"><ChevronLeftIcon className="w-6" /></Link> }
-            <span>Article { skip + 1 } to { Math.min(skip + limit, total) } of { total }</span>
+            <span>Article <span className="min-w-6">{ skip + 1 }</span> to <span className="min-w-6">{ Math.min(skip + limit, total) }</span> of <span className="min-w-6">{ total }</span></span>
             { showNext && <Link href={ path + next } title="Next" aria-label="Next"><ChevronRightIcon className="w-6" /></Link> }
             { showLast && <Link href={ path + last } title="Last" aria-label="Last"><ChevronDoubleRightIcon className="w-6" /></Link> }
         </div>
