@@ -32,13 +32,6 @@
     "env:pull": "yarn vercel env pull apps/frontend/.env.development.local"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz",
-    "@remkoj/optimizely-cms-cli": "file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz",
-    "@remkoj/optimizely-cms-api": "file:./packages/dist/@remkoj-optimizely-cms-api-dev.tgz",
-    "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz",
-    "@remkoj/optimizely-cms-nextjs": "file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz",
-    "@remkoj/optimizely-graph-functions": "file:./packages/dist/@remkoj-optimizely-graph-functions-dev.tgz",
-    "@remkoj/optimizely-graph-client": "file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz",
-    "@remkoj/optimizely-one-nextjs": "file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz"
   }
 }
