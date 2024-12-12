@@ -5721,6 +5721,22 @@ export enum system_Locales {
   NEUTRAL = 'NEUTRAL'
 }
 
+export type ArticleListElementDataFragment = { __typename?: 'ArticleListElement', articleListCount?: number | null } & { ' $fragmentName'?: 'ArticleListElementDataFragment' };
+
+export type getArticleListElementItemsQueryVariables = Exact<{
+  count: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
+}>;
+
+
+export type getArticleListElementItemsQuery = { __typename?: 'Query', BlogPostPage?: { __typename?: 'BlogPostPageOutput', items?: Array<(
+      { __typename?: 'BlogPostPage', blogTitle?: string | null, blogSubtitle?: string | null, blogAuthor?: string | null, articleMeta?: { __typename?: 'ContentMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'InstanceMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'ItemMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'MediaMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | null, blogImage?: (
+        { __typename?: 'ContentReference' }
+        & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
+      ) | null, blogBody?: { __typename?: 'RichText', json?: any | null } | null }
+      & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
+    ) | null> | null } | null };
+
 export type BlogListingBlockDataFragment = { __typename?: 'BlogListingBlock', showFilters?: boolean | null, selectedPageSize?: number | null, _metadata?: { __typename?: 'ContentMetadata', name?: string | null } | { __typename?: 'InstanceMetadata', name?: string | null } | { __typename?: 'ItemMetadata', name?: string | null } | { __typename?: 'MediaMetadata', name?: string | null } | null } & { ' $fragmentName'?: 'BlogListingBlockDataFragment' };
 
 export type ButtonBlockDataFragment = { __typename?: 'ButtonBlock', children?: string | null, className?: string | null, buttonType?: string | null, buttonVariant?: string | null, url?: (
@@ -5732,6 +5748,11 @@ export type ButtonBlockPropertyDataFragment = { __typename?: 'ButtonBlockPropert
     { __typename?: 'ContentUrl' }
     & { ' $fragmentRefs'?: { 'LinkDataFragment': LinkDataFragment } }
   ) | null } & { ' $fragmentName'?: 'ButtonBlockPropertyDataFragment' };
+
+export type CTAElementDataFragment = { __typename?: 'CTAElement', cta_text?: string | null, cta_link?: (
+    { __typename?: 'ContentUrl' }
+    & { ' $fragmentRefs'?: { 'LinkDataFragment': LinkDataFragment } }
+  ) | null } & { ' $fragmentName'?: 'CTAElementDataFragment' };
 
 export type CardBlockDataFragment = { __typename?: 'CardBlock', cardColor?: string | null, cardHeading?: string | null, cardSubheading?: string | null, cardImageLayout?: string | null, cardButton?: { __typename?: 'ButtonBlockProperty', className?: string | null, children?: string | null, buttonType?: string | null, buttonVariant?: string | null, url?: (
       { __typename?: 'ContentUrl' }
@@ -5877,6 +5898,10 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
 
 export type ContentRecsBlockDataFragment = { __typename?: 'ContentRecsBlock', BlockDeliveryApiKey?: string | null, BlockRecommendationCount?: number | null } & { ' $fragmentName'?: 'ContentRecsBlockDataFragment' };
 
+export type ContentRecsElementDataFragment = { __typename?: 'ContentRecsElement', ElementDeliveryApiKey?: string | null, ElementRecommendationCount?: number | null } & { ' $fragmentName'?: 'ContentRecsElementDataFragment' };
+
+export type HeadingElementDataFragment = { __typename?: 'HeadingElement', headingText?: string | null } & { ' $fragmentName'?: 'HeadingElementDataFragment' };
+
 export type HeroBlockDataFragment = { __typename?: 'HeroBlock', eyebrow?: string | null, heroHeading?: string | null, heroSubheading?: string | null, heroColor?: string | null, heroImage?: (
     { __typename?: 'ContentReference' }
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
@@ -5895,6 +5920,11 @@ export type HomePageHeroBlockDataFragment = { __typename?: 'HomePageHeroBlock', 
     { __typename?: 'ButtonBlockProperty' }
     & { ' $fragmentRefs'?: { 'ButtonBlockPropertyDataFragment': ButtonBlockPropertyDataFragment } }
   ) | null } & { ' $fragmentName'?: 'HomePageHeroBlockDataFragment' };
+
+export type ImageElementDataFragment = { __typename?: 'ImageElement', altText?: string | null, imageLink?: (
+    { __typename?: 'ContentReference' }
+    & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
+  ) | null } & { ' $fragmentName'?: 'ImageElementDataFragment' };
 
 export type LayoutContainerBlockDataFragment = { __typename?: 'LayoutContainerBlock', columns?: number | null, gap?: string | null, containerColor?: string | null, marginTop?: string | null, marginBottom?: string | null, paddingBottom?: string | null, paddingTop?: string | null, LayoutContentArea?: Array<(
     { __typename?: 'ArticleListElement' }
@@ -5986,49 +6016,19 @@ export type PageSeoSettingsPropertyDataFragment = { __typename?: 'PageSeoSetting
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
   ) | null } & { ' $fragmentName'?: 'PageSeoSettingsPropertyDataFragment' };
 
+export type ParagraphElementDataFragment = { __typename?: 'ParagraphElement', text?: { __typename?: 'RichText', json?: any | null } | null } & { ' $fragmentName'?: 'ParagraphElementDataFragment' };
+
 export type QuoteBlockDataFragment = { __typename?: 'QuoteBlock', quote?: string | null, color?: string | null, active?: boolean | null, name?: string | null, location?: string | null, profilePicture?: (
     { __typename?: 'ContentReference' }
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
   ) | null } & { ' $fragmentName'?: 'QuoteBlockDataFragment' };
 
-export type TextBlockDataFragment = { __typename?: 'TextBlock', overline?: string | null, headingSize?: string | null, heading?: string | null, center?: boolean | null, width?: string | null, className?: string | null, description?: { __typename?: 'RichText', json?: any | null, html?: string | null } | null } & { ' $fragmentName'?: 'TextBlockDataFragment' };
-
-export type ArticleListElementDataFragment = { __typename?: 'ArticleListElement', articleListCount?: number | null } & { ' $fragmentName'?: 'ArticleListElementDataFragment' };
-
-export type getArticleListElementItemsQueryVariables = Exact<{
-  count: Scalars['Int']['input'];
-  locale?: InputMaybe<Array<InputMaybe<Locales>> | InputMaybe<Locales>>;
-}>;
-
-
-export type getArticleListElementItemsQuery = { __typename?: 'Query', BlogPostPage?: { __typename?: 'BlogPostPageOutput', items?: Array<(
-      { __typename?: 'BlogPostPage', blogTitle?: string | null, blogSubtitle?: string | null, blogAuthor?: string | null, articleMeta?: { __typename?: 'ContentMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'InstanceMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'ItemMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | { __typename?: 'MediaMetadata', key?: string | null, published?: any | null, lastModified?: any | null } | null, blogImage?: (
-        { __typename?: 'ContentReference' }
-        & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
-      ) | null, blogBody?: { __typename?: 'RichText', json?: any | null } | null }
-      & { ' $fragmentRefs'?: { 'IContentData_BlogPostPage_Fragment': IContentData_BlogPostPage_Fragment } }
-    ) | null> | null } | null };
-
-export type CTAElementDataFragment = { __typename?: 'CTAElement', cta_text?: string | null, cta_link?: (
-    { __typename?: 'ContentUrl' }
-    & { ' $fragmentRefs'?: { 'LinkDataFragment': LinkDataFragment } }
-  ) | null } & { ' $fragmentName'?: 'CTAElementDataFragment' };
-
-export type ContentRecsElementDataFragment = { __typename?: 'ContentRecsElement', ElementDeliveryApiKey?: string | null, ElementRecommendationCount?: number | null } & { ' $fragmentName'?: 'ContentRecsElementDataFragment' };
-
-export type HeadingElementDataFragment = { __typename?: 'HeadingElement', headingText?: string | null } & { ' $fragmentName'?: 'HeadingElementDataFragment' };
-
-export type ImageElementDataFragment = { __typename?: 'ImageElement', altText?: string | null, imageLink?: (
-    { __typename?: 'ContentReference' }
-    & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
-  ) | null } & { ' $fragmentName'?: 'ImageElementDataFragment' };
-
-export type ParagraphElementDataFragment = { __typename?: 'ParagraphElement', text?: { __typename?: 'RichText', json?: any | null } | null } & { ' $fragmentName'?: 'ParagraphElementDataFragment' };
-
 export type TestimonialElementDataFragment = { __typename?: 'TestimonialElement', customerName?: string | null, customerLocation?: string | null, referenceTitle?: string | null, customerImage?: (
     { __typename?: 'ContentReference' }
     & { ' $fragmentRefs'?: { 'ReferenceDataFragment': ReferenceDataFragment } }
   ) | null, referenceText?: { __typename?: 'RichText', json?: any | null } | null } & { ' $fragmentName'?: 'TestimonialElementDataFragment' };
+
+export type TextBlockDataFragment = { __typename?: 'TextBlock', overline?: string | null, headingSize?: string | null, heading?: string | null, center?: boolean | null, width?: string | null, className?: string | null, description?: { __typename?: 'RichText', json?: any | null, html?: string | null } | null } & { ' $fragmentName'?: 'TextBlockDataFragment' };
 
 export type VideoElementDataFragment = { __typename?: 'VideoElement', title?: string | null, video?: (
     { __typename?: 'ContentReference' }
