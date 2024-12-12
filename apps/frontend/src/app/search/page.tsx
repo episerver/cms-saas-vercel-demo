@@ -47,11 +47,8 @@ const AdvancedSearchPage = async ({
     </div>
 }
 
-export const dynamic = "auto"; // Make sure we cache pages
 export const runtime = "nodejs"; // Run on Node.JS
-export const dynamicParams = false; // Allow new pages to be resolved without rebuilding the site
 export const revalidate = 30; // Keep the cache untill manually revalidated using the Webhook
-export const fetchCache = "auto"; // Cache fetch results by default
 export default AdvancedSearchPage
 
 function tryParseInt(value: string | undefined, defaultValue: number = 0, radix?: number) : number

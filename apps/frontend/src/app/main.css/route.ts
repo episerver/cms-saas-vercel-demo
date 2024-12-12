@@ -36,4 +36,4 @@ ${ desktopStyles }}
 }
 
 export const GET = handle
-export const runtime = 'edge'
+export const runtime = 'nodejs'

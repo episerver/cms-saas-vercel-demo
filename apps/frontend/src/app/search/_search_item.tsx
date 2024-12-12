@@ -14,7 +14,7 @@ export type SearchResultItemProps = {
 }
 
 export const SearchResultItem : FunctionComponent<SearchResultItemProps> = ({ item }) => {
-    return <Link href={ item.url ? linkDataToHref(item.url) : '#' } className='block py-[20px] flex flex-col gap-4 outline-none focus:outline focus:outline-dashed focus:outline-offset-4 focus:outline-2 focus:outline-azure focus:rounded-xl focus:dark:outline-verdansk'>
+    return <Link href={ item.url ? linkDataToHref(item.url) : '#' } className='py-[20px] flex flex-col gap-4 outline-none focus:outline-dashed focus:outline-offset-4 focus:outline-2 focus:outline-azure focus:rounded-xl focus:dark:outline-verdansk'>
         <div className="text-azure dark:text-verdansk text-[22px] font-bold">{ item.title }</div>
         { item.author && <div className="flex flex-row justify-between">
             <div className="italic">Author: { item.author }</div>
