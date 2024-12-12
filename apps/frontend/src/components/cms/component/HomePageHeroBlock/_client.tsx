@@ -11,7 +11,7 @@ import { AnimatedText } from "@/components/partial/animatedText"
 type HomeHeroBlockComponentType = FunctionComponent<{
   data: HomePageHeroBlockDataFragment
   inEditMode?: boolean
-}>
+} & Omit<JSX.IntrinsicElements['section'], 'data' | 'inEditMode' | 'contentLink'>>
 
 const HomeHero: HomeHeroBlockComponentType = ({ 
   data: { 
@@ -21,7 +21,9 @@ const HomeHero: HomeHeroBlockComponentType = ({
     leftImage, 
     rightImage 
   }, 
-  inEditMode 
+  inEditMode,
+  className: sectionClassName,
+  ...props
 }) => {
   const leftImageUrlData = getFragmentData(LinkDataFragmentDoc, getFragmentData(ReferenceDataFragmentDoc, leftImage)?.url)
   const rightImageUrlData = getFragmentData(LinkDataFragmentDoc, getFragmentData(ReferenceDataFragmentDoc, rightImage)?.url)
@@ -29,7 +31,7 @@ const HomeHero: HomeHeroBlockComponentType = ({
   const rightImageUrl = rightImageUrlData ? new URL(rightImageUrlData.default ?? '/', rightImageUrlData.base ?? 'https://example.com').href : undefined
 
   return (
-    <section className="py-20 lg:py-40 w-full overflow-hidden relative outer-padding">
+    <section className={"py-20 lg:py-40 w-full overflow-hidden relative outer-padding " + sectionClassName} {...props}>
       <div className="container mx-auto text-center flex flex-col items-center max-w-[580px] relative z-10 pt-[40px]">
         {leftImageUrl && (
           <motion.div
