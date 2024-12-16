@@ -1,20 +1,21 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
-import columnDictionary from "./column";
-import rowDictionary from "./row";
+// @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
+import NodesRowFactory from "./row";
+import NodesColumnFactory from "./column";
 
 // Prefix entries - if needed
-prefixDictionaryEntries(columnDictionary, "Column");
-prefixDictionaryEntries(rowDictionary, "Row");
+prefixDictionaryEntries(NodesRowFactory, "Row");
+prefixDictionaryEntries(NodesColumnFactory, "Column");
 
 // Build dictionary
-export const nodesDictionary : ComponentTypeDictionary = [
-    ...columnDictionary,
-    ...rowDictionary
+export const NodesFactory : ComponentTypeDictionary = [
+    ...NodesRowFactory,
+    ...NodesColumnFactory
 ];
 
 // Export dictionary
-export default nodesDictionary;
+export default NodesFactory;
 
 // Helper functions
 function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary

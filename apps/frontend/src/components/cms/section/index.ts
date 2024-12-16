@@ -1,22 +1,23 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
-import styleDictionary from "./styles";
+// @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import BlankSectionComponent from "./BlankSection";
+import SectionStylesFactory from "./styles";
 
 // Prefix entries - if needed
-prefixDictionaryEntries(styleDictionary, "Styles");
+prefixDictionaryEntries(SectionStylesFactory, "Styles");
 
 // Build dictionary
-export const sectionDictionary : ComponentTypeDictionary = [
-    ...styleDictionary,
+export const SectionFactory : ComponentTypeDictionary = [
     { 
         type: "BlankSection", 
         component: BlankSectionComponent 
-    }
+    },
+    ...SectionStylesFactory
 ];
 
 // Export dictionary
-export default sectionDictionary;
+export default SectionFactory;
 
 // Helper functions
 function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary

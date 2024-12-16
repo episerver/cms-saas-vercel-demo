@@ -1,9 +1,10 @@
 // Auto generated dictionary
-import { ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
+// @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
+import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import DefaultGridComponent from "./DefaultGrid";
 
 // Build dictionary
-export const stylesDictionary : ComponentTypeDictionary = [
+export const SectionStylesFactory : ComponentTypeDictionary = [
     { 
         type: "DefaultGrid", 
         component: DefaultGridComponent 
@@ -11,4 +12,4 @@ export const stylesDictionary : ComponentTypeDictionary = [
 ];
 
 // Export dictionary
-export default stylesDictionary;
+export default SectionStylesFactory;

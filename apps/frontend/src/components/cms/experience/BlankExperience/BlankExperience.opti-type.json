@@ -8,8 +8,10 @@
     "*"
   ],
   "mediaFileExtensions": [],
-  "created": "2024-09-23T09:16:47.6949945+00:00",
-  "lastModified": "2024-10-30T18:42:04.1156661+00:00",
+  "compositionBehaviors": [],
+  "created": "2024-11-29T15:39:37.3801858+00:00",
+  "lastModified": "2024-09-19T22:43:02.2871164+00:00",
+  "lastModifiedBy": "",
   "properties": {
     "BlankExperienceSeoSettings": {
       "type": "component",

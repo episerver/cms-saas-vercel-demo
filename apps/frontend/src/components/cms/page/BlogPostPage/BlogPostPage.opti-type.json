@@ -8,8 +8,9 @@
     "*"
   ],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [],
   "created": "2024-01-30T00:10:49.5533333+00:00",
-  "lastModified": "2024-10-15T16:48:57.6377944+00:00",
+  "lastModified": "2024-01-30T00:10:49.5533333+00:00",
   "properties": {
     "Heading": {
       "type": "string",
@@ -32,44 +33,6 @@
       "group": "Information",
       "sortOrder": 0,
       "editorSettings": {}
-    },
-    "Topic": {
-      "type": "array",
-      "format": "selectMany",
-      "displayName": "Topic",
-      "description": "",
-      "localized": false,
-      "required": false,
-      "group": "Categories",
-      "sortOrder": 0,
-      "editorSettings": {},
-      "items": {
-        "type": "string",
-        "enum": {
-          "values": [
-            {
-              "displayName": "Savings",
-              "value": "Savings"
-            },
-            {
-              "displayName": "Credit",
-              "value": "Credit"
-            },
-            {
-              "displayName": "Mortgage",
-              "value": "Mortgage"
-            },
-            {
-              "displayName": "Retirement",
-              "value": "Retirement"
-            },
-            {
-              "displayName": "Investment",
-              "value": "Investment"
-            }
-          ]
-        }
-      }
     },
     "BlogPostBody": {
       "type": "string",

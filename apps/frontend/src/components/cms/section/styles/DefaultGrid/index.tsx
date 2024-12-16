@@ -1,4 +1,4 @@
-import { extractSettings } from "@remkoj/optimizely-cms-react/components";
+import { extractSettings } from "@remkoj/optimizely-cms-react/rsc";
 import { DefaultGridComponent } from "../displayTemplates";
 
 enum GridWidths {

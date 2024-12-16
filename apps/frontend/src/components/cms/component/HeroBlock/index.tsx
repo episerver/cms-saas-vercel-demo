@@ -1,6 +1,6 @@
 import { useMemo } from 'react'
 import Image from "next/image"
-import { type CmsComponent } from "@remkoj/optimizely-cms-react"
+import { CmsEditable, type CmsComponent } from "@remkoj/optimizely-cms-react/rsc"
 import { HeroBlockDataFragmentDoc, ButtonBlockPropertyDataFragmentDoc, ReferenceDataFragmentDoc, LinkDataFragmentDoc, type HeroBlockDataFragment } from "@/gql/graphql"
 import { getFragmentData } from "@gql/fragment-masking"
 import ButtonBlock from "../ButtonBlock"
@@ -18,7 +18,8 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
         heroColor: color = "blue",
         heroButton = null
     },
-    inEditMode
+    inEditMode,
+    contentLink
 }) => {
   const heroImage = getFragmentData(ReferenceDataFragmentDoc, image)
   const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url)
@@ -83,8 +84,10 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
   }, [ color, button ])
 
   return (
-    <section
+    <CmsEditable 
+      as="section"
       className={`outer-padding py-32 lg:py-64 ${additionalClasses.join(" ")}`}
+      cmsId={ contentLink.key }
     >
       <div className={`w-full @container/card container mx-auto`}>
         <div
@@ -100,11 +103,12 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
             } ${innerClasses.join(" ")}`}
           >
             {eyebrow ? (
-              <p
+              <CmsEditable
+                as="p" 
+                cmsFieldName="Eyebrow"
                 className="eyebrow"
-                data-epi-edit={inEditMode ? "Eyebrow" : undefined}
                 dangerouslySetInnerHTML={{ __html: eyebrow }}
-              ></p>
+              />
             ) : inEditMode && !eyebrow ? (
               <div className="mt-16 flex justify-end">
                 <div data-epi-edit={inEditMode ? "Eyebrow" : undefined}>
@@ -180,7 +184,7 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
           ) : null}
         </div>
       </div>
-    </section>
+    </CmsEditable>
   );
 }
 HeroBlockComponent.displayName = "Hero (Component/HeroBlock)"
