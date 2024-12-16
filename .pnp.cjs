@@ -1817,12 +1817,12 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:95070e7ad64fb78efc6008381175e55334aff0208092dd470f3d308ee0c9d9ab84341004fa5922273d760bc7b17f3459a8bda0ed37da54a63e85fa9c3ec1a8ad#npm:3.1.2", {\
-        "packageLocation": "./.yarn/__virtual__/@graphql-codegen-plugin-helpers-virtual-af90871499/0/cache/@graphql-codegen-plugin-helpers-npm-3.1.2-24626282d0-184736c4e2.zip/node_modules/@graphql-codegen/plugin-helpers/",\
+      ["virtual:82990e667d4ce5e4f7b7375beb81159e484249acf759c3e0e34be6bd7b55e152da3c1af2af014ae8a220ed2cc0034eb22e2fb026ff767e36ccb454d50c76d735#npm:3.1.2", {\
+        "packageLocation": "./.yarn/__virtual__/@graphql-codegen-plugin-helpers-virtual-d94d0f0f46/0/cache/@graphql-codegen-plugin-helpers-npm-3.1.2-24626282d0-184736c4e2.zip/node_modules/@graphql-codegen/plugin-helpers/",\
         "packageDependencies": [\
-          ["@graphql-codegen/plugin-helpers", "virtual:95070e7ad64fb78efc6008381175e55334aff0208092dd470f3d308ee0c9d9ab84341004fa5922273d760bc7b17f3459a8bda0ed37da54a63e85fa9c3ec1a8ad#npm:3.1.2"],\
+          ["@graphql-codegen/plugin-helpers", "virtual:82990e667d4ce5e4f7b7375beb81159e484249acf759c3e0e34be6bd7b55e152da3c1af2af014ae8a220ed2cc0034eb22e2fb026ff767e36ccb454d50c76d735#npm:3.1.2"],\
           ["@graphql-tools/apollo-engine-loader", "virtual:9d2414510b482947ca78d50d15f248e1869e668cf5ca0f8137c8b026c83fa276c55f5ceea4e87f61c2e60be4393c3598bfe327ccf8a32fb0f7ae93a8bcbc410d#npm:8.0.0"],\
-          ["@graphql-tools/utils", "virtual:af90871499498a9f0da228db6aacaf74277b4c78cef45e5fd4d248373b0067e9c4a8f0dc9a37549c66b7210cf5d4aa6a2f688da195e038ebe1b4381722a4a5b8#npm:9.2.1"],\
+          ["@graphql-tools/utils", "virtual:d94d0f0f4657e496f8ce8e4aadff139001eab74d90f878f5b54e4922acfb6cbbe365e117bd98fe83c3bb3798a1ff0f80b767fdf40ef23ae72c8b5ca4094e495b#npm:9.2.1"],\
           ["@types/graphql", "npm:14.5.0"],\
           ["change-case-all", "npm:1.0.15"],\
           ["common-tags", "npm:1.8.2"],\
@@ -1945,11 +1945,11 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:128f0593466db202d3f8412e064f97d4cc000fe30578b2e5cbd912e6cf5b641822ab8eb2c645dca0fc304da04a1257e54e00c0ec62d594509603e8fa3c4c6c2c#npm:6.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/@graphql-codegen-typescript-graphql-request-virtual-95070e7ad6/0/cache/@graphql-codegen-typescript-graphql-request-npm-6.2.0-3c1584eeb9-ed04b25544.zip/node_modules/@graphql-codegen/typescript-graphql-request/",\
+      ["virtual:004c5898f5bd356a4e4a7610aa7d1214073742b496b948f72f424cdb5404ed5d57aff1aca5456f662800ed6ae27a8b5dbaf78910b62c3a0d5e73f0103d39d843#npm:6.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@graphql-codegen-typescript-graphql-request-virtual-82990e667d/0/cache/@graphql-codegen-typescript-graphql-request-npm-6.2.0-3c1584eeb9-ed04b25544.zip/node_modules/@graphql-codegen/typescript-graphql-request/",\
         "packageDependencies": [\
-          ["@graphql-codegen/typescript-graphql-request", "virtual:128f0593466db202d3f8412e064f97d4cc000fe30578b2e5cbd912e6cf5b641822ab8eb2c645dca0fc304da04a1257e54e00c0ec62d594509603e8fa3c4c6c2c#npm:6.2.0"],\
-          ["@graphql-codegen/plugin-helpers", "virtual:95070e7ad64fb78efc6008381175e55334aff0208092dd470f3d308ee0c9d9ab84341004fa5922273d760bc7b17f3459a8bda0ed37da54a63e85fa9c3ec1a8ad#npm:3.1.2"],\
+          ["@graphql-codegen/typescript-graphql-request", "virtual:004c5898f5bd356a4e4a7610aa7d1214073742b496b948f72f424cdb5404ed5d57aff1aca5456f662800ed6ae27a8b5dbaf78910b62c3a0d5e73f0103d39d843#npm:6.2.0"],\
+          ["@graphql-codegen/plugin-helpers", "virtual:82990e667d4ce5e4f7b7375beb81159e484249acf759c3e0e34be6bd7b55e152da3c1af2af014ae8a220ed2cc0034eb22e2fb026ff767e36ccb454d50c76d735#npm:3.1.2"],\
           ["@graphql-codegen/visitor-plugin-common", "virtual:1015c5d93e3a903ddff31d3482338edafe72fc99ab09c1407f6371829469af913888597e476fe2343979c4aa46f61ebdfccc8542bc728206ebe0c67f436a6201#file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz#./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz::hash=9534d1&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."],\
           ["@types/graphql", "npm:14.5.0"],\
           ["@types/graphql-request", null],\
@@ -2665,10 +2665,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "HARD"\
       }],\
-      ["virtual:af90871499498a9f0da228db6aacaf74277b4c78cef45e5fd4d248373b0067e9c4a8f0dc9a37549c66b7210cf5d4aa6a2f688da195e038ebe1b4381722a4a5b8#npm:9.2.1", {\
-        "packageLocation": "./.yarn/__virtual__/@graphql-tools-utils-virtual-f60ae7e8c4/0/cache/@graphql-tools-utils-npm-9.2.1-ed63b70392-b1665043c2.zip/node_modules/@graphql-tools/utils/",\
+      ["virtual:d94d0f0f4657e496f8ce8e4aadff139001eab74d90f878f5b54e4922acfb6cbbe365e117bd98fe83c3bb3798a1ff0f80b767fdf40ef23ae72c8b5ca4094e495b#npm:9.2.1", {\
+        "packageLocation": "./.yarn/__virtual__/@graphql-tools-utils-virtual-4425d6f741/0/cache/@graphql-tools-utils-npm-9.2.1-ed63b70392-b1665043c2.zip/node_modules/@graphql-tools/utils/",\
         "packageDependencies": [\
-          ["@graphql-tools/utils", "virtual:af90871499498a9f0da228db6aacaf74277b4c78cef45e5fd4d248373b0067e9c4a8f0dc9a37549c66b7210cf5d4aa6a2f688da195e038ebe1b4381722a4a5b8#npm:9.2.1"],\
+          ["@graphql-tools/utils", "virtual:d94d0f0f4657e496f8ce8e4aadff139001eab74d90f878f5b54e4922acfb6cbbe365e117bd98fe83c3bb3798a1ff0f80b767fdf40ef23ae72c8b5ca4094e495b#npm:9.2.1"],\
           ["@graphql-typed-document-node/core", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.2.0"],\
           ["@types/graphql", "npm:14.5.0"],\
           ["graphql", "npm:16.9.0"],\
@@ -3031,10 +3031,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-checkbox-virtual-9f50f47757/0/cache/@inquirer-checkbox-npm-4.0.3-53abd9e293-09f99ee8d4.zip/node_modules/@inquirer/checkbox/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-checkbox-virtual-228f94f0d2/0/cache/@inquirer-checkbox-npm-4.0.3-53abd9e293-09f99ee8d4.zip/node_modules/@inquirer/checkbox/",\
         "packageDependencies": [\
-          ["@inquirer/checkbox", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/checkbox", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/figures", "npm:1.0.8"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
@@ -3056,10 +3056,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:5.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-confirm-virtual-e94c803172/0/cache/@inquirer-confirm-npm-5.1.0-a7e93abc1c-b38187a61c.zip/node_modules/@inquirer/confirm/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:5.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-confirm-virtual-a1adf0058b/0/cache/@inquirer-confirm-npm-5.1.0-a7e93abc1c-b38187a61c.zip/node_modules/@inquirer/confirm/",\
         "packageDependencies": [\
-          ["@inquirer/confirm", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:5.1.0"],\
+          ["@inquirer/confirm", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:5.1.0"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"]\
@@ -3097,10 +3097,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-editor-virtual-984f55a5fe/0/cache/@inquirer-editor-npm-4.2.0-ce8c07f21d-1fdd07eebf.zip/node_modules/@inquirer/editor/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-editor-virtual-2103b7c51b/0/cache/@inquirer-editor-npm-4.2.0-ce8c07f21d-1fdd07eebf.zip/node_modules/@inquirer/editor/",\
         "packageDependencies": [\
-          ["@inquirer/editor", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.2.0"],\
+          ["@inquirer/editor", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.2.0"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"],\
@@ -3120,10 +3120,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-expand-virtual-029b0daff7/0/cache/@inquirer-expand-npm-4.0.3-69934fe9dc-8199976635.zip/node_modules/@inquirer/expand/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-expand-virtual-57319c132d/0/cache/@inquirer-expand-npm-4.0.3-69934fe9dc-8199976635.zip/node_modules/@inquirer/expand/",\
         "packageDependencies": [\
-          ["@inquirer/expand", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/expand", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"],\
@@ -3152,10 +3152,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.1.0", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-input-virtual-c120cb3da3/0/cache/@inquirer-input-npm-4.1.0-1dbaea05f0-42c70fc26f.zip/node_modules/@inquirer/input/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.1.0", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-input-virtual-af854183e5/0/cache/@inquirer-input-npm-4.1.0-1dbaea05f0-42c70fc26f.zip/node_modules/@inquirer/input/",\
         "packageDependencies": [\
-          ["@inquirer/input", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.1.0"],\
+          ["@inquirer/input", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.1.0"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"]\
@@ -3174,10 +3174,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-number-virtual-23c0a0d620/0/cache/@inquirer-number-npm-3.0.3-f83befcb86-7dca4c0527.zip/node_modules/@inquirer/number/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-number-virtual-4ef328cdc4/0/cache/@inquirer-number-npm-3.0.3-f83befcb86-7dca4c0527.zip/node_modules/@inquirer/number/",\
         "packageDependencies": [\
-          ["@inquirer/number", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3"],\
+          ["@inquirer/number", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"]\
@@ -3196,10 +3196,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-password-virtual-4c0bd05c2e/0/cache/@inquirer-password-npm-4.0.3-9beb1c48ea-9d45e9a260.zip/node_modules/@inquirer/password/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-password-virtual-56b6be25e9/0/cache/@inquirer-password-npm-4.0.3-9beb1c48ea-9d45e9a260.zip/node_modules/@inquirer/password/",\
         "packageDependencies": [\
-          ["@inquirer/password", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/password", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"],\
@@ -3219,20 +3219,20 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:93ff87a67ec1f9d3c17ecb3d6ed0f7dd98b500b69ecc4b0c409d1e1e26b558bf1279867e3e4120e7bdbe7ac667dcbbc4c53ad9dbca2d9eae27a11712b567a268#npm:7.2.0", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-prompts-virtual-f84d5e0bf8/0/cache/@inquirer-prompts-npm-7.2.0-d26cc48e56-c2747c5b83.zip/node_modules/@inquirer/prompts/",\
+      ["virtual:16ff12e6cc3018527eebd77a26f8a162b6592000e16ec54286228d3a3c2eb7c237aac590c7261fde908238cd0bebe61dd79138e77c2e6c7650c58f0a1622849c#npm:7.2.0", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-prompts-virtual-30167e17f7/0/cache/@inquirer-prompts-npm-7.2.0-d26cc48e56-c2747c5b83.zip/node_modules/@inquirer/prompts/",\
         "packageDependencies": [\
-          ["@inquirer/prompts", "virtual:93ff87a67ec1f9d3c17ecb3d6ed0f7dd98b500b69ecc4b0c409d1e1e26b558bf1279867e3e4120e7bdbe7ac667dcbbc4c53ad9dbca2d9eae27a11712b567a268#npm:7.2.0"],\
-          ["@inquirer/checkbox", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
-          ["@inquirer/confirm", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:5.1.0"],\
-          ["@inquirer/editor", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.2.0"],\
-          ["@inquirer/expand", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
-          ["@inquirer/input", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.1.0"],\
-          ["@inquirer/number", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3"],\
-          ["@inquirer/password", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
-          ["@inquirer/rawlist", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
-          ["@inquirer/search", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3"],\
-          ["@inquirer/select", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/prompts", "virtual:16ff12e6cc3018527eebd77a26f8a162b6592000e16ec54286228d3a3c2eb7c237aac590c7261fde908238cd0bebe61dd79138e77c2e6c7650c58f0a1622849c#npm:7.2.0"],\
+          ["@inquirer/checkbox", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
+          ["@inquirer/confirm", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:5.1.0"],\
+          ["@inquirer/editor", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.2.0"],\
+          ["@inquirer/expand", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
+          ["@inquirer/input", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.1.0"],\
+          ["@inquirer/number", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3"],\
+          ["@inquirer/password", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
+          ["@inquirer/rawlist", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
+          ["@inquirer/search", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3"],\
+          ["@inquirer/select", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@types/node", "npm:22.8.6"]\
         ],\
         "packagePeers": [\
@@ -3249,10 +3249,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-rawlist-virtual-d81e365bc7/0/cache/@inquirer-rawlist-npm-4.0.3-c429424914-47c33bd1d3.zip/node_modules/@inquirer/rawlist/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-rawlist-virtual-fd9d8369a2/0/cache/@inquirer-rawlist-npm-4.0.3-c429424914-47c33bd1d3.zip/node_modules/@inquirer/rawlist/",\
         "packageDependencies": [\
-          ["@inquirer/rawlist", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/rawlist", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
           ["@types/node", "npm:22.8.6"],\
@@ -3272,10 +3272,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-search-virtual-c95d77c768/0/cache/@inquirer-search-npm-3.0.3-2993195b5c-712f2ff0f7.zip/node_modules/@inquirer/search/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-search-virtual-8d5675fc10/0/cache/@inquirer-search-npm-3.0.3-2993195b5c-712f2ff0f7.zip/node_modules/@inquirer/search/",\
         "packageDependencies": [\
-          ["@inquirer/search", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:3.0.3"],\
+          ["@inquirer/search", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:3.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/figures", "npm:1.0.8"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
@@ -3296,10 +3296,10 @@ const RAW_RUNTIME_STATE =
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3", {\
-        "packageLocation": "./.yarn/__virtual__/@inquirer-select-virtual-69374d42f9/0/cache/@inquirer-select-npm-4.0.3-d6b6433c72-718a6074cb.zip/node_modules/@inquirer/select/",\
+      ["virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3", {\
+        "packageLocation": "./.yarn/__virtual__/@inquirer-select-virtual-ec68b0cf82/0/cache/@inquirer-select-npm-4.0.3-d6b6433c72-718a6074cb.zip/node_modules/@inquirer/select/",\
         "packageDependencies": [\
-          ["@inquirer/select", "virtual:f84d5e0bf8e3fed3745fe8358e93a9a73ccbcbefe94ae83ab54dcb3cdb4b6598280d631a3bd191e7c4febdd00fb112cbc6e204e34eb4b84192ecaf9f4508960d#npm:4.0.3"],\
+          ["@inquirer/select", "virtual:30167e17f7f20cf7addefc69ede4f37158c9e864f547751011feccf1e675abe3bbfe57bb5a0ae28112651517e320c2dfadc6daba9cf0d90b3e9f20ab3d118596#npm:4.0.3"],\
           ["@inquirer/core", "npm:10.1.1"],\
           ["@inquirer/figures", "npm:1.0.8"],\
           ["@inquirer/type", "virtual:2f881068f638276019ec63feeb7915cc1697323f0e980bcec307247e75d14a19d3ce5e837ef9dc6a05bdd663753295df3fa129caa220f57a4eef7860e7cd2b9c#npm:3.0.1"],\
@@ -4001,28 +4001,28 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-cms-api", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-api-npm-4.0.0-rc1-457938bd8e-5719f9eb64.zip/node_modules/@remkoj/optimizely-cms-api/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-api-npm-4.0.0-0465c395e9-6fd5a6c12f.zip/node_modules/@remkoj/optimizely-cms-api/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-api", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-cms-api", "npm:4.0.0"]\
         ],\
         "linkType": "HARD"\
       }]\
     ]],\
     ["@remkoj/optimizely-cms-cli", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-cli-npm-4.0.0-rc1-75f4492634-98a3cd1664.zip/node_modules/@remkoj/optimizely-cms-cli/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-cli-npm-4.0.0-07dbfac8dd-b09918ca34.zip/node_modules/@remkoj/optimizely-cms-cli/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-cli", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-cms-cli", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-cli-virtual-93ff87a67e/0/cache/@remkoj-optimizely-cms-cli-npm-4.0.0-rc1-75f4492634-98a3cd1664.zip/node_modules/@remkoj/optimizely-cms-cli/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-cli-virtual-16ff12e6cc/0/cache/@remkoj-optimizely-cms-cli-npm-4.0.0-07dbfac8dd-b09918ca34.zip/node_modules/@remkoj/optimizely-cms-cli/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@inquirer/prompts", "virtual:93ff87a67ec1f9d3c17ecb3d6ed0f7dd98b500b69ecc4b0c409d1e1e26b558bf1279867e3e4120e7bdbe7ac667dcbbc4c53ad9dbca2d9eae27a11712b567a268#npm:7.2.0"],\
-          ["@remkoj/optimizely-cms-api", "npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-cms-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@inquirer/prompts", "virtual:16ff12e6cc3018527eebd77a26f8a162b6592000e16ec54286228d3a3c2eb7c237aac590c7261fde908238cd0bebe61dd79138e77c2e6c7650c58f0a1622849c#npm:7.2.0"],\
+          ["@remkoj/optimizely-cms-api", "npm:4.0.0"],\
           ["@types/node", "npm:22.8.6"],\
           ["@types/remkoj__optimizely-cms-api", null],\
           ["chalk", "npm:5.3.0"],\
@@ -4042,19 +4042,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-cms-nextjs", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-nextjs-npm-4.0.0-rc1-c86a95c4ec-042942d705.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-nextjs-npm-4.0.0-88350758a5-871c695d09.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-nextjs", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-cms-nextjs", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-nextjs-virtual-faf57fc60d/0/cache/@remkoj-optimizely-cms-nextjs-npm-4.0.0-rc1-c86a95c4ec-042942d705.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-nextjs-virtual-9271a7e247/0/cache/@remkoj-optimizely-cms-nextjs-npm-4.0.0-88350758a5-871c695d09.zip/node_modules/@remkoj/optimizely-cms-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/graphql", "npm:14.5.0"],\
           ["@types/graphql-request", null],\
           ["@types/next", null],\
@@ -4085,19 +4085,19 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-cms-react", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-react-npm-4.0.0-rc1-a64d5d470d-bb67be22de.zip/node_modules/@remkoj/optimizely-cms-react/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-cms-react-npm-4.0.0-29a21db1b9-22dad3f5b5.zip/node_modules/@remkoj/optimizely-cms-react/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-react", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-cms-react", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-react-virtual-cc86fb3bb4/0/cache/@remkoj-optimizely-cms-react-npm-4.0.0-rc1-a64d5d470d-bb67be22de.zip/node_modules/@remkoj/optimizely-cms-react/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-cms-react-virtual-e9141ff05a/0/cache/@remkoj-optimizely-cms-react-npm-4.0.0-29a21db1b9-22dad3f5b5.zip/node_modules/@remkoj/optimizely-cms-react/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@graphql-typed-document-node/core", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.2.0"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/entities", null],\
           ["@types/graphql", "npm:14.5.0"],\
           ["@types/graphql-request", null],\
@@ -4144,18 +4144,18 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-graph-cli", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-cli-npm-4.0.0-rc1-1504a5ec61-1ec8985ab3.zip/node_modules/@remkoj/optimizely-graph-cli/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-cli-npm-4.0.0-ce43bb5b91-2f11379281.zip/node_modules/@remkoj/optimizely-graph-cli/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-cli", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-graph-cli", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-cli-virtual-179b1e6d42/0/cache/@remkoj-optimizely-graph-cli-npm-4.0.0-rc1-1504a5ec61-1ec8985ab3.zip/node_modules/@remkoj/optimizely-graph-cli/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-cli-virtual-ddd97001e4/0/cache/@remkoj-optimizely-graph-cli-npm-4.0.0-ce43bb5b91-2f11379281.zip/node_modules/@remkoj/optimizely-graph-cli/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/remkoj__optimizely-graph-client", null],\
           ["chalk", "npm:5.3.0"],\
           ["cli-table3", "npm:0.6.5"],\
@@ -4173,17 +4173,17 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-graph-client", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-client-npm-4.0.0-rc1-dfd6479aff-c64aca9abb.zip/node_modules/@remkoj/optimizely-graph-client/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-client-npm-4.0.0-18bc988e76-6ec5eb41bb.zip/node_modules/@remkoj/optimizely-graph-client/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-client", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-graph-client", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-client-virtual-78896f347c/0/cache/@remkoj-optimizely-graph-client-npm-4.0.0-rc1-dfd6479aff-c64aca9abb.zip/node_modules/@remkoj/optimizely-graph-client/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-client-virtual-d6b1c118a6/0/cache/@remkoj-optimizely-graph-client-npm-4.0.0-18bc988e76-6ec5eb41bb.zip/node_modules/@remkoj/optimizely-graph-client/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/graphql-request", null],\
           ["crypto-js", "npm:4.2.0"],\
           ["graphql-request", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:6.1.0"]\
@@ -4196,25 +4196,25 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-graph-functions", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-functions-npm-4.0.0-rc1-0fab6a4b38-4cc03f53dc.zip/node_modules/@remkoj/optimizely-graph-functions/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-graph-functions-npm-4.0.0-4dae151317-c3c514d9cd.zip/node_modules/@remkoj/optimizely-graph-functions/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-functions", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-graph-functions", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-functions-virtual-128f059346/0/cache/@remkoj-optimizely-graph-functions-npm-4.0.0-rc1-0fab6a4b38-4cc03f53dc.zip/node_modules/@remkoj/optimizely-graph-functions/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-graph-functions-virtual-004c5898f5/0/cache/@remkoj-optimizely-graph-functions-npm-4.0.0-4dae151317-c3c514d9cd.zip/node_modules/@remkoj/optimizely-graph-functions/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@graphql-codegen/add", "virtual:1015c5d93e3a903ddff31d3482338edafe72fc99ab09c1407f6371829469af913888597e476fe2343979c4aa46f61ebdfccc8542bc728206ebe0c67f436a6201#npm:5.0.3"],\
           ["@graphql-codegen/client-preset", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.5.1"],\
           ["@graphql-codegen/plugin-helpers", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:5.1.0"],\
           ["@graphql-codegen/typescript", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.1.2"],\
-          ["@graphql-codegen/typescript-graphql-request", "virtual:128f0593466db202d3f8412e064f97d4cc000fe30578b2e5cbd912e6cf5b641822ab8eb2c645dca0fc304da04a1257e54e00c0ec62d594509603e8fa3c4c6c2c#npm:6.2.0"],\
+          ["@graphql-codegen/typescript-graphql-request", "virtual:004c5898f5bd356a4e4a7610aa7d1214073742b496b948f72f424cdb5404ed5d57aff1aca5456f662800ed6ae27a8b5dbaf78910b62c3a0d5e73f0103d39d843#npm:6.2.0"],\
           ["@graphql-codegen/typescript-operations", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.4.0"],\
           ["@graphql-typed-document-node/core", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.2.0"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/graphql", "npm:14.5.0"],\
           ["@types/graphql-request", null],\
           ["@types/graphql-tag", null],\
@@ -4241,20 +4241,20 @@ const RAW_RUNTIME_STATE =
       }]\
     ]],\
     ["@remkoj/optimizely-one-nextjs", [\
-      ["npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/cache/@remkoj-optimizely-one-nextjs-npm-4.0.0-rc1-5b961cb739-d8e3bc4ac5.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
+      ["npm:4.0.0", {\
+        "packageLocation": "./.yarn/cache/@remkoj-optimizely-one-nextjs-npm-4.0.0-4b14825f4c-cd4ee6655d.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-one-nextjs", "npm:4.0.0-rc1"]\
+          ["@remkoj/optimizely-one-nextjs", "npm:4.0.0"]\
         ],\
         "linkType": "SOFT"\
       }],\
-      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1", {\
-        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-one-nextjs-virtual-9ebd3c1236/0/cache/@remkoj-optimizely-one-nextjs-npm-4.0.0-rc1-5b961cb739-d8e3bc4ac5.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
+      ["virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0", {\
+        "packageLocation": "./.yarn/__virtual__/@remkoj-optimizely-one-nextjs-virtual-25b45d3699/0/cache/@remkoj-optimizely-one-nextjs-npm-4.0.0-4b14825f4c-cd4ee6655d.zip/node_modules/@remkoj/optimizely-one-nextjs/",\
         "packageDependencies": [\
-          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@headlessui/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.2.0"],\
           ["@heroicons/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.1.5"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@types/headlessui__react", null],\
           ["@types/heroicons__react", null],\
           ["@types/next", null],\
@@ -8557,14 +8557,14 @@ const RAW_RUNTIME_STATE =
           ["@heroicons/react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:2.1.5"],\
           ["@parcel/watcher", "npm:2.4.1"],\
           ["@react-hook/window-size", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:3.1.1"],\
-          ["@remkoj/optimizely-cms-api", "npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-cms-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
-          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0-rc1"],\
+          ["@remkoj/optimizely-cms-api", "npm:4.0.0"],\
+          ["@remkoj/optimizely-cms-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-cms-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-cms-react", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-graph-cli", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-graph-client", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-graph-functions", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
+          ["@remkoj/optimizely-one-nextjs", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:4.0.0"],\
           ["@tailwindcss/aspect-ratio", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.4.2"],\
           ["@tailwindcss/container-queries", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.1.1"],\
           ["@tailwindcss/forms", "virtual:d3996bc66f5a97675d735c6457b44af0f25df32a5e5981f61ff7f22e93004839ccc5d56298eff651f971a908820429de35800a3f2669be95e1c0f6bb82e8a700#npm:0.5.9"],\
