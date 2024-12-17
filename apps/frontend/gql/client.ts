@@ -125,12 +125,6 @@ export const CarouselBlockDataFragmentDoc = gql`
   }
 }
     `;
-export const ContentRecsBlockDataFragmentDoc = gql`
-    fragment ContentRecsBlockData on ContentRecsBlock {
-  BlockDeliveryApiKey
-  BlockRecommendationCount
-}
-    `;
 export const ButtonBlockPropertyDataFragmentDoc = gql`
     fragment ButtonBlockPropertyData on ButtonBlockProperty {
   children: ButtonText
@@ -303,7 +297,6 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
     ...ButtonBlockData
     ...CardBlockData
     ...CarouselBlockData
-    ...ContentRecsBlockData
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...HtmlBlockData
@@ -422,7 +415,6 @@ export const CompositionDataFragmentDoc = gql`
       ...ButtonBlockData
       ...CardBlockData
       ...CarouselBlockData
-      ...ContentRecsBlockData
       ...HeroBlockData
       ...HomePageHeroBlockData
       ...HtmlBlockData
@@ -505,7 +497,6 @@ export const LandingPageDataFragmentDoc = gql`
     ...ButtonBlockData
     ...CardBlockData
     ...CarouselBlockData
-    ...ContentRecsBlockData
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...HtmlBlockData
@@ -525,7 +516,6 @@ export const LandingPageDataFragmentDoc = gql`
     ...ButtonBlockData
     ...CardBlockData
     ...CarouselBlockData
-    ...ContentRecsBlockData
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...HtmlBlockData
@@ -561,7 +551,6 @@ export const StartPageDataFragmentDoc = gql`
     ...ButtonBlockData
     ...CardBlockData
     ...CarouselBlockData
-    ...ContentRecsBlockData
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...HtmlBlockData
@@ -581,7 +570,6 @@ export const StartPageDataFragmentDoc = gql`
     ...ButtonBlockData
     ...CardBlockData
     ...CarouselBlockData
-    ...ContentRecsBlockData
     ...HeroBlockData
     ...HomePageHeroBlockData
     ...HtmlBlockData
@@ -1087,7 +1075,6 @@ export const getContentByIdDocument = gql`
       ...ButtonBlockData
       ...CardBlockData
       ...CarouselBlockData
-      ...ContentRecsBlockData
       ...HeroBlockData
       ...HomePageHeroBlockData
       ...HtmlBlockData
@@ -1120,7 +1107,6 @@ ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
-${ContentRecsBlockDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}
@@ -1191,7 +1177,6 @@ ${ButtonBlockDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
-${ContentRecsBlockDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}

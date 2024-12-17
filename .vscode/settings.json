@@ -16,5 +16,6 @@
     "tsx"
   ],
   "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*",
-  "eslint.nodePath": ".yarn/sdks"
+  "eslint.nodePath": ".yarn/sdks",
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs"
 }

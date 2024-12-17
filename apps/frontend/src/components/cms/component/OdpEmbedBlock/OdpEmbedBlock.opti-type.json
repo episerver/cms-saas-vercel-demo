@@ -6,9 +6,11 @@
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
-  "compositionBehaviors": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-02-05T05:12:04.94+00:00",
-  "lastModified": "2024-12-03T13:09:09.8657708+00:00",
+  "lastModified": "2024-12-17T11:12:46.5741256+00:00",
   "properties": {
     "ContentId": {
       "type": "string",
