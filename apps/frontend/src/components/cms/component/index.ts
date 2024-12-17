@@ -8,7 +8,6 @@ import RichTextElementComponent from "./RichTextElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
 import OdpEmbedBlockComponent from "./OdpEmbedBlock";
-import OdpEmbedBlockClientComponent from "./OdpEmbedBlock/client";
 import MenuNavigationBlockComponent from "./MenuNavigationBlock";
 import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
 import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
@@ -19,7 +18,6 @@ import HeroBlockComponent from "./HeroBlock";
 import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
 import ContentRecsElementComponent from "./ContentRecsElement";
-import ContentRecsBlockComponent from "./ContentRecsBlock";
 import CarouselBlockComponent from "./CarouselBlock";
 import CardBlockMenuComponent from "./CardBlock/menu";
 import CardBlockComponent from "./CardBlock";
@@ -57,10 +55,6 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "OdpEmbedBlock", 
         component: OdpEmbedBlockComponent 
-    },
-    { 
-        type: "OdpEmbedBlock/client", 
-        component: OdpEmbedBlockClientComponent 
     },
     { 
         type: "MenuNavigationBlock", 
@@ -101,10 +95,6 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "ContentRecsElement", 
         component: ContentRecsElementComponent 
-    },
-    { 
-        type: "ContentRecsBlock", 
-        component: ContentRecsBlockComponent 
     },
     { 
         type: "CarouselBlock", 
