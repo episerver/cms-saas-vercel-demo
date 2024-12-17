@@ -2668,9 +2668,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@remkoj/optimizely-cms-nextjs@npm:^4.0.0":
+"@remkoj/optimizely-cms-nextjs@file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.0.0
-  resolution: "@remkoj/optimizely-cms-nextjs@npm:4.0.0"
+  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=b4bfbd&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     deepmerge: "npm:^4.3.1"
   peerDependencies:
@@ -2680,7 +2680,7 @@ __metadata:
     graphql-request: ^6
     next: ^14
     react: ^18
-  checksum: 10/871c695d0989c8b92ac1ad6f5893bc3085b53821a7d475b1b0dba1d36ecc67b22b2c053a06f9de507369643b0b44d4ccba5a8fbcabefa44f343891b33200528b
+  checksum: 10/e988541bf4a44a3a8aea64c54ef5be60d6bd11b8f3da71d9296ab98f5f790c6a4eea4a87c38da1757e42b67d425bfad7fb99b090942b8843fd42d887d7ee7989
   languageName: node
   linkType: hard
 
@@ -2788,7 +2788,7 @@ __metadata:
 
 "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.0.0
-  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::hash=e2eb18&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-one-nextjs@file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz::hash=4198ee&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   peerDependencies:
     "@headlessui/react": "*"
     "@heroicons/react": "*"
@@ -2798,7 +2798,7 @@ __metadata:
     react-dom: "*"
     swr: "*"
     uuid: "*"
-  checksum: 10/73cfe6bcb6bbb2374bc57c0cc1ce64267d23d2a44e46a4a37b81a3144d56578e264e0c3c76f1d7abf331cb3265b4dc688f8282ad29c4871111305fe2c08dbba8
+  checksum: 10/81159aa6ecd225d1e954ae571aa5628bb3f4a7627f0dd223249c9a1a123b5c701303929938c55e6ee150780412b5cfa4c51787911c15f9ca84786d14ac900d08
   languageName: node
   linkType: hard
 

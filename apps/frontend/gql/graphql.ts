@@ -2970,6 +2970,11 @@ export type PageSeoSettings = IData & _IComponent & _IContent & {
 };
 
 
+export type PageSeoSettingsGraphTypeArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type PageSeoSettingsMetaDescriptionArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
@@ -3002,11 +3007,20 @@ export type PageSeoSettingsAutocomplete = {
 
 export type PageSeoSettingsFacet = {
   __typename?: 'PageSeoSettingsFacet';
+  GraphType?: Maybe<Array<Maybe<StringFacet>>>;
   MetaDescription?: Maybe<Array<Maybe<StringFacet>>>;
   MetaKeywords?: Maybe<Array<Maybe<StringFacet>>>;
   MetaTitle?: Maybe<Array<Maybe<StringFacet>>>;
   SharingImage?: Maybe<ContentReferenceFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+
+export type PageSeoSettingsFacetGraphTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
 };
 
 
@@ -3034,6 +3048,7 @@ export type PageSeoSettingsFacetMetaTitleArgs = {
 };
 
 export type PageSeoSettingsOrderByInput = {
+  GraphType?: InputMaybe<OrderBy>;
   MetaDescription?: InputMaybe<OrderBy>;
   MetaKeywords?: InputMaybe<OrderBy>;
   MetaTitle?: InputMaybe<OrderBy>;
@@ -3069,6 +3084,11 @@ export type PageSeoSettingsProperty = {
 };
 
 
+export type PageSeoSettingsPropertyGraphTypeArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
 export type PageSeoSettingsPropertyMetaDescriptionArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
@@ -3090,10 +3110,19 @@ export type PageSeoSettingsPropertyAutocomplete = {
 
 export type PageSeoSettingsPropertyFacet = {
   __typename?: 'PageSeoSettingsPropertyFacet';
+  GraphType?: Maybe<Array<Maybe<StringFacet>>>;
   MetaDescription?: Maybe<Array<Maybe<StringFacet>>>;
   MetaKeywords?: Maybe<Array<Maybe<StringFacet>>>;
   MetaTitle?: Maybe<Array<Maybe<StringFacet>>>;
   SharingImage?: Maybe<ContentReferenceFacet>;
+};
+
+
+export type PageSeoSettingsPropertyFacetGraphTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
 };
 
 
@@ -3121,6 +3150,7 @@ export type PageSeoSettingsPropertyFacetMetaTitleArgs = {
 };
 
 export type PageSeoSettingsPropertyOrderByInput = {
+  GraphType?: InputMaybe<OrderBy>;
   MetaDescription?: InputMaybe<OrderBy>;
   MetaKeywords?: InputMaybe<OrderBy>;
   MetaTitle?: InputMaybe<OrderBy>;
@@ -3128,6 +3158,7 @@ export type PageSeoSettingsPropertyOrderByInput = {
 };
 
 export type PageSeoSettingsPropertyWhereInput = {
+  GraphType?: InputMaybe<SearchableStringFilterInput>;
   MetaDescription?: InputMaybe<SearchableStringFilterInput>;
   MetaKeywords?: InputMaybe<SearchableStringFilterInput>;
   MetaTitle?: InputMaybe<SearchableStringFilterInput>;
@@ -3135,6 +3166,7 @@ export type PageSeoSettingsPropertyWhereInput = {
 };
 
 export type PageSeoSettingsWhereInput = {
+  GraphType?: InputMaybe<SearchableStringFilterInput>;
   MetaDescription?: InputMaybe<SearchableStringFilterInput>;
   MetaKeywords?: InputMaybe<SearchableStringFilterInput>;
   MetaTitle?: InputMaybe<SearchableStringFilterInput>;

@@ -38,6 +38,7 @@
   "resolutions": {
     "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.6.0-patched.tgz",
     "@remkoj/optimizely-one-nextjs": "file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz",
+    "@remkoj/optimizely-cms-nextjs": "file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz",
     "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz"
   }
 }

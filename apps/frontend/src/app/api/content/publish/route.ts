@@ -1,5 +1,4 @@
-//import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
-import createPublishApi from './_newPublishApi'
+import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
 
 const handler = createPublishApi({
     paths: [
@@ -7,10 +6,11 @@ const handler = createPublishApi({
         '/[[...path]]',
         '/[lang]',
         '/[lang]/[[...path]]',
-        '/api/me/[[...path]]'
     ],
     additionalPaths: [
         '/api/content/search',
+        '/api/content/articles',
+        '/api/me/[[...path]]',
     ],
     optimizePublish: true
 })

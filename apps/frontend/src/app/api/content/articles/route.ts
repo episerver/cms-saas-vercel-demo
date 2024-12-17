@@ -25,7 +25,7 @@ async function handler(req: NextRequest) : Promise<NextResponse<Types.getArticle
 }
 
 export const GET = handler
-export const runtime = 'nodejs' // 'nodejs' (default) | 'edge'
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
 export const dynamic = 'force-dynamic'
 export const dynamicParams = true
 export const fetchCache = 'default-no-store'
