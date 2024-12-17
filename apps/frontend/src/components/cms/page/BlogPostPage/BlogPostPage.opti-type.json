@@ -8,8 +8,9 @@
     "*"
   ],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [],
   "created": "2024-01-30T00:10:49.5533333+00:00",
-  "lastModified": "2024-11-15T15:25:47.8477492+00:00",
+  "lastModified": "2024-12-03T13:48:13.752715+00:00",
   "properties": {
     "Heading": {
       "type": "string",

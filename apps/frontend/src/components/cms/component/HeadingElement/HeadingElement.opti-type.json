@@ -2,12 +2,15 @@
   "key": "HeadingElement",
   "displayName": "Heading",
   "description": "",
-  "baseType": "element",
+  "baseType": "component",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-06-27T14:20:27.1636813+00:00",
-  "lastModified": "2024-11-29T14:49:20.0446415+00:00",
+  "lastModified": "2024-12-06T14:32:44.0429965+00:00",
   "properties": {
     "headingText": {
       "type": "string",

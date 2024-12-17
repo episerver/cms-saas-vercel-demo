@@ -6,8 +6,9 @@
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [],
   "created": "2024-02-05T04:46:19.5266667+00:00",
-  "lastModified": "2024-11-29T15:43:56.4399748+00:00",
+  "lastModified": "2024-12-06T14:32:44.4204582+00:00",
   "properties": {
     "MetaTitle": {
       "type": "string",
@@ -16,9 +17,9 @@
       "description": "",
       "localized": true,
       "required": false,
-      "indexingType": "searchable",
       "group": "Information",
       "sortOrder": 0,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "MetaDescription": {
@@ -27,9 +28,9 @@
       "description": "",
       "localized": false,
       "required": false,
-      "indexingType": "searchable",
       "group": "Information",
       "sortOrder": 0,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "MetaKeywords": {

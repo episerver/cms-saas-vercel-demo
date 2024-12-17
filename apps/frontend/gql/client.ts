@@ -40,171 +40,6 @@ export const IContentInfoFragmentDoc = gql`
   }
 }
     `;
-export const IElementDataFragmentDoc = gql`
-    fragment IElementData on _IElement {
-  _metadata {
-    ...IContentInfo
-  }
-  _type: __typename
-}
-    `;
-export const ElementDataFragmentDoc = gql`
-    fragment ElementData on _IElement {
-  ...IElementData
-}
-    `;
-export const ArticleListElementDataFragmentDoc = gql`
-    fragment ArticleListElementData on ArticleListElement {
-  articleListCount
-}
-    `;
-export const CTAElementDataFragmentDoc = gql`
-    fragment CTAElementData on CTAElement {
-  cta_text: Text
-  cta_link: Link {
-    ...LinkData
-  }
-}
-    `;
-export const ContentRecsElementDataFragmentDoc = gql`
-    fragment ContentRecsElementData on ContentRecsElement {
-  ElementDeliveryApiKey
-  ElementRecommendationCount
-}
-    `;
-export const HeadingElementDataFragmentDoc = gql`
-    fragment HeadingElementData on HeadingElement {
-  headingText
-}
-    `;
-export const ImageElementDataFragmentDoc = gql`
-    fragment ImageElementData on ImageElement {
-  altText
-  imageLink {
-    ...ReferenceData
-  }
-}
-    `;
-export const ParagraphElementDataFragmentDoc = gql`
-    fragment ParagraphElementData on ParagraphElement {
-  text {
-    json
-  }
-}
-    `;
-export const RichTextElementDataFragmentDoc = gql`
-    fragment RichTextElementData on RichTextElement {
-  text {
-    json
-    html
-  }
-}
-    `;
-export const TestimonialElementDataFragmentDoc = gql`
-    fragment TestimonialElementData on TestimonialElement {
-  customerName
-  customerLocation
-  customerImage {
-    ...ReferenceData
-  }
-  referenceTitle
-  referenceText {
-    json
-  }
-}
-    `;
-export const VideoElementDataFragmentDoc = gql`
-    fragment VideoElementData on VideoElement {
-  title
-  video {
-    ...ReferenceData
-  }
-  placeholder {
-    ...ReferenceData
-  }
-}
-    `;
-export const CompositionDataFragmentDoc = gql`
-    fragment CompositionData on ICompositionNode {
-  name: displayName
-  layoutType: nodeType
-  type
-  key
-  template: displayTemplateKey
-  settings: displaySettings {
-    key
-    value
-  }
-  ... on ICompositionStructureNode {
-    nodes @recursive(depth: 10) {
-      name: displayName
-    }
-  }
-  ... on ICompositionElementNode {
-    element {
-      ...ElementData
-      ...ArticleListElementData
-      ...CTAElementData
-      ...ContentRecsElementData
-      ...HeadingElementData
-      ...ImageElementData
-      ...ParagraphElementData
-      ...RichTextElementData
-      ...TestimonialElementData
-      ...VideoElementData
-    }
-  }
-}
-    `;
-export const ExperienceDataFragmentDoc = gql`
-    fragment ExperienceData on _IExperience {
-  composition {
-    ...CompositionData
-  }
-}
-    `;
-export const BlankExperienceDataFragmentDoc = gql`
-    fragment BlankExperienceData on BlankExperience {
-  BlankExperienceSeoSettings {
-    ...PageSeoSettingsPropertyData
-  }
-  ...ExperienceData
-}
-    `;
-export const BlogSectionExperienceDataFragmentDoc = gql`
-    fragment BlogSectionExperienceData on BlogSectionExperience {
-  ...ExperienceData
-}
-    `;
-export const BlogPostPageDataFragmentDoc = gql`
-    fragment BlogPostPageData on BlogPostPage {
-  blogTitle: Heading
-  blogSubtitle: ArticleSubHeading
-  blogImage: BlogPostPromoImage {
-    ...ReferenceData
-  }
-  blogBody: BlogPostBody {
-    json
-  }
-  blogAuthor: ArticleAuthor
-}
-    `;
-export const BlogPostPageSearchResultFragmentDoc = gql`
-    fragment BlogPostPageSearchResult on BlogPostPage {
-  title: Heading
-  image: BlogPostPromoImage {
-    ...ReferenceData
-  }
-  author: ArticleAuthor
-  seodata: SeoSettings {
-    MetaTitle
-    MetaDescription
-  }
-  _metadata {
-    published
-  }
-}
-    `;
 export const IContentDataFragmentDoc = gql`
     fragment IContentData on _IContent {
   _metadata {
@@ -214,8 +49,21 @@ export const IContentDataFragmentDoc = gql`
 }
     `;
 export const BlockDataFragmentDoc = gql`
-    fragment BlockData on _IContent {
+    fragment BlockData on _IComponent {
   ...IContentData
+}
+    `;
+export const IElementDataFragmentDoc = gql`
+    fragment IElementData on _IComponent {
+  _metadata {
+    ...IContentInfo
+  }
+  _type: __typename
+}
+    `;
+export const ElementDataFragmentDoc = gql`
+    fragment ElementData on _IComponent {
+  ...IElementData
 }
     `;
 export const BlogListingBlockDataFragmentDoc = gql`
@@ -477,6 +325,176 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
   marginBottom: ContainerMarginBottom
   paddingBottom: ContainerPaddingBottom
   paddingTop: ContainerPaddingTop
+}
+    `;
+export const ArticleListElementDataFragmentDoc = gql`
+    fragment ArticleListElementData on ArticleListElement {
+  articleListCount
+}
+    `;
+export const CTAElementDataFragmentDoc = gql`
+    fragment CTAElementData on CTAElement {
+  cta_text: Text
+  cta_link: Link {
+    ...LinkData
+  }
+}
+    `;
+export const ContentRecsElementDataFragmentDoc = gql`
+    fragment ContentRecsElementData on ContentRecsElement {
+  ElementDeliveryApiKey
+  ElementRecommendationCount
+}
+    `;
+export const HeadingElementDataFragmentDoc = gql`
+    fragment HeadingElementData on HeadingElement {
+  headingText
+}
+    `;
+export const ImageElementDataFragmentDoc = gql`
+    fragment ImageElementData on ImageElement {
+  altText
+  imageLink {
+    ...ReferenceData
+  }
+}
+    `;
+export const ParagraphElementDataFragmentDoc = gql`
+    fragment ParagraphElementData on ParagraphElement {
+  text {
+    json
+  }
+}
+    `;
+export const RichTextElementDataFragmentDoc = gql`
+    fragment RichTextElementData on RichTextElement {
+  text {
+    json
+    html
+  }
+}
+    `;
+export const TestimonialElementDataFragmentDoc = gql`
+    fragment TestimonialElementData on TestimonialElement {
+  customerName
+  customerLocation
+  customerImage {
+    ...ReferenceData
+  }
+  referenceTitle
+  referenceText {
+    json
+  }
+}
+    `;
+export const VideoElementDataFragmentDoc = gql`
+    fragment VideoElementData on VideoElement {
+  title
+  video {
+    ...ReferenceData
+  }
+  placeholder {
+    ...ReferenceData
+  }
+}
+    `;
+export const CompositionDataFragmentDoc = gql`
+    fragment CompositionData on ICompositionNode {
+  name: displayName
+  layoutType: nodeType
+  type
+  key
+  template: displayTemplateKey
+  settings: displaySettings {
+    key
+    value
+  }
+  ... on ICompositionStructureNode {
+    nodes @recursive(depth: 10) {
+      name: displayName
+    }
+  }
+  ... on ICompositionComponentNode {
+    component {
+      ...BlockData
+      ...ElementData
+      ...BlogListingBlockData
+      ...ButtonBlockData
+      ...CardBlockData
+      ...CarouselBlockData
+      ...ContentRecsBlockData
+      ...HeroBlockData
+      ...HomePageHeroBlockData
+      ...HtmlBlockData
+      ...LayoutContainerBlockData
+      ...LayoutSettingsBlockData
+      ...MegaMenuGroupBlockData
+      ...MenuNavigationBlockData
+      ...OdpEmbedBlockData
+      ...PageSeoSettingsData
+      ...QuoteBlockData
+      ...TextBlockData
+      ...BlankSectionData
+      ...ArticleListElementData
+      ...CTAElementData
+      ...ContentRecsElementData
+      ...HeadingElementData
+      ...ImageElementData
+      ...ParagraphElementData
+      ...RichTextElementData
+      ...TestimonialElementData
+      ...VideoElementData
+    }
+  }
+}
+    `;
+export const ExperienceDataFragmentDoc = gql`
+    fragment ExperienceData on _IExperience {
+  composition {
+    ...CompositionData
+  }
+}
+    `;
+export const BlankExperienceDataFragmentDoc = gql`
+    fragment BlankExperienceData on BlankExperience {
+  BlankExperienceSeoSettings {
+    ...PageSeoSettingsPropertyData
+  }
+  ...ExperienceData
+}
+    `;
+export const BlogSectionExperienceDataFragmentDoc = gql`
+    fragment BlogSectionExperienceData on BlogSectionExperience {
+  ...ExperienceData
+}
+    `;
+export const BlogPostPageDataFragmentDoc = gql`
+    fragment BlogPostPageData on BlogPostPage {
+  blogTitle: Heading
+  blogSubtitle: ArticleSubHeading
+  blogImage: BlogPostPromoImage {
+    ...ReferenceData
+  }
+  blogBody: BlogPostBody {
+    json
+  }
+  blogAuthor: ArticleAuthor
+}
+    `;
+export const BlogPostPageSearchResultFragmentDoc = gql`
+    fragment BlogPostPageSearchResult on BlogPostPage {
+  title: Heading
+  image: BlogPostPromoImage {
+    ...ReferenceData
+  }
+  author: ArticleAuthor
+  seodata: SeoSettings {
+    MetaTitle
+    MetaDescription
+  }
+  _metadata {
+    published
+  }
 }
     `;
 export const LandingPageDataFragmentDoc = gql`
@@ -1165,21 +1183,9 @@ ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${ExperienceDataFragmentDoc}
 ${CompositionDataFragmentDoc}
+${BlockDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
-${ContentRecsElementDataFragmentDoc}
-${HeadingElementDataFragmentDoc}
-${ImageElementDataFragmentDoc}
-${ParagraphElementDataFragmentDoc}
-${RichTextElementDataFragmentDoc}
-${TestimonialElementDataFragmentDoc}
-${VideoElementDataFragmentDoc}
-${BlogSectionExperienceDataFragmentDoc}
-${BlogPostPageDataFragmentDoc}
-${LandingPageDataFragmentDoc}
-${BlockDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${ButtonBlockDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
@@ -1200,6 +1206,18 @@ ${PageSeoSettingsDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${RichTextElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
+${VideoElementDataFragmentDoc}
+${BlogSectionExperienceDataFragmentDoc}
+${BlogPostPageDataFragmentDoc}
+${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
 ${StartPageDataFragmentDoc}`;
 export const getContentTypeDocument = gql`

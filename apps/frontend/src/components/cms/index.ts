@@ -6,7 +6,6 @@ import SectionFactory from "./section";
 import PageFactory from "./page";
 import NodesFactory from "./nodes";
 import ExperienceFactory from "./experience";
-import ElementFactory from "./element";
 import ComponentFactory from "./component";
 
 // Prefix entries - if needed
@@ -15,8 +14,6 @@ prefixDictionaryEntries(PageFactory, "Page");
 prefixDictionaryEntries(NodesFactory, "Nodes");
 prefixDictionaryEntries(ExperienceFactory, "Experience");
 prefixDictionaryEntries(ExperienceFactory, "Page");
-prefixDictionaryEntries(ElementFactory, "Element");
-prefixDictionaryEntries(ElementFactory, "Component");
 prefixDictionaryEntries(ComponentFactory, "Component");
 
 // Build dictionary
@@ -29,7 +26,6 @@ export const CmsFactory : ComponentTypeDictionary = [
     ...PageFactory,
     ...NodesFactory,
     ...ExperienceFactory,
-    ...ElementFactory,
     ...ComponentFactory
 ];
 

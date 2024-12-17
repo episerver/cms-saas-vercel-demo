@@ -2,10 +2,13 @@
   "key": "TestimonialElement",
   "displayName": "Testimonial",
   "description": "A customer testimonial",
-  "baseType": "element",
+  "baseType": "component",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-06-27T14:20:27.0000657+00:00",
   "lastModified": "2024-11-29T14:49:19.7194856+00:00",
   "properties": {

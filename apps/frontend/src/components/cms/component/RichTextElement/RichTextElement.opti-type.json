@@ -2,12 +2,15 @@
   "key": "RichTextElement",
   "displayName": "Rich Text",
   "description": "Add a text to your experience",
-  "baseType": "element",
+  "baseType": "component",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-11-29T14:49:21.1953289+00:00",
-  "lastModified": "2024-11-29T15:07:34.6786193+00:00",
+  "lastModified": "2024-12-06T14:32:44.2692345+00:00",
   "properties": {
     "text": {
       "type": "string",

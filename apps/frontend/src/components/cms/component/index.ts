@@ -4,10 +4,14 @@ import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import VideoElementComponent from "./VideoElement";
 import TextBlockComponent from "./TextBlock";
 import TestimonialElementComponent from "./TestimonialElement";
+import RichTextElementComponent from "./RichTextElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
 import OdpEmbedBlockComponent from "./OdpEmbedBlock";
 import OdpEmbedBlockClientComponent from "./OdpEmbedBlock/client";
+import MenuNavigationBlockComponent from "./MenuNavigationBlock";
+import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
+import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutContainerBlockComponent from "./LayoutContainerBlock";
 import ImageElementComponent from "./ImageElement";
 import HomePageHeroBlockComponent from "./HomePageHeroBlock";
@@ -17,13 +21,12 @@ import CTAElementComponent from "./CTAElement";
 import ContentRecsElementComponent from "./ContentRecsElement";
 import ContentRecsBlockComponent from "./ContentRecsBlock";
 import CarouselBlockComponent from "./CarouselBlock";
-import CarouselBlockCarouselBlockComponent from "./CarouselBlock/carousel-block";
+import CardBlockMenuComponent from "./CardBlock/menu";
 import CardBlockComponent from "./CardBlock";
-import CardBlockCardBlockComponent from "./CardBlock/card-block";
 import ButtonBlockComponent from "./ButtonBlock";
 import BlogListingBlockComponent from "./BlogListingBlock";
-import BlogListingBlockBlogListingBlockComponent from "./BlogListingBlock/blog-listing-block";
 import ArticleListElementComponent from "./ArticleListElement";
+import ArticleListElementLoader from "./ArticleListElement/loading";
 
 // Build dictionary
 export const ComponentFactory : ComponentTypeDictionary = [
@@ -40,6 +43,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: TestimonialElementComponent 
     },
     { 
+        type: "RichTextElement", 
+        component: RichTextElementComponent 
+    },
+    { 
         type: "QuoteBlock", 
         component: QuoteBlockComponent 
     },
@@ -54,6 +61,18 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "OdpEmbedBlock/client", 
         component: OdpEmbedBlockClientComponent 
+    },
+    { 
+        type: "MenuNavigationBlock", 
+        component: MenuNavigationBlockComponent 
+    },
+    { 
+        type: "MegaMenuGroupBlock/mobile", 
+        component: MegaMenuGroupBlockMobileComponent 
+    },
+    { 
+        type: "MegaMenuGroupBlock", 
+        component: MegaMenuGroupBlockComponent 
     },
     { 
         type: "LayoutContainerBlock", 
@@ -92,16 +111,12 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: CarouselBlockComponent 
     },
     { 
-        type: "CarouselBlock/carousel-block", 
-        component: CarouselBlockCarouselBlockComponent 
+        type: "CardBlock/menu", 
+        component: CardBlockMenuComponent 
     },
     { 
         type: "CardBlock", 
         component: CardBlockComponent 
-    },
-    { 
-        type: "CardBlock/card-block", 
-        component: CardBlockCardBlockComponent 
     },
     { 
         type: "ButtonBlock", 
@@ -112,12 +127,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: BlogListingBlockComponent 
     },
     { 
-        type: "BlogListingBlock/blog-listing-block", 
-        component: BlogListingBlockBlogListingBlockComponent 
-    },
-    { 
         type: "ArticleListElement", 
-        component: ArticleListElementComponent 
+        component: ArticleListElementComponent,
+        useSuspense: true,
+        loader: ArticleListElementLoader
     }
 ];
 
