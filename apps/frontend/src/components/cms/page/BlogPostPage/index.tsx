@@ -16,7 +16,7 @@ import { toValidOpenGraphType } from "@/lib/opengraph";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
-import { RichText, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
+import { RichText, CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
 export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({

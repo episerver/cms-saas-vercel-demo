@@ -2,10 +2,13 @@
   "key": "ParagraphElement",
   "displayName": "Paragraph",
   "description": "",
-  "baseType": "element",
+  "baseType": "component",
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
   "created": "2024-06-27T14:20:26.5958949+00:00",
   "lastModified": "2024-11-29T14:49:21.2641887+00:00",
   "properties": {

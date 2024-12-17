@@ -5,6 +5,7 @@ import { getSdk } from "@/sdk"
 import { type InputMaybe, type Locales } from "@/gql/graphql";
 import { CmsContentLink, type CmsContentLinkProps } from "@remkoj/optimizely-cms-nextjs/components";
 import Card from "@/components/shared/card";
+import { RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { CmsImage } from "@/components/shared/cms_image";
 import { DateDisplay } from "@/components/shared/date";
 

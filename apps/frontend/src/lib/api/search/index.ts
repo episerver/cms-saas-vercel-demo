@@ -3,7 +3,7 @@ import getSdk from "@/sdk"
 import { type Sdk, getFragmentData, Schema } from "@gql"
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
-import type { NodeInput } from "@remkoj/optimizely-cms-react"
+import { type TypedNode, type NodeInput } from "@remkoj/optimizely-cms-react/rsc"
 import { site_search as getSearchConfig } from "@/flags"
 
 export type FacetFilters = {
@@ -38,7 +38,6 @@ export type ContentSearchOptions = {
     sdk?: Sdk
     personalize?: boolean
 }
-
 
 export type ContentSearchResultItem = {
     id: ContentLinkWithLocale
