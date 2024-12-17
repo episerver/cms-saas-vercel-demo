@@ -1,4 +1,4 @@
-import { type FunctionComponent, type ComponentProps } from "react";
+import { type FunctionComponent, type ComponentProps, Suspense } from "react";
 import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
@@ -20,7 +20,7 @@ export const MobileMenu : FunctionComponent<MobileMenuProps> = ({ menuItems, ser
         <PopoverPanel anchor="bottom end" className="[--anchor-gap:1rem] bg-ghost-white dark:bg-vulcan-85 dark:text-white !max-w-none w-full z-[5000] shadow-[0_14px_4px_6px_rgba(0,0,0,0.1)]">
             <div className="container mx-auto p-4">
                 <div className="pb-4">
-                    <SiteSearch asSearchBox />
+                    <Suspense><SiteSearch asSearchBox /></Suspense>
                 </div>
                 <hr />
                 <CmsContentArea items={ menuItems } variant="mobile" />

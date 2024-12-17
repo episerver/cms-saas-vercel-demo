@@ -1,7 +1,6 @@
 import 'server-only'
-import { type IOptiGraphClient } from "@remkoj/optimizely-graph-client"
+import { createClient } from "@remkoj/optimizely-graph-client"
 import { getServerContext } from '@remkoj/optimizely-cms-react/rsc'
-import { getServerClient } from "@remkoj/optimizely-cms-nextjs"
 import { getSdk as getGeneratedSdk, type Sdk } from "@gql"
 import { cache } from 'react'
 
@@ -11,15 +10,8 @@ import { cache } from 'react'
  * @returns     The SDK Instance
  */
 export const getSdk = cache<() => Sdk>(() => {
-    const ctx = getServerContext()
-    if (!ctx.client) {
-        const client = getServerClient()
-        client.updateFlags({
-            queryCache: false
-        }, false)
-        ctx.setOptimizelyGraphClient(client)
-    }
-    return getGeneratedSdk(ctx.client as IOptiGraphClient)
+    const { client } = getServerContext()
+    return getGeneratedSdk(client || createClient().updateFlags({ queryCache: false }, false))
 })
 
 export default getSdk

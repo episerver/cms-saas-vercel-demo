@@ -7,10 +7,10 @@ import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 
 // Server side components
-import { EnvTools, Scripts } from "@remkoj/optimizely-one-nextjs/server";
+import { EnvTools, Scripts, OptimizelyOneGadget } from "@remkoj/optimizely-one-nextjs/server";
 
 // Client side trackers
-import { OptimizelyOneProvider } from "@remkoj/optimizely-one-nextjs/client";
+import { OptimizelyOneProvider, PageActivator } from "@remkoj/optimizely-one-nextjs/client";
 import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
 
@@ -69,16 +69,18 @@ export default function RootLayout({ children }: RootLayoutProps) {
       </head>
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
-          <div className="flex min-h-screen flex-col justify-between">
-            <OptimizelyOneProvider value={{ debug: false }} >
+          <OptimizelyOneProvider value={{ debug: false }} >
+            <PageActivator />
+            <div className="flex min-h-screen flex-col justify-between">
               <Header />
               <main className="grow">{ children }</main>
               <Footer />
-            </OptimizelyOneProvider>
-            <Scripts.Footer />
-            <GoogleAnalytics measurementId={ga_id} />
-            <SpeedInsights />
-          </div>
+            </div>
+            <OptimizelyOneGadget />
+          </OptimizelyOneProvider>
+          <Scripts.Footer />
+          <GoogleAnalytics measurementId={ ga_id } />
+          <SpeedInsights />
         </Body>
       </ThemeProvider>
     </html>

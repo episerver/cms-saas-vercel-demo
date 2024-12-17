@@ -1,12 +1,19 @@
 import Image from "next/image";
 import Link from "next/link";
 import { type FunctionComponent } from "react";
+import { layout_configuration } from "@/flags"
+
+export async function LogoWrapper() 
+{
+    const config = (await layout_configuration())
+    return <Logo logo={ config.logo } />
+}
 
 type LogoProps = JSX.IntrinsicElements["a"] & {
   logo?: string | URL
 }
 
-const Logo : FunctionComponent<LogoProps> = ({ logo, ...divProps }) => {
+export const Logo : FunctionComponent<LogoProps> = ({ logo, ...divProps }) => {
   const logoUrl = typeof(logo) == 'object' ? logo.href : logo
   return (
       <Link href="/" className="flex items-center grow-0 shrink-0" {...divProps }>

@@ -1,4 +1,4 @@
-import { headers } from "next/headers";
+//import { headers } from "next/headers";
 
 /**
  * Reads the Search Parameters put into the headers by the Edge middleware, so
@@ -9,7 +9,8 @@ import { headers } from "next/headers";
  */
 export async function searchParams() : Promise<URLSearchParams>
 {
-    const headersList = await headers()
-    const params = new URLSearchParams(headersList.get('x-search') ?? '?')
-    return params
+    // const headersList = await headers()
+    // const params = new URLSearchParams(headersList.get('x-search') ?? '?')
+    // return params
+    return new URLSearchParams()
 }
