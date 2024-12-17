@@ -1,19 +1,20 @@
 import { get } from '@vercel/edge-config'
 import { headers } from 'next/headers'
-import { createInstance, type Client, type OptimizelyUserContext, type UserAttributes  } from '@optimizely/optimizely-sdk/lite'
+import { createInstance, type OptimizelyUserContext, type UserAttributes  } from '@optimizely/optimizely-sdk/lite'
+import { cache } from 'react'
 
 /**
  * Retrieve an instance of the Optimizely FX client
  * 
  * @returns The the Optimizely FX client ready to use
  */
-export async function getInstance() : Promise<Client>
+export const getInstance = cache(async () =>
 {
     const { sdkkey } = readConfigFromEnv()
     if (!sdkkey)
         throw new Error("Optimizely Feature Experimentation key not present")
 
-    let datafile = (await readDataFileFromEdgeConfig(sdkkey)) ?? (await readDataFileFromCDN(sdkkey))
+    let datafile = await getOptimizelyDataFile(sdkkey)
     if (!datafile)
         throw new Error("Unable to load datafile, check your sdkKey")
     const fx = createInstance({
@@ -26,7 +27,7 @@ export async function getInstance() : Promise<Client>
     if (!success)
         throw new Error("Optimizely Feature Experimentation initialization failed: " + (reason??""))
     return fx
-}
+})
 
 /**
  * Generic method to retrieve the user context for the current request
@@ -54,7 +55,6 @@ export async function getUserContext(attributes: UserAttributes = {}) : Promise<
     }  
 
     const fx_ctx = fx.createUserContext(visitorId, fullAttributes)
-    fx_ctx?.fetchQualifiedSegments
     //await fx_ctx?.fetchQualifiedSegments()
     return fx_ctx
 }
@@ -124,6 +124,10 @@ export async function getFlagVariants(flagKey: string) : Promise<false | null | 
 export default getUserContext
 
 //#region Internal functions
+const getOptimizelyDataFile = cache(async (sdkkey: string) => {
+    return (await readDataFileFromEdgeConfig(sdkkey)) ?? (await readDataFileFromCDN(sdkkey))
+})
+
 async function readDataFileFromEdgeConfig(sdkkey: string) : Promise<string | undefined>
 {
     return get<string>("optimizely-fx-"+sdkkey).catch(() => undefined)
