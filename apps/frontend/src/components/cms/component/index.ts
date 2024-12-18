@@ -6,10 +6,14 @@ import TextBlockComponent from "./TextBlock";
 import TestimonialElementComponent from "./TestimonialElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
+import PageSeoSettingsComponent from "./PageSeoSettings";
 import OdpEmbedBlockComponent from "./OdpEmbedBlock";
 import OdpEmbedBlockClientComponent from "./OdpEmbedBlock/client";
+import MenuNavigationBlockComponent from "./MenuNavigationBlock";
+import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutContainerBlockComponent from "./LayoutContainerBlock";
 import ImageElementComponent from "./ImageElement";
+import HtmlBlockComponent from "./HtmlBlock";
 import HomePageHeroBlockComponent from "./HomePageHeroBlock";
 import HeroBlockComponent from "./HeroBlock";
 import HeadingElementComponent from "./HeadingElement";
@@ -48,6 +52,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: ParagraphElementComponent 
     },
     { 
+        type: "PageSeoSettings", 
+        component: PageSeoSettingsComponent 
+    },
+    { 
         type: "OdpEmbedBlock", 
         component: OdpEmbedBlockComponent 
     },
@@ -56,12 +64,24 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: OdpEmbedBlockClientComponent 
     },
     { 
+        type: "MenuNavigationBlock", 
+        component: MenuNavigationBlockComponent 
+    },
+    { 
+        type: "MegaMenuGroupBlock", 
+        component: MegaMenuGroupBlockComponent 
+    },
+    { 
         type: "LayoutContainerBlock", 
         component: LayoutContainerBlockComponent 
     },
     { 
         type: "ImageElement", 
         component: ImageElementComponent 
+    },
+    { 
+        type: "HtmlBlock", 
+        component: HtmlBlockComponent 
     },
     { 
         type: "HomePageHeroBlock", 

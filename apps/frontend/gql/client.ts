@@ -65,6 +65,11 @@ export const ElementDataFragmentDoc = gql`
   ...IElementData
 }
     `;
+export const ArticleListElementDataFragmentDoc = gql`
+    fragment ArticleListElementData on ArticleListElement {
+  articleListCount
+}
+    `;
 export const BlogListingBlockDataFragmentDoc = gql`
     fragment BlogListingBlockData on BlogListingBlock {
   _metadata {
@@ -83,6 +88,14 @@ export const ButtonBlockDataFragmentDoc = gql`
   className: ButtonClass
   buttonType: ButtonType
   buttonVariant: ButtonVariant
+}
+    `;
+export const CTAElementDataFragmentDoc = gql`
+    fragment CTAElementData on CTAElement {
+  cta_text: Text
+  cta_link: Link {
+    ...LinkData
+  }
 }
     `;
 export const CardBlockDataFragmentDoc = gql`
@@ -130,6 +143,17 @@ export const ContentRecsBlockDataFragmentDoc = gql`
   BlockRecommendationCount
 }
     `;
+export const ContentRecsElementDataFragmentDoc = gql`
+    fragment ContentRecsElementData on ContentRecsElement {
+  ElementDeliveryApiKey
+  ElementRecommendationCount
+}
+    `;
+export const HeadingElementDataFragmentDoc = gql`
+    fragment HeadingElementData on HeadingElement {
+  headingText
+}
+    `;
 export const ButtonBlockPropertyDataFragmentDoc = gql`
     fragment ButtonBlockPropertyData on ButtonBlockProperty {
   children: ButtonText
@@ -174,9 +198,72 @@ export const HomePageHeroBlockDataFragmentDoc = gql`
   }
 }
     `;
+export const HtmlBlockDataFragmentDoc = gql`
+    fragment HtmlBlockData on HtmlBlock {
+  HtmlBlockHeading
+  HtmlContent {
+    json
+    html
+  }
+}
+    `;
+export const ImageElementDataFragmentDoc = gql`
+    fragment ImageElementData on ImageElement {
+  altText
+  imageLink {
+    ...ReferenceData
+  }
+}
+    `;
+export const MegaMenuGroupBlockDataFragmentDoc = gql`
+    fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
+  MenuMenuHeading
+  MegaMenuUrl {
+    ...LinkData
+  }
+  MegaMenuContentArea {
+    ...IContentListItem
+  }
+}
+    `;
+export const LinkItemDataFragmentDoc = gql`
+    fragment LinkItemData on Link {
+  title
+  text
+  target
+  url {
+    ...LinkData
+  }
+}
+    `;
+export const MenuNavigationBlockDataFragmentDoc = gql`
+    fragment MenuNavigationBlockData on MenuNavigationBlock {
+  MenuNavigationHeading
+  NavigationLinks {
+    ...LinkItemData
+  }
+}
+    `;
 export const OdpEmbedBlockDataFragmentDoc = gql`
     fragment OdpEmbedBlockData on OdpEmbedBlock {
   ContentId
+}
+    `;
+export const PageSeoSettingsDataFragmentDoc = gql`
+    fragment PageSeoSettingsData on PageSeoSettings {
+  MetaTitle
+  MetaDescription
+  SharingImage {
+    ...ReferenceData
+  }
+  GraphType
+}
+    `;
+export const ParagraphElementDataFragmentDoc = gql`
+    fragment ParagraphElementData on ParagraphElement {
+  text {
+    json
+  }
 }
     `;
 export const QuoteBlockDataFragmentDoc = gql`
@@ -189,6 +276,19 @@ export const QuoteBlockDataFragmentDoc = gql`
     ...ReferenceData
   }
   location: QuoteProfileLocation
+}
+    `;
+export const TestimonialElementDataFragmentDoc = gql`
+    fragment TestimonialElementData on TestimonialElement {
+  customerName
+  customerLocation
+  customerImage {
+    ...ReferenceData
+  }
+  referenceTitle
+  referenceText {
+    json
+  }
 }
     `;
 export const TextBlockDataFragmentDoc = gql`
@@ -205,6 +305,17 @@ export const TextBlockDataFragmentDoc = gql`
   className: TextClassName
 }
     `;
+export const VideoElementDataFragmentDoc = gql`
+    fragment VideoElementData on VideoElement {
+  title
+  video {
+    ...ReferenceData
+  }
+  placeholder {
+    ...ReferenceData
+  }
+}
+    `;
 export const BlankSectionDataFragmentDoc = gql`
     fragment BlankSectionData on BlankSection {
   _metadata {
@@ -218,17 +329,29 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
   gap: GapSize
   LayoutContentArea {
     ...BlockData
+    ...ArticleListElementData
     ...BlogListingBlockData
     ...ButtonBlockData
+    ...CTAElementData
     ...CardBlockData
     ...CarouselBlockData
     ...ContentRecsBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
     ...HeroBlockData
     ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
     ...QuoteBlockData
+    ...TestimonialElementData
     ...TextBlockData
+    ...VideoElementData
     ...BlankSectionData
   }
   containerColor: ContainerBackgroundColor
@@ -239,69 +362,6 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
   marginBottom: ContainerMarginBottom
   paddingBottom: ContainerPaddingBottom
   paddingTop: ContainerPaddingTop
-}
-    `;
-export const ArticleListElementDataFragmentDoc = gql`
-    fragment ArticleListElementData on ArticleListElement {
-  articleListCount
-}
-    `;
-export const CTAElementDataFragmentDoc = gql`
-    fragment CTAElementData on CTAElement {
-  cta_text: Text
-  cta_link: Link {
-    ...LinkData
-  }
-}
-    `;
-export const ContentRecsElementDataFragmentDoc = gql`
-    fragment ContentRecsElementData on ContentRecsElement {
-  ElementDeliveryApiKey
-  ElementRecommendationCount
-}
-    `;
-export const HeadingElementDataFragmentDoc = gql`
-    fragment HeadingElementData on HeadingElement {
-  headingText
-}
-    `;
-export const ImageElementDataFragmentDoc = gql`
-    fragment ImageElementData on ImageElement {
-  altText
-  imageLink {
-    ...ReferenceData
-  }
-}
-    `;
-export const ParagraphElementDataFragmentDoc = gql`
-    fragment ParagraphElementData on ParagraphElement {
-  text {
-    json
-  }
-}
-    `;
-export const TestimonialElementDataFragmentDoc = gql`
-    fragment TestimonialElementData on TestimonialElement {
-  customerName
-  customerLocation
-  customerImage {
-    ...ReferenceData
-  }
-  referenceTitle
-  referenceText {
-    json
-  }
-}
-    `;
-export const VideoElementDataFragmentDoc = gql`
-    fragment VideoElementData on VideoElement {
-  title
-  video {
-    ...ReferenceData
-  }
-  placeholder {
-    ...ReferenceData
-  }
 }
     `;
 export const CompositionDataFragmentDoc = gql`
@@ -324,26 +384,30 @@ export const CompositionDataFragmentDoc = gql`
     component {
       ...BlockData
       ...ElementData
+      ...ArticleListElementData
       ...BlogListingBlockData
       ...ButtonBlockData
+      ...CTAElementData
       ...CardBlockData
       ...CarouselBlockData
       ...ContentRecsBlockData
-      ...HeroBlockData
-      ...HomePageHeroBlockData
-      ...LayoutContainerBlockData
-      ...OdpEmbedBlockData
-      ...QuoteBlockData
-      ...TextBlockData
-      ...BlankSectionData
-      ...ArticleListElementData
-      ...CTAElementData
       ...ContentRecsElementData
       ...HeadingElementData
+      ...HeroBlockData
+      ...HomePageHeroBlockData
+      ...HtmlBlockData
       ...ImageElementData
+      ...LayoutContainerBlockData
+      ...MegaMenuGroupBlockData
+      ...MenuNavigationBlockData
+      ...OdpEmbedBlockData
+      ...PageSeoSettingsData
       ...ParagraphElementData
+      ...QuoteBlockData
       ...TestimonialElementData
+      ...TextBlockData
       ...VideoElementData
+      ...BlankSectionData
     }
   }
 }
@@ -396,32 +460,56 @@ export const LandingPageDataFragmentDoc = gql`
     fragment LandingPageData on LandingPage {
   TopContentArea {
     ...BlockData
+    ...ArticleListElementData
     ...BlogListingBlockData
     ...ButtonBlockData
+    ...CTAElementData
     ...CardBlockData
     ...CarouselBlockData
     ...ContentRecsBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
     ...HeroBlockData
     ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
     ...QuoteBlockData
+    ...TestimonialElementData
     ...TextBlockData
+    ...VideoElementData
     ...BlankSectionData
   }
   MainContentArea {
     ...BlockData
+    ...ArticleListElementData
     ...BlogListingBlockData
     ...ButtonBlockData
+    ...CTAElementData
     ...CardBlockData
     ...CarouselBlockData
     ...ContentRecsBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
     ...HeroBlockData
     ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
     ...QuoteBlockData
+    ...TestimonialElementData
     ...TextBlockData
+    ...VideoElementData
     ...BlankSectionData
   }
 }
@@ -442,32 +530,56 @@ export const StartPageDataFragmentDoc = gql`
     fragment StartPageData on StartPage {
   HomePageHeroContentArea {
     ...BlockData
+    ...ArticleListElementData
     ...BlogListingBlockData
     ...ButtonBlockData
+    ...CTAElementData
     ...CardBlockData
     ...CarouselBlockData
     ...ContentRecsBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
     ...HeroBlockData
     ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
     ...QuoteBlockData
+    ...TestimonialElementData
     ...TextBlockData
+    ...VideoElementData
     ...BlankSectionData
   }
   HomePageMainContentArea {
     ...BlockData
+    ...ArticleListElementData
     ...BlogListingBlockData
     ...ButtonBlockData
+    ...CTAElementData
     ...CardBlockData
     ...CarouselBlockData
     ...ContentRecsBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
     ...HeroBlockData
     ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
     ...LayoutContainerBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
     ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
     ...QuoteBlockData
+    ...TestimonialElementData
     ...TextBlockData
+    ...VideoElementData
     ...BlankSectionData
   }
 }
@@ -505,16 +617,6 @@ export const FooterMenuNavigationItemFragmentDoc = gql`
     text
   }
   __typename
-}
-    `;
-export const LinkItemDataFragmentDoc = gql`
-    fragment LinkItemData on Link {
-  title
-  text
-  target
-  url {
-    ...LinkData
-  }
 }
     `;
 export const MenuNavigationItemFragmentDoc = gql`
@@ -891,17 +993,29 @@ export const getContentByIdDocument = gql`
     items {
       ...BlockData
       ...PageData
+      ...ArticleListElementData
       ...BlogListingBlockData
       ...ButtonBlockData
+      ...CTAElementData
       ...CardBlockData
       ...CarouselBlockData
       ...ContentRecsBlockData
+      ...ContentRecsElementData
+      ...HeadingElementData
       ...HeroBlockData
       ...HomePageHeroBlockData
+      ...HtmlBlockData
+      ...ImageElementData
       ...LayoutContainerBlockData
+      ...MegaMenuGroupBlockData
+      ...MenuNavigationBlockData
       ...OdpEmbedBlockData
+      ...PageSeoSettingsData
+      ...ParagraphElementData
       ...QuoteBlockData
+      ...TestimonialElementData
       ...TextBlockData
+      ...VideoElementData
       ...BlankSectionData
       ...BlankExperienceData
       ...BlogPostPageData
@@ -916,20 +1030,33 @@ ${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${PageDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${ButtonBlockDataFragmentDoc}
+${CTAElementDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
 ${ContentRecsBlockDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${ImageElementDataFragmentDoc}
 ${LayoutContainerBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
+${PageSeoSettingsDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
+${VideoElementDataFragmentDoc}
 ${BlankSectionDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
@@ -937,14 +1064,6 @@ ${ExperienceDataFragmentDoc}
 ${CompositionDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
-${ContentRecsElementDataFragmentDoc}
-${HeadingElementDataFragmentDoc}
-${ImageElementDataFragmentDoc}
-${ParagraphElementDataFragmentDoc}
-${TestimonialElementDataFragmentDoc}
-${VideoElementDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
@@ -979,28 +1098,33 @@ ${CompositionDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
 ${BlogListingBlockDataFragmentDoc}
 ${ButtonBlockDataFragmentDoc}
+${CTAElementDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
 ${ContentRecsBlockDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
 ${HomePageHeroBlockDataFragmentDoc}
-${LayoutContainerBlockDataFragmentDoc}
-${OdpEmbedBlockDataFragmentDoc}
-${QuoteBlockDataFragmentDoc}
-${TextBlockDataFragmentDoc}
-${BlankSectionDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
-${ContentRecsElementDataFragmentDoc}
-${HeadingElementDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
+${OdpEmbedBlockDataFragmentDoc}
+${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
+${QuoteBlockDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
+${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
+${BlankSectionDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
 ${StandardPageDataFragmentDoc}
