@@ -5,3 +5,4 @@
  * Use TextBlock instead.
  * Either treat this as deprecated or use it to create your own component.
  */
+export default function HtmlBlock() {}
