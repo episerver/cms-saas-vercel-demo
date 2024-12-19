@@ -15,7 +15,7 @@ enum VSpacings {
 
 enum ColorClasses {
     black = 'on-vulcan',
-    blue = 'on-azure dark:border-y-4'
+    blue = 'on-azure dark:border-y-4',
     green = 'on-verdansk dark:border-y-4',
     orange = 'on-tangy dark:border-y-4',
     purple = 'on-people-eater dark:border-y-4',
