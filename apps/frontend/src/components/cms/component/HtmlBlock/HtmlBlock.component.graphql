@@ -1,0 +1,4 @@
+fragment HtmlBlockData on HtmlBlock {
+  HtmlBlockHeading
+  HtmlContent { json, html }
+}

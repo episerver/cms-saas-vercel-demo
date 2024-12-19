@@ -1,0 +1,6 @@
+fragment PageSeoSettingsData on PageSeoSettings {
+  MetaTitle
+  MetaDescription
+  SharingImage { ...ReferenceData }
+  GraphType
+}
