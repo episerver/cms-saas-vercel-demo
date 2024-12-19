@@ -17,7 +17,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@next/env": "^15.1.0",
+    "@next/env": "^14.2.20",
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^12.1.2",
     "@types/node": "^22.10.2",
@@ -27,6 +27,6 @@
     "typescript": "^5.7.2"
   },
   "peerDependencies": {
-    "@next/env": "*"
+    "@next/env": "^14"
   }
 }
