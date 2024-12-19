@@ -16,6 +16,11 @@ enum VSpacings {
 enum ColorClasses {
     black = 'on-vulcan',
     blue = 'on-azure dark:border-y-4'
+    green = 'on-verdansk dark:border-y-4',
+    orange = 'on-tangy dark:border-y-4',
+    purple = 'on-people-eater dark:border-y-4',
+    lightred = 'on-paleruby dark:border-y-4',
+    lightgrey = 'on-light-grey dark:border-y-4',
 }
 
 export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children, ...htmlProps }) => {
