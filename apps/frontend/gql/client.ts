@@ -977,8 +977,8 @@ ${LinkDataFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
 export const searchContentDocument = gql`
     query searchContent($term: String!, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int! = 25, $start: Int! = 0) {
-  Content: _Content(
-    where: {_fulltext: {match: $term}, _metadata: {types: {in: "_Page"}}}
+  Content: _Page(
+    where: {_fulltext: {match: $term}, _metadata: {url: {base: {exist: true}}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
     skip: $start
@@ -1020,8 +1020,8 @@ ${ReferenceDataFragmentDoc}
 ${StartPageSearchDataFragmentDoc}`;
 export const personalizedSearchContentDocument = gql`
     query personalizedSearchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int! = 25, $start: Int! = 0, $boost: Int! = 100) {
-  Content: _Content(
-    where: {_or: [{_fulltext: {match: $term}}, {_fulltext: {match: $topInterest, boost: $boost}}], _metadata: {types: {in: "_Page"}}}
+  Content: _Page(
+    where: {_or: [{_fulltext: {match: $term}}, {_fulltext: {match: $topInterest, boost: $boost}}], _metadata: {url: {base: {exist: true}}}}
     orderBy: {_ranking: SEMANTIC}
     limit: $pageSize
     skip: $start
