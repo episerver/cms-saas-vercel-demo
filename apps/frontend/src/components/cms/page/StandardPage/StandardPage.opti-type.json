@@ -9,8 +9,6 @@
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-30T00:11:39.62+00:00",
-  "lastModified": "2024-11-29T14:49:20.4679352+00:00",
   "properties": {
     "StandardPromoImage": {
       "type": "contentReference",
@@ -35,6 +33,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": -100,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "StandardSubHeading": {
@@ -46,6 +45,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "SeoSettings": {
@@ -68,6 +68,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 100,
+      "indexingType": "searchable",
       "editorSettings": {}
     }
   }

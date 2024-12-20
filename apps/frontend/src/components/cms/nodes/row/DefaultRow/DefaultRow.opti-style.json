@@ -3,9 +3,22 @@
   "displayName": "Default",
   "nodeType": "row",
   "isDefault": true,
-  "created": "2024-11-04T12:00:19.2831927+00:00",
-  "lastModified": "2024-11-13T13:46:20.9900232+00:00",
   "settings": {
+    "maxWidth": {
+      "displayName": "Maximum width",
+      "editor": "",
+      "sortOrder": 50,
+      "choices": {
+        "container": {
+          "displayName": "Container (Fixed breakpoints based on window width)",
+          "sortOrder": 20
+        },
+        "full": {
+          "displayName": "None (Section width)",
+          "sortOrder": 10
+        }
+      }
+    },
     "verticalSpacing": {
       "displayName": "Vertical spacing",
       "editor": "",
@@ -126,20 +139,6 @@
         "md": {
           "displayName": "Medium",
           "sortOrder": 10
-        }
-      }
-    },
-    "maxWidth": {
-      "displayName": "Maximum width",
-      "sortOrder": 50,
-      "choices": {
-        "full": {
-          "displayName": "None (Section width)",
-          "sortOrder": 10
-        },
-        "container": {
-          "displayName": "Container (Fixed breakpoints based on window width)",
-          "sortOrder": 20
         }
       }
     }

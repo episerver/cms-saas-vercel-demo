@@ -2635,14 +2635,14 @@ __metadata:
 
 "@remkoj/optimizely-cms-api@file:./packages/dist/@remkoj-optimizely-cms-api-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.0.0
-  resolution: "@remkoj/optimizely-cms-api@file:./packages/dist/@remkoj-optimizely-cms-api-dev.tgz#./packages/dist/@remkoj-optimizely-cms-api-dev.tgz::hash=dabf0d&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
-  checksum: 10/4dbf6cf223c9b35e46fbc774660f438602f5fef70b880f2fc5a7fe6d7a501d4eb10205e78cfbe6c0dc563b9d753f3eaf0069e28b8f5db25cd0cd2fc9801ee8ee
+  resolution: "@remkoj/optimizely-cms-api@file:./packages/dist/@remkoj-optimizely-cms-api-dev.tgz#./packages/dist/@remkoj-optimizely-cms-api-dev.tgz::hash=13d179&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  checksum: 10/9bea5ba695c5e33c9acbcc730b302ca7e424fd132b3c835977ba22510f9211a1fb97191c1e66abe770c254a1e04d83e4e7718a04d95d292cd08a34d0c05c63df
   languageName: node
   linkType: hard
 
 "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.0.0
-  resolution: "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz#./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::hash=38cd52&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz#./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::hash=d797e3&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@inquirer/prompts": "npm:^7.2.0"
     chalk: "npm:^5.4.0"
@@ -2657,7 +2657,7 @@ __metadata:
     "@types/node": "*"
   bin:
     opti-cms: ./dist/index.js
-  checksum: 10/96cc2c1d62f9d6b7e14a8de15a9f0cb14e44110bec3105c0285cb614612d54e44c170487379e2cb638c269b038a8890798233fe91cb6be689152d34b203cc48e
+  checksum: 10/476289ba899c3f533b4856e4093174247cd8e8b3e59320ce8495babea539ac815e1cf46928bcf6fc2dba159aabb97ccd9ef7f191641d6c054d627a0ccd5efcf5
   languageName: node
   linkType: hard
 

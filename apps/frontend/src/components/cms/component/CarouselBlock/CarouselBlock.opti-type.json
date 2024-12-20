@@ -6,9 +6,9 @@
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
-  "compositionBehaviors": [],
-  "created": "2024-01-30T03:15:35.82+00:00",
-  "lastModified": "2024-11-29T14:49:19.4995185+00:00",
+  "compositionBehaviors": [
+    "sectionEnabled"
+  ],
   "properties": {
     "CarouselItemsContentArea": {
       "type": "array",

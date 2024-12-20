@@ -3,8 +3,6 @@
   "displayName": "Animated / Fade-In",
   "contentType": "CTAElement",
   "isDefault": false,
-  "created": "2024-09-25T10:11:01.1850498+00:00",
-  "lastModified": "2024-09-25T10:11:01.1850498+00:00",
   "settings": {
     "duration": {
       "displayName": "Animation duration",

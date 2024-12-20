@@ -3,8 +3,6 @@
   "displayName": "Default",
   "contentType": "HeadingElement",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.3192427+00:00",
-  "lastModified": "2024-09-25T10:11:01.3192427+00:00",
   "settings": {
     "transform": {
       "displayName": "Text transform",

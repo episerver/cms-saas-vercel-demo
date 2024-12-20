@@ -7,8 +7,6 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-30T03:18:30.09+00:00",
-  "lastModified": "2024-11-29T14:49:19.4996055+00:00",
   "properties": {
     "HomeHeroBlockHeading": {
       "type": "string",

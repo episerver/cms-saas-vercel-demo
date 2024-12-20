@@ -3,8 +3,6 @@
   "displayName": "Animated",
   "contentType": "HeadingElement",
   "isDefault": false,
-  "created": "2024-09-25T10:11:01.0965794+00:00",
-  "lastModified": "2024-09-25T10:11:01.0965794+00:00",
   "settings": {
     "delay": {
       "displayName": "Animation delay",

@@ -7,8 +7,6 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-02-05T04:46:19.5266667+00:00",
-  "lastModified": "2024-12-06T14:32:44.4204582+00:00",
   "properties": {
     "MetaTitle": {
       "type": "string",
@@ -69,6 +67,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": 200,
+      "indexingType": "searchable",
       "editorSettings": {},
       "enum": {
         "values": [

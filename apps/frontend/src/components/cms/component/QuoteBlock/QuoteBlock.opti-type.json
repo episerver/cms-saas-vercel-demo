@@ -7,8 +7,6 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-30T03:00:30.2166667+00:00",
-  "lastModified": "2024-11-29T14:49:20.3213429+00:00",
   "properties": {
     "QuoteText": {
       "type": "string",

@@ -3,12 +3,10 @@
   "displayName": "Default",
   "nodeType": "column",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.5492067+00:00",
-  "lastModified": "2024-09-25T10:11:01.5492067+00:00",
   "settings": {
     "overflow": {
       "displayName": "Overflow (if available width is less then minimum)",
-      "description":"Configure the handling of content that is wider then the column",
+      "editor": "",
       "sortOrder": 60,
       "choices": {
         "right": {
@@ -31,6 +29,7 @@
     },
     "minWidth": {
       "displayName": "Minimum width",
+      "editor": "",
       "sortOrder": 50,
       "choices": {
         "large": {
@@ -53,6 +52,7 @@
     },
     "showFrom": {
       "displayName": "Show on",
+      "editor": "",
       "sortOrder": 40,
       "choices": {
         "fromLarge": {
@@ -73,9 +73,10 @@
         }
       }
     },
-    "alignContent": {
-      "displayName": "Horizontal content alignment",
-      "sortOrder": 20,
+    "justifyContent": {
+      "displayName": "Vertical content alignment",
+      "editor": "",
+      "sortOrder": 30,
       "choices": {
         "end": {
           "displayName": "End",
@@ -91,9 +92,10 @@
         }
       }
     },
-    "justifyContent": {
-      "displayName": "Vertical content alignment",
-      "sortOrder": 30,
+    "alignContent": {
+      "displayName": "Horizontal content alignment",
+      "editor": "",
+      "sortOrder": 20,
       "choices": {
         "end": {
           "displayName": "End",
@@ -111,6 +113,7 @@
     },
     "contentSpacing": {
       "displayName": "Content Spacing",
+      "editor": "",
       "sortOrder": 10,
       "choices": {
         "xxl": {

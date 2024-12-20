@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-06-27T14:20:26.0756113+00:00",
-  "lastModified": "2024-12-06T14:32:44.3487305+00:00",
   "properties": {
     "articleListCount": {
       "type": "integer",

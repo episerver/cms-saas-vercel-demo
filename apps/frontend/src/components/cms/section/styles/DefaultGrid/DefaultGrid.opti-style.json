@@ -3,8 +3,6 @@
   "displayName": "Default",
   "baseType": "section",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.3541373+00:00",
-  "lastModified": "2024-11-07T16:04:39.8834073+00:00",
   "settings": {
     "sectionColor": {
       "displayName": "Color",
@@ -70,19 +68,19 @@
       "sortOrder": 10,
       "choices": {
         "narrow": {
-          "displayName": "Narrow (Maximum available width, but not wider then 48rem)",
+          "displayName": "Narrow",
           "sortOrder": 40
         },
         "wide": {
-          "displayName": "Wide (Maximum available width, but not wider then 80rem)",
+          "displayName": "Wide",
           "sortOrder": 30
         },
         "full": {
-          "displayName": "Full width (Maximum available width)",
+          "displayName": "Full width",
           "sortOrder": 20
         },
         "default": {
-          "displayName": "Default (Auto-adjusts width based upon screen size)",
+          "displayName": "Default",
           "sortOrder": 10
         }
       }
