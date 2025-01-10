@@ -17,7 +17,7 @@ export const BackgroundRow: CmsLayoutComponent<BackgroundRowProps> = ({
   const rowClasses = [
     "vb:row vb:row:BackgroundRow absolute -z-10 top-0 left-0 w-full h-full",
   ];
-  const containerClasses = ["w-full absoltue"];
+  const containerClasses = ["w-full absolute"];
   if (contentOverflow == "hide") rowClasses.push("overflow-y-hidden");
   switch (verticalAlignContent) {
     case "top":
