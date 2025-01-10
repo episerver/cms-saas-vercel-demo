@@ -4,25 +4,26 @@ import { type Metadata } from "next";
 
 // Optimizely Graph types and SDK
 import { type Locales, type BlogPostPageDataFragment, BlogPostPageDataFragmentDoc } from "@gql/graphql";
-import { getSdk } from "@gql";
+import { getSdk } from "@gql/client";
 
 // Implementation components
+import ArticleListElementElement from "../../component/ArticleListElement";
 import ContainerBlock from "@/components/cms/component/LayoutContainerBlock";
 import TextBlock from "@/components/cms/component/TextBlock";
-import BlogListingBlock from "@/components/cms/component/BlogListingBlock";
 import Image from "@/components/shared/cms_image";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
-import { RichText, CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { RichText, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
-export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
+export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = async ({
   contentLink,
-  data: { blogTitle: title, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle },
+  data: { blogTitle: title, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle, blogTopics: topics }
 }) => {
+  
   return (
     <>
       <div className="outer-padding">
@@ -35,7 +36,8 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
         <section className="mx-auto w-full max-w-3xl">
             { !image && <CmsEditable cmsFieldName="Heading" as="h1" className="mb-6 text-3xl">{ title ?? "" }</CmsEditable> }
             <CmsEditable cmsFieldName="ArticleAuthor" as="p" className="text-2xl text-people-eater my-6">{ author ?? "" }</CmsEditable>
-            <CmsEditable cmsFieldName="ArticleSubHeading" as="p" className="text-3xl leading-7 mt-6 mb-8 lg:mb-20">{ subtitle ?? "" }</CmsEditable>
+            <CmsEditable cmsFieldName="ArticleSubHeading" as="p" className="text-3xl leading-7 mt-6 mb-2">{ subtitle ?? "" }</CmsEditable>
+            <CmsEditable cmsFieldName="Topic" as="p" className="text-xs text-independence mb-8 lg:mb-20">Topics: { topics?.filter(x=>x).join(", ")}</CmsEditable>
             <RichText cmsFieldName="BlogPostBody" text={ description?.json } className="prose max-w-none prose-img:rounded-[2rem] prose-img:p-4 prose-img:border-2"/>
             <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 mt-32 mb-20"></div>
         </section>
@@ -54,13 +56,14 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
           }}
         />
       </ContainerBlock>
-      <BlogListingBlock
-        contentLink={contentLink}
-        data={{
-          showFilters: false,
-          selectedPageSize: 3,
-        }}
-      ></BlogListingBlock>
+
+      <div className="outer-padding">
+        <ArticleListElementElement contentLink={{key: null}} inEditMode={false} data={{
+          articleListCount: 3,
+          topics
+        }} />
+      </div>
+      
       <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto mt-8"></div>
     </>
   );

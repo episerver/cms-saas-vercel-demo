@@ -8,4 +8,5 @@ fragment BlogPostPageData on BlogPostPage {
         json
     }
     blogAuthor: ArticleAuthor
+    blogTopics: Topic
 }

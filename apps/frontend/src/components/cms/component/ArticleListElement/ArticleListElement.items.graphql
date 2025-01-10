@@ -1,9 +1,12 @@
-query getArticleListElementItems($count: Int!, $locale: [Locales]) {
+query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [String]) {
   BlogPostPage (
     orderBy: { _metadata: { published: DESC } }
     limit: $count
     locale: $locale
-    where: { _metadata: { status: { eq: "Published" } } }
+    where: { 
+      _metadata: { status: { eq: "Published" } },
+      Topic: { in: $topics } 
+    }
   ) {
     items {
       ...IContentData

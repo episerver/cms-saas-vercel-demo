@@ -1,3 +1,4 @@
 fragment ArticleListElementData on ArticleListElement {
   articleListCount
+  topics
 }

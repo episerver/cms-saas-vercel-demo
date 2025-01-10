@@ -69,6 +69,7 @@ export const ElementDataFragmentDoc = gql`
 export const ArticleListElementDataFragmentDoc = gql`
     fragment ArticleListElementData on ArticleListElement {
   articleListCount
+  topics
 }
     `;
 export const BlogListingBlockDataFragmentDoc = gql`
@@ -480,6 +481,7 @@ export const BlogPostPageDataFragmentDoc = gql`
     json
   }
   blogAuthor: ArticleAuthor
+  blogTopics: Topic
 }
     `;
 export const BlogPostPageSearchResultFragmentDoc = gql`
@@ -652,12 +654,12 @@ export const PageDataFragmentDoc = gql`
 }
     `;
 export const getArticleListElementItemsDocument = gql`
-    query getArticleListElementItems($count: Int!, $locale: [Locales]) {
+    query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [String]) {
   BlogPostPage(
     orderBy: {_metadata: {published: DESC}}
     limit: $count
     locale: $locale
-    where: {_metadata: {status: {eq: "Published"}}}
+    where: {_metadata: {status: {eq: "Published"}}, Topic: {in: $topics}}
   ) {
     items {
       ...IContentData
@@ -682,6 +684,24 @@ export const getArticleListElementItemsDocument = gql`
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
+export const getDefaultArticleListDocument = gql`
+    query getDefaultArticleList($locale: [Locales!]) {
+  ArticleListElement(
+    where: {_metadata: {displayName: {startsWith: "[DEFAULT]"}, status: {eq: "Published"}}}
+    locale: $locale
+    orderBy: {_metadata: {published: DESC}}
+    limit: 1
+  ) {
+    items {
+      ...IContentData
+      ...ArticleListElementData
+    }
+  }
+}
+    ${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}`;
 export const getBlankExperienceMetaDataDocument = gql`
     query getBlankExperienceMetaData($key: String!, $locale: [Locales]) {
   page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {
@@ -1284,6 +1304,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
   return {
     getArticleListElementItems(variables: Schema.getArticleListElementItemsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticleListElementItemsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticleListElementItemsQuery>(getArticleListElementItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticleListElementItems', 'query', variables);
+    },
+    getDefaultArticleList(variables?: Schema.getDefaultArticleListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getDefaultArticleListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getDefaultArticleListQuery>(getDefaultArticleListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getDefaultArticleList', 'query', variables);
     },
     getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);
