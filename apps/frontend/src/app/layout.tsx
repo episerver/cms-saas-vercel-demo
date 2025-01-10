@@ -59,13 +59,19 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const ga_id = EnvTools.readValue("GA_TRACKING_ID");
-  const forceDisableOverride = EnvTools.readValue("DISABLE_WX_SWITCHER", "0") == '1'
+
+  // Allow environment control over whether the WX snippet can be changed by the client
+  const forceDisableOverride = EnvTools.readValueAsBoolean("DISABLE_WX_SWITCHER", false)
+  
+  // Check if services are enabled
+  const enableGoogleAnalytics = ga_id && ga_id.trim() != ""
+  const enableDemoTools = EnvTools.readValueAsBoolean("OPTIMIZELY_ONE_HELPER", false)
 
   return (
     <html>
       <head>
         <Scripts.Header experimentationAllowOverride={ !forceDisableOverride } />
-        <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link>
+        { enableDemoTools && <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link> }
       </head>
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
@@ -79,7 +85,7 @@ export default function RootLayout({ children }: RootLayoutProps) {
             <OptimizelyOneGadget />
           </OptimizelyOneProvider>
           <Scripts.Footer />
-          <GoogleAnalytics measurementId={ ga_id } />
+          { enableGoogleAnalytics && <GoogleAnalytics measurementId={ ga_id } /> }
           <SpeedInsights />
         </Body>
       </ThemeProvider>

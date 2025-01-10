@@ -1,4 +1,5 @@
 // Auto generated flags.ts from Optimizely Feature Experimentation
+'use server'
 import { unstable_flag as flag } from '@vercel/flags/next';
 import { type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite';
 import { getUserContext } from './opti';

@@ -5,7 +5,7 @@ import { localeToGraphLocale } from '@remkoj/optimizely-graph-client';
 import { type Locales, type InputMaybe } from '@gql/graphql';
 import { getSdk } from "@/sdk";
 
-import { Logo, LogoWrapper } from "./partials/_logo";
+import { Logo } from "./partials/_logo";
 import SecondaryMenu from './partials/_secondary-menu';
 import MobileMenu from './partials/_mobile-menu';
 import { Suspense } from 'react';
@@ -28,9 +28,7 @@ export default async function SiteHeader({ locale }: HeaderProps)
 
     return <header>
         <div className="container mx-auto px-4 lg:px-6 py-4 gap-2 flex flex-row justify-between items-stretch lg:flex-wrap 2xl:flex-nowrap">
-            <Suspense fallback={<Logo href="/assets/moseybank-logo.svg" />}>
-                <LogoWrapper />
-            </Suspense>
+            <Suspense fallback={<Logo />}><Logo /></Suspense>
             <CmsContentArea as={ PopoverGroup } className="main-menu hidden 2xl:grow lg:order-last lg:basis-full 2xl:order-none 2xl:basis-auto lg:flex flex-row items-stretch" items={ headerData?.mainMenu } itemWrapper={{ noWrapper: true }} />
             <SecondaryMenu className='grow-0 shrink-0' utilityItems={ headerData?.serviceButtons } />
             <MobileMenu menuItems={ headerData?.mainMenu } serviceItems={ headerData?.serviceButtons } />

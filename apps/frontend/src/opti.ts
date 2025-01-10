@@ -38,7 +38,7 @@ export const getInstance = cache(async () =>
 export async function getUserContext(attributes: UserAttributes = {}) : Promise<OptimizelyUserContext | null>
 {
     const fx = await getInstance()
-    const headerData = await headers()
+    const headerData = headers()
     const visitorId = headerData.get('x-visitorid')
     if (!visitorId)
         throw new Error("No visitor identifier provided by your middleware")

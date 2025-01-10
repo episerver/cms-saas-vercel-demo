@@ -3,10 +3,16 @@
 import { type FunctionComponent } from 'react';
 import useTheme from '@/components/theme';
 import { SunIcon, MoonIcon, ComputerDesktopIcon  } from '@heroicons/react/24/solid';
+import useFlag from '@/useFlag';
+import { layout_configuration } from "@/flags";
 
 export const ThemePicker :  FunctionComponent = () =>
 {
+    const { theme_switcher: switcherEnabled } = useFlag(layout_configuration, { logo: "", theme_switcher: true })
     const { effectiveTheme, theme, setTheme } = useTheme()
+    if (!switcherEnabled)
+        return null
+    
     const toggleTheme = () => {
         setTheme(x => x == "dark" ? "light" : (x == "light" ? "system": "dark"));
     }

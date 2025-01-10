@@ -9,6 +9,8 @@ import { useOptimizelyOne } from '@remkoj/optimizely-one-nextjs/client'
 import { useRouter } from "next/navigation"
 import { linkDataToHref } from "@remkoj/optimizely-cms-nextjs/components"
 import { ContentSearchResults } from "@/lib/api/search"
+import { site_search } from "@/flags"
+import useFlag from "@/useFlag"
 
 export type SiteSearchProps = {
     asSearchBox?: boolean
@@ -28,12 +30,13 @@ export const SiteSearch : FunctionComponent<ConfiguredSiteSearchProps> = ({
 }) => {
     const opti = useOptimizelyOne()
     const router = useRouter()
+    const searchConfig = useFlag(site_search, { recent_search_count, show_recent_searches, use_personalization: false, interest_boost: 1 })
     const [ searchBoxOpen, setSearchBoxOpen ] = useState<boolean>(false)
     const [ quickSearchTerm, setQuickSearchTerm ] = useState<string>('')
     const { isLoading, data } = useQuickSearch(quickSearchTerm)
     const container = useRef<HTMLDivElement | null>(null)
     const resultTerm = data?.term
-    const { data: lastTerms } = useLastTerms(show_recent_searches ? recent_search_count : 0)
+    const { data: lastTerms } = useLastTerms(searchConfig.show_recent_searches ? searchConfig.recent_search_count : 0)
 
     // Close search on click outside of search box
     useEffect(() => {
@@ -95,7 +98,7 @@ export const SiteSearch : FunctionComponent<ConfiguredSiteSearchProps> = ({
             </div> }
         </>)}
         { searchBoxOpen && (isLoading || data ) && <QuickSearchResults isLoading={isLoading} data={data} quickSearchTerm={quickSearchTerm} closeSearch={closeSearch} /> }
-        { show_recent_searches && searchBoxOpen && (!(isLoading || data )) && lastTerms && <LastSearchTerms lastTerms={lastTerms} />}
+        { searchConfig.show_recent_searches && searchBoxOpen && (!(isLoading || data )) && lastTerms && <LastSearchTerms lastTerms={lastTerms} />}
     </div>
 }
 SiteSearch.displayName = "Site search"

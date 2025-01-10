@@ -6,6 +6,8 @@ const nextConfig = {
         removeConsole: !isNonProduction
     },
     basePath: "",
+    reactStrictMode: true,
+    generateEtags: true,
     cleanDistDir: true,
     images: {
         loader: 'custom',

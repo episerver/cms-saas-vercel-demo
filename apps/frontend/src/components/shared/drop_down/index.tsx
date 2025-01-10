@@ -75,10 +75,18 @@ export const DropDown : FunctionComponent<DropDownParameters> = ({
     </Field>
 }
 
-export const UrlParamDropdown : FunctionComponent<Omit<DropDownParameters, 'onChange' | 'value'> & { urlSearchParam: string, defaultValue?: DropDownOption['value'] }> = ({ 
+type UrlParamDropdownParams = { urlSearchParam: string, defaultValue?: DropDownOption['value'] } & (
+    ({ navigate?: true, scrollTop: boolean, onChange?: never } & Omit<DropDownParameters, 'value' | 'onChange'>) | 
+    ({ navigate?: false, scrollTop?: never } & Omit<DropDownParameters, 'value'>)
+)
+
+export const UrlParamDropdown : FunctionComponent<UrlParamDropdownParams> = ({ 
     options = [],
     urlSearchParam,
     defaultValue,
+    navigate = true,
+    scrollTop = true,
+    onChange,
     ...props 
 }) => {
     const router = useRouter()
@@ -96,10 +104,10 @@ export const UrlParamDropdown : FunctionComponent<Omit<DropDownParameters, 'onCh
         const url = new URL(window.location.href)
         url.searchParams.set(urlSearchParam, value.value)
         const newPath = url.pathname + url.search + url.hash
-        router.push(newPath)
+        router.push(newPath, { scroll: scrollTop })
     }
 
-    return <DropDown options={ options } { ...props } onChange={ nv => updateValue(nv) } value={ currentValue } />
+    return <DropDown options={ options } { ...props } onChange={ nv => navigate ? updateValue(nv) : (onChange && onChange(nv)) } value={ currentValue } />
 }
 
 export default DropDown

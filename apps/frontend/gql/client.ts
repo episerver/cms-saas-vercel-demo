@@ -702,32 +702,8 @@ export const getBlankExperienceMetaDataDocument = gql`
 }
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
-export const getBlogSectionExperienceMetaDataDocument = gql`
-    query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {
-  page: BlogSectionExperience(
-    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}
-    locale: $locale
-  ) {
-    items {
-      _metadata {
-        displayName
-        published
-        url {
-          base
-          default
-        }
-      }
-      seo_data {
-        ...PageSeoSettingsPropertyData
-      }
-    }
-  }
-}
-    ${PageSeoSettingsPropertyDataFragmentDoc}
-${ReferenceDataFragmentDoc}
-${LinkDataFragmentDoc}`;
 export const getChildBlogPostsDocument = gql`
-    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 12, $skip: Int! = 0) {
+    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 9, $skip: Int! = 0) {
   result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {
     items {
       container: _metadata {
@@ -781,6 +757,30 @@ export const getChildBlogPostsDocument = gql`
 }
     ${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}`;
+export const getBlogSectionExperienceMetaDataDocument = gql`
+    query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {
+  page: BlogSectionExperience(
+    where: {_metadata: {key: {eq: $key}, version: {eq: $version}}}
+    locale: $locale
+  ) {
+    items {
+      _metadata {
+        displayName
+        published
+        url {
+          base
+          default
+        }
+      }
+      seo_data {
+        ...PageSeoSettingsPropertyData
+      }
+    }
+  }
+}
+    ${PageSeoSettingsPropertyDataFragmentDoc}
+${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
 export const getBlogPostPageMetaDataDocument = gql`
     query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales!]) {
@@ -1288,11 +1288,11 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);
     },
-    getBlogSectionExperienceMetaData(variables: Schema.getBlogSectionExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogSectionExperienceMetaDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceMetaDataQuery>(getBlogSectionExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogSectionExperienceMetaData', 'query', variables);
-    },
     getChildBlogPosts(variables: Schema.getChildBlogPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getChildBlogPostsQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getChildBlogPostsQuery>(getChildBlogPostsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getChildBlogPosts', 'query', variables);
+    },
+    getBlogSectionExperienceMetaData(variables: Schema.getBlogSectionExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogSectionExperienceMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceMetaDataQuery>(getBlogSectionExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogSectionExperienceMetaData', 'query', variables);
     },
     getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogPostPageMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>(getBlogPostPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogPostPageMetaData', 'query', variables);
