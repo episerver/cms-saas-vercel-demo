@@ -8,7 +8,6 @@ import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { urlToRelative } from "@/components/shared/cms_link";
 import Link from 'next/link'
 import Card from "@/components/shared/card";
-//import { RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { CmsImage } from "@/components/shared/cms_image";
 import { DateDisplay } from "@/components/shared/date";
 
@@ -16,9 +15,16 @@ import { DateDisplay } from "@/components/shared/date";
  * Article List
  * Show an article listing
  */
-export const ArticleListElementElement : CmsComponent<ArticleListElementDataFragment> = async ({ data: {
+export const ArticleListElementElement : CmsComponent<ArticleListElementDataFragment & { 
+    /**
+     * Allow hiding of specific articles when rendering this element directly
+     * within the application.
+     */
+    excludeKeys?: string[] 
+}> = async ({ data: {
     articleListCount = 3,
-    topics = []
+    topics = [],
+    excludeKeys = []
 },
 contentLink: {
     key,
@@ -28,7 +34,8 @@ contentLink: {
     const articles = ((await sdk.getArticleListElementItems({ 
         count: articleListCount || 3,
         locale: locale as InputMaybe<Locales> | undefined,
-        topics
+        topics,
+        excludeKeys
     }).catch(e => {
         console.error(`Error fetching articles: ${ e?.message ?? "" }`, e)
         return

@@ -654,12 +654,12 @@ export const PageDataFragmentDoc = gql`
 }
     `;
 export const getArticleListElementItemsDocument = gql`
-    query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [String]) {
+    query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [String], $excludeKeys: [String]) {
   BlogPostPage(
     orderBy: {_metadata: {published: DESC}}
     limit: $count
     locale: $locale
-    where: {_metadata: {status: {eq: "Published"}}, Topic: {in: $topics}}
+    where: {_metadata: {status: {eq: "Published"}, key: {notIn: $excludeKeys}}, Topic: {in: $topics}}
   ) {
     items {
       ...IContentData

@@ -60,7 +60,8 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = async 
       <div className="outer-padding">
         <ArticleListElementElement contentLink={{key: null}} inEditMode={false} data={{
           articleListCount: 3,
-          topics
+          topics,
+          excludeKeys: contentLink.key ? [contentLink.key] : []
         }} />
       </div>
       

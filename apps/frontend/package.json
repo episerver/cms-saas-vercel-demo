@@ -41,7 +41,7 @@
     "entities": "^6.0.0",
     "eslint": "8.57.1",
     "eslint-config-next": "14.2.23",
-    "framer-motion": "^11.16.4",
+    "framer-motion": "^11.17.0",
     "graphql": "^16.10.0",
     "graphql-request": "^6.1.0",
     "graphql-tag": "^2.12.6",
