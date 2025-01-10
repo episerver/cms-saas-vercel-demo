@@ -44,6 +44,13 @@ enum WidthClasses {
     container = "container mx-auto"
 }
 
+enum TextClasses {
+    inherit = "",
+    light = "with-light-text",
+    lightShadow = "with-light-text with-text-shadow",
+    dark = "with-dark-text"
+}
+
 export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, layoutProps, children }) => {
     const { 
         contentSpacing = "none", 
@@ -51,7 +58,8 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
         alignContent = "start", 
         verticalSpacing = "small",
         showAsRowFrom = "lg",
-        maxWidth = "full"
+        maxWidth = "full",
+        textColor = "inherit"
     } = extractSettings(layoutProps)
 
     const spacing = ContentSpacingClasses[contentSpacing] ?? ''
@@ -60,8 +68,11 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
     const vertical = VerticalSpacingClasses[verticalSpacing] ?? ''
     const rowFrom = RowFromClasses[showAsRowFrom] ?? ''
     const width = WidthClasses[maxWidth] ?? ''
+    const text = TextClasses[textColor] ?? ''
 
-    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width }`}>{ children }</div>);
+    console.log(textColor, text)
+
+    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width } ${ text }`}>{ children }</div>);
 }
 
 export default DefaultRow;

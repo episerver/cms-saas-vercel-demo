@@ -74,6 +74,40 @@
     @apply uppercase text-xl tracking-[1px];
   }
 
+  // Text color overrides
+  .with-light-text {
+    --text-main: var(--white);
+    --text-dark: var(--white);
+
+    @apply apply-text;
+  }
+  .with-dark-text {
+    --text-main: var(--vulcan);
+    --text-dark: var(--vulcan);
+
+    @apply apply-text;
+  }
+  .with-text-shadow {
+    text-shadow: 0.1rem 0.1rem 0.5rem var(--vulcan);
+  }
+
+  .apply-text {
+    @apply 
+      text-[var(--text-main)] 
+      dark:text-[var(--text-dark)] 
+      prose-blockquote:text-[var(--text-main)] 
+      dark:prose-blockquote:text-[var(--text-dark)]
+      prose-figcaption:text-[var(--text-main)] 
+      dark:prose-figcaption:text-[var(--text-dark)];
+  }
+
+  .apply-background {
+    @apply 
+      bg-[var(--bg-main)] 
+      dark:bg-[var(--bg-dark)] 
+      dark:border-[var(--border-dark)] 
+  }
+
   // Fully styled classes
   .on-base {
     --bg-main: var(--ghost-white);

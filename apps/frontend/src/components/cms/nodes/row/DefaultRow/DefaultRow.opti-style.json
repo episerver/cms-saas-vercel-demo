@@ -141,6 +141,28 @@
           "sortOrder": 10
         }
       }
+    },
+    "textColor": {
+      "displayName": "Text color",
+      "sortOrder": 60,
+      "choices": {
+        "inherit": {
+          "displayName": "Inherit from parent [default]",
+          "sortOrder": 10
+        },
+        "light": {
+          "displayName": "Always light (for dark backgrounds)",
+          "sortOrder": 20
+        },
+        "lightShadow": {
+          "displayName": "Always light with shadow (for image backgrounds)",
+          "sortOrder": 30
+        },
+        "dark": {
+          "displayName": "Always dark (for light backgrounds)",
+          "sortOrder": 40
+        }
+      }
     }
   }
 }
