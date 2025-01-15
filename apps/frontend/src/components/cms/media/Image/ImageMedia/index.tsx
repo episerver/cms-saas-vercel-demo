@@ -3,7 +3,7 @@ import { ImageMediaComponentDataFragmentDoc, type ImageMediaComponentDataFragmen
 import Image from "next/image";
 
 export const ImageMedia : CmsComponent<ImageMediaComponentDataFragment> = ({data, contentLink}) => {
-    const alt : string = data.AltText || data.meta?.name || ""
+    const alt : string = data.alt || data.meta?.name || ""
     const url : string | null | undefined = data.meta?.url?.default
 
     if (!url)
