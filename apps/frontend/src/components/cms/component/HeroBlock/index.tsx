@@ -1,177 +1,133 @@
-import { useMemo } from 'react'
-import Image from "next/image"
-import { CmsEditable, type CmsComponent } from "@remkoj/optimizely-cms-react/rsc"
-import { HeroBlockDataFragmentDoc, ButtonBlockPropertyDataFragmentDoc, ReferenceDataFragmentDoc, LinkDataFragmentDoc, type HeroBlockDataFragment } from "@/gql/graphql"
-import { getFragmentData } from "@gql/fragment-masking"
-import ButtonBlock from "../ButtonBlock"
+//import { useMemo } from 'react'
+import Image from "next/image";
+import {
+  CmsEditable,
+  type CmsComponent,
+  RichText,
+} from "@remkoj/optimizely-cms-react/rsc";
+import {
+  HeroBlockDataFragmentDoc,
+  ButtonBlockPropertyDataFragmentDoc,
+  ReferenceDataFragmentDoc,
+  LinkDataFragmentDoc,
+  type HeroBlockDataFragment,
+} from "@/gql/graphql";
+import { getFragmentData } from "@gql/fragment-masking";
+import ButtonBlock from "../ButtonBlock";
+
+const ColorClasses = {
+  "dark-blue": "on-vulcan",
+  blue: "on-azure",
+  orange: "on-tangy",
+  green: "on-verdansk",
+  red: "on-paleruby",
+  purple: "on-people-eater",
+};
 
 /**
  * Hero
  * Hero
  */
-export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({ 
-    data: {
-        heroImage: image,
-        eyebrow = "",
-        heroHeading: heading = "",
-        heroDescription: description = { html: "", structure: "{}"},
-        heroColor: color = "blue",
-        heroButton = null
-    },
-    inEditMode,
-    contentLink
+export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
+  data: {
+    heroImage: image,
+    eyebrow = "",
+    heroHeading: heading = "",
+    heroDescription: description = { html: "", json: "{}" },
+    heroColor: color = "blue",
+    heroButton = null,
+  },
+  inEditMode,
+  contentLink,
 }) => {
-  const heroImage = getFragmentData(ReferenceDataFragmentDoc, image)
-  const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url)
-  const heroImageSrc = new URL(heroImageLink?.default ?? '/', heroImageLink?.base ?? 'https://example.com').href
-  const button = getFragmentData(ButtonBlockPropertyDataFragmentDoc, heroButton)
-  const hasImage = heroImageLink != null && heroImageLink != undefined
-
-  // Determine the classes based upon color and button being available
-  const [additionalClasses, innerClasses, buttonClassName] = useMemo<[Array<string>,Array<string>, string]>(() => {
-    const _additionalClasses: string[] = [];
-    const _innerClasses: string[] = [];
-    let _buttonClassName = "";
-    switch (color) {
-      case "dark-blue":
-        _additionalClasses.push("bg-vulcan dark:bg-transparent");
-        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-        if (button) {
-          _buttonClassName = "btn--light";
-        }
-        break;
-      case "blue":
-        _additionalClasses.push("bg-azure dark:bg-transparent");
-        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-        if (button) {
-          _buttonClassName = "btn--light";
-        }
-        break;
-      case "orange":
-        _additionalClasses.push("bg-tangy dark:bg-transparent");
-        _innerClasses.push(
-          "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
-        );
-        if (button) {
-          _buttonClassName = "btn--dark ";
-        }
-        break;
-      case "green":
-        _additionalClasses.push("bg-verdansk dark:bg-transparent");
-        _innerClasses.push(
-          "text-vulcan prose-h3:text-vulcan prose-h2:text-vulcan"
-        );
-        if (button) {
-          _buttonClassName = "btn--dark";
-        }
-        break;
-      case "red":
-        _additionalClasses.push("bg-paleruby dark:bg-transparent");
-        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-        if (button) {
-          _buttonClassName = "btn--light";
-        }
-        break;
-      case "purple":
-        _additionalClasses.push("bg-people-eater dark:bg-transparent");
-        _innerClasses.push("text-white prose-h3:text-white prose-h2:text-white");
-        if (button) {
-          _buttonClassName = "btn--light";
-        }
-        break;
-    }
-    return [ _additionalClasses, _innerClasses, _buttonClassName ]
-  }, [ color, button ])
+  const heroImage = getFragmentData(ReferenceDataFragmentDoc, image);
+  const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url);
+  const heroImageSrc = new URL(
+    heroImageLink?.default ?? "/",
+    heroImageLink?.base ?? "https://example.com",
+  ).href;
+  const button = getFragmentData(
+    ButtonBlockPropertyDataFragmentDoc,
+    heroButton,
+  );
+  const hasImage = heroImageLink != null && heroImageLink != undefined;
 
   return (
-    <CmsEditable 
+    <CmsEditable
       as="section"
-      className={`outer-padding py-16 lg:py-32 ${additionalClasses.join(" ")}`}
-      cmsId={ contentLink.key }
+      className={`py-8 lg:py-16 ${ColorClasses[color || "blue"]}`}
+      cmsId={contentLink.key}
     >
-      <div className={`w-full @container/card container mx-auto`}>
+      <div className={`w-full @container/card container px-8 mx-auto`}>
         <div
           className={`w-full h-full grid items-center grid-cols-1 ${
             hasImage
-              ? "gap-16 @[40rem]/card:grid-cols-12 @[40rem]/card:gap-32"
+              ? "gap-8 @[40rem]/card:grid-cols-2 @[80rem]/card:gap-16"
               : ""
           }`}
         >
           <div
-            className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${
-              hasImage ? "@[40rem]/card:col-span-6" : "max-w-[900px] mx-auto"
-            } ${innerClasses.join(" ")}`}
+            className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${hasImage ? "" : "max-w-[900px] mx-auto"}`}
           >
-            {eyebrow ? (
+            {(inEditMode || eyebrow) && (
+              <CmsEditable as="p" cmsFieldName="Eyebrow" className="eyebrow">
+                {eyebrow || "+ Add Eyebrow"}
+              </CmsEditable>
+            )}
+            {(inEditMode || heading) && (
+              <CmsEditable as="h1" cmsFieldName="Heading">
+                {heading || "+ Add Heading"}
+              </CmsEditable>
+            )}
+            {description?.json ? (
               <CmsEditable
-                as="p" 
-                cmsFieldName="Eyebrow"
-                className="eyebrow"
-                dangerouslySetInnerHTML={{ __html: eyebrow }}
+                as={RichText}
+                text={description.json}
+                cmsFieldName="Description"
               />
-            ) : inEditMode && !eyebrow ? (
-              <div className="mt-8 flex justify-end">
-                <div data-epi-edit={inEditMode ? "Eyebrow" : undefined}>
-                  + Add Eyebrow
-                </div>
-              </div>
-            ) : null}
-            {heading ? (
-              <h1
-                data-epi-edit={inEditMode ? "Heading" : undefined}
-                dangerouslySetInnerHTML={{ __html: heading }}
-              ></h1>
-            ) : inEditMode && !heading ? (
-              <div className="mt-8 flex justify-end">
-                <div data-epi-edit={inEditMode ? "Heading" : undefined}>
-                  + Add Heading
-                </div>
-              </div>
-            ) : null}
-            {description?.html ? (
-              <div
-                data-epi-edit={inEditMode ? "Description" : undefined}
-                dangerouslySetInnerHTML={{ __html: description?.html ?? "" }}
-              ></div>
-            ) : inEditMode && !description?.html ? (
-              <div className="mt-8 flex justify-end">
+            ) : (
+              inEditMode &&
+              !description?.json && (
                 <div data-epi-edit={inEditMode ? "Description" : undefined}>
                   + Add Description
                 </div>
-              </div>
-            ) : null}
+              )
+            )}
             {button && button.children ? (
-              <ButtonBlock
-                data-epi-edit={inEditMode ? "HeroButton" : undefined}
-                {...button}
-                className={buttonClassName}
-              ></ButtonBlock>
-            ) : inEditMode && !(button && button.children) ? (
-              <div className="mt-8 flex justify-end">
-                <ButtonBlock
-                  buttonType={"secondary"}
-                  buttonVariant={"cta"}
-                  data-epi-edit={inEditMode ? "HeroButton" : undefined}
-                >
-                  + Add Button
-                </ButtonBlock>
-              </div>
-            ) : null}
+              <CmsEditable
+                as={ButtonBlock}
+                cmsFieldName="HeroButton"
+                data={button}
+                inEditMode={false}
+                contentLink={{ key: null }}
+              />
+            ) : (
+              inEditMode &&
+              !(button && button.children) && (
+                <div className="mt-8 flex justify-end">
+                  <ButtonBlock
+                    buttonType={"secondary"}
+                    buttonVariant={"cta"}
+                    data-epi-edit={inEditMode ? "HeroButton" : undefined}
+                  >
+                    + Add Button
+                  </ButtonBlock>
+                </div>
+              )
+            )}
           </div>
           {hasImage ? (
-            <div
-              className={`@[40rem]/card:col-span-3 order-first lg:order-last`}
-            >
+            <div className={`order-first @[40rem]/card:order-last`}>
               <Image
                 data-epi-edit={inEditMode ? "HeroImage" : undefined}
                 className="rounded-[2rem] w-full"
-                src={ heroImageSrc }
+                src={heroImageSrc}
                 alt={""}
                 width={600}
                 height={500}
               />
             </div>
-          ) : inEditMode && !( hasImage ) ? (
+          ) : inEditMode && !hasImage ? (
             <div className="mt-8 flex justify-end">
               <ButtonBlock
                 buttonType={"primary"}
@@ -186,8 +142,11 @@ export const HeroBlockComponent : CmsComponent<HeroBlockDataFragment> = ({
       </div>
     </CmsEditable>
   );
-}
-HeroBlockComponent.displayName = "Hero (Component/HeroBlock)"
-HeroBlockComponent.getDataFragment = () => ['HeroBlockData', HeroBlockDataFragmentDoc]
+};
+HeroBlockComponent.displayName = "Hero (Component/HeroBlock)";
+HeroBlockComponent.getDataFragment = () => [
+  "HeroBlockData",
+  HeroBlockDataFragmentDoc,
+];
 
-export default HeroBlockComponent
+export default HeroBlockComponent;

@@ -5,6 +5,7 @@ import NodeComponent from "./node";
 import SectionFactory from "./section";
 import PageFactory from "./page";
 import NodesFactory from "./nodes";
+import MediaFactory from "./media";
 import ExperienceFactory from "./experience";
 import ComponentFactory from "./component";
 
@@ -12,6 +13,8 @@ import ComponentFactory from "./component";
 prefixDictionaryEntries(SectionFactory, "Section");
 prefixDictionaryEntries(PageFactory, "Page");
 prefixDictionaryEntries(NodesFactory, "Nodes");
+prefixDictionaryEntries(MediaFactory, "Media");
+prefixDictionaryEntries(MediaFactory, "Component");
 prefixDictionaryEntries(ExperienceFactory, "Experience");
 prefixDictionaryEntries(ExperienceFactory, "Page");
 prefixDictionaryEntries(ComponentFactory, "Component");
@@ -25,6 +28,7 @@ export const CmsFactory : ComponentTypeDictionary = [
     ...SectionFactory,
     ...PageFactory,
     ...NodesFactory,
+    ...MediaFactory,
     ...ExperienceFactory,
     ...ComponentFactory
 ];

@@ -70,8 +70,6 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
     const width = WidthClasses[maxWidth] ?? ''
     const text = TextClasses[textColor] ?? ''
 
-    console.log(textColor, text)
-
     return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width } ${ text }`}>{ children }</div>);
 }
 

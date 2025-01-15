@@ -28,9 +28,9 @@
   .btn--secondary {
     @apply btn;
   }
-  .btn--default {
-    @apply btn-before btn-before--hover active:translate-y-[4px] active:before:translate-y-0 transition-transform duration-300 ease-in-out;
-  }
+//  .btn--default {
+//    @apply btn-before btn-before--hover active:translate-y-[4px] active:before:translate-y-0 transition-transform duration-300 ease-in-out;
+//  }
   .btn--cta {
     @apply btn-before before:translate-x-[8px] before:translate-y-[8px] hover:before:translate-x-[0px] hover:before:translate-y-[0px];
   }

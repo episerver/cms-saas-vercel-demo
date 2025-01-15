@@ -132,10 +132,24 @@ export const IContentListItemFragmentDoc = gql`
   ...IContentData
 }
     `;
-export const CarouselBlockDataFragmentDoc = gql`
-    fragment CarouselBlockData on CarouselBlock {
-  CarouselItemsContentArea {
-    ...IContentListItem
+export const ImageMediaComponentDataFragmentDoc = gql`
+    fragment ImageMediaComponentData on ImageMedia {
+  alt: AltText
+  meta: _metadata {
+    url {
+      default
+    }
+    name: displayName
+  }
+}
+    `;
+export const VideoMediaComponentDataFragmentDoc = gql`
+    fragment VideoMediaComponentData on VideoMedia {
+  meta: _metadata {
+    url {
+      default
+    }
+    name: displayName
   }
 }
     `;
@@ -225,10 +239,14 @@ export const LayoutSettingsBlockDataFragmentDoc = gql`
     fragment LayoutSettingsBlockData on LayoutSettingsBlock {
   mainMenu {
     ...IContentListItem
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
   }
   contactInfoHeading
   serviceButtons {
     ...IContentListItem
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
   }
   contactInfo {
     json
@@ -236,6 +254,8 @@ export const LayoutSettingsBlockDataFragmentDoc = gql`
   }
   footerMenus {
     ...IContentListItem
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
   }
   copyright
   legalLinks {
@@ -399,6 +419,41 @@ export const LayoutContainerBlockDataFragmentDoc = gql`
   marginBottom: ContainerMarginBottom
   paddingBottom: ContainerPaddingBottom
   paddingTop: ContainerPaddingTop
+}
+    `;
+export const CarouselBlockDataFragmentDoc = gql`
+    fragment CarouselBlockData on CarouselBlock {
+  CarouselItemsContentArea {
+    ...IContentListItem
+    ...BlockData
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
+    ...ArticleListElementData
+    ...BlogListingBlockData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CardBlockData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
+    ...HeroBlockData
+    ...HomePageHeroBlockData
+    ...HtmlBlockData
+    ...ImageElementData
+    ...LayoutContainerBlockData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
+  }
 }
     `;
 export const CompositionDataFragmentDoc = gql`
@@ -1183,6 +1238,8 @@ ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
+${ImageMediaComponentDataFragmentDoc}
+${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
@@ -1253,6 +1310,8 @@ ${CTAElementDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
 ${IContentListItemFragmentDoc}
+${ImageMediaComponentDataFragmentDoc}
+${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}

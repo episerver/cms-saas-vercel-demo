@@ -5,6 +5,14 @@ import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { refToURL } from "@/lib/conversions"
 
+const CardColors = {
+  blue: "on-vulcan",
+  orange: "on-tangy",
+  green: "on-verdansk",
+  red: "on-paleruby",
+  white: "on-white"
+}
+
 /**
  * React functional component for rendering a quote block with user information.
  *
@@ -15,11 +23,10 @@ import { refToURL } from "@/lib/conversions"
  * @return {JSX.Element} the rendered quote block component
  */
 const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
-  data,
+  data: { profilePicture, name, location, quote, color, active },
   inEditMode,
-}): JSX.Element => {
-  const { profilePicture, name, location, quote, color, active } = data;
-  const additionalClasses: string[] = [];
+}) => {
+  const additionalClasses: string[] = [CardColors[color || "white"]];
 
   if (active) {
     additionalClasses.push(
@@ -27,23 +34,7 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
     );
   }
 
-  switch (color) {
-    case "blue":
-      additionalClasses.push("bg-vulcan text-white dark:bg-vulcan-85");
-      break;
-    case "orange":
-      additionalClasses.push("bg-tangy text-vulcan");
-      break;
-    case "green":
-      additionalClasses.push("bg-verdansk text-vulcan");
-      break;
-    case "red":
-      additionalClasses.push("bg-paleruby text-white");
-      break;
-    case "white":
-      additionalClasses.push("bg-white text-vulcan");
-      break;
-  }
+
 
   const profileUrl = refToURL(profilePicture)
 

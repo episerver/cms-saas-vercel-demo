@@ -7,7 +7,8 @@ export const DefaultCTAElement : CTAElementDefaultStylesComponent<CTAElementData
     const { 
         buttonAlign = "auto", 
         buttonType ="primary", 
-        buttonColor = "default" 
+        buttonColor = "default",
+        buttonVariant = "default" 
     } = extractSettings(layoutProps)
     const cssClasses : (string | undefined)[] = [ "block w-fit", className ] 
     switch (buttonAlign) {
@@ -25,5 +26,5 @@ export const DefaultCTAElement : CTAElementDefaultStylesComponent<CTAElementData
             break;
     }
     
-    return <Button { ...containerProps } href={link} containerClassName='py-4' className={ cssClasses.join(' ') } text={text} buttonType={ buttonType } buttonColor={ buttonColor } />
+    return <Button { ...containerProps } href={link} containerClassName='py-4' className={ cssClasses.join(' ') } text={text} buttonType={ buttonType } buttonColor={ buttonColor } buttonVariant={buttonVariant} />
 }

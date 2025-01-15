@@ -36,6 +36,7 @@ export const AnimatedCTAElement : CTAElementAnimatedStylesComponent<CTAElementDa
     const { 
         buttonAlign = "auto", 
         buttonType = "primary", 
+        buttonVariant = "default",
         delay = "none", 
         duration = "none" 
     } = extractSettings(layoutProps)
@@ -47,7 +48,7 @@ export const AnimatedCTAElement : CTAElementAnimatedStylesComponent<CTAElementDa
     
     
     return <Animate initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: animDuration, delay: animDelay }} className='relative w-full'>
-        <Button href={link} className={ cssClasses.join(' ') } text={text} buttonType={buttonType} { ...containerProps } />
+        <Button href={link} className={ cssClasses.join(' ') } text={text} buttonType={buttonType} buttonVariant={buttonVariant} { ...containerProps } />
     </Animate>
 }
 

@@ -4,7 +4,7 @@ import React, { useState, useEffect, type FunctionComponent, type PropsWithChild
 import { motion } from "framer-motion";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
 import type { ContentLinkWithLocale, InlineContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
-import { type Schema } from '@gql'
+import type * as Schema from '@gql/graphql'
 
 type CarouselProps = PropsWithChildren<{
   data: Schema.CarouselBlockDataFragment & { itemCount: number }

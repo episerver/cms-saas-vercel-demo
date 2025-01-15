@@ -73,6 +73,12 @@ const config: CodegenConfig = {
                     {
                         into: "SearchData",
                         pathRegex: "src\/components\/cms\/.*\.search\.graphql"
+                    },
+
+                    // Implementation Specific: Add ContentArea items
+                    {
+                        into: "IContentListItem",
+                        pathRegex: "src\/components\/cms\/.*\.contentarea\.graphql"
                     }
 
                 ]
