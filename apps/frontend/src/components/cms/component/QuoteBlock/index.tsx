@@ -1,9 +1,9 @@
 import React from "react";
 import { type QuoteBlockDataFragment, QuoteBlockDataFragmentDoc} from "@gql/graphql";
 import Image from "next/image";
-import { gql } from "@gql/gql";
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { refToURL } from "@/lib/conversions"
+import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 
 const CardColors = {
   blue: "on-vulcan",
@@ -24,7 +24,6 @@ const CardColors = {
  */
 const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
   data: { profilePicture, name, location, quote, color, active },
-  inEditMode,
 }) => {
   const additionalClasses: string[] = [CardColors[color || "white"]];
 
@@ -34,52 +33,38 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
     );
   }
 
-
-
   const profileUrl = refToURL(profilePicture)
 
   return (
     <figure
-      className={`p-8 lg:p-24 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
+      className={`p-4 lg:p-12 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
         " "
       )}`}
     >
-      <blockquote
-        data-epi-edit={inEditMode ? "QuoteText" : undefined}
-        className="text-[18px] lg:text-[24px]"
-      >
+      <CmsEditable as="blockquote" cmsFieldName="QuoteText" className="text-lg">
         {quote}
-      </blockquote>
-      <figcaption className="flex items-center mt-16">
+      </CmsEditable>
+      <figcaption className="flex items-center mt-8">
         {profileUrl && (
-          <Image
-            data-epi-edit={inEditMode ? "QuoteProfilePicture" : undefined}
+          <CmsEditable 
+            as={Image}
+            cmsFieldName="QuoteProfilePicture"
             src={ profileUrl.href }
             alt={name ?? ""}
             width={200}
             height={200}
-            className="rounded-full max-w-24"
+            className="rounded-full max-w-12 mr-4"
           />
         )}
 
-        <cite className="ml-4 lg:flex not-italic">
-          <p
-            data-epi-edit={inEditMode ? "QuoteProfileName" : undefined}
-            className="whitespace-nowrap"
-          >
-            {name}
-          </p>
-          {location && (
+        <cite className="lg:flex not-italic">
+          <CmsEditable as="p" cmsFieldName="QuoteProfileName" className="whitespace-nowrap">{name}</CmsEditable>
+          {location && <>
             <span className="mx-2 hidden lg:inline-block">&mdash;</span>
-          )}
-          {location ? (
-            <p
-              data-epi-edit={inEditMode ? "QuoteProfileLocation" : undefined}
-              className="text-[12px] lg:text-[16px]"
-            >
+            <CmsEditable cmsFieldName="QuoteProfileLocation" className="text-xs mt-1">
               {location}
-            </p>
-          ) : null}
+            </CmsEditable>
+          </>}
         </cite>
       </figcaption>
     </figure>

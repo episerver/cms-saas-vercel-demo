@@ -27,7 +27,7 @@ export const MobileMenu : FunctionComponent<MobileMenuProps> = ({ menuItems, ser
                 <hr />
                 <div className="py-4 gap-4 flex flex-row flex-wrap justify-between">
                     <CmsContentArea items={ serviceItems } noWrapper variant="mobile" />
-                    <div><ThemePicker /></div>
+                    <div className="min-w-20"><ThemePicker /></div>
                 </div>
             </div>
         </PopoverPanel>

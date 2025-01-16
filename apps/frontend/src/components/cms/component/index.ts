@@ -28,6 +28,10 @@ import ButtonBlockComponent from "./ButtonBlock";
 import BlogListingBlockComponent from "./BlogListingBlock";
 import ArticleListElementComponent from "./ArticleListElement";
 import ArticleListElementLoader from "./ArticleListElement/loading";
+import ComponentPageFactory from "./Page";
+
+// Prefix entries - if needed
+prefixDictionaryEntries(ComponentPageFactory, "Page");
 
 // Build dictionary
 export const ComponentFactory : ComponentTypeDictionary = [
@@ -136,8 +140,18 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: ArticleListElementComponent,
         useSuspense: true,
         loader: ArticleListElementLoader
-    }
+    },
+    ...ComponentPageFactory
 ];
 
 // Export dictionary
 export default ComponentFactory;
+
+// Helper functions
+function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary
+{
+    list.forEach((component, idx, dictionary) => {
+        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [ prefix, ...component.type ]
+    });
+    return list;
+}

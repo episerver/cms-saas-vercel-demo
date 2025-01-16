@@ -8,5 +8,6 @@ fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
     ...IContentData
     ...MenuNavigationBlockData
     ...CardBlockData
+    ...BlogPostPageMenuBlock
   }
 }

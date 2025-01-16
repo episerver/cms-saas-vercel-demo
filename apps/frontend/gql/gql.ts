@@ -31,9 +31,10 @@ const documents = {
     "fragment ImageElementData on ImageElement {\n  altText\n  imageLink {\n    ...ReferenceData\n  }\n}": types.ImageElementDataFragmentDoc,
     "fragment LayoutContainerBlockData on LayoutContainerBlock {\n  columns: ColumnsCount\n  gap: GapSize\n  LayoutContentArea {\n    ...BlockData\n  }\n  containerColor: ContainerBackgroundColor\n  backgroundImage: ContainerBackgroundImage {\n    ...ReferenceData\n  }\n  marginTop: ContainerMarginTop\n  marginBottom: ContainerMarginBottom\n  paddingBottom: ContainerPaddingBottom\n  paddingTop: ContainerPaddingTop\n}": types.LayoutContainerBlockDataFragmentDoc,
     "fragment LayoutSettingsBlockData on LayoutSettingsBlock {\n  mainMenu {\n    ...IContentListItem\n  }\n  contactInfoHeading\n  serviceButtons {\n    ...IContentListItem\n  }\n  contactInfo {\n    json\n    html\n  }\n  footerMenus {\n    ...IContentListItem\n  }\n  copyright\n  legalLinks {\n    ...LinkItemData\n  }\n  appIdentifiers\n}": types.LayoutSettingsBlockDataFragmentDoc,
-    "fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n  }\n}": types.MegaMenuGroupBlockDataFragmentDoc,
+    "fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n    ...BlogPostPageMenuBlock\n  }\n}": types.MegaMenuGroupBlockDataFragmentDoc,
     "fragment MenuNavigationBlockData on MenuNavigationBlock {\n  _metadata {\n    displayName\n  }\n  MenuNavigationHeading\n  NavigationLinks {\n    ...LinkItemData\n  }\n}": types.MenuNavigationBlockDataFragmentDoc,
     "fragment OdpEmbedBlockData on OdpEmbedBlock {\n  ContentId\n}": types.OdpEmbedBlockDataFragmentDoc,
+    "fragment BlogPostPageMenuBlock on BlogPostPage {\n  meta: _metadata {\n    published\n    url {\n      ...LinkData\n    }\n  }\n  topics: Topic\n  heading: Heading\n  author: ArticleAuthor\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  sharing: SeoSettings {\n    description: MetaDescription\n    image: SharingImage {\n      ...ReferenceData\n    }\n  }\n}": types.BlogPostPageMenuBlockFragmentDoc,
     "fragment PageSeoSettingsData on PageSeoSettings {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsDataFragmentDoc,
     "fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {\n  MetaTitle\n  MetaDescription\n  MetaKeywords\n  SharingImage {\n    ...ReferenceData\n  }\n  GraphType\n}": types.PageSeoSettingsPropertyDataFragmentDoc,
     "fragment ParagraphElementData on ParagraphElement {\n  text {\n    json\n  }\n}": types.ParagraphElementDataFragmentDoc,
@@ -155,7 +156,7 @@ export function gql(source: "fragment LayoutSettingsBlockData on LayoutSettingsB
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
-export function gql(source: "fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n  }\n}"): (typeof documents)["fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n  }\n}"];
+export function gql(source: "fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n    ...BlogPostPageMenuBlock\n  }\n}"): (typeof documents)["fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {\n  _metadata {\n    displayName\n  }\n  MenuMenuHeading\n  MegaMenuUrl {\n    ...LinkData\n  }\n  MegaMenuContentArea {\n    ...IContentData\n    ...MenuNavigationBlockData\n    ...CardBlockData\n    ...BlogPostPageMenuBlock\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
@@ -164,6 +165,10 @@ export function gql(source: "fragment MenuNavigationBlockData on MenuNavigationB
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */
 export function gql(source: "fragment OdpEmbedBlockData on OdpEmbedBlock {\n  ContentId\n}"): (typeof documents)["fragment OdpEmbedBlockData on OdpEmbedBlock {\n  ContentId\n}"];
+/**
+ * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
+ */
+export function gql(source: "fragment BlogPostPageMenuBlock on BlogPostPage {\n  meta: _metadata {\n    published\n    url {\n      ...LinkData\n    }\n  }\n  topics: Topic\n  heading: Heading\n  author: ArticleAuthor\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  sharing: SeoSettings {\n    description: MetaDescription\n    image: SharingImage {\n      ...ReferenceData\n    }\n  }\n}"): (typeof documents)["fragment BlogPostPageMenuBlock on BlogPostPage {\n  meta: _metadata {\n    published\n    url {\n      ...LinkData\n    }\n  }\n  topics: Topic\n  heading: Heading\n  author: ArticleAuthor\n  image: BlogPostPromoImage {\n    ...ReferenceData\n  }\n  sharing: SeoSettings {\n    description: MetaDescription\n    image: SharingImage {\n      ...ReferenceData\n    }\n  }\n}"];
 /**
  * The gql function is used to parse GraphQL queries into a document that can be used by GraphQL clients.
  */

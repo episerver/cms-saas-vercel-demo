@@ -275,6 +275,28 @@ export const MenuNavigationBlockDataFragmentDoc = gql`
   }
 }
     `;
+export const BlogPostPageMenuBlockFragmentDoc = gql`
+    fragment BlogPostPageMenuBlock on BlogPostPage {
+  meta: _metadata {
+    published
+    url {
+      ...LinkData
+    }
+  }
+  topics: Topic
+  heading: Heading
+  author: ArticleAuthor
+  image: BlogPostPromoImage {
+    ...ReferenceData
+  }
+  sharing: SeoSettings {
+    description: MetaDescription
+    image: SharingImage {
+      ...ReferenceData
+    }
+  }
+}
+    `;
 export const MegaMenuGroupBlockDataFragmentDoc = gql`
     fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
   _metadata {
@@ -288,6 +310,7 @@ export const MegaMenuGroupBlockDataFragmentDoc = gql`
     ...IContentData
     ...MenuNavigationBlockData
     ...CardBlockData
+    ...BlogPostPageMenuBlock
   }
 }
     `;
@@ -1038,6 +1061,7 @@ ${MenuNavigationBlockDataFragmentDoc}
 ${LinkItemDataFragmentDoc}
 ${CardBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
+${BlogPostPageMenuBlockFragmentDoc}
 ${ButtonBlockDataFragmentDoc}`;
 export const getLocalesDocument = gql`
     query getLocales {
@@ -1252,6 +1276,7 @@ ${LayoutSettingsBlockDataFragmentDoc}
 ${LinkItemDataFragmentDoc}
 ${MegaMenuGroupBlockDataFragmentDoc}
 ${MenuNavigationBlockDataFragmentDoc}
+${BlogPostPageMenuBlockFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}
@@ -1324,6 +1349,7 @@ ${LayoutSettingsBlockDataFragmentDoc}
 ${LinkItemDataFragmentDoc}
 ${MegaMenuGroupBlockDataFragmentDoc}
 ${MenuNavigationBlockDataFragmentDoc}
+${BlogPostPageMenuBlockFragmentDoc}
 ${OdpEmbedBlockDataFragmentDoc}
 ${PageSeoSettingsDataFragmentDoc}
 ${ParagraphElementDataFragmentDoc}

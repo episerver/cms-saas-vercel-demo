@@ -1,21 +1,31 @@
 "use client";
 
-import React, { useState, useEffect, type FunctionComponent, type PropsWithChildren } from "react";
+import React, {
+  useState,
+  useEffect,
+  type FunctionComponent,
+  type PropsWithChildren,
+} from "react";
 import { motion } from "framer-motion";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
-import type { ContentLinkWithLocale, InlineContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
-import type * as Schema from '@gql/graphql'
+import type {
+  ContentLinkWithLocale,
+  InlineContentLinkWithLocale,
+} from "@remkoj/optimizely-graph-client";
+import type * as Schema from "@gql/graphql";
 
-type CarouselProps = PropsWithChildren<{
-  data: Schema.CarouselBlockDataFragment & { itemCount: number }
-  inEditMode?: boolean,
-  contentLink?: ContentLinkWithLocale | InlineContentLinkWithLocale | null
-}>
+type CarouselProps = {
+  data: Schema.CarouselBlockDataFragment & { itemCount: number };
+  inEditMode?: boolean;
+  contentLink?: ContentLinkWithLocale | InlineContentLinkWithLocale | null;
+} & Omit<JSX.IntrinsicElements["div"], "className" | "style">;
 
 const Carousel: FunctionComponent<CarouselProps> = ({
   data,
   inEditMode,
   children,
+  contentLink,
+  ...divProps
 }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [itemWidth, setItemWidth] = useState(50);
@@ -28,7 +38,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({
 
   const handleNext = () => {
     setCurrentIndex((prevIndex) =>
-      prevIndex === itemCount - 2 ? itemCount - 2 : prevIndex + 1
+      prevIndex === itemCount - 2 ? itemCount - 2 : prevIndex + 1,
     );
   };
 
@@ -48,6 +58,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({
     <div
       className="overflow-hidden relative w-full my-24 flex flex-col"
       style={{ position: "relative", width: "100%", overflow: "hidden" }}
+      {...divProps}
     >
       <section
         role="navigation"
@@ -62,7 +73,9 @@ const Carousel: FunctionComponent<CarouselProps> = ({
             xmlns="http://www.w3.org/2000/svg"
             style={{ transform: "rotate(180deg)" }}
             className={`${
-              currentIndex === -1 ? "text-mischka dark:text-ghost-white" : "text-vulcan dark:text-light-grey"
+              currentIndex === -1
+                ? "text-mischka dark:text-ghost-white"
+                : "text-vulcan dark:text-light-grey"
             }`}
           >
             <g clipPath="url(#clip0_5_4814)">
@@ -95,7 +108,9 @@ const Carousel: FunctionComponent<CarouselProps> = ({
             fill="none"
             xmlns="http://www.w3.org/2000/svg"
             className={`${
-              currentIndex === itemCount - 2 ? "text-mischka dark:text-light-grey" : "text-vulcan dark:text-ghost-white"
+              currentIndex === itemCount - 2
+                ? "text-mischka dark:text-light-grey"
+                : "text-vulcan dark:text-ghost-white"
             }`}
           >
             <g clipPath="url(#clip0_5_4814)">
