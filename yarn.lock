@@ -2661,7 +2661,7 @@ __metadata:
 
 "@remkoj/optimizely-cms-nextjs@file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.1.0
-  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=1f4df3&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-nextjs@file:./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz#./packages/dist/@remkoj-optimizely-cms-nextjs-dev.tgz::hash=d97417&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     deepmerge: "npm:^4.3.1"
   peerDependencies:
@@ -2671,13 +2671,13 @@ __metadata:
     graphql-request: ^6
     next: ^14
     react: ^18
-  checksum: 10/173dc35fdc857fbe29698d40f3860caaf47837e6dc0b510ffe1cff67fc5f41eda6a89e504b4505952031ff713cf592d150ef35d92306ce9224e3b8076a304a9f
+  checksum: 10/aa4b806c468f12bafc47f8b53fca605dc09bb1bf2264c7c2a5a95fdafe94b634928e780da6ddf08416dac48301101fe6d7b9ac33c1caf81cd10c3e416af87641
   languageName: node
   linkType: hard
 
 "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.1.0
-  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=b6529f&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=7f7068&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2688,7 +2688,7 @@ __metadata:
     graphql-request: ^6
     react: ^18
     react-dom: ^18
-  checksum: 10/e445fac6325607013cbca37794f712ded6e7c7c3f29bc61284f6b49b9759ccae511d9362b78453459d6303f5462523f89424ed65388563b24e9e0301844c31fa
+  checksum: 10/7a941fe50ccbbc0dcb1b465faf7ef65c167c7be9088c2085f6df257475e99389218626deceda5add1098347036e40d5caf7a88823edee252e9a6811b568715dd
   languageName: node
   linkType: hard
 
@@ -2753,12 +2753,12 @@ __metadata:
 
 "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.1.0
-  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=a792a4&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=71141d&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     crypto-js: "npm:^4.2.0"
   peerDependencies:
     graphql-request: ^6
-  checksum: 10/56b3a490cddb60c8b90dd3befb53ab6315b2cf8523f58653275b1cebc702fd1c5a82299a7d733c99019ccdb54c66357a5021fde2ad574f73454546510a7b9b41
+  checksum: 10/f191a9fa3ca98c90e997b48ba6b9f4217d5c5125fbcaf26dbd019c0b0716f49ecb6dd7167276acb6c492d99371e5d31fd5616a976ba2f194b62684668f8f91ad
   languageName: node
   linkType: hard
 

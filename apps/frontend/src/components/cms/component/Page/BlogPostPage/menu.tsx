@@ -3,9 +3,9 @@ import { type BlogPostPageMenuBlockFragment, BlogPostPageMenuBlockFragmentDoc} f
 import { type CmsComponent } from '@remkoj/optimizely-cms-react/rsc';
 import { Card } from '@/components/shared/card'
 import { CmsImage } from '@/components/shared/cms_image'
-import { Button } from '@/components/shared/button'
 import { DateDisplay as Date } from '@/components/shared/date'
 import { linkDataToUrl } from '@/components/shared/cms_link'
+import ItemButton from './_close';
 
 export const BlogPostPageMenuBlock : CmsComponent<BlogPostPageMenuBlockFragment> = ({ data }) => 
 {
@@ -20,7 +20,7 @@ export const BlogPostPageMenuBlock : CmsComponent<BlogPostPageMenuBlockFragment>
                 <div className='text-xs text-independence'><Date value={ data.meta?.published } /></div>
             </div>
             <div>{ data.sharing?.description }</div>
-            <Button className='mt-3' url={linkDataToUrl(linkData)} buttonColor='default' buttonType='primary' buttonVariant='cta' >Continue reading &gt;</Button>
+            <ItemButton className='mt-3' url={linkDataToUrl(linkData)?.toString()} buttonColor='default' buttonType='primary' buttonVariant='cta' >Continue reading &gt;</ItemButton>
         </div>
         <div className='relative not-prose'>
             <CmsImage src={imgData} alt={ data.heading || "" } width={192} height={108} className='rounded-[2rem] w-full'/>

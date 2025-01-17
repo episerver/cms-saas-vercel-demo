@@ -8,6 +8,7 @@ import Footer from "@/components/layout/footer";
 
 // Server side components
 import { EnvTools, Scripts, OptimizelyOneGadget } from "@remkoj/optimizely-one-nextjs/server";
+import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
 // Client side trackers
 import { OptimizelyOneProvider, PageActivator } from "@remkoj/optimizely-one-nextjs/client";
@@ -58,17 +59,20 @@ export type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  const ga_id = EnvTools.readValue("GA_TRACKING_ID");
+  // This will obtain the server context from the page, before the first async function
+  // is invoked
+  const { locale } = getServerContext();
 
   // Allow environment control over whether the WX snippet can be changed by the client
-  const forceDisableOverride = EnvTools.readValueAsBoolean("DISABLE_WX_SWITCHER", false)
+  const forceDisableOverride = EnvTools.readValueAsBoolean("DISABLE_WX_SWITCHER", false);
   
   // Check if services are enabled
-  const enableGoogleAnalytics = ga_id && ga_id.trim() != ""
-  const enableDemoTools = EnvTools.readValueAsBoolean("OPTIMIZELY_ONE_HELPER", false)
+  const ga_id = EnvTools.readValue("GA_TRACKING_ID");
+  const enableGoogleAnalytics = ga_id && ga_id.trim() != "";
+  const enableDemoTools = EnvTools.readValueAsBoolean("OPTIMIZELY_ONE_HELPER", false);
 
   return (
-    <html>
+    <html lang={ locale }>
       <head>
         <Scripts.Header experimentationAllowOverride={ !forceDisableOverride } />
         { enableDemoTools && <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link> }

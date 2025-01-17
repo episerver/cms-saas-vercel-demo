@@ -1,4 +1,4 @@
-import { type PropsWithChildren, type ComponentProps } from "react"
+import { type FunctionComponent, type PropsWithChildren, type ComponentProps } from "react"
 import Link from "next/link"
 
 type ButtonTypes = typeof buttonTypes
@@ -25,15 +25,15 @@ const buttonColors = {
     dark: "btn--dark",
     light: "btn--light"
 }
-export function Button ({
+export const Button : FunctionComponent<ButtonProps> = ({
     className = "",
     buttonType = "primary",
     buttonVariant = "default",
     buttonColor = "default",
     url = "#", 
     children, 
-    ...props }: ButtonProps
-) {
+    ...props }
+) => {
     const hrefValue = url ? (typeof url == 'string' ? url : url.href) : "#"
     const classNameValue = `${buttonTypes[buttonType]} ${ buttonVariants[buttonVariant] } ${ buttonColors[buttonColor] } ${className}`.trim()
 
