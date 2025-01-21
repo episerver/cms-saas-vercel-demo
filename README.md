@@ -41,9 +41,9 @@ After you've completed the CMS configuration instructions and collected the need
 | OPTIMIZELY_GRAPH_APP_KEY | The Content Graph App key, which is shown on the CMS Dashboard, within the "Render Content" section. |
 | OPTIMIZELY_GRAPH_SINGLE_KEY | The Content Graph Single key	, which is shown on the CMS Dashboard, within the "Render Content" section. |
 
-When the deployment has succeeded, the following steps are needed to enable "On Page Editing" or "In Context Editing".
+When the deployment has succeeded, the following steps are needed to enable  "Preview".
 
-[Enable on-page / in context editing](docs/editing.md)
+[Enabling preview](docs/editing.md)
 
 ### 2.3. Additional configuration options
 
