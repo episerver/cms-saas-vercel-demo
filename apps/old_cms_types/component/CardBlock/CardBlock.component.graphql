@@ -1,0 +1,25 @@
+fragment CardBlockData on CardBlock {
+  cardButton: CardButton {
+    className: ButtonClass
+    children: ButtonText
+    buttonType: ButtonType
+    url: ButtonUrl {
+      ...LinkData
+    }
+    buttonVariant: ButtonVariant
+  }
+  cardColor: CardColor
+  cardDescription: CardDescription {
+    json
+    html
+  }
+  cardHeading: CardHeading
+  cardIcon: CardIcon {
+    ...ReferenceData
+  }
+  cardImage: CardImage {
+    ...ReferenceData
+  }
+  cardSubheading: CardSubHeading
+  cardImageLayout: ImageLayout
+}

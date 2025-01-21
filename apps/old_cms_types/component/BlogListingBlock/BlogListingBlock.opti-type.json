@@ -1,0 +1,34 @@
+{
+  "key": "BlogListingBlock",
+  "displayName": "Blog Listing Block",
+  "description": "Listing of blog pages with configuration for how many items to show and whether to show filters or not.",
+  "baseType": "component",
+  "sortOrder": 100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "BlogListingShowFilters": {
+      "type": "boolean",
+      "displayName": "Show Filters",
+      "description": "Whether or not to allow filtering of the data.",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "BlogListingItemCount": {
+      "type": "integer",
+      "displayName": "Item Count",
+      "description": "How many items to return by default",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "minimum": 1,
+      "maximum": 48
+    }
+  }
+}

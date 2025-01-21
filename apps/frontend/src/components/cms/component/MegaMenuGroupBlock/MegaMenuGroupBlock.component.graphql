@@ -7,7 +7,6 @@ fragment MegaMenuGroupBlockData on MegaMenuGroupBlock {
   MegaMenuContentArea { 
     ...IContentData
     ...MenuNavigationBlockData
-    ...CardBlockData
     ...BlogPostPageMenuBlock
   }
 }

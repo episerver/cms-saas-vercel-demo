@@ -13,19 +13,13 @@ import MenuNavigationBlockComponent from "./MenuNavigationBlock";
 import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
 import MegaMenuGroupBlockComponent from "./MegaMenuGroupBlock";
 import LayoutSettingsBlockComponent from "./LayoutSettingsBlock";
-import LayoutContainerBlockComponent from "./LayoutContainerBlock";
 import ImageElementComponent from "./ImageElement";
-import HtmlBlockComponent from "./HtmlBlock";
-import HomePageHeroBlockComponent from "./HomePageHeroBlock";
 import HeroBlockComponent from "./HeroBlock";
 import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
 import ContentRecsElementComponent from "./ContentRecsElement";
 import CarouselBlockComponent from "./CarouselBlock";
-import CardBlockMenuComponent from "./CardBlock/menu";
-import CardBlockComponent from "./CardBlock";
 import ButtonBlockComponent from "./ButtonBlock";
-import BlogListingBlockComponent from "./BlogListingBlock";
 import ArticleListElementComponent from "./ArticleListElement";
 import ArticleListElementLoader from "./ArticleListElement/loading";
 import ComponentPageFactory from "./Page";
@@ -84,20 +78,8 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: LayoutSettingsBlockComponent 
     },
     { 
-        type: "LayoutContainerBlock", 
-        component: LayoutContainerBlockComponent 
-    },
-    { 
         type: "ImageElement", 
         component: ImageElementComponent 
-    },
-    { 
-        type: "HtmlBlock", 
-        component: HtmlBlockComponent 
-    },
-    { 
-        type: "HomePageHeroBlock", 
-        component: HomePageHeroBlockComponent 
     },
     { 
         type: "HeroBlock", 
@@ -120,20 +102,8 @@ export const ComponentFactory : ComponentTypeDictionary = [
         component: CarouselBlockComponent 
     },
     { 
-        type: "CardBlock/menu", 
-        component: CardBlockMenuComponent 
-    },
-    { 
-        type: "CardBlock", 
-        component: CardBlockComponent 
-    },
-    { 
         type: "ButtonBlock", 
         component: ButtonBlockComponent 
-    },
-    { 
-        type: "BlogListingBlock", 
-        component: BlogListingBlockComponent 
     },
     { 
         type: "ArticleListElement", 

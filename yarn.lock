@@ -2640,7 +2640,7 @@ __metadata:
 
 "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.1.0
-  resolution: "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz#./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::hash=f87407&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-cli@file:./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz#./packages/dist/@remkoj-optimizely-cms-cli-dev.tgz::hash=778744&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@inquirer/prompts": "npm:^7.2.3"
     chalk: "npm:^5.4.1"
@@ -2655,7 +2655,7 @@ __metadata:
     "@types/node": "*"
   bin:
     opti-cms: ./dist/index.js
-  checksum: 10/987874e0abe2e0b50948dca696517ccfae47bfbc64e4e2e4dd722cd316a407ba8bae7e4d9c4104243466ddd0888e856057eaa19b91b4976fa3a3f44fc20c4ba4
+  checksum: 10/0f9be023219fc75866daecaeeea763e7090b8dcdf816ef6c1130f431b2312caab2ad4349becea7f2bbc574c15f98c5656251c3263b6b4a5e76fb04be3c205459
   languageName: node
   linkType: hard
 

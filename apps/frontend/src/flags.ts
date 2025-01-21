@@ -20,8 +20,11 @@ export const site_search = flag<OptimizelyFlag<{ recent_search_count: number, sh
     async decide() {
         const ctx = await getUserContext()
         const decision = ctx?.decide('site_search') as TypedOptimizelyDecision<{ recent_search_count: number, show_recent_searches: boolean, use_personalization: boolean, interest_boost: number }>
-        if (!decision)
+        if (!decision) {
+            if (this && this.defaultValue && this.defaultValue._enabled == false)
+                return this.defaultValue
             throw new Error("No decision made by Optimizely Feature Experimentation")
+        }
         return {
             _enabled: decision.enabled,
             ...decision.variables

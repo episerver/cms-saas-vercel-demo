@@ -8,8 +8,6 @@ import { getSdk } from "@gql/client";
 
 // Implementation components
 import ArticleListElementElement from "../../component/ArticleListElement";
-import ContainerBlock from "@/components/cms/component/LayoutContainerBlock";
-import TextBlock from "@/components/cms/component/TextBlock";
 import Image from "@/components/shared/cms_image";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
@@ -42,22 +40,12 @@ export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = async 
             <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 mt-32 mb-20"></div>
         </section>
       </div>
-      <ContainerBlock
-        data={{ columns: 1, containerColor: "none", marginBottom: "large" }}
-        contentLink={contentLink}
-      >
-        <TextBlock
-          contentLink={contentLink}
-          data={{
-            center: true,
-            overline: "More picks just for you",
-            heading: "Want to keep reading?",
-            headingSize: "medium",
-          }}
-        />
-      </ContainerBlock>
 
       <div className="outer-padding">
+        <div>
+          <div>More picks just for you</div>
+          <div>Want to keep reading?</div>
+        </div>
         <ArticleListElementElement contentLink={{key: null}} inEditMode={false} data={{
           articleListCount: 3,
           topics,

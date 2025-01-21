@@ -1,0 +1,9 @@
+fragment StartPageSearchData on StartPage {
+    seodata: SeoSettings {
+        MetaTitle
+        MetaDescription
+        SharingImage {
+          ...ReferenceData
+        }
+    }
+}

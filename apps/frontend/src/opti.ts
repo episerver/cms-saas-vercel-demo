@@ -37,7 +37,9 @@ export const getInstance = cache(async () =>
  */
 export async function getUserContext(attributes: UserAttributes = {}) : Promise<OptimizelyUserContext | null>
 {
-    const fx = await getInstance()
+    const fx = await getInstance().catch(() => undefined)
+    if (!fx)
+        return null
     const headerData = headers()
     const visitorId = headerData.get('x-visitorid')
     if (!visitorId)
@@ -143,7 +145,7 @@ async function readDataFileFromCDN(sdkkey: string) : Promise<string | undefined>
 function readConfigFromEnv()
 {
     // @ts-ignore: Node-Types may or may not be available
-    const edgeConfigId = (new URL(process.env.EDGE_CONFIG)).pathname.substring(1)
+    const edgeConfigId = process.env.EDGE_CONFIG ? (new URL(process.env.EDGE_CONFIG)).pathname.substring(1) : undefined
     // @ts-ignore: Node-Types may or may not be available
     const vercelTeam = process.env.VERCEL_TEAM
     // @ts-ignore: Node-Types may or may not be available

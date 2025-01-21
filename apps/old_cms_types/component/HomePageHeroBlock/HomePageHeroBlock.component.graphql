@@ -1,0 +1,7 @@
+fragment HomePageHeroBlockData on HomePageHeroBlock {
+  homeHeroHeading: HomeHeroBlockHeading
+  homeHeroSubheading: HomeHeroBlockSubHeading
+  leftImage: HomeHeroLeftImage { ...ReferenceData }
+  rightImage: HomeHeroRightImage { ...ReferenceData }
+  homeHeroButton: HomeHeroButtonBlock { ...ButtonBlockPropertyData }
+}

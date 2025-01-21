@@ -1,0 +1,35 @@
+{
+  "key": "HtmlBlock",
+  "displayName": "Html",
+  "description": "",
+  "baseType": "component",
+  "sortOrder": 100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "HtmlBlockHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "HtmlContent": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Content",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    }
+  }
+}

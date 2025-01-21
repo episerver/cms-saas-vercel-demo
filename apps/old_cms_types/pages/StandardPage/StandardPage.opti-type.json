@@ -1,0 +1,75 @@
+{
+  "key": "StandardPage",
+  "displayName": "Standard page",
+  "description": "A standard content page for xhtml / block layouts.",
+  "baseType": "page",
+  "sortOrder": 10,
+  "mayContainTypes": [
+    "*"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "StandardPromoImage": {
+      "type": "contentReference",
+      "displayName": "Promo image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": -200,
+      "editorSettings": {},
+      "allowedTypes": [
+        "Media"
+      ],
+      "restrictedTypes": []
+    },
+    "StandardPageHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": -100,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    },
+    "StandardSubHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Sub Heading Text",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    },
+    "SeoSettings": {
+      "type": "component",
+      "contentType": "PageSeoSettings",
+      "displayName": "SEO Settings",
+      "description": "Configure the common properties to improve the indexing of the page by search engines",
+      "localized": false,
+      "required": false,
+      "group": "SeoSettings",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "MainBody": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Body",
+      "description": "The main body for this page",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 100,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    }
+  }
+}
