@@ -6,35 +6,38 @@ So, after you've configured the CMS and successfully deployed the frontend, you 
 ### Prerequisites
 - You will need to domain at which the site is available to the public. If you've deployed to Vercel, this will be something like `my-project.vercel.app`
 
-### CMS Side
+### Finish CMS Configuration
 First of we need to tell the CMS where the frontend has been deployed, so it can use it to provide on-page editing. This is leveraging the normal production deployment, so it's not needed to create or maintain additional branches.
 
 Within the CMS, take the following steps:
-- Navigate to "Settings" (cog icon on the left-hand side) - and then go to "Manage Websites" under "Config"
-- Click on the ***Name*** of the website you've just created.
-- Click on "Add Host" and fill out the form accordingly:
+
+* Register the frontend with the Application:
+  - Navigate to "Settings" (cog icon on the left-hand side) - and then go to "Applications"
+  - Click on the ***Name*** of the website you've just created.
+  - Click on "Hostnames"
+  - Click on "Add Hostname..." and fill out the form according to the table below:
+  - Click on "Add" at the bottom
+  - Clink on "< Applications" at the left top of the screen
 
 | Field | Instruction |
 | - | - |
 | Host Name | The domain name of your frontend (for example: `my-project.vercel.app`) |
-| Type | Set to `Primary` |
-| Culture | Set this to the primary language ("en") |
-| Scheme | Set this to the correct value for your frontend, typically:  `HTTPS` |
+| Use a secure connection | Make sure this is checked |
+| Locale | Set this to the primary language ("en") |
+  
+* Make sure Optimizely Graph reflects the updates
+   - Navigate to "Scheduled Jobs", under "Data & Sync Management"
+   - Click the "Start"-button on the line of "Optimizely Graph Full Synchronization"
+   - The "Status" will change to "RUNNING", this task is completed when it reverts back to either "IDLE" or "MANUAL"
 
-- Click on "Add Host"
-- Click on the "triple dot" menu at the right of the CMS domain, select "Edit", and change the following fields there - none-listed fields need to remain the same:
 
-| Field | Instruction |
-| - | - |
-| Type | Set to blank |
-| Scheme | Set to `HTTPS` |
+### Update cache of Vercel application
+With the changes above, we've made massive updates to the data in Optimizely Graph. In order to ensure that these updates are reflected correctly, take the following steps within your Vercel project:
+- Go to "Settings"
+- Go to "Data Cache" within "Settings"
+- Click "Purge Everything" and confirm the action
 
-- Click on "Save Host"
-- Click on "Save Website"
-
-If you now visit a content item in the CMS, you should be able to switch to On-Page-Editing and see the outlines for the editable fields.
-
-### Vercel application
+### Automatic cache purging
 The build-script includes the registration of the web-hook needed to refresh the cache at Vercel once a content-item gets published.
 
 To make sure this webhook gets invoked on the right domain, make sure to configure the following envionment variable to point the webhook to the right location.

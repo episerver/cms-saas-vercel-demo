@@ -33,6 +33,7 @@
     "lint": "yarn workspace frontend lint",
     "compile": "yarn workspace frontend compile",
     "opti-cms": "yarn workspace frontend opti-cms",
+    "opti-graph": "yarn workspace frontend opti-graph",
     "graphql:watch": "yarn workspace frontend watch",
     "graphql:codegen": "yarn workspace frontend compile",
     "type-check": "yarn workspace frontend tsc --pretty --noEmit",
