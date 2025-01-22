@@ -2,6 +2,9 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 
+> [!IMPORTANT]  
+> The latest version of this site contains a new content pack and schema. When updating an existing site, make sure to apply the current content pack. If you need to, you can use the ["CMS Reset" command line tool](https://github.com/remkoj/optimizely-dxp-clients/tree/main/packages/optimizely-cms-cli#3-available-commands) to clear your current instance.
+
 ## Contents <!-- omit in toc -->
 - [1. Introduction](#1-introduction)
 - [2. Getting started](#2-getting-started)
