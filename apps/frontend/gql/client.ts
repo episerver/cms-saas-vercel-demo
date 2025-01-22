@@ -579,6 +579,9 @@ export const getBlankExperienceMetaDataDocument = gql`
   page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {
     items {
       meta: _metadata {
+        url {
+          base
+        }
         displayName
       }
       seo: BlankExperienceSeoSettings {
@@ -720,6 +723,9 @@ export const getLandingPageMetaDataDocument = gql`
         key
         version
         locale
+        url {
+          base
+        }
       }
       SeoSettings {
         MetaTitle

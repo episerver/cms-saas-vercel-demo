@@ -14,6 +14,9 @@ query getLandingPageMetaData($key: String!, $version: String, $locale: [Locales]
         key
         version
         locale
+        url {
+          base
+        }
       }
       SeoSettings {
         MetaTitle

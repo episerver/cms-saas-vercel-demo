@@ -12,6 +12,9 @@ query getBlankExperienceMetaData ($key: String!, $locale: [Locales])
   ) {
     items {
       meta: _metadata {
+        url {
+          base
+        }
         displayName
       }
       seo: BlankExperienceSeoSettings {

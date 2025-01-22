@@ -20,7 +20,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 const figtree = Figtree({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN
+  const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN || process.env.VERCEL_PROJECT_PRODUCTION_URL || 'localhost:3000'
   const scheme = domain && (domain.startsWith("localhost") || domain.endsWith(".local")) ? 'http' : 'https'
   const base = domain ? new URL(`${scheme}://${domain}`) : undefined
   return {

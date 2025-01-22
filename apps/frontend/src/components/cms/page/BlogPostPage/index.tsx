@@ -72,6 +72,7 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
     title: blogPost.seo?.title || blogPost.title || blogPost.cms?.title,
     description: blogPost.seo?.description,
     keywords: blogPost.seo?.keywords?.filter(isNotNullOrUndefined),
+    metadataBase: tryToUrl(blogPost?.cms?.url?.base),
     openGraph: {
       type: toValidOpenGraphType(blogPost.seo?.type),
       title: blogPost.seo?.title || blogPost.title || blogPost.cms?.title || undefined,
@@ -98,6 +99,17 @@ type WithPropertySet<T, K extends keyof T> = Omit<T, K> & { [P in K] -?: NonNull
 function isNotNullOrUndefined<T>(toTest?: T | null | undefined): toTest is T
 {
   return toTest ? true : false
+}
+
+function tryToUrl(toConvert: string | null | undefined)
+{
+    if (!toConvert)
+        return undefined
+    try {
+        return new URL(toConvert)
+    } catch {
+        return undefined
+    }
 }
 
 export default BlogPostPage;

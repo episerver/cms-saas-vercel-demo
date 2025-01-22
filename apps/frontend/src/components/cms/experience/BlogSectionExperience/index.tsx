@@ -52,6 +52,7 @@ BlogSectionExperienceExperience.getMetaData = async (contentLink, locale, client
         title: seoData?.MetaTitle ?? pageName,
         description: seoData?.MetaDescription,
         keywords: seoData?.MetaKeywords?.filter(Utils.isNonEmptyString),
+        metadataBase: tryToUrl(metaData?._metadata?.url?.base),
         openGraph: {
             title: seoData?.MetaTitle ?? pageName,
             description: seoData?.MetaDescription ?? undefined,
@@ -68,6 +69,17 @@ BlogSectionExperienceExperience.getMetaData = async (contentLink, locale, client
         other: {
           "idio:content-type": "Blog Section (Experience)"
         }
+    }
+}
+
+function tryToUrl(toConvert: string | null | undefined)
+{
+    if (!toConvert)
+        return undefined
+    try {
+        return new URL(toConvert)
+    } catch {
+        return undefined
     }
 }
 
