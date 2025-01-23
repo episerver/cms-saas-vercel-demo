@@ -447,6 +447,32 @@ export const BlogPostPageDataFragmentDoc = gql`
   }
   blogAuthor: ArticleAuthor
   blogTopics: Topic
+  continueReading {
+    ...IContentListItem
+    ...BlockData
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
+    ...ArticleListElementData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...HeadingElementData
+    ...HeroBlockData
+    ...ImageElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
+  }
 }
     `;
 export const BlogPostPageSearchResultFragmentDoc = gql`
@@ -697,6 +723,7 @@ export const getBlogPostPageMetaDataDocument = gql`
       image: BlogPostPromoImage {
         ...ReferenceData
       }
+      topics: Topic
       seo: SeoSettings {
         title: MetaTitle
         description: MetaDescription

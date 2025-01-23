@@ -58,6 +58,8 @@ export const layout_configuration = flag<OptimizelyFlag<{ logo: string, theme_sw
     async decide() {
         const ctx = await getUserContext()
         const decision = ctx?.decide('layout_configuration') as TypedOptimizelyDecision<{ logo: string, theme_switcher: boolean }>
+        if (this && this.defaultValue && this.defaultValue._enabled == false)
+            return this.defaultValue
         if (!decision)
             throw new Error("No decision made by Optimizely Feature Experimentation")
         return {

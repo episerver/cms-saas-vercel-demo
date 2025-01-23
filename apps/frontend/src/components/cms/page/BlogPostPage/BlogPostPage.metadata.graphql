@@ -17,6 +17,7 @@ query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales
       image: BlogPostPromoImage {
           ...ReferenceData
       }
+      topics: Topic
       seo: SeoSettings {
         title: MetaTitle
         description: MetaDescription
