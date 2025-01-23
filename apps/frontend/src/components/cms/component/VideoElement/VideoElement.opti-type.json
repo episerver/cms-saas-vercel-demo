@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-10-08T10:59:46.1223548+00:00",
-  "lastModified": "2024-10-08T15:11:58.1700171+00:00",
   "properties": {
     "video": {
       "type": "contentReference",

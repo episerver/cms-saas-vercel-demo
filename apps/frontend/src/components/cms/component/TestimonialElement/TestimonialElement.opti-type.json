@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-06-27T14:20:27.0000657+00:00",
-  "lastModified": "2024-06-27T14:20:27.0000657+00:00",
   "properties": {
     "customerName": {
       "type": "string",

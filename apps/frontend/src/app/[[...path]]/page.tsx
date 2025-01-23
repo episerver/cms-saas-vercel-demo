@@ -10,21 +10,37 @@ const {
     generateStaticParams,
     CmsPage: Page,
 } = CmsPage.createPage(getFactory(), {
-    getContentByPath: getContentByPath as CmsPage.GetContentByPathMethod,
-    client: () => {
-        const pageClient = createClient()
-        pageClient.updateFlags({
-            queryCache: false, // Visual Builder requires recursive queries, which are disabled by default when the query cache is enabled
-        }, false)
-        return pageClient
-    }
+    /**
+     * Inject the "getContentByPath" master query that will be used to load all
+     * content for the page in one request. When omitted, the default implementation
+     * will revert to many requests in order to load the content.
+     */
+    getContentByPath: getContentByPath,
+
+    /**
+     * The demo site is single language, so we're always defaulting to English.
+     * For a multi-lingual implementation, you may omit this parameters when you
+     * have both a [lang] URL segment and define the channel. Otherwise implement
+     * your own synchronous logic to get the initial locale based on the parameters.
+     * 
+     * @returns     The initial locale
+     */
+    paramsToLocale: () => "en",
+
+    /**
+     * The factory to use to create the GraphQL Client to fetch data from Optimizely
+     * CMS.
+     * 
+     * @returns     The Optimizely Graph Client
+     */
+    client: createClient
 });
 
 // Configure the Next.JS route handling for the pages
-export const dynamic = "auto"; // Cache by default, but allow Suspense to be used to make parts dynamic
+export const dynamic = "error"; // Throw an error when the [[...path]] route becomes dynamic, as this will seriously hurt site performance
 export const dynamicParams = true; // Allow new pages to be resolved without rebuilding the site
 export const revalidate = false; // Keep the cache untill manually revalidated using the Webhook
-export const fetchCache = "default-cache"; // Cache fetch results by default
+export const fetchCache = "auto"; // Cache fetch results by default
 
 // Export page & helper methods
 export { generateMetadata, generateStaticParams };

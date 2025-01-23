@@ -3,11 +3,9 @@
   "displayName": "Default",
   "nodeType": "column",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.5492067+00:00",
-  "lastModified": "2024-09-25T10:11:01.5492067+00:00",
   "settings": {
     "overflow": {
-      "displayName": "Overflow (if available width is less then minimal)",
+      "displayName": "Overflow (if available width is less then minimum)",
       "editor": "",
       "sortOrder": 60,
       "choices": {
@@ -30,7 +28,7 @@
       }
     },
     "minWidth": {
-      "displayName": "Minimal width",
+      "displayName": "Minimum width",
       "editor": "",
       "sortOrder": 50,
       "choices": {
@@ -75,8 +73,8 @@
         }
       }
     },
-    "alignContent": {
-      "displayName": "Align content",
+    "justifyContent": {
+      "displayName": "Vertical content alignment",
       "editor": "",
       "sortOrder": 30,
       "choices": {
@@ -94,8 +92,8 @@
         }
       }
     },
-    "justifyContent": {
-      "displayName": "Justify content",
+    "alignContent": {
+      "displayName": "Horizontal content alignment",
       "editor": "",
       "sortOrder": 20,
       "choices": {

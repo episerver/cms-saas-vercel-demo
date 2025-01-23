@@ -3,11 +3,24 @@
   "displayName": "Default",
   "nodeType": "row",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.4499114+00:00",
-  "lastModified": "2024-09-25T10:11:01.4499114+00:00",
   "settings": {
+    "maxWidth": {
+      "displayName": "Maximum width",
+      "editor": "",
+      "sortOrder": 50,
+      "choices": {
+        "container": {
+          "displayName": "Container (Fixed breakpoints based on window width)",
+          "sortOrder": 20
+        },
+        "full": {
+          "displayName": "None (Section width)",
+          "sortOrder": 10
+        }
+      }
+    },
     "verticalSpacing": {
-      "displayName": "Vertical Spacing",
+      "displayName": "Vertical spacing",
       "editor": "",
       "sortOrder": 40,
       "choices": {
@@ -34,10 +47,14 @@
       }
     },
     "alignContent": {
-      "displayName": "Align content",
+      "displayName": "Vertical alignment",
       "editor": "",
       "sortOrder": 30,
       "choices": {
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        },
         "end": {
           "displayName": "End",
           "sortOrder": 30
@@ -53,10 +70,14 @@
       }
     },
     "justifyContent": {
-      "displayName": "Justify content",
+      "displayName": "Horizontal alignment",
       "editor": "",
       "sortOrder": 20,
       "choices": {
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        },
         "end": {
           "displayName": "End",
           "sortOrder": 30
@@ -72,16 +93,16 @@
       }
     },
     "contentSpacing": {
-      "displayName": "Content Spacing",
+      "displayName": "Content spacing",
       "editor": "",
       "sortOrder": 10,
       "choices": {
         "xxl": {
-          "displayName": "Extra Extra Large",
+          "displayName": "Extra extra large",
           "sortOrder": 60
         },
         "xl": {
-          "displayName": "Extra Large",
+          "displayName": "Extra large",
           "sortOrder": 50
         },
         "large": {
@@ -118,6 +139,28 @@
         "md": {
           "displayName": "Medium",
           "sortOrder": 10
+        }
+      }
+    },
+    "textColor": {
+      "displayName": "Text color",
+      "sortOrder": 60,
+      "choices": {
+        "inherit": {
+          "displayName": "Inherit from parent [default]",
+          "sortOrder": 10
+        },
+        "light": {
+          "displayName": "Always light (for dark backgrounds)",
+          "sortOrder": 20
+        },
+        "lightShadow": {
+          "displayName": "Always light with shadow (for image backgrounds)",
+          "sortOrder": 30
+        },
+        "dark": {
+          "displayName": "Always dark (for light backgrounds)",
+          "sortOrder": 40
         }
       }
     }

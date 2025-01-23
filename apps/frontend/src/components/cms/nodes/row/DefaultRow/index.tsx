@@ -18,15 +18,17 @@ enum ContentSpacingClasses {
 }
 
 enum JustifyContentClasses {
-    center = 'justify-center',
-    end = 'justify-end',
-    start = 'justify-start'
+    center = 'justify-center justify-items-center',
+    end = 'justify-end justify-items-end',
+    start = 'justify-start justify-items-start',
+    stretch = 'justify-stretch justify-items-stretch'
 }
 
 enum AlignContentClasses {
-    center = 'content-center',
-    end = 'content-end',
-    start = 'content-start'
+    center = 'content-center items-center',
+    end = 'content-end items-end',
+    start = 'content-start items-start',
+    stretch = 'content-stretch items-stretch'
 }
 
 enum VerticalSpacingClasses {
@@ -37,13 +39,27 @@ enum VerticalSpacingClasses {
     none = "my-0"
 }
 
+enum WidthClasses {
+    full = "",
+    container = "container mx-auto"
+}
+
+enum TextClasses {
+    inherit = "",
+    light = "with-light-text",
+    lightShadow = "with-light-text with-text-shadow",
+    dark = "with-dark-text"
+}
+
 export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, layoutProps, children }) => {
     const { 
         contentSpacing = "none", 
         justifyContent = "start", 
         alignContent = "start", 
         verticalSpacing = "small",
-        showAsRowFrom = "lg"
+        showAsRowFrom = "lg",
+        maxWidth = "full",
+        textColor = "inherit"
     } = extractSettings(layoutProps)
 
     const spacing = ContentSpacingClasses[contentSpacing] ?? ''
@@ -51,8 +67,10 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
     const align = AlignContentClasses[alignContent] ?? ''
     const vertical = VerticalSpacingClasses[verticalSpacing] ?? ''
     const rowFrom = RowFromClasses[showAsRowFrom] ?? ''
+    const width = WidthClasses[maxWidth] ?? ''
+    const text = TextClasses[textColor] ?? ''
 
-    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing }`}>{ children }</div>);
+    return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width } ${ text }`}>{ children }</div>);
 }
 
 export default DefaultRow;

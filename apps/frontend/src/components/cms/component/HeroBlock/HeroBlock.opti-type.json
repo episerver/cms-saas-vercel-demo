@@ -1,14 +1,14 @@
 {
   "key": "HeroBlock",
   "displayName": "Hero",
-  "description": "Hero",
+  "description": "Hero Component, usable as a block or section",
   "baseType": "component",
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
-  "compositionBehaviors": [],
-  "created": "2024-01-29T22:51:53.14+00:00",
-  "lastModified": "2024-01-29T22:51:53.14+00:00",
+  "compositionBehaviors": [
+    "sectionEnabled"
+  ],
   "properties": {
     "HeroImage": {
       "type": "contentReference",

@@ -3,16 +3,14 @@
   "displayName": "Animated / Fade-In",
   "contentType": "CTAElement",
   "isDefault": false,
-  "created": "2024-09-25T10:11:01.1850498+00:00",
-  "lastModified": "2024-09-25T10:11:01.1850498+00:00",
   "settings": {
     "duration": {
       "displayName": "Animation duration",
       "editor": "selectOne",
-      "sortOrder": 40,
+      "sortOrder": 110,
       "choices": {
         "verylong": {
-          "displayName": "Very Long (2s)",
+          "displayName": "Very long (2s)",
           "sortOrder": 50
         },
         "long": {
@@ -36,10 +34,10 @@
     "delay": {
       "displayName": "Animation delay",
       "editor": "selectOne",
-      "sortOrder": 30,
+      "sortOrder": 100,
       "choices": {
         "verylong": {
-          "displayName": "Very Long (2s)",
+          "displayName": "Very long (2s)",
           "sortOrder": 50
         },
         "long": {
@@ -62,8 +60,7 @@
     },
     "buttonAlign": {
       "displayName": "Align button",
-      "editor": "selectOne",
-      "sortOrder": 20,
+      "sortOrder": 40,
       "choices": {
         "right": {
           "displayName": "Right",
@@ -78,14 +75,13 @@
           "sortOrder": 20
         },
         "auto": {
-          "displayName": "Auto",
+          "displayName": "Auto [default]",
           "sortOrder": 10
         }
       }
     },
     "buttonType": {
-      "displayName": "Button Type",
-      "editor": "selectOne",
+      "displayName": "Button type",
       "sortOrder": 10,
       "choices": {
         "link": {
@@ -97,8 +93,40 @@
           "sortOrder": 20
         },
         "primary": {
-          "displayName": "Primary",
+          "displayName": "Primary [default]",
           "sortOrder": 10
+        }
+      }
+    },
+    "buttonColor": {
+      "displayName": "Button color",
+      "sortOrder": 20,
+      "choices": {
+        "dark": {
+          "displayName": "Dark",
+          "sortOrder": 30
+        },
+        "light": {
+          "displayName": "Light",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default",
+          "sortOrder": 10
+        }
+      }
+    },
+    "buttonVariant": {
+      "displayName": "Button variant",
+      "sortOrder": 30,
+      "choices": {
+        "default": {
+          "displayName": "Plain [default]",
+          "sortOrder": 10
+        },
+        "cta": {
+          "displayName": "With color accent",
+          "sortOrder": 20
         }
       }
     }

@@ -1,0 +1,15 @@
+query getDefaultArticleList($locale: [Locales!]) {
+  ArticleListElement(
+    where: {
+      _metadata: { displayName: { startsWith: "[DEFAULT]" }, status: { eq: "Published" } }
+    }
+    locale: $locale
+    orderBy: { _metadata: { published: DESC } }
+    limit: 1
+  ) {
+    items {
+      ...IContentData
+      ...ArticleListElementData
+    }
+  }
+}

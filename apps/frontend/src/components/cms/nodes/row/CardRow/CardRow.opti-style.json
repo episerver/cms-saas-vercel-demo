@@ -3,8 +3,6 @@
   "displayName": "Card",
   "nodeType": "row",
   "isDefault": false,
-  "created": "2024-09-25T10:11:01.2721885+00:00",
-  "lastModified": "2024-09-25T10:11:01.2721885+00:00",
   "settings": {
     "columnOrderOnSmallScreen": {
       "displayName": "Colums on small screen",

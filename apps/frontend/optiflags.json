@@ -1,0 +1,42 @@
+{
+  "site_search": {
+    "description": "Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations",
+    "variables": {
+      "recent_search_count": {
+        "description": "The number of recent search terms to show",
+        "type": "integer",
+        "default": 5
+      },
+      "show_recent_searches": {
+        "description": "Show the list of recent search terms, requires Data Platform",
+        "type": "boolean",
+        "default": false
+      },
+      "use_personalization": {
+        "description": "Use the top topic from Optimizely Content Recommendations to personalize the search results",
+        "type": "boolean",
+        "default": false
+      },
+      "interest_boost": {
+        "description": "The weight to be applied to the topics retrieved from Optimizely Content Recommendations for a personalized search result",
+        "type": "integer",
+        "default": 200
+      }
+    }
+  },
+  "layout_configuration": {
+    "description": "Test various layout configurations to determine the best possible layout",
+    "variables": {
+      "logo": {
+        "description": "The URL/Path to the logo file to use",
+        "type": "string",
+        "default": "/assets/moseybank-logo.svg"
+      },
+      "theme_switcher": {
+        "description": "Enable/disable the theme switcher, when disabled it forces the site to follow system settings.",
+        "type": "boolean",
+        "default": true
+      }
+    }
+  }
+}

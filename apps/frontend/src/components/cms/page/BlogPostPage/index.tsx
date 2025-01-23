@@ -3,110 +3,205 @@ import "server-only";
 import { type Metadata } from "next";
 
 // Optimizely Graph types and SDK
-import { type Locales, type BlogPostPageDataFragment, BlogPostPageDataFragmentDoc } from "@gql/graphql";
-import { getSdk } from "@gql";
+import {
+  type Locales,
+  type BlogPostPageDataFragment,
+  BlogPostPageDataFragmentDoc,
+} from "@gql/graphql";
+import { getSdk } from "@gql/client";
 
 // Implementation components
-import ContainerBlock from "@/components/cms/component/LayoutContainerBlock";
-import TextBlock from "@/components/cms/component/TextBlock";
-import BlogListingBlock from "@/components/cms/component/BlogListingBlock";
+import ArticleListElementElement from "../../component/ArticleListElement";
 import Image from "@/components/shared/cms_image";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
-import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
-import { RichText } from "@remkoj/optimizely-cms-react/rsc";
+import { RichText, CmsEditable, CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
-export const BlogPostPage: OptimizelyNextPage<BlogPostPageDataFragment> = ({
+export const BlogPostPage: OptimizelyNextPage<
+  BlogPostPageDataFragment
+> = async ({
   contentLink,
-  data: { blogTitle: title, blogImage: image, blogBody: description, blogAuthor: author, blogSubtitle: subtitle },
+  inEditMode,
+  data: {
+    blogTitle: title,
+    blogImage: image,
+    blogBody: description,
+    blogAuthor: author,
+    blogSubtitle: subtitle,
+    blogTopics: topics,
+    continueReading,
+  },
 }) => {
-
-  const { factory } = getServerContext()
-
   return (
     <>
       <div className="outer-padding">
-      { image && <div className="relative col-span-12 mt-16 lg:mt-32 mb-24 mx-auto aspect-[1/1] md:aspect-[16/5] flex items-end">
-        <CmsEditable cmsFieldName="BlogPostPromoImage" as={ Image } className="top-0 left-0 rounded-[40px] aspect-[1/1] md:aspect-[16/5] object-cover absolute -z-50" src={image} alt="" width={1920} height={1080} />
-        <div className="container max-w-[1024px] px-[24px] mx-auto bg-[rgba(248,248,252,0.75)] dark:bg-[rgba(16,20,29,0.75)] rounded-t-[40px]">
-          <CmsEditable cmsFieldName="Heading" as="h1" className="mt-[24px] mb-[24px] text-[48px] font-extrabold">{ title ?? "" }</CmsEditable>
-        </div>
-      </div> }
-        <div className="container mx-auto grid grid-cols-12">
-          <section className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto">
-            <div className="prose max-w-[960px] prose-h2:text-[36px] prose-h2:leading-[40px] prose-h2:mb-[24px] prose-h2:mt-[48px] prose-a:text-azure prose-a:font-bold prose-a:no-underline hover:prose-a:underline focus:prose-a:underline prose-img:rounded-[40px] prose-img:p-[20px] prose-img:border-2">
-              { !image && <CmsEditable cmsFieldName="Heading" as="h1" className="mb-[24px] text-[48px]">{ title ?? "" }</CmsEditable> }
-              <CmsEditable cmsFieldName="ArticleAuthor" as="p" className="text-people-eater my-[24px] text-[24px]">{ author ?? "" }</CmsEditable>
-              <CmsEditable cmsFieldName="ArticleSubHeading" as="p" className="text-[30px] leading-[36px] mt-[24px] mb-20">{ subtitle ?? "" }</CmsEditable>
-              <CmsEditable cmsFieldName="BlogPostBody" as={ RichText } text={ description?.json } factory={ factory } />
-              <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 my-64"></div>
+        {image && (
+          <div className="relative col-span-12 mt-8 md:mt-16 lg:mt-32 mb-8 lg:mb-24 mx-auto aspect-[1/1] md:aspect-[2/1] lg:aspect-[16/5] flex items-end">
+            <CmsEditable
+              cmsFieldName="BlogPostPromoImage"
+              as={Image}
+              className="top-0 left-0 rounded-[2rem] aspect-[1/1] md:aspect-[2/1] lg:aspect-[16/5] object-cover absolute -z-50"
+              src={image}
+              alt=""
+              width={1920}
+              height={1080}
+            />
+            <div className="container px-6 mx-auto bg-[rgba(248,248,252,0.75)] dark:bg-[rgba(16,20,29,0.75)] rounded-t-[2rem]">
+              <CmsEditable
+                cmsFieldName="Heading"
+                as="h1"
+                className="mt-6 mb-6 text-4xl font-extrabold"
+              >
+                {title ?? ""}
+              </CmsEditable>
             </div>
-          </section>
-        </div>
+          </div>
+        )}
+        <section className="mx-auto w-full max-w-3xl">
+          {!image && (
+            <CmsEditable
+              cmsFieldName="Heading"
+              as="h1"
+              className="mb-6 text-3xl"
+            >
+              {title ?? ""}
+            </CmsEditable>
+          )}
+          <CmsEditable
+            cmsFieldName="ArticleAuthor"
+            as="p"
+            className="text-2xl text-people-eater my-6"
+          >
+            {author ?? ""}
+          </CmsEditable>
+          <CmsEditable
+            cmsFieldName="ArticleSubHeading"
+            as="p"
+            className="text-3xl leading-7 mt-6 mb-2"
+          >
+            {subtitle ?? ""}
+          </CmsEditable>
+          <CmsEditable
+            cmsFieldName="Topic"
+            as="p"
+            className="text-xs text-independence mb-8 lg:mb-20"
+          >
+            Topics: {topics?.filter((x) => x).join(", ")}
+          </CmsEditable>
+          <RichText
+            cmsFieldName="BlogPostBody"
+            text={description?.json}
+            className="prose max-w-none prose-img:rounded-[2rem] prose-img:p-4 prose-img:border-2"
+          />
+          <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 mt-32 mb-20"></div>
+        </section>
       </div>
-      <ContainerBlock
-        data={{ columns: 1, containerColor: "none", marginBottom: "large" }}
-        contentLink={contentLink}
-      >
-        <TextBlock
-          contentLink={contentLink}
-          data={{
-            center: true,
-            overline: "More picks just for you",
-            heading: "Want to keep reading?",
-            headingSize: "medium",
-          }}
-        />
-      </ContainerBlock>
-      <BlogListingBlock
-        contentLink={contentLink}
-        data={{
-          showFilters: false,
-          selectedPageSize: 3,
-        }}
-      ></BlogListingBlock>
+
+      {continueReading && continueReading.length ? (
+        <CmsContentArea fieldName="continueReading" items={ continueReading } className="outer-padding flex flex-col items-center" itemWrapper={{ className: "data-[component=ContentRecsElement]:w-full"}}  />
+      ) : (
+        <div className="outer-padding">
+          { inEditMode && <CmsContentArea fieldName="continueReading" items={ [] } className="outer-padding flex flex-col items-center"/> }
+          <div className="w-full flex flex-col items-center gap-8 lg:gap-12 pb-8 lg:pb-12">
+            <div className="uppercase">More picks just for you</div>
+            <div className="text-6xl font-bold">Want to keep reading?</div>
+          </div>
+          <ArticleListElementElement
+            contentLink={{ key: null }}
+            inEditMode={false}
+            data={{
+              articleListCount: 3,
+              topics,
+              excludeKeys: contentLink.key ? [contentLink.key] : [],
+            }}
+          />
+        </div>
+      )}
+      <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto mt-8"></div>
     </>
   );
 };
 
-BlogPostPage.getDataFragment = () => ["BlogPostPageData", BlogPostPageDataFragmentDoc];
+BlogPostPage.getDataFragment = () => [
+  "BlogPostPageData",
+  BlogPostPageDataFragmentDoc,
+];
 BlogPostPage.getMetaData = async (contentLink, locale, client) => {
-  const sdk = getSdk(client)
-  const result = await sdk.getBlogPostPageMetaData({ ...contentLink, locale: locale ? localeToGraphLocale(locale) as Locales : null })
-  const matchingPosts = (result.BlogPostPage?.pages || []).filter(isNotNullOrUndefined)
-  if (matchingPosts.length != 1)
-    return {}
-  const cmsManagedData = matchingPosts[0]
-  const meta : WithPropertySet<Metadata, 'openGraph'> = {
-    title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.Heading ?? cmsManagedData._metadata?.displayName,
-    description: cmsManagedData.SeoSettings?.MetaDescription,
+  const sdk = getSdk(client);
+  const result = await sdk.getBlogPostPageMetaData({
+    key: contentLink.key,
+    version: contentLink.version,
+    locale: locale ? (localeToGraphLocale(locale) as Locales) : null,
+  });
+  const blogPost = (result.BlogPostPage?.pages || [])
+    .filter(isNotNullOrUndefined)
+    .at(0);
+  if (!blogPost) return {};
+
+  const canonicalUrl = new URL(
+    blogPost?.cms?.url?.default ?? "/",
+    blogPost?.cms?.url?.base ?? "http://localhost:3000",
+  );
+
+  const topics = blogPost?.topics?.filter(isNotNullOrUndefined) || undefined
+
+  const meta: WithPropertySet<Metadata, "openGraph" | "other"> = {
+    title: blogPost.seo?.title || blogPost.title || blogPost.cms?.title,
+    description: blogPost.seo?.description,
+    keywords: blogPost.seo?.keywords?.filter(isNotNullOrUndefined),
+    metadataBase: tryToUrl(blogPost?.cms?.url?.base),
     openGraph: {
-      type: toValidOpenGraphType(cmsManagedData.SeoSettings?.GraphType, 'article') ?? 'article',
-      title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData.Heading ?? cmsManagedData._metadata?.displayName ?? undefined,
-      description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
+      type: toValidOpenGraphType(blogPost.seo?.type),
+      title:
+        blogPost.seo?.title ||
+        blogPost.title ||
+        blogPost.cms?.title ||
+        undefined,
+      description: blogPost.seo?.description || undefined,
+      publishedTime: blogPost.cms?.published || undefined,
+      url: canonicalUrl.href,
     },
+    authors: blogPost.author ? [{ name: blogPost.author }] : [],
     other: {
       "idio:content-type": "Blog post"
-    }
-  }
-  const pageImage = linkDataToUrl(getLinkData(cmsManagedData.SeoSettings?.SharingImage)) ?? linkDataToUrl(getLinkData(cmsManagedData.BlogPostPromoImage))
+    },
+  };
+  const pageImage =
+    linkDataToUrl(getLinkData(blogPost.seo?.image)) ??
+    linkDataToUrl(getLinkData(blogPost.image));
   if (pageImage) {
-    meta.openGraph.images = [{
-      url: pageImage
-    }]
+    meta.openGraph.images = [
+      {
+        url: pageImage,
+      },
+    ];
   }
-  return meta
+  if (topics) {
+    meta.other["article:tag"] = topics
+    meta.other["idio:topic"] = topics
+  }
+  return meta;
+};
+
+type WithPropertySet<T, K extends keyof T> = Omit<T, K> & {
+  [P in K]-?: NonNullable<Required<T>[P]>;
+};
+
+function isNotNullOrUndefined<T>(toTest?: T | null | undefined): toTest is T {
+  return toTest ? true : false;
 }
 
-type WithPropertySet<T, K extends keyof T> = Omit<T, K> & { [P in K] -?: NonNullable<Required<T>[P]> }
-
-function isNotNullOrUndefined<T>(toTest?: T | null | undefined): toTest is T
-{
-  return toTest ? true : false
+function tryToUrl(toConvert: string | null | undefined) {
+  if (!toConvert) return undefined;
+  try {
+    return new URL(toConvert);
+  } catch {
+    return undefined;
+  }
 }
 
 export default BlogPostPage;

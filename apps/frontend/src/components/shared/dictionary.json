@@ -1,19 +1,19 @@
 {
     "en": {
         "languagePicker": {
-            "title": "Select Language",
+            "title": "Language",
             "locales": {
                 "en": "English",
-                "nl": "Nederlands",
-                "nl-BE": "Vlaams"
+                "nl": "Dutch",
+                "nl-BE": "Flemish"
             }
         }
     },
     "nl": {
         "languagePicker": {
-            "title": "Selecteer taal",
+            "title": "Taal",
             "locales": {
-                "en": "English",
+                "en": "Engels",
                 "nl": "Nederlands",
                 "nl-BE": "Vlaams"
             }

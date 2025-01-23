@@ -9,8 +9,6 @@
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-30T00:10:49.5533333+00:00",
-  "lastModified": "2024-01-30T00:10:49.5533333+00:00",
   "properties": {
     "Heading": {
       "type": "string",
@@ -21,18 +19,59 @@
       "required": true,
       "group": "Information",
       "sortOrder": -100,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "ArticleSubHeading": {
       "type": "string",
       "format": "shortString",
-      "displayName": "Sub Heading Text",
+      "displayName": "Subhead",
       "description": "",
       "localized": true,
       "required": false,
       "group": "Information",
       "sortOrder": 0,
+      "indexingType": "searchable",
       "editorSettings": {}
+    },
+    "Topic": {
+      "type": "array",
+      "format": "selectMany",
+      "displayName": "Topic",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Categories",
+      "sortOrder": 0,
+      "indexingType": "searchable",
+      "editorSettings": {},
+      "items": {
+        "type": "string",
+        "enum": {
+          "values": [
+            {
+              "displayName": "Savings",
+              "value": "Savings"
+            },
+            {
+              "displayName": "Credit",
+              "value": "Credit"
+            },
+            {
+              "displayName": "Mortgage",
+              "value": "Mortgage"
+            },
+            {
+              "displayName": "Retirement",
+              "value": "Retirement"
+            },
+            {
+              "displayName": "Investment",
+              "value": "Investment"
+            }
+          ]
+        }
+      }
     },
     "BlogPostBody": {
       "type": "string",
@@ -43,6 +82,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 20,
+      "indexingType": "searchable",
       "editorSettings": {}
     },
     "ArticleAuthor": {
@@ -71,10 +111,27 @@
       ],
       "restrictedTypes": []
     },
+    "continueReading": {
+      "type": "array",
+      "displayName": "Continue Reading",
+      "description": "Override the default content for Continue Reading",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 60,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "component"
+        ],
+        "restrictedTypes": []
+      }
+    },
     "SeoSettings": {
       "type": "component",
       "contentType": "PageSeoSettings",
-      "displayName": "SEO Settings",
+      "displayName": "SEO settings",
       "description": "Configure the common properties to improve the indexing of the page by search engines",
       "localized": false,
       "required": false,

@@ -1,11 +1,12 @@
-// Import search logic and result parsing helpers
-import contentSearch from '@/lib/api/search'
-
 // Import components
 import SearchBox from "./_searchbox"
 import SearchHeader from "./_searchheader"
 import Search from "./_search"
 import { Suspense } from 'react'
+
+import { getServerContext } from '@remkoj/optimizely-cms-react/rsc'
+import { setupFactory } from "@/components/factory"
+import { createClient } from '@remkoj/optimizely-cms-nextjs'
 
 export function generateStaticParams() 
 {
@@ -22,6 +23,11 @@ const AdvancedSearchPage = async ({
     } & Record<string, string | string[] | undefined>
 }) => 
 {
+    const ctx = getServerContext()
+    ctx.setComponentFactory(setupFactory())
+    ctx.setOptimizelyGraphClient(createClient())
+    ctx.setLocale('en')
+
     // Read the search parameters
     /*const query = Array.isArray(searchParams.query) ? searchParams.query.at(0) : searchParams.query
     const start = tryParseInt(Array.isArray(searchParams.start) ? searchParams.start.at(0) : searchParams.start, 0)
@@ -41,10 +47,8 @@ const AdvancedSearchPage = async ({
     </div>
 }
 
-export const dynamic = "auto"; // Make sure we cache pages
-export const dynamicParams = false; // Allow new pages to be resolved without rebuilding the site
+export const runtime = "nodejs"; // Run on Node.JS
 export const revalidate = 30; // Keep the cache untill manually revalidated using the Webhook
-export const fetchCache = "default-cache"; // Cache fetch results by default
 export default AdvancedSearchPage
 
 function tryParseInt(value: string | undefined, defaultValue: number = 0, radix?: number) : number

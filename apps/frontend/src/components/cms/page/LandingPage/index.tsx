@@ -34,6 +34,7 @@ LandingPage.getMetaData = async (contentLink, locale, client) => {
   const meta : WithPropertySet<Metadata, 'openGraph'> = {
     title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName,
     description: cmsManagedData.SeoSettings?.MetaDescription,
+    metadataBase: tryToUrl(cmsManagedData?._metadata?.url?.base),
     openGraph: {
       title: cmsManagedData.SeoSettings?.MetaTitle ?? cmsManagedData._metadata?.displayName ?? undefined,
       description: cmsManagedData.SeoSettings?.MetaDescription ?? undefined,
@@ -63,5 +64,16 @@ type WithPropertySet<T, K extends keyof T> = Omit<T, K> & { [P in K] -?: NonNull
 function isNotNullOrUndefined<T>(toTest?: T | null | undefined): toTest is T
 {
   return toTest ? true : false
+}
+
+function tryToUrl(toConvert: string | null | undefined)
+{
+    if (!toConvert)
+        return undefined
+    try {
+        return new URL(toConvert)
+    } catch {
+        return undefined
+    }
 }
 export default LandingPage

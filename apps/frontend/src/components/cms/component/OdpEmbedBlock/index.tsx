@@ -1,19 +1,18 @@
-import type { CmsComponent } from "@remkoj/optimizely-cms-react";
+import { CmsEditable, type CmsComponent } from "@remkoj/optimizely-cms-react/rsc";
 import { OdpEmbedBlockDataFragment, OdpEmbedBlockDataFragmentDoc } from "@gql/graphql";
-import ClientSide from "./client";
+import ClientSide from "./_client";
 
-export const OdpEmbedBlock: CmsComponent<OdpEmbedBlockDataFragment> = ({ data, inEditMode }) => {
+export const OdpEmbedBlock: CmsComponent<OdpEmbedBlockDataFragment> = ({ data, contentLink }) => {
   const contentId = data.ContentId || undefined;
 
   if (!contentId)
     return (
-      <div
-        className="odp-embed-block empty-odp-embed-block"
-      ></div>
+      <CmsEditable as="div" className="odp-embed-block empty-odp-embed-block" cmsId={ contentLink.key } />
     );
   return (
-    <ClientSide
-      inEditMode={inEditMode ? true : false}
+    <CmsEditable as={ClientSide}
+//      cmsFieldName="ContentId"
+      cmsId={ contentLink.key }
       contentId={contentId}
       className="odp-embed-block w-full overflow-hidden rounded-[40px]"
     />

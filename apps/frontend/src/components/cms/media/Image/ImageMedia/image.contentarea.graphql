@@ -1,0 +1,9 @@
+fragment ImageMediaComponentData on ImageMedia {
+  alt: AltText
+  meta: _metadata {
+    url {
+      default
+    }
+    name: displayName
+  }
+}

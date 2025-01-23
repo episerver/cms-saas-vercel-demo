@@ -4,6 +4,7 @@ import { type Sdk, getFragmentData, Schema } from "@gql"
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
 import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
 import { type TypedNode, type NodeInput } from "@remkoj/optimizely-cms-react/rsc"
+import { site_search as getSearchConfig } from "@/flags"
 
 export type FacetFilters = {
     "ctype": string
@@ -78,18 +79,35 @@ export type ContentSearchResults = {
  */
 export async function contentSearch(term: string, { facets, limit = 12, start = 0, locale, filters, sdk, personalize = true }: ContentSearchOptions = {}) : Promise<ContentSearchResults>
 {
+    const config = await getSearchConfig()
+    const usePersonalization = config.use_personalization && personalize
     const app = sdk || getSdk()
-    const topInterest = personalize ? await getTopTopic() : undefined
 
-    const rawResults = await app.searchContent({
-        term,
-        topInterest,
-        pageSize: limit,
-        start,
-        withinLocale: locale,
-        locale: filters?.locale == "" ? undefined : filters?.locale,
-        types: filters?.ctype == "" ? undefined : filters?.ctype
-    })
+    const rawResults = await (async () => {
+        if (usePersonalization) {
+            const boost = config.interest_boost
+            const topInterest = await getTopTopic()
+            return app.personalizedSearchContent({
+                term,
+                topInterest,
+                pageSize: limit,
+                start,
+                withinLocale: locale,
+                boost,
+                locale: filters?.locale == "" ? undefined : filters?.locale,
+                types: filters?.ctype == "" ? undefined : filters?.ctype
+            })
+        }
+        return app.searchContent({
+            term,
+            pageSize: limit,
+            start,
+            withinLocale: locale,
+            locale: filters?.locale == "" ? undefined : filters?.locale,
+            types: filters?.ctype == "" ? undefined : filters?.ctype
+        })
+    })()
+    
 
     return {
         term,
@@ -118,7 +136,7 @@ export async function contentSearch(term: string, { facets, limit = 12, start = 
                 id: contentLink,
                 url: iContentUrlData,
                 title: tryReadStringProp(item, 'title') ?? iContentMetaData?.displayName ?? '',
-                abstract: tryReadObjectProp(item, 'abstract.json') as NodeInput | undefined ?? tryReadStringProp(item, 'seodata.MetaDescription') as string | undefined,
+                abstract: tryReadObjectProp(item, 'abstract.json') as NodeInput | null | undefined ?? tryReadStringProp(item, 'seodata.MetaDescription') as string | undefined,
                 published: tryReadStringProp(item, '_metadata.published'),
                 author: tryReadStringProp(item, 'author'),
                 image: tryReadObjectProp(item, 'image') ?? tryReadObjectProp(item, 'seodata.SharingImage'),
@@ -126,7 +144,7 @@ export async function contentSearch(term: string, { facets, limit = 12, start = 
                 types: iContentMetaData?.types?.filter(isNotNullOrUndefined)
             }
         }),
-        isPersonalized: topInterest != undefined,
+        isPersonalized: usePersonalization,
         facets: [
             {
                 key: 'ctype',

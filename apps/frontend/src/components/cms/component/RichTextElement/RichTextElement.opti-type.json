@@ -1,0 +1,26 @@
+{
+  "key": "RichTextElement",
+  "displayName": "Rich Text",
+  "description": "Add a text to your experience",
+  "baseType": "component",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "elementEnabled"
+  ],
+  "properties": {
+    "text": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Text",
+      "description": "",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 10,
+      "indexingType": "searchable",
+      "editorSettings": {}
+    }
+  }
+}

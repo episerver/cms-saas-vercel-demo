@@ -33,11 +33,8 @@ async function handler(req: NextRequest) : Promise<NextResponse<SiteSearchRespon
 }
 
 export const GET = handler
-export const runtime = 'nodejs' // 'nodejs' (default) | 'edge'
-export const dynamic = 'force-dynamic'
-export const dynamicParams = true
-export const fetchCache = 'default-no-store'
-export const revalidate = 0
+export const runtime = 'edge' // 'nodejs' (default) | 'edge'
+export const revalidate = false
 
 function tryParseInt(value: string | undefined | null, defaultValue: number = 0, radix?: number) : number
 {

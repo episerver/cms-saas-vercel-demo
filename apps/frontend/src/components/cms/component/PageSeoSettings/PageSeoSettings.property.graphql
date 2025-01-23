@@ -1,6 +1,7 @@
 fragment PageSeoSettingsPropertyData on PageSeoSettingsProperty {
   MetaTitle
   MetaDescription
+  MetaKeywords
   SharingImage { ...ReferenceData }
   GraphType
 }

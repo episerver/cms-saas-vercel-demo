@@ -1,0 +1,141 @@
+{
+  "key": "StartPage",
+  "displayName": "Home",
+  "description": "The start/home page for this site.",
+  "baseType": "page",
+  "sortOrder": 900,
+  "mayContainTypes": [
+    "*"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "SeoSettings": {
+      "type": "component",
+      "contentType": "PageSeoSettings",
+      "displayName": "Seo Settings",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Advanced",
+      "sortOrder": 0,
+      "editorSettings": {}
+    },
+    "HomePageHeroContentArea": {
+      "type": "array",
+      "displayName": "Hero",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [],
+        "restrictedTypes": []
+      }
+    },
+    "SiteImageLogo": {
+      "type": "contentReference",
+      "displayName": "Logo",
+      "description": "The logo for this site",
+      "localized": false,
+      "required": false,
+      "group": "Advanced",
+      "sortOrder": 10,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "HomePageMainContentArea": {
+      "type": "array",
+      "displayName": "Main content area",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "component"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "MainNavigationContentArea": {
+      "type": "array",
+      "displayName": "Main navigation",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Navigation",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [],
+        "restrictedTypes": []
+      }
+    },
+    "UtilityNavigationContentArea": {
+      "type": "array",
+      "displayName": "Utility navigation",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Navigation",
+      "sortOrder": 200,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [],
+        "restrictedTypes": []
+      }
+    },
+    "FooterNavigationContentArea": {
+      "type": "array",
+      "displayName": "Footer navigation",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Navigation",
+      "sortOrder": 300,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "component"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "FooterNavigationCopyrightText": {
+      "type": "string",
+      "displayName": "Copyright text",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Navigation",
+      "sortOrder": 390,
+      "editorSettings": {}
+    },
+    "FooterNavigationSubLinks": {
+      "type": "array",
+      "format": "LinkCollection",
+      "displayName": "Footer navigation sub links",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Navigation",
+      "sortOrder": 400,
+      "editorSettings": {},
+      "items": {
+        "type": "component",
+        "contentType": "link"
+      }
+    }
+  }
+}

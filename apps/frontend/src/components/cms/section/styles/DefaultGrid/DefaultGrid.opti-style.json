@@ -3,8 +3,6 @@
   "displayName": "Default",
   "baseType": "section",
   "isDefault": true,
-  "created": "2024-09-25T10:11:01.3541373+00:00",
-  "lastModified": "2024-11-07T16:04:39.8834073+00:00",
   "settings": {
     "sectionColor": {
       "displayName": "Color",

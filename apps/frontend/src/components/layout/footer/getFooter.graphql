@@ -1,37 +1,30 @@
-query getFooter($locale: [Locales] = en) {
-  menuItems: StartPage(locale: $locale) {
+query getFooterData($domain: String, $locale: [Locales!]) {
+  appLayout: LayoutSettingsBlock(
+    where: {
+      _or: [
+        { appIdentifiers: { exist: false } }
+        {
+          _and: [{ appIdentifiers: { exist: true } }, { appIdentifiers: { eq: $domain } }]
+        }
+      ]
+    }
+    locale: $locale
+  ) {
     items {
-      footerSubLinks: FooterNavigationSubLinks {
+      _metadata {
+        key
+        displayName
+      }
+      copyright
+      footerMenus {
+        ...IContentData
+        ...MenuNavigationBlockData
+      }
+      legalLinks {
         ...LinkItemData
       }
-      footerCopyright: FooterNavigationCopyrightText
-      footerNavigation: FooterNavigationContentArea {
-        __typename
-        ...FooterMenuNavigationItem
-        ...HtmlBlock
-      }
+      contactInfoHeading
+      contactInfo { json }
     }
   }
-}
-
-fragment HtmlBlock on HtmlBlock {
-  title: HtmlBlockHeading
-  content: HtmlContent {
-    json
-    html
-  }
-  __typename
-}
-
-fragment FooterMenuNavigationItem on MenuNavigationBlock {
-  title: MenuNavigationHeading
-  items: NavigationLinks {
-    url {
-      ...LinkData
-    }
-    title
-    target
-    text
-  }
-  __typename
 }

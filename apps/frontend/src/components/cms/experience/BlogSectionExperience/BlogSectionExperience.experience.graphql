@@ -1,0 +1,3 @@
+fragment BlogSectionExperienceData on BlogSectionExperience {
+  ...ExperienceData
+}

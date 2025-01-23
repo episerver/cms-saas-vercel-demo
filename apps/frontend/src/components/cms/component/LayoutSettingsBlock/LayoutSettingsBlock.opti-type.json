@@ -1,0 +1,127 @@
+{
+  "key": "LayoutSettingsBlock",
+  "displayName": "Application layout",
+  "description": "Create an application layout configuration",
+  "baseType": "component",
+  "sortOrder": 15000,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "mainMenu": {
+      "type": "array",
+      "displayName": "Main Menu",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "header",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "maxItems": 8,
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "MegaMenuGroupBlock"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "contactInfoHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Contact info heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "serviceButtons": {
+      "type": "array",
+      "displayName": "Service Buttons",
+      "description": "Buttons shown between theme switcher and Site Search",
+      "localized": false,
+      "required": false,
+      "group": "header",
+      "sortOrder": 20,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "ButtonBlock"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "contactInfo": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Contact info",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "footerMenus": {
+      "type": "array",
+      "displayName": "Footer link lists",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "minItems": 0,
+      "maxItems": 3,
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "MenuNavigationBlock"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "copyright": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Copyright Owner",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 105,
+      "editorSettings": {}
+    },
+    "legalLinks": {
+      "type": "array",
+      "displayName": "Legal links",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 110,
+      "editorSettings": {},
+      "minItems": 0,
+      "maxItems": 5,
+      "items": {
+        "type": "component",
+        "contentType": "link"
+      }
+    },
+    "appIdentifiers": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Application ID or Domain",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Advanced",
+      "sortOrder": 999,
+      "indexingType": "queryable",
+      "editorSettings": {}
+    }
+  }
+}

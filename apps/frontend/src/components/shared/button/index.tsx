@@ -1,4 +1,4 @@
-import { type PropsWithChildren, type ComponentProps } from "react"
+import { type FunctionComponent, type PropsWithChildren, type ComponentProps, type ComponentType } from "react"
 import Link from "next/link"
 
 type ButtonTypes = typeof buttonTypes
@@ -10,7 +10,7 @@ export type ButtonProps = Readonly<PropsWithChildren<{
     buttonType?: keyof ButtonTypes
     buttonVariant?: keyof ButtonVariants
     buttonColor?: keyof ButtonColors
-}> & Omit<ComponentProps<typeof Link>, 'href'>>
+}> & Omit<ComponentProps<typeof Link>, 'href' | 'as' | 'type' | 'ref'>>
 
 const buttonTypes = {
     primary: "btn--primary",
@@ -25,15 +25,15 @@ const buttonColors = {
     dark: "btn--dark",
     light: "btn--light"
 }
-export function Button ({
+export const Button : FunctionComponent<ButtonProps> = ({
     className = "",
     buttonType = "primary",
     buttonVariant = "default",
     buttonColor = "default",
     url = "#", 
     children, 
-    ...props }: ButtonProps
-) {
+    ...props }
+) => {
     const hrefValue = url ? (typeof url == 'string' ? url : url.href) : "#"
     const classNameValue = `${buttonTypes[buttonType]} ${ buttonVariants[buttonVariant] } ${ buttonColors[buttonColor] } ${className}`.trim()
 

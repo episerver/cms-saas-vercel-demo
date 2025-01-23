@@ -1,27 +1,37 @@
-import "server-only";
-import {getSdk } from "@/sdk";
-import { type Locales, type MegaMenuItemFragment, type MenuItemFragment } from "@gql/graphql"
-import { Utils } from "@remkoj/optimizely-cms-react";
-import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
-import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
+import 'server-only'
+import { PopoverGroup } from '@headlessui/react';
+import { getServerContext, CmsContentArea } from '@remkoj/optimizely-cms-react/rsc';
+import { localeToGraphLocale } from '@remkoj/optimizely-graph-client';
+import { type Locales, type InputMaybe } from '@gql/graphql';
+import { getSdk } from "@/sdk";
 
-import Header from "./_header";
+import { Logo } from "./partials/_logo";
+import SecondaryMenu from './partials/_secondary-menu';
+import MobileMenu from './partials/_mobile-menu';
+import { Suspense } from 'react';
 
-type HeaderWrapperProps = {
-  locale?: string;
+export type HeaderProps = {
+    locale?: string;
 };
+  
+export default async function SiteHeader({ locale }: HeaderProps) 
+{
+    const { client, locale: serverLocale = locale } = getServerContext()
+    const currentDomain = client?.siteInfo.frontendDomain
+    const ctxLocale = locale ?? serverLocale
+    const currentLocale = (ctxLocale ? localeToGraphLocale(ctxLocale) : undefined) as InputMaybe<Locales> | undefined
 
-export default async function SiteHeader({ locale }: HeaderWrapperProps) {
-  const sdk = getSdk()
-  const { locale: currentLocale } = getServerContext()
-  const headerLocale = currentLocale ?? locale ?? 'en'
-  const config = await sdk.getHeader({
-    locale: localeToGraphLocale(headerLocale) as Locales
-  });
+    const headerData = await getSdk().getHeaderData({
+        locale: currentLocale,
+        domain: currentDomain
+    }).then(x => x.appLayout?.items?.at(0))
 
-  const menuItems = config.menuItems?.items?.at(0)?.headerNavigation?.filter(Utils.isNotNullOrUndefined) as Array<MegaMenuItemFragment> | undefined;
-  const utilityItems = config.menuItems?.items?.at(0)?.UtilityNavigationContentArea?.filter(Utils.isNotNullOrUndefined) as Array<MenuItemFragment> | undefined;
-  const logo = config.menuItems?.items?.at(0)?.logo ?? undefined;
-
-  return <Header menuItems={ menuItems ?? [] } utilityItems={ utilityItems ?? [] } logo={ logo } />;
+    return <header>
+        <div className="container mx-auto px-4 lg:px-6 py-4 gap-2 flex flex-row justify-between items-stretch lg:flex-wrap 2xl:flex-nowrap">
+            <Suspense fallback={<Logo />}><Logo /></Suspense>
+            <CmsContentArea as={ PopoverGroup } className="main-menu hidden 2xl:grow lg:order-last lg:basis-full 2xl:order-none 2xl:basis-auto lg:flex flex-row items-stretch" items={ headerData?.mainMenu } itemWrapper={{ noWrapper: true }} />
+            <SecondaryMenu className='grow-0 shrink-0' utilityItems={ headerData?.serviceButtons } />
+            <MobileMenu menuItems={ headerData?.mainMenu } serviceItems={ headerData?.serviceButtons } />
+        </div>
+    </header>
 }

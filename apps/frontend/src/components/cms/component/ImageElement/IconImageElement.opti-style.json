@@ -3,8 +3,6 @@
   "displayName": "Icon",
   "contentType": "ImageElement",
   "isDefault": false,
-  "created": "2024-09-25T10:11:01.6247151+00:00",
-  "lastModified": "2024-09-25T10:11:01.6247151+00:00",
   "settings": {
     "roundedCorners": {
       "displayName": "Rounded corners",

@@ -5,8 +5,8 @@
  * @returns The Cloudflare Image URL
  */
 export default function cloudflareLoader({ src, width, height, quality, ...props }) {
-    const cmsUrl = process.env.NEXT_PUBLIC_OPTIMIZELY_CMS_URL    
-    const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN
+    const cmsUrl = process.env.NEXT_PUBLIC_OPTIMIZELY_CMS_URL || process.env.OPTIMIZELY_CMS_URL    
+    const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN || process.env.VERCEL_PROJECT_PRODUCTION_URL || 'localhost:3000'
     const scheme = domain && (domain.startsWith("localhost") || domain.endsWith(".local")) ? 'http' : 'https'
     const frontendUrl = domain ? new URL(`${scheme}://${domain}`).href : undefined
     if (!cmsUrl || !frontendUrl)

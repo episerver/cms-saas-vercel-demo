@@ -6,6 +6,7 @@
     "capaj.graphql-codegen-vscode",
     "yzhang.markdown-all-in-one",
     "graphql.vscode-graphql",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "esbenp.prettier-vscode"
   ]
 }

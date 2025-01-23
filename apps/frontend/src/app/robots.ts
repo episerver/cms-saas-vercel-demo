@@ -1,10 +1,10 @@
 import { MetadataRoute } from 'next'
 
 export default async function robots(): Promise<MetadataRoute.Robots> {
-    const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN
+    const domain = process.env.NEXT_PUBLIC_SITE_DOMAIN ?? process.env.SITE_DOMAIN ?? process.env.VERCEL_PROJECT_PRODUCTION_URL
     const scheme = domain && (domain.startsWith("localhost") || domain.endsWith(".local")) ? 'http' : 'https'
     const host = domain ? new URL(`${scheme}://${domain}`) : undefined
-    const sitemap = new URL('/sitemap.xml', host).href
+    const sitemap = host ? new URL('/sitemap.xml', host).href : undefined
 
     return {
         rules: {

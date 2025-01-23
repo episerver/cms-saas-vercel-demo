@@ -33,7 +33,7 @@
       "@/gql": ["./gql"],
       "@/gql/*": ["./gql/*"],
       "@public/*": ["./public/*"],
-      "@shared/*": ["./src/components/shared/*"],
+      "@shared/*": ["./src/components/shared/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],

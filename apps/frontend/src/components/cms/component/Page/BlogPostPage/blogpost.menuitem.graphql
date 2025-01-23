@@ -1,0 +1,20 @@
+fragment BlogPostPageMenuBlock on BlogPostPage {
+  meta: _metadata {
+    published
+  	url {
+      ...LinkData
+    }
+	}
+  topics: Topic
+  heading: Heading
+  author: ArticleAuthor
+  image: BlogPostPromoImage {
+    ...ReferenceData
+  }
+  sharing: SeoSettings {
+    description:MetaDescription
+    image:SharingImage {
+      ...ReferenceData
+    }
+  }
+}

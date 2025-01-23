@@ -1,40 +1,22 @@
-import { forwardRef, useContext } from "react";
-import Button from "@cms/component/ButtonBlock";
-import { HeaderContext } from "../_header";
-import { ThemePicker } from "./_themepicker";
-import { SiteSearch } from "./_site-search";
-import { Schema } from '@gql';
+import { type FunctionComponent, type ComponentProps, Suspense } from "react";
+import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
+import ThemePicker from "./_themepicker";
+import SiteSearch from "./_site-search";
 
-const SecondaryMenu = forwardRef<HTMLUListElement>((props, ref) => {
-  const { utilityItems } = useContext(HeaderContext);
+export type SecondaryMenuProps = {
+  utilityItems?: ComponentProps<typeof CmsContentArea>['items']
+  className?: string
+}
 
-  if (!utilityItems) return null;
-
+export const SecondaryMenu : FunctionComponent<SecondaryMenuProps> = ({ utilityItems, className = "" }) => {
   return (
-    <ul ref={ref} className="flex items-center justify-end relative">
-      <li className="md:mr-6 xl:mr-12"><ThemePicker /></li>
-      {utilityItems.filter(isButtonBlock).map(
-        (item) => { 
-          const btn = item.__typename == "ButtonBlock" ? item as Schema.MenuButtonFragment : undefined
-          if (!btn) return null
-          const { text, type, url, variant } = btn
-          return(
-          <li className="md:mr-6 xl:mr-12" key={text}>
-            <Button buttonType={type} buttonVariant={variant} url={url}>
-              {text}
-            </Button>
-          </li>
-        )}
-      )}
+    <ul className={`${className} hidden lg:flex py-2 items-stretch justify-end relative gap-2 xl:gap-4`}>
+      <ThemePicker />
+      <CmsContentArea items={ utilityItems } noWrapper itemWrapper={{ as: "li" }} />
       <li><SiteSearch /></li>
     </ul>
   );
-});
-
-function isButtonBlock(toTest:any) : toTest is Schema.MenuButtonFragment
-{
-  return toTest?.__typename == "ButtonBlock"
-}
+};
 
 SecondaryMenu.displayName = "SecondaryMenu";
 

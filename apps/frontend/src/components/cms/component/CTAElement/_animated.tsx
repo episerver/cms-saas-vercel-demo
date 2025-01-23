@@ -1,58 +1,54 @@
-import type { CTAElementAnimatedStylesComponent } from './displayTemplates'
+import type { CTAElementAnimatedStylesComponent, CTAElementAnimatedStylesProps } from './displayTemplates'
 import { type CTAElementDataFragment } from "@/gql/graphql"
-import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
+import { extractSettings, type LayoutProps, type LayoutPropsSettingKeys, type LayoutPropsSettingValues } from "@remkoj/optimizely-cms-react/rsc"
 import Animate from '@/components/shared/animation'
 import Button from './_base'
 
+type CTAValueMap<K extends LayoutPropsSettingKeys<CTAElementAnimatedStylesProps>, T = any> = {
+    [P in LayoutPropsSettingValues<CTAElementAnimatedStylesProps, K>]: T
+}
+
+const AlignClasses : CTAValueMap<"buttonAlign", string> = {
+    left: 'ml-0 mr-auto',
+    center: 'mx-auto',
+    right: 'ml-auto mr-0',
+    auto: ''
+}
+
+const DelayValues : CTAValueMap<"delay", number> = {
+    none: 0,
+    short: 0.5,
+    medium: 1,
+    long: 1.5,
+    verylong: 5,
+}
+
+const DurationValues : CTAValueMap<"duration", number> = {
+    none: 0,
+    short: 0.5,
+    medium: 1,
+    long: 1.5,
+    verylong: 2,
+}
+
 export const AnimatedCTAElement : CTAElementAnimatedStylesComponent<CTAElementDataFragment> = ({ data: { cta_link: link, cta_text: text }, layoutProps, className, ...containerProps }) => {
-    const { buttonAlign, buttonType, delay, duration } = extractSettings(layoutProps)
+    // Extract the actual layout properties and apply defaults
+    const { 
+        buttonAlign = "auto", 
+        buttonType = "primary", 
+        buttonVariant = "default",
+        delay = "none", 
+        duration = "none" 
+    } = extractSettings(layoutProps)
+
     const cssClasses : (string | undefined)[] = [ "block w-fit", className ] 
-    switch (buttonAlign) {
-        case "left":
-            cssClasses.push('ml-0','mr-auto')
-            break;
-        case "center":
-            cssClasses.push('mx-auto')
-            break;
-        case "right":
-            cssClasses.push('ml-auto','mr-0')
-            break;
-        default:
-            // Nothing
-            break;
-    }
-    let animDelay : number = 0
-    let animDuration : number = 0
-    switch (delay) {
-        case "short":
-            animDelay = 0.5
-            break;
-        case "medium":
-            animDelay = 1
-            break;
-        case "long":
-            animDelay = 1.5
-            break;
-        case "verylong":
-            animDelay = 5
-            break;
-    }
-    switch (duration) {
-        case "short":
-            animDuration = 0.5
-            break;
-        case "medium":
-            animDuration = 1
-            break;
-        case "long":
-            animDuration = 1.5
-            break;
-        case "verylong":
-            animDuration = 2
-            break;
-    }
-    return <Animate initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: animDuration, delay: animDelay }}>
-        <Button href={link} className={ cssClasses.join(' ') } text={text} buttonType={buttonType} { ...containerProps } />
+    cssClasses.push(AlignClasses[buttonAlign])
+    const animDelay = DelayValues[delay]
+    const animDuration = DurationValues[duration]
+    
+    
+    return <Animate initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: animDuration, delay: animDelay }} className='relative w-full'>
+        <Button href={link} className={ cssClasses.join(' ') } text={text} buttonType={buttonType} buttonVariant={buttonVariant} { ...containerProps } />
     </Animate>
 }
 

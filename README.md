@@ -2,15 +2,19 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 
+> [!IMPORTANT]  
+> The latest version of this site contains a new content pack and schema. When updating an existing site, make sure to [apply the latest content pack](#3-content-pack-upgrade). If you need to, you can use the ["CMS Reset" command line tool](https://github.com/remkoj/optimizely-dxp-clients/tree/main/packages/optimizely-cms-cli#3-available-commands) to clear your current instance.
+
 ## Contents <!-- omit in toc -->
 - [1. Introduction](#1-introduction)
 - [2. Getting started](#2-getting-started)
   - [2.1. Requirements](#21-requirements)
   - [2.2. Deploying \& Configuring](#22-deploying--configuring)
   - [2.3. Additional configuration options](#23-additional-configuration-options)
-  - [2.4. Product specific instructions](#24-product-specific-instructions)
-    - [2.4.1. Content Recommendations](#241-content-recommendations)
-- [3. Further documentation](#3-further-documentation)
+- [3. Content pack upgrade](#3-content-pack-upgrade)
+- [4. Product specific instructions](#4-product-specific-instructions)
+  - [4.1. Content Recommendations](#41-content-recommendations)
+- [5. Further documentation](#5-further-documentation)
 
 
 ## 1. Introduction
@@ -41,9 +45,9 @@ After you've completed the CMS configuration instructions and collected the need
 | OPTIMIZELY_GRAPH_APP_KEY | The Content Graph App key, which is shown on the CMS Dashboard, within the "Render Content" section. |
 | OPTIMIZELY_GRAPH_SINGLE_KEY | The Content Graph Single key	, which is shown on the CMS Dashboard, within the "Render Content" section. |
 
-When the deployment has succeeded, the following steps are needed to enable "On Page Editing" or "In Context Editing".
+When the deployment has succeeded, the following steps are needed to both fix the "Page not found" on the homepage and enable  "Preview".
 
-[Enable on-page / in context editing](docs/editing.md)
+[Fix "Not Found" error and enable preview](docs/editing.md)
 
 ### 2.3. Additional configuration options
 
@@ -51,15 +55,27 @@ Please refer to the [Supported environment variables](docs/env-vars.md) document
 
 ***Please note:** every configuration change to the environment variables requires a new deployment to become active.*
 
-### 2.4. Product specific instructions
-#### 2.4.1. Content Recommendations
+## 3. Content pack upgrade
+When installing the latest version of this demo site, you might need to apply a content pack update.
+
+> [!IMPORTANT]  
+> When the currently installed contentpack was not provided from this repository (for example from the visual-builder-beta), the content cannot be upgraded due to conflicts. Use the ["CMS Reset" command line tool](https://github.com/remkoj/optimizely-dxp-clients/tree/main/packages/optimizely-cms-cli#3-available-commands) to clean your CMS instance and start fresh.
+
+To upgrade the content pack, take these steps:
+- Import the new content pack as described on [Configuring the CMS](docs/cms-config.md). The only difference here is that you will ***not create*** a new Application, but update the existing one use the newly imported homepage.
+- Make sure to run the Graph Full Index as specified
+
+Running this upgrade process will yield you a working demo site, however it will now contain content-types that are no longer supported. If you need them back you can restore the code from `apps/old_cms_types` in your fork/clone of this repository.
+
+## 4. Product specific instructions
+### 4.1. Content Recommendations
 For Content Recommendations to work, the following steps are needed:
 1. Configure Content Recommendations using the environment variables of the [`Next.JS Optimizely One package`](https://www.npmjs.com/package/@remkoj/optimizely-one-nextjs#252-list-of-supported-environment-variables)
 2. Add the Content Recommendations widget using either the block (Page) or element (Experience), you will need to configure:
    - The API Key of the delivery, which is shown as value of 'data-api-key=' in the example code within Content Recommendations
    - The number of recommendations to show
 
-## 3. Further documentation
+## 5. Further documentation
 * [Local development](docs/dev-env.md)
 * [CMS Configuration](docs/cms-config.md)
 * [Enable on-page / in context editing](docs/editing.md)

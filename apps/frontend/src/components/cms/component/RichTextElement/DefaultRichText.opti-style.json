@@ -1,0 +1,31 @@
+{
+  "key": "DefaultRichText",
+  "displayName": "Rich text",
+  "contentType": "RichTextElement",
+  "isDefault": true,
+  "settings": {
+    "width": {
+      "displayName": "Width",
+      "editor": "",
+      "sortOrder": 10,
+      "choices": {
+        "full": {
+          "displayName": "Full width",
+          "sortOrder": 20
+        },
+        "default": {
+          "displayName": "Default (Center)",
+          "sortOrder": 10
+        },
+        "defaultLeft": {
+          "displayName": "Default (Left)",
+          "sortOrder": 10
+        },
+        "defaultRight": {
+          "displayName": "Default (Right)",
+          "sortOrder": 10
+        }
+      }
+    }
+  }
+}

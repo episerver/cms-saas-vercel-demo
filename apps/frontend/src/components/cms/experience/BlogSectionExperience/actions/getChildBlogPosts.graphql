@@ -1,0 +1,55 @@
+query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 9, $skip: Int! = 0) {
+  result: _Page(
+    where: { _metadata: { key: { eq: $parentKey } } }
+    locale: $locale
+  ) {
+    items {
+      container: _metadata {
+        key
+        displayName
+      }
+      items: _link(type: ITEMS) {
+        posts: BlogPostPage(skip: $skip, limit: $limit) {
+          total
+          items {
+            ...IContentData
+            metadata: _metadata {
+              key
+              url {
+                base
+                default
+              }
+              published
+            }
+            heading: Heading
+            subheading: ArticleSubHeading
+            author: ArticleAuthor
+            topic: Topic
+            image: BlogPostPromoImage {
+              src: url {
+                base
+                default
+              }
+            }
+          }
+          facets {
+            author: ArticleAuthor(filters: [$author]) {
+              name
+              count
+            }
+            topic: Topic(orderBy: ASC, filters: [$topic]) {
+              name
+              count
+            }
+            metadata: _metadata {
+              published(unit: DAY) {
+                name
+                count
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

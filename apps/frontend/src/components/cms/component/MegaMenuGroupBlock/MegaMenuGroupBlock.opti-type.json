@@ -1,14 +1,12 @@
 {
   "key": "MegaMenuGroupBlock",
-  "displayName": "Mega menu group",
-  "description": "",
+  "displayName": "Header menu item",
+  "description": "A menu item for the Header Menu",
   "baseType": "component",
-  "sortOrder": 100,
+  "sortOrder": 15100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-31T16:53:12.0266667+00:00",
-  "lastModified": "2024-01-31T17:04:12.2633333+00:00",
   "properties": {
     "MenuMenuHeading": {
       "type": "string",
@@ -43,7 +41,9 @@
       "items": {
         "type": "content",
         "allowedTypes": [
-          "component"
+          "CardBlock",
+          "MenuNavigationBlock",
+          "BlogPostPage"
         ],
         "restrictedTypes": []
       }

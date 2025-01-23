@@ -30,14 +30,14 @@ BlankExperienceExperience.getMetaData = async (contentLink, locale, client) => {
     const pageData = data.page?.items?.at(0)
     if (!pageData)
         return {}
-
         
     const meta : Omit<Metadata, 'openGraph'> & { openGraph: NonNullable<Required<Metadata>['openGraph']>} = {
         title: pageData.seo?.title || pageData.meta?.displayName,
         description: pageData.seo?.description,
+        metadataBase: tryToUrl(pageData?.meta?.url?.base),
         openGraph: {
             title: pageData.seo?.title ?? pageData.meta?.displayName ?? undefined,
-            description: pageData.seo?.description ?? undefined,
+            description: pageData.seo?.description ?? undefined
         },
         other: {
           "idio:content-type": "Blank experience"
@@ -57,6 +57,17 @@ BlankExperienceExperience.getMetaData = async (contentLink, locale, client) => {
         }]
     }
     return meta
+}
+
+function tryToUrl(toConvert: string | null | undefined)
+{
+    if (!toConvert)
+        return undefined
+    try {
+        return new URL(toConvert)
+    } catch {
+        return undefined
+    }
 }
 
 export default BlankExperienceExperience

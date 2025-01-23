@@ -4,6 +4,7 @@ import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
 import DefaultRowComponent from "./DefaultRow";
 import CarouselRowComponent from "./CarouselRow";
 import CardRowComponent from "./CardRow";
+import BackgroundRowComponent from "./BackgroundRow";
 
 // Build dictionary
 export const NodesRowFactory : ComponentTypeDictionary = [
@@ -18,6 +19,10 @@ export const NodesRowFactory : ComponentTypeDictionary = [
     { 
         type: "CardRow", 
         component: CardRowComponent 
+    },
+    { 
+        type: "BackgroundRow", 
+        component: BackgroundRowComponent 
     }
 ];
 

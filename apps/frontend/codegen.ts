@@ -1,22 +1,10 @@
-// Environment file parsing and updating
-import * as DotEnv from 'dotenv'
-import { expand } from 'dotenv-expand'
-import path from 'node:path'
-import fs from 'node:fs'
+// Leverage Next.JS configuration loading
+import { loadEnvConfig } from '@next/env'
 import figures from 'figures'
 import chalk from 'chalk'
-
-// Process environment files, to ensure the enviornment configuration is applied
-const envFiles : string[] = [".env", ".env.local"]
-if (process.env.NODE_ENV) {
-    envFiles.push(`.env.${ process.env.NODE_ENV }`)
-    envFiles.push(`.env.${ process.env.NODE_ENV }.local`)
-}
-envFiles.map(s => path.join(process.cwd(), s)).filter(s => fs.existsSync(s)).reverse().forEach(fileName => {
-    var result = DotEnv.config({ path: fileName, override: false })
-    expand(result)
-    console.log(`${ chalk.greenBright(figures.tick) } Processed ${fileName}`)
-})
+const loadEnvResult = loadEnvConfig(__dirname, undefined, console)
+console.log(`${ chalk.greenBright(figures.tick) } Optimizely CMS Configuration`)
+console.log(`  - Environments: ${ loadEnvResult.loadedEnvFiles.map(x => x.path).join(', ') }`)
 
 // Actual code generation setup
 import type { CodegenConfig  } from '@graphql-codegen/cli'
@@ -85,6 +73,12 @@ const config: CodegenConfig = {
                     {
                         into: "SearchData",
                         pathRegex: "src\/components\/cms\/.*\.search\.graphql"
+                    },
+
+                    // Implementation Specific: Add ContentArea items
+                    {
+                        into: "IContentListItem",
+                        pathRegex: "src\/components\/cms\/.*\.contentarea\.graphql"
                     }
 
                 ]

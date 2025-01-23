@@ -1,32 +1,32 @@
-query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales]) {
-  BlogPostPage (
-    where: {
-      _metadata: {
-        key: { eq: $key }
-        version: { eq: $version }
-      }
-    }
+query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales!]) {
+  BlogPostPage(
+    where: { _metadata: { key: { eq: $key }, version: { eq: $version } } }
     locale: $locale
   ) {
-  	pages: items {
-      _metadata {
-        displayName
-        key
-        version
-        locale
+    pages: items {
+      cms: _metadata {
+        title: displayName
+        published
+        url {
+          base
+          default
+        }
       }
-      Heading
-      BlogPostPromoImage {
-        ...ReferenceData
+      title: Heading
+      author: ArticleAuthor
+      image: BlogPostPromoImage {
+          ...ReferenceData
       }
-      SeoSettings {
-        MetaTitle
-        MetaDescription
-        SharingImage {
+      topics: Topic
+      seo: SeoSettings {
+        title: MetaTitle
+        description: MetaDescription
+        keywords: MetaKeywords
+        image: SharingImage {
           ...ReferenceData
         }
-        GraphType
+        type: GraphType
       }
-    }  
+    }
   }
 }

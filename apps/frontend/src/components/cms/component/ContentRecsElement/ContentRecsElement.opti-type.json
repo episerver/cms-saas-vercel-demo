@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-08-12T11:03:39.6532243+00:00",
-  "lastModified": "2024-08-12T11:08:29.2478867+00:00",
   "properties": {
     "ElementDeliveryApiKey": {
       "type": "string",

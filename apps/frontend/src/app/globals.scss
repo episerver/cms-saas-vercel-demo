@@ -6,71 +6,62 @@
   .outer-padding {
     @apply lg:px-32 md:px-16 px-8;
   }
-  .container > {
-    .opti-content-area,
-    .opti-content-area .opti-content-area-item {
-      display: contents;
-    }
-  }
 }
 
 @layer components {
-  // Buttons
+  // Buttons Base classes
   .btn {
     @apply inline-block relative no-underline whitespace-nowrap;
   }
-
   .btn-before {
     @apply before:content-[""] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out;
   }
-
   .btn-before--hover {
     @apply hover:before:translate-x-[0px] hover:before:translate-y-[8px];
   }
-
-  .btn--primary,
-  .btn--secondary {
-    @apply btn;
-  }
-
-  .btn--default {
-    @apply btn-before btn-before--hover active:translate-y-[4px] active:before:translate-y-0 transition-transform duration-300 ease-in-out;
-  }
-
-  .btn--cta {
-    @apply btn-before before:translate-x-[8px] before:translate-y-[8px] hover:before:translate-x-[0px] hover:before:translate-y-[0px];
-  }
-
-  .btn--cta .btn__content {
-    @apply transition-all duration-300 ease-in-out hover:translate-y-[-8px] active:translate-y-0;
-  }
-
   .btn__content {
     @apply font-semibold px-[16px] py-[10px] rounded-[40px] border-vulcan border-2 relative;
   }
 
-  .btn--primary .btn__content {
-    @apply text-white bg-vulcan z-10;
+  // Button styles
+  .btn--primary,
+  .btn--secondary {
+    @apply btn;
+  }
+//  .btn--default {
+//    @apply btn-before btn-before--hover active:translate-y-[4px] active:before:translate-y-0 transition-transform duration-300 ease-in-out;
+//  }
+  .btn--cta {
+    @apply btn-before before:translate-x-[8px] before:translate-y-[8px] hover:before:translate-x-[0px] hover:before:translate-y-[0px];
+  }
+  .btn--cta .btn__content {
+    @apply transition-all duration-300 ease-in-out hover:translate-y-[-8px] active:translate-y-0;
   }
 
+  // Button content
+  .btn--primary .btn__content {
+    @apply  z-10;
+    background-color: var(--btn-primary-bg);
+    color: var(--btn-primary-text);
+  }
   .btn--secondary .btn__content {
     @apply text-vulcan bg-white;
   }
 
+  // Button light variant
   .btn--light {
     @apply before:bg-white;
   }
-
   .btn--light .btn__content {
     @apply text-white z-10 border-white;
 
     background-color: var(--bg-inherit-button);
   }
 
+  // Button dark variant
   .btn--dark {
     @apply before:bg-vulcan;
   }
-
   .btn--dark .btn__content {
     @apply text-vulcan z-10 border-vulcan;
 
@@ -81,6 +72,151 @@
   // Typography Styles
   .eyebrow {
     @apply uppercase text-xl tracking-[1px];
+  }
+
+  // Text color overrides
+  .with-light-text {
+    --text-main: var(--white);
+    --text-dark: var(--white);
+
+    @apply apply-text;
+  }
+  .with-dark-text {
+    --text-main: var(--vulcan);
+    --text-dark: var(--vulcan);
+
+    @apply apply-text;
+  }
+  .with-text-shadow {
+    text-shadow: 0.1rem 0.1rem 0.5rem var(--vulcan);
+  }
+
+  .apply-text {
+    @apply 
+      text-[var(--text-main)] 
+      dark:text-[var(--text-dark)] 
+      prose-blockquote:text-[var(--text-main)] 
+      dark:prose-blockquote:text-[var(--text-dark)]
+      prose-figcaption:text-[var(--text-main)] 
+      dark:prose-figcaption:text-[var(--text-dark)];
+  }
+
+  .apply-background {
+    @apply 
+      bg-[var(--bg-main)] 
+      dark:bg-[var(--bg-dark)] 
+      dark:border-[var(--border-dark)] 
+  }
+
+  // Fully styled classes
+  .on-base {
+    --bg-main: var(--ghost-white);
+    --bg-dark: var(--vulcan);
+    --text-main: var(--vulcan);
+    --text-dark: var(--white);
+    --border-dark: var(--bg-main);
+
+    --btn-primary-bg: var(--vulcan);
+    --btn-primary-text: var(--ghost-white);
+    --bg-inherit-button: var(--bg-main);
+
+    @apply 
+        bg-[var(--bg-main)] 
+        dark:bg-[var(--bg-dark)] 
+        text-[var(--text-main)] 
+        dark:text-[var(--text-dark)] 
+        dark:border-[var(--border-dark)] 
+        prose-blockquote:text-[var(--text-main)] 
+        dark:prose-blockquote:text-[var(--text-dark)]
+        prose-figcaption:text-[var(--text-main)] 
+        dark:prose-figcaption:text-[var(--text-dark)];
+  }
+  .on-white {
+    @apply on-base;
+
+    --bg-main: var(--white);
+    --bg-dark: var(--vulcan-85);
+  }
+  .on-ghost-white {
+    @apply on-base;
+  }
+  .on-light-grey {
+    @apply on-base;
+
+    --bg-main: var(--light-grey);
+    --bg-dark: var(--vulcan-85);
+  }
+  .on-azure {
+    @apply on-base;
+
+    --bg-main: var(--azure);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+  }
+  .on-verdansk {
+    @apply on-base;
+
+    --bg-main: var(--verdansk);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--vulcan);
+  }
+  .on-people-eater {
+    @apply on-base;
+
+    --bg-main: var(--people-eater);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+  }
+  .on-paleruby {
+    @apply on-base;
+
+    --bg-main: var(--paleruby);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+  }
+  .on-tangy {
+    @apply on-base;
+
+    --bg-main: var(--tangy);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--vulcan);
+  } 
+  .on-vulcan {
+    @apply on-base;
+
+    --bg-main: var(--vulcan);
+    --bg-dark: var(--vulcan);
+    --text-main: var(--white);
+    --border-dark: var(--white);
+  }
+  .on-vulcan-85 {
+    @apply on-base;
+
+    --bg-main: var(--vulcan-85);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+    --boder-dark: var(--white);
+  }
+  .on-independence {
+    @apply on-base;
+
+    --bg-main: var(--independence);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+  }
+  .on-mischka {
+    @apply on-base;
+
+    --bg-main: var(--mischka);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
+  }
+  .on-pale-sky {
+    @apply on-base;
+
+    --bg-main: var(--pale-sky);
+    --bg-dark: var(--vulcan-85);
+    --text-main: var(--white);
   }
 
   // Share BG vars down to buttons.

@@ -7,8 +7,6 @@
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
-  "created": "2024-01-30T03:08:30.87+00:00",
-  "lastModified": "2024-01-30T03:08:30.87+00:00",
   "properties": {
     "TextBlockOverline": {
       "type": "string",

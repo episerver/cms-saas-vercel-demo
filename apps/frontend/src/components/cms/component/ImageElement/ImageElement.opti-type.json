@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-06-27T14:20:26.5978722+00:00",
-  "lastModified": "2024-06-27T14:20:26.5978722+00:00",
   "properties": {
     "altText": {
       "type": "string",
@@ -18,7 +16,7 @@
       "displayName": "Description",
       "description": "",
       "localized": true,
-      "required": true,
+      "required": false,
       "group": "Information",
       "sortOrder": 10,
       "editorSettings": {}

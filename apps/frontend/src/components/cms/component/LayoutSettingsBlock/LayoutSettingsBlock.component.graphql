@@ -1,0 +1,10 @@
+fragment LayoutSettingsBlockData on LayoutSettingsBlock {
+  mainMenu { ...IContentListItem }
+  contactInfoHeading
+  serviceButtons { ...IContentListItem }
+  contactInfo { json, html }
+  footerMenus { ...IContentListItem }
+  copyright
+  legalLinks { ...LinkItemData }
+  appIdentifiers
+}

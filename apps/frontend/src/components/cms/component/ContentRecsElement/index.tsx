@@ -4,6 +4,7 @@ import { ContentRecsElementDataFragmentDoc, type ContentRecsElementDataFragment 
 import { ContentRecsDelivery } from '@remkoj/optimizely-one-nextjs/client'
 import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import ArticleTemplate from '../../../shared/article_card/recs-template'
+import PlaceHolder from "./_placeholder";
 
 /**
  * Content Recommendations
@@ -11,7 +12,7 @@ import ArticleTemplate from '../../../shared/article_card/recs-template'
  */
 export const ContentRecsElementElement : CmsComponent<ContentRecsElementDataFragment> = async ({ data, contentLink: { key } }) => {
     return <CmsEditable as="div" cmsId={ key }>
-        <ContentRecsDelivery template={ ArticleTemplate } count={ data.ElementRecommendationCount ?? 3 } apiKey={ data.ElementDeliveryApiKey ?? '' } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12" />
+        <ContentRecsDelivery template={ ArticleTemplate } count={ data.ElementRecommendationCount ?? 3 } apiKey={ data.ElementDeliveryApiKey ?? '' } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12" placeholder={ PlaceHolder } />
     </CmsEditable>
 }
 ContentRecsElementElement.displayName = "Content Recommendations (Element/ContentRecsElement)"

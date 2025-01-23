@@ -14,13 +14,13 @@ enum VSpacings {
 }
 
 enum ColorClasses {
-    black = 'bg-vulcan dark:bg-vulcan-85 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    blue = 'bg-azure dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    green = 'bg-verdansk dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    orange = 'bg-tangy dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    purple = 'bg-people-eater dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    lightred = 'bg-paleruby dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
-    lightgrey = 'bg-light-grey dark:bg-transparent dark:border-y-azure dark:border-y-4 text-white prose-h3:text-white prose-h2:text-white prose-figcaption:text-white prose-blockquote:text-white',
+    black = 'on-vulcan',
+    blue = 'on-azure dark:border-y-4',
+    green = 'on-verdansk dark:border-y-4',
+    orange = 'on-tangy dark:border-y-4',
+    purple = 'on-people-eater dark:border-y-4',
+    lightred = 'on-paleruby dark:border-y-4',
+    lightgrey = 'on-light-grey dark:border-y-4',
 }
 
 export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children, ...htmlProps }) => {
@@ -32,7 +32,7 @@ export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children
 
     // Standard (no-color section)
     if (sectionColor == 'default') {
-        const cssClasses = ["vb:section vb:section:DefaultGrid"]
+        const cssClasses = ["vb:section vb:section:DefaultGrid relative"]
         cssClasses.push(GridWidths[gridWidth] ?? '')
         cssClasses.push("flex flex-col")
         cssClasses.push(VSpacings[vSpacing] ?? '')

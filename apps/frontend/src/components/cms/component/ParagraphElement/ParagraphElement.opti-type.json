@@ -9,8 +9,6 @@
   "compositionBehaviors": [
     "elementEnabled"
   ],
-  "created": "2024-06-27T14:20:26.5958949+00:00",
-  "lastModified": "2024-06-27T14:20:26.5958949+00:00",
   "properties": {
     "text": {
       "type": "string",
@@ -21,6 +19,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": 10,
+      "indexingType": "searchable",
       "editorSettings": {}
     }
   }

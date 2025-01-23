@@ -1,0 +1,274 @@
+{
+  "key": "LayoutContainerBlock",
+  "displayName": "Layout",
+  "description": "Allows you to specify the layout for the blocks that come after this block",
+  "baseType": "component",
+  "sortOrder": 100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "ColumnsCount": {
+      "type": "integer",
+      "displayName": "Number of columns",
+      "description": "",
+      "localized": false,
+      "required": true,
+      "group": "Information",
+      "sortOrder": -100,
+      "editorSettings": {},
+      "minimum": 1,
+      "maximum": 6
+    },
+    "GapSize": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Size of gap / gutter",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": -50,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "None",
+            "value": "none"
+          },
+          {
+            "displayName": "Small",
+            "value": "small"
+          },
+          {
+            "displayName": "Medium",
+            "value": "medium"
+          },
+          {
+            "displayName": "Large",
+            "value": "large"
+          },
+          {
+            "displayName": "Extra Large",
+            "value": "extraLarge"
+          }
+        ]
+      }
+    },
+    "LayoutContentArea": {
+      "type": "array",
+      "displayName": "Content items",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": -25,
+      "editorSettings": {},
+      "minItems": 1,
+      "maxItems": 6,
+      "items": {
+        "type": "content",
+        "allowedTypes": [
+          "component",
+          "Media"
+        ],
+        "restrictedTypes": []
+      }
+    },
+    "ContainerBackgroundColor": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Background color",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Default",
+            "value": ""
+          },
+          {
+            "displayName": "Light Blue",
+            "value": "light-blue"
+          },
+          {
+            "displayName": "Blue",
+            "value": "blue"
+          },
+          {
+            "displayName": "Orange",
+            "value": "orange"
+          },
+          {
+            "displayName": "Green",
+            "value": "green"
+          },
+          {
+            "displayName": "Red",
+            "value": "red"
+          },
+          {
+            "displayName": "White",
+            "value": "white"
+          }
+        ]
+      }
+    },
+    "ContainerBackgroundImage": {
+      "type": "contentReference",
+      "displayName": "Background image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "ContainerMarginTop": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Margin top",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "None",
+            "value": "none"
+          },
+          {
+            "displayName": "Small",
+            "value": "small"
+          },
+          {
+            "displayName": "Medium",
+            "value": "medium"
+          },
+          {
+            "displayName": "Large",
+            "value": "large"
+          },
+          {
+            "displayName": "Extra Large",
+            "value": "extraLarge"
+          }
+        ]
+      }
+    },
+    "ContainerMarginBottom": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Margin bottom",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 200,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "None",
+            "value": "none"
+          },
+          {
+            "displayName": "Small",
+            "value": "small"
+          },
+          {
+            "displayName": "Medium",
+            "value": "medium"
+          },
+          {
+            "displayName": "Large",
+            "value": "large"
+          },
+          {
+            "displayName": "Extra Large",
+            "value": "extraLarge"
+          }
+        ]
+      }
+    },
+    "ContainerPaddingBottom": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Padding bottom",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 300,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "None",
+            "value": "none"
+          },
+          {
+            "displayName": "Small",
+            "value": "small"
+          },
+          {
+            "displayName": "Medium",
+            "value": "medium"
+          },
+          {
+            "displayName": "Large",
+            "value": "large"
+          },
+          {
+            "displayName": "Extra Large",
+            "value": "extraLarge"
+          }
+        ]
+      }
+    },
+    "ContainerPaddingTop": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Top padding",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 500,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "None",
+            "value": "none"
+          },
+          {
+            "displayName": "Small",
+            "value": "small"
+          },
+          {
+            "displayName": "Medium",
+            "value": "medium"
+          },
+          {
+            "displayName": "Large",
+            "value": "large"
+          },
+          {
+            "displayName": "Extra Large",
+            "value": "extraLarge"
+          }
+        ]
+      }
+    }
+  }
+}

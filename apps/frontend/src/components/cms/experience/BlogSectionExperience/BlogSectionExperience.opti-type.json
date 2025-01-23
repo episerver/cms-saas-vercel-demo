@@ -1,0 +1,26 @@
+{
+  "key": "BlogSectionExperience",
+  "displayName": "Blog/News Section",
+  "description": "Add a blog/news section to your site",
+  "baseType": "experience",
+  "sortOrder": 0,
+  "mayContainTypes": [
+    "BlogPostPage",
+    "BlogSectionExperience"
+  ],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "seo_data": {
+      "type": "component",
+      "contentType": "PageSeoSettings",
+      "displayName": "SEO Settings",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "SeoSettings",
+      "sortOrder": 0,
+      "editorSettings": {}
+    }
+  }
+}

@@ -6,9 +6,13 @@ const handler = createPublishApi({
         '/[[...path]]',
         '/[lang]',
         '/[lang]/[[...path]]',
+    ],
+    additionalPaths: [
         '/api/content/search',
-        '/api/me/[[...path]]'
-    ]
+        '/api/content/articles',
+        '/api/me/[[...path]]',
+    ],
+    optimizePublish: true
 })
 
 export const dynamic = 'force-dynamic'      // Make sure all API-Requests are executed

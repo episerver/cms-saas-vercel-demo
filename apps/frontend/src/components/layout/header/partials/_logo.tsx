@@ -1,30 +1,32 @@
+'use client'
 import Image from "next/image";
 import Link from "next/link";
-import { forwardRef } from "react";
-import { type ReferenceDataFragment } from "@gql/graphql"
-import { linkDataToUrl, getLinkData } from '@/lib/urls'
+import { type FunctionComponent } from "react";
+import { layout_configuration } from "@/flags"
+import useFlag from "@/useFlag";
 
-type LogoProps = JSX.IntrinsicElements["div"] & {
-  logo?: ReferenceDataFragment
+type LogoProps = JSX.IntrinsicElements["a"] & {
+  logo?: string
 }
 
-const Logo = forwardRef<HTMLDivElement, LogoProps>(({ logo, ...divProps }, ref) => {
-  const logoUrl = linkDataToUrl(getLinkData(logo))?.href
+export const Logo : FunctionComponent<LogoProps> = ({ 
+  logo = "/assets/moseybank-logo.svg",
+  ...divProps
+}) => {
+  const { logo: logoUrl } = useFlag(layout_configuration, { logo, theme_switcher: false })
   return (
-    <div className="flex align-middle" ref={ref} {...divProps }>
-      <Link href="/" className="mr-[28px]">
+      <Link href="/" className="flex items-center grow-0 shrink-0" {...divProps }>
         <Image
-          src={ logoUrl ?? "/assets/moseybank-logo.svg"}
+          src={ logoUrl }
           alt="Mosey Bank Logo"
           fill
           unoptimized
           priority
-          className="dark:brightness-0	dark:invert !w-[200px] !h-auto !relative"
+          className="dark:brightness-0	dark:invert !w-auto !h-12 !relative"
         />
       </Link>
-    </div>
   );
-});
+};
 
 Logo.displayName = "Logo";
 

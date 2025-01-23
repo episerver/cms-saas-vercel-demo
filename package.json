@@ -1,21 +1,29 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.5.1",
+  "packageManager": "yarn@4.6.0",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
-    "apps/*"
+    "apps/*",
+    "packages/*"
   ],
   "engines": {
-    "node": ">=20.0.0 <21.0.0"
+    "node": ">=22.0.0 <23.0.0"
   },
   "devDependencies": {
+    "@graphql-typed-document-node/core": "^3.2.0",
+    "@remkoj/optimizely-graph-client": "^4.2.0",
+    "@remkoj/optimizely-graph-functions": "^4.2.0",
     "@types/source-map-support": "^0.5.10",
     "@yarnpkg/sdks": "^3.2.0",
     "eslint": "8.57.1",
+    "graphql": "^16.10.0",
+    "graphql-request": "^6.1.0",
+    "graphql-tag": "^2.12.6",
+    "prettier": "^3.4.2",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.6.3",
-    "vercel": "^37.14.0"
+    "typescript": "^5.7.3",
+    "vercel": "^39.3.0"
   },
   "exports": null,
   "scripts": {
@@ -23,6 +31,9 @@
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
     "lint": "yarn workspace frontend lint",
+    "compile": "yarn workspace frontend compile",
+    "opti-cms": "yarn workspace frontend opti-cms",
+    "opti-graph": "yarn workspace frontend opti-graph",
     "graphql:watch": "yarn workspace frontend watch",
     "graphql:codegen": "yarn workspace frontend compile",
     "type-check": "yarn workspace frontend tsc --pretty --noEmit",
@@ -32,6 +43,6 @@
     "env:pull": "yarn vercel env pull apps/frontend/.env.development.local"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.4.0-patched.tgz"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.6.0-patched.tgz"
   }
 }

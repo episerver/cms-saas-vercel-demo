@@ -1,0 +1,43 @@
+query personalizedSearchContent($term: String!, $topInterest: String, $locale: [String!], $withinLocale: [Locales], $types: [String!], $pageSize: Int! = 25, $start: Int! = 0, $boost: Int! = 100) {
+  Content: _Page (
+    where: {
+      _or: [
+        { _fulltext: { match: $term } }
+        { _fulltext: { match: $topInterest, boost: $boost } }
+      ]
+      _metadata: { url: { base: { exist: true } } }
+    }
+    orderBy: { _ranking: SEMANTIC }
+    limit: $pageSize
+    skip: $start
+    locale: $withinLocale
+  ) {
+    total
+    items {
+      _score
+      ...SearchData
+      _metadata {
+        published
+      }
+      preview: _fulltext(
+        highlight: { enabled: true, startToken: "<span>", endToken: "</span>" }
+      )
+    }
+    facets {
+      _metadata {
+        types(filters: $types) {
+          name
+          count
+        }
+        locale(filters: $locale) {
+          name
+          count
+        }
+      }
+    }
+  }
+}
+
+fragment SearchData on _IContent {
+  ...IContentData
+}

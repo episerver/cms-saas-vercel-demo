@@ -1,0 +1,11 @@
+query getLocales {
+  schema: __schema {
+    types {
+      kind
+      name
+      enumValues {
+        name
+      }
+    }
+  }
+}

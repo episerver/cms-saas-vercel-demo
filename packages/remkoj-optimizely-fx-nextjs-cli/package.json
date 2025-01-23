@@ -1,0 +1,32 @@
+{
+  "name": "@remkoj/optimizely-fx-nextjs-cli",
+  "packageManager": "yarn@4.5.1",
+  "type": "module",
+  "scripts": {
+    "prepare": "rollup -c ./rollup.config.js",
+    "watch": "rollup -c ./rollup.config.js -w",
+    "compile": "rollup -c ./rollup.config.js"
+  },
+  "bin": {
+    "opti-fx": "./dist/index.js"
+  },
+  "files": [
+    "./dist"
+  ],
+  "dependencies": {
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@next/env": "^14.2.23",
+    "@rollup/plugin-json": "^6.1.0",
+    "@rollup/plugin-typescript": "^12.1.2",
+    "@types/node": "^22.10.7",
+    "@types/yargs": "^17.0.33",
+    "rollup": "^4.31.0",
+    "tslib": "^2.8.1",
+    "typescript": "^5.7.3"
+  },
+  "peerDependencies": {
+    "@next/env": "^14"
+  }
+}

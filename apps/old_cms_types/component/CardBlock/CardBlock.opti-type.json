@@ -1,0 +1,146 @@
+{
+  "key": "CardBlock",
+  "displayName": "Card",
+  "description": "",
+  "baseType": "component",
+  "sortOrder": 100,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "CardHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "CardSubHeading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Subheading",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "CardDescription": {
+      "type": "string",
+      "format": "html",
+      "displayName": "Description",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {}
+    },
+    "CardColor": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Color",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 40,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Blue",
+            "value": "blue"
+          },
+          {
+            "displayName": "White",
+            "value": "white"
+          },
+          {
+            "displayName": "Dark Blue",
+            "value": "dark-blue"
+          },
+          {
+            "displayName": "Orange",
+            "value": "orange"
+          },
+          {
+            "displayName": "Green",
+            "value": "green"
+          },
+          {
+            "displayName": "Red",
+            "value": "red"
+          },
+          {
+            "displayName": "Purple",
+            "value": "purple"
+          }
+        ]
+      }
+    },
+    "CardButton": {
+      "type": "component",
+      "contentType": "ButtonBlock",
+      "displayName": "Button",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 50,
+      "editorSettings": {}
+    },
+    "CardIcon": {
+      "type": "contentReference",
+      "displayName": "Icon",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 90,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    },
+    "ImageLayout": {
+      "type": "string",
+      "format": "selectOne",
+      "displayName": "Image layout",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 100,
+      "editorSettings": {},
+      "enum": {
+        "values": [
+          {
+            "displayName": "Before",
+            "value": "before"
+          },
+          {
+            "displayName": "After",
+            "value": "after"
+          }
+        ]
+      }
+    },
+    "CardImage": {
+      "type": "contentReference",
+      "displayName": "Image",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 101,
+      "editorSettings": {},
+      "allowedTypes": [],
+      "restrictedTypes": []
+    }
+  }
+}
