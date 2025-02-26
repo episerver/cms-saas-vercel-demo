@@ -4,8 +4,9 @@ const handler = createPublishApi({
     paths: [
         '/',
         '/[[...path]]',
-        '/[lang]',
-        '/[lang]/[[...path]]',
+        //'/[lang]',
+        //'/[lang]/[[...path]]',
+        '/sitemap.xml'
     ],
     additionalPaths: [
         '/api/content/search',
