@@ -37,6 +37,9 @@ export default LanguageSwitcher
  */
 const getLocales = cache(async (includeSystem: boolean = false) => {
     const sdk = getSdk();
-    const locales = (await sdk.getLocales())?.schema?.types?.filter(x => x.kind == "ENUM" && x.name?.endsWith("Locales"))?.map(x => (x.enumValues ?? []).map(y => y.name))?.flat()?.filter((v,i,a) => i <= a.indexOf(v)) ?? []
+    const locales = (await sdk.getLocales().catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {
+        console.error(`❌ [Optimizely Graph] [Error] ${e.response.code} ${e.response.system.message} ${e.response.system.auth}`)
+        return undefined
+    }))?.schema?.types?.filter(x => x.kind == "ENUM" && x.name?.endsWith("Locales"))?.map(x => (x.enumValues ?? []).map(y => y.name))?.flat()?.filter((v,i,a) => i <= a.indexOf(v)) ?? []
     return includeSystem ? locales : locales.filter(x => x != 'ALL' && x != 'NEUTRAL')
 })

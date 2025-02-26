@@ -18,6 +18,9 @@ export async function SiteFooter({locale}: SiteFooterProps)
     const footerLocale = locale ?? contextLocale
     const footerData = (await sdk.getFooterData({
         locale: footerLocale ? localeToGraphLocale(footerLocale) as Locales : Locales.ALL
+    }).catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {
+        console.error(`❌ [Optimizely Graph] [Error] ${e.response.code} ${e.response.system.message} ${e.response.system.auth}`)
+        return undefined
     }))?.appLayout?.items?.at(0)
 
     return <footer className="bg-vulcan dark:bg-vulcan-85 text-white py-8 lg:py-16 outer-padding">

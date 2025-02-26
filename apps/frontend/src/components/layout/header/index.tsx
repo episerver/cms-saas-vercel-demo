@@ -24,7 +24,10 @@ export default async function SiteHeader({ locale }: HeaderProps)
     const headerData = await getSdk().getHeaderData({
         locale: currentLocale,
         domain: currentDomain
-    }).then(x => x.appLayout?.items?.at(0))
+    }).then(x => x.appLayout?.items?.at(0)).catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {
+        console.error(`❌ [Optimizely Graph] [Error] ${e.response.code} ${e.response.system.message} ${e.response.system.auth}`)
+        return undefined
+    })
 
     return <header>
         <div className="container mx-auto px-4 lg:px-6 py-4 gap-2 flex flex-row justify-between items-stretch lg:flex-wrap 2xl:flex-nowrap">

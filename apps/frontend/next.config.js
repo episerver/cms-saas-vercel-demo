@@ -19,14 +19,17 @@ const nextConfig = {
 // Add the configured Optimizely DXP URL to the image domains
 const optimizelyDxpUrl = process.env.OPTIMIZELY_CMS_URL
 if (optimizelyDxpUrl) {
-    const optimizelyDxpHost = new URL(optimizelyDxpUrl)
-
-    nextConfig.images.remotePatterns.push({
-        protocol: optimizelyDxpHost.protocol.replace(":",""),
-        hostname: optimizelyDxpHost.hostname,
-        port: optimizelyDxpHost.port,
-        pathname: (optimizelyDxpHost.pathname || '/') + '**'
-    })
+    try {
+        const optimizelyDxpHost = new URL(optimizelyDxpUrl)
+        nextConfig.images.remotePatterns.push({
+            protocol: optimizelyDxpHost.protocol.replace(":",""),
+            hostname: optimizelyDxpHost.hostname,
+            port: optimizelyDxpHost.port,
+            pathname: (optimizelyDxpHost.pathname || '/') + '**'
+        })
+    } catch {
+        // Ignored on purpose, invalid domain
+    }
 }
 
 module.exports = nextConfig
