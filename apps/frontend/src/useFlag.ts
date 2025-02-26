@@ -1,7 +1,6 @@
 'use client'
-import { type JsonValue } from "@vercel/flags";
-import { type Flag  } from "@vercel/flags/next";
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
+import { resolveFlag, type AvailableFlags, type FlagData, type FlagState } from './useFlag.rsc'
 
 /**
  * Client Side hook, to use a server action to fetch the Flag status. This 
@@ -15,17 +14,14 @@ import { useState, useEffect } from "react"
  * @param   defaultState    The initial state to use for the flag
  * @returns The flag data, or default state if the flag has not yet loaded
  */
-export function useFlag<FT extends Flag<JsonValue>>(flag: FT) : (FT extends Flag<infer FD> ? FD : never) | undefined
-export function useFlag<FT extends Flag<JsonValue>>(flag: FT, defaultState: FT extends Flag<infer FD> ? Omit<FD, '_enabled'> : never) : FT extends Flag<infer FD> ? FD: never
-export function useFlag<FT extends Flag<JsonValue>>(flag: FT, defaultState?: FT extends Flag<infer FD> ? Omit<FD, '_enabled'> : never) : (FT extends Flag<infer FD> ? FD : never) | undefined
-{
-    type FlagState = (FT extends Flag<infer FD> ? FD : never) | undefined
-    const [ flagValue, setFlagValue ] = useState<FlagState>((defaultState ? { _enabled: false, ...defaultState} : undefined) as FlagState)
+export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey): FlagData<FlagKey> | undefined
+export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, defaultState: FlagState<FlagKey>): FlagData<FlagKey>
+export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, defaultState?: FlagState<FlagKey>): FlagData<FlagKey> | undefined {
+    const [flagValue, setFlagValue] = useState<FlagData<FlagKey> | undefined>((defaultState ? { _enabled: false, ...defaultState } : undefined) as FlagData<FlagKey>)
     useEffect(() => {
-        async function fetchFlagState() 
-        {
-            const newFlagValue = await flag() as FlagState
-            setFlagValue(newFlagValue)
+        async function fetchFlagState() {
+            const flagValue = await resolveFlag(flag)
+            setFlagValue(flagValue)
         }
         fetchFlagState()
     }, [flag])

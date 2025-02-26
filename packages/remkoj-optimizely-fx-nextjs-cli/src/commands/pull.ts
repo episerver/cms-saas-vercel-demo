@@ -5,7 +5,7 @@ import path from 'node:path'
 import { wellknownRoute, routeFile, flagsFile, optiFlags, optiDataFileConfigKey, sdkFile } from './_convention.js'
 
 type OptiFlagsConfigFile = {
-    [ flagKey: string]: {
+    [flagKey: string]: {
         description?: string
         variables?: {
             [variableKey: string]: {
@@ -17,11 +17,67 @@ type OptiFlagsConfigFile = {
     }
 }
 
-export const PullCommand : CliModule = {
+import ts from 'typescript'
+
+export const PullCommand: CliModule = {
     command: "pull",
     describe: "Update the optiflags.json and flags.ts from FX; without removing flags or variables so the site won't break",
     async handler(args, opts) {
         const { path: cwd, nosrc, project, token } = args
+
+        const projFlagsFile = path.normalize(path.join(cwd, nosrc ? '' : 'src', flagsFile))
+        if (fs.existsSync(projFlagsFile)) {
+            const configPath = ts.findConfigFile(
+                cwd,
+                ts.sys.fileExists,
+                "tsconfig.json"
+            );
+            if (!configPath) {
+                throw new Error("Could not find a valid 'tsconfig.json'.");
+            }
+            const sourceFile = ts.createSourceFile(projFlagsFile, fs.readFileSync(projFlagsFile).toString(), ts.ScriptTarget.ES2015, true)
+            
+
+            const flagDefs : { [name: string]: { name: string, type: string}[] } = {};
+             sourceFile.forEachChild((node) => {
+                if (node.kind == ts.SyntaxKind.VariableStatement && node.getFirstToken()?.kind == ts.SyntaxKind.ExportKeyword) {
+                    node.getChildAt(1).forEachChild<undefined | { name: string, properties: {name: string, type: string}[]}>(variableDef => {
+                        if (variableDef.kind == ts.SyntaxKind.VariableDeclaration) {
+                            const flagName = variableDef.getFirstToken()?.getText()
+                            const flagValueExpression = variableDef.getChildAt(2)
+                            if (flagValueExpression.kind == ts.SyntaxKind.CallExpression) {
+                                const isFlag = flagValueExpression.getChildAt(0)?.kind == ts.SyntaxKind.Identifier && flagValueExpression.getChildAt(0)?.getText() == 'flag'
+                                if (!isFlag)
+                                    return undefined
+                                const flagType = flagValueExpression.getChildren().find(x => x.kind == ts.SyntaxKind.SyntaxList)
+                                const isOptiFlag = flagType.getChildAt(0).getChildAt(0).getText() == 'OptimizelyFlag'
+                                if (!isOptiFlag)
+                                    return undefined
+                                const flagDataType = flagType.getChildAt(0).getChildren().find(x => x.kind == ts.SyntaxKind.SyntaxList)?.getChildAt(0)
+                                if (flagDataType.kind != ts.SyntaxKind.TypeLiteral) {
+                                    process.stdout.write(`⚠ Only literal type defintions for an OptimizelyFlag are supported`)
+                                    return undefined
+                                }
+                                const properties : {name: string, type: string}[] = [];
+                                flagDataType.forEachChild(x => {
+                                    if (x.kind == ts.SyntaxKind.PropertySignature) {
+                                        const propertyName = x.getFirstToken().getText()
+                                        const propertyValueType = x.getChildren().filter(x => ![ts.SyntaxKind.Identifier, ts.SyntaxKind.ColonToken, ts.SyntaxKind.CommaToken].includes(x.kind)).at(0)
+                                        properties.push({ name: propertyName, type: propertyValueType.getText() })
+                                    }
+                                })
+                                flagDefs[flagName] = properties
+                            }
+                        }
+                    })
+                }
+            })
+
+            console.log(flagDefs)
+        }
+
+        /*
+        
         const flagsConfigFile = path.normalize(path.join(cwd, optiFlags))
         const flagsConfig : OptiFlagsConfigFile = fs.existsSync(flagsConfigFile) ? JSON.parse(fs.readFileSync(flagsConfigFile).toString()) : {}
         const flagsListing = await getAllFlags(project, token)
@@ -75,8 +131,11 @@ export const PullCommand : CliModule = {
     async decide() {
         const ctx = await getUserContext()
         const decision = ctx?.decide('${ flag.key }') as TypedOptimizelyDecision<${ defintionsToType(flag.variables) }>
-        if (!decision)
+        if (!decision) {
+            if (this && this.defaultValue)
+                return this.defaultValue
             throw new Error("No decision made by Optimizely Feature Experimentation")
+        }
         return {
             _enabled: decision.enabled,
             ...decision.variables
@@ -99,14 +158,14 @@ export const PullCommand : CliModule = {
                 console.error(`‼ Error updating the Vercel flags file ${ flagsMsgPath }`)
             else
                 console.log(`✔ Vercel flags file ${ flagsMsgPath } updated`)
-        })
+        })*/
     }
 }
 
 export default PullCommand
 
 
-function defintionsToDefault<T extends Record<string,any>>(obj: T, fieldName: keyof T[string] = "default_value", enabled = true ) {
+function defintionsToDefault<T extends Record<string, any>>(obj: T, fieldName: keyof T[string] = "default_value", enabled = true) {
     const newObj = {
         _enabled: enabled
     }
@@ -125,8 +184,7 @@ function defintionsToDefault<T extends Record<string,any>>(obj: T, fieldName: ke
  * @param       value   The string encoded version of the value
  * @returns     The parsed value
  */
-function parseValue(type: string, value: string) : string | boolean | number | object
-{
+function parseValue(type: string, value: string): string | boolean | number | object {
     switch (type) {
         case 'boolean':
             return value == 'true'
@@ -139,8 +197,7 @@ function parseValue(type: string, value: string) : string | boolean | number | o
     }
 }
 
-function defintionsToType(obj) 
-{
+function defintionsToType(obj) {
     const entries = []
     for (var entry of Object.getOwnPropertyNames(obj)) {
         let typeName = obj[entry].type
@@ -155,23 +212,22 @@ function defintionsToType(obj)
         }
         entries.push(`${entry}: ${typeName}`)
     }
-    return `{ ${ entries.join(', ') } }`
+    return `{ ${entries.join(', ')} }`
 }
 
-async function getAllFlags(projectId: string, accessToken: string)
-{
-    return fetch(`https://api.optimizely.com/flags/v1/projects/${ projectId }/flags?archived=false&per_page=10`, { headers: { Authorization: `Bearer ${ accessToken }`}}).then(r => r.json())
+async function getAllFlags(projectId: string, accessToken: string) {
+    return fetch(`https://api.optimizely.com/flags/v1/projects/${projectId}/flags?archived=false&per_page=10`, { headers: { Authorization: `Bearer ${accessToken}` } }).then(r => r.json())
 }
 
-async function getAllVariations(projectId: string, flagKey: string, accessToken: string)
-{
-    return fetch(`https://api.optimizely.com/flags/v1/projects/${ projectId }/flags/${flagKey}/variations?archived=false&per_page=10`, { headers: { Authorization: `Bearer ${ accessToken }`}}).then(r => r.ok ? r.json() : { items: [] })
+async function getAllVariations(projectId: string, flagKey: string, accessToken: string) {
+    return fetch(`https://api.optimizely.com/flags/v1/projects/${projectId}/flags/${flagKey}/variations?archived=false&per_page=10`, { headers: { Authorization: `Bearer ${accessToken}` } }).then(r => r.ok ? r.json() : { items: [] })
 }
 
 const intro = `// Auto generated flags.ts from Optimizely Feature Experimentation
+'use server'
 import { unstable_flag as flag } from '@vercel/flags/next';
 import { type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite';
-import { getUserContext } from './${ path.basename(sdkFile, '.ts') }';
+import { getUserContext } from './${path.basename(sdkFile, '.ts')}';
 
 type OptimizelyFlag<T extends { [variableKey: string]: unknown }> = {
   _enabled: boolean
