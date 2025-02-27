@@ -12,8 +12,8 @@
   },
   "devDependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@remkoj/optimizely-graph-client": "^4.3.0",
-    "@remkoj/optimizely-graph-functions": "^4.3.0",
+    "@remkoj/optimizely-graph-client": "^4.3.1",
+    "@remkoj/optimizely-graph-functions": "^4.3.1",
     "@types/source-map-support": "^0.5.10",
     "@yarnpkg/sdks": "^3.2.0",
     "eslint": "8.57.1",
@@ -43,6 +43,6 @@
     "env:pull": "yarn vercel env pull apps/frontend/.env.development.local"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.6.0-patched.tgz"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.7.1-patched.tgz"
   }
 }
