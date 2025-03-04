@@ -14,6 +14,14 @@ const nextConfig = {
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
         remotePatterns: []
     },
+    experimental: {
+        serverActions: {
+          allowedOrigins: [
+            '*.webproofing.cmp.optimizely.com', // Optimizely CMP Preview
+            'www.optimizelyedit.com/' // Optimizely Web Experimentation & Personalization Editor
+          ],
+        }
+    }
 }
 
 // Add the configured Optimizely DXP URL to the image domains

@@ -2,7 +2,7 @@ import React from 'react';
 import createClient, { AuthMode } from '@remkoj/optimizely-graph-client';
 import { notFound } from 'next/navigation'
 
-import { getContentById } from '@gql/functions';
+import { getContentById } from '@/gql/functions';
 import { getServerContext, CmsContent } from '@remkoj/optimizely-cms-react/rsc';
 import createFactory from '@/components/factory';
 
@@ -30,6 +30,8 @@ function resolveParams(input: MySearchParams) : Readonly<ParsedParams>
 }
 
 const PreviewPage = async ({ searchParams }: { searchParams: MySearchParams }) => {
+    console.log('Preview endpoint', searchParams)
+
     // Parse request
     const requestData = resolveParams(searchParams)
 
