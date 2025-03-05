@@ -1,4 +1,5 @@
 import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
+import { createClient } from '../../../../sdk'
 
 const handler = createPublishApi({
     paths: [
@@ -16,7 +17,9 @@ const handler = createPublishApi({
         '/sitemap.xml',
         '/robots.txt'
     ],
-    optimizePublish: true
+    optimizePublish: true,
+    tags: ['opti-graph'],
+    client: createClient
 })
 
 export const dynamic = 'force-dynamic'      // Make sure all API-Requests are executed

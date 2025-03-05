@@ -1,10 +1,12 @@
 import React from 'react';
-import createClient, { AuthMode } from '@remkoj/optimizely-graph-client';
 import { notFound } from 'next/navigation'
 
-import { getContentById } from '@/gql/functions';
+import createClient, { AuthMode } from '@remkoj/optimizely-graph-client';
 import { getServerContext, CmsContent } from '@remkoj/optimizely-cms-react/rsc';
-import createFactory from '@/components/factory';
+
+import { type Locales } from '../../../../../gql/graphql';
+import { getContentById } from '../../../../../gql/functions';
+import createFactory from '../../../../components/factory';
 
 type MySearchParams = {
     key?: string | string[]
@@ -62,7 +64,7 @@ const PreviewPage = async ({ searchParams }: { searchParams: MySearchParams }) =
     const content = await getContentById(ctx.client, {
         key: requestData.key,
         version: requestData.ver,
-        locale: requestData.loc
+        locale: requestData.loc as Locales | null
     })
 
     // Validate that we have data
@@ -73,7 +75,7 @@ const PreviewPage = async ({ searchParams }: { searchParams: MySearchParams }) =
     const contentData = content?.content?.items?.at(0)
 
     // Render CMS Content
-    return <CmsContent contentLink={{ key: requestData.key, locale: requestData.loc, version: requestData.ver }} fragmentData={ contentData }  />
+    return <CmsContent contentLink={{ key: requestData.key, locale: requestData.loc, version: requestData.ver }} fragmentData={ contentData || undefined }  />
 }
 
 export const dynamic = "force-dynamic";

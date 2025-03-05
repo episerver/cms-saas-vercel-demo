@@ -1,9 +1,10 @@
 import "server-only";
-import { OnPageEdit, createAuthorizedClient } from "@remkoj/optimizely-cms-nextjs";
+import { createEditPageComponent } from "@remkoj/optimizely-cms-nextjs/preview";
 import { getContentById } from "@gql/functions";
 import { setupFactory } from "@components/factory";
+import { createAuthorizedClient } from "../../sdk"
 
-export default OnPageEdit.createEditPageComponent(setupFactory(), {
+export default createEditPageComponent(setupFactory(), {
     loader: getContentById,
     clientFactory: createAuthorizedClient,
     // refreshTimeout: 1000  // Enable this line when you have issues with the preview not updating at all

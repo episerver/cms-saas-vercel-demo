@@ -1,15 +1,15 @@
 import "server-only";
-import { CmsPage } from "@remkoj/optimizely-cms-nextjs";
+import { createPage } from "@remkoj/optimizely-cms-nextjs/page";
 import { getContentByPath } from "@gql/functions";
 import getFactory from "@components/factory";
-import { createClient } from "@remkoj/optimizely-cms-nextjs";
+import { createClient } from "../../sdk";
 
 // Create the page components and functions
 const {
     generateMetadata,
     generateStaticParams,
     CmsPage: Page,
-} = CmsPage.createPage(getFactory(), {
+} = createPage(getFactory(), {
     /**
      * Inject the "getContentByPath" master query that will be used to load all
      * content for the page in one request. When omitted, the default implementation
