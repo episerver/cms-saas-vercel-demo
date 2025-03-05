@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { resolveFlag, type AvailableFlags, type FlagData, type FlagState } from './useFlag.rsc'
 
 /**
@@ -17,14 +17,18 @@ import { resolveFlag, type AvailableFlags, type FlagData, type FlagState } from 
 export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey): FlagData<FlagKey> | undefined
 export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, defaultState: FlagState<FlagKey>): FlagData<FlagKey>
 export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, defaultState?: FlagState<FlagKey>): FlagData<FlagKey> | undefined {
-    const [flagValue, setFlagValue] = useState<FlagData<FlagKey> | undefined>((defaultState ? { _enabled: false, ...defaultState } : undefined) as FlagData<FlagKey>)
+    const defaultValue = useMemo<FlagData<FlagKey> | undefined>(() => { return defaultState ? ({ _enabled: false, ...defaultState } as FlagData<FlagKey>) : undefined }, [ defaultState ])
+    const [flagValue, setFlagValue] = useState<FlagData<FlagKey> | undefined>(defaultValue)
     useEffect(() => {
         async function fetchFlagState() {
             const flagValue = await resolveFlag(flag)
-            setFlagValue(flagValue)
+            if (flagValue)
+                setFlagValue(flagValue)
+            else
+                setFlagValue(defaultValue)
         }
         fetchFlagState()
-    }, [flag])
+    }, [flag, defaultValue])
     return flagValue
 }
 
