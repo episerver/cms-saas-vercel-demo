@@ -1,9 +1,10 @@
 import 'server-only'
 import { createClient as createClientBase, createAuthorizedClient as createAuthorizedClientBase } from "@remkoj/optimizely-cms-nextjs"
-import { getServerContext } from '@remkoj/optimizely-cms-react/rsc'
-import { getSdk as getGeneratedSdk, type Sdk } from "@gql"
-import { cache } from 'react'
+import { getSdk as getGeneratedSdk, type Sdk } from "@gql/client"
 import { type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
+
+// Pass through commonly used SDK features
+export { AuthMode } from '@remkoj/optimizely-graph-client'
 
 /**
  * Wrap the default client creation with one that enables the Next.JS
@@ -35,18 +36,33 @@ export function createClient(...args: Parameters<typeof createClientBase>) {
     return client
 }
 
+type GraphClientConfig = {
+    token?: string
+    flags: Parameters<IOptiGraphClient["updateFlags"]>[0]
+}
+
+const clientConfig: GraphClientConfig = {
+    flags: {}
+}
+
+export function updateClientFlags(newFlags: Parameters<IOptiGraphClient["updateFlags"]>[0]) {
+    clientConfig.flags = { ...clientConfig.flags, ...newFlags }
+}
+export function setClientFlags(newFlags: Parameters<IOptiGraphClient["updateFlags"]>[0]) {
+    clientConfig.flags = { ...clientConfig.flags, ...newFlags }
+}
+
 /**
  * Get an instance of the SDK generated from the queries within the frontend.
  * 
+ * @param       tokenOrClient       The Authorization token or client to use for the connection itself
  * @returns     The SDK Instance
  */
-export const getSdk = cache<(token?: string) => Sdk>(token => {
-    const ctx = getServerContext()
-    if ( !ctx.client )
-        ctx.setOptimizelyGraphClient(token ? createAuthorizedClient(token) : createClient())
-    else
-        ctx.client.updateAuthentication(token)
-    return getGeneratedSdk(ctx.client as IOptiGraphClient)
-})
+export function getSdk(tokenOrClient?: string | IOptiGraphClient) : Sdk {
+    const client = (typeof (tokenOrClient) == 'object' && tokenOrClient != null) ? tokenOrClient : (typeof tokenOrClient == 'string' ? createAuthorizedClient(tokenOrClient) : createClient())
+    if (typeof (tokenOrClient) != 'object' || tokenOrClient == null)
+        client.updateFlags(clientConfig.flags)
+    return getGeneratedSdk(client)
+}
 
 export default getSdk
