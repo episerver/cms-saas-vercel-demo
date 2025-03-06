@@ -2988,12 +2988,12 @@ __metadata:
 
 "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.3.2
-  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=00c56a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=b45c9a&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     crypto-js: "npm:^4.2.0"
   peerDependencies:
     graphql-request: ^6
-  checksum: 10/5efbcf4599df682d4aeaf3b1479ab2253a87ea16dbd95b06322e00f4766c5f67c3c5631c0b1ee14af809e7277cabdd5cce38ba198c738b00b2d67d9e2234d16f
+  checksum: 10/238cc4e486076f6930ced4468d664fe6974f68f5adb7d656d6de2479c77e81ea5905409075f83c9f8269191a18e58aceda532aa7447407d0de03569c1a56153b
   languageName: node
   linkType: hard
 
