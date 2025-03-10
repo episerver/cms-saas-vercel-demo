@@ -21,12 +21,20 @@ export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, def
     const [flagValue, setFlagValue] = useState<FlagData<FlagKey> | undefined>(defaultValue)
     useEffect(() => {
         resolveFlag(flag).then(newFlagValue => {
-            if (newFlagValue && defaultValue)
-                setFlagValue({...defaultValue, ...newFlagValue})
-            else if (newFlagValue)
+            if (newFlagValue && defaultValue) {
+                const computedFlagValue = {...defaultValue, ...newFlagValue}
+                console.error(`Resolved config value for ${ flag } to:`, computedFlagValue)
+                setFlagValue(computedFlagValue)
+            } else if (newFlagValue) {
+                console.error(`Resolved config value for ${ flag } to:`, newFlagValue)
+                setFlagValue(newFlagValue)
+            } else {
+                console.error(`Resolved config value for ${ flag } to:`, defaultValue)
                 setFlagValue(defaultValue)
-            else
-                setFlagValue(defaultValue)
+            }
+        }).catch((e) => {
+            console.error(`Config resolution for ${ flag } failed:`, e, 'resolving to', defaultValue)
+            setFlagValue(defaultValue)
         })
     }, [flag, defaultValue])
     return flagValue
