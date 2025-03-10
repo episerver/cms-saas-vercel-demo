@@ -7,7 +7,7 @@ import { createAuthorizedClient } from "../../sdk"
 export default createEditPageComponent(setupFactory(), {
     loader: getContentById,
     clientFactory: createAuthorizedClient,
-    // refreshTimeout: 1000  // Enable this line when you have issues with the preview not updating at all
+    refreshTimeout: 500  // Enable this line when you have issues with the preview not updating at all
 });
 
 export const dynamic = "force-dynamic";
