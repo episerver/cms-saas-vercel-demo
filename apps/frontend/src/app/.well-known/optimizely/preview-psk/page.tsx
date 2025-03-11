@@ -1,3 +1,5 @@
+import 'server-only';
+import crypto from 'node:crypto';
 import React from 'react';
 import { notFound } from 'next/navigation'
 
@@ -13,6 +15,7 @@ type MySearchParams = {
     loc?: string | string[]
     ver?: string | string[]
     psk?: string | string[]
+    auth?: string | string[]
 }
 
 type ParsedParams = {
@@ -21,14 +24,29 @@ type ParsedParams = {
 
 function resolveParams(input: MySearchParams) : Readonly<ParsedParams>
 {
-    const val : ParsedParams = {key: null, loc: null, ver: null, psk: null };
+    const val : ParsedParams = {key: null, loc: null, ver: null, psk: null, auth: null };
 
-    (['key','loc','ver','psk'] as Array<keyof MySearchParams>).forEach(x => {
+    (['key','loc','ver','psk','auth'] as Array<keyof MySearchParams>).forEach(x => {
         if (typeof input[x] == 'string' && input[x].length > 0)
             val[x] = input[x]
     });
 
     return val
+}
+
+function calculateAuth(inputs: Readonly<ParsedParams>, psk: string) : Readonly<string>
+{
+    const searchParams = new URLSearchParams();
+    for (const k in inputs) {
+        if (k != 'auth' && k != 'psk')
+            searchParams.set(k, inputs[k])
+    }
+
+    const data = searchParams.toString() + '::' + psk
+
+    const hash = crypto.createHash('sha256')
+    hash.update(data)
+    return hash.digest('base64url')
 }
 
 const PreviewPage = async ({ searchParams }: { searchParams: MySearchParams }) => {
@@ -50,6 +68,11 @@ const PreviewPage = async ({ searchParams }: { searchParams: MySearchParams }) =
         console.error("No Pre-Shared key configured")
         notFound()
     }
+
+    const expectedAuth = calculateAuth(requestData, psk)
+    console.log(`Request auth: ${ requestData.auth } -- Expected auth: ${ expectedAuth }`)
+
+
     if (psk != requestData.psk) {
         console.error("Invalid PSK provided")
         notFound()
