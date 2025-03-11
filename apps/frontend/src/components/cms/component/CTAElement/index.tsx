@@ -11,9 +11,9 @@ import { DefaultCTAElement } from "./_default";
  */
 export const CTAElementElement : CmsComponent<CTAElementDataFragment, CTAElementLayoutProps> = ({ contentLink, data, layoutProps }) => {
     if (isCTAElementAnimatedStylesProps(layoutProps)) {
-        return <CmsEditable as={ AnimatedCTAElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key } />
+        return <CmsEditable as={ AnimatedCTAElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key } cmsFieldName="Link" />
     }
-    return <CmsEditable as={ DefaultCTAElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } />
+    return <CmsEditable as={ DefaultCTAElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } cmsFieldName="Link" />
 }
 CTAElementElement.displayName = "Call To Action (Element/CTAElement)"
 CTAElementElement.getDataFragment = () => ['CTAElementData', CTAElementDataFragmentDoc]

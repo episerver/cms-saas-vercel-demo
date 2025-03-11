@@ -11,9 +11,9 @@ import DefaultImageElement from "./_default-image"
 export const ImageElementElement : CmsComponent<ImageElementDataFragment, ImageElementLayoutProps> = ({ data, layoutProps, contentLink, inEditMode }) =>
 {
     if (isIconImageLayout(layoutProps)) {
-        return <CmsEditable as={ IconImageElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key }/>
+        return <CmsEditable as={ IconImageElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key } cmsFieldName="imageLink"/>
     }
-    return <CmsEditable as={ DefaultImageElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } withReducedMotion={inEditMode} />
+    return <CmsEditable as={ DefaultImageElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } cmsFieldName="imageLink" withReducedMotion={inEditMode} />
 }
 ImageElementElement.displayName = "Image (Element/ImageElement)"
 ImageElementElement.getDataFragment = () => ['ImageElementData', ImageElementDataFragmentDoc]

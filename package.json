@@ -28,6 +28,7 @@
   "exports": null,
   "scripts": {
     "dev": "yarn workspace frontend dev",
+    "dev:https": "yarn workspace frontend dev:https",
     "build": "yarn workspace frontend build",
     "start": "yarn workspace frontend start",
     "lint": "yarn workspace frontend lint",
