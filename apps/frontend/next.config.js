@@ -1,14 +1,15 @@
-const isNonProduction = process.env.NODE_ENV != 'production'
+// const isNonProduction = process.env.NODE_ENV != 'production'
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
     compiler: {
-        removeConsole: !isNonProduction
+        //removeConsole: !isNonProduction,
     },
     basePath: "",
     reactStrictMode: true,
     generateEtags: true,
     cleanDistDir: true,
+    poweredByHeader: false,
     images: {
         loader: 'custom',
         loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
@@ -25,6 +26,8 @@ const nextConfig = {
 }
 
 // Add the configured Optimizely DXP URL to the image domains
+
+/** @type {string|undefined} */
 const optimizelyDxpUrl = process.env.OPTIMIZELY_CMS_URL
 if (optimizelyDxpUrl) {
     try {
