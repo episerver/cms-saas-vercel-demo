@@ -1,7 +1,7 @@
 import 'server-only';
 import crypto from 'node:crypto';
 import React from 'react';
-import { notFound } from 'next/navigation'
+import { notFound } from 'next/navigation';
 
 import createClient, { AuthMode } from '@remkoj/optimizely-graph-client';
 import { getServerContext, CmsContent } from '@remkoj/optimizely-cms-react/rsc';
