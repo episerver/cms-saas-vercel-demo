@@ -9,7 +9,7 @@
   "scripts": {
     "dev": "next dev",
     "config": "opti-graph config:create",
-    "build": "opti-fx pull && next build && opti-graph webhook:create",
+    "build": "next build && opti-graph webhook:create",
     "build:full": "graphql-codegen && opti-fx pull && next build && opti-graph webhook:create",
     "start": "next start",
     "lint": "next lint",
