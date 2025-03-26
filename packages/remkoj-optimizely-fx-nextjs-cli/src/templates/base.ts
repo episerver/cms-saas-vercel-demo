@@ -1,17 +1,25 @@
 export type ImplementationFiles = {
     sdkFile: string
+    flagsFile: string
 }
 
 export type ProjectFileTemplateContext = {
     files: ImplementationFiles
+    projectId: string
+    flags: {
+        projectId: string
+        key: string
+        name: string
+        description: string
+        type: string
+        defaults: string
+    }[],
+    sdkKey: string,
+    datafileConfigKey: string,
+    isTemplate: boolean
 }
 
-export type ProjectFileTemplate = {
-    prefix?: (ctx: ProjectFileTemplateContext) => string
-    postfix?: (ctx: ProjectFileTemplateContext) => string
-}
-
-export function defintionsToDefault<T extends Record<string, any>>(obj: T, fieldName: keyof T[string] = "default_value", enabled = true) {
+export function defintionsToDefault<T extends Record<string, any>>(obj: T, fieldName: keyof T[string] = "default_value", enabled = false) {
     const newObj = {
         _enabled: enabled
     }
@@ -38,6 +46,8 @@ export function parseValue(type: string, value: string): string | boolean | numb
             return Number.parseInt(value)
         case 'double':
             return Number.parseFloat(value)
+        case 'json':
+            return JSON.parse(value)
         default:
             return value
     }
@@ -54,6 +64,7 @@ export function defintionsToType(obj: Object) : string {
     const entries = []
     for (var entry of Object.getOwnPropertyNames(obj)) {
         let typeName = obj[entry].type
+        let info = obj[entry].description
         switch (obj[entry].type) {
             case 'json':
                 typeName = 'any'
@@ -63,7 +74,13 @@ export function defintionsToType(obj: Object) : string {
                 typeName = 'number'
                 break;
         }
-        entries.push(`${entry}: ${typeName}`)
+        entries.push(`  /**
+   * ${ info }
+   *
+   * @defaultValue ${ obj[entry].default_value}
+   * @opti ${ obj[entry].type }
+   */
+  ${entry}: ${typeName}`)
     }
-    return `{ ${entries.join(', ')} }`
+    return `{\n${entries.join(',\n')}\n}`
 }

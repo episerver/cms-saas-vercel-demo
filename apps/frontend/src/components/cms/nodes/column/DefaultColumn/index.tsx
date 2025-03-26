@@ -42,5 +42,6 @@ export const DefaultColumn : CmsLayoutComponent<DefaultColumnProps> = ({ layoutP
         </div>
     </div> : <div className={ [...baseClasses, 'relative top-0', ...cssClasses].join(' ') }>{ children }</div>
 }
+DefaultColumn.displayName = "DefaultColumn"
 
 export default DefaultColumn;

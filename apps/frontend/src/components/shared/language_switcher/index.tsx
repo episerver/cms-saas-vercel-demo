@@ -3,16 +3,16 @@ import { type DropDownOption} from "@shared/drop_down";
 import DropDown from "./_client";
 import { cache } from 'react';
 import getSdk from "@/sdk";
-import { getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { type GenericContext } from "@remkoj/optimizely-cms-react/rsc";
 
 export type LanguageSwitcherProps = {
-
+    ctx?: GenericContext
 } & JSX.IntrinsicElements['div']
 
-export async function LanguageSwitcher ({ ...divProps }: LanguageSwitcherProps)
+export async function LanguageSwitcher ({ ctx, ...divProps }: LanguageSwitcherProps)
 {
     const locales = await getLocales()
-    const { locale: currentLocale = "en" } = getServerContext()
+    const { locale: currentLocale = "en" } = ctx ?? { locale: 'en' }
 
     // If there're less the two locales, don't show the picker
     if (locales.length < 2)

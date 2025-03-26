@@ -1,7 +1,23 @@
 import 'server-only'
 import { createClient as createClientBase, createAuthorizedClient as createAuthorizedClientBase } from "@remkoj/optimizely-cms-nextjs"
 import { getSdk as getGeneratedSdk, type Sdk } from "@gql/client"
-import { type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
+import { type IOptiGraphClient, type ClientFactory } from '@remkoj/optimizely-graph-client'
+
+/**
+ * The default Optimizely Graph Client, for public access. This instance is used
+ * across requests, so create an authorized client if you need one.
+ */
+export const client : IOptiGraphClient = createClientBase()
+client.updateFlags({
+    nextJsFetchDirectives: true
+}, false)
+
+/**
+ * The default Optimizely Graph SDK, for public access. This instance is used
+ * across requests.
+ */
+export const sdk : Sdk = getGeneratedSdk(client)
+
 
 // Pass through commonly used SDK features
 export { AuthMode } from '@remkoj/optimizely-graph-client'
@@ -22,19 +38,14 @@ export function createAuthorizedClient(...args: Parameters<typeof createAuthoriz
 }
 
 /**
- * Wrap the default client creation with one that enables the Next.JS
- * cache directives 
+ * The default client factory for this implementation, if the token is empty or
+ * not set it will return the global shared client instance, otherwise it will
+ * create a new authorized client based upon the token.
  * 
- * @param args 
+ * @param       token       The token for the client 
  * @returns 
  */
-export function createClient(...args: Parameters<typeof createClientBase>) {
-    const client = createClientBase(...args)
-    client.updateFlags({
-        nextJsFetchDirectives: true
-    }, false)
-    return client
-}
+export const createClient : ClientFactory = (token) => token ? createAuthorizedClient(token) : client
 
 type GraphClientConfig = {
     token?: string

@@ -24,6 +24,7 @@ const CardColors = {
  */
 const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
   data: { profilePicture, name, location, quote, color, active },
+  ctx
 }) => {
   const additionalClasses: string[] = [CardColors[color || "white"]];
 
@@ -41,7 +42,7 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
         " "
       )}`}
     >
-      <CmsEditable as="blockquote" cmsFieldName="QuoteText" className="text-lg">
+      <CmsEditable as="blockquote" cmsFieldName="QuoteText" className="text-lg" ctx={ ctx }>
         {quote}
       </CmsEditable>
       <figcaption className="flex items-center mt-8">
@@ -54,14 +55,15 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
             width={200}
             height={200}
             className="rounded-full max-w-12 mr-4"
+            ctx={ ctx }
           />
         )}
 
         <cite className="lg:flex not-italic">
-          <CmsEditable as="p" cmsFieldName="QuoteProfileName" className="whitespace-nowrap">{name}</CmsEditable>
+          <CmsEditable as="p" cmsFieldName="QuoteProfileName" className="whitespace-nowrap" ctx={ ctx }>{name}</CmsEditable>
           {location && <>
             <span className="mx-2 hidden lg:inline-block">&mdash;</span>
-            <CmsEditable cmsFieldName="QuoteProfileLocation" className="text-xs mt-1">
+            <CmsEditable cmsFieldName="QuoteProfileLocation" className="text-xs mt-1" ctx={ ctx }>
               {location}
             </CmsEditable>
           </>}

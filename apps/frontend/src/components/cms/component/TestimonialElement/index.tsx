@@ -1,6 +1,6 @@
 import { CmsComponent } from "@remkoj/optimizely-cms-react";
 import { TestimonialElementDataFragmentDoc, type TestimonialElementDataFragment } from "@/gql/graphql";
-import { CmsEditable, getServerContext } from "@remkoj/optimizely-cms-react/rsc";
+import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import { RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { CmsImage } from "@/components/shared/cms_image"
 
@@ -17,10 +17,11 @@ export const TestimonialElementElement : CmsComponent<TestimonialElementDataFrag
     }, 
     contentLink: { 
         key 
-    } }) => {
-    const { factory } = getServerContext()
-    return <CmsEditable as="figure" className='testimonial' cmsId={ key }>
-        <RichText as="blockquote" text={ referenceText?.json } factory={ factory } className='rich-text m-0 p-0 border-l-0 prose-p:mt-0' />
+    },
+        ctx
+    }) => {
+    return <CmsEditable as="figure" className='testimonial' cmsId={ key } ctx={ ctx }>
+        <RichText as="blockquote" text={ referenceText?.json } className='rich-text m-0 p-0 border-l-0 prose-p:mt-0' ctx={ ctx } />
         <figcaption>
             <cite className="ml-4 lg:flex lg:justify-start lg:items-center not-italic">
                 <p className="whitespace-nowrap align-middle mt-0 mb-2 lg:mb-0">

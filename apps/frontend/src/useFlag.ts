@@ -1,3 +1,4 @@
+// Auto generated useFlag hook Optimizely Feature Experimentation.
 'use client'
 import { useState, useEffect } from "react";
 import { resolveFlag, type AvailableFlags, type FlagData, type FlagState } from './useFlag.rsc'
@@ -23,11 +24,11 @@ export function useFlag<FlagKey extends keyof AvailableFlags>(flag: FlagKey, def
         console.log("🧲 Resolving flag", flag)
         resolveFlag(flag).then(newFlagValue => {
             if (newFlagValue) {
-                console.log(`🧲 Loaded new configuration for ${ flag }`)
+                console.log(`🧲 Loaded new configuration for ${flag}`)
                 setFlagValue(newFlagValue)
             }
         }).catch((e) => {
-            console.error(`🧲 Config resolution for ${ flag } failed - retaining current value`, e)
+            console.error(`🧲 Config resolution for ${flag} failed - retaining current value`, e)
         })
     }, [flag])
     return flagValue || defaultValue

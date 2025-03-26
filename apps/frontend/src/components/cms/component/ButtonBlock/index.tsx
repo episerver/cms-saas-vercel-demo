@@ -34,6 +34,7 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     buttonVariant: providedButtonVariant,
     
     // Allow to be used as a Next.JS Link
+    ctx, // Extract context to prevent passing through
     href,
     children,
     ...props 

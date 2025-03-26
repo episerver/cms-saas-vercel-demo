@@ -1,3 +1,4 @@
+// Auto generated server side logic for useFlag hook Optimizely Feature Experimentation.
 "use server"
 import { type Flag } from "@vercel/flags/next";
 import * as appFlags from "@/flags";

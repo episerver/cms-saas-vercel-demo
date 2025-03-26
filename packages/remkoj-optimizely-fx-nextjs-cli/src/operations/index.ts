@@ -20,12 +20,95 @@ export async function upsertAttributes(attributes: Array<{ key: string, descript
             }, credentials)
     }))
 
-    console.log(results)
+    results
+}
+
+export type OptiFxFlag = { 
+    key: string, 
+    name: string, 
+    description: string, 
+    url?: string, 
+    update_url?: string, 
+    delete_url?: string, 
+    archive_url?: string,
+    variable_definitions: {
+        [ key: string ]: OptiFxVariableDefinition
+    }
+    environments?: {
+        [ key: string ]: OptiFxEnvironmentConfig
+    }
+    id?: number,
+    urn?: string
+    archived?: boolean,
+    outlier_filtering_enabled?: boolean
+    project_id: number,
+    account_id?: number
+    role?: string
+    revision?: number
+}
+
+type OptiFxVariableDefinition = {
+    key: string
+    description: string
+    type: string
+    default_value: string
+    created_time?: string
+    updated_time?: string
+}
+type OptiFxEnvironmentConfig = {}
+
+export async function getFlags(credentials: Credentials) : Promise<Array<OptiFxFlag>>
+{
+    return getAllFx<OptiFxFlag>('/flags/v1/projects/{projectId}/flags', credentials).catch(() => {
+        process.stderr.write("\nERROR: Unable to read projects from Feature Experimentation, assuming no projects remotely defined\n")
+        return []
+    })
 }
 
 export async function getAttributes(credentials: Credentials) : Promise<Array<{ key: string, id: number, description: string, archived: boolean}>>
 {
     return getAll('attributes', credentials)
+}
+
+export async function getAllFx<T = any>(path: string, credentials: Credentials & { [propName: string]: string }) : Promise<Array<T>>
+{
+    // Prepare paging
+    const pageSize : number = 25
+    let currentPage : number = 0
+    let totalPages = 0
+    const fetchedItems : T[] = []
+
+    // Build URL & Headers
+    const pageUrl = new URL(path, baseUrl)
+    for (const key in credentials)
+        pageUrl.pathname = pageUrl.pathname.replaceAll(encodeURIComponent(`{${key}}`), encodeURIComponent(credentials[key]))
+    
+    pageUrl.searchParams.set('per_page', pageSize.toString())
+    pageUrl.searchParams.set('archived', 'false')
+    const headers = {
+        "accept": "application/json",
+        "authorization": `Bearer ${ credentials.accessToken }`
+    }
+
+    // Loop
+    do {
+        // Move to next page
+        currentPage ++
+        pageUrl.searchParams.set('page_number', currentPage.toString())
+
+        // Fetch page
+        const result = await fetch(pageUrl, { headers })
+        if (!result.ok)
+            throw new Error(`${ result.status }: ${ result.statusText }`)
+        const responseData : { total_count: number, total_pages: number, last_url: string, create_url: string, items: T[], count: number, url: string, page: number, first_url: string } = await result.json()
+
+        // Update context
+        totalPages = responseData?.total_pages || 0
+        fetchedItems.push(...(responseData?.items || []))
+    } while (currentPage < totalPages)
+
+    // Return results
+    return fetchedItems
 }
 
 export async function getAll(entity: string, { projectId, accessToken }: Credentials ) : Promise<Array<any>>
@@ -36,7 +119,7 @@ export async function getAll(entity: string, { projectId, accessToken }: Credent
     pageUrl.searchParams.set('page', '1')
     pageUrl.searchParams.set('project_id', projectId)
     const headers = {
-        Authorization: "Bearer " + accessToken
+        authorization: "Bearer " + accessToken
     }
 
     const result = await fetch(pageUrl, { headers })
@@ -44,7 +127,7 @@ export async function getAll(entity: string, { projectId, accessToken }: Credent
         throw new Error(`${ result.status }: ${ result.statusText }`)
     const resultData : Array<any> = await result.json()
 
-    console.log("Resultdata", resultData)
+    //console.log("Resultdata", resultData)
 
     return resultData
 }

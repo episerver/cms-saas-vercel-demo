@@ -1,7 +1,7 @@
 import "server-only";
 import { createPage } from "@remkoj/optimizely-cms-nextjs/page";
 import { getContentByPath } from "@gql/functions";
-import getFactory from "@components/factory";
+import { factory } from "@components/factory";
 import { createClient } from "../../sdk";
 
 // Create the page components and functions
@@ -9,7 +9,7 @@ const {
     generateMetadata,
     generateStaticParams,
     CmsPage: Page,
-} = createPage(getFactory(), {
+} = createPage(factory, {
     /**
      * Inject the "getContentByPath" master query that will be used to load all
      * content for the page in one request. When omitted, the default implementation
@@ -40,7 +40,6 @@ const {
 export const dynamic = "error"; // Throw an error when the [[...path]] route becomes dynamic, as this will seriously hurt site performance
 export const dynamicParams = true; // Allow new pages to be resolved without rebuilding the site
 export const revalidate = false; // Keep the cache untill manually revalidated using the Webhook
-export const fetchCache = "auto"; // Cache fetch results by default
 
 // Export page & helper methods
 export { generateMetadata, generateStaticParams };

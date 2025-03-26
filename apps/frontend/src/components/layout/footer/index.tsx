@@ -1,7 +1,7 @@
 
-import {getSdk } from "@/sdk";
+import { sdk } from "@/sdk";
 import { Locales } from "@gql/graphql"
-import { getServerContext, CmsContentArea, RichText } from "@remkoj/optimizely-cms-react/rsc";
+import { GenericContext, CmsContentArea, RichText } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 import Image from 'next/image'
 import CmsLink, { createListKey } from "@shared/cms_link";
@@ -9,12 +9,12 @@ import LanguageSwitcher from "@shared/language_switcher";
 
 export type SiteFooterProps = {
     locale?: string;
+    ctx: GenericContext
 }
 
-export async function SiteFooter({locale}: SiteFooterProps)
+export async function SiteFooter({locale, ctx }: SiteFooterProps)
 {
-    const sdk = getSdk()
-    const { locale: contextLocale, factory } = getServerContext()
+    const { locale: contextLocale, factory } = ctx
     const footerLocale = locale ?? contextLocale
     const footerData = (await sdk.getFooterData({
         locale: footerLocale ? localeToGraphLocale(footerLocale) as Locales : Locales.ALL
@@ -28,13 +28,13 @@ export async function SiteFooter({locale}: SiteFooterProps)
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6 xl:gap-8 w-full">
                 <section className="">
                     <div className="pb-1 uppercase font-bold">{ footerData?.contactInfoHeading ?? '' }</div>
-                    <RichText className="prose prose-a:text-white prose-a:hover:text-azure" text={ footerData?.contactInfo?.json } factory={ factory } />
+                    <RichText className="prose prose-a:text-white prose-a:hover:text-azure" text={ footerData?.contactInfo?.json } ctx={ ctx } />
                 </section>
                 <CmsContentArea items={ footerData?.footerMenus } variant="footer" noWrapper itemWrapper={{
                     as: "nav",
                     className: ""
-                }} />
-                <LanguageSwitcher />
+                }} ctx={ ctx }/>
+                <LanguageSwitcher ctx={ ctx } />
             </div>
             <div className="mx-auto w-fit py-6 xl:py-12">
                 <Image src={"/assets/moseybank-logo-white.svg"} width={200} height={35} alt="Moseybank Logo" unoptimized />

@@ -17,6 +17,8 @@ export function createOptiCmsApp(scriptName: string, version?: string, epilogue?
         .option("envfile", { alias: "e", description: "The local .env file to use", string: true, type: "string", demandOption: false, default: '.env.local' })
         .option("nosrc", { alias: "n", description: "Flag to indicate that the project does not use the src folder", boolean: true, type: 'boolean', demandOption: false, default: false})
         .option('verbose', { description: "Enable logging", boolean: true, type: 'boolean', demandOption: false, default: config.debug })
+        .option('tpl', { description: "Flag to indicate that this is a template", boolean: true, type: 'boolean', demandOption: false, default: config.forTpl })
+        .option('force', { alias: "f", description: "Force overwrite files", boolean: true, type: 'boolean', demandOption: false, default: false})
         .demandCommand(1,1)
         .showHelpOnFail(true)
         .epilogue(epilogue ?? `Copyright Remko Jantzen - 2023-${ (new Date(Date.now())).getFullYear() }`)

@@ -14,12 +14,12 @@ import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 
-export const LandingPage: OptimizelyNextPage<LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea } }) => {
+export const LandingPage: OptimizelyNextPage<LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea }, ctx }) => {
 
   return (
     <div className="landing-page">
-      <CmsContentArea fieldName="TopContentArea" items={TopContentArea} className="w-full" />
-      <CmsContentArea fieldName="MainContentArea" items={MainContentArea} className="w-full" />
+      <CmsContentArea fieldName="TopContentArea" items={TopContentArea} className="w-full" ctx={ctx} />
+      <CmsContentArea fieldName="MainContentArea" items={MainContentArea} className="w-full" ctx={ctx} />
     </div>
   );
 };

@@ -1,6 +1,6 @@
 'use client'
 import { type FunctionComponent, type DetailedHTMLProps, type HTMLAttributes } from "react"
-import { RichText, DefaultComponentFactory, RichTextComponentDictionary as DefaultComponents, type TypedNode, type NodeInput, Utils, isNodeInput, isNonEmptyString, } from "@remkoj/optimizely-cms-react"
+import { RichText, DefaultComponentFactory, RichTextComponentDictionary as DefaultComponents, type TypedNode, type NodeInput, Utils } from "@remkoj/optimizely-cms-react"
 
 const richTextFactory = new DefaultComponentFactory(DefaultComponents)
 

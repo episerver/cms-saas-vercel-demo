@@ -1,0 +1,50 @@
+// Auto generated flags.ts from Optimizely Feature Experimentation.
+{{ runAnnotation }}
+import type { Decide } from '@vercel/flags'
+import { flag } from '@vercel/flags/next';
+import { getUserContext{{#if isTemplate}}, readConfigFromEnv{{/if}}, type OptimizelyFlag, type TypedOptimizelyDecision } from '{{ files.sdkFile }}';
+{{#if isTemplate}}
+
+// Read project from environment
+const { projectId } = readConfigFromEnv()
+{{/if}}
+{{#each flags}}
+
+/**
+ * {{name}}
+ * ----
+ *
+ * {{description}}
+ *
+ * @see https://app.optimizely.com/v2/projects/{{projectId}}/flags/manage/{{key}}
+ */
+export const {{key}} = flag<OptimizelyFlag<{{type}}>>({
+    key: '{{key}}',
+    origin: `https://app.optimizely.com/v2/projects/{{#if ../isTemplate}}${projectId}{{else}}{{projectId}}{{/if}}/flags/manage/{{key}}/variations`,
+    description: '{{description}}',
+    defaultValue: {{defaults}},
+    async decide() {
+        "use server"
+        const ctx = await getUserContext()
+        type DecisionVariables = typeof this.decide extends (Decide<OptimizelyFlag<infer O>, any> | undefined) ? O : false
+        const decision = ctx?.decide("{{key}}") as TypedOptimizelyDecision<DecisionVariables>
+        if (!decision) {
+            if (this && this.defaultValue)
+                return this.defaultValue
+            throw new Error("No decision made by Optimizely Feature Experimentation")
+        }
+        return {
+            _enabled: decision.enabled,
+            ...decision.variables
+        }
+    },
+    options: [
+        {
+            label: "Off",
+            value: {{defaults}}
+        }
+    ]
+})
+{{else}}
+// No flags defined in the the project: {{projectId}}
+{{/each}}

@@ -23,7 +23,7 @@
     "prettier": "^3.5.3",
     "source-map-support": "^0.5.21",
     "typescript": "^5.8.2",
-    "vercel": "^41.3.1"
+    "vercel": "^41.4.1"
   },
   "exports": null,
   "scripts": {
@@ -34,8 +34,10 @@
     "compile": "yarn workspace frontend compile",
     "opti-cms": "yarn workspace frontend opti-cms",
     "opti-graph": "yarn workspace frontend opti-graph",
-    "graphql:watch": "yarn workspace frontend watch",
+    "opti-fx": "yarn workspace frontend opti-fx",
     "graphql:codegen": "yarn workspace frontend compile",
+    "graphql:patch": "yarn opti-graph patches:apply -p ../../",
+    "graphql:watch": "yarn workspace frontend watch",
     "type-check": "yarn workspace frontend tsc --pretty --noEmit",
     "update-sdks": "yarn sdks vscode",
     "update-deps": "yarn upgrade-interactive && yarn dedupe && yarn sdks vscode",
@@ -51,6 +53,7 @@
     "@remkoj/optimizely-graph-cli": "file:./packages/dist/@remkoj-optimizely-graph-cli-dev.tgz",
     "@remkoj/optimizely-graph-client": "file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz",
     "@remkoj/optimizely-graph-functions": "file:./packages/dist/@remkoj-optimizely-graph-functions-dev.tgz",
-    "@remkoj/optimizely-one-nextjs": "file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz"
+    "@remkoj/optimizely-one-nextjs": "file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz",
+    "rollup": "^4.0.0"
   }
 }

@@ -1,3 +1,4 @@
+// Auto generated route for /.well-known/vercel/flags by Optimizely Feature Experimentation.
 import { NextResponse, type NextRequest } from 'next/server';
 import { verifyAccess, type ApiData } from '@vercel/flags';
 import { getProviderData } from "@vercel/flags/next";
@@ -13,7 +14,7 @@ export async function GET(request: NextRequest) {
     const hints = new Map<string, string>()
 
     // Try loading the actual flag options
-    for (const flagKey of Object.getOwnPropertyNames(provider.definitions)) {
+    for (const flagKey in provider.definitions) {
         const newOptions = await getFlagVariants(flagKey)
         if (Array.isArray(newOptions))
             provider.definitions[flagKey].options = newOptions
