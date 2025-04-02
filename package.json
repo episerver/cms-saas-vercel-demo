@@ -54,6 +54,6 @@
     "@remkoj/optimizely-graph-client": "file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz",
     "@remkoj/optimizely-graph-functions": "file:./packages/dist/@remkoj-optimizely-graph-functions-dev.tgz",
     "@remkoj/optimizely-one-nextjs": "file:./packages/dist/@remkoj-optimizely-one-nextjs-dev.tgz",
-    "rollup": "^4.0.0"
+    "rollup": "4.20.0"
   }
 }

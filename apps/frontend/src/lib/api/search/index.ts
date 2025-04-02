@@ -79,8 +79,12 @@ export type ContentSearchResults = {
  */
 export async function contentSearch(term: string, { facets, limit = 12, start = 0, locale, filters, sdk, personalize = true }: ContentSearchOptions = {}) : Promise<ContentSearchResults>
 {
-    const config = await getSearchConfig()
-    const usePersonalization = config.use_personalization && personalize
+    const config = {
+        use_personalization: true,
+        interest_boost: 5,
+        ...(await getSearchConfig()) as Partial<ReturnType<typeof getSearchConfig>>
+    }
+    const usePersonalization = config?.use_personalization && personalize
     const app = sdk || getSdk()
 
     const rawResults = await (async () => {
