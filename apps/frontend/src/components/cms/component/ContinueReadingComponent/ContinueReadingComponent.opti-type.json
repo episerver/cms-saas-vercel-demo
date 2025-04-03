@@ -19,6 +19,17 @@
       "sortOrder": 10,
       "editorSettings": {}
     },
+    "shared": {
+      "type": "boolean",
+      "displayName": "Shared",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Advanced",
+      "sortOrder": 10,
+      "indexingType": "queryable",
+      "editorSettings": {}
+    },
     "heading": {
       "type": "string",
       "format": "shortString",
