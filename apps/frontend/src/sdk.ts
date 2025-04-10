@@ -3,14 +3,26 @@ import { createClient as createClientBase, createAuthorizedClient as createAutho
 import { getSdk as getGeneratedSdk, type Sdk } from "@gql/client"
 import { type IOptiGraphClient, type ClientFactory } from '@remkoj/optimizely-graph-client'
 
+
+type GraphClientConfig = {
+    token?: string
+    flags: Parameters<IOptiGraphClient["updateFlags"]>[0]
+}
+
+const clientConfig: GraphClientConfig = {
+    flags: {
+        nextJsFetchDirectives: true,
+        cache: true,
+        queryCache: true
+    }
+}
+
 /**
  * The default Optimizely Graph Client, for public access. This instance is used
  * across requests, so create an authorized client if you need one.
  */
 export const client : IOptiGraphClient = createClientBase()
-client.updateFlags({
-    nextJsFetchDirectives: true
-}, false)
+client.updateFlags(clientConfig.flags, false)
 
 /**
  * The default Optimizely Graph SDK, for public access. This instance is used
@@ -31,9 +43,7 @@ export { AuthMode } from '@remkoj/optimizely-graph-client'
  */
 export function createAuthorizedClient(...args: Parameters<typeof createAuthorizedClientBase>) {
     const client = createAuthorizedClientBase(...args)
-    client.updateFlags({
-        nextJsFetchDirectives: true
-    }, false)
+    client.updateFlags(clientConfig.flags, false)
     return client
 }
 
@@ -42,19 +52,32 @@ export function createAuthorizedClient(...args: Parameters<typeof createAuthoriz
  * not set it will return the global shared client instance, otherwise it will
  * create a new authorized client based upon the token.
  * 
- * @param       token       The token for the client 
- * @returns 
+ * @deprecated  Use the exported `client` variable directly
+ * @returns     The IOptiGraphClient instance to use
  */
-export const createClient : ClientFactory = (token) => token ? createAuthorizedClient(token) : client
-
-type GraphClientConfig = {
-    token?: string
-    flags: Parameters<IOptiGraphClient["updateFlags"]>[0]
+export function createClient(token?: null) : IOptiGraphClient
+/**
+ * The default client factory for this implementation, if the token is empty or
+ * not set it will return the global shared client instance, otherwise it will
+ * create a new authorized client based upon the token.
+ * 
+ * @param       token       The token for the client 
+ * @returns     The IOptiGraphClient instance to use
+ */
+export function createClient(token: string) : IOptiGraphClient
+/**
+ * The default client factory for this implementation, if the token is empty or
+ * not set it will return the global shared client instance, otherwise it will
+ * create a new authorized client based upon the token.
+ * 
+ * @param       token       The token for the client 
+ * @returns     The IOptiGraphClient instance to use
+ */
+export function createClient(token?: string | null) : IOptiGraphClient
+{
+    return token ? createAuthorizedClient(token) : client
 }
 
-const clientConfig: GraphClientConfig = {
-    flags: {}
-}
 
 export function updateClientFlags(newFlags: Parameters<IOptiGraphClient["updateFlags"]>[0]) {
     clientConfig.flags = { ...clientConfig.flags, ...newFlags }
@@ -66,14 +89,33 @@ export function setClientFlags(newFlags: Parameters<IOptiGraphClient["updateFlag
 /**
  * Get an instance of the SDK generated from the queries within the frontend.
  * 
+ * @deprecated  Use the exported `sdk` variable directly
+ * @returns     The SDK Instance
+ */
+export function getSdk(tokenOrClient?: null) : Sdk
+/**
+ * Get an instance of the SDK generated from the queries within the frontend.
+ * 
  * @param       tokenOrClient       The Authorization token or client to use for the connection itself
  * @returns     The SDK Instance
  */
-export function getSdk(tokenOrClient?: string | IOptiGraphClient) : Sdk {
-    const client = (typeof (tokenOrClient) == 'object' && tokenOrClient != null) ? tokenOrClient : (typeof tokenOrClient == 'string' ? createAuthorizedClient(tokenOrClient) : createClient())
-    if (typeof (tokenOrClient) != 'object' || tokenOrClient == null)
-        client.updateFlags(clientConfig.flags)
-    return getGeneratedSdk(client)
+export function getSdk(tokenOrClient: string | IOptiGraphClient): Sdk
+/**
+ * Get an instance of the SDK generated from the queries within the frontend.
+ * 
+ * @param       tokenOrClient       The Authorization token or client to use for the connection itself
+ * @returns     The SDK Instance
+ */
+export function getSdk(tokenOrClient?: string | IOptiGraphClient | null) : Sdk {
+    if (!tokenOrClient)
+        return sdk;
+
+    if (typeof (tokenOrClient) == 'object')
+        return getGeneratedSdk(tokenOrClient);
+    
+    const myClient = typeof tokenOrClient == 'string' ? createAuthorizedClient(tokenOrClient) : createClient()
+    myClient.updateFlags(clientConfig.flags)
+    return getGeneratedSdk(myClient)
 }
 
 export default getSdk

@@ -1,15 +1,15 @@
 import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
-import { createClient } from '../../../../sdk'
+import { client } from '../../../../sdk'
 
 const handler = createPublishApi({
+    // The paths to publish if none are defined
     paths: [
         '/',
         '/[[...path]]',
-        //'/[lang]',
-        //'/[lang]/[[...path]]',
-        '/sitemap.xml',
-        '/robots.txt'
+        '/[lang]',
+        '/[lang]/[[...path]]'
     ],
+    // The paths to always publish
     additionalPaths: [
         '/api/content/search',
         '/api/content/articles',
@@ -18,8 +18,8 @@ const handler = createPublishApi({
         '/robots.txt'
     ],
     optimizePublish: true,
-    tags: ['opti-graph'],
-    client: createClient
+    // tags: ['opti-graph'],
+    client: () => client
 })
 
 export const dynamic = 'force-dynamic'      // Make sure all API-Requests are executed

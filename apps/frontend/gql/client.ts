@@ -703,7 +703,7 @@ export const getBlankExperienceMetaDataDocument = gql`
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
 export const getChildBlogPostsDocument = gql`
-    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 9, $skip: Int! = 0) {
+    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: [String!], $topic: [String!], $limit: Int! = 9, $skip: Int! = 0) {
   result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {
     items {
       container: _metadata {
@@ -735,11 +735,11 @@ export const getChildBlogPostsDocument = gql`
             }
           }
           facets {
-            author: ArticleAuthor(filters: [$author]) {
+            author: ArticleAuthor(filters: $author) {
               name
               count
             }
-            topic: Topic(orderBy: ASC, filters: [$topic]) {
+            topic: Topic(orderBy: ASC, filters: $topic) {
               name
               count
             }
