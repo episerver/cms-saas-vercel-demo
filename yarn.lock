@@ -1470,9 +1470,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-codegen/visitor-plugin-common@file:./packages/graphql-codegen-visitor-plugin-common-v5.7.1-patched.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
-  version: 5.7.1
-  resolution: "@graphql-codegen/visitor-plugin-common@file:./packages/graphql-codegen-visitor-plugin-common-v5.7.1-patched.tgz#./packages/graphql-codegen-visitor-plugin-common-v5.7.1-patched.tgz::hash=a2aae3&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+"@graphql-codegen/visitor-plugin-common@file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
+  version: 5.8.0
+  resolution: "@graphql-codegen/visitor-plugin-common@file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz#./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz::hash=1ef42c&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@graphql-codegen/plugin-helpers": "npm:^5.1.0"
     "@graphql-tools/optimize": "npm:^2.0.0"
@@ -1486,7 +1486,7 @@ __metadata:
     tslib: "npm:~2.6.0"
   peerDependencies:
     graphql: ^0.8.0 || ^0.9.0 || ^0.10.0 || ^0.11.0 || ^0.12.0 || ^0.13.0 || ^14.0.0 || ^15.0.0 || ^16.0.0
-  checksum: 10/40032fd30b748d9a84f7ce6f5308e2d3bec2e7f2bee3d772671003f514c51a1fb9d111ead1fbddab3d02d9e9db4aeee3e51b6730fb8de44ffd875618535b604f
+  checksum: 10/5d7c3302fce9df8ab3cd21b23e86cccca3bcdff7c7e44764d33e8d698b572ae474dc907f9b014b3e64862aec96b1a34a0a9e80288ae7c2c11cffddf523cda268
   languageName: node
   linkType: hard
 
@@ -2913,7 +2913,7 @@ __metadata:
 
 "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.3.2
-  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=49c959&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-cms-react@file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz#./packages/dist/@remkoj-optimizely-cms-react-dev.tgz::hash=21f78c&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     "@graphql-typed-document-node/core": "npm:^3.2.0"
     crypto-js: "npm:^4.2.0"
@@ -2924,7 +2924,7 @@ __metadata:
     graphql-request: ^6
     react: ^18
     react-dom: ^18
-  checksum: 10/bd56ea745852799b3b629787620f7fe43f42d6eb1ca0ebe982868808055e10215ab32b8f2a89146e65caaf0d91b1d9f081e4c20faa4de5a217677fd85c4ba261
+  checksum: 10/72f3ae13bd42c2f8dd369d3ceab07d308865315e23d3cb94f49bd4ce605489f0bea5d7733ecbf5b87d77ad2a3ff72bc61e0b3a9967bbd48dec99df2adac583b6
   languageName: node
   linkType: hard
 
@@ -2992,12 +2992,12 @@ __metadata:
 
 "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::locator=%40remkoj%2Foptimizely-frontend%40workspace%3A.":
   version: 4.3.2
-  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=023a84&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
+  resolution: "@remkoj/optimizely-graph-client@file:./packages/dist/@remkoj-optimizely-graph-client-dev.tgz#./packages/dist/@remkoj-optimizely-graph-client-dev.tgz::hash=8b4216&locator=%40remkoj%2Foptimizely-frontend%40workspace%3A."
   dependencies:
     crypto-js: "npm:^4.2.0"
   peerDependencies:
     graphql-request: ^6
-  checksum: 10/72985c75e16ae5ac06023654602f9613ade6f19be8297030ab020d44e7d96de715908640252c0292089686bc229b0a96cb60d990586b12561f635f2dff16cf79
+  checksum: 10/43e28bc68e741a11ab7b9bc6ec15b43f9808581f80f1a707fbc9a1eaa2183fdd0c9a161c61f4022fa682ebacf7a09c8e90a654b53d17455769448ac405cf8a48
   languageName: node
   linkType: hard
 

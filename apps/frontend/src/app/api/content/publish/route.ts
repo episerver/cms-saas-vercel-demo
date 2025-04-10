@@ -2,14 +2,7 @@ import createPublishApi from '@remkoj/optimizely-cms-nextjs/publish'
 import { client } from '../../../../sdk'
 
 const handler = createPublishApi({
-    // The paths to publish if none are defined
-    paths: [
-        '/',
-        '/[[...path]]',
-        '/[lang]',
-        '/[lang]/[[...path]]'
-    ],
-    // The paths to always publish
+    // The paths to always publish, both in optimized as well as non-optimized mode
     additionalPaths: [
         '/api/content/search',
         '/api/content/articles',
@@ -17,9 +10,10 @@ const handler = createPublishApi({
         '/sitemap.xml',
         '/robots.txt'
     ],
-    optimizePublish: true,
-    // tags: ['opti-graph'],
-    client: () => client
+
+    optimizePublish: true,   // When set to enabled, this will try to only publish the content item published by the CMS
+    // tags: ['opti-graph'], // Set tags to always purge when publishing content
+    client                   // The Optimizely Graph Client to use when resolving paths to publish
 })
 
 export const dynamic = 'force-dynamic'      // Make sure all API-Requests are executed
