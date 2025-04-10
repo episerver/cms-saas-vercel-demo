@@ -1,6 +1,6 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.8.1",
+  "packageManager": "yarn@4.9.0",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
@@ -22,8 +22,8 @@
     "graphql-tag": "^2.12.6",
     "prettier": "^3.5.3",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.8.2",
-    "vercel": "^41.4.1"
+    "typescript": "^5.8.3",
+    "vercel": "^41.6.0"
   },
   "exports": null,
   "scripts": {

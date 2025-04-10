@@ -1,7 +1,7 @@
 import 'server-only'
 import { createClient as createClientBase, createAuthorizedClient as createAuthorizedClientBase } from "@remkoj/optimizely-cms-nextjs"
 import { getSdk as getGeneratedSdk, type Sdk } from "@gql/client"
-import { type IOptiGraphClient, type ClientFactory } from '@remkoj/optimizely-graph-client'
+import { type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
 
 
 type GraphClientConfig = {
@@ -13,7 +13,7 @@ const clientConfig: GraphClientConfig = {
     flags: {
         nextJsFetchDirectives: true,
         cache: true,
-        queryCache: true
+        queryCache: true,
     }
 }
 

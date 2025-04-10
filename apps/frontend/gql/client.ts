@@ -5,7 +5,6 @@ type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 export const LinkDataFragmentDoc = gql`
     fragment LinkData on ContentUrl {
   base
-  hierarchical
   default
 }
     `;
@@ -26,6 +25,19 @@ export const PageSeoSettingsPropertyDataFragmentDoc = gql`
     ...ReferenceData
   }
   GraphType
+}
+    `;
+export const CompositionNodeDataFragmentDoc = gql`
+    fragment CompositionNodeData on ICompositionNode {
+  name: displayName
+  layoutType: nodeType
+  type
+  key
+  template: displayTemplateKey
+  settings: displaySettings {
+    key
+    value
+  }
 }
     `;
 export const IContentInfoFragmentDoc = gql`
@@ -404,55 +416,59 @@ export const CarouselBlockDataFragmentDoc = gql`
   }
 }
     `;
-export const CompositionDataFragmentDoc = gql`
-    fragment CompositionData on ICompositionNode {
-  name: displayName
-  layoutType: nodeType
-  type
-  key
-  template: displayTemplateKey
-  settings: displaySettings {
-    key
-    value
-  }
-  ... on ICompositionStructureNode {
-    nodes @recursive(depth: 10) {
-      name: displayName
-    }
-  }
-  ... on ICompositionComponentNode {
-    component {
-      ...BlockData
-      ...ElementData
-      ...ArticleListElementData
-      ...ButtonBlockData
-      ...CTAElementData
-      ...CarouselBlockData
-      ...ContentRecsElementData
-      ...ContinueReadingComponentData
-      ...HeadingElementData
-      ...HeroBlockData
-      ...ImageElementData
-      ...LayoutSettingsBlockData
-      ...MegaMenuGroupBlockData
-      ...MenuNavigationBlockData
-      ...OdpEmbedBlockData
-      ...PageSeoSettingsData
-      ...ParagraphElementData
-      ...QuoteBlockData
-      ...RichTextElementData
-      ...TestimonialElementData
-      ...TextBlockData
-      ...VideoElementData
-      ...BlankSectionData
-    }
+export const CompositionComponentNodeDataFragmentDoc = gql`
+    fragment CompositionComponentNodeData on ICompositionComponentNode {
+  component {
+    ...BlockData
+    ...ElementData
+    ...ArticleListElementData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...ContinueReadingComponentData
+    ...HeadingElementData
+    ...HeroBlockData
+    ...ImageElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
   }
 }
     `;
 export const ExperienceDataFragmentDoc = gql`
     fragment ExperienceData on _IExperience {
   composition {
-    ...CompositionData
+    ...CompositionNodeData
+    nodes {
+      ...CompositionNodeData
+      ... on ICompositionStructureNode {
+        nodes {
+          ...CompositionNodeData
+          ... on ICompositionStructureNode {
+            nodes {
+              ...CompositionNodeData
+              ... on ICompositionStructureNode {
+                nodes {
+                  ...CompositionNodeData
+                  ...CompositionComponentNodeData
+                }
+              }
+            }
+          }
+        }
+      }
+      ...CompositionComponentNodeData
+    }
   }
 }
     `;
@@ -1121,7 +1137,8 @@ ${BlankSectionDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ExperienceDataFragmentDoc}
-${CompositionDataFragmentDoc}
+${CompositionNodeDataFragmentDoc}
+${CompositionComponentNodeDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
 ${BlogSectionExperienceDataFragmentDoc}
@@ -1152,7 +1169,8 @@ ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${ExperienceDataFragmentDoc}
-${CompositionDataFragmentDoc}
+${CompositionNodeDataFragmentDoc}
+${CompositionComponentNodeDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
