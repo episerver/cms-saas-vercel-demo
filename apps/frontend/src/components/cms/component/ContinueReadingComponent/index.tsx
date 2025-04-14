@@ -1,6 +1,6 @@
 "use server";
 import { cache } from "react";
-import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
+import { createClient, type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
 import {
   CmsEditable,
   CmsContentArea,
@@ -15,7 +15,7 @@ import {
   type ContinueReadingComponentDataFragment,
 } from "@/gql/graphql";
 import { getFragmentData } from "@gql/fragment-masking";
-import { sdk } from "@/sdk";
+import { getSdk } from "@/gql/client";
 
 /**
  * Continue Reading
@@ -69,7 +69,12 @@ export const getSharedInstanceData = cache(
   > => {
     "use server";
     const requestedLocale = (ctx?.locale || null) as Locales | undefined;
-    const result = await sdk
+    const graphClient = ctx?.client ?? createClient(undefined, undefined, {
+      nextJsFetchDirectives: true,
+      cache: true,
+      queryCache: true
+    });
+    const result = await getSdk(graphClient)
       .getSharedContinueReading({ locale: requestedLocale })
       ?.catch(() => undefined);
     if (!result || (result.ContinueReadingComponent?.total ?? 0) == 0)

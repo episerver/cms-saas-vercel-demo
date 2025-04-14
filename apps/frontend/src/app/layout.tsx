@@ -6,7 +6,7 @@ import { Body, ThemeProvider } from "@/components/theme"
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { factory } from '@/components/factory';
-import { client } from '@/sdk';
+import { createClient } from '@remkoj/optimizely-graph-client';
 
 // Server side components
 import { EnvTools, Scripts, OptimizelyOneGadget } from "@remkoj/optimizely-one-nextjs/server";
@@ -62,6 +62,11 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const locale = "en"
+  const client = createClient(undefined, undefined, {
+    nextJsFetchDirectives: true,
+    cache: true,
+    queryCache: true,
+  });
   const ctx = new ServerContext({ locale, factory, client })
 
   // Allow environment control over whether the WX snippet can be changed by the client

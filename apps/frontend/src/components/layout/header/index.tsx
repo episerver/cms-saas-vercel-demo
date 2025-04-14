@@ -1,9 +1,9 @@
 import 'server-only'
 import { PopoverGroup } from '@headlessui/react';
 import { type GenericContext, CmsContentArea } from '@remkoj/optimizely-cms-react/rsc';
-import { localeToGraphLocale } from '@remkoj/optimizely-graph-client';
-import { type Locales, type InputMaybe } from '@gql/graphql';
-import { getSdk } from "@/sdk";
+import { createClient, localeToGraphLocale } from '@remkoj/optimizely-graph-client';
+import { type Locales, type InputMaybe } from '@/gql/graphql';
+import { getSdk } from "@/gql/client";
 
 import { Logo } from "./partials/_logo";
 import SecondaryMenu from './partials/_secondary-menu';
@@ -21,8 +21,13 @@ export default async function SiteHeader({ locale, ctx }: HeaderProps)
     const currentDomain = client?.siteInfo.frontendDomain
     const ctxLocale = locale ?? serverLocale
     const currentLocale = (ctxLocale ? localeToGraphLocale(ctxLocale) : undefined) as InputMaybe<Locales> | undefined
+    const currentClient = client ?? createClient(undefined, undefined, {
+        nextJsFetchDirectives: true,
+        cache: true,
+        queryCache: true
+    });
 
-    const headerData = await getSdk().getHeaderData({
+    const headerData = await getSdk(currentClient).getHeaderData({
         locale: currentLocale,
         domain: currentDomain
     }).then(x => x.appLayout?.items?.at(0)).catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {

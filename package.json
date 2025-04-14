@@ -1,6 +1,6 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.9.0",
+  "packageManager": "yarn@4.9.1",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [

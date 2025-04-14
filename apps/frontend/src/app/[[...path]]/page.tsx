@@ -1,8 +1,8 @@
 import "server-only";
+import { createClient } from "@remkoj/optimizely-graph-client";
 import { createPage } from "@remkoj/optimizely-cms-nextjs/page";
 import { getContentByPath } from "@gql/functions";
 import { factory } from "@components/factory";
-import { client } from "@/sdk"
 
 // Create the page components and functions
 const {
@@ -33,7 +33,11 @@ const {
      * 
      * @returns     The Optimizely Graph Client
      */
-    client: () => client
+    client: () => createClient(undefined, undefined, {
+        nextJsFetchDirectives: true,
+        cache: true,
+        queryCache: true,
+    })
 });
 
 // Configure the Next.JS route handling for the pages

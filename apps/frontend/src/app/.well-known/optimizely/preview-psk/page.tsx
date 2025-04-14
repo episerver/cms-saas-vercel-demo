@@ -4,13 +4,12 @@ import crypto from "node:crypto";
 import React from "react";
 import { notFound } from "next/navigation";
 
-import { AuthMode } from "@remkoj/optimizely-graph-client";
+import { createClient, AuthMode } from "@remkoj/optimizely-graph-client";
 import { ServerContext, CmsContent } from "@remkoj/optimizely-cms-react/rsc";
 
 import { type Locales } from "../../../../../gql/graphql";
 import { getContentById } from "../../../../../gql/functions";
 import { factory } from "../../../../components/factory";
-import { client } from "../../../../sdk";
 
 type MySearchParams = {
   key?: string | string[];
@@ -64,6 +63,11 @@ const PreviewPage = async ({
   searchParams: MySearchParams;
 }) => {
   console.log("Preview endpoint", searchParams);
+  const client = createClient(undefined, undefined, {
+    nextJsFetchDirectives: true,
+    cache: false,
+    queryCache: false,
+  });
 
   // Parse request
   const requestData = resolveParams(searchParams);

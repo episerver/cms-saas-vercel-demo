@@ -1,8 +1,8 @@
 
-import { sdk } from "@/sdk";
+import { getSdk } from "@/gql/client";
 import { Locales } from "@gql/graphql"
 import { GenericContext, CmsContentArea, RichText } from "@remkoj/optimizely-cms-react/rsc";
-import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
+import { createClient, localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 import Image from 'next/image'
 import CmsLink, { createListKey } from "@shared/cms_link";
 import LanguageSwitcher from "@shared/language_switcher";
@@ -14,9 +14,14 @@ export type SiteFooterProps = {
 
 export async function SiteFooter({locale, ctx }: SiteFooterProps)
 {
-    const { locale: contextLocale, factory } = ctx
+    const { locale: contextLocale, client } = ctx
+    const graphClient = client ?? createClient(undefined, undefined, {
+        nextJsFetchDirectives: true,
+        cache: true,
+        queryCache: true
+    })
     const footerLocale = locale ?? contextLocale
-    const footerData = (await sdk.getFooterData({
+    const footerData = (await getSdk(graphClient).getFooterData({
         locale: footerLocale ? localeToGraphLocale(footerLocale) as Locales : Locales.ALL
     }).catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {
         console.error(`❌ [Optimizely Graph] [Error] ${e.response.code} ${e.response.system.message} ${e.response.system.auth}`)
