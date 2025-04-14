@@ -2,8 +2,8 @@
 
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](./LICENSE)
 
-> [!IMPORTANT]  
-> The latest version of this site contains a new content pack and schema. When updating an existing site, make sure to [apply the latest content pack](#3-content-pack-upgrade). If you need to, you can use the ["CMS Reset" command line tool](https://github.com/remkoj/optimizely-dxp-clients/tree/main/packages/optimizely-cms-cli#3-available-commands) to clear your current instance.
+> [!TIP]
+> The folder [`content-updates`](./content-updates/) contains individually packaged updates to the CMS Content for this demo-site. You can use these to updated the content pack if you installed your demo content on or after ***February 1<sup>st</sup>, 2025***. If you've loaded the content into Optimizely CMS before that date, you need to perform a [content reset](#3-content-pack-upgrade).
 
 ## Contents <!-- omit in toc -->
 - [1. Introduction](#1-introduction)
