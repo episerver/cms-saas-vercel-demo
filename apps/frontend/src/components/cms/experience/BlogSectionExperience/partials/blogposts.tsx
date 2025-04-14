@@ -79,10 +79,8 @@ export default function BlogPostsSection({
       topic,
       author,
     };
-    console.log("Blog post fetching params", params)
     const updateData = async () => {
       const newPageData = await getBlogPosts(params);
-      console.log("Blog post fetched data", params, newPageData, cancelled)
       if (cancelled) return;
       setPageData(newPageData);
       setLoading(false);

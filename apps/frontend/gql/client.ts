@@ -720,14 +720,17 @@ export const getBlankExperienceMetaDataDocument = gql`
 ${LinkDataFragmentDoc}`;
 export const getChildBlogPostsDocument = gql`
     query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: [String!], $topic: [String!], $limit: Int! = 9, $skip: Int! = 0) {
-  result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {
+  result: BlogSectionExperience(
+    where: {_metadata: {key: {eq: $parentKey}}}
+    locale: $locale
+  ) {
     items {
       container: _metadata {
         key
         displayName
       }
       items: _link(type: ITEMS) {
-        posts: BlogPostPage(skip: $skip, limit: $limit) {
+        BlogPostPage(skip: $skip, limit: $limit, locale: $locale) {
           total
           items {
             ...IContentData

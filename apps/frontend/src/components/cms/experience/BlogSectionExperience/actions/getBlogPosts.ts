@@ -24,7 +24,7 @@ export async function getBlogPosts(options: GetBlogPostsParams)
             locale: graphLocale
         }
         const r = await sdk.getChildBlogPosts(queryOptions)
-        const result = r?.result?.items?.at(0)?.items?.posts;
+        const result = r?.result?.items?.at(0)?.items?.BlogPostPage;
         return result
     } catch (e) { 
         console.warn("Error fetching blog posts", e)

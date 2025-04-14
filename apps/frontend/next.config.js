@@ -42,7 +42,7 @@ const nextConfig = {
 /**
  * @type {string|undefined} 
  */
-const optimizelyDxpUrl = process.env.OPTIMIZELY_CMS_URL
+const optimizelyDxpUrl = process.env.NEXT_PUBLIC_OPTIMIZELY_CMS_URL
 if (optimizelyDxpUrl) {
     nextConfig.images.loader = 'custom';
     nextConfig.images.loaderFile = './src/cloudflareLoader.js'; // Use Cloudflare Images for resizing
