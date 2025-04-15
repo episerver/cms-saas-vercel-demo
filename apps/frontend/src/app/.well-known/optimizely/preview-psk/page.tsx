@@ -1,3 +1,16 @@
+/**
+ * This page is intended to allow external systems to generate previews of any content item
+ * stored within the CMS. With this capability, any system that uses the CMS Rest API may
+ * use this page to preview the content just pushed into the CMS. For example, Omni-Channel
+ * publishing from CMP.
+ * 
+ * To ensure adequate security, it requires the user of this service to sign the request using
+ * the publishToken. This ensures (a) that the publishToken is known on both ends but is not 
+ * included in the request and (b) that the key, version & locale parameters haven't been changed.
+ * 
+ * @see: https://docs.developers.optimizely.com/content-marketing-platform/docs/get-started-with-omnichannel-content
+ */
+
 import "server-only";
 //@ts-expect-error We're enforcing that we're running on Node.JS, but typescript doesn't understand
 import crypto from "node:crypto";
@@ -15,47 +28,12 @@ type MySearchParams = {
   key?: string | string[];
   loc?: string | string[];
   ver?: string | string[];
-  psk?: string | string[];
   auth?: string | string[];
 };
 
 type ParsedParams = {
   [K in keyof MySearchParams]-?: string | null;
 };
-
-function resolveParams(input: MySearchParams): Readonly<ParsedParams> {
-  const val: ParsedParams = {
-    key: null,
-    loc: null,
-    ver: null,
-    psk: null,
-    auth: null,
-  };
-
-  (["key", "loc", "ver", "psk", "auth"] as Array<keyof MySearchParams>).forEach(
-    (x) => {
-      if (typeof input[x] == "string" && input[x].length > 0) val[x] = input[x];
-    },
-  );
-
-  return val;
-}
-
-function calculateAuth(
-  inputs: Readonly<ParsedParams>,
-  psk: string,
-): Readonly<string> {
-  const searchParams = new URLSearchParams();
-  for (const k in inputs) {
-    if (k != "auth" && k != "psk") searchParams.set(k, inputs[k]);
-  }
-
-  const data = searchParams.toString() + "::" + psk;
-
-  const hash = crypto.createHash("sha256");
-  hash.update(data);
-  return hash.digest("base64url");
-}
 
 const PreviewPage = async ({
   searchParams,
@@ -87,13 +65,10 @@ const PreviewPage = async ({
     notFound();
   }
 
+  // Validate the authorization hash
   const expectedAuth = calculateAuth(requestData, psk);
-  console.log(
-    `Request auth: ${requestData.auth} -- Expected auth: ${expectedAuth}`,
-  );
-
-  if (psk != requestData.psk) {
-    console.error("Invalid PSK provided");
+  if (requestData.auth != expectedAuth) {
+    console.error(`Authorization signatures do not match! Expected "${ expectedAuth}", received "${ requestData.auth }".`);
     notFound();
   }
 
@@ -141,3 +116,43 @@ export const revalidate = 0;
 export const runtime = "nodejs";
 
 export default PreviewPage;
+
+
+function resolveParams(input: MySearchParams): Readonly<ParsedParams> {
+  const val: ParsedParams = {
+    key: null,
+    loc: null,
+    ver: null,
+    auth: null,
+  };
+
+  (["key", "loc", "ver", "auth"] as Array<keyof MySearchParams>).forEach(
+    (x) => {
+      if (typeof input[x] == "string" && input[x].length > 0) val[x] = input[x];
+    },
+  );
+
+  return val;
+}
+
+/**
+ * Calculate the expected authentication value
+ * 
+ * @param     inputs    The received inputs
+ * @param     psk       The pre-shared key
+ * @returns   The authorization signature
+ */
+function calculateAuth(
+  inputs: Readonly<ParsedParams>,
+  psk: string,
+  inputEncoding?: string
+): Readonly<string> {
+  const searchParams = new URLSearchParams();
+  searchParams.set('key', inputs.key ?? '');
+  searchParams.set('ver', inputs.ver ?? '');
+  searchParams.set('loc', inputs.loc ?? '');
+  const data = searchParams.toString();
+  const hash = crypto.createHmac("sha256", psk);
+  hash.update(data, inputEncoding);
+  return hash.digest("base64url");
+}
