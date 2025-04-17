@@ -15,14 +15,14 @@ export const BlogSectionExperienceExperience : CmsComponent<BlogSectionExperienc
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
     const initialDataParams : GetBlogPostsParams = { locale: contentLink.locale ?? 'en', parentKey: contentLink.key ?? 'n/a' }
     const initialData = await getBlogPosts(initialDataParams)
-    return <div className="" data-component="BlogSectionExperience">
-        <CmsEditable as="div" className="py-8" ctx={ctx}>
+    return <div data-component="BlogSectionExperience">
+        <div className="py-8">
             { composition && isNode(composition) && <OptimizelyComposition node={composition} ctx={ctx} /> }
-        </CmsEditable>
+        </div>
         { contentLink.key && contentLink.locale &&
         <div className="mx-auto px-4 lg:px-6 container">
             <Suspense fallback={<></>}>
-                <BlogPostsSection parentKey={ contentLink.key } locale={ contentLink.locale } initialdata={initialData} />
+                <BlogPostsSection parentKey={ contentLink.key } locale={ contentLink.locale } initialdata={ initialData } />
             </Suspense>
         </div>}
     </div>

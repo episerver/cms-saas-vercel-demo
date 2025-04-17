@@ -8,11 +8,11 @@ import Link from "./_link";
  * Menu navigation
  * 
  */
-export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockDataFragment> = ({ data: { MenuNavigationHeading: heading, NavigationLinks: links, _metadata: metadata }}) => {
+export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockDataFragment> = ({ data: { MenuNavigationHeading: heading, NavigationLinks: links, _metadata: metadata }, ctx}) => {
     const groupLabel = heading ?? metadata?.displayName ?? "Unnamed link group"
     return <>
-        <CmsEditable as="div" cmsFieldName="MenuNavigationHeading" className="pb-1 uppercase font-bold">{ groupLabel }</CmsEditable>
-        <CmsEditable as="ul" cmsFieldName="NavigationLinks">
+        <CmsEditable as="div" cmsFieldName="MenuNavigationHeading" className="pb-1 uppercase font-bold" ctx={ctx}>{ groupLabel }</CmsEditable>
+        <CmsEditable as="ul" cmsFieldName="NavigationLinks" ctx={ctx}>
             { (links || []).map(link => {
                 const linkData = getFragmentData(LinkItemDataFragmentDoc, link)
                 const linkUrl = getFragmentData(LinkDataFragmentDoc, linkData?.url)

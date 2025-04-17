@@ -15,9 +15,9 @@ import { type Metadata } from "next";
  */
 export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragment> = ({ data, ctx }) => {
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
-    return <CmsEditable as="div" className="vb:experience" ctx={ ctx }>
+    return <div className="vb:experience" data-component="BlankExperience">
         { composition && isNode(composition) && <OptimizelyComposition node={composition} ctx={ ctx } /> }
-    </CmsEditable>
+    </div>
 }
 BlankExperienceExperience.displayName = "Blank Experience (Experience/BlankExperience)"
 BlankExperienceExperience.getDataFragment = () => ['BlankExperienceData', BlankExperienceDataFragmentDoc]
