@@ -8,6 +8,7 @@
   },
   "scripts": {
     "dev": "yarn next dev",
+    "dev:https": "yarn next dev --experimental-https",
     "config": "yarn opti-graph config:create",
     "build": "yarn next build && yarn opti-graph webhook:create",
     "build:full": "yarn graphql-codegen && yarn next build && yarn opti-graph webhook:create",

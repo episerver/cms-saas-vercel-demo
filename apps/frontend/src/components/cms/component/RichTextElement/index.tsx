@@ -27,7 +27,7 @@ export const RichTextElementElement : CmsComponent<RichTextElementDataFragment, 
     const cssClassName = WidthMap[width]
 
     return (
-        <CmsEditable as={ RichText } cmsId={ contentLink.key } text={ data.text?.json } factory={ factory } className={ cssClassName } />
+        <CmsEditable as={ RichText } cmsId={ contentLink.key } cmsFieldName="text" text={ data.text?.json } factory={ factory } className={ cssClassName } />
     )
 }
 RichTextElementElement.displayName = "Rich Text (Element/RichTextElement)"
