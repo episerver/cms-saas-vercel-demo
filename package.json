@@ -9,8 +9,8 @@
   ],
   "devDependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@remkoj/optimizely-graph-client": "^5.0.0",
-    "@remkoj/optimizely-graph-functions": "^5.0.0",
+    "@remkoj/optimizely-graph-client": "^5.0.1",
+    "@remkoj/optimizely-graph-functions": "^5.0.1",
     "@types/source-map-support": "^0.5.10",
     "@yarnpkg/sdks": "^3.2.1",
     "eslint": "8.57.1",
@@ -44,7 +44,6 @@
   },
   "resolutions": {
     "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz",
-    "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz",
     "rollup": "4.20.0"
   }
 }
