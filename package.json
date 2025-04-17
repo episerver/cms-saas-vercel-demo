@@ -7,9 +7,6 @@
     "apps/*",
     "packages/*"
   ],
-  "engines": {
-    "node": ">=22.0.0 <23.0.0"
-  },
   "devDependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
     "@remkoj/optimizely-graph-client": "^5.0.0",
