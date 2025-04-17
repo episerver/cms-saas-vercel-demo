@@ -25,9 +25,7 @@ export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment
     const width = transform == "full" ? ' max-w-none' : ''
     const align = AlignClasses[placement]
 
-    
-
-    return <CmsEditable as={RichText} ctx={ ctx } text={ text?.json } forwardCtx="ctx" cmsId={ contentLink.key } className={`rich-text prose${ width }${ align }`}/>
+    return <CmsEditable as={RichText} ctx={ ctx } cmsFieldName="text" text={ text?.json } forwardCtx="ctx" cmsId={ contentLink.key } className={`rich-text prose${ width }${ align }`}/>
 }
 ParagraphElementElement.displayName = "Paragraph (Element/ParagraphElement)"
 ParagraphElementElement.getDataFragment = () => ['ParagraphElementData', ParagraphElementDataFragmentDoc]

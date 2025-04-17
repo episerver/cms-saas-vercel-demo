@@ -1,4 +1,5 @@
 import { type CmsComponent } from "@remkoj/optimizely-cms-react";
+import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
 import { MenuNavigationBlockDataFragmentDoc, LinkItemDataFragmentDoc, LinkDataFragmentDoc, type MenuNavigationBlockDataFragment } from "@/gql/graphql";
 import { getFragmentData } from "@gql";
 import Link from "./_link";
@@ -10,8 +11,8 @@ import Link from "./_link";
 export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockDataFragment> = ({ data: { MenuNavigationHeading: heading, NavigationLinks: links, _metadata: metadata }}) => {
     const groupLabel = heading ?? metadata?.displayName ?? "Unnamed link group"
     return <>
-        <div className="pb-1 uppercase font-bold">{ groupLabel }</div>
-        <ul>
+        <CmsEditable as="div" cmsFieldName="MenuNavigationHeading" className="pb-1 uppercase font-bold">{ groupLabel }</CmsEditable>
+        <CmsEditable as="ul" cmsFieldName="NavigationLinks">
             { (links || []).map(link => {
                 const linkData = getFragmentData(LinkItemDataFragmentDoc, link)
                 const linkUrl = getFragmentData(LinkDataFragmentDoc, linkData?.url)
@@ -21,7 +22,7 @@ export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockData
                     <Link className="inline-block py-1 hover:text-azure hover:data-[link=active]:text-azure" href={ linkUrl } title={ linkData.title ?? undefined } target={ linkData.target ?? undefined}>{ linkData.text ?? linkData.title ?? 'Unnamed link'}</Link>
                 </li>
             }) }
-        </ul>
+        </CmsEditable>
     </>
 }
 MenuNavigationBlockComponent.displayName = "Menu navigation (Component/MenuNavigationBlock)"

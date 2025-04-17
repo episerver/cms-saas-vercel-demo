@@ -15,7 +15,7 @@ import { type Metadata } from "next";
  */
 export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragment> = ({ data, ctx }) => {
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
-    return <CmsEditable as="div" className="vb:experience" cmsFieldName="unstructuredData" ctx={ ctx }>
+    return <CmsEditable as="div" className="vb:experience" ctx={ ctx }>
         { composition && isNode(composition) && <OptimizelyComposition node={composition} ctx={ ctx } /> }
     </CmsEditable>
 }
