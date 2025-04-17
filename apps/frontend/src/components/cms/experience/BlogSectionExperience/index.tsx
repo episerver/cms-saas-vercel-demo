@@ -15,7 +15,7 @@ export const BlogSectionExperienceExperience : CmsComponent<BlogSectionExperienc
     const composition = getFragmentData(CompositionDataFragmentDoc, getFragmentData(ExperienceDataFragmentDoc, data)?.composition)
     const initialData = await getBlogPosts({ locale: contentLink.locale ?? 'en', parentKey: contentLink.key ?? 'n/a' })
     return <div className="" data-component="BlogSectionExperience">
-        <CmsEditable as="div" className="py-8" cmsFieldName="unstructuredData">
+        <CmsEditable as="div" className="py-8">
             { composition && isNode(composition) && <OptimizelyComposition node={composition} /> }
         </CmsEditable>
         { contentLink.key && contentLink.locale &&
