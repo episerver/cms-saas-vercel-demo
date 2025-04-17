@@ -14,7 +14,8 @@ import { type Metadata } from "next";
  * An experience without a predefined layout.
  */
 export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragment> = ({ data, ctx }) => {
-    const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
+    ctx.setEditableContentIsExperience(true);
+    const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition;
     return <div className="vb:experience" data-component="BlankExperience">
         { composition && isNode(composition) && <OptimizelyComposition node={composition} ctx={ ctx } /> }
     </div>

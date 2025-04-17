@@ -47,6 +47,7 @@
   },
   "resolutions": {
     "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz",
+    "@remkoj/optimizely-cms-react": "file:./packages/dist/@remkoj-optimizely-cms-react-dev.tgz",
     "rollup": "4.20.0"
   }
 }

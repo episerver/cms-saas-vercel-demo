@@ -12,6 +12,7 @@ import { Suspense } from "react";
  * Add a blog/news section to your site
  */
 export const BlogSectionExperienceExperience : CmsComponent<BlogSectionExperienceDataFragment> = async ({ data, contentLink, ctx }) => {
+    ctx.setEditableContentIsExperience(true);
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
     const initialDataParams : GetBlogPostsParams = { locale: contentLink.locale ?? 'en', parentKey: contentLink.key ?? 'n/a' }
     const initialData = await getBlogPosts(initialDataParams)
