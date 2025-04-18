@@ -14,3 +14,4 @@
 .vercel
 .env*.local
 .idea
+node_modules
