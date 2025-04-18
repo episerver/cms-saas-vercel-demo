@@ -34,7 +34,7 @@ export const VideoElementElement : CmsComponent<VideoElementDataFragment, VideoE
     video: videoSrc,
     placeholder,
     title: altText
-}, contentLink, layoutProps }) => {
+}, contentLink, layoutProps, ctx }) => {
     const {
         aspectRatio = "auto",
         autoPlay = "false",
@@ -44,7 +44,7 @@ export const VideoElementElement : CmsComponent<VideoElementDataFragment, VideoE
         roundedCorners = "none"
     } = isDefaultVideoProps(layoutProps) ? extractSettings(layoutProps) : {}
     const cssClasses : string[] = [VideoClasses[aspectRatio], RoundedCornersClasses[roundedCorners]]
-    return <CmsEditable as={ Video } cmsId={ contentLink.key } cmsFieldName="video" src={ videoSrc } controls={ showControls == "true" } autoPlay={ autoPlay == "true" } muted={ muted == "true" || autoPlay == "true" } loop={ loop == "true" } className={ cssClasses.join(' ') } altText={ altText } placeholder={ placeholder } />
+    return <CmsEditable as={ Video } ctx={ ctx } cmsId={ contentLink.key } cmsFieldName="video" src={ videoSrc } controls={ showControls == "true" } autoPlay={ autoPlay == "true" } muted={ muted == "true" || autoPlay == "true" } loop={ loop == "true" } className={ cssClasses.join(' ') } altText={ altText } placeholder={ placeholder } />
 }
 VideoElementElement.displayName = "Video (Element/VideoElement)"
 VideoElementElement.getDataFragment = () => ['VideoElementData', VideoElementDataFragmentDoc]

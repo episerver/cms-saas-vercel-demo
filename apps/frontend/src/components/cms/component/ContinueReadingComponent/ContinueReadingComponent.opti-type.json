@@ -1,0 +1,60 @@
+{
+  "key": "ContinueReadingComponent",
+  "displayName": "Continue Reading",
+  "description": "A Continue Reading section, that can be loaded/shared across pages.",
+  "baseType": "component",
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [],
+  "properties": {
+    "topline": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Top line",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 10,
+      "editorSettings": {}
+    },
+    "shared": {
+      "type": "boolean",
+      "displayName": "Shared",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Advanced",
+      "sortOrder": 10,
+      "indexingType": "queryable",
+      "editorSettings": {}
+    },
+    "heading": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Heading",
+      "description": "",
+      "localized": true,
+      "required": true,
+      "group": "Information",
+      "sortOrder": 20,
+      "editorSettings": {}
+    },
+    "content": {
+      "type": "array",
+      "displayName": "Content",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 30,
+      "editorSettings": {},
+      "items": {
+        "type": "content",
+        "allowedTypes": [],
+        "restrictedTypes": []
+      }
+    }
+  }
+}

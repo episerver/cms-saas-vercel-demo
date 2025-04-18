@@ -1,13 +1,19 @@
-import type * as Types from './types'
-import * as GraphQL from '@gql/graphql'
-import { getSdk } from "@/sdk";
 import { Utils } from '@remkoj/optimizely-cms-react'
+import { createClient, type IOptiGraphClient } from '@remkoj/optimizely-graph-client'
+import * as GraphQL from '@gql/graphql';
+import { getSdk } from "@gql/client";
+import { getFragmentData } from '@gql/fragment-masking';
+import type * as Types from './types';
 import 'server-only'
-import { getFragmentData } from '@gql';
 
-export async function getArticles(locale: string, paging?: Types.PagingData, filters?: Types.Filters) : Promise<Types.GetArticlesResult>
+export async function getArticles(locale: string, paging?: Types.PagingData, filters?: Types.Filters, client?: IOptiGraphClient) : Promise<Types.GetArticlesResult>
 {
-    const sdk = getSdk()
+    const graphClient = client ?? createClient(undefined, undefined, {
+        nextJsFetchDirectives: true,
+        cache: true,
+        queryCache: true,
+    });
+    const sdk = getSdk(graphClient);
     const pageSize = paging?.count ?? 10
     const pageNumber = paging?.page ?? 1
     const published : string | undefined = filters?.published

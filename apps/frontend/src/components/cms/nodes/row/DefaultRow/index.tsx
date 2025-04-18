@@ -73,4 +73,6 @@ export const DefaultRow : CmsLayoutComponent<DefaultRowProps> = ({ contentLink, 
     return (<div className={`vb:row vb:row:DefaultRow flex-1 flex flex-col flex-nowrap ${ rowFrom } ${ justify } ${ align } ${ vertical } ${ spacing } ${ width } ${ text }`}>{ children }</div>);
 }
 
+DefaultRow.displayName = 'DefaultRow'
+
 export default DefaultRow;

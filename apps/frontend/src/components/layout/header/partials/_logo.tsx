@@ -1,7 +1,8 @@
 "use client";
+import { useMemo } from "react"
 import Image from "next/image";
 import Link from "next/link";
-import { type FunctionComponent } from "react";
+import { type JSX, type FunctionComponent } from "react";
 import useFlag from "@/useFlag";
 
 type LogoProps = JSX.IntrinsicElements["a"] & {
@@ -12,10 +13,11 @@ export const Logo: FunctionComponent<LogoProps> = ({
   logo = "/assets/moseybank-logo.svg",
   ...divProps
 }) => {
-  const { logo: logoUrl } = useFlag("layout_configuration", {
-    logo,
-    theme_switcher: false,
-  });
+  // Create a stable default value that doesn't change every render
+  const defaultValue = useMemo(() => { return { logo, theme_switcher: false } }, [ logo ])
+
+  // Get the logo configuration
+  const { logo: logoUrl } = useFlag("layout_configuration", defaultValue);
   return (
     <Link href="/" className="flex items-center grow-0 shrink-0" {...divProps}>
       <Image

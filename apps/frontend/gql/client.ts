@@ -5,7 +5,6 @@ type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 export const LinkDataFragmentDoc = gql`
     fragment LinkData on ContentUrl {
   base
-  hierarchical
   default
 }
     `;
@@ -26,6 +25,19 @@ export const PageSeoSettingsPropertyDataFragmentDoc = gql`
     ...ReferenceData
   }
   GraphType
+}
+    `;
+export const CompositionNodeDataFragmentDoc = gql`
+    fragment CompositionNodeData on ICompositionNode {
+  name: displayName
+  layoutType: nodeType
+  type
+  key
+  template: displayTemplateKey
+  settings: displaySettings {
+    key
+    value
+  }
 }
     `;
 export const IContentInfoFragmentDoc = gql`
@@ -341,18 +353,20 @@ export const BlankSectionDataFragmentDoc = gql`
   }
 }
     `;
-export const CarouselBlockDataFragmentDoc = gql`
-    fragment CarouselBlockData on CarouselBlock {
-  CarouselItemsContentArea {
-    ...IContentListItem
+export const ContinueReadingComponentDataFragmentDoc = gql`
+    fragment ContinueReadingComponentData on ContinueReadingComponent {
+  topline
+  shared
+  heading
+  content {
+    ...IContentData
     ...BlockData
-    ...ImageMediaComponentData
-    ...VideoMediaComponentData
     ...ArticleListElementData
     ...ButtonBlockData
     ...CTAElementData
     ...CarouselBlockData
     ...ContentRecsElementData
+    ...ContinueReadingComponentData
     ...HeadingElementData
     ...HeroBlockData
     ...ImageElementData
@@ -371,54 +385,90 @@ export const CarouselBlockDataFragmentDoc = gql`
   }
 }
     `;
-export const CompositionDataFragmentDoc = gql`
-    fragment CompositionData on ICompositionNode {
-  name: displayName
-  layoutType: nodeType
-  type
-  key
-  template: displayTemplateKey
-  settings: displaySettings {
-    key
-    value
+export const CarouselBlockDataFragmentDoc = gql`
+    fragment CarouselBlockData on CarouselBlock {
+  CarouselItemsContentArea {
+    ...IContentListItem
+    ...BlockData
+    ...ImageMediaComponentData
+    ...VideoMediaComponentData
+    ...ArticleListElementData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...ContinueReadingComponentData
+    ...HeadingElementData
+    ...HeroBlockData
+    ...ImageElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
   }
-  ... on ICompositionStructureNode {
-    nodes @recursive(depth: 10) {
-      name: displayName
-    }
-  }
-  ... on ICompositionComponentNode {
-    component {
-      ...BlockData
-      ...ElementData
-      ...ArticleListElementData
-      ...ButtonBlockData
-      ...CTAElementData
-      ...CarouselBlockData
-      ...ContentRecsElementData
-      ...HeadingElementData
-      ...HeroBlockData
-      ...ImageElementData
-      ...LayoutSettingsBlockData
-      ...MegaMenuGroupBlockData
-      ...MenuNavigationBlockData
-      ...OdpEmbedBlockData
-      ...PageSeoSettingsData
-      ...ParagraphElementData
-      ...QuoteBlockData
-      ...RichTextElementData
-      ...TestimonialElementData
-      ...TextBlockData
-      ...VideoElementData
-      ...BlankSectionData
-    }
+}
+    `;
+export const CompositionComponentNodeDataFragmentDoc = gql`
+    fragment CompositionComponentNodeData on ICompositionComponentNode {
+  component {
+    ...BlockData
+    ...ElementData
+    ...ArticleListElementData
+    ...ButtonBlockData
+    ...CTAElementData
+    ...CarouselBlockData
+    ...ContentRecsElementData
+    ...ContinueReadingComponentData
+    ...HeadingElementData
+    ...HeroBlockData
+    ...ImageElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...MenuNavigationBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...BlankSectionData
   }
 }
     `;
 export const ExperienceDataFragmentDoc = gql`
     fragment ExperienceData on _IExperience {
   composition {
-    ...CompositionData
+    ...CompositionNodeData
+    nodes {
+      ...CompositionNodeData
+      ... on ICompositionStructureNode {
+        nodes {
+          ...CompositionNodeData
+          ... on ICompositionStructureNode {
+            nodes {
+              ...CompositionNodeData
+              ... on ICompositionStructureNode {
+                nodes {
+                  ...CompositionNodeData
+                  ...CompositionComponentNodeData
+                }
+              }
+            }
+          }
+        }
+      }
+      ...CompositionComponentNodeData
+    }
   }
 }
     `;
@@ -457,6 +507,7 @@ export const BlogPostPageDataFragmentDoc = gql`
     ...CTAElementData
     ...CarouselBlockData
     ...ContentRecsElementData
+    ...ContinueReadingComponentData
     ...HeadingElementData
     ...HeroBlockData
     ...ImageElementData
@@ -500,6 +551,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...CTAElementData
     ...CarouselBlockData
     ...ContentRecsElementData
+    ...ContinueReadingComponentData
     ...HeadingElementData
     ...HeroBlockData
     ...ImageElementData
@@ -523,6 +575,7 @@ export const LandingPageDataFragmentDoc = gql`
     ...CTAElementData
     ...CarouselBlockData
     ...ContentRecsElementData
+    ...ContinueReadingComponentData
     ...HeadingElementData
     ...HeroBlockData
     ...ImageElementData
@@ -600,6 +653,48 @@ export const getDefaultArticleListDocument = gql`
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
 ${ArticleListElementDataFragmentDoc}`;
+export const getSharedContinueReadingDocument = gql`
+    query getSharedContinueReading($locale: [Locales]) {
+  ContinueReadingComponent(where: {shared: {eq: true}}, locale: $locale) {
+    total
+    item {
+      ...IContentData
+      ...ContinueReadingComponentData
+    }
+  }
+}
+    ${IContentDataFragmentDoc}
+${IContentInfoFragmentDoc}
+${LinkDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
+${BlockDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${ButtonBlockDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${IContentListItemFragmentDoc}
+${ImageMediaComponentDataFragmentDoc}
+${VideoMediaComponentDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
+${ReferenceDataFragmentDoc}
+${ButtonBlockPropertyDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${LayoutSettingsBlockDataFragmentDoc}
+${LinkItemDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${BlogPostPageMenuBlockFragmentDoc}
+${OdpEmbedBlockDataFragmentDoc}
+${PageSeoSettingsDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${QuoteBlockDataFragmentDoc}
+${RichTextElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
+${TextBlockDataFragmentDoc}
+${VideoElementDataFragmentDoc}
+${BlankSectionDataFragmentDoc}`;
 export const getBlankExperienceMetaDataDocument = gql`
     query getBlankExperienceMetaData($key: String!, $locale: [Locales]) {
   page: BlankExperience(where: {_metadata: {key: {eq: $key}}}, locale: $locale) {
@@ -624,15 +719,18 @@ export const getBlankExperienceMetaDataDocument = gql`
     ${ReferenceDataFragmentDoc}
 ${LinkDataFragmentDoc}`;
 export const getChildBlogPostsDocument = gql`
-    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: String! = "", $topic: String! = "", $limit: Int! = 9, $skip: Int! = 0) {
-  result: _Page(where: {_metadata: {key: {eq: $parentKey}}}, locale: $locale) {
+    query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author: [String!], $topic: [String!], $limit: Int! = 9, $skip: Int! = 0) {
+  result: BlogSectionExperience(
+    where: {_metadata: {key: {eq: $parentKey}}}
+    locale: $locale
+  ) {
     items {
       container: _metadata {
         key
         displayName
       }
       items: _link(type: ITEMS) {
-        posts: BlogPostPage(skip: $skip, limit: $limit) {
+        BlogPostPage(skip: $skip, limit: $limit, locale: $locale) {
           total
           items {
             ...IContentData
@@ -656,11 +754,11 @@ export const getChildBlogPostsDocument = gql`
             }
           }
           facets {
-            author: ArticleAuthor(filters: [$author]) {
+            author: ArticleAuthor(filters: $author) {
               name
               count
             }
-            topic: Topic(orderBy: ASC, filters: [$topic]) {
+            topic: Topic(orderBy: ASC, filters: $topic) {
               name
               count
             }
@@ -975,7 +1073,7 @@ export const getContentByIdDocument = gql`
     locale: $locale
   ) {
     total
-    items {
+    items: item {
       ...BlockData
       ...PageData
       ...ArticleListElementData
@@ -983,6 +1081,7 @@ export const getContentByIdDocument = gql`
       ...CTAElementData
       ...CarouselBlockData
       ...ContentRecsElementData
+      ...ContinueReadingComponentData
       ...HeadingElementData
       ...HeroBlockData
       ...ImageElementData
@@ -1018,6 +1117,7 @@ ${IContentListItemFragmentDoc}
 ${ImageMediaComponentDataFragmentDoc}
 ${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
@@ -1040,7 +1140,8 @@ ${BlankSectionDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ExperienceDataFragmentDoc}
-${CompositionDataFragmentDoc}
+${CompositionNodeDataFragmentDoc}
+${CompositionComponentNodeDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
 ${BlogSectionExperienceDataFragmentDoc}
@@ -1053,7 +1154,7 @@ export const getContentByPathDocument = gql`
     locale: $locale
   ) {
     total
-    items {
+    items: item {
       ...IContentData
       ...PageData
       ...BlankExperienceData
@@ -1071,7 +1172,8 @@ ${BlankExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ReferenceDataFragmentDoc}
 ${ExperienceDataFragmentDoc}
-${CompositionDataFragmentDoc}
+${CompositionNodeDataFragmentDoc}
+${CompositionComponentNodeDataFragmentDoc}
 ${BlockDataFragmentDoc}
 ${ElementDataFragmentDoc}
 ${IElementDataFragmentDoc}
@@ -1083,6 +1185,7 @@ ${IContentListItemFragmentDoc}
 ${ImageMediaComponentDataFragmentDoc}
 ${VideoMediaComponentDataFragmentDoc}
 ${ContentRecsElementDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
 ${ButtonBlockPropertyDataFragmentDoc}
@@ -1111,7 +1214,7 @@ export const getContentTypeDocument = gql`
     locale: $locale
   ) {
     total
-    items {
+    items: item {
       _metadata {
         types
       }
@@ -1132,6 +1235,9 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     },
     getDefaultArticleList(variables?: Schema.getDefaultArticleListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getDefaultArticleListQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getDefaultArticleListQuery>(getDefaultArticleListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getDefaultArticleList', 'query', variables);
+    },
+    getSharedContinueReading(variables?: Schema.getSharedContinueReadingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getSharedContinueReadingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getSharedContinueReadingQuery>(getSharedContinueReadingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSharedContinueReading', 'query', variables);
     },
     getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);

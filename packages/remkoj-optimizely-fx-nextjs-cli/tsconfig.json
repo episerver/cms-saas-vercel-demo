@@ -17,5 +17,5 @@
         "allowJs": true
     },
     "exclude": ["./build","./dist"],
-    "include": ["./src"]
+    "include": ["./src/context.d.ts", "./src"]
 }

@@ -1,9 +1,10 @@
 "use server"
-import getSdk from "@/sdk"
-import { type Sdk, getFragmentData, Schema } from "@gql"
+import { getSdk, type Sdk } from "@/gql/client";
+import { getFragmentData } from "@/gql/fragment-masking";
+import * as Schema from "@/gql/graphql"
 import * as ContentIntel from '@/lib/integrations/optimizely-content-intelligence'
-import { type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
-import { type TypedNode, type NodeInput } from "@remkoj/optimizely-cms-react/rsc"
+import { createClient, type ContentLinkWithLocale } from "@remkoj/optimizely-graph-client"
+import type { NodeInput } from "@remkoj/optimizely-cms-react/rsc"
 import { site_search as getSearchConfig } from "@/flags"
 
 export type FacetFilters = {
@@ -79,9 +80,13 @@ export type ContentSearchResults = {
  */
 export async function contentSearch(term: string, { facets, limit = 12, start = 0, locale, filters, sdk, personalize = true }: ContentSearchOptions = {}) : Promise<ContentSearchResults>
 {
-    const config = await getSearchConfig()
-    const usePersonalization = config.use_personalization && personalize
-    const app = sdk || getSdk()
+    const config = {
+        use_personalization: true,
+        interest_boost: 5,
+        ...(await getSearchConfig()) as Partial<ReturnType<typeof getSearchConfig>>
+    }
+    const usePersonalization = config?.use_personalization && personalize
+    const app = sdk || getSdk(createClient(undefined, undefined, { nextJsFetchDirectives: true, cache: true, queryCache: true }))
 
     const rawResults = await (async () => {
         if (usePersonalization) {

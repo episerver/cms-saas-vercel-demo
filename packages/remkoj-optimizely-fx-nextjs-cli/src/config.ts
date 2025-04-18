@@ -6,6 +6,7 @@ export type Config = {
     token: string
     secret: string
     debug: boolean
+    forTpl: boolean
 }
 
 export const nextEnvConfig = NextEnv.loadEnvConfig(process.cwd(), process.env.NODE_ENV == 'development', console)
@@ -17,6 +18,7 @@ export function readEnvConfig() : Partial<Config>
         project: process.env.OPTIMIZELY_FX_PROJECT,
         token: process.env.OPTIMIZELY_FX_PAT,
         secret: process.env.FLAGS_SECRET,
-        debug: process.env.OPTIMIZELY_DEBUG == '1' || process.env.OPTIMIZELY_DEBUG?.toLowerCase() == 'true'
+        debug: process.env.OPTIMIZELY_DEBUG == '1' || process.env.OPTIMIZELY_DEBUG?.toLowerCase() == 'true',
+        forTpl: process.env.OPTIMIZELY_TEMPLATE == '1' || process.env.OPTIMIZELY_TEMPLATE?.toLowerCase() == 'true'
     }
 }

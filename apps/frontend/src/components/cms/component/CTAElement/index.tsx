@@ -9,11 +9,11 @@ import { DefaultCTAElement } from "./_default";
  * Call To Action
  * Basic call-to-action element, typically rendered as a button
  */
-export const CTAElementElement : CmsComponent<CTAElementDataFragment, CTAElementLayoutProps> = ({ contentLink, data, layoutProps }) => {
+export const CTAElementElement : CmsComponent<CTAElementDataFragment, CTAElementLayoutProps> = ({ contentLink, data, layoutProps, ctx }) => {
     if (isCTAElementAnimatedStylesProps(layoutProps)) {
-        return <CmsEditable as={ AnimatedCTAElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key } cmsFieldName="Link" />
+        return <CmsEditable as={ AnimatedCTAElement } data={ data } layoutProps={ layoutProps } cmsId={ contentLink.key } ctx={ctx} cmsFieldName="Link" />
     }
-    return <CmsEditable as={ DefaultCTAElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } cmsFieldName="Link" />
+    return <CmsEditable as={ DefaultCTAElement } data={ data } layoutProps={layoutProps} cmsId={ contentLink.key } ctx={ctx} cmsFieldName="Link" />
 }
 CTAElementElement.displayName = "Call To Action (Element/CTAElement)"
 CTAElementElement.getDataFragment = () => ['CTAElementData', CTAElementDataFragmentDoc]

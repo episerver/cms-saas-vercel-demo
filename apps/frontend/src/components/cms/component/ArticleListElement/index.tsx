@@ -5,7 +5,8 @@ import {
   type ArticleListElementDataFragment,
 } from "@/gql/graphql";
 import { CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
-import { getSdk } from "@/sdk";
+import { createClient } from "@remkoj/optimizely-graph-client";
+import { getSdk } from "@/gql/client";
 import {
   type InputMaybe,
   type Locales,
@@ -14,7 +15,6 @@ import {
 } from "@/gql/graphql";
 import { getFragmentData } from "@gql/fragment-masking";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
-import { urlToRelative } from "@/components/shared/cms_link";
 import Link from "next/link";
 import Card from "@/components/shared/card";
 import { CmsImage } from "@/components/shared/cms_image";
@@ -42,8 +42,14 @@ export const ArticleListElementElement: CmsComponent<
 > = async ({
   data: { articleListCount = 3, topics = [], excludeKeys = [], seed = 2 },
   contentLink: { key, locale },
+  ctx
 }) => {
-  const sdk = getSdk();
+  const graphClient = ctx?.client ?? createClient(undefined, undefined, {
+          nextJsFetchDirectives: true,
+          cache: true,
+          queryCache: true,
+      })
+  const sdk = getSdk(graphClient);
   const articles = (
     (
       await sdk
@@ -82,6 +88,7 @@ export const ArticleListElementElement: CmsComponent<
       as="div"
       cmsId={key}
       className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12 w-full"
+      ctx={ctx}
     >
       {shownArticles.map((article) => {
         let authors: string | undefined = undefined;

@@ -38,6 +38,6 @@ export const middleware = (request: NextRequest) =>
 export const config = {
     matcher: [
       // Skip all internal paths and paths with a '.'
-      '/((?!.*\\.|api|assets|_next\\/static|_next\\/image|_vercel).*)',
+      '/((?!.*\\.|api|assets|preview|_next\\/static|_next\\/image|_vercel).*)',
     ]
 }

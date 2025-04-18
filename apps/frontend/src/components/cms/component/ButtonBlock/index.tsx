@@ -34,6 +34,7 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     buttonVariant: providedButtonVariant,
     
     // Allow to be used as a Next.JS Link
+    ctx, // Extract context to prevent passing through
     href,
     children,
     ...props 
@@ -44,7 +45,7 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     const buttonType = (configuredButtonType || providedButtonType || undefined) as 'primary' | 'secondary' | undefined
     const buttonVariant = (configuredButtonVariant || providedButtonVariant || undefined) as 'default' | 'cta' | undefined
 
-    const linkHref = (!url ? href : urlToRelative(typeof(url) == 'string' ? new URL(url) : new URL(url.default ?? '/', url.base ?? 'https://example.com'))) as string | URL
+    const linkHref = url?.default ?? href.toString() ?? '#'
     const className = `${ providedClassName ?? '' } ${ configuredClassName ?? ''}`.trim()
 
     return <Button { ...props } url={ linkHref || "#"} buttonColor="default" buttonType={buttonType} buttonVariant={ buttonVariant } className={ className }>{ text ?? children }</Button>

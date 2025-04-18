@@ -1,0 +1,10 @@
+query getSharedContinueReading($locale: [Locales])
+{
+  ContinueReadingComponent (where: { shared: {eq: true} }, locale: $locale) {
+    total
+    item {
+      ...IContentData
+      ...ContinueReadingComponentData
+    }
+  }
+}

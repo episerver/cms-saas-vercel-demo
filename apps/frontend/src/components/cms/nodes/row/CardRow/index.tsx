@@ -25,4 +25,6 @@ export const CardRow : CmsLayoutComponent<CardRowProps> = ({ contentLink, layout
     </Card>
 }
 
+CardRow.displayName='CardRow';
+
 export default CardRow;

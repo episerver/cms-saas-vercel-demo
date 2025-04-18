@@ -1,5 +1,5 @@
 import { type FunctionComponent, type ComponentProps, Suspense } from "react";
-import { CmsContentArea } from "@remkoj/optimizely-cms-react/rsc";
+import { CmsContentArea, type GenericContext } from "@remkoj/optimizely-cms-react/rsc";
 import { Popover, PopoverButton, PopoverPanel } from "@headlessui/react";
 import { Bars3Icon } from "@heroicons/react/24/solid";
 
@@ -9,9 +9,10 @@ import SiteSearch from "./_site-search"
 export type MobileMenuProps = {
     menuItems?: ComponentProps<typeof CmsContentArea>['items']
     serviceItems?: ComponentProps<typeof CmsContentArea>['items']
+    ctx: GenericContext
 }
 
-export const MobileMenu : FunctionComponent<MobileMenuProps> = ({ menuItems, serviceItems }) =>
+export const MobileMenu : FunctionComponent<MobileMenuProps> = ({ menuItems, serviceItems, ctx }) =>
 {
     return <Popover className="grow-0 shrink-0 lg:hidden">
         <PopoverButton className="h-full flex items-center">
@@ -23,10 +24,10 @@ export const MobileMenu : FunctionComponent<MobileMenuProps> = ({ menuItems, ser
                     <Suspense><SiteSearch asSearchBox /></Suspense>
                 </div>
                 <hr />
-                <CmsContentArea items={ menuItems } variant="mobile" />
+                <CmsContentArea items={ menuItems } variant="mobile" ctx={ ctx } />
                 <hr />
                 <div className="py-4 gap-4 flex flex-row flex-wrap justify-between">
-                    <CmsContentArea items={ serviceItems } noWrapper variant="mobile" />
+                    <CmsContentArea items={ serviceItems } noWrapper variant="mobile" ctx={ ctx } />
                     <div className="min-w-20"><ThemePicker /></div>
                 </div>
             </div>

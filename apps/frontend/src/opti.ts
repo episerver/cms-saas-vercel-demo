@@ -1,8 +1,17 @@
+// Auto generated Flags SDK by Optimizely Feature Experimentation.
 import "server-only"
 import { get } from '@vercel/edge-config'
 import { headers } from 'next/headers'
-import { createInstance, type OptimizelyUserContext, type UserAttributes } from '@optimizely/optimizely-sdk/lite'
+import { createInstance, type OptimizelyUserContext, type UserAttributes, type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite'
 import { cache } from 'react'
+
+export type OptimizelyFlag<T extends { [variableKey: string]: unknown }> = {
+    _enabled: boolean
+} & T
+
+export type TypedOptimizelyDecision<T extends { [variableKey: string]: unknown }> = Omit<OptimizelyDecision, 'variables'> & {
+    variables: T
+}
 
 /**
  * Retrieve an instance of the Optimizely FX client
@@ -76,7 +85,7 @@ export async function updateDatafile(authToken?: string | null): Promise<{ statu
     if (!edgeConfigId || !vercelTeam || !vercelToken || !sdkkey)
         return { status: "error", message: "Incorrect configuration", code: 401 }
 
-    const datafile = await fetch(`https://cdn.optimizely.com/datafiles/${sdkkey}.json`).then(result => result.ok ? result.json() as object : undefined).catch(() => undefined)
+    const datafile = await readDataFileFromCDN(sdkkey)
     if (!datafile)
         return { status: "error", message: "Error reading datafile", code: 500 }
 
@@ -106,8 +115,9 @@ export async function getFlagVariants(flagKey: string): Promise<false | null | A
     const { accessToken, projectId } = readConfigFromEnv()
     if (!projectId || !accessToken)
         return false
+    const url = `https://api.optimizely.com/flags/v1/projects/${projectId}/flags/${flagKey}/variations?archived=false&per_page=100`
 
-    const variations = await fetch(`https://api.optimizely.com/flags/v1/projects/${projectId}/flags/${flagKey}/variations?archived=false&per_page=100`, { headers: { Authorization: `Bearer ${accessToken}` } }).then(r => r.json() as Record<string, any>).catch(() => undefined)
+    const variations = await fetch(url, { headers: { Authorization: `Bearer ${accessToken}` } }).then(r => r.json() as Record<string, any>).catch(() => undefined)
     if (!Array.isArray(variations?.items))
         return null
 

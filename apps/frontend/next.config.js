@@ -1,35 +1,51 @@
-const isNonProduction = process.env.NODE_ENV != 'production'
-
-/** @type {import('next').NextConfig} */
+/** 
+ * Next.JS Configuration
+ * 
+ * @type {import('next').NextConfig} 
+ */
 const nextConfig = {
     compiler: {
-        removeConsole: !isNonProduction
+        //removeConsole: process.env.NODE_ENV != 'production',
     },
     basePath: "",
     reactStrictMode: true,
     generateEtags: true,
     cleanDistDir: true,
+    poweredByHeader: false,
     images: {
-        loader: 'custom',
-        loaderFile: './src/cloudflareLoader.js', // Use Cloudflare Images for resizing
-        remotePatterns: []
+        remotePatterns: [
+            // Optimizely CMS
+            {
+                protocol: 'https',
+                hostname: '*.cms.optimizely.com',
+                pathname: '/**'
+            },
+            // Optimizely Content Recommendations
+            {
+                protocol: 'https',
+                hostname: '*.idio.co',
+                pathname: '/**'
+            }
+        ]
     },
+    experimental: {
+        serverActions: {
+          allowedOrigins: [
+            '*.webproofing.cmp.optimizely.com', // Optimizely CMP Preview
+            'www.optimizelyedit.com/' // Optimizely Web Experimentation & Personalization Editor
+          ],
+        }
+    }
 }
 
-// Add the configured Optimizely DXP URL to the image domains
-const optimizelyDxpUrl = process.env.OPTIMIZELY_CMS_URL
+// Add the Optimizely DXP Image Loader
+/**
+ * @type {string|undefined} 
+ */
+const optimizelyDxpUrl = process.env.NEXT_PUBLIC_OPTIMIZELY_CMS_URL
 if (optimizelyDxpUrl) {
-    try {
-        const optimizelyDxpHost = new URL(optimizelyDxpUrl)
-        nextConfig.images.remotePatterns.push({
-            protocol: optimizelyDxpHost.protocol.replace(":",""),
-            hostname: optimizelyDxpHost.hostname,
-            port: optimizelyDxpHost.port,
-            pathname: (optimizelyDxpHost.pathname || '/') + '**'
-        })
-    } catch {
-        // Ignored on purpose, invalid domain
-    }
+    nextConfig.images.loader = 'custom';
+    nextConfig.images.loaderFile = './src/cloudflareLoader.js'; // Use Cloudflare Images for resizing
 }
 
 module.exports = nextConfig

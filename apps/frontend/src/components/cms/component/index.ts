@@ -17,6 +17,7 @@ import ImageElementComponent from "./ImageElement";
 import HeroBlockComponent from "./HeroBlock";
 import HeadingElementComponent from "./HeadingElement";
 import CTAElementComponent from "./CTAElement";
+import ContinueReadingComponentComponent from "./ContinueReadingComponent";
 import ContentRecsElementComponent from "./ContentRecsElement";
 import CarouselBlockComponent from "./CarouselBlock";
 import ButtonBlockComponent from "./ButtonBlock";
@@ -92,6 +93,10 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "CTAElement", 
         component: CTAElementComponent 
+    },
+    { 
+        type: "ContinueReadingComponent", 
+        component: ContinueReadingComponentComponent 
     },
     { 
         type: "ContentRecsElement", 
