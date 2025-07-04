@@ -1067,13 +1067,15 @@ ${LinkDataFragmentDoc}
 ${BlogPostPageSearchResultFragmentDoc}
 ${ReferenceDataFragmentDoc}`;
 export const getContentByIdDocument = gql`
-    query getContentById($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
+    query getContentById($key: String!, $version: String, $locale: [Locales!], $path: String = "-", $domain: String, $changeset: String) {
   content: _Content(
-    where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}]}
+    variation: {include: ALL}
+    where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {default: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}], _metadata: {changeset: {eq: $changeset}}}
     locale: $locale
   ) {
     total
     items: item {
+      ...IContentData
       ...BlockData
       ...PageData
       ...ArticleListElementData
@@ -1104,10 +1106,10 @@ export const getContentByIdDocument = gql`
     }
   }
 }
-    ${BlockDataFragmentDoc}
-${IContentDataFragmentDoc}
+    ${IContentDataFragmentDoc}
 ${IContentInfoFragmentDoc}
 ${LinkDataFragmentDoc}
+${BlockDataFragmentDoc}
 ${PageDataFragmentDoc}
 ${ArticleListElementDataFragmentDoc}
 ${ButtonBlockDataFragmentDoc}
@@ -1148,9 +1150,9 @@ ${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}`;
 export const getContentByPathDocument = gql`
-    query getContentByPath($path: [String!]!, $locale: [Locales!], $siteId: String) {
+    query getContentByPath($path: [String!]!, $locale: [Locales!], $siteId: String, $changeset: String = null) {
   content: _Content(
-    where: {_metadata: {url: {default: {in: $path}, base: {eq: $siteId}}}}
+    where: {_metadata: {url: {default: {in: $path}, base: {eq: $siteId}}, changeset: {eq: $changeset}}}
     locale: $locale
   ) {
     total
@@ -1208,8 +1210,9 @@ ${BlogSectionExperienceDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
 ${LandingPageDataFragmentDoc}`;
 export const getContentTypeDocument = gql`
-    query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String, $domain: String) {
+    query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String = "-", $domain: String) {
   content: _Content(
+    variation: {include: ALL}
     where: {_or: [{_metadata: {key: {eq: $key}, version: {eq: $version}}}, {_metadata: {url: {hierarchical: {eq: $path}, base: {eq: $domain}}, version: {eq: $version}}}]}
     locale: $locale
   ) {
@@ -1230,56 +1233,56 @@ const defaultWrapper: SdkFunctionWrapper = (action, _operationName, _operationTy
 
 export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = defaultWrapper) {
   return {
-    getArticleListElementItems(variables: Schema.getArticleListElementItemsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticleListElementItemsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticleListElementItemsQuery>(getArticleListElementItemsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticleListElementItems', 'query', variables);
+    getArticleListElementItems(variables: Schema.getArticleListElementItemsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getArticleListElementItemsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticleListElementItemsQuery>({ document: getArticleListElementItemsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getArticleListElementItems', 'query', variables);
     },
-    getDefaultArticleList(variables?: Schema.getDefaultArticleListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getDefaultArticleListQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getDefaultArticleListQuery>(getDefaultArticleListDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getDefaultArticleList', 'query', variables);
+    getDefaultArticleList(variables?: Schema.getDefaultArticleListQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getDefaultArticleListQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getDefaultArticleListQuery>({ document: getDefaultArticleListDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getDefaultArticleList', 'query', variables);
     },
-    getSharedContinueReading(variables?: Schema.getSharedContinueReadingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getSharedContinueReadingQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getSharedContinueReadingQuery>(getSharedContinueReadingDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getSharedContinueReading', 'query', variables);
+    getSharedContinueReading(variables?: Schema.getSharedContinueReadingQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getSharedContinueReadingQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getSharedContinueReadingQuery>({ document: getSharedContinueReadingDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getSharedContinueReading', 'query', variables);
     },
-    getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlankExperienceMetaDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>(getBlankExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlankExperienceMetaData', 'query', variables);
+    getBlankExperienceMetaData(variables: Schema.getBlankExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlankExperienceMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceMetaDataQuery>({ document: getBlankExperienceMetaDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlankExperienceMetaData', 'query', variables);
     },
-    getChildBlogPosts(variables: Schema.getChildBlogPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getChildBlogPostsQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getChildBlogPostsQuery>(getChildBlogPostsDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getChildBlogPosts', 'query', variables);
+    getChildBlogPosts(variables: Schema.getChildBlogPostsQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getChildBlogPostsQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getChildBlogPostsQuery>({ document: getChildBlogPostsDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getChildBlogPosts', 'query', variables);
     },
-    getBlogSectionExperienceMetaData(variables: Schema.getBlogSectionExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogSectionExperienceMetaDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceMetaDataQuery>(getBlogSectionExperienceMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogSectionExperienceMetaData', 'query', variables);
+    getBlogSectionExperienceMetaData(variables: Schema.getBlogSectionExperienceMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlogSectionExperienceMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceMetaDataQuery>({ document: getBlogSectionExperienceMetaDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlogSectionExperienceMetaData', 'query', variables);
     },
-    getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getBlogPostPageMetaDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>(getBlogPostPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getBlogPostPageMetaData', 'query', variables);
+    getBlogPostPageMetaData(variables: Schema.getBlogPostPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlogPostPageMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageMetaDataQuery>({ document: getBlogPostPageMetaDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlogPostPageMetaData', 'query', variables);
     },
-    getLandingPageMetaData(variables: Schema.getLandingPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getLandingPageMetaDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLandingPageMetaDataQuery>(getLandingPageMetaDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLandingPageMetaData', 'query', variables);
+    getLandingPageMetaData(variables: Schema.getLandingPageMetaDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getLandingPageMetaDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLandingPageMetaDataQuery>({ document: getLandingPageMetaDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getLandingPageMetaData', 'query', variables);
     },
-    getFooterData(variables?: Schema.getFooterDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getFooterDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getFooterDataQuery>(getFooterDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getFooterData', 'query', variables);
+    getFooterData(variables?: Schema.getFooterDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getFooterDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getFooterDataQuery>({ document: getFooterDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getFooterData', 'query', variables);
     },
-    getHeaderData(variables?: Schema.getHeaderDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getHeaderDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderDataQuery>(getHeaderDataDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getHeaderData', 'query', variables);
+    getHeaderData(variables?: Schema.getHeaderDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getHeaderDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getHeaderDataQuery>({ document: getHeaderDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getHeaderData', 'query', variables);
     },
-    getLocales(variables?: Schema.getLocalesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getLocalesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLocalesQuery>(getLocalesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getLocales', 'query', variables);
+    getLocales(variables?: Schema.getLocalesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getLocalesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getLocalesQuery>({ document: getLocalesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getLocales', 'query', variables);
     },
-    getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getArticlesQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>(getArticlesDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getArticles', 'query', variables);
+    getArticles(variables?: Schema.getArticlesQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getArticlesQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getArticlesQuery>({ document: getArticlesDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getArticles', 'query', variables);
     },
-    searchContent(variables: Schema.searchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.searchContentQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.searchContentQuery>(searchContentDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'searchContent', 'query', variables);
+    searchContent(variables: Schema.searchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.searchContentQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.searchContentQuery>({ document: searchContentDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'searchContent', 'query', variables);
     },
-    personalizedSearchContent(variables: Schema.personalizedSearchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.personalizedSearchContentQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.personalizedSearchContentQuery>(personalizedSearchContentDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'personalizedSearchContent', 'query', variables);
+    personalizedSearchContent(variables: Schema.personalizedSearchContentQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.personalizedSearchContentQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.personalizedSearchContentQuery>({ document: personalizedSearchContentDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'personalizedSearchContent', 'query', variables);
     },
-    getContentById(variables: Schema.getContentByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByIdQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByIdQuery>(getContentByIdDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentById', 'query', variables);
+    getContentById(variables: Schema.getContentByIdQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getContentByIdQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByIdQuery>({ document: getContentByIdDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getContentById', 'query', variables);
     },
-    getContentByPath(variables: Schema.getContentByPathQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentByPathQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByPathQuery>(getContentByPathDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentByPath', 'query', variables);
+    getContentByPath(variables: Schema.getContentByPathQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getContentByPathQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentByPathQuery>({ document: getContentByPathDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getContentByPath', 'query', variables);
     },
-    getContentType(variables: Schema.getContentTypeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders): Promise<Schema.getContentTypeQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentTypeQuery>(getContentTypeDocument, variables, {...requestHeaders, ...wrappedRequestHeaders}), 'getContentType', 'query', variables);
+    getContentType(variables: Schema.getContentTypeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getContentTypeQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentTypeQuery>({ document: getContentTypeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getContentType', 'query', variables);
     }
   };
 }
