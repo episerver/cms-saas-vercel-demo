@@ -1,8 +1,9 @@
 import "server-only";
-import { createClient } from "@remkoj/optimizely-graph-client";
+import { createClient, AuthMode } from "@remkoj/optimizely-graph-client";
 import { createPage } from "@remkoj/optimizely-cms-nextjs/page";
 import { getContentByPath } from "@gql/functions";
 import { factory } from "@components/factory";
+import { draftMode } from "next/headers";
 
 // Create the page components and functions
 const {
@@ -33,11 +34,18 @@ const {
      * 
      * @returns     The Optimizely Graph Client
      */
-    client: () => createClient(undefined, undefined, {
-        nextJsFetchDirectives: true,
-        cache: true,
-        queryCache: true,
-    })
+    client: (_, scope) => {
+        const client = createClient(undefined, undefined, {
+            nextJsFetchDirectives: true,
+            cache: true,
+            queryCache: true,
+        })
+        if (scope === 'request' && draftMode().isEnabled) {
+            client.updateAuthentication(AuthMode.HMAC)
+            client.enablePreview()
+        }
+        return client
+    }
 });
 
 // Configure the Next.JS route handling for the pages

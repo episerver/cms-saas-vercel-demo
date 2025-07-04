@@ -1,6 +1,6 @@
 {
   "name": "@remkoj/optimizely-frontend",
-  "packageManager": "yarn@4.9.1",
+  "packageManager": "yarn@4.9.2",
   "private": true,
   "license": "Apache-2.0",
   "workspaces": [
@@ -9,18 +9,18 @@
   ],
   "devDependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@remkoj/optimizely-graph-client": "^5.0.2",
-    "@remkoj/optimizely-graph-functions": "^5.0.2",
+    "@remkoj/optimizely-graph-client": "^5.1.0",
+    "@remkoj/optimizely-graph-functions": "^5.1.0",
     "@types/source-map-support": "^0.5.10",
-    "@yarnpkg/sdks": "^3.2.1",
+    "@yarnpkg/sdks": "^3.2.2",
     "eslint": "8.57.1",
     "graphql": "^16.11.0",
     "graphql-request": "^6.1.0",
     "graphql-tag": "^2.12.6",
-    "prettier": "^3.5.3",
+    "prettier": "^3.6.2",
     "source-map-support": "^0.5.21",
     "typescript": "^5.8.3",
-    "vercel": "^41.7.4"
+    "vercel": "^44.2.11"
   },
   "exports": null,
   "scripts": {
@@ -43,7 +43,6 @@
     "env:pull": "yarn vercel env pull apps/frontend/.env.development.local"
   },
   "resolutions": {
-    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz",
-    "rollup": "4.20.0"
+    "@graphql-codegen/visitor-plugin-common": "file:./packages/graphql-codegen-visitor-plugin-common-v5.8.0-patched.tgz"
   }
 }

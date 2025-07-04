@@ -2,7 +2,7 @@
 import "server-only"
 import { get } from '@vercel/edge-config'
 import { headers } from 'next/headers'
-import { createInstance, type OptimizelyUserContext, type UserAttributes, type OptimizelyDecision } from '@optimizely/optimizely-sdk/lite'
+import { createInstance, createStaticProjectConfigManager, type OptimizelyUserContext, type UserAttributes, type OptimizelyDecision } from '@optimizely/optimizely-sdk'
 import { cache } from 'react'
 
 export type OptimizelyFlag<T extends { [variableKey: string]: unknown }> = {
@@ -27,12 +27,12 @@ export const getInstance = cache(async () => {
     if (!datafile)
         throw new Error("Unable to load datafile, check your sdkKey")
     const fx = createInstance({
-        datafile
+        projectConfigManager: createStaticProjectConfigManager({ datafile })
     })
     if (!fx)
         throw new Error("Optimizely Feature Experimentation not created")
 
-    const { success, reason } = await fx.onReady()
+    const { success, reason } = (await fx.onReady()) as ({ success: boolean, reason: string })
     if (!success)
         throw new Error("Optimizely Feature Experimentation initialization failed: " + (reason ?? ""))
     return fx
