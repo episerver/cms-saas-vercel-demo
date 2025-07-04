@@ -15,7 +15,7 @@ type AnimatedTextProps = {
   delay?: number;
 };
 
-const defaultAnimations = {
+const defaultAnimations : AnimatedTextProps['animation'] & {} = {
   hidden: {
     opacity: 0,
     y: 20,
