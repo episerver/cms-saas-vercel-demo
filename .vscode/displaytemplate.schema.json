@@ -1,0 +1,147 @@
+{
+  "$id": "https://api.cms.optimizely.com/schema/DisplayTemplate",
+  "type": "object",
+  "title": "DisplayTemplate",
+  "required": [
+    "displayName",
+    "key"
+  ],
+  "properties": {
+    "key": {
+      "maxLength": 255,
+      "minLength": 2,
+      "pattern": "^[A-Za-z][_0-9A-Za-z]+$",
+      "type": "string",
+      "description": "The key that identifies this display template.",
+      "readOnly": true
+    },
+    "displayName": {
+      "maxLength": 255,
+      "minLength": 1,
+      "type": "string",
+      "description": "The display name of this display template."
+    },
+    "nodeType": {
+      "maxLength": 50,
+      "minLength": 2,
+      "pattern": "^[A-Za-z][_0-9A-Za-z]+$",
+      "type": "string",
+      "description": "The optional node type this display template is valid for.",
+      "nullable": true
+    },
+    "baseType": {
+      "$ref": "#/definitions/ContentBaseType"
+    },
+    "contentType": {
+      "maxLength": 255,
+      "minLength": 2,
+      "pattern": "^[A-Za-z][_0-9A-Za-z]+$",
+      "type": "string",
+      "description": "The optional key of the content type this display template is valid for.",
+      "nullable": true
+    },
+    "isDefault": {
+      "type": "boolean",
+      "description": "If this is the default display template for the associated base type,\r\nnode type or content type."
+    },
+    "created": {
+      "type": "string",
+      "description": "A timestamp indicating when this display template was first created.",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "createdBy": {
+      "type": "string",
+      "description": "The username of the user that created this display template.",
+      "readOnly": true
+    },
+    "lastModified": {
+      "type": "string",
+      "description": "A timestamp indicating when this display template was last modified.",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "description": "The username of the user that last modified this display template.",
+      "readOnly": true
+    },
+    "settings": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/DisplaySetting"
+      },
+      "description": "The available settings for this display template."
+    }
+  },
+  "description": "Describes a display template that can be assigned to content.",
+  "definitions": {
+    "ContentBaseType": {
+      "enum": [
+        "page",
+        "component",
+        "media",
+        "image",
+        "video",
+        "folder",
+        "experience",
+        "section",
+        "element"
+      ],
+      "type": "string",
+      "description": "Represent the base type of a ContentType."
+    },
+    "DisplaySettingChoice": {
+      "required": [
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string",
+          "description": "The display name of this display setting choice."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "The sort order of this choice within the setting.",
+          "format": "int32"
+        }
+      },
+      "description": "Describes a setting for a display template."
+    },
+    "DisplaySetting": {
+      "required": [
+        "displayName"
+      ],
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "maxLength": 255,
+          "minLength": 1,
+          "type": "string",
+          "description": "The display name of this display setting."
+        },
+        "editor": {
+          "maxLength": 50,
+          "type": "string",
+          "description": "The suggested editor for this display setting."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "The sort order of this display setting within the template.",
+          "format": "int32"
+        },
+        "choices": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/DisplaySettingChoice"
+          },
+          "description": "The available choices for this display setting."
+        }
+      },
+      "description": "Describes a setting for a display template."
+    }
+  }
+}

@@ -14,8 +14,9 @@ export const CarouselBlock: CmsComponent<CarouselBlockDataFragment> = async ({ d
       cmsId={ contentLink.key }
       data={{ ...data, itemCount: items.length }}
       inEditMode={inEditMode}
-      contentLink={contentLink}
+      contentLink={ contentLink }
       ctx={ctx}
+      forwardCtx={false}
     >
       <CmsContentArea
         noWrapper

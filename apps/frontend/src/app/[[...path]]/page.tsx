@@ -26,7 +26,7 @@ const {
      * 
      * @returns     The initial locale
      */
-    paramsToLocale: () => "en",
+    //paramsToLocale: () => "en",
 
     /**
      * The factory to use to create the GraphQL Client to fetch data from Optimizely

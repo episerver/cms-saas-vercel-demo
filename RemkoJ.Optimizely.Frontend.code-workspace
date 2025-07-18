@@ -1,31 +1,49 @@
 {
-	"folders": [
-		{
-			"path": ".",
-			"name": "CMS Core Demo Site"
-		}
-	],
-	"settings": {
-		"search.exclude": {
-			"**/.yarn": true,
-			"**/.vscode": true,
-			"**/.pnp.*": true,
-			"**/.next.*": true,
-			"**/yarn.lock": true
-		},
-		"typescript.enablePromptUseWorkspaceTsdk": true,
-		"typescript.tsdk": "./.yarn/sdks/typescript/lib",
-		"graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
-		"graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [ "graphql", "gql", "ts", "tsx" ],
-		"graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*"
+  "folders": [
+	{
+		"path": "./apps/frontend",
+		"name": "frontend"
 	},
-	"extensions": {
-		"recommendations": [
-			"vscode.typescript-language-features",
-			"christian-kohler.npm-intellisense",
-			"arcanis.vscode-zipfs",
-			"mikestead.dotenv",
-			"yzhang.markdown-all-in-one"
-		]
-	}
+	{
+		"path": "./packages/remkoj-optimizely-fx-nextjs-cli",
+		"name": "@remkoj/optimizely-fx-nextjs-cli"
+	},
+	{
+		"path": "./docs",
+		"name": "documentation"
+	},
+    {
+      "path": ".",
+      "name": "repository",
+    },
+  ],
+  "settings": {
+    "search.exclude": {
+      "**/.yarn": true,
+      "**/.vscode": true,
+      "**/.pnp.*": true,
+      "**/.next.*": true,
+      "**/yarn.lock": true,
+    },
+    "typescript.enablePromptUseWorkspaceTsdk": true,
+    "typescript.tsdk": "repository\\.yarn\\sdks\\typescript\\lib",
+    "graphql-config.load.baseDir": "./apps/frontend",
+    "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
+    "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": ["graphql"],
+    "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.graphql",
+    "json.validate.enable": true,
+    "json.schemaDownload.enable": true,
+  },
+  "extensions": {
+    "recommendations": [
+      "arcanis.vscode-zipfs",
+      "mikestead.dotenv",
+      "bradlc.vscode-tailwindcss",
+      "capaj.graphql-codegen-vscode",
+      "yzhang.markdown-all-in-one",
+      "graphql.vscode-graphql",
+      "dbaeumer.vscode-eslint",
+      "esbenp.prettier-vscode",
+    ],
+  },
 }

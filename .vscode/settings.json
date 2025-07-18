@@ -8,14 +8,34 @@
   },
   "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
+  "graphql-config.load.baseDir": "./apps/frontend",
   "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
   "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": [
-    "graphql",
-    "gql",
-    "ts",
-    "tsx"
+    "graphql"
   ],
-  "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.*",
+  "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.graphql",
   "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs"
+  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
+  "json.validate.enable": true,
+  "json.schemaDownload.enable": true,
+  "json.schemas": [
+    {
+      "fileMatch": [
+        "**/*.opti-type.json"
+      ],
+      "url": "./.vscode/contenttype.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/*.opti-style.json"
+      ],
+      "url": "./.vscode/displaytemplate.schema.json"
+    },
+    {
+      "fileMatch": [
+        "**/*.schema.json"
+      ],
+      "url": "https://json-schema.org/draft-07/schema"
+    }
+  ]
 }

@@ -1,0 +1,1509 @@
+{
+  "$id": "https://api.cms.optimizely.com/schema/ContentType",
+  "type": "object",
+  "title": "ContentType",
+  "required": [
+    "key"
+  ],
+  "properties": {
+    "key": {
+      "maxLength": 255,
+      "minLength": 2,
+      "pattern": "^[A-Za-z][_0-9A-Za-z]+$",
+      "type": "string",
+      "description": "The key that identifies this ContentType."
+    },
+    "displayName": {
+      "maxLength": 255,
+      "type": "string",
+      "description": "The display name of this ContentType."
+    },
+    "description": {
+      "maxLength": 255,
+      "type": "string",
+      "description": "A description of this ContentType."
+    },
+    "baseType": {
+      "$ref": "#/definitions/ContentBaseType"
+    },
+    "source": {
+      "type": "string",
+      "description": "A string that is used to indicate the source of this ContentType.",
+      "readOnly": true
+    },
+    "sortOrder": {
+      "type": "integer",
+      "description": "An value that is used to when sorting ContentType instances.",
+      "format": "int32"
+    },
+    "features": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentTypeFeature"
+      },
+      "description": "Provides a set of features that content based on this ContentType supports.\r\nThis value is assigned based on the BaseType and cannot be modified."
+    },
+    "usage": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/ContentTypeUsage"
+      },
+      "description": "Specifies how this ContentType can be used."
+    },
+    "mayContainTypes": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Provides a set of content types that can be created in container of this type"
+    },
+    "mediaFileExtensions": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "Provides a set of media file extensions that this content type can handle."
+    },
+    "compositionBehaviors": {
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/CompositionBehavior"
+      },
+      "description": "Provides a set of composition behaviors specifying how this content type can be used within compositions."
+    },
+    "created": {
+      "type": "string",
+      "description": "A timestamp indicating when this ContentType was first created.",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "lastModified": {
+      "type": "string",
+      "description": "Indicates the last time this content type was modified.",
+      "format": "date-time",
+      "readOnly": true
+    },
+    "lastModifiedBy": {
+      "type": "string",
+      "description": "The username of the user that made the latest modification to this ContentType.",
+      "readOnly": true
+    },
+    "properties": {
+      "type": "object",
+      "additionalProperties": {
+        "required": [
+          "type"
+        ],
+        "oneOf": [
+          {
+            "$ref": "#/definitions/BinaryProperty"
+          },
+          {
+            "$ref": "#/definitions/BooleanProperty"
+          },
+          {
+            "$ref": "#/definitions/ComponentProperty"
+          },
+          {
+            "$ref": "#/definitions/ContentProperty"
+          },
+          {
+            "$ref": "#/definitions/ContentReferenceProperty"
+          },
+          {
+            "$ref": "#/definitions/DateTimeProperty"
+          },
+          {
+            "$ref": "#/definitions/FloatProperty"
+          },
+          {
+            "$ref": "#/definitions/IntegerProperty"
+          },
+          {
+            "$ref": "#/definitions/StringProperty"
+          },
+          {
+            "$ref": "#/definitions/UrlProperty"
+          },
+          {
+            "$ref": "#/definitions/JsonStringProperty"
+          },
+          {
+            "$ref": "#/definitions/ListProperty"
+          }
+        ],
+        "properties": {
+          "editorSettings": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "object"
+            },
+            "description": "Settings for the editor.",
+            "nullable": true
+          }
+        },
+        "description": "Describes a property of a ContentType in the CMS.",
+        "type": "object"
+      },
+      "description": "Dictionary with all custom properties of this ContentType."
+    }
+  },
+  "description": "A writable implementation of an ContentType.",
+  "definitions": {
+    "ContentBaseType": {
+      "enum": [
+        "page",
+        "component",
+        "media",
+        "image",
+        "video",
+        "folder",
+        "experience",
+        "section",
+        "element"
+      ],
+      "type": "string",
+      "description": "Represent the base type of a ContentType."
+    },
+    "ContentTypeFeature": {
+      "enum": [
+        "localization",
+        "versioning",
+        "publishPeriod",
+        "routing",
+        "binary"
+      ],
+      "type": "string",
+      "description": "Represent different features that a content type can have."
+    },
+    "ContentTypeUsage": {
+      "enum": [
+        "property",
+        "instance"
+      ],
+      "type": "string",
+      "description": "Represent the usage types for a ContentType."
+    },
+    "CompositionBehavior": {
+      "enum": [
+        "sectionEnabled",
+        "elementEnabled"
+      ],
+      "type": "string",
+      "description": "Represent a Composition behavior for a ContentType."
+    },
+    "PropertyDataType": {
+      "enum": [
+        "string",
+        "url",
+        "boolean",
+        "integer",
+        "float",
+        "dateTime",
+        "contentReference",
+        "content",
+        "binary",
+        "json",
+        "array",
+        "component"
+      ],
+      "type": "string",
+      "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+    },
+    "IndexingType": {
+      "enum": [
+        "disabled",
+        "queryable",
+        "searchable"
+      ],
+      "type": "string",
+      "description": "Represents the indexing type of a content type property."
+    },
+    "ImageDescriptor": {
+      "type": "object",
+      "properties": {
+        "width": {
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer",
+          "description": "The image width in pixels.",
+          "format": "int32"
+        },
+        "height": {
+          "maximum": 2147483647,
+          "minimum": 0,
+          "type": "integer",
+          "description": "The image height in pixels.",
+          "format": "int32"
+        },
+        "pregenerated": {
+          "type": "boolean",
+          "description": "Indicates if the image should be pregenerated when a new image is uploaded rather than when first requested."
+        }
+      },
+      "description": "Instruction for generating an alternative image from the main binary of an image content item."
+    },
+    "BinaryProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain a reference to binary data.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "binary"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "imageDescriptor": {
+          "$ref": "#/definitions/ImageDescriptor"
+        }
+      }
+    },
+    "BooleanProperty": {
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "boolean"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        }
+      },
+      "description": "Describes a property that can contain a boolean value.",
+      "type": "object"
+    },
+    "ComponentProperty": {
+      "description": "Describes a property that can contain a component instance of a specific type.",
+      "required": [
+        "type",
+        "contentType"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "component"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "contentType": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string",
+          "description": "The key of the ContentType that this ComponentProperty can contain."
+        }
+      }
+    },
+    "ContentProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain a content item.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "content"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "allowedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types this property is allowed to contain."
+        },
+        "restrictedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types this property cannot contain."
+        }
+      }
+    },
+    "ContentReferenceProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain a reference to a content item.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "contentReference"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "allowedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types this property is allowed to reference."
+        },
+        "restrictedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types this property is restricted from referencing."
+        }
+      }
+    },
+    "DateTimeProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain a timestamp.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "dateTime"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "string",
+          "description": "The earliest timestamp that properties of this type should be able to contain.",
+          "format": "date-time",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "string",
+          "description": "The latest timestamp that properties of this type should be able to contain.",
+          "format": "date-time",
+          "nullable": true
+        }
+      }
+    },
+    "DoubleEnumerationValue": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the value."
+        },
+        "value": {
+          "type": "number",
+          "description": "The underlying enumeration value.",
+          "format": "double"
+        }
+      },
+      "description": "Describes an enumeration value."
+    },
+    "DoubleEnumerationSettings": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/DoubleEnumerationValue"
+          },
+          "description": "Enumeration values for this property or format."
+        }
+      },
+      "description": "Enumeration settings for a property or format."
+    },
+    "FloatProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain a float number.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "float"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "number",
+          "description": "The minimum value that properties of this type should be able to contain.",
+          "format": "double",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "number",
+          "description": "The maximum value that properties of this type should be able to contain.",
+          "format": "double",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/DoubleEnumerationSettings"
+        }
+      }
+    },
+    "Int32EnumerationValue": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the value."
+        },
+        "value": {
+          "type": "integer",
+          "description": "The underlying enumeration value.",
+          "format": "int32"
+        }
+      },
+      "description": "Describes an enumeration value."
+    },
+    "Int32EnumerationSettings": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Int32EnumerationValue"
+          },
+          "description": "Enumeration values for this property or format."
+        }
+      },
+      "description": "Enumeration settings for a property or format."
+    },
+    "IntegerProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain an integer.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "integer"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "integer",
+          "description": "The minimum value that properties of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "integer",
+          "description": "The maximum value that properties of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/Int32EnumerationSettings"
+        }
+      }
+    },
+    "StringEnumerationValue": {
+      "type": "object",
+      "properties": {
+        "displayName": {
+          "type": "string",
+          "description": "The display name of the value."
+        },
+        "value": {
+          "type": "string",
+          "description": "The underlying enumeration value."
+        }
+      },
+      "description": "Describes an enumeration value."
+    },
+    "StringEnumerationSettings": {
+      "type": "object",
+      "properties": {
+        "values": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/StringEnumerationValue"
+          },
+          "description": "Enumeration values for this property or format."
+        }
+      },
+      "description": "Enumeration settings for a property or format."
+    },
+    "StringProperty": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property that can contain strings.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "string"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "minLength": {
+          "type": "integer",
+          "description": "The minimum string length that properties of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "The maximum string length that properties of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regular expression pattern that limits what strings that properties of this type should be able to contain.",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/StringEnumerationSettings"
+        }
+      }
+    },
+    "UrlProperty": {
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "url"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        }
+      },
+      "description": "Describes a property that can contain URLs.",
+      "type": "object"
+    },
+    "JsonStringProperty": {
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "json"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        }
+      },
+      "description": "Describes a property that can contain a JSON value in the form of a string.",
+      "type": "object"
+    },
+    "ComponentListItem": {
+      "description": "Describes a property list item that can contain a component instance of a specific type.",
+      "required": [
+        "type",
+        "contentType"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "component"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "contentType": {
+          "maxLength": 50,
+          "minLength": 1,
+          "type": "string",
+          "description": "The key of the ContentType that this ComponentListItem can contain."
+        }
+      }
+    },
+    "ContentListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can hold a content item.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "content"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "allowedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types these property items are allowed to contain."
+        },
+        "restrictedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types these property items cannot contain."
+        }
+      }
+    },
+    "ContentReferenceListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can hold a reference to a content item.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "contentReference"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "allowedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types these list items are allowed to reference."
+        },
+        "restrictedTypes": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "description": "Specifies which content types and base types these list items cannot contain."
+        }
+      }
+    },
+    "DateTimeListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can contain a timestamp.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "dateTime"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "string",
+          "description": "The earliest timestamp that list items of this type should be able to contain.",
+          "format": "date-time",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "string",
+          "description": "The latest timestamp that list items of this type should be able to contain.",
+          "format": "date-time",
+          "nullable": true
+        }
+      }
+    },
+    "FloatListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can contain a float number.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "float"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "number",
+          "description": "The minimum value that list items of this type should be able to contain.",
+          "format": "double",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "number",
+          "description": "The maximum value that list items of this type should be able to contain.",
+          "format": "double",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/DoubleEnumerationSettings"
+        }
+      }
+    },
+    "IntegerListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can contain integers.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "integer"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "minimum": {
+          "type": "integer",
+          "description": "The minimum value that list items of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "maximum": {
+          "type": "integer",
+          "description": "The maximum value that list items of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/Int32EnumerationSettings"
+        }
+      }
+    },
+    "StringListItem": {
+      "required": [
+        "type"
+      ],
+      "description": "Describes a property list item that can contain a string.",
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "string"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        },
+        "minLength": {
+          "type": "integer",
+          "description": "The minimum string length that list items of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "maxLength": {
+          "type": "integer",
+          "description": "The maximum string length that list items of this type should be able to contain.",
+          "format": "int32",
+          "nullable": true
+        },
+        "pattern": {
+          "type": "string",
+          "description": "Regular expression pattern that limits what strings that list items of this type should be able to contain.",
+          "nullable": true
+        },
+        "enum": {
+          "$ref": "#/definitions/StringEnumerationSettings"
+        }
+      }
+    },
+    "UrlListItem": {
+      "required": [
+        "type"
+      ],
+      "properties": {
+        "type": {
+          "enum": [
+            "url"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this property item is an instance of.",
+          "nullable": true
+        }
+      },
+      "description": "Describes a property list item that can contain a URL.",
+      "type": "object"
+    },
+    "ListProperty": {
+      "description": "A property in the CMS that may hold a list of items.",
+      "required": [
+        "type",
+        "items"
+      ],
+      "type": "object",
+      "properties": {
+        "type": {
+          "enum": [
+            "array"
+          ],
+          "type": "string",
+          "description": "Represent the basic type that a PropertyFormat\r\nis using for data storage and data transport."
+        },
+        "format": {
+          "type": "string",
+          "description": "The key of the PropertyFormat that this ContentTypeProperty is an instance of.",
+          "nullable": true
+        },
+        "displayName": {
+          "maxLength": 255,
+          "type": "string",
+          "description": "The display name of this ContentTypeProperty."
+        },
+        "description": {
+          "maxLength": 2000,
+          "type": "string",
+          "description": "A description of this ContentTypeProperty."
+        },
+        "localized": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type should be localized for each locale\r\nor if values are shared between all locales."
+        },
+        "required": {
+          "type": "boolean",
+          "description": "Indicates if a property instance of this type must always be assigned a value."
+        },
+        "group": {
+          "type": "string",
+          "description": "A reference to the PropertyGroup that this ContentTypeProperty is part of.\r\nIf this value is empty, a group may be assigned by the system."
+        },
+        "sortOrder": {
+          "type": "integer",
+          "description": "An value that is used to when sorting ContentTypeProperty instances.",
+          "format": "int32"
+        },
+        "indexingType": {
+          "$ref": "#/definitions/IndexingType"
+        },
+        "editor": {
+          "type": "string",
+          "description": "Editor used for managing this property.",
+          "nullable": true
+        },
+        "editorSettings": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "object"
+          },
+          "description": "Settings for the editor.",
+          "nullable": true
+        },
+        "minItems": {
+          "type": "integer",
+          "description": "Specifies the minimum number of items in this array property.",
+          "format": "int32",
+          "nullable": true
+        },
+        "maxItems": {
+          "type": "integer",
+          "description": "Specifies the maximum number of items in this array property.",
+          "format": "int32",
+          "nullable": true
+        },
+        "items": {
+          "required": [
+            "type"
+          ],
+          "oneOf": [
+            {
+              "$ref": "#/definitions/ComponentListItem"
+            },
+            {
+              "$ref": "#/definitions/ContentListItem"
+            },
+            {
+              "$ref": "#/definitions/ContentReferenceListItem"
+            },
+            {
+              "$ref": "#/definitions/DateTimeListItem"
+            },
+            {
+              "$ref": "#/definitions/FloatListItem"
+            },
+            {
+              "$ref": "#/definitions/IntegerListItem"
+            },
+            {
+              "$ref": "#/definitions/StringListItem"
+            },
+            {
+              "$ref": "#/definitions/UrlListItem"
+            }
+          ],
+          "description": "Describes the list item of a ListProperty in the CMS.",
+          "type": "object"
+        }
+      }
+    }
+  }
+}

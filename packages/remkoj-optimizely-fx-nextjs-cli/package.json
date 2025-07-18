@@ -22,9 +22,9 @@
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
     "@rollup/plugin-typescript": "^12.1.4",
-    "@types/node": "^22.16.0",
+    "@types/node": "^22.16.4",
     "@types/yargs": "^17.0.33",
-    "rollup": "4.44.1",
+    "rollup": "4.45.1",
     "rollup-plugin-string-import": "^1.2.6"
   },
   "peerDependencies": {

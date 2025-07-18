@@ -14,12 +14,12 @@ export function createListKey(item: LinkItemDataFragment) : string
 
 export const CmsLink : FunctionComponent<CmsLinkProps> = ({ href, ...props }) =>
 {
-    const url = linkDataToUrl(getLinkData(href))
-    const linkHref = urlToRelative(url)
+    const linkData = getLinkData(href)
+    const linkHref = linkData?.default
     const linkText = href.text ?? ""
     const linkTitle = href.title ?? undefined
     const linkTarget = href.target ?? undefined
-    return url ? <Link {...props} href={ linkHref } title={ linkTitle } target={ linkTarget }>{ linkText }</Link> : <span { ...props} title={ linkTitle }>{ linkText }</span>
+    return linkHref ? <Link {...props} href={ linkHref } title={ linkTitle } target={ linkTarget }>{ linkText }</Link> : <span { ...props} title={ linkTitle }>{ linkText }</span>
 }
 
 export default CmsLink

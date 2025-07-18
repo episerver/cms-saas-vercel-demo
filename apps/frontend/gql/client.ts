@@ -4,6 +4,7 @@ import gql from 'graphql-tag';
 type GraphQLClientRequestHeaders = RequestOptions['requestHeaders'];
 export const LinkDataFragmentDoc = gql`
     fragment LinkData on ContentUrl {
+  type
   base
   default
 }
