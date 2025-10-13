@@ -462,6 +462,12 @@ export const ExperienceDataFragmentDoc = gql`
                 nodes {
                   ...CompositionNodeData
                   ...CompositionComponentNodeData
+                  ... on ICompositionStructureNode {
+                    nodes {
+                      ...CompositionNodeData
+                      ...CompositionComponentNodeData
+                    }
+                  }
                 }
               }
             }
