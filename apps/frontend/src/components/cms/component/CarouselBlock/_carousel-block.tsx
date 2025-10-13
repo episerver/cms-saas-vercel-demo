@@ -4,7 +4,6 @@ import React, {
   useState,
   useEffect,
   type FunctionComponent,
-  type PropsWithChildren,
 } from "react";
 import { motion } from "framer-motion";
 import { useWindowWidth } from "@react-hook/window-size/throttled";
@@ -13,6 +12,7 @@ import type {
   InlineContentLinkWithLocale,
 } from "@remkoj/optimizely-graph-client";
 import type * as Schema from "@gql/graphql";
+import { omitCmsComponentProps } from "@/lib/filter-props";
 
 type CarouselProps = {
   data: Schema.CarouselBlockDataFragment & { itemCount: number };
@@ -58,7 +58,7 @@ const Carousel: FunctionComponent<CarouselProps> = ({
     <div
       className="overflow-hidden relative w-full my-24 flex flex-col"
       style={{ position: "relative", width: "100%", overflow: "hidden" }}
-      {...divProps}
+      {...omitCmsComponentProps(divProps)}
     >
       <section
         role="navigation"
