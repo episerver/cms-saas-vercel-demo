@@ -2,13 +2,15 @@
   "key": "TestimonialElement",
   "displayName": "Testimonial",
   "description": "A customer testimonial",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "customerName": {
       "type": "string",
@@ -17,8 +19,7 @@
       "localized": false,
       "required": true,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "customerLocation": {
       "type": "string",
@@ -27,8 +28,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "customerImage": {
       "type": "contentReference",
@@ -38,9 +38,8 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "allowedTypes": [
-        "Image"
+        "_image"
       ],
       "restrictedTypes": []
     },
@@ -52,19 +51,16 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 40,
-      "editorSettings": {}
+      "sortOrder": 40
     },
     "referenceText": {
-      "type": "string",
-      "format": "html",
+      "type": "richText",
       "displayName": "Reference text",
       "description": "",
       "localized": true,
       "required": true,
       "group": "Information",
-      "sortOrder": 50,
-      "editorSettings": {}
+      "sortOrder": 50
     }
   }
 }

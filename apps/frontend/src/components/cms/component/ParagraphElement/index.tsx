@@ -15,8 +15,7 @@ enum AlignClasses {
  * Paragraph
  * 
  */
-export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment, DefaultParagraphProps> = ({ data: { text }, contentLink, layoutProps, ctx }) => {
-    const { factory } = ctx || { factory: defaultFactory }
+export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment, DefaultParagraphProps> = ({ data: { text }, layoutProps, editProps }) => {
     const {
         placement = "left",
         transform = "default"
@@ -25,7 +24,7 @@ export const ParagraphElementElement : CmsComponent<ParagraphElementDataFragment
     const width = transform == "full" ? ' max-w-none' : ''
     const align = AlignClasses[placement]
 
-    return <CmsEditable as={RichText} ctx={ ctx } cmsFieldName="text" text={ text?.json } forwardCtx="ctx" cmsId={ contentLink.key } className={`rich-text prose${ width }${ align }`}/>
+    return <RichText cmsFieldName="text" text={ text?.json } className={`rich-text prose${ width }${ align }`} {...editProps}/>
 }
 ParagraphElementElement.displayName = "Paragraph (Element/ParagraphElement)"
 ParagraphElementElement.getDataFragment = () => ['ParagraphElementData', ParagraphElementDataFragmentDoc]

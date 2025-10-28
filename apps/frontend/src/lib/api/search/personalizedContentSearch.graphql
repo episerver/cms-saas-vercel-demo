@@ -17,7 +17,17 @@ query personalizedSearchContent($term: String!, $topInterest: String, $locale: [
       _score
       ...SearchData
       _metadata {
+        key
+        version
+        locale
         published
+        displayName
+        types
+        url {
+          default
+          base
+          type
+        }
       }
       preview: _fulltext(
         highlight: { enabled: true, startToken: "<span>", endToken: "</span>" }

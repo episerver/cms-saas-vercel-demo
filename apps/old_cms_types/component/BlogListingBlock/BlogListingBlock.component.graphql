@@ -1,7 +1,0 @@
-fragment BlogListingBlockData on BlogListingBlock {
-  _metadata {
-    name: displayName
-  }
-  showFilters: BlogListingShowFilters
-  selectedPageSize: BlogListingItemCount
-}

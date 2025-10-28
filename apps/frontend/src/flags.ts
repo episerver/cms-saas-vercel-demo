@@ -1,62 +1,11 @@
 // Auto generated flags.ts from Optimizely Feature Experimentation.
 'use server'
-import type { Decide } from '@vercel/flags'
-import { flag } from '@vercel/flags/next';
+import type { Decide } from 'flags'
+import { flag } from 'flags/next';
 import { getUserContext, readConfigFromEnv, type OptimizelyFlag, type TypedOptimizelyDecision } from './opti';
 
 // Read project from environment
 const { projectId } = readConfigFromEnv()
-
-/**
- * Layout Configuration
- * ----
- *
- * Test various layout configurations to determine the best possible layout
- *
- * @see https://app.optimizely.com/v2/projects/your-project-id/flags/manage/layout_configuration
- */
-export const layout_configuration = flag<OptimizelyFlag<{
-  /**
-   * The URL/Path to the logo file to use
-   *
-   * @defaultValue /assets/moseybank-logo.svg
-   * @opti string
-   */
-  logo: string,
-  /**
-   * Enable/disable the theme switcher, when disabled it forces the site to follow system settings.
-   *
-   * @defaultValue true
-   * @opti boolean
-   */
-  theme_switcher: boolean
-}>>({
-    key: 'layout_configuration',
-    origin: `https://app.optimizely.com/v2/projects/${projectId}/flags/manage/layout_configuration/variations`,
-    description: 'Test various layout configurations to determine the best possible layout',
-    defaultValue: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true},
-    async decide() {
-        "use server"
-        const ctx = await getUserContext()
-        type DecisionVariables = typeof this.decide extends (Decide<OptimizelyFlag<infer O>, any> | undefined) ? O : false
-        const decision = ctx?.decide("layout_configuration") as TypedOptimizelyDecision<DecisionVariables>
-        if (!decision) {
-            if (this && this.defaultValue)
-                return this.defaultValue
-            throw new Error("No decision made by Optimizely Feature Experimentation")
-        }
-        return {
-            _enabled: decision.enabled,
-            ...decision.variables
-        }
-    },
-    options: [
-        {
-            label: "Off",
-            value: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true}
-        }
-    ]
-})
 
 /**
  * Site Search
@@ -64,9 +13,17 @@ export const layout_configuration = flag<OptimizelyFlag<{
  *
  * Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations
  *
+ * @key site_search
  * @see https://app.optimizely.com/v2/projects/your-project-id/flags/manage/site_search
  */
 export const site_search = flag<OptimizelyFlag<{
+  /**
+   * 
+   *
+   * @defaultValue 
+   * @opti string
+   */
+  content_id: string,
   /**
    * The weight to be applied to the topics retrieved from Optimizely Content Recommendations for a personalized search result
    *
@@ -99,26 +56,72 @@ export const site_search = flag<OptimizelyFlag<{
     key: 'site_search',
     origin: `https://app.optimizely.com/v2/projects/${projectId}/flags/manage/site_search/variations`,
     description: 'Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations',
-    defaultValue: {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false},
+    defaultValue: {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false},
     async decide() {
         "use server"
         const ctx = await getUserContext()
         type DecisionVariables = typeof this.decide extends (Decide<OptimizelyFlag<infer O>, any> | undefined) ? O : false
         const decision = ctx?.decide("site_search") as TypedOptimizelyDecision<DecisionVariables>
-        if (!decision) {
-            if (this && this.defaultValue)
-                return this.defaultValue
-            throw new Error("No decision made by Optimizely Feature Experimentation")
-        }
+        if (!decision)
+           return {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false};
         return {
             _enabled: decision.enabled,
             ...decision.variables
-        }
+        };
     },
     options: [
         {
             label: "Off",
-            value: {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
+            value: {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
+        }
+    ]
+})
+
+/**
+ * Layout Configuration
+ * ----
+ *
+ * Test various layout configurations to determine the best possible layout
+ *
+ * @key layout_configuration
+ * @see https://app.optimizely.com/v2/projects/your-project-id/flags/manage/layout_configuration
+ */
+export const layout_configuration = flag<OptimizelyFlag<{
+  /**
+   * The URL/Path to the logo file to use
+   *
+   * @defaultValue /assets/moseybank-logo.svg
+   * @opti string
+   */
+  logo: string,
+  /**
+   * Enable/disable the theme switcher, when disabled it forces the site to follow system settings.
+   *
+   * @defaultValue true
+   * @opti boolean
+   */
+  theme_switcher: boolean
+}>>({
+    key: 'layout_configuration',
+    origin: `https://app.optimizely.com/v2/projects/${projectId}/flags/manage/layout_configuration/variations`,
+    description: 'Test various layout configurations to determine the best possible layout',
+    defaultValue: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true},
+    async decide() {
+        "use server"
+        const ctx = await getUserContext()
+        type DecisionVariables = typeof this.decide extends (Decide<OptimizelyFlag<infer O>, any> | undefined) ? O : false
+        const decision = ctx?.decide("layout_configuration") as TypedOptimizelyDecision<DecisionVariables>
+        if (!decision)
+           return {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true};
+        return {
+            _enabled: decision.enabled,
+            ...decision.variables
+        };
+    },
+    options: [
+        {
+            label: "Off",
+            value: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true}
         }
     ]
 })

@@ -1,11 +1,9 @@
 
-import { getSdk } from "@/gql/client";
-import { Locales } from "@gql/graphql"
 import { GenericContext, CmsContentArea, RichText } from "@remkoj/optimizely-cms-react/rsc";
-import { createClient, localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 import Image from 'next/image'
 import CmsLink, { createListKey } from "@shared/cms_link";
 import LanguageSwitcher from "@shared/language_switcher";
+import getLayoutData from "../getlayoutdata";
 
 export type SiteFooterProps = {
     locale?: string;
@@ -14,21 +12,12 @@ export type SiteFooterProps = {
 
 export async function SiteFooter({locale, ctx }: SiteFooterProps)
 {
-    const { locale: contextLocale, client } = ctx
-    const graphClient = client ?? createClient(undefined, undefined, {
-        nextJsFetchDirectives: true,
-        cache: true,
-        queryCache: true
-    })
-    const footerLocale = locale ?? contextLocale
-    const footerData = (await getSdk(graphClient).getFooterData({
-        locale: footerLocale ? localeToGraphLocale(footerLocale) as Locales : Locales.ALL
-    }).catch((e: { response: { code: string, status: number, system: { message: string, auth: string} }}) => {
-        console.error(`❌ [Optimizely Graph] [Error] ${e.response.code} ${e.response.system.message} ${e.response.system.auth}`)
-        return undefined
-    }))?.appLayout?.items?.at(0)
+    const { locale: serverLocale = locale, client } = ctx
+    const currentDomain = client?.siteInfo.frontendDomain
+    const ctxLocale = locale ?? serverLocale
+    const footerData = await getLayoutData(currentDomain, ctxLocale)
 
-    return <footer className="bg-vulcan dark:bg-vulcan-85 text-white py-8 lg:py-16 outer-padding">
+    return <footer className="on-vulcan dark:bg-vulcan-85 text-white py-8 lg:py-16 outer-padding">
         <div className="container mx-auto">
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2 lg:gap-6 xl:gap-8 w-full">
                 <section className="">

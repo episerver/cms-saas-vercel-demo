@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import { useMemo } from 'react'
 
-export function useLastTerms(count: number = 5, refreshInterval: number = 10000)
+export function useLastTerms(count: number = 5, refreshInterval?: number)
 {
     const fetchKey = useMemo(() => count > 0 ? `/api/me/search?count=${ count }` : null, [ count ])
     return useSWR<Array<string>, any, string|null>(fetchKey, {
@@ -13,6 +13,12 @@ export function useLastTerms(count: number = 5, refreshInterval: number = 10000)
                 return r.json()
             }).then(d => d.terms)
         },
+        revalidateOnFocus: true,
+        revalidateOnMount: true,
+        revalidateOnReconnect: true,
+        revalidateIfStale: true,
+        refreshWhenHidden: false,
+        refreshWhenOffline: false,
         refreshInterval
     })
 }

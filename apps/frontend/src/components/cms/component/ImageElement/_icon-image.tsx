@@ -1,11 +1,11 @@
 import 'server-only'
 import { type ImageElementDataFragment } from "@/gql/graphql"
-//import Image from 'next/image'
 import { extractSettings } from '@remkoj/optimizely-cms-react/rsc'
 
 // To be moved to library
-import Image from '@/components/shared/cms_image'
+import Image from '@/cmp-dam'
 import { type IconImageElementComponent, ImageElementLayoutProps, IconImageElementProps } from './displayTemplates'
+import { filterCmsComponentProps } from '@remkoj/optimizely-cms-react/utils'
 
 export const IconImageElement : IconImageElementComponent<ImageElementDataFragment> = ({ data: { altText, imageLink }, layoutProps, ...props }) => {
     const { 
@@ -42,7 +42,7 @@ export const IconImageElement : IconImageElementComponent<ImageElementDataFragme
             break
     }
 
-    return <div className={ cssClasses.join(' ')} { ...props }>
+    return <div className={ cssClasses.join(' ')} { ...filterCmsComponentProps(props) }>
         <Image alt={altText ?? ""} src={ imageLink } fill className="object-cover" />
     </div>
 }

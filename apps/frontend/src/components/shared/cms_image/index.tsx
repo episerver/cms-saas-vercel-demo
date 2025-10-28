@@ -4,7 +4,11 @@ import Image from 'next/image'
 import { linkDataToUrl, getLinkData } from '@/lib/urls'
 
 type CmsImageProps = Readonly<{
-    src?: LinkData | ReferenceData | null,
+    src?: ((LinkData | ReferenceData) & { item?: {
+        graphId?: string | null,
+        alt?: string | null,
+        src?: string | null
+    } | null })| null,
     fallbackSrc?: string
 } & Omit<ComponentProps<typeof Image>, 'src'>>
 
@@ -16,12 +20,13 @@ type CmsImageProps = Readonly<{
  * @returns     JSX Image component
  */
 export const CmsImage : FunctionComponent<CmsImageProps> = ({ src, fallbackSrc, alt, ...props }) => {
-    const link = linkDataToUrl(getLinkData(src))
-    const imgSrc = link?.href ?? fallbackSrc
+    const itemSrc = src?.item?.src
+    const itemAlt = src?.item?.alt
+    const imgSrc = itemSrc ?? linkDataToUrl(getLinkData(src))?.href ?? fallbackSrc
 
     if (!imgSrc)
         return null
-    return <Image src={ imgSrc } alt={ alt } {...props} />
+    return <Image src={ imgSrc } alt={ itemAlt ?? alt } {...props} />
 }
 
 

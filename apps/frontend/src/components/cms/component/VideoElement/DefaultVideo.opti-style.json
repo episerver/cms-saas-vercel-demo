@@ -4,79 +4,34 @@
   "contentType": "VideoElement",
   "isDefault": true,
   "settings": {
-    "roundedCorners": {
-      "displayName": "Rounded corners",
+    "aspectRatio": {
+      "displayName": "Aspect Ratio",
       "editor": "",
-      "sortOrder": 60,
+      "sortOrder": 10,
       "choices": {
-        "full": {
-          "displayName": "Full",
-          "sortOrder": 60
+        "auto": {
+          "displayName": "Original",
+          "sortOrder": 10
         },
-        "huge": {
-          "displayName": "Huge",
-          "sortOrder": 50
+        "ratio_16_9": {
+          "displayName": "16:9",
+          "sortOrder": 20
         },
-        "large": {
-          "displayName": "Large",
-          "sortOrder": 40
-        },
-        "medium": {
-          "displayName": "Medium",
+        "ratio_4_3": {
+          "displayName": "4:3",
           "sortOrder": 30
         },
-        "small": {
-          "displayName": "Small",
-          "sortOrder": 20
+        "ratio_1_1": {
+          "displayName": "1:1",
+          "sortOrder": 40
         },
-        "none": {
-          "displayName": "None",
-          "sortOrder": 10
-        }
-      }
-    },
-    "muted": {
-      "displayName": "Mute audio",
-      "editor": "",
-      "sortOrder": 50,
-      "choices": {
-        "false": {
-          "displayName": "No",
-          "sortOrder": 20
+        "ratio_3_4": {
+          "displayName": "3:4",
+          "sortOrder": 50
         },
-        "true": {
-          "displayName": "Yes",
-          "sortOrder": 10
-        }
-      }
-    },
-    "loop": {
-      "displayName": "Loop video",
-      "editor": "",
-      "sortOrder": 40,
-      "choices": {
-        "false": {
-          "displayName": "No",
-          "sortOrder": 20
-        },
-        "true": {
-          "displayName": "Yes",
-          "sortOrder": 10
-        }
-      }
-    },
-    "autoPlay": {
-      "displayName": "Start playback automatically",
-      "editor": "",
-      "sortOrder": 30,
-      "choices": {
-        "false": {
-          "displayName": "No",
-          "sortOrder": 20
-        },
-        "true": {
-          "displayName": "Yes",
-          "sortOrder": 10
+        "ratio_9_16": {
+          "displayName": "9:16",
+          "sortOrder": 60
         }
       }
     },
@@ -85,44 +40,89 @@
       "editor": "",
       "sortOrder": 20,
       "choices": {
-        "false": {
-          "displayName": "No",
-          "sortOrder": 20
-        },
         "true": {
           "displayName": "Yes",
           "sortOrder": 10
+        },
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
         }
       }
     },
-    "aspectRatio": {
-      "displayName": "Aspect Ratio",
+    "autoPlay": {
+      "displayName": "Start playback automatically",
       "editor": "",
-      "sortOrder": 10,
+      "sortOrder": 30,
       "choices": {
-        "ratio_9_16": {
-          "displayName": "9:16",
-          "sortOrder": 60
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
         },
-        "ratio_3_4": {
-          "displayName": "3:4",
-          "sortOrder": 50
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        }
+      }
+    },
+    "loop": {
+      "displayName": "Loop video",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
         },
-        "ratio_1_1": {
-          "displayName": "1:1",
-          "sortOrder": 40
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        }
+      }
+    },
+    "muted": {
+      "displayName": "Mute audio",
+      "editor": "",
+      "sortOrder": 50,
+      "choices": {
+        "true": {
+          "displayName": "Yes",
+          "sortOrder": 10
         },
-        "ratio_4_3": {
-          "displayName": "4:3",
-          "sortOrder": 30
+        "false": {
+          "displayName": "No",
+          "sortOrder": 20
+        }
+      }
+    },
+    "roundedCorners": {
+      "displayName": "Rounded corners",
+      "editor": "",
+      "sortOrder": 60,
+      "choices": {
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
         },
-        "ratio_16_9": {
-          "displayName": "16:9",
+        "small": {
+          "displayName": "Small",
           "sortOrder": 20
         },
-        "auto": {
-          "displayName": "Original",
-          "sortOrder": 10
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "huge": {
+          "displayName": "Huge",
+          "sortOrder": 50
+        },
+        "full": {
+          "displayName": "Full",
+          "sortOrder": 60
         }
       }
     }

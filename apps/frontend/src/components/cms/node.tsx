@@ -8,7 +8,7 @@ export const VisualBuilderNode : CmsLayoutComponent = ({ contentLink, layoutProp
 
     const className = `vb:${layoutProps?.layoutType}`
     if (layoutProps?.layoutType == "section")
-        return <CmsEditable as="div" className={ className } cmsId={ contentLink.key } ctx={ ctx }>{ children }</CmsEditable>
+        return <CmsEditable as="div" className={ className } cmsId={ contentLink.key } ctx={ ctx } forwardCtx={false}>{ children }</CmsEditable>
     return <div className={ className }>{ children }</div>
 }
 

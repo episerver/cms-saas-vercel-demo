@@ -1,6 +1,6 @@
 // Auto generated server side logic for useFlag hook Optimizely Feature Experimentation.
 "use server"
-import { type Flag } from "@vercel/flags/next";
+import { type Flag } from "flags/next";
 import * as appFlags from "@/flags";
 
 export type AvailableFlags = typeof appFlags

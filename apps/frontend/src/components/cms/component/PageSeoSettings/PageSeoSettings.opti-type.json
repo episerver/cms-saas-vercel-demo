@@ -2,11 +2,13 @@
   "key": "PageSeoSettings",
   "displayName": "Page SEO Settings",
   "description": "",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "MetaTitle": {
       "type": "string",
@@ -17,8 +19,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "MetaDescription": {
       "type": "string",
@@ -28,8 +29,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "MetaKeywords": {
       "type": "array",
@@ -40,7 +40,6 @@
       "group": "Information",
       "sortOrder": 25,
       "indexingType": "searchable",
-      "editorSettings": {},
       "items": {
         "type": "string",
         "format": "shortString"
@@ -54,7 +53,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 100,
-      "editorSettings": {},
       "allowedTypes": [],
       "restrictedTypes": []
     },
@@ -68,19 +66,16 @@
       "group": "Information",
       "sortOrder": 200,
       "indexingType": "searchable",
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Undefined",
-            "value": "-"
-          },
-          {
-            "displayName": "Article",
-            "value": "article"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "-",
+          "displayName": "Undefined"
+        },
+        {
+          "value": "article",
+          "displayName": "Article"
+        }
+      ]
     }
   }
 }

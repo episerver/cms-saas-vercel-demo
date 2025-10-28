@@ -26,9 +26,14 @@ query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author
             author: ArticleAuthor
             topic: Topic
             image: BlogPostPromoImage {
-              src: url {
+              key
+              url {
                 base
                 default
+              }
+              item {
+                __typename
+                ...cmpPublicImage
               }
             }
           }

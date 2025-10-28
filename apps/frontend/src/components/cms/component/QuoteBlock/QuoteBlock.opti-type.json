@@ -2,11 +2,13 @@
   "key": "QuoteBlock",
   "displayName": "Quote",
   "description": "A block used to display a quote.",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "QuoteText": {
       "type": "string",
@@ -15,8 +17,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "QuoteColor": {
       "type": "string",
@@ -27,31 +28,28 @@
       "required": false,
       "group": "Information",
       "sortOrder": 20,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Blue",
-            "value": "blue"
-          },
-          {
-            "displayName": "Orange",
-            "value": "orange"
-          },
-          {
-            "displayName": "Green",
-            "value": "green"
-          },
-          {
-            "displayName": "Red",
-            "value": "red"
-          },
-          {
-            "displayName": "White",
-            "value": "white"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "blue",
+          "displayName": "Blue"
+        },
+        {
+          "value": "orange",
+          "displayName": "Orange"
+        },
+        {
+          "value": "green",
+          "displayName": "Green"
+        },
+        {
+          "value": "red",
+          "displayName": "Red"
+        },
+        {
+          "value": "white",
+          "displayName": "White"
+        }
+      ]
     },
     "QuoteProfilePicture": {
       "type": "contentReference",
@@ -61,7 +59,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "allowedTypes": [],
       "restrictedTypes": []
     },
@@ -73,8 +70,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 40,
-      "editorSettings": {}
+      "sortOrder": 40
     },
     "QuoteProfileLocation": {
       "type": "string",
@@ -84,8 +80,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 60,
-      "editorSettings": {}
+      "sortOrder": 60
     },
     "QuoteActive": {
       "type": "boolean",
@@ -94,8 +89,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 70,
-      "editorSettings": {}
+      "sortOrder": 70
     }
   }
 }

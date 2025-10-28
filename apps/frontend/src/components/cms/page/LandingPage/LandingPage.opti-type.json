@@ -2,13 +2,15 @@
   "key": "LandingPage",
   "displayName": "Landing Page",
   "description": "A page entirely built out of blocks.",
-  "baseType": "page",
+  "baseType": "_page",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [
     "*"
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "TopContentArea": {
       "type": "array",
@@ -18,7 +20,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [],
@@ -33,7 +34,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [],
@@ -48,8 +48,7 @@
       "localized": false,
       "required": false,
       "group": "SeoSettings",
-      "sortOrder": 0,
-      "editorSettings": {}
+      "sortOrder": 0
     }
   }
 }

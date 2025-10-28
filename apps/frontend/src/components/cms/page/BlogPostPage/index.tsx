@@ -5,8 +5,8 @@ import { type Metadata } from "next";
 // Optimizely Graph types and SDK
 import {
   type Locales,
-  type BlogPostPageDataFragment,
-  BlogPostPageDataFragmentDoc,
+  type getBlogPostPageDataQuery,
+  getBlogPostPageDataDocument,
 } from "@gql/graphql";
 import { getSdk } from "@gql/client";
 import { type ContentLinkWithLocale, type InlineContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
@@ -14,7 +14,7 @@ import { type ContentLinkWithLocale, type InlineContentLinkWithLocale } from "@r
 // Implementation components
 import ArticleListElementElement from "../../component/ArticleListElement";
 import * as ContinueReadingComponent from "../../component/ContinueReadingComponent";
-import Image from "@/components/shared/cms_image";
+import Image from "next/image";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 
@@ -22,47 +22,54 @@ import { toValidOpenGraphType } from "@/lib/opengraph";
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
 import { RichText, CmsEditable, CmsContentArea, type GenericContext } from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
+import { getAssetAltText, getAssetDimensions, getAssetUrl } from "@/cmp-dam";
 
 export const BlogPostPage: OptimizelyNextPage<
-  BlogPostPageDataFragment
+  getBlogPostPageDataQuery
 > = async ({
   contentLink,
-  inEditMode,
   data: {
-    blogTitle: title,
-    blogImage: image,
-    blogBody: description,
-    blogAuthor: author,
-    blogSubtitle: subtitle,
-    blogTopics: topics,
+    Heading: title,
+    BlogPostPromoImage: imageUrlFragement,
+    BlogPostBody: description,
+    ArticleAuthor: author,
+    ArticleSubHeading: subtitle,
+    Topic: topics,
     continueReading,
   },
-  ctx
+  ctx,
+  editProps
 }) => {
+  
   const hasOwnContinueReading = continueReading && continueReading.length ? true : false
   const sharedContinueReading = await ContinueReadingComponent.getSharedInstanceData(ctx)
+  const imageId = imageUrlFragement?.key
+  const imageUrl = getAssetUrl(imageUrlFragement) ?? '/assets/starburst-bg.jpg'
+  const { width: imageWidth = 1920, height: imageHeight = 1080 } = getAssetDimensions(imageUrlFragement) ?? {}
+  const imageAlt = getAssetAltText(imageUrlFragement) ?? ""
 
   return (
     <>
       <div className="outer-padding">
-        {image && (
-          <div className="relative col-span-12 mt-8 md:mt-16 lg:mt-32 mb-8 lg:mb-24 mx-auto aspect-[1/1] md:aspect-[2/1] lg:aspect-[16/5] flex items-end">
+        {imageId && (
+          <div className="relative col-span-12 mt-8 md:mt-16 lg:mt-32 mb-8 lg:mb-24 mx-auto aspect-square md:aspect-2/1 lg:aspect-16/5 flex items-end">
             <CmsEditable
+              { ...editProps }
               cmsFieldName="BlogPostPromoImage"
               as={Image}
-              className="top-0 left-0 rounded-[2rem] aspect-[1/1] md:aspect-[2/1] lg:aspect-[16/5] object-cover absolute -z-50"
-              src={image}
-              alt=""
-              width={1920}
-              height={1080}
-              ctx={ctx}
+              className="top-0 left-0 rounded-4xl aspect-square md:aspect-2/1 lg:aspect-16/5 object-cover absolute -z-50"
+              src={imageUrl}
+              alt={imageAlt}
+              width={imageWidth}
+              height={imageHeight}
+              data-image-id={imageId}
             />
-            <div className="container px-6 mx-auto bg-[rgba(248,248,252,0.75)] dark:bg-[rgba(16,20,29,0.75)] rounded-t-[2rem]">
+            <div className="container px-6 mx-auto bg-[rgba(248,248,252,0.75)] dark:bg-[rgba(16,20,29,0.75)] rounded-t-4xl">
               <CmsEditable
+                {...editProps}
                 cmsFieldName="Heading"
                 as="h1"
                 className="mt-6 mb-6 text-4xl font-extrabold"
-                ctx={ctx}
               >
                 {title ?? ""}
               </CmsEditable>
@@ -70,56 +77,58 @@ export const BlogPostPage: OptimizelyNextPage<
           </div>
         )}
         <section className="mx-auto w-full max-w-3xl">
-          {!image && (
+          {!imageId && (
             <CmsEditable
+              {...editProps}
               cmsFieldName="Heading"
               as="h1"
               className="mb-6 text-3xl"
-              ctx={ctx}
             >
               {title ?? ""}
             </CmsEditable>
           )}
           <CmsEditable
+            {...editProps}
             cmsFieldName="ArticleAuthor"
             as="p"
             className="text-2xl text-people-eater my-6"
-            ctx={ctx}
           >
             {author ?? ""}
           </CmsEditable>
           <CmsEditable
+            {...editProps}
             cmsFieldName="ArticleSubHeading"
             as="p"
             className="text-3xl leading-7 mt-6 mb-2"
-            ctx={ctx}
           >
             {subtitle ?? ""}
           </CmsEditable>
           <CmsEditable
+            {...editProps}
             cmsFieldName="Topic"
             as="p"
             className="text-xs text-independence mb-8 lg:mb-20"
-            ctx={ctx}
           >
             Topics: {topics?.filter((x) => x).join(", ")}
           </CmsEditable>
-          <RichText
+          <CmsEditable 
+            {...editProps}
+            as={RichText}
             cmsFieldName="BlogPostBody"
             text={description?.json}
-            className="prose max-w-none prose-img:rounded-[2rem] prose-img:p-4 prose-img:border-2"
-            ctx={ctx}
+            className="prose max-w-none prose-img:rounded-4xl prose-img:p-4 prose-img:border-2"
+            forwardCtx="ctx"
           />
           <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto border-t-2 mt-32 mb-20"></div>
         </section>
       </div>
 
-      {(inEditMode || hasOwnContinueReading) && (
+      {(ctx?.inEditMode || hasOwnContinueReading) && (
         <CmsContentArea fieldName="continueReading" items={ continueReading } className="outer-padding flex flex-col items-center" itemWrapper={{ className: "data-[component=ContentRecsElement]:w-full"}} ctx={ctx} />
       )}
       {!hasOwnContinueReading && sharedContinueReading && (
         <div className="outer-padding">
-          { inEditMode && <div className="bg-tangy text-vulcan-85 text-center p-2 mb-8 font-bold">This section will be hidden when the &ldquo;Continue Reading&rdquo; content area has at least one item.</div> }
+          { ctx?.inEditMode && <div className="bg-tangy text-vulcan-85 text-center p-2 mb-8 font-bold">This section will be hidden when the &ldquo;Continue Reading&rdquo; content area has at least one item.</div> }
           <ContinueReadingComponent.default {...sharedContinueReading} inEditMode={false} ctx={ctx} />
         </div>
       )}
@@ -151,11 +160,11 @@ function FixedContinueReading({ctx, contentLink, topics}: { ctx?: GenericContext
       </div>
   )
 }
-
-BlogPostPage.getDataFragment = () => [
-  "BlogPostPageData",
-  BlogPostPageDataFragmentDoc,
-];
+BlogPostPage.getDataQuery = () => getBlogPostPageDataDocument
+//BlogPostPage.getDataFragment = () => [
+//  "BlogPostPageData",
+//  BlogPostPageDataFragmentDoc,
+//];
 BlogPostPage.getMetaData = async (contentLink, locale, client) => {
   const sdk = getSdk(client);
   const result = await sdk.getBlogPostPageMetaData({

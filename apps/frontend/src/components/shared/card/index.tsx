@@ -1,5 +1,6 @@
-import { type PropsWithChildren } from "react";
+import { type JSX, type PropsWithChildren } from "react";
 import { OuterColors, ContentDirections, CornerOptions, InnerColors, InnerCornerOptions } from "./styles";
+import { cn } from "@/lib/utils";
 
 type AllowedElements = keyof Omit<JSX.IntrinsicElements, 'svg'>
 export type CardProps<E extends AllowedElements> = PropsWithChildren<{
@@ -30,7 +31,7 @@ export const Card = <E extends AllowedElements>({
     const innerClasses : string = InnerColors[cardColor] + ""
     const directonClasses : string = ContentDirections[direction]
     const baseContainerClasses : string = "p-6 lg:p-12"
-    const baseInnerClasses : string = "prose max-w-none gap-2 lg:gap-4"
+    const baseInnerClasses : string = "max-w-none gap-2 lg:gap-4"
     const cornerClasses : string = CornerOptions[roundedCorners]
     const innerCornerClasses : string = InnerCornerOptions[roundedCorners]
 

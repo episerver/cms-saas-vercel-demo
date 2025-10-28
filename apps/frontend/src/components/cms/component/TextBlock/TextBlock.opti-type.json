@@ -2,11 +2,13 @@
   "key": "TextBlock",
   "displayName": "Text block",
   "description": "",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "TextBlockOverline": {
       "type": "string",
@@ -16,8 +18,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "TextBlockHeading": {
       "type": "string",
@@ -27,8 +28,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "TextBlockHeadingSize": {
       "type": "string",
@@ -39,38 +39,33 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Small",
-            "value": "small"
-          },
-          {
-            "displayName": "Medium",
-            "value": "medium"
-          },
-          {
-            "displayName": "Large",
-            "value": "large"
-          },
-          {
-            "displayName": "Extra Large",
-            "value": "extralarge"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "small",
+          "displayName": "Small"
+        },
+        {
+          "value": "medium",
+          "displayName": "Medium"
+        },
+        {
+          "value": "large",
+          "displayName": "Large"
+        },
+        {
+          "value": "extralarge",
+          "displayName": "Extra Large"
+        }
+      ]
     },
     "TextBlockDescription": {
-      "type": "string",
-      "format": "html",
+      "type": "richText",
       "displayName": "Description",
       "description": "",
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 40,
-      "editorSettings": {}
+      "sortOrder": 40
     },
     "TextBlockWidth": {
       "type": "string",
@@ -81,27 +76,24 @@
       "required": false,
       "group": "Information",
       "sortOrder": 80,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Full",
-            "value": "full"
-          },
-          {
-            "displayName": "Small",
-            "value": "small"
-          },
-          {
-            "displayName": "Medium",
-            "value": "medium"
-          },
-          {
-            "displayName": "Large",
-            "value": "large"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "full",
+          "displayName": "Full"
+        },
+        {
+          "value": "small",
+          "displayName": "Small"
+        },
+        {
+          "value": "medium",
+          "displayName": "Medium"
+        },
+        {
+          "value": "large",
+          "displayName": "Large"
+        }
+      ]
     },
     "TextCenter": {
       "type": "boolean",
@@ -110,8 +102,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 90,
-      "editorSettings": {}
+      "sortOrder": 90
     },
     "TextClassName": {
       "type": "string",
@@ -121,8 +112,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 100,
-      "editorSettings": {}
+      "sortOrder": 100
     }
   }
 }

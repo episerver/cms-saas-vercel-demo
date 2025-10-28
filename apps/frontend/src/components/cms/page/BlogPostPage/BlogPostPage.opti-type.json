@@ -2,13 +2,15 @@
   "key": "BlogPostPage",
   "displayName": "Blog post",
   "description": "Represents a single blog post",
-  "baseType": "page",
+  "baseType": "_page",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [
     "*"
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "Heading": {
       "type": "string",
@@ -19,8 +21,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": -100,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "ArticleSubHeading": {
       "type": "string",
@@ -31,8 +32,7 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "Topic": {
       "type": "array",
@@ -44,46 +44,41 @@
       "group": "Categories",
       "sortOrder": 0,
       "indexingType": "searchable",
-      "editorSettings": {},
       "items": {
         "type": "string",
-        "enum": {
-          "values": [
-            {
-              "displayName": "Savings",
-              "value": "Savings"
-            },
-            {
-              "displayName": "Credit",
-              "value": "Credit"
-            },
-            {
-              "displayName": "Mortgage",
-              "value": "Mortgage"
-            },
-            {
-              "displayName": "Retirement",
-              "value": "Retirement"
-            },
-            {
-              "displayName": "Investment",
-              "value": "Investment"
-            }
-          ]
-        }
+        "enum": [
+          {
+            "value": "Savings",
+            "displayName": "Savings"
+          },
+          {
+            "value": "Credit",
+            "displayName": "Credit"
+          },
+          {
+            "value": "Mortgage",
+            "displayName": "Mortgage"
+          },
+          {
+            "value": "Retirement",
+            "displayName": "Retirement"
+          },
+          {
+            "value": "Investment",
+            "displayName": "Investment"
+          }
+        ]
       }
     },
     "BlogPostBody": {
-      "type": "string",
-      "format": "html",
+      "type": "richText",
       "displayName": "Body",
       "description": "The main body for this blog post",
       "localized": true,
       "required": false,
       "group": "Information",
       "sortOrder": 20,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "ArticleAuthor": {
       "type": "string",
@@ -94,8 +89,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": 20,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     },
     "BlogPostPromoImage": {
       "type": "contentReference",
@@ -105,9 +99,8 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "allowedTypes": [
-        "Media"
+        "_media"
       ],
       "restrictedTypes": []
     },
@@ -119,11 +112,10 @@
       "required": false,
       "group": "Information",
       "sortOrder": 60,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [
-          "component"
+          "_component"
         ],
         "restrictedTypes": []
       }
@@ -136,8 +128,7 @@
       "localized": false,
       "required": false,
       "group": "SeoSettings",
-      "sortOrder": 200,
-      "editorSettings": {}
+      "sortOrder": 200
     }
   }
 }

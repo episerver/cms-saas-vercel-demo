@@ -1,10 +1,12 @@
 import dict from "@shared/dictionary.json";
 import { type DropDownOption} from "@shared/drop_down";
 import DropDown from "./_client";
-import { cache } from 'react';
+import { cache, type JSX } from 'react';
 import { getSdk } from "@/gql/client";
 import { createClient, type IOptiGraphClient } from "@remkoj/optimizely-graph-client";
 import { type GenericContext } from "@remkoj/optimizely-cms-react/rsc";
+
+import channel from "@/channel"
 
 export type LanguageSwitcherProps = {
     ctx?: GenericContext
@@ -13,7 +15,8 @@ export type LanguageSwitcherProps = {
 export async function LanguageSwitcher ({ ctx, ...divProps }: LanguageSwitcherProps)
 {
     const { locale: currentLocale = "en", client } = ctx ?? { locale: 'en' }
-    const locales = await getLocales(false, client)
+    //const locales = await getLocales(false, client)
+    const locales = channel.locales.map(locale => locale.code)
 
     // If there're less the two locales, don't show the picker
     if (locales.length < 2)

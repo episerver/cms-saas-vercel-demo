@@ -14,6 +14,7 @@ import {
 } from "@/gql/graphql";
 import { getFragmentData } from "@gql/fragment-masking";
 import ButtonBlock from "../ButtonBlock";
+import { getAssetUrl } from "@/cmp-dam";
 
 const ColorClasses = {
   "dark-blue": "on-vulcan",
@@ -30,28 +31,22 @@ const ColorClasses = {
  */
 export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
   data: {
-    heroImage: image,
-    eyebrow = "",
-    heroHeading: heading = "",
-    heroDescription: description = { html: "", json: "{}" },
-    heroColor: color = "blue",
-    heroButton = null,
+    HeroImage: heroImage,
+    Eyebrow: eyebrow = "",
+    Heading: heading = "",
+    DescriptionRichText: description = { html: "", json: "{}" },
+    HeroColor: color = "blue",
+    HeroButton: heroButton = null,
   },
-  inEditMode,
   contentLink,
   ctx
 }) => {
-  const heroImage = getFragmentData(ReferenceDataFragmentDoc, image);
-  const heroImageLink = getFragmentData(LinkDataFragmentDoc, heroImage?.url);
-  const heroImageSrc = new URL(
-    heroImageLink?.default ?? "/",
-    heroImageLink?.base ?? "https://example.com",
-  ).href;
+  const { inEditMode = false } = ctx ?? {}
+  const heroImageSrc = getAssetUrl(heroImage)
   const button = getFragmentData(
     ButtonBlockPropertyDataFragmentDoc,
     heroButton,
   );
-  const hasImage = heroImageLink != null && heroImageLink != undefined;
 
   return (
     <CmsEditable
@@ -63,13 +58,13 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
       <div className={`w-full @container/card container px-8 mx-auto`}>
         <div
           className={`w-full h-full grid items-center grid-cols-1 ${
-            hasImage
+            heroImageSrc
               ? "gap-8 @[40rem]/card:grid-cols-2 @[80rem]/card:gap-16"
               : ""
           }`}
         >
           <div
-            className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${hasImage ? "" : "max-w-[900px] mx-auto"}`}
+            className={`prose lg:prose-h1:text-7xl lg:prose-h1:my-12 prose-h1:font-bold prose-p:text-2xl prose-p:leading-10 prose-img:my-4 ${heroImageSrc ? "" : "max-w-[900px] mx-auto"}`}
           >
             {(inEditMode || eyebrow) && (
               <CmsEditable as="p" cmsFieldName="Eyebrow" className="eyebrow" ctx={ ctx }>
@@ -121,7 +116,7 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
               )
             )}
           </div>
-          {hasImage ? (
+          {heroImageSrc ? (
             <div className={`order-first @[40rem]/card:order-last`}>
               <Image
                 data-epi-edit={inEditMode ? "HeroImage" : undefined}
@@ -132,7 +127,7 @@ export const HeroBlockComponent: CmsComponent<HeroBlockDataFragment> = ({
                 height={500}
               />
             </div>
-          ) : inEditMode && !hasImage ? (
+          ) : inEditMode && !heroImageSrc ? (
             <div className="mt-8 flex justify-end">
               <ButtonBlock
                 buttonType={"primary"}

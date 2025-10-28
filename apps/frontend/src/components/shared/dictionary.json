@@ -5,7 +5,8 @@
             "locales": {
                 "en": "English",
                 "nl": "Dutch",
-                "nl-BE": "Flemish"
+                "nl-BE": "Flemish",
+                "es": "Spanish"
             }
         }
     },
@@ -15,7 +16,8 @@
             "locales": {
                 "en": "Engels",
                 "nl": "Nederlands",
-                "nl-BE": "Vlaams"
+                "nl-BE": "Vlaams",
+                "es": "Spaans"
             }
         }
     }

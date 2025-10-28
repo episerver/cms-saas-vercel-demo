@@ -4,8 +4,9 @@ import { type FunctionComponent, type ComponentProps } from 'react'
 import { extractSettings } from '@remkoj/optimizely-cms-react/rsc'
 import Animation from '@/components/shared/animation'
 import { type MotionProps } from 'framer-motion'
-import Image from '@/components/shared/cms_image' // To be moved to library
+import Image from '@/cmp-dam' // To be moved to library
 import { DefaultImageElementComponent } from './displayTemplates'
+import { filterCmsComponentProps } from '@remkoj/optimizely-cms-react/utils'
 
 enum portraitAspectRatioClasses {
     square = 'aspect-square',
@@ -46,7 +47,7 @@ type ImageElementProps = ComponentProps<DefaultImageElementComponent<ImageElemen
     withReducedMotion?: boolean
 }
 
-export const ImageElement : FunctionComponent<ImageElementProps>  = ({ data: { altText, imageLink }, layoutProps, children, withReducedMotion = false, ...props }) => {
+export const ImageElement : FunctionComponent<ImageElementProps>  = ({ data: { altText, imageLink }, layoutProps, children, contentLink, ctx, inEditMode, editProps, withReducedMotion = false, ...props }) => {
     const { 
         roundedCorners="none", 
         appear="none", 
@@ -80,7 +81,7 @@ export const ImageElement : FunctionComponent<ImageElementProps>  = ({ data: { a
             <Image alt={altText ?? ""} src={ imageLink } fill className="object-cover" />
         </Animation>
     }
-    return <div className={ cssClasses.filter(x=>x && x.length > 0).join(' ')} { ...props }>
+    return <div className={ cssClasses.filter(x=>x && x.length > 0).join(' ')} { ...filterCmsComponentProps(props) }>
         <Image alt={altText ?? ""} src={ imageLink } fill className="object-cover" />
     </div>
 }

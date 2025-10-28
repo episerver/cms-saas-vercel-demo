@@ -1,0 +1,17 @@
+fragment cmpPublicImage on cmp_PublicImageAsset {
+    __typename
+    Id
+    Title
+    Tags {
+        Name
+    }
+    AltText
+    Width
+    Height
+    Url
+}
+
+fragment cmsPublicImageProps on cmp_PublicImageAsset {
+    alt: Title
+    src: Url
+}

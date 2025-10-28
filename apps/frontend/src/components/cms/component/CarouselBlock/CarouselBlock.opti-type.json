@@ -2,13 +2,15 @@
   "key": "CarouselBlock",
   "displayName": "Carousel",
   "description": "",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "sectionEnabled"
   ],
+  "contracts": [],
   "properties": {
     "CarouselItemsContentArea": {
       "type": "array",
@@ -18,15 +20,14 @@
       "required": false,
       "group": "Information",
       "sortOrder": 10,
-      "editorSettings": {},
       "minItems": 1,
       "maxItems": 10,
       "items": {
         "type": "content",
         "allowedTypes": [
           "HeroBlock",
-          "Image",
-          "Video",
+          "_image",
+          "_video",
           "QuoteBlock"
         ],
         "restrictedTypes": []

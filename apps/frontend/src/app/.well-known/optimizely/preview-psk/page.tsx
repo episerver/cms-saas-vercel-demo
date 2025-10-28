@@ -12,7 +12,6 @@
  */
 
 import "server-only";
-//@ts-expect-error We're enforcing that we're running on Node.JS, but typescript doesn't understand
 import crypto from "node:crypto";
 import React from "react";
 import { notFound } from "next/navigation";
@@ -140,12 +139,13 @@ function resolveParams(input: MySearchParams): Readonly<ParsedParams> {
  * 
  * @param     inputs    The received inputs
  * @param     psk       The pre-shared key
+ * @param     inputEncoding The encoding of the received data
  * @returns   The authorization signature
  */
 function calculateAuth(
   inputs: Readonly<ParsedParams>,
   psk: string,
-  inputEncoding?: string
+  inputEncoding: crypto.Encoding = "utf-8" 
 ): Readonly<string> {
   const searchParams = new URLSearchParams();
   searchParams.set('key', inputs.key ?? '');

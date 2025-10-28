@@ -4,7 +4,6 @@ import { ButtonBlockDataFragmentDoc, type ButtonBlockDataFragment, LinkDataFragm
 import { getFragmentData } from "@gql/fragment-masking"
 import Link from 'next/link'
 import { Button } from "@components/shared/button"
-import { omitCmsComponentProps } from "@/lib/filter-props"
 
 type ButtonBlockProps = ComponentProps<CmsComponent<ButtonBlockDataFragment>>
 type ButtonBlockComponent = CmsComponent<ButtonBlockDataFragment> extends WithGqlFragment<any, ButtonBlockDataFragment> ? 
@@ -35,6 +34,7 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     
     // Allow to be used as a Next.JS Link
     ctx, // Extract context to prevent passing through
+    editProps, // Extract editProps to prevent passing through
     href,
     children,
     ...props 
@@ -44,11 +44,11 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     const url = getFragmentData(LinkDataFragmentDoc, configuredUrlFragment || providedUrlFragment)
     const buttonType = (configuredButtonType || providedButtonType || undefined) as 'primary' | 'secondary' | undefined
     const buttonVariant = (configuredButtonVariant || providedButtonVariant || undefined) as 'default' | 'cta' | undefined
-
-    const linkHref = url?.default ?? href.toString() ?? '#'
+    
+    const linkHref = url?.default ?? href?.toString() ?? '#'
     const className = `${ providedClassName ?? '' } ${ configuredClassName ?? ''}`.trim()
 
-    return <Button { ...omitCmsComponentProps(props) } url={ linkHref || "#"} buttonColor="default" buttonType={buttonType} buttonVariant={ buttonVariant } className={ className }>{ text ?? children }</Button>
+    return <Button { ...props } url={ linkHref || "#"} buttonColor="default" buttonType={buttonType} buttonVariant={ buttonVariant } className={ className }>{ text ?? children }</Button>
 }
 ButtonBlockComponent.displayName = "Button (Component/ButtonBlock)"
 ButtonBlockComponent.getDataFragment = () => ['ButtonBlockData', ButtonBlockDataFragmentDoc]

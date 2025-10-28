@@ -2,13 +2,15 @@
   "key": "OdpEmbedBlock",
   "displayName": "Optimizely Data Platform Embed",
   "description": "Place an embed from the Optimizely Data Platform into your site",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "ContentId": {
       "type": "string",
@@ -18,8 +20,7 @@
       "localized": false,
       "required": true,
       "group": "Information",
-      "sortOrder": 0,
-      "editorSettings": {}
+      "sortOrder": 0
     }
   }
 }

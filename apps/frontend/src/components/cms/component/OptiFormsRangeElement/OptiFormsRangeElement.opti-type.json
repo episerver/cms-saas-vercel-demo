@@ -1,0 +1,70 @@
+{
+  "key": "OptiFormsRangeElement",
+  "displayName": "Range",
+  "description": "",
+  "baseType": "_component",
+  "isContract": false,
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "formsElementEnabled"
+  ],
+  "contracts": [],
+  "properties": {
+    "Label": {
+      "type": "string",
+      "displayName": "Label",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 100
+    },
+    "Tooltip": {
+      "type": "string",
+      "displayName": "Tooltip",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 300
+    },
+    "PredefinedValue": {
+      "type": "string",
+      "displayName": "PredefinedValue",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 400
+    },
+    "Min": {
+      "type": "integer",
+      "displayName": "Min",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 500
+    },
+    "Max": {
+      "type": "integer",
+      "displayName": "Max",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 600
+    },
+    "Increment": {
+      "type": "integer",
+      "displayName": "Increment",
+      "description": "",
+      "localized": false,
+      "required": false,
+      "group": "Information",
+      "sortOrder": 700
+    }
+  }
+}

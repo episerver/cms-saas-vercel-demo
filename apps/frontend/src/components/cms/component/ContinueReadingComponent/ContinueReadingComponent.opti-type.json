@@ -2,11 +2,13 @@
   "key": "ContinueReadingComponent",
   "displayName": "Continue Reading",
   "description": "A Continue Reading section, that can be loaded/shared across pages.",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "topline": {
       "type": "string",
@@ -16,8 +18,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "shared": {
       "type": "boolean",
@@ -27,8 +28,7 @@
       "required": false,
       "group": "Advanced",
       "sortOrder": 10,
-      "indexingType": "queryable",
-      "editorSettings": {}
+      "indexingType": "queryable"
     },
     "heading": {
       "type": "string",
@@ -38,8 +38,7 @@
       "localized": true,
       "required": true,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "content": {
       "type": "array",
@@ -49,7 +48,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [],

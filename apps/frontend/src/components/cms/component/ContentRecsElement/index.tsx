@@ -11,9 +11,9 @@ import { type ReactNode } from "react";
  * Content Recommendations
  * Add a set of content recommendations
  */
-export const ContentRecsElementElement : CmsComponent<ContentRecsElementDataFragment> = async ({ data, contentLink: { key }, inEditMode, ctx }) => {
-    return <CmsEditable as="div" cmsId={ key } className="w-full" ctx={ctx}>
-        { inEditMode ? <EditView /> : <ContentRecsDelivery template={ ArticleTemplate } count={ data.ElementRecommendationCount ?? 3 } apiKey={ data.ElementDeliveryApiKey ?? '' } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12 w-full" placeholder={ PlaceHolder } />}
+export const ContentRecsElementElement : CmsComponent<ContentRecsElementDataFragment> = async ({ data, contentLink: { key }, ctx }) => {
+    return <CmsEditable as="div" cmsId={ key } className="w-full" ctx={ctx} forwardCtx={false}>
+        { ctx?.inEditMode ? <EditView /> : <ContentRecsDelivery template={ ArticleTemplate } count={ data.ElementRecommendationCount ?? 3 } apiKey={ data.ElementDeliveryApiKey ?? '' } className="grid grid-cols-1 lg:grid-cols-3 gap-10 relative pb-12 w-full" placeholder={ PlaceHolder } />}
     </CmsEditable>
 }
 ContentRecsElementElement.displayName = "Content Recommendations (Element/ContentRecsElement)"

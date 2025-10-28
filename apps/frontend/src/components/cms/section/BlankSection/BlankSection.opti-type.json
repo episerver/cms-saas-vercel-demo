@@ -1,0 +1,16 @@
+{
+  "key": "BlankSection",
+  "displayName": "Blank Section",
+  "description": "A section without a predefined layout.",
+  "baseType": "_section",
+  "isContract": false,
+  "sortOrder": 0,
+  "mayContainTypes": [],
+  "mediaFileExtensions": [],
+  "compositionBehaviors": [
+    "sectionEnabled"
+  ],
+  "contracts": [],
+  "lastModifiedBy": "",
+  "properties": {}
+}

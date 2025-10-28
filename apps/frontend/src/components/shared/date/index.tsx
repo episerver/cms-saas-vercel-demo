@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect, useState, type FunctionComponent } from "react";
+import { useEffect, useState, type FunctionComponent, type JSX } from "react";
 
 export type DateDisplayProps = {
     value?: string | number | Date

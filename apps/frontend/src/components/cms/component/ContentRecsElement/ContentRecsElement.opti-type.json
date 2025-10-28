@@ -2,13 +2,15 @@
   "key": "ContentRecsElement",
   "displayName": "Content Recommendations",
   "description": "Add a set of content recommendations",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "ElementDeliveryApiKey": {
       "type": "string",
@@ -19,7 +21,6 @@
       "required": true,
       "group": "Information",
       "sortOrder": 1,
-      "editorSettings": {},
       "maxLength": 20,
       "pattern": "[0-9A-Z]{20,20}"
     },
@@ -31,7 +32,6 @@
       "required": true,
       "group": "Information",
       "sortOrder": 2,
-      "editorSettings": {},
       "minimum": 1,
       "maximum": 12
     }

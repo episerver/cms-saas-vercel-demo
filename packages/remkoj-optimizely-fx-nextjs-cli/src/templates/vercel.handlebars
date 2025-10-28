@@ -1,14 +1,9 @@
 // Auto generated route for /.well-known/vercel/flags by Optimizely Feature Experimentation.
-import { NextResponse, type NextRequest } from 'next/server';
-import { verifyAccess, type ApiData } from '@vercel/flags';
-import { getProviderData } from "@vercel/flags/next";
+import { getProviderData, createFlagsDiscoveryEndpoint } from "flags/next";
 import * as flags from '{{files.flagsFile}}';
 import { getFlagVariants } from '{{files.sdkFile}}';
 
-export async function GET(request: NextRequest) {
-    const access = await verifyAccess(request.headers.get('Authorization'));
-    if (!access) return NextResponse.json(null, { status: 401 });
-
+export const GET = createFlagsDiscoveryEndpoint(async (request) => {
     //Retrieve the flags from the definitions file
     const provider = getProviderData(flags)
     const hints = new Map<string, string>()
@@ -27,5 +22,5 @@ export async function GET(request: NextRequest) {
     hints.forEach((text, key) => provider.hints.push({ key, text }))
 
     // Return the flag options
-    return NextResponse.json<ApiData>(provider);
-}
+    return provider;
+})

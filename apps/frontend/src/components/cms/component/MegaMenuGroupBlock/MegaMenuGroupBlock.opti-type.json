@@ -2,11 +2,13 @@
   "key": "MegaMenuGroupBlock",
   "displayName": "Header menu item",
   "description": "A menu item for the Header Menu",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 15100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "MenuMenuHeading": {
       "type": "string",
@@ -16,8 +18,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "MegaMenuUrl": {
       "type": "url",
@@ -26,8 +27,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "MegaMenuContentArea": {
       "type": "array",
@@ -37,11 +37,9 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [
-          "CardBlock",
           "MenuNavigationBlock",
           "BlogPostPage"
         ],

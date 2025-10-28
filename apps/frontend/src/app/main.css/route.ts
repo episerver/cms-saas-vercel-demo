@@ -4,8 +4,8 @@ function handle(req: NextRequest) : NextResponse
 {
     const variables : Map<string,string> = new Map<string,string>()
     
-    variables.set('font-size-normal', '16px')
-    variables.set('font-size-desktop', '20px')
+    variables.set('font-size-normal', '14px')
+    variables.set('font-size-desktop', '16px')
 
     let variableDefinitions = ""
     variables.forEach((v,k) => {

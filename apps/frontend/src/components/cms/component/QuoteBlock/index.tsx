@@ -1,3 +1,4 @@
+import 'server-only'
 import React from "react";
 import { type QuoteBlockDataFragment, QuoteBlockDataFragmentDoc} from "@gql/graphql";
 import Image from "next/image";
@@ -16,15 +17,16 @@ const CardColors = {
 /**
  * React functional component for rendering a quote block with user information.
  *
- * @param {QuoteBlockProps} user - the user object with profile information
- * @param {string} quote - the quote to be displayed
- * @param {string} color - the color theme of the block
- * @param {boolean} active - whether the block is active or not
- * @return {JSX.Element} the rendered quote block component
+ * @param user - the user object with profile information
+ * @param quote - the quote to be displayed
+ * @param color - the color theme of the block
+ * @param active - whether the block is active or not
+ * @return the rendered quote block component
  */
 const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
   data: { profilePicture, name, location, quote, color, active },
-  ctx
+  ctx,
+  editProps
 }) => {
   const additionalClasses: string[] = [CardColors[color || "white"]];
 
@@ -35,14 +37,17 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
   }
 
   const profileUrl = refToURL(profilePicture)
+  const figureCssClass = `p-4 lg:p-12 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
+        " "
+      )}`
 
   return (
-    <figure
-      className={`p-4 lg:p-12 flex flex-col rounded-[40px] relative transition-all duration-300 before:content-[''] before:z-[-1] before:absolute before:top-0 before:left-0 before:w-full before:h-full before:bg-azure before:rounded-[40px] before:transition-all before:duration-300 before:ease-in-out ${additionalClasses.join(
-        " "
-      )}`}
+    <CmsEditable as="figure"
+      className={figureCssClass}
+      {...editProps}
+      ctx={ctx}
     >
-      <CmsEditable as="blockquote" cmsFieldName="QuoteText" className="text-lg" ctx={ ctx }>
+      <CmsEditable as="blockquote" cmsFieldName="QuoteText" className="text-lg" ctx={ctx}>
         {quote}
       </CmsEditable>
       <figcaption className="flex items-center mt-8">
@@ -69,7 +74,7 @@ const QuoteBlock: CmsComponent<QuoteBlockDataFragment> = ({
           </>}
         </cite>
       </figcaption>
-    </figure>
+    </CmsEditable>
   );
 };
 

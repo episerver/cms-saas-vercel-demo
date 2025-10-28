@@ -1,5 +1,5 @@
 "use client";
-import { useMemo, useEffect, useState } from "react";
+import { useMemo, useEffect, useState, type JSX } from "react";
 import { DropDown, type DropDownOption } from "@/components/shared/drop_down";
 import BlogPostCard from "@/components/shared/blog_post_card";
 import { useIntUrlState, useStringUrlState } from "@/lib/use-url-state";
@@ -9,6 +9,7 @@ import {
   type GetBlogPostsResult,
 } from "../actions/getBlogPosts";
 import { Paging } from "./paging";
+import { getAssetAltText, getAssetUrl } from "@/cmp-dam";
 
 export type BlogPostsSectionProps = {
   parentKey: string;
@@ -85,6 +86,7 @@ export default function BlogPostsSection({
       setPageData(newPageData);
       setLoading(false);
     };
+    setLoading(true)
     updateData();
     return () => {
       cancelled = true;
@@ -140,6 +142,8 @@ export default function BlogPostsSection({
           items.filter(Utils.isNotNullOrUndefined).map((item) => {
             const key = item.metadata?.key;
             if (!key) return null;
+            const imgSrc = getAssetUrl(item.image) ?? "/assets/starburst-bg.jpg"
+            const imgAlt = getAssetAltText(item.image) ?? ""
             return (
               <div
                 key={key}
@@ -153,11 +157,8 @@ export default function BlogPostsSection({
                     id: item.metadata?.key ?? "",
                     description: "",
                     image: {
-                      src: new URL(
-                        item.image?.src?.default ?? "/",
-                        item.image?.src?.base ?? "https://example.com",
-                      ).href,
-                      alt: item.metadata?.key ?? "",
+                      src: imgSrc,
+                      alt: imgAlt,
                       width: 200,
                       height: 200,
                     },

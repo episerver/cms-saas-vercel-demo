@@ -1,14 +1,16 @@
 {
   "key": "ImageElement",
   "displayName": "Image",
-  "description": "",
-  "baseType": "component",
+  "description": "Add an image to an experience",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "altText": {
       "type": "string",
@@ -18,8 +20,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "imageLink": {
       "type": "contentReference",
@@ -29,9 +30,8 @@
       "required": true,
       "group": "Information",
       "sortOrder": 20,
-      "editorSettings": {},
       "allowedTypes": [
-        "Image"
+        "_image"
       ],
       "restrictedTypes": []
     }

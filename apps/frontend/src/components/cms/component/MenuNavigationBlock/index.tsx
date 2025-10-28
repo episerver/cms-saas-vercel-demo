@@ -8,14 +8,13 @@ import Link from "./_link";
  * Menu navigation
  * 
  */
-export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockDataFragment> = ({ data: { MenuNavigationHeading: heading, NavigationLinks: links, _metadata: metadata }, ctx}) => {
-    const groupLabel = heading ?? metadata?.displayName ?? "Unnamed link group"
+export const MenuNavigationBlockComponent : CmsComponent<MenuNavigationBlockDataFragment> = ({ data: { MenuNavigationHeading: heading, NavigationLinks: links }, ctx}) => {
+    const groupLabel = heading ?? "Unnamed link group"
     return <>
         <CmsEditable as="div" cmsFieldName="MenuNavigationHeading" className="pb-1 uppercase font-bold" ctx={ctx}>{ groupLabel }</CmsEditable>
         <CmsEditable as="ul" cmsFieldName="NavigationLinks" ctx={ctx}>
-            { (links || []).map(link => {
-                const linkData = getFragmentData(LinkItemDataFragmentDoc, link)
-                const linkUrl = getFragmentData(LinkDataFragmentDoc, linkData?.url)
+            { (links || []).map(linkData => {
+                const linkUrl = linkData?.url
                 if (!(linkData && linkUrl)) return null
                 const linkKey = (linkData.text ?? '')+'::'+(linkUrl.default)
                 return <li key={ linkKey }>

@@ -4,91 +4,22 @@
   "nodeType": "row",
   "isDefault": true,
   "settings": {
-    "maxWidth": {
-      "displayName": "Maximum width",
+    "showAsRowFrom": {
+      "displayName": "Show as row from (screen width)",
       "editor": "",
-      "sortOrder": 50,
+      "sortOrder": 5,
       "choices": {
-        "container": {
-          "displayName": "Container (Fixed breakpoints based on window width)",
-          "sortOrder": 20
-        },
-        "full": {
-          "displayName": "None (Section width)",
-          "sortOrder": 10
-        }
-      }
-    },
-    "verticalSpacing": {
-      "displayName": "Vertical spacing",
-      "editor": "",
-      "sortOrder": 40,
-      "choices": {
-        "verylarge": {
-          "displayName": "Very large",
-          "sortOrder": 50
-        },
-        "large": {
-          "displayName": "Large",
-          "sortOrder": 40
-        },
-        "medium": {
+        "md": {
           "displayName": "Medium",
-          "sortOrder": 30
+          "sortOrder": 10
         },
-        "small": {
-          "displayName": "Small",
+        "lg": {
+          "displayName": "Large",
           "sortOrder": 20
         },
-        "none": {
-          "displayName": "None",
-          "sortOrder": 10
-        }
-      }
-    },
-    "alignContent": {
-      "displayName": "Vertical alignment",
-      "editor": "",
-      "sortOrder": 30,
-      "choices": {
-        "stretch": {
-          "displayName": "Stretch",
-          "sortOrder": 40
-        },
-        "end": {
-          "displayName": "End",
+        "xl": {
+          "displayName": "Extra large",
           "sortOrder": 30
-        },
-        "center": {
-          "displayName": "Center",
-          "sortOrder": 20
-        },
-        "start": {
-          "displayName": "Start",
-          "sortOrder": 10
-        }
-      }
-    },
-    "justifyContent": {
-      "displayName": "Horizontal alignment",
-      "editor": "",
-      "sortOrder": 20,
-      "choices": {
-        "stretch": {
-          "displayName": "Stretch",
-          "sortOrder": 40
-        },
-        "end": {
-          "displayName": "End",
-          "sortOrder": 30
-        },
-        "center": {
-          "displayName": "Center",
-          "sortOrder": 20
-        },
-        "start": {
-          "displayName": "Start",
-          "sortOrder": 10
         }
       }
     },
@@ -97,53 +28,123 @@
       "editor": "",
       "sortOrder": 10,
       "choices": {
-        "xxl": {
-          "displayName": "Extra extra large",
-          "sortOrder": 60
-        },
-        "xl": {
-          "displayName": "Extra large",
-          "sortOrder": 50
-        },
-        "large": {
-          "displayName": "Large",
-          "sortOrder": 40
-        },
-        "medium": {
-          "displayName": "Medium",
-          "sortOrder": 30
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
         },
         "small": {
           "displayName": "Small",
           "sortOrder": 20
         },
-        "none": {
-          "displayName": "None",
-          "sortOrder": 10
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "xl": {
+          "displayName": "Extra large",
+          "sortOrder": 50
+        },
+        "xxl": {
+          "displayName": "Extra extra large",
+          "sortOrder": 60
         }
       }
     },
-    "showAsRowFrom": {
-      "displayName": "Show as row from (screen width)",
+    "justifyContent": {
+      "displayName": "Horizontal alignment",
       "editor": "",
-      "sortOrder": 5,
+      "sortOrder": 20,
       "choices": {
-        "xl": {
-          "displayName": "Extra large",
-          "sortOrder": 30
+        "start": {
+          "displayName": "Start",
+          "sortOrder": 10
         },
-        "lg": {
-          "displayName": "Large",
+        "center": {
+          "displayName": "Center",
           "sortOrder": 20
         },
-        "md": {
-          "displayName": "Medium",
+        "end": {
+          "displayName": "End",
+          "sortOrder": 30
+        },
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        }
+      }
+    },
+    "alignContent": {
+      "displayName": "Vertical alignment",
+      "editor": "",
+      "sortOrder": 30,
+      "choices": {
+        "start": {
+          "displayName": "Start",
           "sortOrder": 10
+        },
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "end": {
+          "displayName": "End",
+          "sortOrder": 30
+        },
+        "stretch": {
+          "displayName": "Stretch",
+          "sortOrder": 40
+        }
+      }
+    },
+    "verticalSpacing": {
+      "displayName": "Vertical spacing",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        },
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 20
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 40
+        },
+        "verylarge": {
+          "displayName": "Very large",
+          "sortOrder": 50
+        }
+      }
+    },
+    "maxWidth": {
+      "displayName": "Maximum width",
+      "editor": "",
+      "sortOrder": 50,
+      "choices": {
+        "full": {
+          "displayName": "None (Section width)",
+          "sortOrder": 10
+        },
+        "container": {
+          "displayName": "Container (Fixed breakpoints based on window width)",
+          "sortOrder": 20
         }
       }
     },
     "textColor": {
       "displayName": "Text color",
+      "editor": "",
       "sortOrder": 60,
       "choices": {
         "inherit": {

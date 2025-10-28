@@ -1,4 +1,4 @@
-import { type FunctionComponent } from "react";
+import { type JSX, type FunctionComponent } from "react";
 import { type LinkItemDataFragment, type LinkDataFragment } from "@gql/graphql";
 import Link from "next/link";
 

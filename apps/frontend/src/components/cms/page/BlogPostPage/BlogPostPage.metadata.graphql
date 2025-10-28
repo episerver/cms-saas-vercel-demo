@@ -15,7 +15,14 @@ query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales
       title: Heading
       author: ArticleAuthor
       image: BlogPostPromoImage {
-          ...ReferenceData
+        type: __typename
+        ...ReferenceData
+        item {
+          ... on ImageMedia {
+            AltText
+          }
+          ...cmpPublicImage
+        }
       }
       topics: Topic
       seo: SeoSettings {
@@ -23,7 +30,14 @@ query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales
         description: MetaDescription
         keywords: MetaKeywords
         image: SharingImage {
+          type: __typename
           ...ReferenceData
+          item {
+            ... on ImageMedia {
+              AltText
+            }
+            ...cmpPublicImage
+          }
         }
         type: GraphType
       }

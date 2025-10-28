@@ -3,7 +3,7 @@ import { type CTAElementDataFragment } from "@/gql/graphql"
 import { extractSettings } from "@remkoj/optimizely-cms-react/rsc"
 import Button from './_base'
 
-export const DefaultCTAElement : CTAElementDefaultStylesComponent<CTAElementDataFragment> = ({ data: { cta_link: link, cta_text: text }, layoutProps, className, ...containerProps }) => {
+export const DefaultCTAElement : CTAElementDefaultStylesComponent<CTAElementDataFragment> = ({ data: { Link: link, Text: text }, layoutProps, className, ...containerProps }) => {
     const { 
         buttonAlign = "auto", 
         buttonType ="primary", 

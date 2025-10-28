@@ -1,0 +1,47 @@
+{
+  "name": "@remkoj/optimizely-fx-nextjs",
+  "type": "module",
+  "version": "0.0.2",
+  "scripts": {
+    "clean": "tsc --build --clean",
+    "prepare": "tsc --build --force",
+    "watch": "tsc --watch",
+    "recompile": "tsc --build --clean && tsc --build --force",
+    "pack:dev": "tsc --build --clean && tsc --build --force && yarn pack --install-if-needed --out ../../packages/%s-dev.tgz"
+  },
+  "files": [
+    "./dist"
+  ],
+  "exports": {
+    ".": "./dist/index.js",
+    "./rsc": "./dist/rsc.js",
+    "./client": "./dist/client.js"
+  },
+  "typesVersions": {
+    "*": {
+      "rsc": [
+        "dist/rsc.d.ts"
+      ],
+      "client": [
+        "dist/client.d.ts"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.2",
+    "@types/react-dom": "^19.2.2",
+    "next": "^16.0.0",
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0",
+    "typescript": "^5.9.3"
+  },
+  "dependencies": {
+    "@optimizely/optimizely-sdk": "^6.2.0",
+    "tslib": "^2.8.1"
+  },
+  "peerDependencies": {
+    "next": "*",
+    "react": "*",
+    "react-dom": "*"
+  }
+}

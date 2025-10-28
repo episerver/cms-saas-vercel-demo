@@ -29,8 +29,8 @@ export const ContinueReadingComponentComponent: CmsComponent<
   ctx,
 }) => {
   return (
-    <CmsEditable as="div" cmsId={contentKey} className="w-full flex flex-col items-center gap-4 md:gap-8" ctx={ctx}>
-      <CmsEditable as="div" cmsFieldName="topline" className="uppercase" ctx={ctx}>
+    <CmsEditable as="div" cmsId={contentKey} className="w-full flex flex-col items-center gap-4 md:gap-8" ctx={ctx} forwardCtx={false}>
+      <CmsEditable as="div" cmsFieldName="topline" className="uppercase" ctx={ctx} forwardCtx={false}>
         {topline}
       </CmsEditable>
       <CmsEditable
@@ -38,6 +38,7 @@ export const ContinueReadingComponentComponent: CmsComponent<
         cmsFieldName="heading"
         className="text-6xl font-bold"
         ctx={ctx}
+        forwardCtx={false}
       >
         {heading}
       </CmsEditable>
@@ -81,10 +82,7 @@ export const getSharedInstanceData = cache(
       return undefined;
     const data = result.ContinueReadingComponent?.item || undefined;
     if (!data) return undefined;
-    const iContentMetaData = getFragmentData(
-      IContentInfoFragmentDoc,
-      getFragmentData(IContentDataFragmentDoc, data)?._metadata,
-    );
+    const iContentMetaData = getFragmentData(IContentDataFragmentDoc, data)?._metadata;
     const link: ContentLinkWithLocale = {
       key: iContentMetaData?.key || "",
       locale: iContentMetaData?.locale || ctx?.locale || undefined,

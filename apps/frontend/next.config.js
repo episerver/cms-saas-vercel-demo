@@ -12,6 +12,7 @@ const nextConfig = {
     generateEtags: true,
     cleanDistDir: true,
     poweredByHeader: false,
+    reactCompiler: true,
     images: {
         remotePatterns: [
             // Optimizely CMS
@@ -24,6 +25,12 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: '*.idio.co',
+                pathname: '/**'
+            },
+            // Optimizely DAM
+            {
+                protocol: 'https',
+                hostname: '*.cmp.optimizely.com',
                 pathname: '/**'
             }
         ]

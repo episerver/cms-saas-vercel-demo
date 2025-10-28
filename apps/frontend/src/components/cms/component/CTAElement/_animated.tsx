@@ -31,7 +31,7 @@ const DurationValues : CTAValueMap<"duration", number> = {
     verylong: 2,
 }
 
-export const AnimatedCTAElement : CTAElementAnimatedStylesComponent<CTAElementDataFragment> = ({ data: { cta_link: link, cta_text: text }, layoutProps, className, ...containerProps }) => {
+export const AnimatedCTAElement : CTAElementAnimatedStylesComponent<CTAElementDataFragment> = ({ data: { Link: link, Text: text }, layoutProps, className, ...containerProps }) => {
     // Extract the actual layout properties and apply defaults
     const { 
         buttonAlign = "auto", 

@@ -4,41 +4,38 @@
   "contentType": "HeadingElement",
   "isDefault": true,
   "settings": {
-    "transform": {
-      "displayName": "Text transform",
+    "headingType": {
+      "displayName": "Heading Type",
       "editor": "",
-      "sortOrder": 40,
+      "sortOrder": 10,
       "choices": {
-        "capitalize": {
-          "displayName": "Capitalize",
-          "sortOrder": 40
+        "h1": {
+          "displayName": "Heading 1",
+          "sortOrder": 10
         },
-        "lowercase": {
-          "displayName": "Lowercase",
+        "h2": {
+          "displayName": "Heading 2",
+          "sortOrder": 20
+        },
+        "h3": {
+          "displayName": "Heading 3",
           "sortOrder": 30
         },
-        "uppercase": {
-          "displayName": "Uppercase",
-          "sortOrder": 20
+        "h4": {
+          "displayName": "Heading 4",
+          "sortOrder": 40
         },
-        "keep": {
-          "displayName": "As entered",
-          "sortOrder": 10
-        }
-      }
-    },
-    "showAs": {
-      "displayName": "Render as",
-      "editor": "",
-      "sortOrder": 30,
-      "choices": {
-        "element": {
-          "displayName": "Basic element",
-          "sortOrder": 20
+        "h5": {
+          "displayName": "Heading 5",
+          "sortOrder": 50
         },
-        "heading": {
-          "displayName": "Heading element",
-          "sortOrder": 10
+        "h6": {
+          "displayName": "Heading 6",
+          "sortOrder": 60
+        },
+        "plain": {
+          "displayName": "Plain text",
+          "sortOrder": 250
         }
       }
     },
@@ -47,56 +44,59 @@
       "editor": "",
       "sortOrder": 20,
       "choices": {
-        "justify": {
-          "displayName": "Justify",
-          "sortOrder": 40
-        },
-        "right": {
-          "displayName": "Right",
-          "sortOrder": 30
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 10
         },
         "center": {
           "displayName": "Center",
           "sortOrder": 20
         },
-        "left": {
-          "displayName": "Left",
-          "sortOrder": 10
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 30
+        },
+        "justify": {
+          "displayName": "Justify",
+          "sortOrder": 40
         }
       }
     },
-    "headingType": {
-      "displayName": "Heading Type",
+    "showAs": {
+      "displayName": "Render as",
       "editor": "",
-      "sortOrder": 10,
+      "sortOrder": 30,
       "choices": {
-        "plain": {
-          "displayName": "Plain text",
-          "sortOrder": 250
+        "heading": {
+          "displayName": "Heading element",
+          "sortOrder": 10
         },
-        "h6": {
-          "displayName": "Heading 6",
-          "sortOrder": 60
+        "element": {
+          "displayName": "Basic element",
+          "sortOrder": 20
+        }
+      }
+    },
+    "transform": {
+      "displayName": "Text transform",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "keep": {
+          "displayName": "As entered",
+          "sortOrder": 10
         },
-        "h5": {
-          "displayName": "Heading 5",
-          "sortOrder": 50
-        },
-        "h4": {
-          "displayName": "Heading 4",
-          "sortOrder": 40
-        },
-        "h3": {
-          "displayName": "Heading 3",
-          "sortOrder": 30
-        },
-        "h2": {
-          "displayName": "Heading 2",
+        "uppercase": {
+          "displayName": "Uppercase",
           "sortOrder": 20
         },
-        "h1": {
-          "displayName": "Heading 1",
-          "sortOrder": 10
+        "lowercase": {
+          "displayName": "Lowercase",
+          "sortOrder": 30
+        },
+        "capitalize": {
+          "displayName": "Capitalize",
+          "sortOrder": 40
         }
       }
     }

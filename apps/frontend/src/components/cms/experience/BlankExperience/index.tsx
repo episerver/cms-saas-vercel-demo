@@ -1,8 +1,8 @@
 import { OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
-import { BlankExperienceDataFragmentDoc, type BlankExperienceDataFragment } from "@/gql/graphql";
+import { getBlankExperienceDataDocument, type getBlankExperienceDataQuery } from "@/gql/graphql";
 import { getFragmentData } from "@/gql/fragment-masking";
 import { ExperienceDataFragmentDoc, type Locales, type InputMaybe } from "@/gql/graphql";
-import { OptimizelyComposition, isNode, CmsEditable } from "@remkoj/optimizely-cms-react/rsc";
+import { OptimizelyComposition, isNode } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/gql"
 
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
@@ -13,7 +13,7 @@ import { type Metadata } from "next";
  * Blank Experience
  * An experience without a predefined layout.
  */
-export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragment> = ({ data, ctx }) => {
+export const BlankExperienceExperience : CmsComponent<getBlankExperienceDataQuery> = ({ data, ctx }) => {
     if (ctx) ctx.editableContentIsExperience = true;
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition;
     return <div className="vb:experience" data-component="BlankExperience">
@@ -21,7 +21,7 @@ export const BlankExperienceExperience : CmsComponent<BlankExperienceDataFragmen
     </div>
 }
 BlankExperienceExperience.displayName = "Blank Experience (Experience/BlankExperience)"
-BlankExperienceExperience.getDataFragment = () => ['BlankExperienceData', BlankExperienceDataFragmentDoc]
+BlankExperienceExperience.getDataQuery = () => getBlankExperienceDataDocument
 BlankExperienceExperience.getMetaData = async (contentLink, locale, client) => {
     const sdk = getSdk(client);
     const data = await sdk.getBlankExperienceMetaData({

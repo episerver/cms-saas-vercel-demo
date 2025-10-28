@@ -17,6 +17,7 @@ export function createTemplateContextFromFlags(fxFlags: ReadonlyArray<OptiFxFlag
         const flagDefaults = defintionsToDefault(flag.variable_definitions)
         return {
             projectId: tpl ? 'your-project-id' : flagProject.toString(),
+            varName: flagKey.split('-').map((p,i) => i > 0 ? p[0].toUpperCase()+p.substring(1) : p).join(''),
             key: flagKey,
             name: flagName,
             description: flagDescription,

@@ -1,6 +1,5 @@
 'use client'
-
-import React, { useCallback, type FunctionComponent } from 'react'
+import React, { useCallback, type JSX, type FunctionComponent } from 'react'
 import { useEffect, useRef, useId } from 'react'
 import { useOptimizelyOne } from '@remkoj/optimizely-one-nextjs/client'
 

@@ -4,45 +4,45 @@
   "contentType": "ImageElement",
   "isDefault": false,
   "settings": {
-    "roundedCorners": {
-      "displayName": "Rounded corners",
-      "editor": "",
-      "sortOrder": 20,
-      "choices": {
-        "full": {
-          "displayName": "Full",
-          "sortOrder": 60
-        },
-        "medium": {
-          "displayName": "Medium",
-          "sortOrder": 30
-        },
-        "small": {
-          "displayName": "Small",
-          "sortOrder": 20
-        },
-        "none": {
-          "displayName": "None",
-          "sortOrder": 10
-        }
-      }
-    },
     "size": {
       "displayName": "Size",
       "editor": "",
       "sortOrder": 10,
       "choices": {
-        "large": {
-          "displayName": "Large",
-          "sortOrder": 30
+        "small": {
+          "displayName": "Small",
+          "sortOrder": 10
         },
         "medium": {
           "displayName": "Medium",
           "sortOrder": 20
         },
+        "large": {
+          "displayName": "Large",
+          "sortOrder": 30
+        }
+      }
+    },
+    "roundedCorners": {
+      "displayName": "Rounded corners",
+      "editor": "",
+      "sortOrder": 20,
+      "choices": {
+        "none": {
+          "displayName": "None",
+          "sortOrder": 10
+        },
         "small": {
           "displayName": "Small",
-          "sortOrder": 10
+          "sortOrder": 20
+        },
+        "medium": {
+          "displayName": "Medium",
+          "sortOrder": 30
+        },
+        "full": {
+          "displayName": "Full",
+          "sortOrder": 60
         }
       }
     }

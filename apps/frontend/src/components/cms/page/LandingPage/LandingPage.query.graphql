@@ -1,0 +1,22 @@
+query getLandingPageData($key: String!, $locale: [Locales], $version: String, $changeset: String, $variation: String) {
+  data: LandingPage (
+    where: {
+      _metadata: {
+        version: { eq: $version }
+        changeset: { eq: $changeset }
+        variation: { eq: $variation }
+      }
+    }
+    locale: $locale
+    ids: [$key]
+  ) {
+    item {
+      _metadata {
+      	key
+    	}
+      TopContentArea { ...BlockData }
+      MainContentArea { ...BlockData }
+      SeoSettings { ...PageSeoSettingsPropertyData }
+    }
+  }
+}

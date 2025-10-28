@@ -2,13 +2,15 @@
   "key": "HeroBlock",
   "displayName": "Hero",
   "description": "Hero Component, usable as a block or section",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "sectionEnabled"
   ],
+  "contracts": [],
   "properties": {
     "HeroImage": {
       "type": "contentReference",
@@ -18,7 +20,6 @@
       "required": false,
       "group": "Information",
       "sortOrder": 0,
-      "editorSettings": {},
       "allowedTypes": [],
       "restrictedTypes": []
     },
@@ -30,8 +31,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "Eyebrow": {
       "type": "string",
@@ -41,8 +41,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "Heading": {
       "type": "string",
@@ -52,8 +51,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 30,
-      "editorSettings": {}
+      "sortOrder": 30
     },
     "SubHeading": {
       "type": "string",
@@ -63,19 +61,16 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 40,
-      "editorSettings": {}
+      "sortOrder": 40
     },
     "Description": {
-      "type": "string",
-      "format": "html",
+      "type": "richText",
       "displayName": "Description",
       "description": "",
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 50,
-      "editorSettings": {}
+      "sortOrder": 50
     },
     "HeroColor": {
       "type": "string",
@@ -86,35 +81,32 @@
       "required": false,
       "group": "Information",
       "sortOrder": 60,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Blue",
-            "value": "blue"
-          },
-          {
-            "displayName": "Orange",
-            "value": "orange"
-          },
-          {
-            "displayName": "Green",
-            "value": "green"
-          },
-          {
-            "displayName": "Red",
-            "value": "red"
-          },
-          {
-            "displayName": "Purple",
-            "value": "purple"
-          },
-          {
-            "displayName": "Dark Blue",
-            "value": "dark-blue"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "blue",
+          "displayName": "Blue"
+        },
+        {
+          "value": "orange",
+          "displayName": "Orange"
+        },
+        {
+          "value": "green",
+          "displayName": "Green"
+        },
+        {
+          "value": "red",
+          "displayName": "Red"
+        },
+        {
+          "value": "purple",
+          "displayName": "Purple"
+        },
+        {
+          "value": "dark-blue",
+          "displayName": "Dark Blue"
+        }
+      ]
     },
     "HeroButton": {
       "type": "component",
@@ -124,8 +116,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 70,
-      "editorSettings": {}
+      "sortOrder": 70
     }
   }
 }

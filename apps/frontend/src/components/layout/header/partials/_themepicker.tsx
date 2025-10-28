@@ -41,7 +41,7 @@ export const ThemePicker: FunctionComponent = () => {
       title={title + ", click to switch mode"}
     >
       <div
-        className={`rounded-full border-2 border-solid ${effectiveTheme == "light" ? "bg-white dark:border-vulcan-85" : "bg-vulcan-85 dark:border-ghost-white"} w-full h-full min-h-11 shadow-inner`}
+        className={`rounded-full border-[calc(var(--spacing)*0.5)] border-solid ${effectiveTheme == "light" ? "bg-white dark:border-vulcan-85" : "bg-vulcan-85 dark:border-ghost-white"} w-full h-full min-h-11 shadow-inner`}
       >
         {theme == "dark" && (
           <MoonIcon

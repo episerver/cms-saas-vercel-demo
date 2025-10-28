@@ -1,4 +1,4 @@
-import { type CliModule } from '../types.js'
+import type { CliModule, OptiCmsArgs } from '../types.js'
 import fs from 'node:fs'
 import path from 'node:path'
 import { getFlags as getAllFlags } from '../operations/index.js'
@@ -6,12 +6,21 @@ import { engine } from "../templates/index.js"
 import { flagsFile, optiDataFileConfigKey } from './_convention.js'
 import { createTemplateContextFromFlags } from './_shared.js'
 import FlagsTypeScriptFile, { type FlagDefs } from './_typescript.js'
+import type { Argv } from 'yargs'
 
-export const PullCommand: CliModule = {
+export type PullCommandArgs = { excludeByPrefix?: string }
+export type PullCommandType = CliModule<PullCommandArgs>
+
+export const PullCommand: PullCommandType = {
     command: "pull",
     describe: "Update the flags.ts from FX; without removing flags or variables so the site won't break",
+    builder: (yargs) => {
+        const newYargs : Argv<OptiCmsArgs<PullCommandArgs>> = yargs;
+        newYargs.option("excludeByPrefix", { alias: "x", string: true, type: "string", demandOption: false, default: undefined })
+        return newYargs
+    },
     async handler(args, opts) {
-        const { path: cwd, nosrc, project: projectId, token: accessToken, key, tpl, force } = args
+        const { path: cwd, nosrc, project: projectId, token: accessToken, key, tpl, force, excludeByPrefix } = args
 
         // Read the existing flags, so these will not be overwritten
         const projFlagsFile = path.normalize(path.join(cwd, nosrc ? '' : 'src', flagsFile))
@@ -26,7 +35,11 @@ export const PullCommand: CliModule = {
         }
 
         process.stdout.write(`\nFetching flags from Optimizely Feature Experimentation\n`)
-        const flagsListing = await getAllFlags({ accessToken, projectId })
+        const flagsListing = (await getAllFlags({ accessToken, projectId })).filter(x => {
+            if (excludeByPrefix && excludeByPrefix.length > 0)
+                return !x.key.toLowerCase().startsWith(excludeByPrefix.toLowerCase())
+            return true;
+        })
         for (const flag of flagsListing) {
             process.stdout.write(` - ${ flag.key }: ${ flag.name }\n`)
         }

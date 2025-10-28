@@ -1,10 +1,9 @@
 {
-  "$id": "https://api.cms.optimizely.com/schema/DisplayTemplate",
+  "$id": "https://api.cms.optimizely.com/preview3/schema/DisplayTemplate",
   "type": "object",
   "title": "DisplayTemplate",
   "required": [
-    "displayName",
-    "key"
+    "displayName"
   ],
   "properties": {
     "key": {
@@ -12,8 +11,7 @@
       "minLength": 2,
       "pattern": "^[A-Za-z][_0-9A-Za-z]+$",
       "type": "string",
-      "description": "The key that identifies this display template.",
-      "readOnly": true
+      "description": "The key that identifies this display template."
     },
     "displayName": {
       "maxLength": 255,
@@ -30,7 +28,9 @@
       "nullable": true
     },
     "baseType": {
-      "$ref": "#/definitions/ContentBaseType"
+      "type": "string",
+      "description": "The optional base type this display template is valid for.",
+      "nullable": true
     },
     "contentType": {
       "maxLength": 255,
@@ -42,7 +42,7 @@
     },
     "isDefault": {
       "type": "boolean",
-      "description": "If this is the default display template for the associated base type,\r\nnode type or content type."
+      "description": "If this is the default display template for the associated base type, node type or content type."
     },
     "created": {
       "type": "string",
@@ -76,21 +76,6 @@
   },
   "description": "Describes a display template that can be assigned to content.",
   "definitions": {
-    "ContentBaseType": {
-      "enum": [
-        "page",
-        "component",
-        "media",
-        "image",
-        "video",
-        "folder",
-        "experience",
-        "section",
-        "element"
-      ],
-      "type": "string",
-      "description": "Represent the base type of a ContentType."
-    },
     "DisplaySettingChoice": {
       "required": [
         "displayName"

@@ -1,0 +1,273 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme inline {
+  /* Color group: White */
+  --color-white: #ffffff;
+  --color-dark-white: var(--color-vulcan-85);
+  --color-content-white: var(--color-vulcan);
+  --color-content-dark-white: var(--color-white);
+  --color-border-dark-white: var(--color-white);
+
+  /* Color group: Ghost White */
+  --color-ghost-white: #F8F8FC;
+  --color-dark-ghost-white: var(--color-vulcan);
+  --color-content-ghost-white: var(--color-vulcan);
+  --color-content-dark-ghost-white: var(--color-ghost-white);
+
+  /* Color group: Light Grey */
+  --color-light-grey: #D9D9D9;
+  --color-dark-light-grey: var(--color-vulcan-85);
+  --color-content-light-grey: var(--color-vulcan);
+  --color-content-dark-light-grey: var(--color-light-grey);
+
+  /* Color group: Azure */
+  --color-azure: #007EFC;
+  --color-dark-azure: var(--color-vulcan-85);
+  --color-content-azure: var(--color-ghost-white);
+  --color-content-dark-azure: var(--color-ghost-white);
+
+  /* Color group: Verdansk */
+  --color-verdansk: #6AF388;
+  --color-dark-verdansk: var(--color-vulcan-85);
+  --color-content-verdansk: var(--color-vulcan);
+  --color-content-dark-verdansk: var(--color-ghost-white);
+
+  /* Color group: People Eater */
+  --color-people-eater: #9847FF;
+  --color-dark-people-eater: var(--color-vulcan-85);
+  --color-content-people-eater: var(--color-ghost-white);
+  --color-content-dark-people-eater: var(--color-ghost-white);
+  
+  /* Color group: Paleruby */
+  --color-paleruby: #EB5A79;
+  --color-dark-paleruby: var(--color-vulcan-85);
+  --color-content-paleruby: var(--color-ghost-white);
+  --color-content-dark-paleruby: var(--color-ghost-white);
+
+  /* Color group: Tangy */
+  --color-tangy: #FFAA47;
+  --color-dark-tangy: var(--color-vulcan-85);
+  --color-content-tangy: var(--color-vulcan);
+  --color-content-dark-tangy: var(--color-ghost-white);
+
+  /* Color group: Vulcan */
+  --color-vulcan: #10141D;
+  --color-dark-vulcan: var(--color-vulcan);
+  --color-content-vulcan: var(--color-ghost-white);
+  --color-content-dark-vulcan: var(--color-ghost-white);
+
+  /* Color group: Vulcan 85% */
+  --color-vulcan-85: #2C313F;
+  --color-dark-vulcan-85: var(--color-vulcan-85);
+  --color-content-vulcan-85: var(--color-ghost-white);
+  --color-content-dark-vulcan-85: var(--color-ghost-white);
+
+  /* Color group: Independence */
+  --color-independence: #484F61;
+  --color-dark-independence: var(--color-vulcan-85);
+  --color-content-independence: var(--color-ghost-white);
+  --color-content-dark-independence: var(--color-ghost-white);
+
+  /* Color group: Mischka */
+  --color-mischka: #CED2DC;
+  --color-dark-mischka: var(--color-vulcan-85);
+  --color-content-mischka: var(--color-vulcan);
+  --color-content-dark-mischka: var(--color-ghost-white);
+
+  /* Color group: Pale Sky */
+  --color-pale-sky: #656C81;
+  --color-dark-pale-sky: var(--color-vulcan-85);
+  --color-content-pale-sky: var(--color-vulcan);
+  --color-content-dark-pale-sky: var(--color-ghost-white);
+  
+  /* Color group: Current Color */
+  --color-currentColor: currentColor;
+  --color-dark-currentColor: currentColor;
+  --color-content-currentColor: currentColor;
+  --color-content-dark-currentColor: currentColor;
+
+  /* Color group: Transparent */
+  --color-transparent: transparent;
+  --color-dark-transparent: transparent;
+  --color-content-transparent: transparent;
+  --color-content-dark-transparent: transparent;
+
+  /* Color group: Inherit */
+  --color-inherit: inherit;
+  --color-dark-inherit: inherit;
+  --color-content-inherit: inherit;
+  --color-content-dark-inherit: inherit;
+
+  /* Button colors */
+  --btn-bg-primary: var(--color-vulcan);
+  --btn-text-primary: var(--color-white);
+  --btn-bg-secondary: var(--color-white);
+  --btn-text-secondary: var(--color-vulcan);
+  --btn-bg-light: transparent;
+  --btn-text-light: var(--color-vulcan);
+}
+
+@utility bg-* {
+  background-color: --value(--color-*);
+  --bg-inherit-button: --value(--color-*);
+}
+
+@utility on-* {
+  background-color: --value(--color-*);
+  border-color: --value(--color-*);
+  color: --value(--color-content-*);
+  
+  --bg-inherit-button: --value(--color-*);
+  --text-inherit-button: --value(--color-content-*);
+
+  & .prose:not(:is(& [class*="on-"] .prose)) {
+    --tw-prose-body: --value(--color-content-*);
+    --tw-prose-links: --value(--color-content-*);
+    --tw-prose-quotes: --value(--color-content-*);
+    --tw-prose-captions: --value(--color-content-*);
+    --tw-prose-headings: --value(--color-content-*);
+    --tw-prose-bold: --value(--color-content-*);
+  }
+
+  @variant dark {
+    background-color: --value(--color-dark-*, --color-*);
+    color: --value(--color-content-dark-*, --color-content-*);
+
+    & .prose:not(:is(& [class*="on-"] .prose)) {
+      --tw-prose-body: --value(--color-content-dark-*);
+      --tw-prose-links: --value(--color-*);
+      --tw-prose-quotes: --value(--color-content-dark-*);
+      --tw-prose-captions: --value(--color-content-dark-*);
+      --tw-prose-headings: --value(--color-content-dark-*);
+      --tw-prose-bold: --value(--color-content-dark-*);
+    }
+  }
+}
+
+@utility outer-padding {
+  @apply lg:px-32 md:px-16 px-8;
+}
+
+@utility btn--* {
+  display: inline-block;
+  position: relative;
+  white-space: nowrap;
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  border-color: var(--bg-inherit-button, --value(--btn-text-*, --color-azure));
+
+  & .btn__content {
+    z-index: 10;
+    background-color: --value(--btn-bg-*, --color-azure);
+    color: --value(--btn-text-*, --color-white);
+    text-decoration-line: none;
+    text-decoration: none;
+
+    @variant dark {
+      background-color: --value(--bg-inherit-button, --btn-bg-*, --color-azure);
+    }
+  }
+  &:disabled .btn__content {
+    cursor: not-allowed;
+    filter: grayscale(100%);
+    opacity: 0.25;
+  }
+  &:not(:disabled) .btn__content {
+    cursor: pointer;
+  }
+}
+
+@utility btn-style-light {
+  background-color: transparent;
+  border-color: var(--color-ghost-white);
+  color: var(--color-ghost-white);
+  .btn__content {
+    background-color: transparent;
+    border-color: var(--color-ghost-white);
+    color: var(--color-ghost-white);
+  }
+
+  @variant dark {
+    border-color: var(--text-inherit-button);
+    color: var(--text-inherit-button);
+    .btn__content {
+      background-color: var(--bg-inherit-button);
+      border-color: var(--text-inherit-button);
+      color: var(--text-inherit-button);
+    }
+  }
+}
+
+@utility btn-style-dark {
+  background-color: transparent;
+  border-color: var(--color-vulcan);
+  color: var(--color-vulcan);
+  & .btn__content {
+    background-color: transparent;
+    border-color: var(--color-vulcan);
+    color: var(--color-vulcan);
+  }
+
+  @variant dark {
+    border-color: var(--bg-inherit-button);
+    color: var(--bg-inherit-button);
+    & .btn__content {
+      background-color: transparent;
+      border-color: var(--bg-inherit-button);
+      color: var(--bg-inherit-button);
+    }
+  }
+}
+  
+@utility btn__content {
+  --tw-font-weight: var(--font-weight-semibold);
+  font-weight: var(--font-weight-semibold);
+  padding: calc(var(--spacing)*2.5) calc(var(--spacing)*4) calc(var(--spacing)*2.5) calc(var(--spacing)*4);
+  border-radius: calc(var(--spacing)*10);
+  border: calc(var(--spacing)*0.5) var(--tw-border-style) var(--color-vulcan);
+  position: relative;
+  text-decoration: none !important;
+}
+  
+@utility btn-before {
+  transition-property: translate;
+  transition-timing-function: ease-in-out;
+  transition-duration: 200ms;
+
+  &::before {
+    content: "";
+    position: absolute; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--color-azure);
+    border-radius: calc(var(--spacing)*10);
+    transition-property: translate;
+    transition-timing-function: ease-in-out;
+    transition-duration: 200ms;
+    translate: calc(var(--spacing)*2) calc(var(--spacing)*2);
+  }
+
+  @variant hover {
+    translate: 0px calc(var(--spacing)*-2);
+    &::before {
+      translate: 0px calc(var(--spacing)*2);
+    }
+  }
+}
+  
+@utility link--arrow {
+  @apply relative inline-flex items-center after:translate-x-[6px] after:inline-block after:w-[6px] after:h-[24px] no-underline hover:underline hover:after:translate-x-[16px] after:transition-all after:duration-300 after:ease-in-out;
+
+  &:after {
+    content: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" width="7" height="13" viewBox="0 0 7 13" fill="none"><path d="M1 12.3711C1 9.05664 3.67767 6.37109 6.97866 6.37109H7M7 6.36619C3.68555 6.36619 1 3.69075 1 0.392454V0.371094" stroke="%2310141D" stroke-width="1.5"/></svg>') !important;
+  }
+}
+
+.optly-contentLink {
+  display: none
+}

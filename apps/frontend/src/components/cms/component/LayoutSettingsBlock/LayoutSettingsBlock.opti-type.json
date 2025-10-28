@@ -2,11 +2,13 @@
   "key": "LayoutSettingsBlock",
   "displayName": "Application layout",
   "description": "Create an application layout configuration",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 15000,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "mainMenu": {
       "type": "array",
@@ -16,7 +18,6 @@
       "required": false,
       "group": "header",
       "sortOrder": 0,
-      "editorSettings": {},
       "maxItems": 8,
       "items": {
         "type": "content",
@@ -34,8 +35,7 @@
       "localized": true,
       "required": false,
       "group": "footer",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "serviceButtons": {
       "type": "array",
@@ -45,7 +45,6 @@
       "required": false,
       "group": "header",
       "sortOrder": 20,
-      "editorSettings": {},
       "items": {
         "type": "content",
         "allowedTypes": [
@@ -55,15 +54,13 @@
       }
     },
     "contactInfo": {
-      "type": "string",
-      "format": "html",
+      "type": "richText",
       "displayName": "Contact info",
       "description": "",
       "localized": true,
       "required": false,
       "group": "footer",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "footerMenus": {
       "type": "array",
@@ -73,7 +70,6 @@
       "required": false,
       "group": "footer",
       "sortOrder": 100,
-      "editorSettings": {},
       "minItems": 0,
       "maxItems": 3,
       "items": {
@@ -92,8 +88,7 @@
       "localized": false,
       "required": false,
       "group": "footer",
-      "sortOrder": 105,
-      "editorSettings": {}
+      "sortOrder": 105
     },
     "legalLinks": {
       "type": "array",
@@ -103,12 +98,10 @@
       "required": false,
       "group": "footer",
       "sortOrder": 110,
-      "editorSettings": {},
       "minItems": 0,
       "maxItems": 5,
       "items": {
-        "type": "component",
-        "contentType": "link"
+        "type": "link"
       }
     },
     "appIdentifiers": {
@@ -120,8 +113,7 @@
       "required": false,
       "group": "Advanced",
       "sortOrder": 999,
-      "indexingType": "queryable",
-      "editorSettings": {}
+      "indexingType": "queryable"
     }
   }
 }

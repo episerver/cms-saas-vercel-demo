@@ -16,6 +16,7 @@ export const OdpEmbedBlock: CmsComponent<OdpEmbedBlockDataFragment> = ({ data, c
       contentId={contentId}
       className="odp-embed-block w-full overflow-hidden rounded-[40px]"
       ctx={ ctx }
+      forwardCtx={ false }
     />
   );
 };

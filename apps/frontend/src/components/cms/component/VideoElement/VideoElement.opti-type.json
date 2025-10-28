@@ -2,13 +2,15 @@
   "key": "VideoElement",
   "displayName": "Video",
   "description": "Add a video to an experience",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "video": {
       "type": "contentReference",
@@ -18,9 +20,8 @@
       "required": true,
       "group": "Information",
       "sortOrder": 10,
-      "editorSettings": {},
       "allowedTypes": [
-        "Video"
+        "_video"
       ],
       "restrictedTypes": []
     },
@@ -32,8 +33,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "placeholder": {
       "type": "contentReference",
@@ -43,9 +43,8 @@
       "required": false,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
       "allowedTypes": [
-        "Image"
+        "_image"
       ],
       "restrictedTypes": []
     }

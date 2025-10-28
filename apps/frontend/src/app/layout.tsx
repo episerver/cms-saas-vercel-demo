@@ -1,15 +1,13 @@
 import 'server-only'
 import type { Metadata } from "next";
-import { Figtree } from "next/font/google";
-import "./globals.scss";
 import { Body, ThemeProvider } from "@/components/theme"
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import { factory } from '@/components/factory';
-import { createClient } from '@remkoj/optimizely-graph-client';
+import { createClient } from '@remkoj/optimizely-cms-nextjs';
 
 // Server side components
-import { EnvTools, Scripts, OptimizelyOneGadget } from "@remkoj/optimizely-one-nextjs/server";
+import { EnvTools, Scripts, OptimizelyOneGadget, getEnabledProducts } from "@remkoj/optimizely-one-nextjs/server";
 import { ServerContext } from "@remkoj/optimizely-cms-react/rsc";
 
 // Client side trackers
@@ -19,6 +17,9 @@ import { SpeedInsights } from "@vercel/speed-insights/next"
 
 /* eslint-disable @next/next/no-css-tags */
 
+// Styling
+import { Figtree } from "next/font/google";
+import "./global.css";
 const figtree = Figtree({ subsets: ["latin"] });
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -62,11 +63,7 @@ export type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
   const locale = "en"
-  const client = createClient(undefined, undefined, {
-    nextJsFetchDirectives: true,
-    cache: true,
-    queryCache: true,
-  });
+  const client = createClient();
   const ctx = new ServerContext({ locale, factory, client })
 
   // Allow environment control over whether the WX snippet can be changed by the client
@@ -81,15 +78,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
     <html lang={ locale }>
       <head>
         <Scripts.Header experimentationAllowOverride={ !forceDisableOverride } />
-        { enableDemoTools && <link key="dynamic-styles" rel="stylesheet" href="/main.css" ></link> }
+        { enableDemoTools && <link key="dynamic-styles" rel="stylesheet" href="/main.css"  /> }
       </head>
       <ThemeProvider value={{ theme: "system" }}>
-        <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
-          <OptimizelyOneProvider value={{ debug: false }} >
+        <Body className={`${figtree.className} on-ghost-white`}>
+          <OptimizelyOneProvider value={{ debug: true }} enabledOptimizelyServices={ getEnabledProducts() } >
             <PageActivator />
             <div className="flex min-h-screen flex-col justify-between">
               <Header locale={ locale } ctx={ ctx } />
-              <main className="grow">{ children }</main>
+              <main className="grow max-w-full overflow-x-hidden">{ children }</main>
               <Footer ctx={ ctx } />
             </div>
             <OptimizelyOneGadget />

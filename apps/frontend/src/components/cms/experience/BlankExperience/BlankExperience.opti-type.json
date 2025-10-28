@@ -2,13 +2,15 @@
   "key": "BlankExperience",
   "displayName": "Blank Experience",
   "description": "An experience without a predefined layout.",
-  "baseType": "experience",
+  "baseType": "_experience",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [
     "*"
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "BlankExperienceSeoSettings": {
       "type": "component",
@@ -18,8 +20,7 @@
       "localized": false,
       "required": false,
       "group": "SeoSettings",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     }
   }
 }

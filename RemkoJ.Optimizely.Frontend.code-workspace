@@ -1,17 +1,21 @@
 {
   "folders": [
-	{
-		"path": "./apps/frontend",
-		"name": "frontend"
-	},
-	{
-		"path": "./packages/remkoj-optimizely-fx-nextjs-cli",
-		"name": "@remkoj/optimizely-fx-nextjs-cli"
-	},
-	{
-		"path": "./docs",
-		"name": "documentation"
-	},
+    {
+      "path": "./apps/frontend",
+      "name": "frontend"
+    },
+    {
+      "path": "./packages/remkoj-optimizely-fx-nextjs",
+      "name": "@remkoj/optimizely-fx-nextjs"
+    },
+    {
+      "path": "./packages/remkoj-optimizely-fx-nextjs-cli",
+      "name": "@remkoj/optimizely-fx-nextjs-cli"
+    },
+    {
+      "path": "./docs",
+      "name": "documentation"
+    },
     {
       "path": ".",
       "name": "repository",
@@ -26,14 +30,15 @@
       "**/yarn.lock": true,
     },
     "typescript.enablePromptUseWorkspaceTsdk": true,
-    "typescript.tsdk": "repository\\.yarn\\sdks\\typescript\\lib",
-    "graphql-config.load.baseDir": "./apps/frontend",
-    "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
+    "typescript.tsdk": "repository/node_modules/typescript/lib",
+    "graphql-codegen.configFilePath": "frontend/codegen.ts",
     "graphql-codegen.fileExtensionsDeclaringGraphQLDocuments": ["graphql"],
-    "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.graphql",
+    "graphql-codegen.filePathToWatch": "frontend/src/(app|components)/**/*.graphql",
     "json.validate.enable": true,
     "json.schemaDownload.enable": true,
+    "eslint.workingDirectories": [ "./apps/frontend", "./packages/remkoj-optimizely-fx-nextjs", "./packages/remkoj-optimizely-fx-nextjs-cli" ]
   },
+
   "extensions": {
     "recommendations": [
       "arcanis.vscode-zipfs",

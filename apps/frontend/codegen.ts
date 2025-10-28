@@ -10,7 +10,7 @@ console.log(`  - Environments: ${loadEnvResult.loadedEnvFiles.map(x => x.path).j
 import type { CodegenConfig } from '@graphql-codegen/cli'
 import getSchemaInfo from '@remkoj/optimizely-graph-client/codegen'
 import type { SchemaASTConfig } from "@graphql-codegen/schema-ast"
-import OptimizelyGraphPreset, { type PresetOptions as OptimizelyGraphPresetOptions } from '@remkoj/optimizely-graph-functions/preset'
+import { preset as OptimizelyGraphPreset, type PresetOptions as OptimizelyGraphPresetOptions } from '@remkoj/optimizely-graph-functions/preset'
 
 // Create the configuration itself
 const config: CodegenConfig = {
@@ -32,6 +32,10 @@ const config: CodegenConfig = {
 
         // The GQL tag to be used to identify inline GraphQL queries
         gqlTagName: 'gql',
+
+        // Specify which functions to expose within the functions.ts files,
+        // as fully materialized queries without variables.
+        functions: ['getContentById','getBlankExperienceData','getBlogSectionExperienceData'],
 
         // Configure the fragments that will be spread into the utility
         // partial fragments. You can use any fragment here, however the
@@ -85,6 +89,11 @@ const config: CodegenConfig = {
         ]
       } as OptimizelyGraphPresetOptions
     },
+  },
+  ignoreNoDocuments: false
+}
+
+const additionalGenerates = {
 
     // Add .gitignore file to ensure development only files do not end up in GitHub
     './gql/.gitignore': {
@@ -136,8 +145,6 @@ const config: CodegenConfig = {
         { 'opti-cms:/fragments/13': { loader: "@remkoj/optimizely-graph-functions/loader" } }
       ],
     }
-  },
-  ignoreNoDocuments: false
 }
 
 export default config

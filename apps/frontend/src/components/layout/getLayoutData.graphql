@@ -1,0 +1,39 @@
+query getLayoutData($domain: String, $locale: [Locales!]) {
+  appLayout: LayoutSettingsBlock(
+    where: {
+      _or: [
+        { appIdentifiers: { exist: false } }
+        {
+          _and: [{ appIdentifiers: { exist: true } }, { appIdentifiers: { eq: $domain } }]
+        }
+      ]
+    }
+    locale: $locale
+  ) {
+    items {
+      _metadata {
+        key
+        displayName
+      }
+      appIdentifiers
+      mainMenu {
+        ...IContentData
+        ...MegaMenuGroupBlockData
+      }
+      serviceButtons {
+        ...IContentData
+        ...ButtonBlockData
+      }
+      copyright
+      footerMenus {
+        ...IContentData
+        ...MenuNavigationBlockData
+      }
+      legalLinks {
+        ...LinkItemData
+      }
+      contactInfoHeading
+      contactInfo { json }
+    }
+  }
+}

@@ -6,6 +6,7 @@
   "settings": {
     "verticalAlignContent": {
       "displayName": "Vertical alignment",
+      "editor": "",
       "sortOrder": 10,
       "choices": {
         "top": {
@@ -24,6 +25,7 @@
     },
     "contentOverflow": {
       "displayName": "Content overflow",
+      "editor": "",
       "sortOrder": 20,
       "choices": {
         "hide": {
@@ -38,6 +40,7 @@
     },
     "backgroundMask": {
       "displayName": "Background mask",
+      "editor": "",
       "sortOrder": 30,
       "choices": {
         "none": {

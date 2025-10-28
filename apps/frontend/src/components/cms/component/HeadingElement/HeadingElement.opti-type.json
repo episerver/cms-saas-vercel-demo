@@ -2,14 +2,15 @@
   "key": "HeadingElement",
   "displayName": "Heading",
   "description": "",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
-    "sectionEnabled",
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "headingText": {
       "type": "string",
@@ -19,8 +20,7 @@
       "required": true,
       "group": "Information",
       "sortOrder": 0,
-      "indexingType": "searchable",
-      "editorSettings": {}
+      "indexingType": "searchable"
     }
   }
 }

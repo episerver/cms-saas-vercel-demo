@@ -46,10 +46,10 @@ export async function getArticles(locale: string, paging?: Types.PagingData, fil
         },
         items: (articleResponse.items ?? []).filter(Utils.isNotNullOrUndefined).map(item => {
             const iContentData = getFragmentData(GraphQL.IContentDataFragmentDoc, item)
-            const metadata = getFragmentData(GraphQL.IContentInfoFragmentDoc, iContentData._metadata)
-            const imageUrlData = getFragmentData(GraphQL.LinkDataFragmentDoc, getFragmentData(GraphQL.ReferenceDataFragmentDoc, item.image)?.url)
+            const metadata = iContentData._metadata
+            const imageUrlData = getFragmentData(GraphQL.ReferenceDataFragmentDoc, item.image)?.url
             const imageUrl = imageUrlData ? new URL(imageUrlData?.default ?? '/', imageUrlData?.base ?? 'https://example.com').href : undefined
-            const itemUrlData = getFragmentData(GraphQL.LinkDataFragmentDoc, metadata?.url)
+            const itemUrlData = metadata?.url
             const itemUrl = itemUrlData ? new URL(itemUrlData?.default ?? '/', itemUrlData?.base ?? 'https://example.com') : undefined
             return {
                 id: metadata?.key ?? "",

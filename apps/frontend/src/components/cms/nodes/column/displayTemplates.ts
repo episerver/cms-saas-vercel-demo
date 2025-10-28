@@ -1,30 +1,26 @@
-import type { LayoutProps } from "@remkoj/optimizely-cms-react"
-import type { ReactNode } from "react"
+//not-modified - Remove this line when making change to prevent it from being updated by the CLI tools
+import type { LayoutProps, LayoutPropsSettingKeys, LayoutPropsSettingValues, CmsComponentProps } from "@remkoj/optimizely-cms-react"
+import type { JSX, ComponentType } from "react"
 import type CardColumnStyles from "./CardColumn/CardColumn.opti-style.json"
 import type DefaultColumnStyles from "./DefaultColumn/DefaultColumn.opti-style.json"
 
 export type CardColumnProps = LayoutProps<typeof CardColumnStyles>
-export type CardColumnComponentProps<DT extends Record<string, any> = Record<string, any>> = {
-    data: DT
-    layoutProps: CardColumnProps | undefined
-} & JSX.IntrinsicElements['div']
-export type CardColumnComponent<DT extends Record<string, any> = Record<string, any>> = (props: CardColumnComponentProps<DT>) => ReactNode
+export type CardColumnKeys = LayoutPropsSettingKeys<CardColumnProps>
+export type CardColumnOptions<K extends CardColumnKeys> = LayoutPropsSettingValues<CardColumnProps, K>
+export type CardColumnComponentProps<DT extends Record<string, any> = Record<string, any>> = Omit<CmsComponentProps<DT, CardColumnProps>,'children'> & JSX.IntrinsicElements['div']
+export type CardColumnComponent<DT extends Record<string, any> = Record<string, any>> = ComponentType<CardColumnComponentProps<DT>>
 
 export type DefaultColumnProps = LayoutProps<typeof DefaultColumnStyles>
-export type DefaultColumnComponentProps<DT extends Record<string, any> = Record<string, any>> = {
-    data: DT
-    layoutProps: DefaultColumnProps | undefined
-} & JSX.IntrinsicElements['div']
-export type DefaultColumnComponent<DT extends Record<string, any> = Record<string, any>> = (props: DefaultColumnComponentProps<DT>) => ReactNode
-
+export type DefaultColumnKeys = LayoutPropsSettingKeys<DefaultColumnProps>
+export type DefaultColumnOptions<K extends DefaultColumnKeys> = LayoutPropsSettingValues<DefaultColumnProps, K>
+export type DefaultColumnComponentProps<DT extends Record<string, any> = Record<string, any>> = Omit<CmsComponentProps<DT, DefaultColumnProps>,'children'> & JSX.IntrinsicElements['div']
+export type DefaultColumnComponent<DT extends Record<string, any> = Record<string, any>> = ComponentType<DefaultColumnComponentProps<DT>>
 
 export type ColumnLayoutProps = CardColumnProps | DefaultColumnProps
-export type ColumnComponentProps<DT extends Record<string, any> = Record<string, any>, LP extends ColumnLayoutProps = ColumnLayoutProps> = {
-    data: DT
-    layoutProps: LP | undefined
-} & JSX.IntrinsicElements['div']
-
-export type ColumnComponent<DT extends Record<string, any> = Record<string, any>, LP extends ColumnLayoutProps = ColumnLayoutProps> = (props: ColumnComponentProps<DT,LP>) => ReactNode
+export type ColumnLayoutKeys = LayoutPropsSettingKeys<ColumnLayoutProps>
+export type ColumnLayoutOptions<K extends ColumnLayoutKeys> = LayoutPropsSettingValues<ColumnLayoutProps,K>
+export type ColumnComponentProps<DT extends Record<string, any> = Record<string, any>> = Omit<CmsComponentProps<DT, ColumnLayoutProps>,'children'> & JSX.IntrinsicElements['div']
+export type ColumnComponent<DT extends Record<string, any> = Record<string, any>> = ComponentType<ColumnComponentProps<DT>>
 
 export function isDefaultProps(props?: ColumnLayoutProps | null) : props is DefaultColumnProps
 {

@@ -4,6 +4,7 @@ import fs from 'node:fs'
 export type FlagDefs = { 
     [name: string]: {
         key: string
+        varName?: string
         name: string
         description: string
         variable_definitions: { 
@@ -97,7 +98,9 @@ export class FlagsTypeScriptFile {
         if (node.kind == ts.SyntaxKind.ExportKeyword && ts.isVariableStatement(parent))
         {
             parent.declarationList.declarations.forEach(declaration => {
-                const flagName = declaration.name.getText();
+                const flagVarName = declaration.name.getText();
+                const flagKey = this.getJsDocTags(parent)?.filter(x => x.tagName.getText() == 'key').at(0)?.comment
+                const flagName = !flagKey ? flagVarName : (typeof(flagKey) == 'string' ? flagKey : flagKey.map(x => x.getFullText()).join(" "))
                 const flagTypeDef = declaration.forEachChild(declarationNode => {
                     return this.extractOptimizelyFlagType(declarationNode)
                 })
@@ -111,6 +114,7 @@ export class FlagsTypeScriptFile {
                 const flagDescription = split === -1 ? "" : doc.slice(split+1).join("\n")
                 flags[flagName] = {
                     ...flags[flagName],
+                    varName: flagVarName,
                     key: flagName,
                     name: flagDisplayName,
                     description: flagDescription

@@ -2,11 +2,13 @@
   "key": "MenuNavigationBlock",
   "displayName": "Menu navigation",
   "description": "",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "MenuNavigationHeading": {
       "type": "string",
@@ -16,8 +18,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "NavigationLinks": {
       "type": "array",
@@ -28,10 +29,8 @@
       "required": false,
       "group": "Information",
       "sortOrder": 20,
-      "editorSettings": {},
       "items": {
-        "type": "component",
-        "contentType": "link"
+        "type": "link"
       }
     }
   }

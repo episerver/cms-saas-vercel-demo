@@ -2,13 +2,15 @@
   "key": "ArticleListElement",
   "displayName": "Article List",
   "description": "Show an article listing",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [
     "elementEnabled"
   ],
+  "contracts": [],
   "properties": {
     "articleListCount": {
       "type": "integer",
@@ -32,30 +34,28 @@
       "sortOrder": 30,
       "items": {
         "type": "string",
-        "enum": {
-          "values": [
-            {
-              "displayName": "Savings",
-              "value": "Savings"
-            },
-            {
-              "displayName": "Credit",
-              "value": "Credit"
-            },
-            {
-              "displayName": "Mortgage",
-              "value": "Mortgage"
-            },
-            {
-              "displayName": "Retirement",
-              "value": "Retirement"
-            },
-            {
-              "displayName": "Investment",
-              "value": "Investment"
-            }
-          ]
-        }
+        "enum": [
+          {
+            "value": "Savings",
+            "displayName": "Savings"
+          },
+          {
+            "value": "Credit",
+            "displayName": "Credit"
+          },
+          {
+            "value": "Mortgage",
+            "displayName": "Mortgage"
+          },
+          {
+            "value": "Retirement",
+            "displayName": "Retirement"
+          },
+          {
+            "value": "Investment",
+            "displayName": "Investment"
+          }
+        ]
       }
     }
   }

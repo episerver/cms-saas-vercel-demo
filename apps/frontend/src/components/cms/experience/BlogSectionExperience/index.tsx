@@ -1,35 +1,38 @@
 import { type OptimizelyNextPage as CmsComponent } from "@remkoj/optimizely-cms-nextjs";
 import { getFragmentData } from "@/gql/fragment-masking";
-import { ExperienceDataFragmentDoc, BlogSectionExperienceDataFragmentDoc, type BlogSectionExperienceDataFragment, PageSeoSettingsPropertyDataFragmentDoc, type Locales, ReferenceDataFragmentDoc, LinkDataFragmentDoc } from "@/gql/graphql";
-import { OptimizelyComposition, isNode, CmsEditable, Utils } from "@remkoj/optimizely-cms-react/rsc";
+import { ExperienceDataFragmentDoc, getBlogSectionExperienceDataDocument, type getBlogSectionExperienceDataQuery, PageSeoSettingsPropertyDataFragmentDoc, type Locales, ReferenceDataFragmentDoc, LinkDataFragmentDoc } from "@/gql/graphql";
+import { OptimizelyComposition, isNode, Utils } from "@remkoj/optimizely-cms-react/rsc";
 import { getSdk } from "@/gql"
-import BlogPostsSection from "./partials/blogposts";
+//import BlogPostsSection from "./partials/blogposts";
 import { getBlogPosts, type GetBlogPostsParams } from "./actions/getBlogPosts"
 import { Suspense } from "react";
+import dynamic from "next/dynamic"
+
+const BlogPostsSection = dynamic(()=>import("./partials/blogposts"), { ssr: true, loading(loadingProps) {
+    return <>Loading blog posts</>
+}, })
 
 /**
  * Blog/News Section
  * Add a blog/news section to your site
  */
-export const BlogSectionExperienceExperience : CmsComponent<BlogSectionExperienceDataFragment> = async ({ data, contentLink, ctx }) => {
+export const BlogSectionExperienceExperience : CmsComponent<getBlogSectionExperienceDataQuery> = async ({ data, contentLink, ctx }) => {
     if (ctx) ctx.editableContentIsExperience = true;
     const composition = getFragmentData(ExperienceDataFragmentDoc, data).composition
     const initialDataParams : GetBlogPostsParams = { locale: contentLink.locale ?? 'en', parentKey: contentLink.key ?? 'n/a' }
     const initialData = await getBlogPosts(initialDataParams)
     return <div data-component="BlogSectionExperience">
-        <div className="py-8">
+        <div className="blogsection-header py-8">
             { composition && isNode(composition) && <OptimizelyComposition node={composition} ctx={ctx} /> }
         </div>
         { contentLink.key && contentLink.locale &&
-        <div className="mx-auto px-4 lg:px-6 container">
-            <Suspense fallback={<></>}>
-                <BlogPostsSection parentKey={ contentLink.key } locale={ contentLink.locale } initialdata={ initialData } />
-            </Suspense>
+        <div className="blogsection-listing mx-auto px-4 lg:px-6 container">
+            <BlogPostsSection parentKey={ contentLink.key } locale={ contentLink.locale } initialdata={ initialData } />
         </div>}
     </div>
 }
 BlogSectionExperienceExperience.displayName = "Blog/News Section (Experience/BlogSectionExperience)"
-BlogSectionExperienceExperience.getDataFragment = () => ['BlogSectionExperienceData', BlogSectionExperienceDataFragmentDoc]
+BlogSectionExperienceExperience.getDataQuery = () => getBlogSectionExperienceDataDocument
 BlogSectionExperienceExperience.getMetaData = async (contentLink, locale, client) => {
     const sdk = getSdk(client);
     const data = await sdk.getBlogSectionExperienceMetaData({ 
@@ -46,7 +49,7 @@ BlogSectionExperienceExperience.getMetaData = async (contentLink, locale, client
     const published = metaData._metadata?.published ?? undefined
     const seoData = getFragmentData(PageSeoSettingsPropertyDataFragmentDoc, metaData.seo_data) ?? undefined
     const graphType = seoData?.GraphType ?? 'website'
-    const imageData = getFragmentData(LinkDataFragmentDoc, getFragmentData(ReferenceDataFragmentDoc, seoData?.SharingImage)?.url)
+    const imageData = getFragmentData(ReferenceDataFragmentDoc, seoData?.SharingImage)?.url
     const imageUrl = imageData?.default ?? undefined
     const canonicalUrl = new URL(metaData?._metadata?.url?.default ?? '/', metaData?._metadata?.url?.base ?? 'http://localhost:3000')
 

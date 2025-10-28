@@ -2,11 +2,13 @@
   "key": "ButtonBlock",
   "displayName": "Button",
   "description": "Represents an instance of a button",
-  "baseType": "component",
+  "baseType": "_component",
+  "isContract": false,
   "sortOrder": 100,
   "mayContainTypes": [],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
+  "contracts": [],
   "properties": {
     "ButtonText": {
       "type": "string",
@@ -16,8 +18,7 @@
       "localized": true,
       "required": false,
       "group": "Information",
-      "sortOrder": 10,
-      "editorSettings": {}
+      "sortOrder": 10
     },
     "ButtonUrl": {
       "type": "url",
@@ -26,8 +27,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 15,
-      "editorSettings": {}
+      "sortOrder": 15
     },
     "ButtonClass": {
       "type": "string",
@@ -37,8 +37,7 @@
       "localized": false,
       "required": false,
       "group": "Information",
-      "sortOrder": 20,
-      "editorSettings": {}
+      "sortOrder": 20
     },
     "ButtonType": {
       "type": "string",
@@ -49,19 +48,16 @@
       "required": true,
       "group": "Information",
       "sortOrder": 30,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Primary",
-            "value": "primary"
-          },
-          {
-            "displayName": "Secondary",
-            "value": "secondary"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "primary",
+          "displayName": "Primary"
+        },
+        {
+          "value": "secondary",
+          "displayName": "Secondary"
+        }
+      ]
     },
     "ButtonVariant": {
       "type": "string",
@@ -72,19 +68,16 @@
       "required": true,
       "group": "Information",
       "sortOrder": 40,
-      "editorSettings": {},
-      "enum": {
-        "values": [
-          {
-            "displayName": "Default",
-            "value": "default"
-          },
-          {
-            "displayName": "CTA",
-            "value": "cta"
-          }
-        ]
-      }
+      "enum": [
+        {
+          "value": "default",
+          "displayName": "Default"
+        },
+        {
+          "value": "cta",
+          "displayName": "CTA"
+        }
+      ]
     }
   }
 }

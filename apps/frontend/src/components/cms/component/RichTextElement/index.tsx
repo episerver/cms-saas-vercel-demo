@@ -30,7 +30,7 @@ const WidthMap: ValueMap<"width", string> = {
 export const RichTextElementElement: CmsComponent<
   RichTextElementDataFragment,
   RichTextElementLayoutProps
-> = ({ data, layoutProps, contentLink, ctx }) => {
+> = ({ data, layoutProps, editProps }) => {
   const { width = "full" } = extractSettings(layoutProps);
 
   const cssClassName = WidthMap[width];
@@ -39,9 +39,8 @@ export const RichTextElementElement: CmsComponent<
     <RichText
       // Set the ID and fieldname expected by the CMS, with context to allow
       // the CmsEditable containe within RichText to work
-      cmsId={contentLink.key}
       cmsFieldName="text"
-      ctx={ctx}
+      {...editProps}
 
       // Set the actual text
       text={data.text?.json}

@@ -44,14 +44,18 @@ export const getInstance = cache(async () => {
  * @param       attributes      Any additional attributes to be added
  * @returns     The User Context for Optimizely Feature Experimentation
  */
-export async function getUserContext(attributes: UserAttributes = {}): Promise<OptimizelyUserContext | null> {
+export async function getUserContext(attributes?: UserAttributes): Promise<OptimizelyUserContext | null>
+export async function getUserContext(visitorId: string, attributes?: UserAttributes): Promise<OptimizelyUserContext | null>
+export async function getUserContext(visitorIdOrAttributes?: string | UserAttributes, extraAttributes?: UserAttributes): Promise<OptimizelyUserContext | null> 
+{
     const fx = await getInstance().catch(() => undefined)
     if (!fx)
         return null
-    const headerData = headers()
-    const visitorId = headerData.get('x-visitorid')
+    const headerData = await headers()
+    const visitorId = typeof(visitorIdOrAttributes) == 'string' && visitorIdOrAttributes.length > 0 ? visitorIdOrAttributes : headerData.get('x-visitorid')
     if (!visitorId)
         throw new Error("No visitor identifier provided by your middleware")
+    const attributes = typeof (visitorIdOrAttributes) == 'object' ? visitorIdOrAttributes ?? extraAttributes ?? {} : extraAttributes ?? {}
 
     const fullAttributes = {
         "user-agent": headerData.get('user-agent'),

@@ -21,7 +21,15 @@ query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [Str
       blogTitle: Heading
       blogSubtitle: ArticleSubHeading
       blogImage: BlogPostPromoImage {
-          ...ReferenceData
+      type: __typename
+        ...ReferenceData
+        item {
+          ... on ImageMedia {
+            __typename
+            AltText
+          }
+          ...cmsPublicImage
+        }
       }
       blogBody: BlogPostBody {
           json

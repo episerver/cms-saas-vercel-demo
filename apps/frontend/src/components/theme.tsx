@@ -1,5 +1,5 @@
 'use client'
-import { createContext, useContext, useState, useMemo, useEffect, useLayoutEffect, type FunctionComponent, type PropsWithChildren } from 'react'
+import { createContext, useContext, useState, useEffect, useLayoutEffect, type JSX, type FunctionComponent, type PropsWithChildren } from 'react'
 
 export type ThemeContextData = {
     theme: "light" | "dark" | "system",

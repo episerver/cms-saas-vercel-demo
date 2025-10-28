@@ -3,7 +3,7 @@ import { type Metadata } from "next";
 
 // Optimizely Graph
 import { getSdk } from "@gql";
-import { type Locales, type LandingPageDataFragment, LandingPageDataFragmentDoc } from "@gql/graphql";
+import { type Locales, type getLandingPageDataQuery, getLandingPageMetaDataDocument } from "@gql/graphql";
 
 // Optimizely SaaS CMS SDK
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
@@ -14,8 +14,7 @@ import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 import { getLinkData, linkDataToUrl } from "@/lib/urls";
 import { toValidOpenGraphType } from "@/lib/opengraph";
 
-export const LandingPage: OptimizelyNextPage<LandingPageDataFragment> = ({ data: { TopContentArea, MainContentArea }, ctx }) => {
-
+export const LandingPage: OptimizelyNextPage<getLandingPageDataQuery> = ({ data: { TopContentArea, MainContentArea }, ctx }) => {
   return (
     <div className="landing-page">
       <CmsContentArea fieldName="TopContentArea" items={TopContentArea} className="w-full" ctx={ctx} />
@@ -23,7 +22,7 @@ export const LandingPage: OptimizelyNextPage<LandingPageDataFragment> = ({ data:
     </div>
   );
 };
-LandingPage.getDataFragment = () => ['LandingPageData', LandingPageDataFragmentDoc]
+LandingPage.getDataQuery = () => getLandingPageMetaDataDocument
 LandingPage.getMetaData = async (contentLink, locale, client) => {
   const sdk = getSdk(client) // Get the SDK with authentication applied - if needed
   const result = await sdk.getLandingPageMetaData({ ...contentLink, locale: locale ? localeToGraphLocale(locale) as Locales : null })

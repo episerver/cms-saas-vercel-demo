@@ -1,4 +1,5 @@
 import { extractSettings } from "@remkoj/optimizely-cms-react/rsc";
+import { filterCmsComponentProps } from "@remkoj/optimizely-cms-react/utils";
 import { DefaultGridComponent } from "../displayTemplates";
 
 enum GridWidths {
@@ -37,7 +38,7 @@ export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children
         cssClasses.push("flex flex-col")
         cssClasses.push(VSpacings[vSpacing] ?? '')
 
-        return <section className={ cssClasses.filter(x => x && x.length > 0).join(' ')} {...htmlProps}>
+        return <section className={ cssClasses.filter(x => x && x.length > 0).join(' ')} {...filterCmsComponentProps(htmlProps)}>
             { children }
         </section>;
     }
@@ -45,7 +46,7 @@ export const DefaultGrid : DefaultGridComponent = ({ data, layoutProps, children
     const mainClasses = ["vb:section vb:section:DefaultGrid flex flex-col w-full"]
     mainClasses.push(VSpacings[vSpacing] ?? '')
     mainClasses.push(ColorClasses[sectionColor] ?? '')
-    return <section className={ mainClasses.filter(x => x && x.length > 0).join(' ')} {...htmlProps}>
+    return <section className={ mainClasses.filter(x => x && x.length > 0).join(' ')} {...filterCmsComponentProps(htmlProps)}>
         <div className={ GridWidths[gridWidth] ?? '' }>
             { children }
         </div>

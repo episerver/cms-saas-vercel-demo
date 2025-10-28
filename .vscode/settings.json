@@ -6,7 +6,6 @@
     "**/.next.*": true,
     "**/yarn.lock": true
   },
-  "typescript.tsdk": ".yarn/sdks/typescript/lib",
   "typescript.enablePromptUseWorkspaceTsdk": true,
   "graphql-config.load.baseDir": "./apps/frontend",
   "graphql-codegen.configFilePath": "./apps/frontend/codegen.ts",
@@ -14,8 +13,6 @@
     "graphql"
   ],
   "graphql-codegen.filePathToWatch": "./apps/frontend/src/(app|components)/**/*.graphql",
-  "eslint.nodePath": ".yarn/sdks",
-  "prettier.prettierPath": ".yarn/sdks/prettier/index.cjs",
   "json.validate.enable": true,
   "json.schemaDownload.enable": true,
   "json.schemas": [
