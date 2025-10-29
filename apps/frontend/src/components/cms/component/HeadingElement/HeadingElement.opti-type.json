@@ -21,6 +21,16 @@
       "group": "Information",
       "sortOrder": 0,
       "indexingType": "searchable"
+    },
+    "test": {
+      "type": "string",
+      "format": "shortString",
+      "displayName": "Test",
+      "description": "",
+      "localized": true,
+      "required": false,
+      "group": "SeoSettings",
+      "sortOrder": 0
     }
   }
 }

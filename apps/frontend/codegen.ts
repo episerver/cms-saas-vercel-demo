@@ -35,7 +35,7 @@ const config: CodegenConfig = {
 
         // Specify which functions to expose within the functions.ts files,
         // as fully materialized queries without variables.
-        functions: ['getContentById','getBlankExperienceData','getBlogSectionExperienceData'],
+        functions: ['getContentById'],
 
         // Configure the fragments that will be spread into the utility
         // partial fragments. You can use any fragment here, however the

@@ -9,7 +9,7 @@
   ],
   "devDependencies": {
     "@yarnpkg/sdks": "^3.2.3",
-    "vercel": "^48.6.0"
+    "vercel": "^48.6.7"
   },
   "exports": null,
   "scripts": {

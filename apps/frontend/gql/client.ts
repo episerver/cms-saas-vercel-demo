@@ -318,26 +318,6 @@ export const SearchDataFragmentDoc = gql`
   ...IContentData
 }
     ${IContentDataFragmentDoc}`;
-export const cmpPublicImageFragmentDoc = gql`
-    fragment cmpPublicImage on cmp_PublicImageAsset {
-  __typename
-  Id
-  Title
-  Tags {
-    Name
-  }
-  AltText
-  Width
-  Height
-  Url
-}
-    `;
-export const cmsPublicImagePropsFragmentDoc = gql`
-    fragment cmsPublicImageProps on cmp_PublicImageAsset {
-  alt: Title
-  src: Url
-}
-    `;
 export const IElementDataFragmentDoc = gql`
     fragment IElementData on _IComponent {
   _metadata {
@@ -387,54 +367,10 @@ export const CompositionNodeDataFragmentDoc = gql`
   }
 }
     `;
-export const ArticleListElementDataFragmentDoc = gql`
-    fragment ArticleListElementData on ArticleListElement {
-  articleListCount
-  topics
-}
-    `;
-export const CTAElementDataFragmentDoc = gql`
-    fragment CTAElementData on CTAElement {
-  Text
-  Link {
-    type
-    base
-    default
-  }
-}
-    `;
 export const HeadingElementDataFragmentDoc = gql`
     fragment HeadingElementData on HeadingElement {
   headingText
-}
-    `;
-export const CmpImageAssetInfoFragmentDoc = gql`
-    fragment CmpImageAssetInfo on cmp_PublicImageAsset {
-  __typename
-  Title
-  AltText
-  Width
-  Height
-  Url
-  Renditions {
-    Name
-    Width
-    Height
-    Url
-  }
-}
-    `;
-export const CmpVideoAssetInfoFragmentDoc = gql`
-    fragment CmpVideoAssetInfo on cmp_PublicVideoAsset {
-  Title
-  AltText
-  Url
-  Renditions {
-    Name
-    Width
-    Height
-    Url
-  }
+  test
 }
     `;
 export const ImageElementDataFragmentDoc = gql`
@@ -447,15 +383,34 @@ export const ImageElementDataFragmentDoc = gql`
       base
       default
     }
-    item {
-      __typename
-      ...CmpImageAssetInfo
-      ...CmpVideoAssetInfo
-    }
   }
 }
-    ${CmpImageAssetInfoFragmentDoc}
-${CmpVideoAssetInfoFragmentDoc}`;
+    `;
+export const CTAElementDataFragmentDoc = gql`
+    fragment CTAElementData on CTAElement {
+  Text
+  Link {
+    type
+    base
+    default
+  }
+}
+    `;
+export const ArticleListElementDataFragmentDoc = gql`
+    fragment ArticleListElementData on ArticleListElement {
+  articleListCount
+  topics
+}
+    `;
+export const OptiFormsUrlElementDataFragmentDoc = gql`
+    fragment OptiFormsUrlElementData on OptiFormsUrlElement {
+  Label
+  Placeholder
+  Tooltip
+  PredefinedValue
+  Validators
+}
+    `;
 export const OptiFormsChoiceElementDataFragmentDoc = gql`
     fragment OptiFormsChoiceElementData on OptiFormsChoiceElement {
   Label
@@ -483,17 +438,6 @@ export const OptiFormsRangeElementDataFragmentDoc = gql`
   Min
   Max
   Increment
-}
-    `;
-export const OptiFormsSelectionElementDataFragmentDoc = gql`
-    fragment OptiFormsSelectionElementData on OptiFormsSelectionElement {
-  Label
-  Placeholder
-  Tooltip
-  Options
-  AllowMultiSelect
-  Validators
-  AutoComplete
 }
     `;
 export const OptiFormsResetElementDataFragmentDoc = gql`
@@ -528,13 +472,15 @@ export const OptiFormsTextboxElementDataFragmentDoc = gql`
   AutoComplete
 }
     `;
-export const OptiFormsUrlElementDataFragmentDoc = gql`
-    fragment OptiFormsUrlElementData on OptiFormsUrlElement {
+export const OptiFormsSelectionElementDataFragmentDoc = gql`
+    fragment OptiFormsSelectionElementData on OptiFormsSelectionElement {
   Label
   Placeholder
   Tooltip
-  PredefinedValue
+  Options
+  AllowMultiSelect
   Validators
+  AutoComplete
 }
     `;
 export const SectionCompositionDataFragmentDoc = gql`
@@ -564,10 +510,10 @@ export const SectionCompositionDataFragmentDoc = gql`
                   ...TestimonialElementData
                   ...TextBlockData
                   ...VideoElementData
-                  ...ArticleListElementData
-                  ...CTAElementData
                   ...HeadingElementData
                   ...ImageElementData
+                  ...CTAElementData
+                  ...ArticleListElementData
                 }
               }
               ... on CompositionStructureNode {
@@ -576,15 +522,15 @@ export const SectionCompositionDataFragmentDoc = gql`
                   ... on CompositionComponentNode {
                     component {
                       ...IContentData
+                      ...OptiFormsUrlElementData
                       ...OptiFormsChoiceElementData
                       ...OptiFormsNumberElementData
                       ...OptiFormsRangeElementData
-                      ...OptiFormsSelectionElementData
                       ...OptiFormsResetElementData
                       ...OptiFormsSubmitElementData
                       ...OptiFormsTextareaElementData
                       ...OptiFormsTextboxElementData
-                      ...OptiFormsUrlElementData
+                      ...OptiFormsSelectionElementData
                     }
                   }
                 }
@@ -610,19 +556,19 @@ ${RichTextElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${OptiFormsUrlElementDataFragmentDoc}
 ${OptiFormsChoiceElementDataFragmentDoc}
 ${OptiFormsNumberElementDataFragmentDoc}
 ${OptiFormsRangeElementDataFragmentDoc}
-${OptiFormsSelectionElementDataFragmentDoc}
 ${OptiFormsResetElementDataFragmentDoc}
 ${OptiFormsSubmitElementDataFragmentDoc}
 ${OptiFormsTextareaElementDataFragmentDoc}
 ${OptiFormsTextboxElementDataFragmentDoc}
-${OptiFormsUrlElementDataFragmentDoc}`;
+${OptiFormsSelectionElementDataFragmentDoc}`;
 export const CompositionComponentNodeFragmentDoc = gql`
     fragment CompositionComponentNode on CompositionComponentNode {
   component {
@@ -639,19 +585,19 @@ export const CompositionComponentNodeFragmentDoc = gql`
     ...TestimonialElementData
     ...TextBlockData
     ...VideoElementData
-    ...ArticleListElementData
-    ...CTAElementData
     ...HeadingElementData
     ...ImageElementData
+    ...CTAElementData
+    ...ArticleListElementData
+    ...OptiFormsUrlElementData
     ...OptiFormsChoiceElementData
     ...OptiFormsNumberElementData
     ...OptiFormsRangeElementData
-    ...OptiFormsSelectionElementData
     ...OptiFormsResetElementData
     ...OptiFormsSubmitElementData
     ...OptiFormsTextareaElementData
     ...OptiFormsTextboxElementData
-    ...OptiFormsUrlElementData
+    ...OptiFormsSelectionElementData
   }
 }
     ${IContentDataFragmentDoc}
@@ -667,19 +613,19 @@ ${RichTextElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${OptiFormsUrlElementDataFragmentDoc}
 ${OptiFormsChoiceElementDataFragmentDoc}
 ${OptiFormsNumberElementDataFragmentDoc}
 ${OptiFormsRangeElementDataFragmentDoc}
-${OptiFormsSelectionElementDataFragmentDoc}
 ${OptiFormsResetElementDataFragmentDoc}
 ${OptiFormsSubmitElementDataFragmentDoc}
 ${OptiFormsTextareaElementDataFragmentDoc}
 ${OptiFormsTextboxElementDataFragmentDoc}
-${OptiFormsUrlElementDataFragmentDoc}`;
+${OptiFormsSelectionElementDataFragmentDoc}`;
 export const CompositionStructureNodeFragmentDoc = gql`
     fragment CompositionStructureNode on ICompositionStructureNode {
   nodes {
@@ -766,11 +712,6 @@ export const HeroBlockDataFragmentDoc = gql`
       base
       default
     }
-    item {
-      __typename
-      ...CmpImageAssetInfo
-      ...CmpVideoAssetInfo
-    }
   }
   Icon
   Eyebrow
@@ -784,19 +725,31 @@ export const HeroBlockDataFragmentDoc = gql`
     ...ButtonBlockPropertyData
   }
 }
-    ${CmpImageAssetInfoFragmentDoc}
-${CmpVideoAssetInfoFragmentDoc}
-${ButtonBlockPropertyDataFragmentDoc}`;
+    ${ButtonBlockPropertyDataFragmentDoc}`;
+export const ImageDataFragmentDoc = gql`
+    fragment ImageData on Image {
+  __typename
+}
+    `;
+export const VideoDataFragmentDoc = gql`
+    fragment VideoData on Video {
+  __typename
+}
+    `;
 export const CarouselBlockDataFragmentDoc = gql`
     fragment CarouselBlockData on CarouselBlock {
   CarouselItemsContentArea {
     ...IContentData
     ...HeroBlockData
+    ...ImageData
+    ...VideoData
     ...QuoteBlockData
   }
 }
     ${IContentDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
+${ImageDataFragmentDoc}
+${VideoDataFragmentDoc}
 ${QuoteBlockDataFragmentDoc}`;
 export const OptiFormsContainerDataDataFragmentDoc = gql`
     fragment OptiFormsContainerDataData on OptiFormsContainerData {
@@ -849,10 +802,10 @@ export const ExperienceDataFragmentDoc = gql`
                       ...TestimonialElementData
                       ...TextBlockData
                       ...VideoElementData
-                      ...ArticleListElementData
-                      ...CTAElementData
                       ...HeadingElementData
                       ...ImageElementData
+                      ...CTAElementData
+                      ...ArticleListElementData
                     }
                   }
                   ... on CompositionStructureNode {
@@ -861,15 +814,15 @@ export const ExperienceDataFragmentDoc = gql`
                       ... on CompositionComponentNode {
                         component {
                           ...IContentData
+                          ...OptiFormsUrlElementData
                           ...OptiFormsChoiceElementData
                           ...OptiFormsNumberElementData
                           ...OptiFormsRangeElementData
-                          ...OptiFormsSelectionElementData
                           ...OptiFormsResetElementData
                           ...OptiFormsSubmitElementData
                           ...OptiFormsTextareaElementData
                           ...OptiFormsTextboxElementData
-                          ...OptiFormsUrlElementData
+                          ...OptiFormsSelectionElementData
                         }
                       }
                     }
@@ -903,29 +856,20 @@ ${RichTextElementDataFragmentDoc}
 ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${OptiFormsUrlElementDataFragmentDoc}
 ${OptiFormsChoiceElementDataFragmentDoc}
 ${OptiFormsNumberElementDataFragmentDoc}
 ${OptiFormsRangeElementDataFragmentDoc}
-${OptiFormsSelectionElementDataFragmentDoc}
 ${OptiFormsResetElementDataFragmentDoc}
 ${OptiFormsSubmitElementDataFragmentDoc}
 ${OptiFormsTextareaElementDataFragmentDoc}
 ${OptiFormsTextboxElementDataFragmentDoc}
-${OptiFormsUrlElementDataFragmentDoc}
+${OptiFormsSelectionElementDataFragmentDoc}
 ${OptiFormsContainerDataDataFragmentDoc}`;
-export const BlogSectionExperienceDataFragmentDoc = gql`
-    fragment BlogSectionExperienceData on BlogSectionExperience {
-  seo_data {
-    ...PageSeoSettingsPropertyData
-  }
-  ...ExperienceData
-}
-    ${PageSeoSettingsPropertyDataFragmentDoc}
-${ExperienceDataFragmentDoc}`;
 export const BlankExperienceDataFragmentDoc = gql`
     fragment BlankExperienceData on BlankExperience {
   BlankExperienceSeoSettings {
@@ -935,6 +879,41 @@ export const BlankExperienceDataFragmentDoc = gql`
 }
     ${PageSeoSettingsPropertyDataFragmentDoc}
 ${ExperienceDataFragmentDoc}`;
+export const BlogSectionExperienceDataFragmentDoc = gql`
+    fragment BlogSectionExperienceData on BlogSectionExperience {
+  seo_data {
+    ...PageSeoSettingsPropertyData
+  }
+  ...ExperienceData
+}
+    ${PageSeoSettingsPropertyDataFragmentDoc}
+${ExperienceDataFragmentDoc}`;
+export const StandardPageDataFragmentDoc = gql`
+    fragment StandardPageData on StandardPage {
+  StandardPromoImage {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  StandardPageHeading
+  StandardSubHeading
+  SeoSettings {
+    ...PageSeoSettingsPropertyData
+  }
+  MainBody {
+    json
+  }
+}
+    ${PageSeoSettingsPropertyDataFragmentDoc}`;
+export const ContentRecsBlockDataFragmentDoc = gql`
+    fragment ContentRecsBlockData on ContentRecsBlock {
+  BlockDeliveryApiKey
+  BlockRecommendationCount
+}
+    `;
 export const ContinueReadingComponentDataFragmentDoc = gql`
     fragment ContinueReadingComponentData on ContinueReadingComponent {
   topline
@@ -942,48 +921,160 @@ export const ContinueReadingComponentDataFragmentDoc = gql`
   heading
   content {
     ...IContentData
-    ...ButtonBlockData
-    ...ContentRecsElementData
-    ...LayoutSettingsBlockData
-    ...MegaMenuGroupBlockData
-    ...OdpEmbedBlockData
-    ...PageSeoSettingsData
-    ...ParagraphElementData
-    ...QuoteBlockData
-    ...RichTextElementData
-    ...TestimonialElementData
-    ...TextBlockData
-    ...VideoElementData
     ...ArticleListElementData
-    ...CTAElementData
-    ...HeadingElementData
-    ...ImageElementData
-    ...ContinueReadingComponentData
     ...CarouselBlockData
-    ...HeroBlockData
-    ...MenuNavigationBlockData
+    ...ContentRecsElementData
+    ...OptiFormsContainerDataData
   }
 }
     ${IContentDataFragmentDoc}
-${ButtonBlockDataFragmentDoc}
-${ContentRecsElementDataFragmentDoc}
-${LayoutSettingsBlockDataFragmentDoc}
-${MegaMenuGroupBlockDataFragmentDoc}
-${OdpEmbedBlockDataFragmentDoc}
-${PageSeoSettingsDataFragmentDoc}
-${ParagraphElementDataFragmentDoc}
-${QuoteBlockDataFragmentDoc}
-${RichTextElementDataFragmentDoc}
-${TestimonialElementDataFragmentDoc}
-${TextBlockDataFragmentDoc}
-${VideoElementDataFragmentDoc}
 ${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${OptiFormsContainerDataDataFragmentDoc}`;
+export const HomePageHeroBlockDataFragmentDoc = gql`
+    fragment HomePageHeroBlockData on HomePageHeroBlock {
+  HomeHeroBlockHeading
+  HomeHeroBlockSubHeading
+  HomeHeroLeftImage {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  HomeHeroRightImage {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  HomeHeroButtonBlock {
+    ...ButtonBlockPropertyData
+  }
+}
+    ${ButtonBlockPropertyDataFragmentDoc}`;
+export const HtmlBlockDataFragmentDoc = gql`
+    fragment HtmlBlockData on HtmlBlock {
+  HtmlBlockHeading
+  HtmlContent {
+    json
+  }
+}
+    `;
+export const BlogListingBlockDataFragmentDoc = gql`
+    fragment BlogListingBlockData on BlogListingBlock {
+  BlogListingShowFilters
+  BlogListingItemCount
+}
+    `;
+export const CardBlockDataFragmentDoc = gql`
+    fragment CardBlockData on CardBlock {
+  CardHeading
+  CardSubHeading
+  CardDescription {
+    json
+  }
+  CardColor
+  CardButton {
+    ...ButtonBlockPropertyData
+  }
+  CardIcon {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  ImageLayout
+  CardImage {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+}
+    ${ButtonBlockPropertyDataFragmentDoc}`;
+export const GenericMediaDataFragmentDoc = gql`
+    fragment GenericMediaData on GenericMedia {
+  __typename
+}
+    `;
+export const ImageMediaDataFragmentDoc = gql`
+    fragment ImageMediaData on ImageMedia {
+  AltText
+}
+    `;
+export const VideoMediaDataFragmentDoc = gql`
+    fragment VideoMediaData on VideoMedia {
+  __typename
+}
+    `;
+export const LayoutContainerBlockDataFragmentDoc = gql`
+    fragment LayoutContainerBlockData on LayoutContainerBlock {
+  ColumnsCount
+  GapSize
+  LayoutContentArea {
+    ...IContentData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+    ...GenericMediaData
+    ...ImageMediaData
+    ...ImageData
+    ...VideoData
+    ...VideoMediaData
+  }
+  ContainerBackgroundColor
+  ContainerBackgroundImage {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  ContainerMarginTop
+  ContainerMarginBottom
+  ContainerPaddingBottom
+  ContainerPaddingTop
+}
+    ${IContentDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
 ${CarouselBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
 ${HeroBlockDataFragmentDoc}
-${MenuNavigationBlockDataFragmentDoc}`;
+${GenericMediaDataFragmentDoc}
+${ImageMediaDataFragmentDoc}
+${ImageDataFragmentDoc}
+${VideoDataFragmentDoc}
+${VideoMediaDataFragmentDoc}`;
 export const BlogPostPageDataFragmentDoc = gql`
     fragment BlogPostPageData on BlogPostPage {
   Heading
@@ -1000,54 +1091,218 @@ export const BlogPostPageDataFragmentDoc = gql`
       base
       default
     }
-    item {
-      __typename
-      ...CmpImageAssetInfo
-      ...CmpVideoAssetInfo
-    }
   }
   continueReading {
     ...IContentData
-    ...ArticleListElementData
-    ...CTAElementData
+    ...ContentRecsBlockData
     ...HeadingElementData
     ...ImageElementData
+    ...CTAElementData
     ...ContinueReadingComponentData
-    ...CarouselBlockData
-    ...HeroBlockData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
     ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
   }
   SeoSettings {
     ...PageSeoSettingsPropertyData
   }
 }
-    ${CmpImageAssetInfoFragmentDoc}
-${CmpVideoAssetInfoFragmentDoc}
-${IContentDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
+    ${IContentDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
 ${ContinueReadingComponentDataFragmentDoc}
-${CarouselBlockDataFragmentDoc}
-${HeroBlockDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
 ${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}`;
-export const GenericMediaDataFragmentDoc = gql`
-    fragment GenericMediaData on GenericMedia {
-  __typename
+export const StartPageDataFragmentDoc = gql`
+    fragment StartPageData on StartPage {
+  SeoSettings {
+    ...PageSeoSettingsPropertyData
+  }
+  HomePageHeroContentArea {
+    ...IContentData
+    ...ButtonBlockData
+    ...ContentRecsElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+  }
+  SiteImageLogo {
+    key
+    url {
+      type
+      base
+      default
+    }
+  }
+  HomePageMainContentArea {
+    ...IContentData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+  }
+  MainNavigationContentArea {
+    ...IContentData
+    ...ButtonBlockData
+    ...ContentRecsElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+  }
+  UtilityNavigationContentArea {
+    ...IContentData
+    ...ButtonBlockData
+    ...ContentRecsElementData
+    ...LayoutSettingsBlockData
+    ...MegaMenuGroupBlockData
+    ...OdpEmbedBlockData
+    ...PageSeoSettingsData
+    ...ParagraphElementData
+    ...QuoteBlockData
+    ...RichTextElementData
+    ...TestimonialElementData
+    ...TextBlockData
+    ...VideoElementData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+  }
+  FooterNavigationContentArea {
+    ...IContentData
+    ...ContentRecsBlockData
+    ...HeadingElementData
+    ...ImageElementData
+    ...CTAElementData
+    ...ContinueReadingComponentData
+    ...ArticleListElementData
+    ...HomePageHeroBlockData
+    ...MenuNavigationBlockData
+    ...HtmlBlockData
+    ...BlogListingBlockData
+    ...CarouselBlockData
+    ...LayoutContainerBlockData
+    ...CardBlockData
+    ...HeroBlockData
+  }
+  FooterNavigationCopyrightText
+  FooterNavigationSubLinks {
+    title
+    text
+    target
+    url {
+      type
+      base
+      default
+    }
+  }
 }
-    `;
-export const ImageMediaDataFragmentDoc = gql`
-    fragment ImageMediaData on ImageMedia {
-  AltText
-}
-    `;
-export const VideoMediaDataFragmentDoc = gql`
-    fragment VideoMediaData on VideoMedia {
-  __typename
-}
-    `;
+    ${PageSeoSettingsPropertyDataFragmentDoc}
+${IContentDataFragmentDoc}
+${ButtonBlockDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${LayoutSettingsBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${OdpEmbedBlockDataFragmentDoc}
+${PageSeoSettingsDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${QuoteBlockDataFragmentDoc}
+${RichTextElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
+${TextBlockDataFragmentDoc}
+${VideoElementDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${HeroBlockDataFragmentDoc}`;
 export const SysContentFolderDataFragmentDoc = gql`
     fragment SysContentFolderData on SysContentFolder {
   __typename
@@ -1073,12 +1328,6 @@ export const getArticleListElementItemsDocument = gql`
       blogImage: BlogPostPromoImage {
         type: __typename
         ...ReferenceData
-        item {
-          ... on ImageMedia {
-            __typename
-            AltText
-          }
-        }
       }
       blogBody: BlogPostBody {
         json
@@ -1173,10 +1422,6 @@ export const getChildBlogPostsDocument = gql`
                 base
                 default
               }
-              item {
-                __typename
-                ...cmpPublicImage
-              }
             }
           }
           facets {
@@ -1200,8 +1445,7 @@ export const getChildBlogPostsDocument = gql`
     }
   }
 }
-    ${IContentDataFragmentDoc}
-${cmpPublicImageFragmentDoc}`;
+    ${IContentDataFragmentDoc}`;
 export const getBlogSectionExperienceMetaDataDocument = gql`
     query getBlogSectionExperienceMetaData($key: String!, $version: String, $locale: [Locales!]) {
   page: BlogSectionExperience(
@@ -1244,12 +1488,6 @@ export const getBlogPostPageMetaDataDocument = gql`
       image: BlogPostPromoImage {
         type: __typename
         ...ReferenceData
-        item {
-          ... on ImageMedia {
-            AltText
-          }
-          ...cmpPublicImage
-        }
       }
       topics: Topic
       seo: SeoSettings {
@@ -1259,20 +1497,13 @@ export const getBlogPostPageMetaDataDocument = gql`
         image: SharingImage {
           type: __typename
           ...ReferenceData
-          item {
-            ... on ImageMedia {
-              AltText
-            }
-            ...cmpPublicImage
-          }
         }
         type: GraphType
       }
     }
   }
 }
-    ${ReferenceDataFragmentDoc}
-${cmpPublicImageFragmentDoc}`;
+    ${ReferenceDataFragmentDoc}`;
 export const getLandingPageMetaDataDocument = gql`
     query getLandingPageMetaData($key: String!, $version: String, $locale: [Locales]) {
   LandingPage(
@@ -1567,27 +1798,35 @@ export const getContentByIdDocument = gql`
       ...TextBlockData
       ...VideoElementData
       ...LandingPageData
-      ...BlogSectionExperienceData
       ...BlankExperienceData
+      ...BlogSectionExperienceData
+      ...StandardPageData
       ...BlogPostPageData
-      ...ArticleListElementData
-      ...CTAElementData
+      ...StartPageData
       ...HeadingElementData
       ...ImageElementData
+      ...CTAElementData
+      ...ArticleListElementData
+      ...ContentRecsBlockData
       ...ContinueReadingComponentData
-      ...CarouselBlockData
-      ...HeroBlockData
+      ...HomePageHeroBlockData
       ...MenuNavigationBlockData
+      ...HtmlBlockData
+      ...BlogListingBlockData
+      ...CarouselBlockData
+      ...LayoutContainerBlockData
+      ...CardBlockData
+      ...HeroBlockData
       ...OptiFormsContainerDataData
+      ...OptiFormsUrlElementData
       ...OptiFormsChoiceElementData
       ...OptiFormsNumberElementData
       ...OptiFormsRangeElementData
-      ...OptiFormsSelectionElementData
       ...OptiFormsResetElementData
       ...OptiFormsSubmitElementData
       ...OptiFormsTextareaElementData
       ...OptiFormsTextboxElementData
-      ...OptiFormsUrlElementData
+      ...OptiFormsSelectionElementData
     }
   }
 }
@@ -1606,27 +1845,35 @@ ${TestimonialElementDataFragmentDoc}
 ${TextBlockDataFragmentDoc}
 ${VideoElementDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
-${BlogSectionExperienceDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
+${BlogSectionExperienceDataFragmentDoc}
+${StandardPageDataFragmentDoc}
 ${BlogPostPageDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
+${StartPageDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${ContinueReadingComponentDataFragmentDoc}
-${CarouselBlockDataFragmentDoc}
-${HeroBlockDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
 ${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
 ${OptiFormsContainerDataDataFragmentDoc}
+${OptiFormsUrlElementDataFragmentDoc}
 ${OptiFormsChoiceElementDataFragmentDoc}
 ${OptiFormsNumberElementDataFragmentDoc}
 ${OptiFormsRangeElementDataFragmentDoc}
-${OptiFormsSelectionElementDataFragmentDoc}
 ${OptiFormsResetElementDataFragmentDoc}
 ${OptiFormsSubmitElementDataFragmentDoc}
 ${OptiFormsTextareaElementDataFragmentDoc}
 ${OptiFormsTextboxElementDataFragmentDoc}
-${OptiFormsUrlElementDataFragmentDoc}`;
+${OptiFormsSelectionElementDataFragmentDoc}`;
 export const getContentByPathDocument = gql`
     query getContentByPath($path: [String!]!, $locale: [Locales!], $siteId: String, $changeset: String = null, $variation: VariationInput) {
   content: _Content(
@@ -1638,17 +1885,21 @@ export const getContentByPathDocument = gql`
     items: item {
       ...IContentData
       ...LandingPageData
-      ...BlogSectionExperienceData
       ...BlankExperienceData
+      ...BlogSectionExperienceData
+      ...StandardPageData
       ...BlogPostPageData
+      ...StartPageData
     }
   }
 }
     ${IContentDataFragmentDoc}
 ${LandingPageDataFragmentDoc}
-${BlogSectionExperienceDataFragmentDoc}
 ${BlankExperienceDataFragmentDoc}
-${BlogPostPageDataFragmentDoc}`;
+${BlogSectionExperienceDataFragmentDoc}
+${StandardPageDataFragmentDoc}
+${BlogPostPageDataFragmentDoc}
+${StartPageDataFragmentDoc}`;
 export const getContentTypeDocument = gql`
     query getContentType($key: String!, $version: String, $locale: [Locales!], $path: String = "-", $domain: String) {
   content: _Content(
@@ -1665,32 +1916,6 @@ export const getContentTypeDocument = gql`
   }
 }
     `;
-export const getBlogSectionExperienceDataDocument = gql`
-    query getBlogSectionExperienceData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
-  data: BlogSectionExperience(
-    ids: $key
-    locale: $locale
-    variation: $variation
-    where: {_metadata: {changeset: {eq: $changeset}, version: {eq: $version}}}
-  ) {
-    total
-    item {
-      _metadata {
-        key
-        version
-        locale
-        changeset
-        variation
-      }
-      ...ExperienceData
-      seo_data {
-        ...PageSeoSettingsPropertyData
-      }
-    }
-  }
-}
-    ${ExperienceDataFragmentDoc}
-${PageSeoSettingsPropertyDataFragmentDoc}`;
 export const getBlankExperienceDataDocument = gql`
     query getBlankExperienceData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
   data: BlankExperience(
@@ -1717,6 +1942,69 @@ export const getBlankExperienceDataDocument = gql`
 }
     ${ExperienceDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}`;
+export const getBlogSectionExperienceDataDocument = gql`
+    query getBlogSectionExperienceData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
+  data: BlogSectionExperience(
+    ids: $key
+    locale: $locale
+    variation: $variation
+    where: {_metadata: {changeset: {eq: $changeset}, version: {eq: $version}}}
+  ) {
+    total
+    item {
+      _metadata {
+        key
+        version
+        locale
+        changeset
+        variation
+      }
+      ...ExperienceData
+      seo_data {
+        ...PageSeoSettingsPropertyData
+      }
+    }
+  }
+}
+    ${ExperienceDataFragmentDoc}
+${PageSeoSettingsPropertyDataFragmentDoc}`;
+export const getStandardPageDataDocument = gql`
+    query getStandardPageData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
+  data: StandardPage(
+    ids: $key
+    locale: $locale
+    variation: $variation
+    where: {_metadata: {changeset: {eq: $changeset}, version: {eq: $version}}}
+  ) {
+    total
+    item {
+      _metadata {
+        key
+        version
+        locale
+        changeset
+        variation
+      }
+      StandardPromoImage {
+        key
+        url {
+          type
+          base
+          default
+        }
+      }
+      StandardPageHeading
+      StandardSubHeading
+      SeoSettings {
+        ...PageSeoSettingsPropertyData
+      }
+      MainBody {
+        json
+      }
+    }
+  }
+}
+    ${PageSeoSettingsPropertyDataFragmentDoc}`;
 export const getBlogPostPageDataDocument = gql`
     query getBlogPostPageData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
   data: BlogPostPage(
@@ -1748,22 +2036,23 @@ export const getBlogPostPageDataDocument = gql`
           base
           default
         }
-        item {
-          __typename
-          ...CmpImageAssetInfo
-          ...CmpVideoAssetInfo
-        }
       }
       continueReading {
         ...IContentData
-        ...ArticleListElementData
-        ...CTAElementData
+        ...ContentRecsBlockData
         ...HeadingElementData
         ...ImageElementData
+        ...CTAElementData
         ...ContinueReadingComponentData
-        ...CarouselBlockData
-        ...HeroBlockData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
         ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
       }
       SeoSettings {
         ...PageSeoSettingsPropertyData
@@ -1771,18 +2060,213 @@ export const getBlogPostPageDataDocument = gql`
     }
   }
 }
-    ${CmpImageAssetInfoFragmentDoc}
-${CmpVideoAssetInfoFragmentDoc}
-${IContentDataFragmentDoc}
-${ArticleListElementDataFragmentDoc}
-${CTAElementDataFragmentDoc}
+    ${IContentDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
 ${HeadingElementDataFragmentDoc}
 ${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
 ${ContinueReadingComponentDataFragmentDoc}
-${CarouselBlockDataFragmentDoc}
-${HeroBlockDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
 ${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${HeroBlockDataFragmentDoc}
 ${PageSeoSettingsPropertyDataFragmentDoc}`;
+export const getStartPageDataDocument = gql`
+    query getStartPageData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
+  data: StartPage(
+    ids: $key
+    locale: $locale
+    variation: $variation
+    where: {_metadata: {changeset: {eq: $changeset}, version: {eq: $version}}}
+  ) {
+    total
+    item {
+      _metadata {
+        key
+        version
+        locale
+        changeset
+        variation
+      }
+      SeoSettings {
+        ...PageSeoSettingsPropertyData
+      }
+      HomePageHeroContentArea {
+        ...IContentData
+        ...ButtonBlockData
+        ...ContentRecsElementData
+        ...LayoutSettingsBlockData
+        ...MegaMenuGroupBlockData
+        ...OdpEmbedBlockData
+        ...PageSeoSettingsData
+        ...ParagraphElementData
+        ...QuoteBlockData
+        ...RichTextElementData
+        ...TestimonialElementData
+        ...TextBlockData
+        ...VideoElementData
+        ...ContentRecsBlockData
+        ...HeadingElementData
+        ...ImageElementData
+        ...CTAElementData
+        ...ContinueReadingComponentData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
+        ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
+      }
+      SiteImageLogo {
+        key
+        url {
+          type
+          base
+          default
+        }
+      }
+      HomePageMainContentArea {
+        ...IContentData
+        ...ContentRecsBlockData
+        ...HeadingElementData
+        ...ImageElementData
+        ...CTAElementData
+        ...ContinueReadingComponentData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
+        ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
+      }
+      MainNavigationContentArea {
+        ...IContentData
+        ...ButtonBlockData
+        ...ContentRecsElementData
+        ...LayoutSettingsBlockData
+        ...MegaMenuGroupBlockData
+        ...OdpEmbedBlockData
+        ...PageSeoSettingsData
+        ...ParagraphElementData
+        ...QuoteBlockData
+        ...RichTextElementData
+        ...TestimonialElementData
+        ...TextBlockData
+        ...VideoElementData
+        ...ContentRecsBlockData
+        ...HeadingElementData
+        ...ImageElementData
+        ...CTAElementData
+        ...ContinueReadingComponentData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
+        ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
+      }
+      UtilityNavigationContentArea {
+        ...IContentData
+        ...ButtonBlockData
+        ...ContentRecsElementData
+        ...LayoutSettingsBlockData
+        ...MegaMenuGroupBlockData
+        ...OdpEmbedBlockData
+        ...PageSeoSettingsData
+        ...ParagraphElementData
+        ...QuoteBlockData
+        ...RichTextElementData
+        ...TestimonialElementData
+        ...TextBlockData
+        ...VideoElementData
+        ...ContentRecsBlockData
+        ...HeadingElementData
+        ...ImageElementData
+        ...CTAElementData
+        ...ContinueReadingComponentData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
+        ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
+      }
+      FooterNavigationContentArea {
+        ...IContentData
+        ...ContentRecsBlockData
+        ...HeadingElementData
+        ...ImageElementData
+        ...CTAElementData
+        ...ContinueReadingComponentData
+        ...ArticleListElementData
+        ...HomePageHeroBlockData
+        ...MenuNavigationBlockData
+        ...HtmlBlockData
+        ...BlogListingBlockData
+        ...CarouselBlockData
+        ...LayoutContainerBlockData
+        ...CardBlockData
+        ...HeroBlockData
+      }
+      FooterNavigationCopyrightText
+      FooterNavigationSubLinks {
+        title
+        text
+        target
+        url {
+          type
+          base
+          default
+        }
+      }
+    }
+  }
+}
+    ${PageSeoSettingsPropertyDataFragmentDoc}
+${IContentDataFragmentDoc}
+${ButtonBlockDataFragmentDoc}
+${ContentRecsElementDataFragmentDoc}
+${LayoutSettingsBlockDataFragmentDoc}
+${MegaMenuGroupBlockDataFragmentDoc}
+${OdpEmbedBlockDataFragmentDoc}
+${PageSeoSettingsDataFragmentDoc}
+${ParagraphElementDataFragmentDoc}
+${QuoteBlockDataFragmentDoc}
+${RichTextElementDataFragmentDoc}
+${TestimonialElementDataFragmentDoc}
+${TextBlockDataFragmentDoc}
+${VideoElementDataFragmentDoc}
+${ContentRecsBlockDataFragmentDoc}
+${HeadingElementDataFragmentDoc}
+${ImageElementDataFragmentDoc}
+${CTAElementDataFragmentDoc}
+${ContinueReadingComponentDataFragmentDoc}
+${ArticleListElementDataFragmentDoc}
+${HomePageHeroBlockDataFragmentDoc}
+${MenuNavigationBlockDataFragmentDoc}
+${HtmlBlockDataFragmentDoc}
+${BlogListingBlockDataFragmentDoc}
+${CarouselBlockDataFragmentDoc}
+${LayoutContainerBlockDataFragmentDoc}
+${CardBlockDataFragmentDoc}
+${HeroBlockDataFragmentDoc}`;
 export const getBlankSectionDataDocument = gql`
     query getBlankSectionData($key: [String!]!, $locale: [Locales], $changeset: String, $variation: VariationInput, $version: String) {
   data: BlankSection(
@@ -1894,14 +2378,20 @@ export function getSdk(client: GraphQLClient, withWrapper: SdkFunctionWrapper = 
     getContentType(variables: Schema.getContentTypeQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getContentTypeQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getContentTypeQuery>({ document: getContentTypeDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getContentType', 'query', variables);
     },
-    getBlogSectionExperienceData(variables: Schema.getBlogSectionExperienceDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlogSectionExperienceDataQuery> {
-      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceDataQuery>({ document: getBlogSectionExperienceDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlogSectionExperienceData', 'query', variables);
-    },
     getBlankExperienceData(variables: Schema.getBlankExperienceDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlankExperienceDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankExperienceDataQuery>({ document: getBlankExperienceDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlankExperienceData', 'query', variables);
     },
+    getBlogSectionExperienceData(variables: Schema.getBlogSectionExperienceDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlogSectionExperienceDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogSectionExperienceDataQuery>({ document: getBlogSectionExperienceDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlogSectionExperienceData', 'query', variables);
+    },
+    getStandardPageData(variables: Schema.getStandardPageDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getStandardPageDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getStandardPageDataQuery>({ document: getStandardPageDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getStandardPageData', 'query', variables);
+    },
     getBlogPostPageData(variables: Schema.getBlogPostPageDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlogPostPageDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlogPostPageDataQuery>({ document: getBlogPostPageDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlogPostPageData', 'query', variables);
+    },
+    getStartPageData(variables: Schema.getStartPageDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getStartPageDataQuery> {
+      return withWrapper((wrappedRequestHeaders) => client.request<Schema.getStartPageDataQuery>({ document: getStartPageDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getStartPageData', 'query', variables);
     },
     getBlankSectionData(variables: Schema.getBlankSectionDataQueryVariables, requestHeaders?: GraphQLClientRequestHeaders, signal?: RequestInit['signal']): Promise<Schema.getBlankSectionDataQuery> {
       return withWrapper((wrappedRequestHeaders) => client.request<Schema.getBlankSectionDataQuery>({ document: getBlankSectionDataDocument, variables, requestHeaders: { ...requestHeaders, ...wrappedRequestHeaders }, signal }), 'getBlankSectionData', 'query', variables);

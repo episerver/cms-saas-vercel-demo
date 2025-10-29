@@ -6,8 +6,8 @@
   "isContract": false,
   "sortOrder": 0,
   "mayContainTypes": [
-    "BlogSectionExperience",
-    "BlogPostPage"
+    "BlogPostPage",
+    "BlogSectionExperience"
   ],
   "mediaFileExtensions": [],
   "compositionBehaviors": [],

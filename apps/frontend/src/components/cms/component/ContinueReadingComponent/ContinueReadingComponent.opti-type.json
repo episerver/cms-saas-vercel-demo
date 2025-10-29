@@ -50,7 +50,12 @@
       "sortOrder": 30,
       "items": {
         "type": "content",
-        "allowedTypes": [],
+        "allowedTypes": [
+          "ArticleListElement",
+          "CarouselBlock",
+          "ContentRecsElement",
+          "OptiFormsContainerData"
+        ],
         "restrictedTypes": []
       }
     }

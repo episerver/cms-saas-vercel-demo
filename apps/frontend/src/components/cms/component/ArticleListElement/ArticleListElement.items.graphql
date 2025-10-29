@@ -23,7 +23,7 @@ query getArticleListElementItems($count: Int!, $locale: [Locales], $topics: [Str
       blogImage: BlogPostPromoImage {
       type: __typename
         ...ReferenceData
-        item {
+        item @depend(on: "ContentReference.item") {
           ... on ImageMedia {
             __typename
             AltText

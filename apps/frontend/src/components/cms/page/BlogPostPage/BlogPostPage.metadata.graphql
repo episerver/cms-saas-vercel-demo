@@ -17,7 +17,7 @@ query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales
       image: BlogPostPromoImage {
         type: __typename
         ...ReferenceData
-        item {
+        item @depend(on: "ContentReference.item") {
           ... on ImageMedia {
             AltText
           }
@@ -32,7 +32,7 @@ query getBlogPostPageMetaData($key: String!, $version: String, $locale: [Locales
         image: SharingImage {
           type: __typename
           ...ReferenceData
-          item {
+          item @depend(on: "ContentReference.item") {
             ... on ImageMedia {
               AltText
             }

@@ -1,7 +1,7 @@
 {
   "key": "ImageElement",
   "displayName": "Image",
-  "description": "Add an image to an experience",
+  "description": "",
   "baseType": "_component",
   "isContract": false,
   "sortOrder": 0,

@@ -8,15 +8,6 @@ import RichTextElementComponent from "./RichTextElement";
 import QuoteBlockComponent from "./QuoteBlock";
 import ParagraphElementComponent from "./ParagraphElement";
 import PageSeoSettingsComponent from "./PageSeoSettings";
-import OptiFormsUrlElementComponent from "./OptiFormsUrlElement";
-import OptiFormsTextboxElementComponent from "./OptiFormsTextboxElement";
-import OptiFormsTextareaElementComponent from "./OptiFormsTextareaElement";
-import OptiFormsSubmitElementComponent from "./OptiFormsSubmitElement";
-import OptiFormsSelectionElementComponent from "./OptiFormsSelectionElement";
-import OptiFormsResetElementComponent from "./OptiFormsResetElement";
-import OptiFormsRangeElementComponent from "./OptiFormsRangeElement";
-import OptiFormsNumberElementComponent from "./OptiFormsNumberElement";
-import OptiFormsChoiceElementComponent from "./OptiFormsChoiceElement";
 import OdpEmbedBlockComponent from "./OdpEmbedBlock";
 import MenuNavigationBlockComponent from "./MenuNavigationBlock";
 import MegaMenuGroupBlockMobileComponent from "./MegaMenuGroupBlock/mobile";
@@ -66,42 +57,6 @@ export const ComponentFactory : ComponentTypeDictionary = [
     { 
         type: "PageSeoSettings", 
         component: PageSeoSettingsComponent 
-    },
-    { 
-        type: "OptiFormsUrlElement", 
-        component: OptiFormsUrlElementComponent 
-    },
-    { 
-        type: "OptiFormsTextboxElement", 
-        component: OptiFormsTextboxElementComponent 
-    },
-    { 
-        type: "OptiFormsTextareaElement", 
-        component: OptiFormsTextareaElementComponent 
-    },
-    { 
-        type: "OptiFormsSubmitElement", 
-        component: OptiFormsSubmitElementComponent 
-    },
-    { 
-        type: "OptiFormsSelectionElement", 
-        component: OptiFormsSelectionElementComponent 
-    },
-    { 
-        type: "OptiFormsResetElement", 
-        component: OptiFormsResetElementComponent 
-    },
-    { 
-        type: "OptiFormsRangeElement", 
-        component: OptiFormsRangeElementComponent 
-    },
-    { 
-        type: "OptiFormsNumberElement", 
-        component: OptiFormsNumberElementComponent 
-    },
-    { 
-        type: "OptiFormsChoiceElement", 
-        component: OptiFormsChoiceElementComponent 
     },
     { 
         type: "OdpEmbedBlock", 

@@ -2,10 +2,7 @@
 'use server'
 import type { Decide } from 'flags'
 import { flag } from 'flags/next';
-import { getUserContext, readConfigFromEnv, type OptimizelyFlag, type TypedOptimizelyDecision } from './opti';
-
-// Read project from environment
-const { projectId } = readConfigFromEnv()
+import { getUserContext, type OptimizelyFlag, type TypedOptimizelyDecision } from './opti';
 
 /**
  * Site Search
@@ -14,16 +11,9 @@ const { projectId } = readConfigFromEnv()
  * Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations
  *
  * @key site_search
- * @see https://app.optimizely.com/v2/projects/your-project-id/flags/manage/site_search
+ * @see https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/site_search
  */
 export const site_search = flag<OptimizelyFlag<{
-  /**
-   * 
-   *
-   * @defaultValue 
-   * @opti string
-   */
-  content_id: string,
   /**
    * The weight to be applied to the topics retrieved from Optimizely Content Recommendations for a personalized search result
    *
@@ -54,16 +44,16 @@ export const site_search = flag<OptimizelyFlag<{
   use_personalization: boolean
 }>>({
     key: 'site_search',
-    origin: `https://app.optimizely.com/v2/projects/${projectId}/flags/manage/site_search/variations`,
+    origin: `https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/site_search/variations`,
     description: 'Configure the Site Search capabilities, built into the site using Optimizely Graph, Optimizely Data Platform and Optimizely Content Recommendations',
-    defaultValue: {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false},
+    defaultValue: {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false},
     async decide() {
         "use server"
         const ctx = await getUserContext()
         type DecisionVariables = typeof this.decide extends (Decide<OptimizelyFlag<infer O>, any> | undefined) ? O : false
         const decision = ctx?.decide("site_search") as TypedOptimizelyDecision<DecisionVariables>
         if (!decision)
-           return {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false};
+           return {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false};
         return {
             _enabled: decision.enabled,
             ...decision.variables
@@ -72,7 +62,7 @@ export const site_search = flag<OptimizelyFlag<{
     options: [
         {
             label: "Off",
-            value: {"_enabled":false,"content_id":"","interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
+            value: {"_enabled":false,"interest_boost":200,"recent_search_count":5,"show_recent_searches":false,"use_personalization":false}
         }
     ]
 })
@@ -84,7 +74,7 @@ export const site_search = flag<OptimizelyFlag<{
  * Test various layout configurations to determine the best possible layout
  *
  * @key layout_configuration
- * @see https://app.optimizely.com/v2/projects/your-project-id/flags/manage/layout_configuration
+ * @see https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/layout_configuration
  */
 export const layout_configuration = flag<OptimizelyFlag<{
   /**
@@ -103,7 +93,7 @@ export const layout_configuration = flag<OptimizelyFlag<{
   theme_switcher: boolean
 }>>({
     key: 'layout_configuration',
-    origin: `https://app.optimizely.com/v2/projects/${projectId}/flags/manage/layout_configuration/variations`,
+    origin: `https://app.optimizely.com/v2/projects/5439876343005184/flags/manage/layout_configuration/variations`,
     description: 'Test various layout configurations to determine the best possible layout',
     defaultValue: {"_enabled":false,"logo":"/assets/moseybank-logo.svg","theme_switcher":true},
     async decide() {

@@ -31,7 +31,7 @@ query getChildBlogPosts($parentKey: String!, $locale: [Locales!]! = ALL, $author
                 base
                 default
               }
-              item {
+              item @depend(on: "ContentReference.item") {
                 __typename
                 ...cmpPublicImage
               }
