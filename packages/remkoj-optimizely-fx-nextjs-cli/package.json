@@ -13,18 +13,18 @@
     "./dist"
   ],
   "dependencies": {
-    "@next/env": "^14.2.30",
+    "@next/env": "^14.2.35",
     "handlebars": "^4.7.8",
     "tslib": "^2.8.1",
-    "typescript": "^5.8.3",
+    "typescript": "^5.9.3",
     "yargs": "^17.7.2"
   },
   "devDependencies": {
     "@rollup/plugin-json": "^6.1.0",
-    "@rollup/plugin-typescript": "^12.1.4",
-    "@types/node": "^22.16.4",
-    "@types/yargs": "^17.0.33",
-    "rollup": "4.45.1",
+    "@rollup/plugin-typescript": "^12.3.0",
+    "@types/node": "^22.19.2",
+    "@types/yargs": "^17.0.35",
+    "rollup": "4.53.3",
     "rollup-plugin-string-import": "^1.2.6"
   },
   "peerDependencies": {

@@ -9,18 +9,18 @@
   ],
   "devDependencies": {
     "@graphql-typed-document-node/core": "^3.2.0",
-    "@remkoj/optimizely-graph-client": "^5.1.6",
-    "@remkoj/optimizely-graph-functions": "^5.1.6",
+    "@remkoj/optimizely-graph-client": "^5.1.7",
+    "@remkoj/optimizely-graph-functions": "^5.1.7",
     "@types/source-map-support": "^0.5.10",
-    "@yarnpkg/sdks": "^3.2.2",
+    "@yarnpkg/sdks": "^3.2.3",
     "eslint": "8.57.1",
-    "graphql": "^16.11.0",
+    "graphql": "^16.12.0",
     "graphql-request": "^6.1.0",
     "graphql-tag": "^2.12.6",
-    "prettier": "^3.6.2",
+    "prettier": "^3.7.4",
     "source-map-support": "^0.5.21",
-    "typescript": "^5.8.3",
-    "vercel": "^44.4.3"
+    "typescript": "^5.9.3",
+    "vercel": "^44.7.3"
   },
   "exports": null,
   "scripts": {
