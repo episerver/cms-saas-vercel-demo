@@ -84,6 +84,25 @@
           "sortOrder": 10
         }
       }
+    },
+    "textAlign": {
+      "displayName": "Text Alignment",
+      "editor": "",
+      "sortOrder": 40,
+      "choices": {
+        "center": {
+          "displayName": "Center",
+          "sortOrder": 20
+        },
+        "right": {
+          "displayName": "Right",
+          "sortOrder": 30
+        },
+        "left": {
+          "displayName": "Left",
+          "sortOrder": 10
+        }
+      }
     }
   }
 }

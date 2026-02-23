@@ -12,14 +12,16 @@ enum portraitAspectRatioClasses {
     banner = 'aspect-[1/4]',
     photo = 'aspect-[2/3]',
     monitor = 'aspect-[3/4]',
-    widescreen = 'aspect-[9/16]'
+    widescreen = 'aspect-[9/16]',
+    viewport = 'h-[70vh]'
 }
 enum landscapeAspectRatioClasses {
     square = 'aspect-square',
     banner = 'aspect-[4/1]',
     photo = 'aspect-[3/2]',
     monitor = 'aspect-[4/3]',
-    widescreen = 'aspect-[16/9]'
+    widescreen = 'aspect-[16/9]',
+    viewport = 'h-[70vh]'
 }
 enum roundedCornersClasses {
     small = 'rounded',          // 0.25rem

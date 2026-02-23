@@ -250,3 +250,37 @@
 .optly-contentLink {
   display: none;
 }
+
+// Section text alignment classes
+.section-align-center {
+  text-align: center;
+
+  .vb\:row {
+    flex-direction: column !important;
+    justify-content: center;
+    align-items: center;
+    gap: 0 !important;
+
+    // Override all Tailwind gap utilities
+    &[class*="gap-"] {
+      gap: 0 !important;
+    }
+  }
+
+  .vb\:column {
+    align-items: center;
+  }
+}
+
+.section-align-right {
+  text-align: right;
+
+  .vb\:row {
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
+
+  .vb\:column {
+    align-items: flex-end;
+  }
+}

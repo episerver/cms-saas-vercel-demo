@@ -9,7 +9,10 @@ import {
   BlogPostPageDataFragmentDoc,
 } from "@gql/graphql";
 import { getSdk } from "@gql/client";
-import { type ContentLinkWithLocale, type InlineContentLinkWithLocale } from "@remkoj/optimizely-graph-client";
+import {
+  type ContentLinkWithLocale,
+  type InlineContentLinkWithLocale,
+} from "@remkoj/optimizely-graph-client";
 
 // Implementation components
 import ArticleListElementElement from "../../component/ArticleListElement";
@@ -20,7 +23,12 @@ import { toValidOpenGraphType } from "@/lib/opengraph";
 
 // SDK Components
 import { type OptimizelyNextPage } from "@remkoj/optimizely-cms-nextjs";
-import { RichText, CmsEditable, CmsContentArea, type GenericContext } from "@remkoj/optimizely-cms-react/rsc";
+import {
+  RichText,
+  CmsEditable,
+  CmsContentArea,
+  type GenericContext,
+} from "@remkoj/optimizely-cms-react/rsc";
 import { localeToGraphLocale } from "@remkoj/optimizely-graph-client";
 
 export const BlogPostPage: OptimizelyNextPage<
@@ -37,10 +45,12 @@ export const BlogPostPage: OptimizelyNextPage<
     blogTopics: topics,
     continueReading,
   },
-  ctx
+  ctx,
 }) => {
-  const hasOwnContinueReading = continueReading && continueReading.length ? true : false
-  const sharedContinueReading = await ContinueReadingComponent.getSharedInstanceData(ctx)
+  const hasOwnContinueReading =
+    continueReading && continueReading.length ? true : false;
+  const sharedContinueReading =
+    await ContinueReadingComponent.getSharedInstanceData(ctx);
 
   return (
     <>
@@ -115,41 +125,70 @@ export const BlogPostPage: OptimizelyNextPage<
       </div>
 
       {(inEditMode || hasOwnContinueReading) && (
-        <CmsContentArea fieldName="continueReading" items={ continueReading } className="outer-padding flex flex-col items-center" itemWrapper={{ className: "data-[component=ContentRecsElement]:w-full"}} ctx={ctx} />
+        <CmsContentArea
+          fieldName="continueReading"
+          items={continueReading}
+          className="outer-padding flex flex-col items-center"
+          itemWrapper={{
+            className: "data-[component=ContentRecsElement]:w-full",
+          }}
+          ctx={ctx}
+        />
       )}
       {!hasOwnContinueReading && sharedContinueReading && (
         <div className="outer-padding">
-          { inEditMode && <div className="bg-tangy text-vulcan-85 text-center p-2 mb-8 font-bold">This section will be hidden when the &ldquo;Continue Reading&rdquo; content area has at least one item.</div> }
-          <ContinueReadingComponent.default {...sharedContinueReading} inEditMode={false} ctx={ctx} />
+          {inEditMode && (
+            <div className="bg-tangy text-vulcan-85 text-center p-2 mb-8 font-bold">
+              This section will be hidden when the &ldquo;Continue
+              Reading&rdquo; content area has at least one item.
+            </div>
+          )}
+          <ContinueReadingComponent.default
+            {...sharedContinueReading}
+            inEditMode={false}
+            ctx={ctx}
+          />
         </div>
       )}
       {!hasOwnContinueReading && !sharedContinueReading && (
-        <FixedContinueReading contentLink={contentLink} topics={topics} ctx={ctx} />
+        <FixedContinueReading
+          contentLink={contentLink}
+          topics={topics}
+          ctx={ctx}
+        />
       )}
       <div className="col-span-12 lg:col-span-10 lg:col-start-2 mx-auto mt-8"></div>
     </>
   );
 };
 
-function FixedContinueReading({ctx, contentLink, topics}: { ctx?: GenericContext, contentLink: ContentLinkWithLocale | InlineContentLinkWithLocale, topics?: (string | null)[] | null }) {
+function FixedContinueReading({
+  ctx,
+  contentLink,
+  topics,
+}: {
+  ctx?: GenericContext;
+  contentLink: ContentLinkWithLocale | InlineContentLinkWithLocale;
+  topics?: (string | null)[] | null;
+}) {
   return (
     <div className="outer-padding">
-        <div className="w-full flex flex-col items-center gap-8 lg:gap-12 pb-8 lg:pb-12">
-          <div className="uppercase">More picks just for you</div>
-          <div className="text-6xl font-bold">Want to keep reading?</div>
-        </div>
-        <ArticleListElementElement
-          contentLink={{ key: null }}
-          inEditMode={false}
-          data={{
-            articleListCount: 3,
-            topics,
-            excludeKeys: contentLink.key ? [contentLink.key] : [],
-          }}
-          ctx={ctx}
-        />
+      <div className="w-full flex flex-col items-center gap-8 lg:gap-12 pb-8 lg:pb-12">
+        <div className="uppercase">More picks just for you</div>
+        <div className="text-6xl font-bold">Want to keep reading?</div>
       </div>
-  )
+      <ArticleListElementElement
+        contentLink={{ key: null }}
+        inEditMode={false}
+        data={{
+          articleListCount: 3,
+          topics,
+          excludeKeys: contentLink.key ? [contentLink.key] : [],
+        }}
+        ctx={ctx}
+      />
+    </div>
+  );
 }
 
 BlogPostPage.getDataFragment = () => [
@@ -173,7 +212,7 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
     blogPost?.cms?.url?.base ?? "http://localhost:3000",
   );
 
-  const topics = blogPost?.topics?.filter(isNotNullOrUndefined) || undefined
+  const topics = blogPost?.topics?.filter(isNotNullOrUndefined) || undefined;
 
   const meta: WithPropertySet<Metadata, "openGraph" | "other"> = {
     title: blogPost.seo?.title || blogPost.title || blogPost.cms?.title,
@@ -193,7 +232,7 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
     },
     authors: blogPost.author ? [{ name: blogPost.author }] : [],
     other: {
-      "idio:content-type": "Blog post"
+      "idio:content-type": "Blog post",
     },
   };
   const pageImage =
@@ -207,8 +246,8 @@ BlogPostPage.getMetaData = async (contentLink, locale, client) => {
     ];
   }
   if (topics) {
-    meta.other["article:tag"] = topics
-    meta.other["idio:topic"] = topics
+    meta.other["article:tag"] = topics;
+    meta.other["idio:topic"] = topics;
   }
   return meta;
 };

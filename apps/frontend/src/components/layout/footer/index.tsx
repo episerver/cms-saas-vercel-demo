@@ -42,7 +42,7 @@ export async function SiteFooter({locale, ctx }: SiteFooterProps)
                 <LanguageSwitcher ctx={ ctx } />
             </div>
             <div className="mx-auto w-fit py-6 xl:py-12">
-                <Image src={"/assets/moseybank-logo-white.svg"} width={200} height={35} alt="Moseybank Logo" unoptimized />
+                <Image src={"/assets/moseybank-logo-white.svg"} width={200} height={35} alt="Logo" unoptimized />
             </div>
             <div className="flex flex-col lg:flex-row gap-2 lg:gap-6 text-sm items-center justify-center">
                 <p>{ footerData?.copyright ?? '&copy; Optimizely. All rights reserved'}</p>

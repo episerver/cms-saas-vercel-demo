@@ -16,6 +16,7 @@ import { ServerContext } from "@remkoj/optimizely-cms-react/rsc";
 import { OptimizelyOneProvider, PageActivator } from "@remkoj/optimizely-one-nextjs/client";
 import GoogleAnalytics from '@/components/integrations/google-analytics'
 import { SpeedInsights } from "@vercel/speed-insights/next"
+import { AdminWrapper } from '@/components/admin'
 
 /* eslint-disable @next/next/no-css-tags */
 
@@ -86,13 +87,15 @@ export default function RootLayout({ children }: RootLayoutProps) {
       <ThemeProvider value={{ theme: "system" }}>
         <Body className={`${figtree.className} on-ghost-white overflow-x-hidden`}>
           <OptimizelyOneProvider value={{ debug: false }} >
-            <PageActivator />
-            <div className="flex min-h-screen flex-col justify-between">
-              <Header locale={ locale } ctx={ ctx } />
-              <main className="grow">{ children }</main>
-              <Footer ctx={ ctx } />
-            </div>
-            <OptimizelyOneGadget />
+            <AdminWrapper>
+              <PageActivator />
+              <div className="flex min-h-screen flex-col justify-between">
+                <Header locale={ locale } ctx={ ctx } />
+                <main className="grow">{ children }</main>
+                <Footer ctx={ ctx } />
+              </div>
+              <OptimizelyOneGadget />
+            </AdminWrapper>
           </OptimizelyOneProvider>
           <Scripts.Footer />
           { enableGoogleAnalytics && <GoogleAnalytics measurementId={ ga_id } /> }

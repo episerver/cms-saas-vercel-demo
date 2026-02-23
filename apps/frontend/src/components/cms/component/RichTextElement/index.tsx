@@ -8,6 +8,7 @@ import {
   type RichTextElementDataFragment,
 } from "@/gql/graphql";
 import { RichTextElementLayoutProps } from "./displayTemplates";
+import { EditableRichText } from "./_editable";
 
 type PropsMap = Required<
   ReturnType<typeof extractSettings<RichTextElementLayoutProps>>
@@ -36,20 +37,20 @@ export const RichTextElementElement: CmsComponent<
   const cssClassName = WidthMap[width];
 
   return (
-    <RichText
-      // Set the ID and fieldname expected by the CMS, with context to allow
-      // the CmsEditable containe within RichText to work
-      cmsId={contentLink.key}
-      cmsFieldName="text"
-      ctx={ctx}
-
-      // Set the actual text
-      text={data.text?.json}
-
-      // Additional properties for the 'div' wrapper
-      className={cssClassName}
-      data-component="RichTextElement"
-    />
+    <EditableRichText contentKey={contentLink.key ?? null}>
+      <RichText
+        // Set the ID and fieldname expected by the CMS, with context to allow
+        // the CmsEditable containe within RichText to work
+        cmsId={contentLink.key}
+        cmsFieldName="text"
+        ctx={ctx}
+        // Set the actual text
+        text={data.text?.json}
+        // Additional properties for the 'div' wrapper
+        className={cssClassName}
+        data-component="RichTextElement"
+      />
+    </EditableRichText>
   );
 };
 RichTextElementElement.displayName = "Rich Text (Element/RichTextElement)";

@@ -8,6 +8,30 @@
   "mediaFileExtensions": [],
   "compositionBehaviors": [],
   "properties": {
+    "headerLogo": {
+      "type": "content",
+      "displayName": "Header Logo",
+      "description": "Logo displayed in the header",
+      "localized": false,
+      "required": false,
+      "group": "header",
+      "sortOrder": -10,
+      "editorSettings": {},
+      "allowedTypes": ["ImageMedia"],
+      "restrictedTypes": []
+    },
+    "footerLogo": {
+      "type": "content",
+      "displayName": "Footer Logo",
+      "description": "Logo displayed in the footer (typically white/light version)",
+      "localized": false,
+      "required": false,
+      "group": "footer",
+      "sortOrder": 0,
+      "editorSettings": {},
+      "allowedTypes": ["ImageMedia"],
+      "restrictedTypes": []
+    },
     "mainMenu": {
       "type": "array",
       "displayName": "Main Menu",

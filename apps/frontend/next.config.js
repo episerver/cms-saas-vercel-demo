@@ -35,6 +35,13 @@ const nextConfig = {
             'www.optimizelyedit.com/' // Optimizely Web Experimentation & Personalization Editor
           ],
         }
+    },
+    // Disable webpack filesystem cache to prevent corruption issues
+    webpack: (config, { dev }) => {
+        if (dev) {
+            config.cache = false
+        }
+        return config
     }
 }
 

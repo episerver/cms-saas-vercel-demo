@@ -139,6 +139,10 @@
       "editor": "",
       "sortOrder": 10,
       "choices": {
+        "viewport": {
+          "displayName": "Viewport Height (70vh)",
+          "sortOrder": 60
+        },
         "widescreen": {
           "displayName": "Widescreen (16:9)",
           "sortOrder": 50
