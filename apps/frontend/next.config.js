@@ -25,6 +25,12 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: '*.idio.co',
                 pathname: '/**'
+            },
+            // Optimizely DAM
+            {
+                protocol: 'https',
+                hostname: '*.cmp.optimizely.com',
+                pathname: '/**'
             }
         ]
     },
