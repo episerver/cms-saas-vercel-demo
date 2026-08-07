@@ -1,7 +1,7 @@
-/** 
+/**
  * Next.JS Configuration
- * 
- * @type {import('next').NextConfig} 
+ *
+ * @type {import('next').NextConfig}
  */
 const nextConfig = {
     compiler: {
@@ -18,6 +18,12 @@ const nextConfig = {
             {
                 protocol: 'https',
                 hostname: '*.cms.optimizely.com',
+                pathname: '/**'
+            },
+            // Optimizely CMS - non-production instances (e.g. epic/feature branches)
+            {
+                protocol: 'https',
+                hostname: '*.cmstest.optimizely.com',
                 pathname: '/**'
             },
             // Optimizely Content Recommendations
@@ -40,7 +46,7 @@ const nextConfig = {
 
 // Add the Optimizely DXP Image Loader
 /**
- * @type {string|undefined} 
+ * @type {string|undefined}
  */
 const optimizelyDxpUrl = process.env.NEXT_PUBLIC_OPTIMIZELY_CMS_URL
 if (optimizelyDxpUrl) {
