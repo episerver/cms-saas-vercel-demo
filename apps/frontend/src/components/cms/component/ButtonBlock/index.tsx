@@ -45,7 +45,7 @@ export const ButtonBlockComponent : ButtonBlockComponent = ({
     const buttonType = (configuredButtonType || providedButtonType || undefined) as 'primary' | 'secondary' | undefined
     const buttonVariant = (configuredButtonVariant || providedButtonVariant || undefined) as 'default' | 'cta' | undefined
 
-    const linkHref = url?.default ?? href.toString() ?? '#'
+    const linkHref = url?.default ?? href?.toString() ?? '#'
     const className = `${ providedClassName ?? '' } ${ configuredClassName ?? ''}`.trim()
 
     return <Button { ...omitCmsComponentProps(props) } url={ linkHref || "#"} buttonColor="default" buttonType={buttonType} buttonVariant={ buttonVariant } className={ className }>{ text ?? children }</Button>
