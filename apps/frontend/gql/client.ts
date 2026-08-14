@@ -1159,7 +1159,7 @@ ${LandingPageDataFragmentDoc}`;
 export const getContentByPathDocument = gql`
     query getContentByPath($path: [String!]!, $locale: [Locales!], $siteId: String, $changeset: String = null) {
   content: _Content(
-    where: {_metadata: {url: {default: {in: $path}, base: {eq: $siteId}}, changeset: {eq: $changeset}}}
+    where: {_or: [{_metadata: {url: {default: {in: $path}, base: {endsWith: $siteId}}, changeset: {eq: $changeset}}}, {_metadata: {url: {hierarchical: {in: $path}, type: {eq: "SIMPLE"}, base: {endsWith: $siteId}}, changeset: {eq: $changeset}}}]}
     locale: $locale
   ) {
     total

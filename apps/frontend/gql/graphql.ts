@@ -21,17 +21,20 @@ export type Scalars = {
   JSON: { input: any; output: any; }
 };
 
-export type ArticleListElement = IData & _IComponent & _IContent & {
+export type ArticleListElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ArticleListElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   articleListCount?: Maybe<Scalars['Int']['output']>;
   topics?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
@@ -49,15 +52,18 @@ export type ArticleListElement_linkArgs = {
 
 export type ArticleListElementAutocomplete = {
   __typename?: 'ArticleListElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ArticleListElementFacet = {
   __typename?: 'ArticleListElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ArticleListElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -84,13 +90,15 @@ export type ArticleListElementOutputtotalArgs = {
 export type ArticleListElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ArticleListElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type BlankExperience = IData & _IContent & _IExperience & _IPage & {
+export type BlankExperience = IData & _IContent & _IExperience & _IItem & _IPage & {
   __typename?: 'BlankExperience';
   BlankExperienceSeoSettings?: Maybe<PageSeoSettingsProperty>;
   /** @deprecated Use `_link` field instead */
@@ -98,10 +106,13 @@ export type BlankExperience = IData & _IContent & _IExperience & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -119,6 +130,7 @@ export type BlankExperience_linkArgs = {
 export type BlankExperienceAutocomplete = {
   __typename?: 'BlankExperienceAutocomplete';
   BlankExperienceSeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
@@ -126,12 +138,14 @@ export type BlankExperienceAutocomplete = {
 export type BlankExperienceFacet = {
   __typename?: 'BlankExperienceFacet';
   BlankExperienceSeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type BlankExperienceOrderByInput = {
   BlankExperienceSeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -160,24 +174,29 @@ export type BlankExperienceWhereInput = {
   BlankExperienceSeoSettings?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<BlankExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlankExperienceWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<BlankExperienceWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type BlankSection = IData & _IComponent & _IContent & _ISection & {
+export type BlankSection = IData & _IComponent & _IContent & _IItem & _ISection & {
   __typename?: 'BlankSection';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -194,17 +213,20 @@ export type BlankSection_linkArgs = {
 
 export type BlankSectionAutocomplete = {
   __typename?: 'BlankSectionAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type BlankSectionFacet = {
   __typename?: 'BlankSectionFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type BlankSectionOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -232,14 +254,16 @@ export type BlankSectionOutputtotalArgs = {
 export type BlankSectionWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<BlankSectionWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlankSectionWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<BlankSectionWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type BlogListingBlock = IData & _IComponent & _IContent & {
+export type BlogListingBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'BlogListingBlock';
   BlogListingItemCount?: Maybe<Scalars['Int']['output']>;
   BlogListingShowFilters?: Maybe<Scalars['Boolean']['output']>;
@@ -248,10 +272,13 @@ export type BlogListingBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -267,15 +294,18 @@ export type BlogListingBlock_linkArgs = {
 
 export type BlogListingBlockAutocomplete = {
   __typename?: 'BlogListingBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type BlogListingBlockFacet = {
   __typename?: 'BlogListingBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type BlogListingBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -302,13 +332,15 @@ export type BlogListingBlockOutputtotalArgs = {
 export type BlogListingBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<BlogListingBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type BlogPostPage = IData & _IContent & _IPage & {
+export type BlogPostPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'BlogPostPage';
   ArticleAuthor?: Maybe<Scalars['String']['output']>;
   ArticleSubHeading?: Maybe<Scalars['String']['output']>;
@@ -322,10 +354,13 @@ export type BlogPostPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   continueReading?: Maybe<Array<Maybe<_IContent>>>;
 };
@@ -364,6 +399,7 @@ export type BlogPostPageAutocomplete = {
   __typename?: 'BlogPostPageAutocomplete';
   BlogPostPromoImage?: Maybe<ContentReferenceAutocomplete>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   continueReading?: Maybe<_IContentAutocomplete>;
 };
@@ -377,6 +413,7 @@ export type BlogPostPageFacet = {
   Heading?: Maybe<Array<Maybe<StringFacet>>>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
   Topic?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   continueReading?: Maybe<_IContentFacet>;
 };
@@ -421,6 +458,7 @@ export type BlogPostPageOrderByInput = {
   Heading?: InputMaybe<OrderBy>;
   SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
   Topic?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -455,24 +493,29 @@ export type BlogPostPageWhereInput = {
   Topic?: InputMaybe<SearchableStringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<BlogPostPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlogPostPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<BlogPostPageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   continueReading?: InputMaybe<_IContentWhereInput>;
 };
 
-export type BlogSectionExperience = IData & _IContent & _IExperience & _IPage & {
+export type BlogSectionExperience = IData & _IContent & _IExperience & _IItem & _IPage & {
   __typename?: 'BlogSectionExperience';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
   seo_data?: Maybe<PageSeoSettingsProperty>;
@@ -490,6 +533,7 @@ export type BlogSectionExperience_linkArgs = {
 
 export type BlogSectionExperienceAutocomplete = {
   __typename?: 'BlogSectionExperienceAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
   seo_data?: Maybe<PageSeoSettingsPropertyAutocomplete>;
@@ -497,12 +541,14 @@ export type BlogSectionExperienceAutocomplete = {
 
 export type BlogSectionExperienceFacet = {
   __typename?: 'BlogSectionExperienceFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
   seo_data?: Maybe<PageSeoSettingsPropertyFacet>;
 };
 
 export type BlogSectionExperienceOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -531,10 +577,12 @@ export type BlogSectionExperienceOutputtotalArgs = {
 export type BlogSectionExperienceWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<BlogSectionExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<BlogSectionExperienceWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<BlogSectionExperienceWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
   seo_data?: InputMaybe<PageSeoSettingsPropertyWhereInput>;
 };
@@ -550,7 +598,7 @@ export type BoolFilterInput = {
   notEq?: InputMaybe<Scalars['Boolean']['input']>;
 };
 
-export type ButtonBlock = IData & _IComponent & _IContent & {
+export type ButtonBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ButtonBlock';
   ButtonClass?: Maybe<Scalars['String']['output']>;
   ButtonText?: Maybe<Scalars['String']['output']>;
@@ -562,10 +610,13 @@ export type ButtonBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -582,17 +633,20 @@ export type ButtonBlock_linkArgs = {
 export type ButtonBlockAutocomplete = {
   __typename?: 'ButtonBlockAutocomplete';
   ButtonUrl?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ButtonBlockFacet = {
   __typename?: 'ButtonBlockFacet';
   ButtonUrl?: Maybe<ContentUrlFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ButtonBlockOrderByInput = {
   ButtonUrl?: InputMaybe<ContentUrlOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -647,13 +701,15 @@ export type ButtonBlockWhereInput = {
   ButtonUrl?: InputMaybe<ContentUrlWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ButtonBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type CTAElement = IData & _IComponent & _IContent & {
+export type CTAElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CTAElement';
   Link?: Maybe<ContentUrl>;
   Text?: Maybe<Scalars['String']['output']>;
@@ -662,10 +718,13 @@ export type CTAElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -687,6 +746,7 @@ export type CTAElement_linkArgs = {
 export type CTAElementAutocomplete = {
   __typename?: 'CTAElementAutocomplete';
   Link?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -694,6 +754,7 @@ export type CTAElementFacet = {
   __typename?: 'CTAElementFacet';
   Link?: Maybe<ContentUrlFacet>;
   Text?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -708,6 +769,7 @@ export type CTAElementFacetTextArgs = {
 export type CTAElementOrderByInput = {
   Link?: InputMaybe<ContentUrlOrderByInput>;
   Text?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -736,13 +798,15 @@ export type CTAElementWhereInput = {
   Text?: InputMaybe<SearchableStringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<CTAElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type CardBlock = IData & _IComponent & _IContent & {
+export type CardBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CardBlock';
   CardButton?: Maybe<ButtonBlockProperty>;
   CardColor?: Maybe<Scalars['String']['output']>;
@@ -757,10 +821,13 @@ export type CardBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -780,6 +847,7 @@ export type CardBlockAutocomplete = {
   CardDescription?: Maybe<RichTextAutocomplete>;
   CardIcon?: Maybe<ContentReferenceAutocomplete>;
   CardImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -789,6 +857,7 @@ export type CardBlockFacet = {
   CardDescription?: Maybe<RichTextFacet>;
   CardIcon?: Maybe<ContentReferenceFacet>;
   CardImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -797,6 +866,7 @@ export type CardBlockOrderByInput = {
   CardDescription?: InputMaybe<RichTextOrderByInput>;
   CardIcon?: InputMaybe<ContentReferenceOrderByInput>;
   CardImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -827,13 +897,15 @@ export type CardBlockWhereInput = {
   CardImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<CardBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type CarouselBlock = IData & _IComponent & _IContent & {
+export type CarouselBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'CarouselBlock';
   CarouselItemsContentArea?: Maybe<Array<Maybe<_IContent>>>;
   /** @deprecated Use `_link` field instead */
@@ -841,10 +913,13 @@ export type CarouselBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -861,17 +936,20 @@ export type CarouselBlock_linkArgs = {
 export type CarouselBlockAutocomplete = {
   __typename?: 'CarouselBlockAutocomplete';
   CarouselItemsContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type CarouselBlockFacet = {
   __typename?: 'CarouselBlockFacet';
   CarouselItemsContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type CarouselBlockOrderByInput = {
   CarouselItemsContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -899,10 +977,12 @@ export type CarouselBlockWhereInput = {
   CarouselItemsContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<CarouselBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<CarouselBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<CarouselBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type CompositionComponentNode = ICompositionComponentNode & ICompositionNode & {
@@ -1133,12 +1213,18 @@ export type CompositionStructureNodeWhereInput = {
 export type ContentMetadata = IContentMetadata & {
   __typename?: 'ContentMetadata';
   changeset?: Maybe<Scalars['String']['output']>;
+  container?: Maybe<Scalars['String']['output']>;
   created?: Maybe<Scalars['DateTime']['output']>;
+  createdBy?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['DateTime']['output']>;
   fallbackForLocale?: Maybe<Scalars['String']['output']>;
   key?: Maybe<Scalars['String']['output']>;
   lastModified?: Maybe<Scalars['DateTime']['output']>;
+  lastModifiedBy?: Maybe<Scalars['String']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
+  locales?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  path?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   published?: Maybe<Scalars['DateTime']['output']>;
   sortOrder?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -1153,7 +1239,7 @@ export type ContentMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type ContentRecsBlock = IData & _IComponent & _IContent & {
+export type ContentRecsBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ContentRecsBlock';
   BlockDeliveryApiKey?: Maybe<Scalars['String']['output']>;
   BlockRecommendationCount?: Maybe<Scalars['Int']['output']>;
@@ -1162,10 +1248,13 @@ export type ContentRecsBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1181,15 +1270,18 @@ export type ContentRecsBlock_linkArgs = {
 
 export type ContentRecsBlockAutocomplete = {
   __typename?: 'ContentRecsBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ContentRecsBlockFacet = {
   __typename?: 'ContentRecsBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ContentRecsBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1216,13 +1308,15 @@ export type ContentRecsBlockOutputtotalArgs = {
 export type ContentRecsBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ContentRecsBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type ContentRecsElement = IData & _IComponent & _IContent & {
+export type ContentRecsElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ContentRecsElement';
   ElementDeliveryApiKey?: Maybe<Scalars['String']['output']>;
   ElementRecommendationCount?: Maybe<Scalars['Int']['output']>;
@@ -1231,10 +1325,13 @@ export type ContentRecsElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1250,15 +1347,18 @@ export type ContentRecsElement_linkArgs = {
 
 export type ContentRecsElementAutocomplete = {
   __typename?: 'ContentRecsElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ContentRecsElementFacet = {
   __typename?: 'ContentRecsElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ContentRecsElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1285,10 +1385,12 @@ export type ContentRecsElementOutputtotalArgs = {
 export type ContentRecsElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ContentRecsElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ContentRecsElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ContentRecsElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type ContentReference = {
@@ -1474,17 +1576,20 @@ export type ContentUrlWhereInput = {
   type?: InputMaybe<StringFilterInput>;
 };
 
-export type ContinueReadingComponent = IData & _IComponent & _IContent & {
+export type ContinueReadingComponent = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ContinueReadingComponent';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   content?: Maybe<Array<Maybe<_IContent>>>;
   heading?: Maybe<Scalars['String']['output']>;
@@ -1504,12 +1609,14 @@ export type ContinueReadingComponent_linkArgs = {
 
 export type ContinueReadingComponentAutocomplete = {
   __typename?: 'ContinueReadingComponentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   content?: Maybe<_IContentAutocomplete>;
 };
 
 export type ContinueReadingComponentFacet = {
   __typename?: 'ContinueReadingComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   content?: Maybe<_IContentFacet>;
   shared?: Maybe<Array<Maybe<StringFacet>>>;
@@ -1524,6 +1631,7 @@ export type ContinueReadingComponentFacetsharedArgs = {
 };
 
 export type ContinueReadingComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1552,10 +1660,12 @@ export type ContinueReadingComponentOutputtotalArgs = {
 export type ContinueReadingComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ContinueReadingComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ContinueReadingComponentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ContinueReadingComponentWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   content?: InputMaybe<_IContentWhereInput>;
   shared?: InputMaybe<BoolFilterInput>;
 };
@@ -1567,9 +1677,11 @@ export type Data = IData & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1610,6 +1722,7 @@ export type DataWhereInput = {
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<DataWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<DataWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type DateFacet = {
@@ -1630,7 +1743,7 @@ export enum DateFacetUnit {
 export type DateFilterInput = {
   /** `boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number. */
   boost?: InputMaybe<Scalars['Int']['input']>;
-  /** `decay` influences the weight of the score with a decay function. For example, results that have a more recent datetime will be ranked higher. The `origin` will be `now()` in case not specified. The `scale` is by default 10. The `rate` must be in the range `[0..1]`. */
+  /** `decay` influences the weight of the score with a decay function. For example, results that have a more recent datetime will be ranked higher. */
   decay?: InputMaybe<Decay>;
   /** `eq` matches on an exact value, but the value is case-insensitive. */
   eq?: InputMaybe<Scalars['Date']['input']>;
@@ -1650,8 +1763,11 @@ export type DateFilterInput = {
 
 /** Decay influences the weight of the score based on field values with a decay function */
 export type Decay = {
+  /** Reference point the decay is measured from. Defaults to `now()`. */
   origin?: InputMaybe<Scalars['Date']['input']>;
+  /** Score at `scale` distance from `origin`. Defaults to 0.5; must be in the range (0..1). */
   rate?: InputMaybe<Scalars['Float']['input']>;
+  /** Decay distance in days. Defaults to 10. */
   scale?: InputMaybe<Scalars['Int']['input']>;
 };
 
@@ -1668,17 +1784,46 @@ export enum FactorModifier {
   SQUARE = 'SQUARE'
 }
 
-export type GenericMedia = IData & _IContent & _IMedia & {
+export type FloatFilterInput = {
+  /** `boost` influences the weight of a field by boosting a match with a number (default: 1) — counts more towards the eventual relevance score which can be projected with `_score` — at query time. Note that `boost` cannot be a negative number. */
+  boost?: InputMaybe<Scalars['Float']['input']>;
+  /** `eq` matches on an exact value, but the value is case-insensitive. */
+  eq?: InputMaybe<Scalars['Float']['input']>;
+  /** `exist` matches results that have this field. */
+  exist?: InputMaybe<Scalars['Boolean']['input']>;
+  /** `Factor` allows you to use a number value in a field to influence the `_score` directly. If used on a multi-valued field, then only the lowest value of the field is used in calculations. Default for `value` is `1`. Default for `modifier` is `NONE`. */
+  factor?: InputMaybe<NumberFactor>;
+  /** `gt` retrieves results with matches that have a value which is `greater than` it. */
+  gt?: InputMaybe<Scalars['Float']['input']>;
+  /** `gte` retrieves results with matches that have a value which is `greater than or equal to` it. */
+  gte?: InputMaybe<Scalars['Float']['input']>;
+  /** `in` matches with 1 or more exact values in a list. Example: `in: ["word1", "word2", "this is a phrase"]` */
+  in?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+  /** `lt` retrieves results with matches that have a value which is `lower than` it. */
+  lt?: InputMaybe<Scalars['Float']['input']>;
+  /** `lte` retrieves results with matches that have a value which is `lower than or equal to` it. */
+  lte?: InputMaybe<Scalars['Float']['input']>;
+  /** `not_eq` retrieves results not matching with an exact (but case-insensitive) value. */
+  notEq?: InputMaybe<Scalars['Float']['input']>;
+  /** `not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: ["word1", "word2", "this is a phrase"]` */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['Float']['input']>>>;
+};
+
+export type GenericMedia = IData & _IAssetItem & _IContent & _IItem & _IMedia & {
   __typename?: 'GenericMedia';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1694,15 +1839,21 @@ export type GenericMedia_linkArgs = {
 
 export type GenericMediaAutocomplete = {
   __typename?: 'GenericMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type GenericMediaFacet = {
   __typename?: 'GenericMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type GenericMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1728,24 +1879,30 @@ export type GenericMediaOutputtotalArgs = {
 
 export type GenericMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<GenericMediaWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type HeadingElement = IData & _IComponent & _IContent & {
+export type HeadingElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HeadingElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   headingText?: Maybe<Scalars['String']['output']>;
   test?: Maybe<Scalars['String']['output']>;
@@ -1768,11 +1925,13 @@ export type HeadingElementheadingTextArgs = {
 
 export type HeadingElementAutocomplete = {
   __typename?: 'HeadingElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type HeadingElementFacet = {
   __typename?: 'HeadingElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   headingText?: Maybe<Array<Maybe<StringFacet>>>;
 };
@@ -1786,6 +1945,7 @@ export type HeadingElementFacetheadingTextArgs = {
 };
 
 export type HeadingElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1813,14 +1973,16 @@ export type HeadingElementOutputtotalArgs = {
 export type HeadingElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<HeadingElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HeadingElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<HeadingElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   headingText?: InputMaybe<SearchableStringFilterInput>;
 };
 
-export type HeroBlock = IData & _IComponent & _IContent & {
+export type HeroBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HeroBlock';
   Description?: Maybe<RichText>;
   Eyebrow?: Maybe<Scalars['String']['output']>;
@@ -1835,10 +1997,13 @@ export type HeroBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1857,6 +2022,7 @@ export type HeroBlockAutocomplete = {
   Description?: Maybe<RichTextAutocomplete>;
   HeroButton?: Maybe<ButtonBlockPropertyAutocomplete>;
   HeroImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -1865,6 +2031,7 @@ export type HeroBlockFacet = {
   Description?: Maybe<RichTextFacet>;
   HeroButton?: Maybe<ButtonBlockPropertyFacet>;
   HeroImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -1872,6 +2039,7 @@ export type HeroBlockOrderByInput = {
   Description?: InputMaybe<RichTextOrderByInput>;
   HeroButton?: InputMaybe<ButtonBlockPropertyOrderByInput>;
   HeroImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1901,10 +2069,12 @@ export type HeroBlockWhereInput = {
   HeroImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<HeroBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 /** Options for highlighting */
@@ -1914,7 +2084,7 @@ export type HighlightOptions = {
   startToken?: InputMaybe<Scalars['String']['input']>;
 };
 
-export type HomePageHeroBlock = IData & _IComponent & _IContent & {
+export type HomePageHeroBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HomePageHeroBlock';
   HomeHeroBlockHeading?: Maybe<Scalars['String']['output']>;
   HomeHeroBlockSubHeading?: Maybe<Scalars['String']['output']>;
@@ -1926,10 +2096,13 @@ export type HomePageHeroBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -1948,6 +2121,7 @@ export type HomePageHeroBlockAutocomplete = {
   HomeHeroButtonBlock?: Maybe<ButtonBlockPropertyAutocomplete>;
   HomeHeroLeftImage?: Maybe<ContentReferenceAutocomplete>;
   HomeHeroRightImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -1956,6 +2130,7 @@ export type HomePageHeroBlockFacet = {
   HomeHeroButtonBlock?: Maybe<ButtonBlockPropertyFacet>;
   HomeHeroLeftImage?: Maybe<ContentReferenceFacet>;
   HomeHeroRightImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -1963,6 +2138,7 @@ export type HomePageHeroBlockOrderByInput = {
   HomeHeroButtonBlock?: InputMaybe<ButtonBlockPropertyOrderByInput>;
   HomeHeroLeftImage?: InputMaybe<ContentReferenceOrderByInput>;
   HomeHeroRightImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -1992,13 +2168,15 @@ export type HomePageHeroBlockWhereInput = {
   HomeHeroRightImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<HomePageHeroBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type HtmlBlock = IData & _IComponent & _IContent & {
+export type HtmlBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'HtmlBlock';
   HtmlBlockHeading?: Maybe<Scalars['String']['output']>;
   HtmlContent?: Maybe<RichText>;
@@ -2007,10 +2185,13 @@ export type HtmlBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2027,17 +2208,20 @@ export type HtmlBlock_linkArgs = {
 export type HtmlBlockAutocomplete = {
   __typename?: 'HtmlBlockAutocomplete';
   HtmlContent?: Maybe<RichTextAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type HtmlBlockFacet = {
   __typename?: 'HtmlBlockFacet';
   HtmlContent?: Maybe<RichTextFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type HtmlBlockOrderByInput = {
   HtmlContent?: InputMaybe<RichTextOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2065,10 +2249,12 @@ export type HtmlBlockWhereInput = {
   HtmlContent?: InputMaybe<RichTextWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<HtmlBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type ICompositionComponentNode = {
@@ -2232,12 +2418,18 @@ export type ICompositionStructureNode = {
 
 export type IContentMetadata = {
   changeset?: Maybe<Scalars['String']['output']>;
+  container?: Maybe<Scalars['String']['output']>;
   created?: Maybe<Scalars['DateTime']['output']>;
+  createdBy?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['DateTime']['output']>;
   fallbackForLocale?: Maybe<Scalars['String']['output']>;
   key?: Maybe<Scalars['String']['output']>;
   lastModified?: Maybe<Scalars['DateTime']['output']>;
+  lastModifiedBy?: Maybe<Scalars['String']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
+  locales?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  path?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   published?: Maybe<Scalars['DateTime']['output']>;
   sortOrder?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2255,9 +2447,14 @@ export type IContentMetadatadisplayNameArgs = {
 export type IContentMetadataAutocomplete = {
   __typename?: 'IContentMetadataAutocomplete';
   changeset?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  container?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  createdBy?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   fallbackForLocale?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   key?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  lastModifiedBy?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   locale?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  locales?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  path?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   status?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   types?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   url?: Maybe<ContentUrlAutocomplete>;
@@ -2267,6 +2464,18 @@ export type IContentMetadataAutocomplete = {
 
 
 export type IContentMetadataAutocompletechangesetArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type IContentMetadataAutocompletecontainerArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type IContentMetadataAutocompletecreatedByArgs = {
   limit?: Scalars['Int']['input'];
   value: Scalars['String']['input'];
 };
@@ -2284,7 +2493,25 @@ export type IContentMetadataAutocompletekeyArgs = {
 };
 
 
+export type IContentMetadataAutocompletelastModifiedByArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
 export type IContentMetadataAutocompletelocaleArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type IContentMetadataAutocompletelocalesArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type IContentMetadataAutocompletepathArgs = {
   limit?: Scalars['Int']['input'];
   value: Scalars['String']['input'];
 };
@@ -2316,12 +2543,18 @@ export type IContentMetadataAutocompleteversionArgs = {
 export type IContentMetadataFacet = {
   __typename?: 'IContentMetadataFacet';
   changeset?: Maybe<Array<Maybe<StringFacet>>>;
+  container?: Maybe<Array<Maybe<StringFacet>>>;
   created?: Maybe<Array<Maybe<DateFacet>>>;
+  createdBy?: Maybe<Array<Maybe<StringFacet>>>;
   displayName?: Maybe<Array<Maybe<StringFacet>>>;
+  expired?: Maybe<Array<Maybe<DateFacet>>>;
   fallbackForLocale?: Maybe<Array<Maybe<StringFacet>>>;
   key?: Maybe<Array<Maybe<StringFacet>>>;
   lastModified?: Maybe<Array<Maybe<DateFacet>>>;
+  lastModifiedBy?: Maybe<Array<Maybe<StringFacet>>>;
   locale?: Maybe<Array<Maybe<StringFacet>>>;
+  locales?: Maybe<Array<Maybe<StringFacet>>>;
+  path?: Maybe<Array<Maybe<StringFacet>>>;
   published?: Maybe<Array<Maybe<DateFacet>>>;
   sortOrder?: Maybe<Array<Maybe<NumberFacet>>>;
   status?: Maybe<Array<Maybe<StringFacet>>>;
@@ -2340,9 +2573,25 @@ export type IContentMetadataFacetchangesetArgs = {
 };
 
 
+export type IContentMetadataFacetcontainerArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
 export type IContentMetadataFacetcreatedArgs = {
   unit?: InputMaybe<DateFacetUnit>;
   value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type IContentMetadataFacetcreatedByArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
 };
 
 
@@ -2351,6 +2600,12 @@ export type IContentMetadataFacetdisplayNameArgs = {
   limit?: Scalars['Int']['input'];
   orderBy?: InputMaybe<OrderBy>;
   orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type IContentMetadataFacetexpiredArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
 };
 
 
@@ -2376,7 +2631,31 @@ export type IContentMetadataFacetlastModifiedArgs = {
 };
 
 
+export type IContentMetadataFacetlastModifiedByArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
 export type IContentMetadataFacetlocaleArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type IContentMetadataFacetlocalesArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type IContentMetadataFacetpathArgs = {
   filters?: InputMaybe<Array<Scalars['String']['input']>>;
   limit?: Scalars['Int']['input'];
   orderBy?: InputMaybe<OrderBy>;
@@ -2432,12 +2711,18 @@ export type IContentMetadataFacetversionArgs = {
 
 export type IContentMetadataOrderByInput = {
   changeset?: InputMaybe<OrderBy>;
+  container?: InputMaybe<OrderBy>;
   created?: InputMaybe<OrderBy>;
+  createdBy?: InputMaybe<OrderBy>;
   displayName?: InputMaybe<OrderBy>;
+  expired?: InputMaybe<OrderBy>;
   fallbackForLocale?: InputMaybe<OrderBy>;
   key?: InputMaybe<OrderBy>;
   lastModified?: InputMaybe<OrderBy>;
+  lastModifiedBy?: InputMaybe<OrderBy>;
   locale?: InputMaybe<OrderBy>;
+  locales?: InputMaybe<OrderBy>;
+  path?: InputMaybe<OrderBy>;
   published?: InputMaybe<OrderBy>;
   sortOrder?: InputMaybe<OrderBy>;
   status?: InputMaybe<OrderBy>;
@@ -2449,12 +2734,18 @@ export type IContentMetadataOrderByInput = {
 
 export type IContentMetadataWhereInput = {
   changeset?: InputMaybe<StringFilterInput>;
+  container?: InputMaybe<StringFilterInput>;
   created?: InputMaybe<DateFilterInput>;
+  createdBy?: InputMaybe<StringFilterInput>;
   displayName?: InputMaybe<SearchableStringFilterInput>;
+  expired?: InputMaybe<DateFilterInput>;
   fallbackForLocale?: InputMaybe<StringFilterInput>;
   key?: InputMaybe<StringFilterInput>;
   lastModified?: InputMaybe<DateFilterInput>;
+  lastModifiedBy?: InputMaybe<StringFilterInput>;
   locale?: InputMaybe<StringFilterInput>;
+  locales?: InputMaybe<StringFilterInput>;
+  path?: InputMaybe<StringFilterInput>;
   published?: InputMaybe<DateFilterInput>;
   sortOrder?: InputMaybe<IntFilterInput>;
   status?: InputMaybe<StringFilterInput>;
@@ -2470,9 +2761,11 @@ export type IData = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2518,13 +2811,19 @@ export type IInstanceMetadatadisplayNameArgs = {
 
 export type IItemMetadata = {
   changeset?: Maybe<Scalars['String']['output']>;
+  container?: Maybe<Scalars['String']['output']>;
   created?: Maybe<Scalars['DateTime']['output']>;
+  createdBy?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
   displayOption?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['DateTime']['output']>;
   fallbackForLocale?: Maybe<Scalars['String']['output']>;
   key?: Maybe<Scalars['String']['output']>;
   lastModified?: Maybe<Scalars['DateTime']['output']>;
+  lastModifiedBy?: Maybe<Scalars['String']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
+  locales?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  path?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   published?: Maybe<Scalars['DateTime']['output']>;
   sortOrder?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2577,17 +2876,22 @@ export type IMediaMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type Image = IData & _IContent & _IImage & _IMedia & {
+export type Image = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: 'Image';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2603,20 +2907,25 @@ export type Image_linkArgs = {
 
 export type ImageAutocomplete = {
   __typename?: 'ImageAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type ImageElement = IData & _IComponent & _IContent & {
+export type ImageElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ImageElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   altText?: Maybe<Scalars['String']['output']>;
   imageLink?: Maybe<ContentReference>;
@@ -2634,17 +2943,20 @@ export type ImageElement_linkArgs = {
 
 export type ImageElementAutocomplete = {
   __typename?: 'ImageElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   imageLink?: Maybe<ContentReferenceAutocomplete>;
 };
 
 export type ImageElementFacet = {
   __typename?: 'ImageElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   imageLink?: Maybe<ContentReferenceFacet>;
 };
 
 export type ImageElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2672,30 +2984,40 @@ export type ImageElementOutputtotalArgs = {
 export type ImageElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ImageElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   imageLink?: InputMaybe<ContentReferenceWhereInput>;
 };
 
 export type ImageFacet = {
   __typename?: 'ImageFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-export type ImageMedia = IData & _IContent & _IImage & _IMedia & {
+export type ImageMedia = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: 'ImageMedia';
   AltText?: Maybe<Scalars['String']['output']>;
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2711,15 +3033,23 @@ export type ImageMedia_linkArgs = {
 
 export type ImageMediaAutocomplete = {
   __typename?: 'ImageMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ImageMediaFacet = {
   __typename?: 'ImageMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type ImageMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2745,14 +3075,21 @@ export type ImageMediaOutputtotalArgs = {
 
 export type ImageMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageMediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ImageMediaWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type ImageOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2778,11 +3115,15 @@ export type ImageOutputtotalArgs = {
 
 export type ImageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ImageWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ImageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ImageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type InstanceMetadata = IContentMetadata & IInstanceMetadata & {
@@ -2844,13 +3185,19 @@ export type IntFilterInput = {
 export type ItemMetadata = IContentMetadata & IItemMetadata & {
   __typename?: 'ItemMetadata';
   changeset?: Maybe<Scalars['String']['output']>;
+  container?: Maybe<Scalars['String']['output']>;
   created?: Maybe<Scalars['DateTime']['output']>;
+  createdBy?: Maybe<Scalars['String']['output']>;
   displayName?: Maybe<Scalars['String']['output']>;
   displayOption?: Maybe<Scalars['String']['output']>;
+  expired?: Maybe<Scalars['DateTime']['output']>;
   fallbackForLocale?: Maybe<Scalars['String']['output']>;
   key?: Maybe<Scalars['String']['output']>;
   lastModified?: Maybe<Scalars['DateTime']['output']>;
+  lastModifiedBy?: Maybe<Scalars['String']['output']>;
   locale?: Maybe<Scalars['String']['output']>;
+  locales?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  path?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   published?: Maybe<Scalars['DateTime']['output']>;
   sortOrder?: Maybe<Scalars['Int']['output']>;
   status?: Maybe<Scalars['String']['output']>;
@@ -2865,7 +3212,7 @@ export type ItemMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type LandingPage = IData & _IContent & _IPage & {
+export type LandingPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'LandingPage';
   MainContentArea?: Maybe<Array<Maybe<_IContent>>>;
   SeoSettings?: Maybe<PageSeoSettingsProperty>;
@@ -2875,10 +3222,13 @@ export type LandingPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2897,6 +3247,7 @@ export type LandingPageAutocomplete = {
   MainContentArea?: Maybe<_IContentAutocomplete>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
   TopContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -2905,6 +3256,7 @@ export type LandingPageFacet = {
   MainContentArea?: Maybe<_IContentFacet>;
   SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
   TopContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -2912,6 +3264,7 @@ export type LandingPageOrderByInput = {
   MainContentArea?: InputMaybe<_IContentOrderByInput>;
   SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
   TopContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -2941,13 +3294,15 @@ export type LandingPageWhereInput = {
   TopContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<LandingPageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type LayoutContainerBlock = IData & _IComponent & _IContent & {
+export type LayoutContainerBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'LayoutContainerBlock';
   ColumnsCount?: Maybe<Scalars['Int']['output']>;
   ContainerBackgroundColor?: Maybe<Scalars['String']['output']>;
@@ -2963,10 +3318,13 @@ export type LayoutContainerBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -2984,6 +3342,7 @@ export type LayoutContainerBlockAutocomplete = {
   __typename?: 'LayoutContainerBlockAutocomplete';
   ContainerBackgroundImage?: Maybe<ContentReferenceAutocomplete>;
   LayoutContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -2991,12 +3350,14 @@ export type LayoutContainerBlockFacet = {
   __typename?: 'LayoutContainerBlockFacet';
   ContainerBackgroundImage?: Maybe<ContentReferenceFacet>;
   LayoutContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type LayoutContainerBlockOrderByInput = {
   ContainerBackgroundImage?: InputMaybe<ContentReferenceOrderByInput>;
   LayoutContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3025,23 +3386,28 @@ export type LayoutContainerBlockWhereInput = {
   LayoutContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<LayoutContainerBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type LayoutSettingsBlock = IData & _IComponent & _IContent & {
+export type LayoutSettingsBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'LayoutSettingsBlock';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   appIdentifiers?: Maybe<Scalars['String']['output']>;
   contactInfo?: Maybe<RichText>;
@@ -3065,6 +3431,7 @@ export type LayoutSettingsBlock_linkArgs = {
 
 export type LayoutSettingsBlockAutocomplete = {
   __typename?: 'LayoutSettingsBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   appIdentifiers?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   contactInfo?: Maybe<RichTextAutocomplete>;
@@ -3082,6 +3449,7 @@ export type LayoutSettingsBlockAutocompleteappIdentifiersArgs = {
 
 export type LayoutSettingsBlockFacet = {
   __typename?: 'LayoutSettingsBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   appIdentifiers?: Maybe<Array<Maybe<StringFacet>>>;
   contactInfo?: Maybe<RichTextFacet>;
@@ -3100,6 +3468,7 @@ export type LayoutSettingsBlockFacetappIdentifiersArgs = {
 };
 
 export type LayoutSettingsBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3132,10 +3501,12 @@ export type LayoutSettingsBlockOutputtotalArgs = {
 export type LayoutSettingsBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<LayoutSettingsBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<LayoutSettingsBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<LayoutSettingsBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   appIdentifiers?: InputMaybe<StringFilterInput>;
   contactInfo?: InputMaybe<RichTextWhereInput>;
   footerMenus?: InputMaybe<_IContentWhereInput>;
@@ -3309,7 +3680,7 @@ export type MediaMetadatadisplayNameArgs = {
   highlight?: InputMaybe<HighlightOptions>;
 };
 
-export type MegaMenuGroupBlock = IData & _IComponent & _IContent & {
+export type MegaMenuGroupBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'MegaMenuGroupBlock';
   MegaMenuContentArea?: Maybe<Array<Maybe<_IContent>>>;
   MegaMenuUrl?: Maybe<ContentUrl>;
@@ -3319,10 +3690,13 @@ export type MegaMenuGroupBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3340,6 +3714,7 @@ export type MegaMenuGroupBlockAutocomplete = {
   __typename?: 'MegaMenuGroupBlockAutocomplete';
   MegaMenuContentArea?: Maybe<_IContentAutocomplete>;
   MegaMenuUrl?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -3347,12 +3722,14 @@ export type MegaMenuGroupBlockFacet = {
   __typename?: 'MegaMenuGroupBlockFacet';
   MegaMenuContentArea?: Maybe<_IContentFacet>;
   MegaMenuUrl?: Maybe<ContentUrlFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type MegaMenuGroupBlockOrderByInput = {
   MegaMenuContentArea?: InputMaybe<_IContentOrderByInput>;
   MegaMenuUrl?: InputMaybe<ContentUrlOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3381,13 +3758,15 @@ export type MegaMenuGroupBlockWhereInput = {
   MegaMenuUrl?: InputMaybe<ContentUrlWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<MegaMenuGroupBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type MenuNavigationBlock = IData & _IComponent & _IContent & {
+export type MenuNavigationBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'MenuNavigationBlock';
   MenuNavigationHeading?: Maybe<Scalars['String']['output']>;
   NavigationLinks?: Maybe<Array<Maybe<Link>>>;
@@ -3396,10 +3775,13 @@ export type MenuNavigationBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3416,17 +3798,20 @@ export type MenuNavigationBlock_linkArgs = {
 export type MenuNavigationBlockAutocomplete = {
   __typename?: 'MenuNavigationBlockAutocomplete';
   NavigationLinks?: Maybe<LinkAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type MenuNavigationBlockFacet = {
   __typename?: 'MenuNavigationBlockFacet';
   NavigationLinks?: Maybe<LinkFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type MenuNavigationBlockOrderByInput = {
   NavigationLinks?: InputMaybe<LinkOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3454,10 +3839,12 @@ export type MenuNavigationBlockWhereInput = {
   NavigationLinks?: InputMaybe<LinkWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<MenuNavigationBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type NumberFacet = {
@@ -3472,7 +3859,7 @@ export type NumberFactor = {
   value?: InputMaybe<Scalars['Float']['input']>;
 };
 
-export type OdpEmbedBlock = IData & _IComponent & _IContent & {
+export type OdpEmbedBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OdpEmbedBlock';
   ContentId?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -3480,10 +3867,13 @@ export type OdpEmbedBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3499,15 +3889,18 @@ export type OdpEmbedBlock_linkArgs = {
 
 export type OdpEmbedBlockAutocomplete = {
   __typename?: 'OdpEmbedBlockAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OdpEmbedBlockFacet = {
   __typename?: 'OdpEmbedBlockFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OdpEmbedBlockOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3534,17 +3927,20 @@ export type OdpEmbedBlockOutputtotalArgs = {
 export type OdpEmbedBlockWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OdpEmbedBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
+export type OptiFormsChoiceElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsChoiceElement';
   AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Options?: Maybe<Scalars['JSON']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -3552,10 +3948,13 @@ export type OptiFormsChoiceElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3571,15 +3970,18 @@ export type OptiFormsChoiceElement_linkArgs = {
 
 export type OptiFormsChoiceElementAutocomplete = {
   __typename?: 'OptiFormsChoiceElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsChoiceElementFacet = {
   __typename?: 'OptiFormsChoiceElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsChoiceElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3606,14 +4008,102 @@ export type OptiFormsChoiceElementOutputtotalArgs = {
 export type OptiFormsChoiceElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsChoiceElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsContainerData = IData & _IComponent & _IContent & _ISection & {
+export type OptiFormsCondition = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'OptiFormsCondition';
+  ComparisonOperator?: Maybe<Scalars['String']['output']>;
+  ComparisonValue?: Maybe<Scalars['String']['output']>;
+  DependsOnField?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type OptiFormsCondition_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type OptiFormsCondition_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type OptiFormsConditionAutocomplete = {
+  __typename?: 'OptiFormsConditionAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type OptiFormsConditionFacet = {
+  __typename?: 'OptiFormsConditionFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+export type OptiFormsConditionOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type OptiFormsConditionOutput = {
+  __typename?: 'OptiFormsConditionOutput';
+  autocomplete?: Maybe<OptiFormsConditionAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<OptiFormsConditionFacet>;
+  item?: Maybe<OptiFormsCondition>;
+  items?: Maybe<Array<Maybe<OptiFormsCondition>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type OptiFormsConditionOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type OptiFormsConditionProperty = {
+  __typename?: 'OptiFormsConditionProperty';
+  ComparisonOperator?: Maybe<Scalars['String']['output']>;
+  ComparisonValue?: Maybe<Scalars['String']['output']>;
+  DependsOnField?: Maybe<Scalars['String']['output']>;
+};
+
+export type OptiFormsConditionWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<OptiFormsConditionWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<OptiFormsConditionWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<OptiFormsConditionWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type OptiFormsContainerData = IData & _IComponent & _IContent & _IItem & _ISection & {
   __typename?: 'OptiFormsContainerData';
+  DependencyRules?: Maybe<Array<Maybe<OptiFormsDependencyRuleProperty>>>;
   Description?: Maybe<Scalars['String']['output']>;
   ResetConfirmationMessage?: Maybe<Scalars['String']['output']>;
   ShowSummaryMessageAfterSubmission?: Maybe<Scalars['Boolean']['output']>;
@@ -3625,10 +4115,13 @@ export type OptiFormsContainerData = IData & _IComponent & _IContent & _ISection
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -3646,19 +4139,24 @@ export type OptiFormsContainerData_linkArgs = {
 export type OptiFormsContainerDataAutocomplete = {
   __typename?: 'OptiFormsContainerDataAutocomplete';
   SubmitUrl?: Maybe<ContentUrlAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type OptiFormsContainerDataFacet = {
   __typename?: 'OptiFormsContainerDataFacet';
+  DependencyRules?: Maybe<OptiFormsDependencyRulePropertyFacet>;
   SubmitUrl?: Maybe<ContentUrlFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type OptiFormsContainerDataOrderByInput = {
+  DependencyRules?: InputMaybe<OptiFormsDependencyRulePropertyOrderByInput>;
   SubmitUrl?: InputMaybe<ContentUrlOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3684,22 +4182,151 @@ export type OptiFormsContainerDataOutputtotalArgs = {
 };
 
 export type OptiFormsContainerDataWhereInput = {
+  DependencyRules?: InputMaybe<OptiFormsDependencyRulePropertyWhereInput>;
   SubmitUrl?: InputMaybe<ContentUrlWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsContainerDataWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type OptiFormsNumberElement = IData & _IComponent & _IContent & {
+export type OptiFormsDependencyRule = IData & _IComponent & _IContent & _IItem & {
+  __typename?: 'OptiFormsDependencyRule';
+  AfterStep?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<OptiFormsConditionProperty>>>;
+  JumpToStep?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
+  TargetElement?: Maybe<Scalars['String']['output']>;
+  TargetStep?: Maybe<Scalars['String']['output']>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _metadata?: Maybe<IContentMetadata>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type OptiFormsDependencyRule_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type OptiFormsDependencyRule_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type OptiFormsDependencyRuleAutocomplete = {
+  __typename?: 'OptiFormsDependencyRuleAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+  _metadata?: Maybe<IContentMetadataAutocomplete>;
+};
+
+export type OptiFormsDependencyRuleFacet = {
+  __typename?: 'OptiFormsDependencyRuleFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+  _metadata?: Maybe<IContentMetadataFacet>;
+};
+
+
+export type OptiFormsDependencyRuleFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type OptiFormsDependencyRuleOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _metadata?: InputMaybe<IContentMetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type OptiFormsDependencyRuleOutput = {
+  __typename?: 'OptiFormsDependencyRuleOutput';
+  autocomplete?: Maybe<OptiFormsDependencyRuleAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<OptiFormsDependencyRuleFacet>;
+  item?: Maybe<OptiFormsDependencyRule>;
+  items?: Maybe<Array<Maybe<OptiFormsDependencyRule>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type OptiFormsDependencyRuleOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type OptiFormsDependencyRuleProperty = {
+  __typename?: 'OptiFormsDependencyRuleProperty';
+  AfterStep?: Maybe<Scalars['String']['output']>;
+  ConditionCombination?: Maybe<Scalars['String']['output']>;
+  Conditions?: Maybe<Array<Maybe<OptiFormsConditionProperty>>>;
+  JumpToStep?: Maybe<Scalars['String']['output']>;
+  SatisfiedAction?: Maybe<Scalars['String']['output']>;
+  TargetElement?: Maybe<Scalars['String']['output']>;
+  TargetStep?: Maybe<Scalars['String']['output']>;
+};
+
+export type OptiFormsDependencyRulePropertyFacet = {
+  __typename?: 'OptiFormsDependencyRulePropertyFacet';
+  Conditions?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type OptiFormsDependencyRulePropertyFacetConditionsArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type OptiFormsDependencyRulePropertyOrderByInput = {
+  Conditions?: InputMaybe<OrderBy>;
+};
+
+export type OptiFormsDependencyRulePropertyWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
+};
+
+export type OptiFormsDependencyRuleWhereInput = {
+  Conditions?: InputMaybe<StringFilterInput>;
+  _and?: InputMaybe<Array<InputMaybe<OptiFormsDependencyRuleWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _metadata?: InputMaybe<IContentMetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<OptiFormsDependencyRuleWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<OptiFormsDependencyRuleWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type OptiFormsNumberElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsNumberElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -3707,10 +4334,13 @@ export type OptiFormsNumberElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3726,15 +4356,18 @@ export type OptiFormsNumberElement_linkArgs = {
 
 export type OptiFormsNumberElementAutocomplete = {
   __typename?: 'OptiFormsNumberElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsNumberElementFacet = {
   __typename?: 'OptiFormsNumberElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsNumberElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3761,29 +4394,35 @@ export type OptiFormsNumberElementOutputtotalArgs = {
 export type OptiFormsNumberElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsNumberElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsRangeElement = IData & _IComponent & _IContent & {
+export type OptiFormsRangeElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsRangeElement';
   Increment?: Maybe<Scalars['Int']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Max?: Maybe<Scalars['Int']['output']>;
   Min?: Maybe<Scalars['Int']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3799,15 +4438,18 @@ export type OptiFormsRangeElement_linkArgs = {
 
 export type OptiFormsRangeElementAutocomplete = {
   __typename?: 'OptiFormsRangeElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsRangeElementFacet = {
   __typename?: 'OptiFormsRangeElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsRangeElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3834,13 +4476,15 @@ export type OptiFormsRangeElementOutputtotalArgs = {
 export type OptiFormsRangeElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsRangeElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsResetElement = IData & _IComponent & _IContent & {
+export type OptiFormsResetElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsResetElement';
   Label?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
@@ -3849,10 +4493,13 @@ export type OptiFormsResetElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3868,15 +4515,18 @@ export type OptiFormsResetElement_linkArgs = {
 
 export type OptiFormsResetElementAutocomplete = {
   __typename?: 'OptiFormsResetElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsResetElementFacet = {
   __typename?: 'OptiFormsResetElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsResetElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3903,19 +4553,22 @@ export type OptiFormsResetElementOutputtotalArgs = {
 export type OptiFormsResetElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsResetElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
+export type OptiFormsSelectionElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsSelectionElement';
   AllowMultiSelect?: Maybe<Scalars['Boolean']['output']>;
   AutoComplete?: Maybe<Scalars['String']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Options?: Maybe<Scalars['JSON']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -3923,10 +4576,13 @@ export type OptiFormsSelectionElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -3942,15 +4598,18 @@ export type OptiFormsSelectionElement_linkArgs = {
 
 export type OptiFormsSelectionElementAutocomplete = {
   __typename?: 'OptiFormsSelectionElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsSelectionElementFacet = {
   __typename?: 'OptiFormsSelectionElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsSelectionElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -3977,13 +4636,15 @@ export type OptiFormsSelectionElementOutputtotalArgs = {
 export type OptiFormsSelectionElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsSelectionElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsSubmitElement = IData & _IComponent & _IContent & {
+export type OptiFormsSubmitElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsSubmitElement';
   Label?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
@@ -3992,10 +4653,13 @@ export type OptiFormsSubmitElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4011,15 +4675,18 @@ export type OptiFormsSubmitElement_linkArgs = {
 
 export type OptiFormsSubmitElementAutocomplete = {
   __typename?: 'OptiFormsSubmitElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsSubmitElementFacet = {
   __typename?: 'OptiFormsSubmitElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsSubmitElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4046,18 +4713,21 @@ export type OptiFormsSubmitElementOutputtotalArgs = {
 export type OptiFormsSubmitElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsSubmitElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsTextareaElement = IData & _IComponent & _IContent & {
+export type OptiFormsTextareaElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsTextareaElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -4065,10 +4735,13 @@ export type OptiFormsTextareaElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4084,15 +4757,18 @@ export type OptiFormsTextareaElement_linkArgs = {
 
 export type OptiFormsTextareaElementAutocomplete = {
   __typename?: 'OptiFormsTextareaElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsTextareaElementFacet = {
   __typename?: 'OptiFormsTextareaElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsTextareaElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4119,18 +4795,21 @@ export type OptiFormsTextareaElementOutputtotalArgs = {
 export type OptiFormsTextareaElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsTextareaElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsTextboxElement = IData & _IComponent & _IContent & {
+export type OptiFormsTextboxElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsTextboxElement';
   AutoComplete?: Maybe<Scalars['String']['output']>;
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -4138,10 +4817,13 @@ export type OptiFormsTextboxElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4157,15 +4839,18 @@ export type OptiFormsTextboxElement_linkArgs = {
 
 export type OptiFormsTextboxElementAutocomplete = {
   __typename?: 'OptiFormsTextboxElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsTextboxElementFacet = {
   __typename?: 'OptiFormsTextboxElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsTextboxElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4192,17 +4877,20 @@ export type OptiFormsTextboxElementOutputtotalArgs = {
 export type OptiFormsTextboxElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsTextboxElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type OptiFormsUrlElement = IData & _IComponent & _IContent & {
+export type OptiFormsUrlElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'OptiFormsUrlElement';
   Label?: Maybe<Scalars['String']['output']>;
   Placeholder?: Maybe<Scalars['String']['output']>;
   PredefinedValue?: Maybe<Scalars['String']['output']>;
+  SubmissionFieldName?: Maybe<Scalars['String']['output']>;
   Tooltip?: Maybe<Scalars['String']['output']>;
   Validators?: Maybe<Scalars['JSON']['output']>;
   /** @deprecated Use `_link` field instead */
@@ -4210,10 +4898,13 @@ export type OptiFormsUrlElement = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4229,15 +4920,18 @@ export type OptiFormsUrlElement_linkArgs = {
 
 export type OptiFormsUrlElementAutocomplete = {
   __typename?: 'OptiFormsUrlElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type OptiFormsUrlElementFacet = {
   __typename?: 'OptiFormsUrlElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type OptiFormsUrlElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4264,10 +4958,12 @@ export type OptiFormsUrlElementOutputtotalArgs = {
 export type OptiFormsUrlElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<OptiFormsUrlElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export enum OrderBy {
@@ -4280,7 +4976,7 @@ export enum OrderByFacetType {
   VALUE = 'VALUE'
 }
 
-export type PageSeoSettings = IData & _IComponent & _IContent & {
+export type PageSeoSettings = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'PageSeoSettings';
   GraphType?: Maybe<Scalars['String']['output']>;
   MetaDescription?: Maybe<Scalars['String']['output']>;
@@ -4292,10 +4988,13 @@ export type PageSeoSettings = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -4332,6 +5031,7 @@ export type PageSeoSettings_linkArgs = {
 export type PageSeoSettingsAutocomplete = {
   __typename?: 'PageSeoSettingsAutocomplete';
   SharingImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -4342,6 +5042,7 @@ export type PageSeoSettingsFacet = {
   MetaKeywords?: Maybe<Array<Maybe<StringFacet>>>;
   MetaTitle?: Maybe<Array<Maybe<StringFacet>>>;
   SharingImage?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -4383,6 +5084,7 @@ export type PageSeoSettingsOrderByInput = {
   MetaKeywords?: InputMaybe<OrderBy>;
   MetaTitle?: InputMaybe<OrderBy>;
   SharingImage?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4505,23 +5207,28 @@ export type PageSeoSettingsWhereInput = {
   SharingImage?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<PageSeoSettingsWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type ParagraphElement = IData & _IComponent & _IContent & {
+export type ParagraphElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'ParagraphElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   text?: Maybe<SearchableRichText>;
 };
@@ -4538,16 +5245,19 @@ export type ParagraphElement_linkArgs = {
 
 export type ParagraphElementAutocomplete = {
   __typename?: 'ParagraphElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type ParagraphElementFacet = {
   __typename?: 'ParagraphElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   text?: Maybe<SearchableRichTextFacet>;
 };
 
 export type ParagraphElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -4575,11 +5285,19 @@ export type ParagraphElementOutputtotalArgs = {
 export type ParagraphElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<ParagraphElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<ParagraphElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<ParagraphElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   text?: InputMaybe<SearchableRichTextWhereInput>;
+};
+
+export type PinnedInput = {
+  /** Pinned collection keys */
+  collections?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  phrase?: InputMaybe<Scalars['String']['input']>;
 };
 
 export type Query = {
@@ -4613,7 +5331,9 @@ export type Query = {
   MenuNavigationBlock?: Maybe<MenuNavigationBlockOutput>;
   OdpEmbedBlock?: Maybe<OdpEmbedBlockOutput>;
   OptiFormsChoiceElement?: Maybe<OptiFormsChoiceElementOutput>;
+  OptiFormsCondition?: Maybe<OptiFormsConditionOutput>;
   OptiFormsContainerData?: Maybe<OptiFormsContainerDataOutput>;
+  OptiFormsDependencyRule?: Maybe<OptiFormsDependencyRuleOutput>;
   OptiFormsNumberElement?: Maybe<OptiFormsNumberElementOutput>;
   OptiFormsRangeElement?: Maybe<OptiFormsRangeElementOutput>;
   OptiFormsResetElement?: Maybe<OptiFormsResetElementOutput>;
@@ -4634,11 +5354,14 @@ export type Query = {
   Video?: Maybe<VideoOutput>;
   VideoElement?: Maybe<VideoElementOutput>;
   VideoMedia?: Maybe<VideoMediaOutput>;
+  _AssetItem?: Maybe<_AssetItemOutput>;
   _Component?: Maybe<_ComponentOutput>;
   _Content?: Maybe<_ContentOutput>;
   _Experience?: Maybe<_ExperienceOutput>;
   _Folder?: Maybe<_FolderOutput>;
   _Image?: Maybe<_ImageOutput>;
+  _ImageItem?: Maybe<_ImageItemOutput>;
+  _Item?: Maybe<_ItemOutput>;
   _Media?: Maybe<_MediaOutput>;
   _Page?: Maybe<_PageOutput>;
   _Section?: Maybe<_SectionOutput>;
@@ -4652,9 +5375,10 @@ export type QueryArticleListElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArticleListElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ArticleListElementWhereInput>;
 };
@@ -4666,9 +5390,10 @@ export type QueryBlankExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -4680,9 +5405,10 @@ export type QueryBlankSectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
 };
@@ -4694,9 +5420,10 @@ export type QueryBlogListingBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogListingBlockWhereInput>;
 };
@@ -4708,9 +5435,10 @@ export type QueryBlogPostPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogPostPageWhereInput>;
 };
@@ -4722,9 +5450,10 @@ export type QueryBlogSectionExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogSectionExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogSectionExperienceWhereInput>;
 };
@@ -4736,9 +5465,10 @@ export type QueryButtonBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ButtonBlockWhereInput>;
 };
@@ -4750,9 +5480,10 @@ export type QueryCTAElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CTAElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CTAElementWhereInput>;
 };
@@ -4764,9 +5495,10 @@ export type QueryCardBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CardBlockWhereInput>;
 };
@@ -4778,9 +5510,10 @@ export type QueryCarouselBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
@@ -4792,9 +5525,10 @@ export type QueryContentRecsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsBlockWhereInput>;
 };
@@ -4806,9 +5540,10 @@ export type QueryContentRecsElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsElementWhereInput>;
 };
@@ -4820,9 +5555,10 @@ export type QueryContinueReadingComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContinueReadingComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContinueReadingComponentWhereInput>;
 };
@@ -4834,9 +5570,10 @@ export type QueryDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<system_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
 };
@@ -4848,9 +5585,10 @@ export type QueryGenericMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
 };
@@ -4862,9 +5600,10 @@ export type QueryHeadingElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeadingElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeadingElementWhereInput>;
 };
@@ -4876,9 +5615,10 @@ export type QueryHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeroBlockWhereInput>;
 };
@@ -4890,9 +5630,10 @@ export type QueryHomePageHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HomePageHeroBlockWhereInput>;
 };
@@ -4904,9 +5645,10 @@ export type QueryHtmlBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HtmlBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HtmlBlockWhereInput>;
 };
@@ -4918,9 +5660,10 @@ export type QueryImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageWhereInput>;
 };
@@ -4932,9 +5675,10 @@ export type QueryImageElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageElementWhereInput>;
 };
@@ -4946,9 +5690,10 @@ export type QueryImageMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -4960,9 +5705,10 @@ export type QueryLandingPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LandingPageWhereInput>;
 };
@@ -4974,9 +5720,10 @@ export type QueryLayoutContainerBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
@@ -4988,9 +5735,10 @@ export type QueryLayoutSettingsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutSettingsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutSettingsBlockWhereInput>;
 };
@@ -5002,9 +5750,10 @@ export type QueryMegaMenuGroupBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
@@ -5016,9 +5765,10 @@ export type QueryMenuNavigationBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
 };
@@ -5030,9 +5780,10 @@ export type QueryOdpEmbedBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
@@ -5044,11 +5795,27 @@ export type QueryOptiFormsChoiceElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
+};
+
+
+export type QueryOptiFormsConditionArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<OptiFormsConditionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<OptiFormsConditionWhereInput>;
 };
 
 
@@ -5058,11 +5825,27 @@ export type QueryOptiFormsContainerDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsContainerDataWhereInput>;
+};
+
+
+export type QueryOptiFormsDependencyRuleArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<OptiFormsDependencyRuleOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<OptiFormsDependencyRuleWhereInput>;
 };
 
 
@@ -5072,9 +5855,10 @@ export type QueryOptiFormsNumberElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsNumberElementWhereInput>;
 };
@@ -5086,9 +5870,10 @@ export type QueryOptiFormsRangeElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsRangeElementWhereInput>;
 };
@@ -5100,9 +5885,10 @@ export type QueryOptiFormsResetElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsResetElementWhereInput>;
 };
@@ -5114,9 +5900,10 @@ export type QueryOptiFormsSelectionElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
 };
@@ -5128,9 +5915,10 @@ export type QueryOptiFormsSubmitElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
 };
@@ -5142,9 +5930,10 @@ export type QueryOptiFormsTextareaElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
 };
@@ -5156,9 +5945,10 @@ export type QueryOptiFormsTextboxElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
 };
@@ -5170,9 +5960,10 @@ export type QueryOptiFormsUrlElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsUrlElementWhereInput>;
 };
@@ -5184,9 +5975,10 @@ export type QueryPageSeoSettingsArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
@@ -5198,9 +5990,10 @@ export type QueryParagraphElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
 };
@@ -5212,9 +6005,10 @@ export type QueryQuoteBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
@@ -5226,9 +6020,10 @@ export type QueryRichTextElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<RichTextElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<RichTextElementWhereInput>;
 };
@@ -5240,9 +6035,10 @@ export type QueryStandardPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StandardPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StandardPageWhereInput>;
 };
@@ -5254,9 +6050,10 @@ export type QueryStartPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StartPageWhereInput>;
 };
@@ -5268,9 +6065,10 @@ export type QuerySysContentFolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -5282,9 +6080,10 @@ export type QueryTestimonialElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TestimonialElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TestimonialElementWhereInput>;
 };
@@ -5296,9 +6095,10 @@ export type QueryTextBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TextBlockWhereInput>;
 };
@@ -5310,9 +6110,10 @@ export type QueryVideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoWhereInput>;
 };
@@ -5324,9 +6125,10 @@ export type QueryVideoElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoElementWhereInput>;
 };
@@ -5338,11 +6140,27 @@ export type QueryVideoMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
+};
+
+
+export type Query_AssetItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_AssetItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_AssetItemWhereInput>;
 };
 
 
@@ -5352,9 +6170,10 @@ export type Query_ComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -5366,9 +6185,10 @@ export type Query_ContentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -5380,9 +6200,10 @@ export type Query_ExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -5394,9 +6215,10 @@ export type Query_FolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -5408,11 +6230,42 @@ export type Query_ImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
+};
+
+
+export type Query_ImageItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ImageItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ImageItemWhereInput>;
+};
+
+
+export type Query_ItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ItemWhereInput>;
 };
 
 
@@ -5422,9 +6275,10 @@ export type Query_MediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -5436,9 +6290,10 @@ export type Query_PageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -5450,9 +6305,10 @@ export type Query_SectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -5464,9 +6320,10 @@ export type Query_VideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
@@ -5502,7 +6359,9 @@ export type QueryRef = {
   MenuNavigationBlock?: Maybe<MenuNavigationBlockOutput>;
   OdpEmbedBlock?: Maybe<OdpEmbedBlockOutput>;
   OptiFormsChoiceElement?: Maybe<OptiFormsChoiceElementOutput>;
+  OptiFormsCondition?: Maybe<OptiFormsConditionOutput>;
   OptiFormsContainerData?: Maybe<OptiFormsContainerDataOutput>;
+  OptiFormsDependencyRule?: Maybe<OptiFormsDependencyRuleOutput>;
   OptiFormsNumberElement?: Maybe<OptiFormsNumberElementOutput>;
   OptiFormsRangeElement?: Maybe<OptiFormsRangeElementOutput>;
   OptiFormsResetElement?: Maybe<OptiFormsResetElementOutput>;
@@ -5523,11 +6382,14 @@ export type QueryRef = {
   Video?: Maybe<VideoOutput>;
   VideoElement?: Maybe<VideoElementOutput>;
   VideoMedia?: Maybe<VideoMediaOutput>;
+  _AssetItem?: Maybe<_AssetItemOutput>;
   _Component?: Maybe<_ComponentOutput>;
   _Content?: Maybe<_ContentOutput>;
   _Experience?: Maybe<_ExperienceOutput>;
   _Folder?: Maybe<_FolderOutput>;
   _Image?: Maybe<_ImageOutput>;
+  _ImageItem?: Maybe<_ImageItemOutput>;
+  _Item?: Maybe<_ItemOutput>;
   _Media?: Maybe<_MediaOutput>;
   _Page?: Maybe<_PageOutput>;
   _Section?: Maybe<_SectionOutput>;
@@ -5541,9 +6403,10 @@ export type QueryRefArticleListElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ArticleListElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ArticleListElementWhereInput>;
 };
@@ -5555,9 +6418,10 @@ export type QueryRefBlankExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankExperienceWhereInput>;
 };
@@ -5569,9 +6433,10 @@ export type QueryRefBlankSectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlankSectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlankSectionWhereInput>;
 };
@@ -5583,9 +6448,10 @@ export type QueryRefBlogListingBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogListingBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogListingBlockWhereInput>;
 };
@@ -5597,9 +6463,10 @@ export type QueryRefBlogPostPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogPostPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogPostPageWhereInput>;
 };
@@ -5611,9 +6478,10 @@ export type QueryRefBlogSectionExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<BlogSectionExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<BlogSectionExperienceWhereInput>;
 };
@@ -5625,9 +6493,10 @@ export type QueryRefButtonBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ButtonBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ButtonBlockWhereInput>;
 };
@@ -5639,9 +6508,10 @@ export type QueryRefCTAElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CTAElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CTAElementWhereInput>;
 };
@@ -5653,9 +6523,10 @@ export type QueryRefCardBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CardBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CardBlockWhereInput>;
 };
@@ -5667,9 +6538,10 @@ export type QueryRefCarouselBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<CarouselBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<CarouselBlockWhereInput>;
 };
@@ -5681,9 +6553,10 @@ export type QueryRefContentRecsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsBlockWhereInput>;
 };
@@ -5695,9 +6568,10 @@ export type QueryRefContentRecsElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContentRecsElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContentRecsElementWhereInput>;
 };
@@ -5709,9 +6583,10 @@ export type QueryRefContinueReadingComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ContinueReadingComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ContinueReadingComponentWhereInput>;
 };
@@ -5723,9 +6598,10 @@ export type QueryRefDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<system_Locales>>>;
   orderBy?: InputMaybe<DataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<DataWhereInput>;
 };
@@ -5737,9 +6613,10 @@ export type QueryRefGenericMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<GenericMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<GenericMediaWhereInput>;
 };
@@ -5751,9 +6628,10 @@ export type QueryRefHeadingElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeadingElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeadingElementWhereInput>;
 };
@@ -5765,9 +6643,10 @@ export type QueryRefHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HeroBlockWhereInput>;
 };
@@ -5779,9 +6658,10 @@ export type QueryRefHomePageHeroBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HomePageHeroBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HomePageHeroBlockWhereInput>;
 };
@@ -5793,9 +6673,10 @@ export type QueryRefHtmlBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<HtmlBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<HtmlBlockWhereInput>;
 };
@@ -5807,9 +6688,10 @@ export type QueryRefImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageWhereInput>;
 };
@@ -5821,9 +6703,10 @@ export type QueryRefImageElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageElementWhereInput>;
 };
@@ -5835,9 +6718,10 @@ export type QueryRefImageMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ImageMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ImageMediaWhereInput>;
 };
@@ -5849,9 +6733,10 @@ export type QueryRefLandingPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LandingPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LandingPageWhereInput>;
 };
@@ -5863,9 +6748,10 @@ export type QueryRefLayoutContainerBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutContainerBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutContainerBlockWhereInput>;
 };
@@ -5877,9 +6763,10 @@ export type QueryRefLayoutSettingsBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<LayoutSettingsBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<LayoutSettingsBlockWhereInput>;
 };
@@ -5891,9 +6778,10 @@ export type QueryRefMegaMenuGroupBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MegaMenuGroupBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MegaMenuGroupBlockWhereInput>;
 };
@@ -5905,9 +6793,10 @@ export type QueryRefMenuNavigationBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<MenuNavigationBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<MenuNavigationBlockWhereInput>;
 };
@@ -5919,9 +6808,10 @@ export type QueryRefOdpEmbedBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OdpEmbedBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OdpEmbedBlockWhereInput>;
 };
@@ -5933,11 +6823,27 @@ export type QueryRefOptiFormsChoiceElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsChoiceElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsChoiceElementWhereInput>;
+};
+
+
+export type QueryRefOptiFormsConditionArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<OptiFormsConditionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<OptiFormsConditionWhereInput>;
 };
 
 
@@ -5947,11 +6853,27 @@ export type QueryRefOptiFormsContainerDataArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsContainerDataOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsContainerDataWhereInput>;
+};
+
+
+export type QueryRefOptiFormsDependencyRuleArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<OptiFormsDependencyRuleOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<OptiFormsDependencyRuleWhereInput>;
 };
 
 
@@ -5961,9 +6883,10 @@ export type QueryRefOptiFormsNumberElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsNumberElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsNumberElementWhereInput>;
 };
@@ -5975,9 +6898,10 @@ export type QueryRefOptiFormsRangeElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsRangeElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsRangeElementWhereInput>;
 };
@@ -5989,9 +6913,10 @@ export type QueryRefOptiFormsResetElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsResetElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsResetElementWhereInput>;
 };
@@ -6003,9 +6928,10 @@ export type QueryRefOptiFormsSelectionElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSelectionElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSelectionElementWhereInput>;
 };
@@ -6017,9 +6943,10 @@ export type QueryRefOptiFormsSubmitElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsSubmitElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsSubmitElementWhereInput>;
 };
@@ -6031,9 +6958,10 @@ export type QueryRefOptiFormsTextareaElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextareaElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextareaElementWhereInput>;
 };
@@ -6045,9 +6973,10 @@ export type QueryRefOptiFormsTextboxElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsTextboxElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsTextboxElementWhereInput>;
 };
@@ -6059,9 +6988,10 @@ export type QueryRefOptiFormsUrlElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<OptiFormsUrlElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<OptiFormsUrlElementWhereInput>;
 };
@@ -6073,9 +7003,10 @@ export type QueryRefPageSeoSettingsArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<PageSeoSettingsOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<PageSeoSettingsWhereInput>;
 };
@@ -6087,9 +7018,10 @@ export type QueryRefParagraphElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<ParagraphElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<ParagraphElementWhereInput>;
 };
@@ -6101,9 +7033,10 @@ export type QueryRefQuoteBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<QuoteBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<QuoteBlockWhereInput>;
 };
@@ -6115,9 +7048,10 @@ export type QueryRefRichTextElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<RichTextElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<RichTextElementWhereInput>;
 };
@@ -6129,9 +7063,10 @@ export type QueryRefStandardPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StandardPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StandardPageWhereInput>;
 };
@@ -6143,9 +7078,10 @@ export type QueryRefStartPageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<StartPageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<StartPageWhereInput>;
 };
@@ -6157,9 +7093,10 @@ export type QueryRefSysContentFolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<SysContentFolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<SysContentFolderWhereInput>;
 };
@@ -6171,9 +7108,10 @@ export type QueryRefTestimonialElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TestimonialElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TestimonialElementWhereInput>;
 };
@@ -6185,9 +7123,10 @@ export type QueryRefTextBlockArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<TextBlockOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<TextBlockWhereInput>;
 };
@@ -6199,9 +7138,10 @@ export type QueryRefVideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoWhereInput>;
 };
@@ -6213,9 +7153,10 @@ export type QueryRefVideoElementArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoElementOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoElementWhereInput>;
 };
@@ -6227,11 +7168,27 @@ export type QueryRefVideoMediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<VideoMediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<VideoMediaWhereInput>;
+};
+
+
+export type QueryRef_AssetItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_AssetItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_AssetItemWhereInput>;
 };
 
 
@@ -6241,9 +7198,10 @@ export type QueryRef_ComponentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ComponentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ComponentWhereInput>;
 };
@@ -6255,9 +7213,10 @@ export type QueryRef_ContentArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ContentOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ContentWhereInput>;
 };
@@ -6269,9 +7228,10 @@ export type QueryRef_ExperienceArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ExperienceOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ExperienceWhereInput>;
 };
@@ -6283,9 +7243,10 @@ export type QueryRef_FolderArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_FolderOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_FolderWhereInput>;
 };
@@ -6297,11 +7258,42 @@ export type QueryRef_ImageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_ImageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_ImageWhereInput>;
+};
+
+
+export type QueryRef_ImageItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ImageItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ImageItemWhereInput>;
+};
+
+
+export type QueryRef_ItemArgs = {
+  cursor?: InputMaybe<Scalars['String']['input']>;
+  ids?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  limit?: Scalars['Int']['input'];
+  locale?: InputMaybe<Array<InputMaybe<Locales>>>;
+  orderBy?: InputMaybe<_ItemOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
+  skip?: Scalars['Int']['input'];
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
+  variation?: InputMaybe<VariationInput>;
+  where?: InputMaybe<_ItemWhereInput>;
 };
 
 
@@ -6311,9 +7303,10 @@ export type QueryRef_MediaArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_MediaOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_MediaWhereInput>;
 };
@@ -6325,9 +7318,10 @@ export type QueryRef_PageArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_PageOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_PageWhereInput>;
 };
@@ -6339,9 +7333,10 @@ export type QueryRef_SectionArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_SectionOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_SectionWhereInput>;
 };
@@ -6353,14 +7348,15 @@ export type QueryRef_VideoArgs = {
   limit?: Scalars['Int']['input'];
   locale?: InputMaybe<Array<InputMaybe<Locales>>>;
   orderBy?: InputMaybe<_VideoOrderByInput>;
+  pinned?: InputMaybe<PinnedInput>;
   skip?: Scalars['Int']['input'];
-  track?: InputMaybe<Scalars['String']['input']>;
-  usePinned?: InputMaybe<usePinnedInput>;
+  source?: InputMaybe<Array<InputMaybe<Sources>>>;
+  tracking?: InputMaybe<TrackingInput>;
   variation?: InputMaybe<VariationInput>;
   where?: InputMaybe<_VideoWhereInput>;
 };
 
-export type QuoteBlock = IData & _IComponent & _IContent & {
+export type QuoteBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'QuoteBlock';
   QuoteActive?: Maybe<Scalars['Boolean']['output']>;
   QuoteColor?: Maybe<Scalars['String']['output']>;
@@ -6373,10 +7369,13 @@ export type QuoteBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -6393,17 +7392,20 @@ export type QuoteBlock_linkArgs = {
 export type QuoteBlockAutocomplete = {
   __typename?: 'QuoteBlockAutocomplete';
   QuoteProfilePicture?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type QuoteBlockFacet = {
   __typename?: 'QuoteBlockFacet';
   QuoteProfilePicture?: Maybe<ContentReferenceFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type QuoteBlockOrderByInput = {
   QuoteProfilePicture?: InputMaybe<ContentReferenceOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6431,10 +7433,12 @@ export type QuoteBlockWhereInput = {
   QuoteProfilePicture?: InputMaybe<ContentReferenceWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<QuoteBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<QuoteBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<QuoteBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type RangeFacetsInput = {
@@ -6445,6 +7449,7 @@ export type RangeFacetsInput = {
 export enum Ranking {
   BOOST_ONLY = 'BOOST_ONLY',
   DOC = 'DOC',
+  ID = 'ID',
   RELEVANCE = 'RELEVANCE',
   SEMANTIC = 'SEMANTIC'
 }
@@ -6466,17 +7471,20 @@ export type RichTextAutocompletehtmlArgs = {
   value: Scalars['String']['input'];
 };
 
-export type RichTextElement = IData & _IComponent & _IContent & {
+export type RichTextElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'RichTextElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   text?: Maybe<SearchableRichText>;
 };
@@ -6493,16 +7501,19 @@ export type RichTextElement_linkArgs = {
 
 export type RichTextElementAutocomplete = {
   __typename?: 'RichTextElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type RichTextElementFacet = {
   __typename?: 'RichTextElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   text?: Maybe<SearchableRichTextFacet>;
 };
 
 export type RichTextElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6530,10 +7541,12 @@ export type RichTextElementOutputtotalArgs = {
 export type RichTextElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<RichTextElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<RichTextElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<RichTextElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   text?: InputMaybe<SearchableRichTextWhereInput>;
 };
 
@@ -6617,7 +7630,20 @@ export type SearchableStringFilterInput = {
   synonyms?: InputMaybe<Array<InputMaybe<SynonymSlot>>>;
 };
 
-export type StandardPage = IData & _IContent & _IPage & {
+export type SourceFilterInput = {
+  /** `eq` matches on an exact value, but the value is case-insensitive. */
+  eq?: InputMaybe<Scalars['String']['input']>;
+  /** `in` matches with 1 or more exact values in a list. Example: `in: ["word1", "word2", "this is a phrase"]` */
+  in?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+  /** `not_in` returns results that do not match with 1 or more exact values in a list. Example: `not_in: ["word1", "word2", "this is a phrase"]` */
+  notIn?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
+};
+
+export enum Sources {
+  DEFAULT = 'DEFAULT'
+}
+
+export type StandardPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'StandardPage';
   MainBody?: Maybe<SearchableRichText>;
   SeoSettings?: Maybe<PageSeoSettingsProperty>;
@@ -6629,10 +7655,13 @@ export type StandardPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -6660,6 +7689,7 @@ export type StandardPageAutocomplete = {
   __typename?: 'StandardPageAutocomplete';
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
   StandardPromoImage?: Maybe<ContentReferenceAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -6670,6 +7700,7 @@ export type StandardPageFacet = {
   StandardPageHeading?: Maybe<Array<Maybe<StringFacet>>>;
   StandardPromoImage?: Maybe<ContentReferenceFacet>;
   StandardSubHeading?: Maybe<Array<Maybe<StringFacet>>>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -6695,6 +7726,7 @@ export type StandardPageOrderByInput = {
   StandardPageHeading?: InputMaybe<OrderBy>;
   StandardPromoImage?: InputMaybe<ContentReferenceOrderByInput>;
   StandardSubHeading?: InputMaybe<OrderBy>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6726,13 +7758,15 @@ export type StandardPageWhereInput = {
   StandardSubHeading?: InputMaybe<SearchableStringFilterInput>;
   _and?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<StandardPageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type StartPage = IData & _IContent & _IPage & {
+export type StartPage = IData & _IContent & _IItem & _IPage & {
   __typename?: 'StartPage';
   FooterNavigationContentArea?: Maybe<Array<Maybe<_IContent>>>;
   FooterNavigationCopyrightText?: Maybe<Scalars['String']['output']>;
@@ -6748,10 +7782,13 @@ export type StartPage = IData & _IContent & _IPage & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -6775,6 +7812,7 @@ export type StartPageAutocomplete = {
   SeoSettings?: Maybe<PageSeoSettingsPropertyAutocomplete>;
   SiteImageLogo?: Maybe<ContentReferenceAutocomplete>;
   UtilityNavigationContentArea?: Maybe<_IContentAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
@@ -6788,6 +7826,7 @@ export type StartPageFacet = {
   SeoSettings?: Maybe<PageSeoSettingsPropertyFacet>;
   SiteImageLogo?: Maybe<ContentReferenceFacet>;
   UtilityNavigationContentArea?: Maybe<_IContentFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
@@ -6800,6 +7839,7 @@ export type StartPageOrderByInput = {
   SeoSettings?: InputMaybe<PageSeoSettingsPropertyOrderByInput>;
   SiteImageLogo?: InputMaybe<ContentReferenceOrderByInput>;
   UtilityNavigationContentArea?: InputMaybe<_IContentOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6834,10 +7874,12 @@ export type StartPageWhereInput = {
   UtilityNavigationContentArea?: InputMaybe<_IContentWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<StartPageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type StringFacet = {
@@ -6878,17 +7920,20 @@ export enum SynonymSlot {
   TWO = 'TWO'
 }
 
-export type SysContentFolder = IData & _IContent & _IFolder & {
+export type SysContentFolder = IData & _IContent & _IFolder & _IItem & {
   __typename?: 'SysContentFolder';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -6904,15 +7949,18 @@ export type SysContentFolder_linkArgs = {
 
 export type SysContentFolderAutocomplete = {
   __typename?: 'SysContentFolderAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type SysContentFolderFacet = {
   __typename?: 'SysContentFolderFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type SysContentFolderOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -6939,23 +7987,28 @@ export type SysContentFolderOutputtotalArgs = {
 export type SysContentFolderWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<SysContentFolderWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type TestimonialElement = IData & _IComponent & _IContent & {
+export type TestimonialElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'TestimonialElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   customerImage?: Maybe<ContentReference>;
   customerLocation?: Maybe<Scalars['String']['output']>;
@@ -6976,6 +8029,7 @@ export type TestimonialElement_linkArgs = {
 
 export type TestimonialElementAutocomplete = {
   __typename?: 'TestimonialElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   customerImage?: Maybe<ContentReferenceAutocomplete>;
   referenceText?: Maybe<RichTextAutocomplete>;
@@ -6983,12 +8037,14 @@ export type TestimonialElementAutocomplete = {
 
 export type TestimonialElementFacet = {
   __typename?: 'TestimonialElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   customerImage?: Maybe<ContentReferenceFacet>;
   referenceText?: Maybe<RichTextFacet>;
 };
 
 export type TestimonialElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7017,15 +8073,17 @@ export type TestimonialElementOutputtotalArgs = {
 export type TestimonialElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<TestimonialElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<TestimonialElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<TestimonialElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   customerImage?: InputMaybe<ContentReferenceWhereInput>;
   referenceText?: InputMaybe<RichTextWhereInput>;
 };
 
-export type TextBlock = IData & _IComponent & _IContent & {
+export type TextBlock = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'TextBlock';
   TextBlockDescription?: Maybe<RichText>;
   TextBlockHeading?: Maybe<Scalars['String']['output']>;
@@ -7039,10 +8097,13 @@ export type TextBlock = IData & _IComponent & _IContent & {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7059,17 +8120,20 @@ export type TextBlock_linkArgs = {
 export type TextBlockAutocomplete = {
   __typename?: 'TextBlockAutocomplete';
   TextBlockDescription?: Maybe<RichTextAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type TextBlockFacet = {
   __typename?: 'TextBlockFacet';
   TextBlockDescription?: Maybe<RichTextFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type TextBlockOrderByInput = {
   TextBlockDescription?: InputMaybe<RichTextOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7097,10 +8161,19 @@ export type TextBlockWhereInput = {
   TextBlockDescription?: InputMaybe<RichTextWhereInput>;
   _and?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<TextBlockWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type TrackingInput = {
+  /** Search phrase to track */
+  phrase: Scalars['String']['input'];
+  /** Source of the search query (optional) */
+  source?: InputMaybe<Scalars['String']['input']>;
 };
 
 export enum VariationIncludeMode {
@@ -7115,17 +8188,21 @@ export type VariationInput = {
   value?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
 };
 
-export type Video = IData & _IContent & _IMedia & _IVideo & {
+export type Video = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: 'Video';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7141,20 +8218,25 @@ export type Video_linkArgs = {
 
 export type VideoAutocomplete = {
   __typename?: 'VideoAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
-export type VideoElement = IData & _IComponent & _IContent & {
+export type VideoElement = IData & _IComponent & _IContent & _IItem & {
   __typename?: 'VideoElement';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   placeholder?: Maybe<ContentReference>;
   title?: Maybe<Scalars['String']['output']>;
@@ -7173,6 +8255,7 @@ export type VideoElement_linkArgs = {
 
 export type VideoElementAutocomplete = {
   __typename?: 'VideoElementAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   placeholder?: Maybe<ContentReferenceAutocomplete>;
   video?: Maybe<ContentReferenceAutocomplete>;
@@ -7180,12 +8263,14 @@ export type VideoElementAutocomplete = {
 
 export type VideoElementFacet = {
   __typename?: 'VideoElementFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   placeholder?: Maybe<ContentReferenceFacet>;
   video?: Maybe<ContentReferenceFacet>;
 };
 
 export type VideoElementOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7214,30 +8299,38 @@ export type VideoElementOutputtotalArgs = {
 export type VideoElementWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoElementWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoElementWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<VideoElementWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   placeholder?: InputMaybe<ContentReferenceWhereInput>;
   video?: InputMaybe<ContentReferenceWhereInput>;
 };
 
 export type VideoFacet = {
   __typename?: 'VideoFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
-export type VideoMedia = IData & _IContent & _IMedia & _IVideo & {
+export type VideoMedia = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: 'VideoMedia';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7253,15 +8346,21 @@ export type VideoMedia_linkArgs = {
 
 export type VideoMediaAutocomplete = {
   __typename?: 'VideoMediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type VideoMediaFacet = {
   __typename?: 'VideoMediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type VideoMediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7287,14 +8386,19 @@ export type VideoMediaOutputtotalArgs = {
 
 export type VideoMediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoMediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoMediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<VideoMediaWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type VideoOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7320,24 +8424,174 @@ export type VideoOutputtotalArgs = {
 
 export type VideoWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<VideoWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Component = IData & _IComponent & _IContent & {
+export type _AssetItem = IData & _IAssetItem & _IItem & {
+  __typename?: '_AssetItem';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _AssetItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _AssetItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _AssetItemAutocomplete = {
+  __typename?: '_AssetItemAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _AssetItemFacet = {
+  __typename?: '_AssetItemFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _AssetItemOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _AssetItemOutput = {
+  __typename?: '_AssetItemOutput';
+  autocomplete?: Maybe<_AssetItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_AssetItemFacet>;
+  item?: Maybe<_IAssetItem>;
+  items?: Maybe<Array<Maybe<_IAssetItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _AssetItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _AssetItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_AssetItemWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type _AssetMetadata = {
+  __typename?: '_AssetMetadata';
+  fileSize?: Maybe<Scalars['Float']['output']>;
+  mimeType?: Maybe<Scalars['String']['output']>;
+  url?: Maybe<Scalars['String']['output']>;
+};
+
+export type _AssetMetadataAutocomplete = {
+  __typename?: '_AssetMetadataAutocomplete';
+  mimeType?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  url?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type _AssetMetadataAutocompletemimeTypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type _AssetMetadataAutocompleteurlArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type _AssetMetadataFacet = {
+  __typename?: '_AssetMetadataFacet';
+  fileSize?: Maybe<Array<Maybe<NumberFacet>>>;
+  mimeType?: Maybe<Array<Maybe<StringFacet>>>;
+  url?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type _AssetMetadataFacetfileSizeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+
+export type _AssetMetadataFacetmimeTypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _AssetMetadataFaceturlArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type _AssetMetadataOrderByInput = {
+  fileSize?: InputMaybe<OrderBy>;
+  mimeType?: InputMaybe<OrderBy>;
+  url?: InputMaybe<OrderBy>;
+};
+
+export type _AssetMetadataWhereInput = {
+  fileSize?: InputMaybe<FloatFilterInput>;
+  mimeType?: InputMaybe<StringFilterInput>;
+  url?: InputMaybe<StringFilterInput>;
+};
+
+export type _Component = IData & _IComponent & _IContent & _IItem & {
   __typename?: '_Component';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7353,15 +8607,18 @@ export type _Component_linkArgs = {
 
 export type _ComponentAutocomplete = {
   __typename?: '_ComponentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ComponentFacet = {
   __typename?: '_ComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _ComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7388,23 +8645,28 @@ export type _ComponentOutputtotalArgs = {
 export type _ComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ComponentWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Content = IData & _IContent & {
+export type _Content = IData & _IContent & _IItem & {
   __typename?: '_Content';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7420,15 +8682,18 @@ export type _Content_linkArgs = {
 
 export type _ContentAutocomplete = {
   __typename?: '_ContentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ContentFacet = {
   __typename?: '_ContentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _ContentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7455,23 +8720,28 @@ export type _ContentOutputtotalArgs = {
 export type _ContentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ContentWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Experience = IData & _IContent & _IExperience & _IPage & {
+export type _Experience = IData & _IContent & _IExperience & _IItem & _IPage & {
   __typename?: '_Experience';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -7488,17 +8758,20 @@ export type _Experience_linkArgs = {
 
 export type _ExperienceAutocomplete = {
   __typename?: '_ExperienceAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type _ExperienceFacet = {
   __typename?: '_ExperienceFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type _ExperienceOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7526,24 +8799,29 @@ export type _ExperienceOutputtotalArgs = {
 export type _ExperienceWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ExperienceWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ExperienceWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ExperienceWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type _Folder = IData & _IContent & _IFolder & {
+export type _Folder = IData & _IContent & _IFolder & _IItem & {
   __typename?: '_Folder';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7559,15 +8837,18 @@ export type _Folder_linkArgs = {
 
 export type _FolderAutocomplete = {
   __typename?: '_FolderAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _FolderFacet = {
   __typename?: '_FolderFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _FolderOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7594,10 +8875,38 @@ export type _FolderOutputtotalArgs = {
 export type _FolderWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_FolderWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type _IAssetItem = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IAssetItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IAssetItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
 };
 
 export type _IComponent = {
@@ -7606,10 +8915,13 @@ export type _IComponent = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7625,10 +8937,12 @@ export type _IComponent_linkArgs = {
 
 export type _IComponentFacet = {
   __typename?: '_IComponentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _IComponentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7640,10 +8954,12 @@ export type _IComponentOrderByInput = {
 export type _IComponentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_IComponentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_IComponentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_IComponentWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type _IContent = {
@@ -7652,10 +8968,13 @@ export type _IContent = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7671,15 +8990,18 @@ export type _IContent_linkArgs = {
 
 export type _IContentAutocomplete = {
   __typename?: '_IContentAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _IContentFacet = {
   __typename?: '_IContentFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _IContentOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7691,10 +9013,12 @@ export type _IContentOrderByInput = {
 export type _IContentWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_IContentWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_IContentWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_IContentWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export type _IExperience = {
@@ -7703,10 +9027,13 @@ export type _IExperience = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -7727,10 +9054,13 @@ export type _IFolder = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7745,15 +9075,20 @@ export type _IFolder_linkArgs = {
 };
 
 export type _IImage = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7767,16 +9102,72 @@ export type _IImage_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type _IMedia = {
+export type _IImageItem = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IImageItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IImageItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _IItem = {
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _IItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _IItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _IMedia = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7796,10 +9187,13 @@ export type _IPage = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7819,10 +9213,13 @@ export type _ISection = {
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -7838,15 +9235,19 @@ export type _ISection_linkArgs = {
 };
 
 export type _IVideo = {
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7860,17 +9261,22 @@ export type _IVideo_linkArgs = {
   type?: InputMaybe<LinkTypes>;
 };
 
-export type _Image = IData & _IContent & _IImage & _IMedia & {
+export type _Image = IData & _IAssetItem & _IContent & _IImage & _IImageItem & _IItem & _IMedia & {
   __typename?: '_Image';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7886,15 +9292,142 @@ export type _Image_linkArgs = {
 
 export type _ImageAutocomplete = {
   __typename?: '_ImageAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _ImageFacet = {
   __typename?: '_ImageFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
+export type _ImageItem = IData & _IAssetItem & _IImageItem & _IItem & {
+  __typename?: '_ImageItem';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _imageMetadata?: Maybe<_ImageMetadata>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _ImageItem_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _ImageItem_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _ImageItemAutocomplete = {
+  __typename?: '_ImageItemAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _ImageItemFacet = {
+  __typename?: '_ImageItemFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _imageMetadata?: Maybe<_ImageMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _ImageItemOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _ImageItemOutput = {
+  __typename?: '_ImageItemOutput';
+  autocomplete?: Maybe<_ImageItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_ImageItemFacet>;
+  item?: Maybe<_IImageItem>;
+  items?: Maybe<Array<Maybe<_IImageItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _ImageItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _ImageItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_ImageItemWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type _ImageMetadata = {
+  __typename?: '_ImageMetadata';
+  height?: Maybe<Scalars['Int']['output']>;
+  width?: Maybe<Scalars['Int']['output']>;
+};
+
+export type _ImageMetadataFacet = {
+  __typename?: '_ImageMetadataFacet';
+  height?: Maybe<Array<Maybe<NumberFacet>>>;
+  width?: Maybe<Array<Maybe<NumberFacet>>>;
+};
+
+
+export type _ImageMetadataFacetheightArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+
+export type _ImageMetadataFacetwidthArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+  ranges?: InputMaybe<Array<InputMaybe<RangeFacetsInput>>>;
+};
+
+export type _ImageMetadataOrderByInput = {
+  height?: InputMaybe<OrderBy>;
+  width?: InputMaybe<OrderBy>;
+};
+
+export type _ImageMetadataWhereInput = {
+  height?: InputMaybe<IntFilterInput>;
+  width?: InputMaybe<IntFilterInput>;
+};
+
 export type _ImageOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7920,24 +9453,102 @@ export type _ImageOutputtotalArgs = {
 
 export type _ImageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _imageMetadata?: InputMaybe<_ImageMetadataWhereInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_ImageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Media = IData & _IContent & _IMedia & {
-  __typename?: '_Media';
+export type _Item = IData & _IItem & {
+  __typename?: '_Item';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
+  _link?: Maybe<QueryRef>;
+  _modified?: Maybe<Scalars['Date']['output']>;
+  _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
+  _track?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _Item_fulltextArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+
+export type _Item_linkArgs = {
+  type?: InputMaybe<LinkTypes>;
+};
+
+export type _ItemAutocomplete = {
+  __typename?: '_ItemAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
+};
+
+export type _ItemFacet = {
+  __typename?: '_ItemFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
+};
+
+export type _ItemOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
+  _minimumScore?: InputMaybe<Scalars['Float']['input']>;
+  _modified?: InputMaybe<OrderBy>;
+  _ranking?: InputMaybe<Ranking>;
+  /** The value needs to be a positive value, but cannot exceed the maximum value of an integer. In case it is exceeded, the maximum of an integer is used. In case of a negative value, semantic search will be disabled. */
+  _semanticWeight?: InputMaybe<Scalars['Float']['input']>;
+};
+
+export type _ItemOutput = {
+  __typename?: '_ItemOutput';
+  autocomplete?: Maybe<_ItemAutocomplete>;
+  cursor?: Maybe<Scalars['String']['output']>;
+  facets?: Maybe<_ItemFacet>;
+  item?: Maybe<_IItem>;
+  items?: Maybe<Array<Maybe<_IItem>>>;
+  total?: Maybe<Scalars['Int']['output']>;
+};
+
+
+export type _ItemOutputtotalArgs = {
+  all?: InputMaybe<Scalars['Boolean']['input']>;
+};
+
+export type _ItemWhereInput = {
+  _and?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+  _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
+  _modified?: InputMaybe<DateFilterInput>;
+  _not?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+  _or?: InputMaybe<Array<InputMaybe<_ItemWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
+};
+
+export type _Media = IData & _IAssetItem & _IContent & _IItem & _IMedia & {
+  __typename?: '_Media';
+  _assetMetadata?: Maybe<_AssetMetadata>;
+  /** @deprecated Use `_link` field instead */
+  _children?: Maybe<QueryRef>;
+  _deleted?: Maybe<Scalars['Bool']['output']>;
+  _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -7953,15 +9564,21 @@ export type _Media_linkArgs = {
 
 export type _MediaAutocomplete = {
   __typename?: '_MediaAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _MediaFacet = {
   __typename?: '_MediaFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _MediaOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -7987,24 +9604,113 @@ export type _MediaOutputtotalArgs = {
 
 export type _MediaWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_MediaWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Page = IData & _IContent & _IPage & {
+export type _Metadata = {
+  __typename?: '_Metadata';
+  displayName?: Maybe<Scalars['String']['output']>;
+  key?: Maybe<Scalars['String']['output']>;
+  lastModified?: Maybe<Scalars['DateTime']['output']>;
+  type?: Maybe<Scalars['String']['output']>;
+};
+
+
+export type _MetadatadisplayNameArgs = {
+  highlight?: InputMaybe<HighlightOptions>;
+};
+
+export type _MetadataAutocomplete = {
+  __typename?: '_MetadataAutocomplete';
+  key?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+  type?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
+};
+
+
+export type _MetadataAutocompletekeyArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+
+export type _MetadataAutocompletetypeArgs = {
+  limit?: Scalars['Int']['input'];
+  value: Scalars['String']['input'];
+};
+
+export type _MetadataFacet = {
+  __typename?: '_MetadataFacet';
+  displayName?: Maybe<Array<Maybe<StringFacet>>>;
+  key?: Maybe<Array<Maybe<StringFacet>>>;
+  lastModified?: Maybe<Array<Maybe<DateFacet>>>;
+  type?: Maybe<Array<Maybe<StringFacet>>>;
+};
+
+
+export type _MetadataFacetdisplayNameArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _MetadataFacetkeyArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+
+export type _MetadataFacetlastModifiedArgs = {
+  unit?: InputMaybe<DateFacetUnit>;
+  value?: InputMaybe<Scalars['Int']['input']>;
+};
+
+
+export type _MetadataFacettypeArgs = {
+  filters?: InputMaybe<Array<Scalars['String']['input']>>;
+  limit?: Scalars['Int']['input'];
+  orderBy?: InputMaybe<OrderBy>;
+  orderType?: InputMaybe<OrderByFacetType>;
+};
+
+export type _MetadataOrderByInput = {
+  displayName?: InputMaybe<OrderBy>;
+  key?: InputMaybe<OrderBy>;
+  lastModified?: InputMaybe<OrderBy>;
+  type?: InputMaybe<OrderBy>;
+};
+
+export type _MetadataWhereInput = {
+  displayName?: InputMaybe<SearchableStringFilterInput>;
+  key?: InputMaybe<StringFilterInput>;
+  lastModified?: InputMaybe<DateFilterInput>;
+  type?: InputMaybe<StringFilterInput>;
+};
+
+export type _Page = IData & _IContent & _IItem & _IPage & {
   __typename?: '_Page';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -8020,15 +9726,18 @@ export type _Page_linkArgs = {
 
 export type _PageAutocomplete = {
   __typename?: '_PageAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _PageFacet = {
   __typename?: '_PageFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _PageOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8055,23 +9764,28 @@ export type _PageOutputtotalArgs = {
 export type _PageWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_PageWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
-export type _Section = IData & _IComponent & _IContent & _ISection & {
+export type _Section = IData & _IComponent & _IContent & _IItem & _ISection & {
   __typename?: '_Section';
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
   composition?: Maybe<CompositionStructureNode>;
 };
@@ -8088,17 +9802,20 @@ export type _Section_linkArgs = {
 
 export type _SectionAutocomplete = {
   __typename?: '_SectionAutocomplete';
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
   composition?: Maybe<CompositionStructureNodeAutocomplete>;
 };
 
 export type _SectionFacet = {
   __typename?: '_SectionFacet';
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
   composition?: Maybe<CompositionStructureNodeFacet>;
 };
 
 export type _SectionOrderByInput = {
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8126,24 +9843,30 @@ export type _SectionOutputtotalArgs = {
 export type _SectionWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_SectionWhereInput>>>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_SectionWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_SectionWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
   composition?: InputMaybe<CompositionStructureNodeWhereInput>;
 };
 
-export type _Video = IData & _IContent & _IMedia & _IVideo & {
+export type _Video = IData & _IAssetItem & _IContent & _IItem & _IMedia & _IVideo & {
   __typename?: '_Video';
+  _assetMetadata?: Maybe<_AssetMetadata>;
   /** @deprecated Use `_link` field instead */
   _children?: Maybe<QueryRef>;
   _deleted?: Maybe<Scalars['Bool']['output']>;
   _fulltext?: Maybe<Array<Maybe<Scalars['String']['output']>>>;
   _id?: Maybe<Scalars['String']['output']>;
+  _itemMetadata?: Maybe<_Metadata>;
+  _json?: Maybe<Scalars['JSON']['output']>;
   _link?: Maybe<QueryRef>;
   _metadata?: Maybe<IContentMetadata>;
   _modified?: Maybe<Scalars['Date']['output']>;
   _score?: Maybe<Scalars['Float']['output']>;
+  _source?: Maybe<Scalars['String']['output']>;
   _track?: Maybe<Scalars['String']['output']>;
 };
 
@@ -8159,15 +9882,21 @@ export type _Video_linkArgs = {
 
 export type _VideoAutocomplete = {
   __typename?: '_VideoAutocomplete';
+  _assetMetadata?: Maybe<_AssetMetadataAutocomplete>;
+  _itemMetadata?: Maybe<_MetadataAutocomplete>;
   _metadata?: Maybe<IContentMetadataAutocomplete>;
 };
 
 export type _VideoFacet = {
   __typename?: '_VideoFacet';
+  _assetMetadata?: Maybe<_AssetMetadataFacet>;
+  _itemMetadata?: Maybe<_MetadataFacet>;
   _metadata?: Maybe<IContentMetadataFacet>;
 };
 
 export type _VideoOrderByInput = {
+  _assetMetadata?: InputMaybe<_AssetMetadataOrderByInput>;
+  _itemMetadata?: InputMaybe<_MetadataOrderByInput>;
   _metadata?: InputMaybe<IContentMetadataOrderByInput>;
   _minimumScore?: InputMaybe<Scalars['Float']['input']>;
   _modified?: InputMaybe<OrderBy>;
@@ -8193,11 +9922,14 @@ export type _VideoOutputtotalArgs = {
 
 export type _VideoWhereInput = {
   _and?: InputMaybe<Array<InputMaybe<_VideoWhereInput>>>;
+  _assetMetadata?: InputMaybe<_AssetMetadataWhereInput>;
   _fulltext?: InputMaybe<SearchableStringFilterInput>;
+  _itemMetadata?: InputMaybe<_MetadataWhereInput>;
   _metadata?: InputMaybe<IContentMetadataWhereInput>;
   _modified?: InputMaybe<DateFilterInput>;
   _not?: InputMaybe<Array<InputMaybe<_VideoWhereInput>>>;
   _or?: InputMaybe<Array<InputMaybe<_VideoWhereInput>>>;
+  _source?: InputMaybe<SourceFilterInput>;
 };
 
 export enum system_Locales {
@@ -8206,7 +9938,7 @@ export enum system_Locales {
 }
 
 export type usePinnedInput = {
-  collectionId?: InputMaybe<Scalars['String']['input']>;
+  collectionId?: InputMaybe<Array<InputMaybe<Scalars['String']['input']>>>;
   phrase?: InputMaybe<Scalars['String']['input']>;
 };
 
@@ -8224,6 +9956,12 @@ export type __Schema = {
   subscriptionType?: Maybe<__Type>;
   /** A list of all directives supported by this server. */
   directives: Array<__Directive>;
+};
+
+
+/** A GraphQL Schema defines the capabilities of a GraphQL server. It exposes all available types and directives on the server, as well as the entry points for query, mutation, and subscription operations. */
+export type __SchemadirectivesArgs = {
+  includeDeprecated?: Scalars['Boolean']['input'];
 };
 
 /**
@@ -8346,6 +10084,8 @@ export type __Directive = {
   isRepeatable: Scalars['Boolean']['output'];
   locations: Array<__DirectiveLocation>;
   args: Array<__InputValue>;
+  isDeprecated: Scalars['Boolean']['output'];
+  deprecationReason?: Maybe<Scalars['String']['output']>;
 };
 
 
@@ -8397,7 +10137,9 @@ export enum __DirectiveLocation {
   /** Location adjacent to an input object type definition. */
   INPUT_OBJECT = 'INPUT_OBJECT',
   /** Location adjacent to an input object field definition. */
-  INPUT_FIELD_DEFINITION = 'INPUT_FIELD_DEFINITION'
+  INPUT_FIELD_DEFINITION = 'INPUT_FIELD_DEFINITION',
+  /** Location adjacent to a directive definition. */
+  DIRECTIVE_DEFINITION = 'DIRECTIVE_DEFINITION'
 }
 
 export type ArticleListElementDataFragment = { __typename?: 'ArticleListElement', articleListCount?: number | null, topics?: Array<string | null> | null } & { ' $fragmentName'?: 'ArticleListElementDataFragment' };
@@ -8528,8 +10270,14 @@ export type CarouselBlockDataFragment = { __typename?: 'CarouselBlock', Carousel
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsCondition_Fragment': IContentListItem_OptiFormsCondition_Fragment;'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsDependencyRule_Fragment': IContentListItem_OptiFormsDependencyRule_Fragment;'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
@@ -8706,8 +10454,14 @@ export type ContinueReadingComponentDataFragment = { __typename?: 'ContinueReadi
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment;'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment;'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
@@ -8907,8 +10661,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsCondition_Fragment': IContentListItem_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsDependencyRule_Fragment': IContentListItem_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
@@ -9081,8 +10841,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsCondition_Fragment': IContentListItem_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsDependencyRule_Fragment': IContentListItem_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
@@ -9255,8 +11021,14 @@ export type LayoutSettingsBlockDataFragment = { __typename?: 'LayoutSettingsBloc
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsCondition_Fragment': IContentListItem_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsDependencyRule_Fragment': IContentListItem_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment } }
@@ -9437,8 +11209,14 @@ export type MegaMenuGroupBlockDataFragment = { __typename?: 'MegaMenuGroupBlock'
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
@@ -9747,8 +11525,14 @@ export type BlogPostPageDataFragment = { __typename?: 'BlogPostPage', blogTitle?
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsChoiceElement_Fragment': IContentListItem_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsCondition_Fragment': IContentListItem_OptiFormsCondition_Fragment;'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsContainerData_Fragment': IContentListItem_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsDependencyRule_Fragment': IContentListItem_OptiFormsDependencyRule_Fragment;'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'IContentListItem_OptiFormsNumberElement_Fragment': IContentListItem_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
@@ -9919,8 +11703,14 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
@@ -10036,8 +11826,14 @@ export type LandingPageDataFragment = { __typename?: 'LandingPage', TopContentAr
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment } }
@@ -10184,8 +11980,14 @@ export type getFooterDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'OptiFormsChoiceElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
       ) | (
+        { __typename?: 'OptiFormsCondition' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+      ) | (
         { __typename?: 'OptiFormsContainerData' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
+      ) | (
+        { __typename?: 'OptiFormsDependencyRule' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
       ) | (
         { __typename?: 'OptiFormsNumberElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
@@ -10369,8 +12171,14 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'OptiFormsChoiceElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
       ) | (
+        { __typename?: 'OptiFormsCondition' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+      ) | (
         { __typename?: 'OptiFormsContainerData' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
+      ) | (
+        { __typename?: 'OptiFormsDependencyRule' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
       ) | (
         { __typename?: 'OptiFormsNumberElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
@@ -10543,8 +12351,14 @@ export type getHeaderDataQuery = { __typename?: 'Query', appLayout?: { __typenam
         { __typename?: 'OptiFormsChoiceElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
       ) | (
+        { __typename?: 'OptiFormsCondition' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+      ) | (
         { __typename?: 'OptiFormsContainerData' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
+      ) | (
+        { __typename?: 'OptiFormsDependencyRule' }
+        & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
       ) | (
         { __typename?: 'OptiFormsNumberElement' }
         & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment } }
@@ -10833,10 +12647,20 @@ type SearchData_OptiFormsChoiceElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_OptiFormsChoiceElement_Fragment' };
 
+type SearchData_OptiFormsCondition_Fragment = (
+  { __typename?: 'OptiFormsCondition' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_OptiFormsCondition_Fragment' };
+
 type SearchData_OptiFormsContainerData_Fragment = (
   { __typename?: 'OptiFormsContainerData' }
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData_OptiFormsContainerData_Fragment' };
+
+type SearchData_OptiFormsDependencyRule_Fragment = (
+  { __typename?: 'OptiFormsDependencyRule' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
+) & { ' $fragmentName'?: 'SearchData_OptiFormsDependencyRule_Fragment' };
 
 type SearchData_OptiFormsNumberElement_Fragment = (
   { __typename?: 'OptiFormsNumberElement' }
@@ -10983,7 +12807,7 @@ type SearchData__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'SearchData__Video_Fragment' };
 
-export type SearchDataFragment = SearchData_ArticleListElement_Fragment | SearchData_BlankExperience_Fragment | SearchData_BlankSection_Fragment | SearchData_BlogListingBlock_Fragment | SearchData_BlogPostPage_Fragment | SearchData_BlogSectionExperience_Fragment | SearchData_ButtonBlock_Fragment | SearchData_CTAElement_Fragment | SearchData_CardBlock_Fragment | SearchData_CarouselBlock_Fragment | SearchData_ContentRecsBlock_Fragment | SearchData_ContentRecsElement_Fragment | SearchData_ContinueReadingComponent_Fragment | SearchData_GenericMedia_Fragment | SearchData_HeadingElement_Fragment | SearchData_HeroBlock_Fragment | SearchData_HomePageHeroBlock_Fragment | SearchData_HtmlBlock_Fragment | SearchData_Image_Fragment | SearchData_ImageElement_Fragment | SearchData_ImageMedia_Fragment | SearchData_LandingPage_Fragment | SearchData_LayoutContainerBlock_Fragment | SearchData_LayoutSettingsBlock_Fragment | SearchData_MegaMenuGroupBlock_Fragment | SearchData_MenuNavigationBlock_Fragment | SearchData_OdpEmbedBlock_Fragment | SearchData_OptiFormsChoiceElement_Fragment | SearchData_OptiFormsContainerData_Fragment | SearchData_OptiFormsNumberElement_Fragment | SearchData_OptiFormsRangeElement_Fragment | SearchData_OptiFormsResetElement_Fragment | SearchData_OptiFormsSelectionElement_Fragment | SearchData_OptiFormsSubmitElement_Fragment | SearchData_OptiFormsTextareaElement_Fragment | SearchData_OptiFormsTextboxElement_Fragment | SearchData_OptiFormsUrlElement_Fragment | SearchData_PageSeoSettings_Fragment | SearchData_ParagraphElement_Fragment | SearchData_QuoteBlock_Fragment | SearchData_RichTextElement_Fragment | SearchData_StandardPage_Fragment | SearchData_StartPage_Fragment | SearchData_SysContentFolder_Fragment | SearchData_TestimonialElement_Fragment | SearchData_TextBlock_Fragment | SearchData_Video_Fragment | SearchData_VideoElement_Fragment | SearchData_VideoMedia_Fragment | SearchData__Component_Fragment | SearchData__Content_Fragment | SearchData__Experience_Fragment | SearchData__Folder_Fragment | SearchData__Image_Fragment | SearchData__Media_Fragment | SearchData__Page_Fragment | SearchData__Section_Fragment | SearchData__Video_Fragment;
+export type SearchDataFragment = SearchData_ArticleListElement_Fragment | SearchData_BlankExperience_Fragment | SearchData_BlankSection_Fragment | SearchData_BlogListingBlock_Fragment | SearchData_BlogPostPage_Fragment | SearchData_BlogSectionExperience_Fragment | SearchData_ButtonBlock_Fragment | SearchData_CTAElement_Fragment | SearchData_CardBlock_Fragment | SearchData_CarouselBlock_Fragment | SearchData_ContentRecsBlock_Fragment | SearchData_ContentRecsElement_Fragment | SearchData_ContinueReadingComponent_Fragment | SearchData_GenericMedia_Fragment | SearchData_HeadingElement_Fragment | SearchData_HeroBlock_Fragment | SearchData_HomePageHeroBlock_Fragment | SearchData_HtmlBlock_Fragment | SearchData_Image_Fragment | SearchData_ImageElement_Fragment | SearchData_ImageMedia_Fragment | SearchData_LandingPage_Fragment | SearchData_LayoutContainerBlock_Fragment | SearchData_LayoutSettingsBlock_Fragment | SearchData_MegaMenuGroupBlock_Fragment | SearchData_MenuNavigationBlock_Fragment | SearchData_OdpEmbedBlock_Fragment | SearchData_OptiFormsChoiceElement_Fragment | SearchData_OptiFormsCondition_Fragment | SearchData_OptiFormsContainerData_Fragment | SearchData_OptiFormsDependencyRule_Fragment | SearchData_OptiFormsNumberElement_Fragment | SearchData_OptiFormsRangeElement_Fragment | SearchData_OptiFormsResetElement_Fragment | SearchData_OptiFormsSelectionElement_Fragment | SearchData_OptiFormsSubmitElement_Fragment | SearchData_OptiFormsTextareaElement_Fragment | SearchData_OptiFormsTextboxElement_Fragment | SearchData_OptiFormsUrlElement_Fragment | SearchData_PageSeoSettings_Fragment | SearchData_ParagraphElement_Fragment | SearchData_QuoteBlock_Fragment | SearchData_RichTextElement_Fragment | SearchData_StandardPage_Fragment | SearchData_StartPage_Fragment | SearchData_SysContentFolder_Fragment | SearchData_TestimonialElement_Fragment | SearchData_TextBlock_Fragment | SearchData_Video_Fragment | SearchData_VideoElement_Fragment | SearchData_VideoMedia_Fragment | SearchData__Component_Fragment | SearchData__Content_Fragment | SearchData__Experience_Fragment | SearchData__Folder_Fragment | SearchData__Image_Fragment | SearchData__Media_Fragment | SearchData__Page_Fragment | SearchData__Section_Fragment | SearchData__Video_Fragment;
 
 export type personalizedSearchContentQueryVariables = Exact<{
   term: Scalars['String']['input'];
@@ -11415,6 +13239,20 @@ type IContentData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsCho
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsChoiceElement_Fragment' };
 
+type IContentData_OptiFormsCondition_Fragment = { __typename?: 'OptiFormsCondition', _type: 'OptiFormsCondition', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsCondition_Fragment' };
+
 type IContentData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsContainerData', _type: 'OptiFormsContainerData', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -11428,6 +13266,20 @@ type IContentData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsCon
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsContainerData_Fragment' };
+
+type IContentData_OptiFormsDependencyRule_Fragment = { __typename?: 'OptiFormsDependencyRule', _type: 'OptiFormsDependencyRule', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IContentData_OptiFormsDependencyRule_Fragment' };
 
 type IContentData_OptiFormsNumberElement_Fragment = { __typename?: 'OptiFormsNumberElement', _type: 'OptiFormsNumberElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -11835,7 +13687,7 @@ type IContentData__Video_Fragment = { __typename?: '_Video', _type: '_Video', _m
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IContentData__Video_Fragment' };
 
-export type IContentDataFragment = IContentData_ArticleListElement_Fragment | IContentData_BlankExperience_Fragment | IContentData_BlankSection_Fragment | IContentData_BlogListingBlock_Fragment | IContentData_BlogPostPage_Fragment | IContentData_BlogSectionExperience_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CTAElement_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContentRecsBlock_Fragment | IContentData_ContentRecsElement_Fragment | IContentData_ContinueReadingComponent_Fragment | IContentData_GenericMedia_Fragment | IContentData_HeadingElement_Fragment | IContentData_HeroBlock_Fragment | IContentData_HomePageHeroBlock_Fragment | IContentData_HtmlBlock_Fragment | IContentData_Image_Fragment | IContentData_ImageElement_Fragment | IContentData_ImageMedia_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutContainerBlock_Fragment | IContentData_LayoutSettingsBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_OptiFormsChoiceElement_Fragment | IContentData_OptiFormsContainerData_Fragment | IContentData_OptiFormsNumberElement_Fragment | IContentData_OptiFormsRangeElement_Fragment | IContentData_OptiFormsResetElement_Fragment | IContentData_OptiFormsSelectionElement_Fragment | IContentData_OptiFormsSubmitElement_Fragment | IContentData_OptiFormsTextareaElement_Fragment | IContentData_OptiFormsTextboxElement_Fragment | IContentData_OptiFormsUrlElement_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_ParagraphElement_Fragment | IContentData_QuoteBlock_Fragment | IContentData_RichTextElement_Fragment | IContentData_StandardPage_Fragment | IContentData_StartPage_Fragment | IContentData_SysContentFolder_Fragment | IContentData_TestimonialElement_Fragment | IContentData_TextBlock_Fragment | IContentData_Video_Fragment | IContentData_VideoElement_Fragment | IContentData_VideoMedia_Fragment | IContentData__Component_Fragment | IContentData__Content_Fragment | IContentData__Experience_Fragment | IContentData__Folder_Fragment | IContentData__Image_Fragment | IContentData__Media_Fragment | IContentData__Page_Fragment | IContentData__Section_Fragment | IContentData__Video_Fragment;
+export type IContentDataFragment = IContentData_ArticleListElement_Fragment | IContentData_BlankExperience_Fragment | IContentData_BlankSection_Fragment | IContentData_BlogListingBlock_Fragment | IContentData_BlogPostPage_Fragment | IContentData_BlogSectionExperience_Fragment | IContentData_ButtonBlock_Fragment | IContentData_CTAElement_Fragment | IContentData_CardBlock_Fragment | IContentData_CarouselBlock_Fragment | IContentData_ContentRecsBlock_Fragment | IContentData_ContentRecsElement_Fragment | IContentData_ContinueReadingComponent_Fragment | IContentData_GenericMedia_Fragment | IContentData_HeadingElement_Fragment | IContentData_HeroBlock_Fragment | IContentData_HomePageHeroBlock_Fragment | IContentData_HtmlBlock_Fragment | IContentData_Image_Fragment | IContentData_ImageElement_Fragment | IContentData_ImageMedia_Fragment | IContentData_LandingPage_Fragment | IContentData_LayoutContainerBlock_Fragment | IContentData_LayoutSettingsBlock_Fragment | IContentData_MegaMenuGroupBlock_Fragment | IContentData_MenuNavigationBlock_Fragment | IContentData_OdpEmbedBlock_Fragment | IContentData_OptiFormsChoiceElement_Fragment | IContentData_OptiFormsCondition_Fragment | IContentData_OptiFormsContainerData_Fragment | IContentData_OptiFormsDependencyRule_Fragment | IContentData_OptiFormsNumberElement_Fragment | IContentData_OptiFormsRangeElement_Fragment | IContentData_OptiFormsResetElement_Fragment | IContentData_OptiFormsSelectionElement_Fragment | IContentData_OptiFormsSubmitElement_Fragment | IContentData_OptiFormsTextareaElement_Fragment | IContentData_OptiFormsTextboxElement_Fragment | IContentData_OptiFormsUrlElement_Fragment | IContentData_PageSeoSettings_Fragment | IContentData_ParagraphElement_Fragment | IContentData_QuoteBlock_Fragment | IContentData_RichTextElement_Fragment | IContentData_StandardPage_Fragment | IContentData_StartPage_Fragment | IContentData_SysContentFolder_Fragment | IContentData_TestimonialElement_Fragment | IContentData_TextBlock_Fragment | IContentData_Video_Fragment | IContentData_VideoElement_Fragment | IContentData_VideoMedia_Fragment | IContentData__Component_Fragment | IContentData__Content_Fragment | IContentData__Experience_Fragment | IContentData__Folder_Fragment | IContentData__Image_Fragment | IContentData__Media_Fragment | IContentData__Page_Fragment | IContentData__Section_Fragment | IContentData__Video_Fragment;
 
 type IElementData_ArticleListElement_Fragment = { __typename?: 'ArticleListElement', _type: 'ArticleListElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12131,6 +13983,20 @@ type IElementData_OptiFormsChoiceElement_Fragment = { __typename?: 'OptiFormsCho
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsChoiceElement_Fragment' };
 
+type IElementData_OptiFormsCondition_Fragment = { __typename?: 'OptiFormsCondition', _type: 'OptiFormsCondition', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsCondition_Fragment' };
+
 type IElementData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsContainerData', _type: 'OptiFormsContainerData', _metadata?: (
     { __typename?: 'ContentMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
@@ -12144,6 +14010,20 @@ type IElementData_OptiFormsContainerData_Fragment = { __typename?: 'OptiFormsCon
     { __typename?: 'MediaMetadata' }
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsContainerData_Fragment' };
+
+type IElementData_OptiFormsDependencyRule_Fragment = { __typename?: 'OptiFormsDependencyRule', _type: 'OptiFormsDependencyRule', _metadata?: (
+    { __typename?: 'ContentMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ContentMetadata_Fragment': IContentInfo_ContentMetadata_Fragment } }
+  ) | (
+    { __typename?: 'InstanceMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_InstanceMetadata_Fragment': IContentInfo_InstanceMetadata_Fragment } }
+  ) | (
+    { __typename?: 'ItemMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_ItemMetadata_Fragment': IContentInfo_ItemMetadata_Fragment } }
+  ) | (
+    { __typename?: 'MediaMetadata' }
+    & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
+  ) | null } & { ' $fragmentName'?: 'IElementData_OptiFormsDependencyRule_Fragment' };
 
 type IElementData_OptiFormsNumberElement_Fragment = { __typename?: 'OptiFormsNumberElement', _type: 'OptiFormsNumberElement', _metadata?: (
     { __typename?: 'ContentMetadata' }
@@ -12383,7 +14263,7 @@ type IElementData__Section_Fragment = { __typename?: '_Section', _type: '_Sectio
     & { ' $fragmentRefs'?: { 'IContentInfo_MediaMetadata_Fragment': IContentInfo_MediaMetadata_Fragment } }
   ) | null } & { ' $fragmentName'?: 'IElementData__Section_Fragment' };
 
-export type IElementDataFragment = IElementData_ArticleListElement_Fragment | IElementData_BlankSection_Fragment | IElementData_BlogListingBlock_Fragment | IElementData_ButtonBlock_Fragment | IElementData_CTAElement_Fragment | IElementData_CardBlock_Fragment | IElementData_CarouselBlock_Fragment | IElementData_ContentRecsBlock_Fragment | IElementData_ContentRecsElement_Fragment | IElementData_ContinueReadingComponent_Fragment | IElementData_HeadingElement_Fragment | IElementData_HeroBlock_Fragment | IElementData_HomePageHeroBlock_Fragment | IElementData_HtmlBlock_Fragment | IElementData_ImageElement_Fragment | IElementData_LayoutContainerBlock_Fragment | IElementData_LayoutSettingsBlock_Fragment | IElementData_MegaMenuGroupBlock_Fragment | IElementData_MenuNavigationBlock_Fragment | IElementData_OdpEmbedBlock_Fragment | IElementData_OptiFormsChoiceElement_Fragment | IElementData_OptiFormsContainerData_Fragment | IElementData_OptiFormsNumberElement_Fragment | IElementData_OptiFormsRangeElement_Fragment | IElementData_OptiFormsResetElement_Fragment | IElementData_OptiFormsSelectionElement_Fragment | IElementData_OptiFormsSubmitElement_Fragment | IElementData_OptiFormsTextareaElement_Fragment | IElementData_OptiFormsTextboxElement_Fragment | IElementData_OptiFormsUrlElement_Fragment | IElementData_PageSeoSettings_Fragment | IElementData_ParagraphElement_Fragment | IElementData_QuoteBlock_Fragment | IElementData_RichTextElement_Fragment | IElementData_TestimonialElement_Fragment | IElementData_TextBlock_Fragment | IElementData_VideoElement_Fragment | IElementData__Component_Fragment | IElementData__Section_Fragment;
+export type IElementDataFragment = IElementData_ArticleListElement_Fragment | IElementData_BlankSection_Fragment | IElementData_BlogListingBlock_Fragment | IElementData_ButtonBlock_Fragment | IElementData_CTAElement_Fragment | IElementData_CardBlock_Fragment | IElementData_CarouselBlock_Fragment | IElementData_ContentRecsBlock_Fragment | IElementData_ContentRecsElement_Fragment | IElementData_ContinueReadingComponent_Fragment | IElementData_HeadingElement_Fragment | IElementData_HeroBlock_Fragment | IElementData_HomePageHeroBlock_Fragment | IElementData_HtmlBlock_Fragment | IElementData_ImageElement_Fragment | IElementData_LayoutContainerBlock_Fragment | IElementData_LayoutSettingsBlock_Fragment | IElementData_MegaMenuGroupBlock_Fragment | IElementData_MenuNavigationBlock_Fragment | IElementData_OdpEmbedBlock_Fragment | IElementData_OptiFormsChoiceElement_Fragment | IElementData_OptiFormsCondition_Fragment | IElementData_OptiFormsContainerData_Fragment | IElementData_OptiFormsDependencyRule_Fragment | IElementData_OptiFormsNumberElement_Fragment | IElementData_OptiFormsRangeElement_Fragment | IElementData_OptiFormsResetElement_Fragment | IElementData_OptiFormsSelectionElement_Fragment | IElementData_OptiFormsSubmitElement_Fragment | IElementData_OptiFormsTextareaElement_Fragment | IElementData_OptiFormsTextboxElement_Fragment | IElementData_OptiFormsUrlElement_Fragment | IElementData_PageSeoSettings_Fragment | IElementData_ParagraphElement_Fragment | IElementData_QuoteBlock_Fragment | IElementData_RichTextElement_Fragment | IElementData_TestimonialElement_Fragment | IElementData_TextBlock_Fragment | IElementData_VideoElement_Fragment | IElementData__Component_Fragment | IElementData__Section_Fragment;
 
 type ElementData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
@@ -12490,10 +14370,20 @@ type ElementData_OptiFormsChoiceElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData_OptiFormsChoiceElement_Fragment': IElementData_OptiFormsChoiceElement_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_OptiFormsChoiceElement_Fragment' };
 
+type ElementData_OptiFormsCondition_Fragment = (
+  { __typename?: 'OptiFormsCondition' }
+  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsCondition_Fragment': IElementData_OptiFormsCondition_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_OptiFormsCondition_Fragment' };
+
 type ElementData_OptiFormsContainerData_Fragment = (
   { __typename?: 'OptiFormsContainerData' }
   & { ' $fragmentRefs'?: { 'IElementData_OptiFormsContainerData_Fragment': IElementData_OptiFormsContainerData_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData_OptiFormsContainerData_Fragment' };
+
+type ElementData_OptiFormsDependencyRule_Fragment = (
+  { __typename?: 'OptiFormsDependencyRule' }
+  & { ' $fragmentRefs'?: { 'IElementData_OptiFormsDependencyRule_Fragment': IElementData_OptiFormsDependencyRule_Fragment } }
+) & { ' $fragmentName'?: 'ElementData_OptiFormsDependencyRule_Fragment' };
 
 type ElementData_OptiFormsNumberElement_Fragment = (
   { __typename?: 'OptiFormsNumberElement' }
@@ -12580,7 +14470,7 @@ type ElementData__Section_Fragment = (
   & { ' $fragmentRefs'?: { 'IElementData__Section_Fragment': IElementData__Section_Fragment } }
 ) & { ' $fragmentName'?: 'ElementData__Section_Fragment' };
 
-export type ElementDataFragment = ElementData_ArticleListElement_Fragment | ElementData_BlankSection_Fragment | ElementData_BlogListingBlock_Fragment | ElementData_ButtonBlock_Fragment | ElementData_CTAElement_Fragment | ElementData_CardBlock_Fragment | ElementData_CarouselBlock_Fragment | ElementData_ContentRecsBlock_Fragment | ElementData_ContentRecsElement_Fragment | ElementData_ContinueReadingComponent_Fragment | ElementData_HeadingElement_Fragment | ElementData_HeroBlock_Fragment | ElementData_HomePageHeroBlock_Fragment | ElementData_HtmlBlock_Fragment | ElementData_ImageElement_Fragment | ElementData_LayoutContainerBlock_Fragment | ElementData_LayoutSettingsBlock_Fragment | ElementData_MegaMenuGroupBlock_Fragment | ElementData_MenuNavigationBlock_Fragment | ElementData_OdpEmbedBlock_Fragment | ElementData_OptiFormsChoiceElement_Fragment | ElementData_OptiFormsContainerData_Fragment | ElementData_OptiFormsNumberElement_Fragment | ElementData_OptiFormsRangeElement_Fragment | ElementData_OptiFormsResetElement_Fragment | ElementData_OptiFormsSelectionElement_Fragment | ElementData_OptiFormsSubmitElement_Fragment | ElementData_OptiFormsTextareaElement_Fragment | ElementData_OptiFormsTextboxElement_Fragment | ElementData_OptiFormsUrlElement_Fragment | ElementData_PageSeoSettings_Fragment | ElementData_ParagraphElement_Fragment | ElementData_QuoteBlock_Fragment | ElementData_RichTextElement_Fragment | ElementData_TestimonialElement_Fragment | ElementData_TextBlock_Fragment | ElementData_VideoElement_Fragment | ElementData__Component_Fragment | ElementData__Section_Fragment;
+export type ElementDataFragment = ElementData_ArticleListElement_Fragment | ElementData_BlankSection_Fragment | ElementData_BlogListingBlock_Fragment | ElementData_ButtonBlock_Fragment | ElementData_CTAElement_Fragment | ElementData_CardBlock_Fragment | ElementData_CarouselBlock_Fragment | ElementData_ContentRecsBlock_Fragment | ElementData_ContentRecsElement_Fragment | ElementData_ContinueReadingComponent_Fragment | ElementData_HeadingElement_Fragment | ElementData_HeroBlock_Fragment | ElementData_HomePageHeroBlock_Fragment | ElementData_HtmlBlock_Fragment | ElementData_ImageElement_Fragment | ElementData_LayoutContainerBlock_Fragment | ElementData_LayoutSettingsBlock_Fragment | ElementData_MegaMenuGroupBlock_Fragment | ElementData_MenuNavigationBlock_Fragment | ElementData_OdpEmbedBlock_Fragment | ElementData_OptiFormsChoiceElement_Fragment | ElementData_OptiFormsCondition_Fragment | ElementData_OptiFormsContainerData_Fragment | ElementData_OptiFormsDependencyRule_Fragment | ElementData_OptiFormsNumberElement_Fragment | ElementData_OptiFormsRangeElement_Fragment | ElementData_OptiFormsResetElement_Fragment | ElementData_OptiFormsSelectionElement_Fragment | ElementData_OptiFormsSubmitElement_Fragment | ElementData_OptiFormsTextareaElement_Fragment | ElementData_OptiFormsTextboxElement_Fragment | ElementData_OptiFormsUrlElement_Fragment | ElementData_PageSeoSettings_Fragment | ElementData_ParagraphElement_Fragment | ElementData_QuoteBlock_Fragment | ElementData_RichTextElement_Fragment | ElementData_TestimonialElement_Fragment | ElementData_TextBlock_Fragment | ElementData_VideoElement_Fragment | ElementData__Component_Fragment | ElementData__Section_Fragment;
 
 type BlockData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
@@ -12687,10 +14577,20 @@ type BlockData_OptiFormsChoiceElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_OptiFormsChoiceElement_Fragment' };
 
+type BlockData_OptiFormsCondition_Fragment = (
+  { __typename?: 'OptiFormsCondition' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_OptiFormsCondition_Fragment' };
+
 type BlockData_OptiFormsContainerData_Fragment = (
   { __typename?: 'OptiFormsContainerData' }
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData_OptiFormsContainerData_Fragment' };
+
+type BlockData_OptiFormsDependencyRule_Fragment = (
+  { __typename?: 'OptiFormsDependencyRule' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
+) & { ' $fragmentName'?: 'BlockData_OptiFormsDependencyRule_Fragment' };
 
 type BlockData_OptiFormsNumberElement_Fragment = (
   { __typename?: 'OptiFormsNumberElement' }
@@ -12777,7 +14677,7 @@ type BlockData__Section_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Section_Fragment': IContentData__Section_Fragment } }
 ) & { ' $fragmentName'?: 'BlockData__Section_Fragment' };
 
-export type BlockDataFragment = BlockData_ArticleListElement_Fragment | BlockData_BlankSection_Fragment | BlockData_BlogListingBlock_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CTAElement_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContentRecsBlock_Fragment | BlockData_ContentRecsElement_Fragment | BlockData_ContinueReadingComponent_Fragment | BlockData_HeadingElement_Fragment | BlockData_HeroBlock_Fragment | BlockData_HomePageHeroBlock_Fragment | BlockData_HtmlBlock_Fragment | BlockData_ImageElement_Fragment | BlockData_LayoutContainerBlock_Fragment | BlockData_LayoutSettingsBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_OptiFormsChoiceElement_Fragment | BlockData_OptiFormsContainerData_Fragment | BlockData_OptiFormsNumberElement_Fragment | BlockData_OptiFormsRangeElement_Fragment | BlockData_OptiFormsResetElement_Fragment | BlockData_OptiFormsSelectionElement_Fragment | BlockData_OptiFormsSubmitElement_Fragment | BlockData_OptiFormsTextareaElement_Fragment | BlockData_OptiFormsTextboxElement_Fragment | BlockData_OptiFormsUrlElement_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_ParagraphElement_Fragment | BlockData_QuoteBlock_Fragment | BlockData_RichTextElement_Fragment | BlockData_TestimonialElement_Fragment | BlockData_TextBlock_Fragment | BlockData_VideoElement_Fragment | BlockData__Component_Fragment | BlockData__Section_Fragment;
+export type BlockDataFragment = BlockData_ArticleListElement_Fragment | BlockData_BlankSection_Fragment | BlockData_BlogListingBlock_Fragment | BlockData_ButtonBlock_Fragment | BlockData_CTAElement_Fragment | BlockData_CardBlock_Fragment | BlockData_CarouselBlock_Fragment | BlockData_ContentRecsBlock_Fragment | BlockData_ContentRecsElement_Fragment | BlockData_ContinueReadingComponent_Fragment | BlockData_HeadingElement_Fragment | BlockData_HeroBlock_Fragment | BlockData_HomePageHeroBlock_Fragment | BlockData_HtmlBlock_Fragment | BlockData_ImageElement_Fragment | BlockData_LayoutContainerBlock_Fragment | BlockData_LayoutSettingsBlock_Fragment | BlockData_MegaMenuGroupBlock_Fragment | BlockData_MenuNavigationBlock_Fragment | BlockData_OdpEmbedBlock_Fragment | BlockData_OptiFormsChoiceElement_Fragment | BlockData_OptiFormsCondition_Fragment | BlockData_OptiFormsContainerData_Fragment | BlockData_OptiFormsDependencyRule_Fragment | BlockData_OptiFormsNumberElement_Fragment | BlockData_OptiFormsRangeElement_Fragment | BlockData_OptiFormsResetElement_Fragment | BlockData_OptiFormsSelectionElement_Fragment | BlockData_OptiFormsSubmitElement_Fragment | BlockData_OptiFormsTextareaElement_Fragment | BlockData_OptiFormsTextboxElement_Fragment | BlockData_OptiFormsUrlElement_Fragment | BlockData_PageSeoSettings_Fragment | BlockData_ParagraphElement_Fragment | BlockData_QuoteBlock_Fragment | BlockData_RichTextElement_Fragment | BlockData_TestimonialElement_Fragment | BlockData_TextBlock_Fragment | BlockData_VideoElement_Fragment | BlockData__Component_Fragment | BlockData__Section_Fragment;
 
 type PageData_ArticleListElement_Fragment = (
   { __typename?: 'ArticleListElement' }
@@ -12919,10 +14819,20 @@ type PageData_OptiFormsChoiceElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_OptiFormsChoiceElement_Fragment' };
 
+type PageData_OptiFormsCondition_Fragment = (
+  { __typename?: 'OptiFormsCondition' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+) & { ' $fragmentName'?: 'PageData_OptiFormsCondition_Fragment' };
+
 type PageData_OptiFormsContainerData_Fragment = (
   { __typename?: 'OptiFormsContainerData' }
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
 ) & { ' $fragmentName'?: 'PageData_OptiFormsContainerData_Fragment' };
+
+type PageData_OptiFormsDependencyRule_Fragment = (
+  { __typename?: 'OptiFormsDependencyRule' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
+) & { ' $fragmentName'?: 'PageData_OptiFormsDependencyRule_Fragment' };
 
 type PageData_OptiFormsNumberElement_Fragment = (
   { __typename?: 'OptiFormsNumberElement' }
@@ -13069,7 +14979,7 @@ type PageData__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'PageData__Video_Fragment' };
 
-export type PageDataFragment = PageData_ArticleListElement_Fragment | PageData_BlankExperience_Fragment | PageData_BlankSection_Fragment | PageData_BlogListingBlock_Fragment | PageData_BlogPostPage_Fragment | PageData_BlogSectionExperience_Fragment | PageData_ButtonBlock_Fragment | PageData_CTAElement_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContentRecsBlock_Fragment | PageData_ContentRecsElement_Fragment | PageData_ContinueReadingComponent_Fragment | PageData_GenericMedia_Fragment | PageData_HeadingElement_Fragment | PageData_HeroBlock_Fragment | PageData_HomePageHeroBlock_Fragment | PageData_HtmlBlock_Fragment | PageData_Image_Fragment | PageData_ImageElement_Fragment | PageData_ImageMedia_Fragment | PageData_LandingPage_Fragment | PageData_LayoutContainerBlock_Fragment | PageData_LayoutSettingsBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_OptiFormsChoiceElement_Fragment | PageData_OptiFormsContainerData_Fragment | PageData_OptiFormsNumberElement_Fragment | PageData_OptiFormsRangeElement_Fragment | PageData_OptiFormsResetElement_Fragment | PageData_OptiFormsSelectionElement_Fragment | PageData_OptiFormsSubmitElement_Fragment | PageData_OptiFormsTextareaElement_Fragment | PageData_OptiFormsTextboxElement_Fragment | PageData_OptiFormsUrlElement_Fragment | PageData_PageSeoSettings_Fragment | PageData_ParagraphElement_Fragment | PageData_QuoteBlock_Fragment | PageData_RichTextElement_Fragment | PageData_StandardPage_Fragment | PageData_StartPage_Fragment | PageData_SysContentFolder_Fragment | PageData_TestimonialElement_Fragment | PageData_TextBlock_Fragment | PageData_Video_Fragment | PageData_VideoElement_Fragment | PageData_VideoMedia_Fragment | PageData__Component_Fragment | PageData__Content_Fragment | PageData__Experience_Fragment | PageData__Folder_Fragment | PageData__Image_Fragment | PageData__Media_Fragment | PageData__Page_Fragment | PageData__Section_Fragment | PageData__Video_Fragment;
+export type PageDataFragment = PageData_ArticleListElement_Fragment | PageData_BlankExperience_Fragment | PageData_BlankSection_Fragment | PageData_BlogListingBlock_Fragment | PageData_BlogPostPage_Fragment | PageData_BlogSectionExperience_Fragment | PageData_ButtonBlock_Fragment | PageData_CTAElement_Fragment | PageData_CardBlock_Fragment | PageData_CarouselBlock_Fragment | PageData_ContentRecsBlock_Fragment | PageData_ContentRecsElement_Fragment | PageData_ContinueReadingComponent_Fragment | PageData_GenericMedia_Fragment | PageData_HeadingElement_Fragment | PageData_HeroBlock_Fragment | PageData_HomePageHeroBlock_Fragment | PageData_HtmlBlock_Fragment | PageData_Image_Fragment | PageData_ImageElement_Fragment | PageData_ImageMedia_Fragment | PageData_LandingPage_Fragment | PageData_LayoutContainerBlock_Fragment | PageData_LayoutSettingsBlock_Fragment | PageData_MegaMenuGroupBlock_Fragment | PageData_MenuNavigationBlock_Fragment | PageData_OdpEmbedBlock_Fragment | PageData_OptiFormsChoiceElement_Fragment | PageData_OptiFormsCondition_Fragment | PageData_OptiFormsContainerData_Fragment | PageData_OptiFormsDependencyRule_Fragment | PageData_OptiFormsNumberElement_Fragment | PageData_OptiFormsRangeElement_Fragment | PageData_OptiFormsResetElement_Fragment | PageData_OptiFormsSelectionElement_Fragment | PageData_OptiFormsSubmitElement_Fragment | PageData_OptiFormsTextareaElement_Fragment | PageData_OptiFormsTextboxElement_Fragment | PageData_OptiFormsUrlElement_Fragment | PageData_PageSeoSettings_Fragment | PageData_ParagraphElement_Fragment | PageData_QuoteBlock_Fragment | PageData_RichTextElement_Fragment | PageData_StandardPage_Fragment | PageData_StartPage_Fragment | PageData_SysContentFolder_Fragment | PageData_TestimonialElement_Fragment | PageData_TextBlock_Fragment | PageData_Video_Fragment | PageData_VideoElement_Fragment | PageData_VideoMedia_Fragment | PageData__Component_Fragment | PageData__Content_Fragment | PageData__Experience_Fragment | PageData__Folder_Fragment | PageData__Image_Fragment | PageData__Media_Fragment | PageData__Page_Fragment | PageData__Section_Fragment | PageData__Video_Fragment;
 
 export type LinkDataFragment = { __typename?: 'ContentUrl', type?: string | null, base?: string | null, default?: string | null } & { ' $fragmentName'?: 'LinkDataFragment' };
 
@@ -13240,10 +15150,20 @@ type IContentListItem_OptiFormsChoiceElement_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_OptiFormsChoiceElement_Fragment' };
 
+type IContentListItem_OptiFormsCondition_Fragment = (
+  { __typename?: 'OptiFormsCondition' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_OptiFormsCondition_Fragment' };
+
 type IContentListItem_OptiFormsContainerData_Fragment = (
   { __typename?: 'OptiFormsContainerData' }
   & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem_OptiFormsContainerData_Fragment' };
+
+type IContentListItem_OptiFormsDependencyRule_Fragment = (
+  { __typename?: 'OptiFormsDependencyRule' }
+  & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment } }
+) & { ' $fragmentName'?: 'IContentListItem_OptiFormsDependencyRule_Fragment' };
 
 type IContentListItem_OptiFormsNumberElement_Fragment = (
   { __typename?: 'OptiFormsNumberElement' }
@@ -13390,7 +15310,7 @@ type IContentListItem__Video_Fragment = (
   & { ' $fragmentRefs'?: { 'IContentData__Video_Fragment': IContentData__Video_Fragment } }
 ) & { ' $fragmentName'?: 'IContentListItem__Video_Fragment' };
 
-export type IContentListItemFragment = IContentListItem_ArticleListElement_Fragment | IContentListItem_BlankExperience_Fragment | IContentListItem_BlankSection_Fragment | IContentListItem_BlogListingBlock_Fragment | IContentListItem_BlogPostPage_Fragment | IContentListItem_BlogSectionExperience_Fragment | IContentListItem_ButtonBlock_Fragment | IContentListItem_CTAElement_Fragment | IContentListItem_CardBlock_Fragment | IContentListItem_CarouselBlock_Fragment | IContentListItem_ContentRecsBlock_Fragment | IContentListItem_ContentRecsElement_Fragment | IContentListItem_ContinueReadingComponent_Fragment | IContentListItem_GenericMedia_Fragment | IContentListItem_HeadingElement_Fragment | IContentListItem_HeroBlock_Fragment | IContentListItem_HomePageHeroBlock_Fragment | IContentListItem_HtmlBlock_Fragment | IContentListItem_Image_Fragment | IContentListItem_ImageElement_Fragment | IContentListItem_ImageMedia_Fragment | IContentListItem_LandingPage_Fragment | IContentListItem_LayoutContainerBlock_Fragment | IContentListItem_LayoutSettingsBlock_Fragment | IContentListItem_MegaMenuGroupBlock_Fragment | IContentListItem_MenuNavigationBlock_Fragment | IContentListItem_OdpEmbedBlock_Fragment | IContentListItem_OptiFormsChoiceElement_Fragment | IContentListItem_OptiFormsContainerData_Fragment | IContentListItem_OptiFormsNumberElement_Fragment | IContentListItem_OptiFormsRangeElement_Fragment | IContentListItem_OptiFormsResetElement_Fragment | IContentListItem_OptiFormsSelectionElement_Fragment | IContentListItem_OptiFormsSubmitElement_Fragment | IContentListItem_OptiFormsTextareaElement_Fragment | IContentListItem_OptiFormsTextboxElement_Fragment | IContentListItem_OptiFormsUrlElement_Fragment | IContentListItem_PageSeoSettings_Fragment | IContentListItem_ParagraphElement_Fragment | IContentListItem_QuoteBlock_Fragment | IContentListItem_RichTextElement_Fragment | IContentListItem_StandardPage_Fragment | IContentListItem_StartPage_Fragment | IContentListItem_SysContentFolder_Fragment | IContentListItem_TestimonialElement_Fragment | IContentListItem_TextBlock_Fragment | IContentListItem_Video_Fragment | IContentListItem_VideoElement_Fragment | IContentListItem_VideoMedia_Fragment | IContentListItem__Component_Fragment | IContentListItem__Content_Fragment | IContentListItem__Experience_Fragment | IContentListItem__Folder_Fragment | IContentListItem__Image_Fragment | IContentListItem__Media_Fragment | IContentListItem__Page_Fragment | IContentListItem__Section_Fragment | IContentListItem__Video_Fragment;
+export type IContentListItemFragment = IContentListItem_ArticleListElement_Fragment | IContentListItem_BlankExperience_Fragment | IContentListItem_BlankSection_Fragment | IContentListItem_BlogListingBlock_Fragment | IContentListItem_BlogPostPage_Fragment | IContentListItem_BlogSectionExperience_Fragment | IContentListItem_ButtonBlock_Fragment | IContentListItem_CTAElement_Fragment | IContentListItem_CardBlock_Fragment | IContentListItem_CarouselBlock_Fragment | IContentListItem_ContentRecsBlock_Fragment | IContentListItem_ContentRecsElement_Fragment | IContentListItem_ContinueReadingComponent_Fragment | IContentListItem_GenericMedia_Fragment | IContentListItem_HeadingElement_Fragment | IContentListItem_HeroBlock_Fragment | IContentListItem_HomePageHeroBlock_Fragment | IContentListItem_HtmlBlock_Fragment | IContentListItem_Image_Fragment | IContentListItem_ImageElement_Fragment | IContentListItem_ImageMedia_Fragment | IContentListItem_LandingPage_Fragment | IContentListItem_LayoutContainerBlock_Fragment | IContentListItem_LayoutSettingsBlock_Fragment | IContentListItem_MegaMenuGroupBlock_Fragment | IContentListItem_MenuNavigationBlock_Fragment | IContentListItem_OdpEmbedBlock_Fragment | IContentListItem_OptiFormsChoiceElement_Fragment | IContentListItem_OptiFormsCondition_Fragment | IContentListItem_OptiFormsContainerData_Fragment | IContentListItem_OptiFormsDependencyRule_Fragment | IContentListItem_OptiFormsNumberElement_Fragment | IContentListItem_OptiFormsRangeElement_Fragment | IContentListItem_OptiFormsResetElement_Fragment | IContentListItem_OptiFormsSelectionElement_Fragment | IContentListItem_OptiFormsSubmitElement_Fragment | IContentListItem_OptiFormsTextareaElement_Fragment | IContentListItem_OptiFormsTextboxElement_Fragment | IContentListItem_OptiFormsUrlElement_Fragment | IContentListItem_PageSeoSettings_Fragment | IContentListItem_ParagraphElement_Fragment | IContentListItem_QuoteBlock_Fragment | IContentListItem_RichTextElement_Fragment | IContentListItem_StandardPage_Fragment | IContentListItem_StartPage_Fragment | IContentListItem_SysContentFolder_Fragment | IContentListItem_TestimonialElement_Fragment | IContentListItem_TextBlock_Fragment | IContentListItem_Video_Fragment | IContentListItem_VideoElement_Fragment | IContentListItem_VideoMedia_Fragment | IContentListItem__Component_Fragment | IContentListItem__Content_Fragment | IContentListItem__Experience_Fragment | IContentListItem__Folder_Fragment | IContentListItem__Image_Fragment | IContentListItem__Media_Fragment | IContentListItem__Page_Fragment | IContentListItem__Section_Fragment | IContentListItem__Video_Fragment;
 
 type ExperienceData_BlankExperience_Fragment = { __typename?: 'BlankExperience', composition?: (
     { __typename?: 'CompositionStructureNode', nodes?: Array<(
@@ -13616,8 +15536,14 @@ export type CompositionComponentNodeDataFragment = { __typename?: 'CompositionCo
     { __typename?: 'OptiFormsChoiceElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment;'ElementData_OptiFormsChoiceElement_Fragment': ElementData_OptiFormsChoiceElement_Fragment } }
   ) | (
+    { __typename?: 'OptiFormsCondition' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment;'ElementData_OptiFormsCondition_Fragment': ElementData_OptiFormsCondition_Fragment } }
+  ) | (
     { __typename?: 'OptiFormsContainerData' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment;'ElementData_OptiFormsContainerData_Fragment': ElementData_OptiFormsContainerData_Fragment } }
+  ) | (
+    { __typename?: 'OptiFormsDependencyRule' }
+    & { ' $fragmentRefs'?: { 'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment;'ElementData_OptiFormsDependencyRule_Fragment': ElementData_OptiFormsDependencyRule_Fragment } }
   ) | (
     { __typename?: 'OptiFormsNumberElement' }
     & { ' $fragmentRefs'?: { 'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment;'ElementData_OptiFormsNumberElement_Fragment': ElementData_OptiFormsNumberElement_Fragment } }
@@ -13771,8 +15697,14 @@ export type getContentByIdQuery = { __typename?: 'Query', content?: { __typename
       { __typename?: 'OptiFormsChoiceElement' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'BlockData_OptiFormsChoiceElement_Fragment': BlockData_OptiFormsChoiceElement_Fragment;'PageData_OptiFormsChoiceElement_Fragment': PageData_OptiFormsChoiceElement_Fragment } }
     ) | (
+      { __typename?: 'OptiFormsCondition' }
+      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment;'BlockData_OptiFormsCondition_Fragment': BlockData_OptiFormsCondition_Fragment;'PageData_OptiFormsCondition_Fragment': PageData_OptiFormsCondition_Fragment } }
+    ) | (
       { __typename?: 'OptiFormsContainerData' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'BlockData_OptiFormsContainerData_Fragment': BlockData_OptiFormsContainerData_Fragment;'PageData_OptiFormsContainerData_Fragment': PageData_OptiFormsContainerData_Fragment } }
+    ) | (
+      { __typename?: 'OptiFormsDependencyRule' }
+      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment;'BlockData_OptiFormsDependencyRule_Fragment': BlockData_OptiFormsDependencyRule_Fragment;'PageData_OptiFormsDependencyRule_Fragment': PageData_OptiFormsDependencyRule_Fragment } }
     ) | (
       { __typename?: 'OptiFormsNumberElement' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'BlockData_OptiFormsNumberElement_Fragment': BlockData_OptiFormsNumberElement_Fragment;'PageData_OptiFormsNumberElement_Fragment': PageData_OptiFormsNumberElement_Fragment } }
@@ -13955,8 +15887,14 @@ export type getContentByPathQuery = { __typename?: 'Query', content?: { __typena
       { __typename?: 'OptiFormsChoiceElement' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsChoiceElement_Fragment': IContentData_OptiFormsChoiceElement_Fragment;'PageData_OptiFormsChoiceElement_Fragment': PageData_OptiFormsChoiceElement_Fragment } }
     ) | (
+      { __typename?: 'OptiFormsCondition' }
+      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsCondition_Fragment': IContentData_OptiFormsCondition_Fragment;'PageData_OptiFormsCondition_Fragment': PageData_OptiFormsCondition_Fragment } }
+    ) | (
       { __typename?: 'OptiFormsContainerData' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsContainerData_Fragment': IContentData_OptiFormsContainerData_Fragment;'PageData_OptiFormsContainerData_Fragment': PageData_OptiFormsContainerData_Fragment } }
+    ) | (
+      { __typename?: 'OptiFormsDependencyRule' }
+      & { ' $fragmentRefs'?: { 'IContentData_OptiFormsDependencyRule_Fragment': IContentData_OptiFormsDependencyRule_Fragment;'PageData_OptiFormsDependencyRule_Fragment': PageData_OptiFormsDependencyRule_Fragment } }
     ) | (
       { __typename?: 'OptiFormsNumberElement' }
       & { ' $fragmentRefs'?: { 'IContentData_OptiFormsNumberElement_Fragment': IContentData_OptiFormsNumberElement_Fragment;'PageData_OptiFormsNumberElement_Fragment': PageData_OptiFormsNumberElement_Fragment } }
@@ -14055,7 +15993,7 @@ export type getContentTypeQueryVariables = Exact<{
 }>;
 
 
-export type getContentTypeQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: { __typename?: 'ArticleListElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogListingBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogPostPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogSectionExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ButtonBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CTAElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CardBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CarouselBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContinueReadingComponent', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'GenericMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeadingElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HomePageHeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HtmlBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LandingPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutContainerBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutSettingsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MegaMenuGroupBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MenuNavigationBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OdpEmbedBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSelectionElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSubmitElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextareaElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextboxElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsUrlElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PageSeoSettings', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ParagraphElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'QuoteBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'RichTextElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StandardPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StartPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SysContentFolder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TextBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Component', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Content', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Experience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Folder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Media', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Page', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Section', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | null } | null };
+export type getContentTypeQuery = { __typename?: 'Query', content?: { __typename?: '_ContentOutput', total?: number | null, items?: { __typename?: 'ArticleListElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlankSection', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogListingBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogPostPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'BlogSectionExperience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ButtonBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CTAElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CardBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'CarouselBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContentRecsElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ContinueReadingComponent', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'GenericMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeadingElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HomePageHeroBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'HtmlBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ImageMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LandingPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutContainerBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'LayoutSettingsBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MegaMenuGroupBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'MenuNavigationBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OdpEmbedBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsChoiceElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsCondition', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsContainerData', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsDependencyRule', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsNumberElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsRangeElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsResetElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSelectionElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsSubmitElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextareaElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsTextboxElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'OptiFormsUrlElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'PageSeoSettings', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'ParagraphElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'QuoteBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'RichTextElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StandardPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'StartPage', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'SysContentFolder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TestimonialElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'TextBlock', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoElement', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: 'VideoMedia', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Component', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Content', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Experience', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Folder', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Image', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Media', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Page', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Section', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | { __typename?: '_Video', _metadata?: { __typename?: 'ContentMetadata', types?: Array<string | null> | null } | { __typename?: 'InstanceMetadata', types?: Array<string | null> | null } | { __typename?: 'ItemMetadata', types?: Array<string | null> | null } | { __typename?: 'MediaMetadata', types?: Array<string | null> | null } | null } | null } | null };
 
 export const LinkDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}}]} as unknown as DocumentNode<LinkDataFragment, unknown>;
 export const ReferenceDataFragmentDoc = {"kind":"Document","definitions":[{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}}]} as unknown as DocumentNode<ReferenceDataFragment, unknown>;
@@ -14117,5 +16055,5 @@ export const getArticlesDocument = {"kind":"Document","definitions":[{"kind":"Op
 export const searchContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"searchContent"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"term"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"withinLocale"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"types"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"25"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"start"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"0"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"Content"},"name":{"kind":"Name","value":"_Page"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"match"},"value":{"kind":"Variable","name":{"kind":"Name","value":"term"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"exist"},"value":{"kind":"BooleanValue","value":true}}]}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ranking"},"value":{"kind":"EnumValue","value":"SEMANTIC"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"start"}}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"withinLocale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_score"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"SearchData"}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"preview"},"name":{"kind":"Name","value":"_fulltext"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"highlight"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"enabled"},"value":{"kind":"BooleanValue","value":true}},{"kind":"ObjectField","name":{"kind":"Name","value":"startToken"},"value":{"kind":"StringValue","value":"<span>","block":false}},{"kind":"ObjectField","name":{"kind":"Name","value":"endToken"},"value":{"kind":"StringValue","value":"</span>","block":false}}]}}]},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageSearchResult"}}]}},{"kind":"Field","name":{"kind":"Name","value":"facets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"types"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"locale"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContentMetadata"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}},{"kind":"Field","name":{"kind":"Name","value":"types"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SearchData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageSearchResult"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"seodata"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}}]}}]}}]} as unknown as DocumentNode<searchContentQuery, searchContentQueryVariables>;
 export const personalizedSearchContentDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"personalizedSearchContent"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"term"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"topInterest"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"withinLocale"}},"type":{"kind":"ListType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"types"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"25"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"start"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"0"}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"boost"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Int"}}},"defaultValue":{"kind":"IntValue","value":"100"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"Content"},"name":{"kind":"Name","value":"_Page"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"match"},"value":{"kind":"Variable","name":{"kind":"Name","value":"term"}}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_fulltext"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"match"},"value":{"kind":"Variable","name":{"kind":"Name","value":"topInterest"}}},{"kind":"ObjectField","name":{"kind":"Name","value":"boost"},"value":{"kind":"Variable","name":{"kind":"Name","value":"boost"}}}]}}]}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"exist"},"value":{"kind":"BooleanValue","value":true}}]}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"orderBy"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_ranking"},"value":{"kind":"EnumValue","value":"SEMANTIC"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"limit"},"value":{"kind":"Variable","name":{"kind":"Name","value":"pageSize"}}},{"kind":"Argument","name":{"kind":"Name","value":"skip"},"value":{"kind":"Variable","name":{"kind":"Name","value":"start"}}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"withinLocale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","name":{"kind":"Name","value":"items"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_score"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"SearchData"}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"preview"},"name":{"kind":"Name","value":"_fulltext"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"highlight"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"enabled"},"value":{"kind":"BooleanValue","value":true}},{"kind":"ObjectField","name":{"kind":"Name","value":"startToken"},"value":{"kind":"StringValue","value":"<span>","block":false}},{"kind":"ObjectField","name":{"kind":"Name","value":"endToken"},"value":{"kind":"StringValue","value":"</span>","block":false}}]}}]},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageSearchResult"}}]}},{"kind":"Field","name":{"kind":"Name","value":"facets"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"types"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}},{"kind":"Field","name":{"kind":"Name","value":"locale"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"filters"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"name"}},{"kind":"Field","name":{"kind":"Name","value":"count"}}]}}]}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContentMetadata"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}},{"kind":"Field","name":{"kind":"Name","value":"types"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"SearchData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageSearchResult"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"title"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"seodata"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}}]}},{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}}]}}]}}]} as unknown as DocumentNode<personalizedSearchContentQuery, personalizedSearchContentQueryVariables>;
 export const getContentByIdDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContentById"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"path"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"-","block":false}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"domain"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"_Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"variation"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"include"},"value":{"kind":"EnumValue","value":"ALL"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"default"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"path"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"domain"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"changeset"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"item"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogSectionExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LandingPageData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContentMetadata"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}},{"kind":"Field","name":{"kind":"Name","value":"types"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentListItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"alt"},"name":{"kind":"Name","value":"AltText"}},{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArticleListElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleListElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleListCount"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CTAElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CTAElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"cta_text"},"name":{"kind":"Name","value":"Text"}},{"kind":"Field","alias":{"kind":"Name","value":"cta_link"},"name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentRecsElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentRecsElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ElementDeliveryApiKey"}},{"kind":"Field","name":{"kind":"Name","value":"ElementRecommendationCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeadingElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeadingElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"headingText"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlockProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeroBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"heroImage"},"name":{"kind":"Name","value":"HeroImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"eyebrow"},"name":{"kind":"Name","value":"Eyebrow"}},{"kind":"Field","alias":{"kind":"Name","value":"heroHeading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroSubheading"},"name":{"kind":"Name","value":"SubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroDescription"},"name":{"kind":"Name","value":"Description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"heroColor"},"name":{"kind":"Name","value":"HeroColor"}},{"kind":"Field","alias":{"kind":"Name","value":"heroButton"},"name":{"kind":"Name","value":"HeroButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockPropertyData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"imageLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LayoutSettingsBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LayoutSettingsBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfoHeading"}},{"kind":"Field","name":{"kind":"Name","value":"serviceButtons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"footerMenus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"legalLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"appIdentifiers"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MenuNavigationBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuNavigationBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuNavigationHeading"}},{"kind":"Field","name":{"kind":"Name","value":"NavigationLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageMenuBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"topics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"sharing"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MegaMenuGroupBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuGroupBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuMenuHeading"}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageMenuBlock"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OdpEmbedBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OdpEmbedBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ContentId"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ParagraphElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"QuoteBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"quote"},"name":{"kind":"Name","value":"QuoteText"}},{"kind":"Field","alias":{"kind":"Name","value":"color"},"name":{"kind":"Name","value":"QuoteColor"}},{"kind":"Field","alias":{"kind":"Name","value":"active"},"name":{"kind":"Name","value":"QuoteActive"}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"QuoteProfileName"}},{"kind":"Field","alias":{"kind":"Name","value":"profilePicture"},"name":{"kind":"Name","value":"QuoteProfilePicture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"location"},"name":{"kind":"Name","value":"QuoteProfileLocation"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RichTextElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RichTextElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TestimonialElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TestimonialElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customerName"}},{"kind":"Field","name":{"kind":"Name","value":"customerLocation"}},{"kind":"Field","name":{"kind":"Name","value":"customerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"referenceTitle"}},{"kind":"Field","name":{"kind":"Name","value":"referenceText"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"overline"},"name":{"kind":"Name","value":"TextBlockOverline"}},{"kind":"Field","alias":{"kind":"Name","value":"headingSize"},"name":{"kind":"Name","value":"TextBlockHeadingSize"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"TextBlockHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"TextBlockDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"center"},"name":{"kind":"Name","value":"TextCenter"}},{"kind":"Field","alias":{"kind":"Name","value":"width"},"name":{"kind":"Name","value":"TextBlockWidth"}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"TextClassName"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankSection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContinueReadingComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContinueReadingComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"topline"}},{"kind":"Field","name":{"kind":"Name","value":"shared"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CarouselBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"CarouselItemsContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettingsProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}},{"kind":"Field","alias":{"kind":"Name","value":"layoutType"},"name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","alias":{"kind":"Name","value":"template"},"name":{"kind":"Name","value":"displayTemplateKey"}},{"kind":"Field","alias":{"kind":"Name","value":"settings"},"name":{"kind":"Name","value":"displaySettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IElementData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionComponentNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"BlankExperienceSeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogSectionExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogSectionExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"blogTitle"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogSubtitle"},"name":{"kind":"Name","value":"ArticleSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogImage"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogBody"},"name":{"kind":"Name","value":"BlogPostBody"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogAuthor"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"blogTopics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","name":{"kind":"Name","value":"continueReading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LandingPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LandingPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"TopContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MainContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}}]} as unknown as DocumentNode<getContentByIdQuery, getContentByIdQueryVariables>;
-export const getContentByPathDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContentByPath"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"path"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"siteId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"NullValue"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"_Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"default"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"path"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"siteId"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"changeset"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}}}]}}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"item"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogSectionExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LandingPageData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContentMetadata"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}},{"kind":"Field","name":{"kind":"Name","value":"types"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettingsProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}},{"kind":"Field","alias":{"kind":"Name","value":"layoutType"},"name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","alias":{"kind":"Name","value":"template"},"name":{"kind":"Name","value":"displayTemplateKey"}},{"kind":"Field","alias":{"kind":"Name","value":"settings"},"name":{"kind":"Name","value":"displaySettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IElementData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArticleListElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleListElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleListCount"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CTAElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CTAElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"cta_text"},"name":{"kind":"Name","value":"Text"}},{"kind":"Field","alias":{"kind":"Name","value":"cta_link"},"name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentListItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"alt"},"name":{"kind":"Name","value":"AltText"}},{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentRecsElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentRecsElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ElementDeliveryApiKey"}},{"kind":"Field","name":{"kind":"Name","value":"ElementRecommendationCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeadingElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeadingElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"headingText"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlockProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeroBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"heroImage"},"name":{"kind":"Name","value":"HeroImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"eyebrow"},"name":{"kind":"Name","value":"Eyebrow"}},{"kind":"Field","alias":{"kind":"Name","value":"heroHeading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroSubheading"},"name":{"kind":"Name","value":"SubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroDescription"},"name":{"kind":"Name","value":"Description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"heroColor"},"name":{"kind":"Name","value":"HeroColor"}},{"kind":"Field","alias":{"kind":"Name","value":"heroButton"},"name":{"kind":"Name","value":"HeroButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockPropertyData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"imageLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LayoutSettingsBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LayoutSettingsBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfoHeading"}},{"kind":"Field","name":{"kind":"Name","value":"serviceButtons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"footerMenus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"legalLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"appIdentifiers"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MenuNavigationBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuNavigationBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuNavigationHeading"}},{"kind":"Field","name":{"kind":"Name","value":"NavigationLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageMenuBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"topics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"sharing"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MegaMenuGroupBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuGroupBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuMenuHeading"}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageMenuBlock"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OdpEmbedBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OdpEmbedBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ContentId"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ParagraphElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"QuoteBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"quote"},"name":{"kind":"Name","value":"QuoteText"}},{"kind":"Field","alias":{"kind":"Name","value":"color"},"name":{"kind":"Name","value":"QuoteColor"}},{"kind":"Field","alias":{"kind":"Name","value":"active"},"name":{"kind":"Name","value":"QuoteActive"}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"QuoteProfileName"}},{"kind":"Field","alias":{"kind":"Name","value":"profilePicture"},"name":{"kind":"Name","value":"QuoteProfilePicture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"location"},"name":{"kind":"Name","value":"QuoteProfileLocation"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RichTextElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RichTextElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TestimonialElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TestimonialElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customerName"}},{"kind":"Field","name":{"kind":"Name","value":"customerLocation"}},{"kind":"Field","name":{"kind":"Name","value":"customerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"referenceTitle"}},{"kind":"Field","name":{"kind":"Name","value":"referenceText"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"overline"},"name":{"kind":"Name","value":"TextBlockOverline"}},{"kind":"Field","alias":{"kind":"Name","value":"headingSize"},"name":{"kind":"Name","value":"TextBlockHeadingSize"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"TextBlockHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"TextBlockDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"center"},"name":{"kind":"Name","value":"TextCenter"}},{"kind":"Field","alias":{"kind":"Name","value":"width"},"name":{"kind":"Name","value":"TextBlockWidth"}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"TextClassName"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankSection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContinueReadingComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContinueReadingComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"topline"}},{"kind":"Field","name":{"kind":"Name","value":"shared"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CarouselBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"CarouselItemsContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionComponentNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"BlankExperienceSeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogSectionExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogSectionExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"blogTitle"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogSubtitle"},"name":{"kind":"Name","value":"ArticleSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogImage"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogBody"},"name":{"kind":"Name","value":"BlogPostBody"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogAuthor"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"blogTopics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","name":{"kind":"Name","value":"continueReading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LandingPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LandingPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"TopContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MainContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}}]} as unknown as DocumentNode<getContentByPathQuery, getContentByPathQueryVariables>;
+export const getContentByPathDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContentByPath"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"path"}},"type":{"kind":"NonNullType","type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"siteId"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"NullValue"}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"_Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"default"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"path"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"endsWith"},"value":{"kind":"Variable","name":{"kind":"Name","value":"siteId"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"changeset"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}}}]}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"hierarchical"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"in"},"value":{"kind":"Variable","name":{"kind":"Name","value":"path"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"type"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"StringValue","value":"SIMPLE","block":false}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"endsWith"},"value":{"kind":"Variable","name":{"kind":"Name","value":"siteId"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"changeset"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"changeset"}}}]}}]}}]}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"item"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogSectionExperienceData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LandingPageData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentUrl"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"base"}},{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentInfo"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"IContentMetadata"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"locale"}},{"kind":"Field","name":{"kind":"Name","value":"types"}},{"kind":"Field","name":{"kind":"Name","value":"displayName"}},{"kind":"Field","name":{"kind":"Name","value":"version"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ReferenceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentReference"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettingsProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}},{"kind":"Field","alias":{"kind":"Name","value":"layoutType"},"name":{"kind":"Name","value":"nodeType"}},{"kind":"Field","name":{"kind":"Name","value":"type"}},{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","alias":{"kind":"Name","value":"template"},"name":{"kind":"Name","value":"displayTemplateKey"}},{"kind":"Field","alias":{"kind":"Name","value":"settings"},"name":{"kind":"Name","value":"displaySettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}},{"kind":"Field","name":{"kind":"Name","value":"value"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentInfo"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"_type"},"name":{"kind":"Name","value":"__typename"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IElementData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ArticleListElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ArticleListElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"articleListCount"}},{"kind":"Field","name":{"kind":"Name","value":"topics"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CTAElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CTAElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"cta_text"},"name":{"kind":"Name","value":"Text"}},{"kind":"Field","alias":{"kind":"Name","value":"cta_link"},"name":{"kind":"Name","value":"Link"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"IContentListItem"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"alt"},"name":{"kind":"Name","value":"AltText"}},{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoMediaComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoMedia"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"default"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"displayName"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContentRecsElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContentRecsElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ElementDeliveryApiKey"}},{"kind":"Field","name":{"kind":"Name","value":"ElementRecommendationCount"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeadingElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeadingElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"headingText"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ButtonBlockPropertyData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ButtonBlockProperty"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"children"},"name":{"kind":"Name","value":"ButtonText"}},{"kind":"Field","alias":{"kind":"Name","value":"url"},"name":{"kind":"Name","value":"ButtonUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"ButtonClass"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonType"},"name":{"kind":"Name","value":"ButtonType"}},{"kind":"Field","alias":{"kind":"Name","value":"buttonVariant"},"name":{"kind":"Name","value":"ButtonVariant"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"HeroBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"HeroBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"heroImage"},"name":{"kind":"Name","value":"HeroImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"eyebrow"},"name":{"kind":"Name","value":"Eyebrow"}},{"kind":"Field","alias":{"kind":"Name","value":"heroHeading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroSubheading"},"name":{"kind":"Name","value":"SubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"heroDescription"},"name":{"kind":"Name","value":"Description"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"heroColor"},"name":{"kind":"Name","value":"HeroColor"}},{"kind":"Field","alias":{"kind":"Name","value":"heroButton"},"name":{"kind":"Name","value":"HeroButton"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockPropertyData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ImageElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ImageElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"altText"}},{"kind":"Field","name":{"kind":"Name","value":"imageLink"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LinkItemData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"Link"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"text"}},{"kind":"Field","name":{"kind":"Name","value":"target"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LayoutSettingsBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LayoutSettingsBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"mainMenu"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfoHeading"}},{"kind":"Field","name":{"kind":"Name","value":"serviceButtons"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"contactInfo"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","name":{"kind":"Name","value":"footerMenus"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"copyright"}},{"kind":"Field","name":{"kind":"Name","value":"legalLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"appIdentifiers"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MenuNavigationBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MenuNavigationBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuNavigationHeading"}},{"kind":"Field","name":{"kind":"Name","value":"NavigationLinks"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkItemData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageMenuBlock"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"meta"},"name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"published"}},{"kind":"Field","name":{"kind":"Name","value":"url"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}}]}},{"kind":"Field","alias":{"kind":"Name","value":"topics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"author"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"sharing"},"name":{"kind":"Name","value":"SeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","alias":{"kind":"Name","value":"image"},"name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"MegaMenuGroupBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"MegaMenuGroupBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"displayName"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MenuMenuHeading"}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuUrl"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"LinkData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MegaMenuContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlogPostPageMenuBlock"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"OdpEmbedBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"OdpEmbedBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"ContentId"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageSeoSettingsData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"PageSeoSettings"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"MetaTitle"}},{"kind":"Field","name":{"kind":"Name","value":"MetaDescription"}},{"kind":"Field","name":{"kind":"Name","value":"MetaKeywords"}},{"kind":"Field","name":{"kind":"Name","value":"SharingImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"GraphType"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ParagraphElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ParagraphElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"QuoteBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"QuoteBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"quote"},"name":{"kind":"Name","value":"QuoteText"}},{"kind":"Field","alias":{"kind":"Name","value":"color"},"name":{"kind":"Name","value":"QuoteColor"}},{"kind":"Field","alias":{"kind":"Name","value":"active"},"name":{"kind":"Name","value":"QuoteActive"}},{"kind":"Field","alias":{"kind":"Name","value":"name"},"name":{"kind":"Name","value":"QuoteProfileName"}},{"kind":"Field","alias":{"kind":"Name","value":"profilePicture"},"name":{"kind":"Name","value":"QuoteProfilePicture"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"location"},"name":{"kind":"Name","value":"QuoteProfileLocation"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"RichTextElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"RichTextElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"text"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TestimonialElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TestimonialElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"customerName"}},{"kind":"Field","name":{"kind":"Name","value":"customerLocation"}},{"kind":"Field","name":{"kind":"Name","value":"customerImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"referenceTitle"}},{"kind":"Field","name":{"kind":"Name","value":"referenceText"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"TextBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"TextBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"overline"},"name":{"kind":"Name","value":"TextBlockOverline"}},{"kind":"Field","alias":{"kind":"Name","value":"headingSize"},"name":{"kind":"Name","value":"TextBlockHeadingSize"}},{"kind":"Field","alias":{"kind":"Name","value":"heading"},"name":{"kind":"Name","value":"TextBlockHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"description"},"name":{"kind":"Name","value":"TextBlockDescription"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}},{"kind":"Field","name":{"kind":"Name","value":"html"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"center"},"name":{"kind":"Name","value":"TextCenter"}},{"kind":"Field","alias":{"kind":"Name","value":"width"},"name":{"kind":"Name","value":"TextBlockWidth"}},{"kind":"Field","alias":{"kind":"Name","value":"className"},"name":{"kind":"Name","value":"TextClassName"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"VideoElementData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"VideoElement"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"title"}},{"kind":"Field","name":{"kind":"Name","value":"video"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"placeholder"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankSectionData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankSection"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"key"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ContinueReadingComponentData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ContinueReadingComponent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"topline"}},{"kind":"Field","name":{"kind":"Name","value":"shared"}},{"kind":"Field","name":{"kind":"Name","value":"heading"}},{"kind":"Field","name":{"kind":"Name","value":"content"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CarouselBlockData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"CarouselBlock"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"CarouselItemsContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"CompositionComponentNodeData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionComponentNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"component"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"ExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"composition"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}},{"kind":"InlineFragment","typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"ICompositionStructureNode"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"nodes"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionNodeData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}}]}}]}}]}}]}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CompositionComponentNodeData"}}]}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"PageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"_IContent"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlankExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlankExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"BlankExperienceSeoSettings"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsPropertyData"}}]}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogSectionExperienceData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogSectionExperience"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ExperienceData"}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"BlogPostPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"BlogPostPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"blogTitle"},"name":{"kind":"Name","value":"Heading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogSubtitle"},"name":{"kind":"Name","value":"ArticleSubHeading"}},{"kind":"Field","alias":{"kind":"Name","value":"blogImage"},"name":{"kind":"Name","value":"BlogPostPromoImage"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"ReferenceData"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogBody"},"name":{"kind":"Name","value":"BlogPostBody"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"json"}}]}},{"kind":"Field","alias":{"kind":"Name","value":"blogAuthor"},"name":{"kind":"Name","value":"ArticleAuthor"}},{"kind":"Field","alias":{"kind":"Name","value":"blogTopics"},"name":{"kind":"Name","value":"Topic"}},{"kind":"Field","name":{"kind":"Name","value":"continueReading"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"IContentListItem"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoMediaComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}},{"kind":"FragmentDefinition","name":{"kind":"Name","value":"LandingPageData"},"typeCondition":{"kind":"NamedType","name":{"kind":"Name","value":"LandingPage"}},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"TopContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}},{"kind":"Field","name":{"kind":"Name","value":"MainContentArea"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ArticleListElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ButtonBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CTAElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"CarouselBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContentRecsElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ContinueReadingComponentData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeadingElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"HeroBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ImageElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"LayoutSettingsBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MegaMenuGroupBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"MenuNavigationBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"OdpEmbedBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"PageSeoSettingsData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"ParagraphElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"QuoteBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"RichTextElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TestimonialElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"TextBlockData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"VideoElementData"}},{"kind":"FragmentSpread","name":{"kind":"Name","value":"BlankSectionData"}}]}}]}}]} as unknown as DocumentNode<getContentByPathQuery, getContentByPathQueryVariables>;
 export const getContentTypeDocument = {"kind":"Document","definitions":[{"kind":"OperationDefinition","operation":"query","name":{"kind":"Name","value":"getContentType"},"variableDefinitions":[{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"key"}},"type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"version"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"locale"}},"type":{"kind":"ListType","type":{"kind":"NonNullType","type":{"kind":"NamedType","name":{"kind":"Name","value":"Locales"}}}}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"path"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}},"defaultValue":{"kind":"StringValue","value":"-","block":false}},{"kind":"VariableDefinition","variable":{"kind":"Variable","name":{"kind":"Name","value":"domain"}},"type":{"kind":"NamedType","name":{"kind":"Name","value":"String"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","alias":{"kind":"Name","value":"content"},"name":{"kind":"Name","value":"_Content"},"arguments":[{"kind":"Argument","name":{"kind":"Name","value":"variation"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"include"},"value":{"kind":"EnumValue","value":"ALL"}}]}},{"kind":"Argument","name":{"kind":"Name","value":"where"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_or"},"value":{"kind":"ListValue","values":[{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"key"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"key"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]},{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"_metadata"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"url"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"hierarchical"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"path"}}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"base"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"domain"}}}]}}]}},{"kind":"ObjectField","name":{"kind":"Name","value":"version"},"value":{"kind":"ObjectValue","fields":[{"kind":"ObjectField","name":{"kind":"Name","value":"eq"},"value":{"kind":"Variable","name":{"kind":"Name","value":"version"}}}]}}]}}]}]}}]}},{"kind":"Argument","name":{"kind":"Name","value":"locale"},"value":{"kind":"Variable","name":{"kind":"Name","value":"locale"}}}],"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"total"}},{"kind":"Field","alias":{"kind":"Name","value":"items"},"name":{"kind":"Name","value":"item"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"_metadata"},"selectionSet":{"kind":"SelectionSet","selections":[{"kind":"Field","name":{"kind":"Name","value":"types"}}]}}]}}]}}]}}]} as unknown as DocumentNode<getContentTypeQuery, getContentTypeQueryVariables>;

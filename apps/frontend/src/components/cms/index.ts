@@ -1,46 +1,28 @@
 // Auto generated dictionary
 // @not-modified => When this line is removed, the "force" parameter of the CLI tool is required to overwrite this file
-import { type ComponentTypeDictionary } from "@remkoj/optimizely-cms-react";
-import NodeComponent from "./node";
-import SectionFactory from "./section";
-import PageFactory from "./page";
-import NodesFactory from "./nodes";
-import MediaFactory from "./media";
-import ExperienceFactory from "./experience";
-import ComponentFactory from "./component";
+import { type ComponentTypeDictionary } from '@remkoj/optimizely-cms-react';
 
-// Prefix entries - if needed
-prefixDictionaryEntries(SectionFactory, "Section");
-prefixDictionaryEntries(PageFactory, "Page");
-prefixDictionaryEntries(NodesFactory, "Nodes");
-prefixDictionaryEntries(MediaFactory, "Media");
-prefixDictionaryEntries(MediaFactory, "Component");
-prefixDictionaryEntries(ExperienceFactory, "Experience");
-prefixDictionaryEntries(ExperienceFactory, "Page");
-prefixDictionaryEntries(ComponentFactory, "Component");
+import NodeComponent from './node';
+import ComponentFactory from './component';
+import ExperienceFactory from './experience';
+import MediaFactory from './media';
+import NodesFactory from './nodes';
+import PageFactory from './page';
+import SectionFactory from './section';
 
 // Build dictionary
 export const CmsFactory : ComponentTypeDictionary = [
-    { 
-        type: "Node", 
-        component: NodeComponent 
-    },
-    ...SectionFactory,
-    ...PageFactory,
-    ...NodesFactory,
-    ...MediaFactory,
-    ...ExperienceFactory,
-    ...ComponentFactory
+  {
+    type: 'Node',
+    component: NodeComponent
+  },
+  ...ComponentFactory,
+  ...ExperienceFactory,
+  ...MediaFactory,
+  ...NodesFactory,
+  ...PageFactory,
+  ...SectionFactory
 ];
 
 // Export dictionary
 export default CmsFactory;
-
-// Helper functions
-function prefixDictionaryEntries(list: ComponentTypeDictionary, prefix: string) : ComponentTypeDictionary
-{
-    list.forEach((component, idx, dictionary) => {
-        dictionary[idx].type = typeof component.type == 'string' ? prefix + "/" + component.type : [ prefix, ...component.type ]
-    });
-    return list;
-}

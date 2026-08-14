@@ -16,7 +16,7 @@ export type DropDownParameters = {
     label: string
     onChange?: (value: DropDownOption) => void
     compact?: boolean
-} & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'onChange'>
+} & Omit<DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement>, 'onChange' | 'ref'>
 
 export const DropDown : FunctionComponent<DropDownParameters> = ({ 
     options = [], 
